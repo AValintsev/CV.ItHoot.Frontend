@@ -1,0 +1,189 @@
+<div *ngIf="cv" class="main-block">
+  <div>
+  </div>
+  <div class="container" id="container-cv">
+    <div class="cv-card-full">
+      <div class="cv-card-left">
+        <div class="user-pic">
+          <img id="img-full" src="{{photoUrl}}" alt="">
+          <div class="user-name">
+            <span>{{cv.userName}} {{cv.lastName}}</span>
+          </div>
+        </div>
+
+        <div class="position">
+          <span><strong>Position:</strong> {{cv.requiredPosition}}</span>
+        </div>
+        <div class="left-item-title about">
+          <span>ABOUT ME</span>
+        </div>
+
+        <div class="about-me" [innerHTML]="cv.aboutMe" >
+        </div>
+        <div class="left-item-title">
+          <span>CONTACTS</span>
+        </div>
+        <div class="contact">
+          <div class="contact-ico">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+          </div>
+          <div class="contact-description">
+            <span>{{cv.code}}, {{cv.country}}, {{cv.city}},
+              {{cv.street}}</span>
+          </div>
+        </div>
+        <div class="contact">
+          <div class="contact-ico">
+            <fa-icon [icon]="faMobileAlt"></fa-icon>
+          </div>
+          <div class="contact-description">
+            <span>{{cv.phone}}</span>
+          </div>
+        </div>
+        <div class="contact email">
+          <div class="contact-ico">
+            <fa-icon [icon]="faAt"></fa-icon>
+          </div>
+          <div class="contact-description">
+            <span>{{cv.email}}</span>
+          </div>
+        </div>
+        <div class="contact site">
+          <div class="contact-ico">
+            <fa-icon [icon]="faGlobe"></fa-icon>
+          </div>
+          <div class="contact-description">
+            <span>{{cv.site}}</span>
+          </div>
+        </div>
+        <app-change-personal-data-for-hr *ngIf="isChange" [Cv]="cv"> </app-change-personal-data-for-hr>
+
+
+        <div class="left-item-title">
+          <span>SKILLS</span>
+        </div>
+        <div class="skills">
+          <div *ngFor="let skill of cv.skills; index as i" class="skill">
+            <div class="skill-icon"></div>
+            <div class="skill-name">Skill: {{skill.name}}</div>
+            <div class="skill-level">Level: {{skill.level}}</div>
+            <div *ngIf="isChange" ><button class="button" (click)="removeSkill(i)"> hide </button></div>
+          </div>
+        </div>
+        <app-change-skills-for-hr *ngIf="isChange" (addSkills)="addSkills($event)"></app-change-skills-for-hr>
+      </div>
+      <div class="cv-card-right">
+        <div class="right-title">
+          <span>Educations</span>
+        </div>
+        <div class="right-items">
+          <div *ngFor="let education of cv.educations; index as i" class="item">
+            <div class="item-name">
+              <h4>{{education.institutionName}}</h4>
+            </div>
+            <div class="item-body">
+              <div class="item-visual-date">
+                <div class="visual">
+                  <div class="visual-circle">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="visual-line">
+                    <div class="line"></div>
+                  </div>
+                  <div class="visual-circle">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="date">
+                  <span *ngIf="education.startDate">{{education.startDate | date: 'MM/yyyy'}}</span>
+                  <span *ngIf="education.endDate">{{education.endDate | date: 'MM/yyyy'}}</span>
+                </div>
+              </div>
+
+              <div class="item-description">
+                <div><span>Specialization: <strong>{{education.specialization}}</strong></span></div>
+                <div><span>Degree: <strong>{{education.degree}}</strong></span></div>
+                <p>{{education.description}}</p>
+              </div>
+
+
+              <div class="item-description ">
+                <button class="button" *ngIf="isChange" (click)="removeEducation(i)">hide</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <app-change-educations-for-hr *ngIf="isChange " (addEducations)="addEducations($event)"></app-change-educations-for-hr>
+        <div class="right-title">
+          <span>Experiences</span>
+        </div>
+        <div class="right-items">
+          <div *ngFor="let experience of cv.experiences; index as i" class="item">
+            <div class="item-name">
+              <h4>{{experience.company}}</h4>
+            </div>
+            <div class="item-body">
+              <div class="item-visual-date">
+                <div class="visual">
+                  <div class="visual-circle">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="visual-line">
+                    <div class="line"></div>
+                  </div>
+                  <div class="visual-circle">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="date">
+                  <span *ngIf="experience.startDate">{{experience.startDate | date: 'MM/yyyy'}}</span>
+                  <span *ngIf="experience.endDate">{{experience.endDate | date: 'MM/yyyy'}}</span>
+                </div>
+              </div>
+
+              <div class="item-description">
+                <div><span>Position: <strong>{{experience.position}}</strong></span></div>
+                <p>{{experience.description}}</p>
+              </div>
+              <div class="item-description">
+                <button  class="button" *ngIf="isChange" (click)="removeExperience(i)"> hide </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-change-experiences-for-hr *ngIf="isChange" (addExperiences)="addExperiences($event)"></app-change-experiences-for-hr>
+        <div class="right-title">
+          <span>Languages</span>
+        </div>
+        <div class="right-items">
+          <div *ngFor="let language of cv.userLanguages; index as i" class="skill">
+            <div class="item-skill">
+              <div  class="skill-name">Language: {{language.name}}</div>
+              <div  class="skill-level">Level: {{language.level}}</div>
+            </div>
+            <div class="tem-description">
+              <button class="button" *ngIf="isChange" (click)="rmveLanguage(i)" > hide </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <app-change-language-for-hr *ngIf="isChange" (onChangedLanguege)="addLanguage($event)">
+          </app-change-language-for-hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <app-cv-button btnText="Edit" [routerLink]="['/cv/edit/', (cv$ | async)?.id]"></app-cv-button>
+    <app-cv-button btnText="Back" routerLink="/cv/list"></app-cv-button>
+    <div class="col-md-4 text-right">
+      <button  class="btn btn-success btn-block button" (click)="openPDF2()">Download PDF</button>
+    </div>
+    <div class="col-md-4 text-right">
+      <button  class="btn btn-success btn-block button" (click)="change()">ChangeCV</button>
+    </div>
+  </div>
+</div>

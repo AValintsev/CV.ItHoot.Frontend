@@ -1,0 +1,140 @@
+<!-- <div class="container">
+  <div class="cv-form-full">
+    <div class="cv-form-left">
+        <div class="user-pic">
+          <img src="{{(userCvInfo$ | async)?.picture}}" alt="">
+          <div class="user-name">
+            <span>{{(userCvInfo$ | async)?.userName}} {{(userCvInfo$ | async)?.lastName}}</span>
+          </div>
+        </div>
+
+        <div class="position">
+          <span><strong>Position:</strong> {{(userCvInfo$ | async)?.requiredPosition}} lorum ipsum dolorem requiem</span>
+        </div>
+        <div class="left-item-title about">
+          <span>ABOUT ME</span>
+        </div>
+
+        <div class="about-me">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aut porro quos earum explicabo labore, iusto officiis deleniti doloremque, architecto voluptatem dolorem excepturi ea amet hic optio quam repudiandae nam!</p>
+            <p>{{(userCvInfo$ | async)?.aboutMe}}</p>
+        </div>
+        <div class="left-item-title">
+          <span>CONTACTS</span>
+        </div>
+        <div class="contact">
+          <div class="contact-ico">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+          </div>
+                <div class="contact-description">
+                    <span>{{(userCvInfo$ | async)?.code}}, {{(userCvInfo$ | async)?.country}}, {{(userCvInfo$ | async)?.city}}, {{(userCvInfo$ | async)?.street}}</span>
+                </div>
+        </div>
+        <div class="contact">
+          <div class="contact-ico">
+            <fa-icon [icon]="faMobileAlt"></fa-icon>
+          </div>
+          <div class="contact-description">
+              <span>{{(userCvInfo$ | async)?.phone}}</span>
+          </div>
+      </div>
+      <div class="contact email">
+        <div class="contact-ico">
+          <fa-icon [icon]="faAt"></fa-icon>
+        </div>
+        <div class="contact-description">
+            <span>{{(userCvInfo$ | async)?.email}}</span>
+        </div>
+      </div>
+      <div class="contact site">
+        <div class="contact-ico">
+          <fa-icon [icon]="faGlobe"></fa-icon>
+        </div>
+        <div class="contact-description">
+            <span>{{(userCvInfo$ | async)?.site}}</span>
+        </div>
+      </div>
+        <div class="left-item-title">
+          <span>SKILLS</span>
+        </div>
+        <div class="skills">
+          <p>Lorem</p>
+          <p>ipsum</p>
+          <p>dolorem</p>
+            <div *ngFor="let skill of skills" class="skill">
+              <div class="skill-icon"></div>
+              <div class="skill-name">{{skill.name}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="cv-card-right">
+      <div class="right-title">
+        <span>Educations</span>
+      </div>
+      <div class="right-items">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aut porro quos earum explicabo labore, iusto officiis deleniti doloremque, architecto voluptatem dolorem excepturi ea amet hic optio quam repudiandae nam!</p>
+        <div *ngFor="let education of educations" class="item">
+          <div class="item-visual">
+            <div class="visual-circle"></div>
+            <div class="visual-line"></div>
+          </div>
+          <div class="item-info">
+            <h4>{{education.institutionName}}</h4>
+            <span *ngIf="education.startDate">{{education.startDate}}</span>
+            <span> - </span>
+			      <span *ngIf="education.endDate">{{education.endDate}}</span>
+          </div>
+          <div class="item-description">
+            <h4>{{education.specialization}}</h4>
+            <h4>{{education.degree}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="right-title">
+        <span>Experiences</span>
+      </div>
+      <div class="right-items">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aut porro quos earum explicabo labore, iusto officiis deleniti doloremque, architecto voluptatem dolorem excepturi ea amet hic optio quam repudiandae nam!</p>
+        <div *ngFor="let experience of experiences" class="item">
+          <div class="item-visual">
+            <div class="visual-circle"></div>
+            <div class="visual-line"></div>
+          </div>
+          <div class="item-info">
+            <h4>{{experience.company}}</h4>
+            <h4>{{experience.position}}</h4>
+            <div>
+              <span *ngIf="experience.startDate">{{experience.startDate}}</span>
+              <span> - </span>
+			        <span *ngIf="experience.endDate">{{experience.endDate}}</span>
+            </div>
+          </div>
+          <div class="item-description">
+            <h4>{{experience.description}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="right-title">
+        <span>Languages</span>
+      </div>
+      <div class="right-items">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aut porro quos earum explicabo labore, iusto officiis deleniti doloremque, architecto voluptatem dolorem excepturi ea amet hic optio quam repudiandae nam!</p>
+        <div *ngFor="let language of languages" class="item">
+          <div class="item-visual">
+            <div class="visual-circle"></div>
+            <div class="visual-line"></div>
+          </div>
+          <div class="item-info">
+            <h4>{{language.name}}</h4>
+            <h4>{{language.level}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <a class="btn-url" [routerLink]="['/cv/edit/', (userCvInfo$ | async)?.id]">Edit</a>
+    <a class="btn-url" routerLink="/cv/list">Back</a>
+  </div>
+</div>
+ -->

@@ -1,0 +1,18 @@
+$backColor: rgb(82, 139, 214);
+$borderColor: lightgray;
+$Color: #fff;
+.cv-btn {
+  padding: 5px 10px;
+  border: 2px solid $borderColor;
+  background-color: $backColor;
+  border-radius: 10px;
+  color: $Color;
+  font-size: 18px;
+
+  &:hover {
+    background-color: $Color;
+    border: 2px solid $backColor;
+    color: $backColor;
+    font-weight: 700;
+  }
+}

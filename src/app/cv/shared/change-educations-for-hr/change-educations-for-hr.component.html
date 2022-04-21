@@ -1,0 +1,21 @@
+<div class="right-items">
+  <div class="addBtn">
+    <button class="cv-btn" (click)="addEducation()" type="button">Add Education</button>
+  </div>
+  <div>
+    <div class="right-item" >
+      <div class="item-top">
+        <div class="item-date">
+          <div><span>Start Date: </span><input [(ngModel)]="startDate" type="date"></div>
+          <div><span>End Date: </span><input [(ngModel)]="endDate" type="date"></div>
+        </div>
+        <div class="item-info">
+          <div><span>University Name: </span><input [(ngModel)]="institutionName" type="text"></div>
+          <div><span>Specialization: </span><input [(ngModel)]="specialization" type="text"></div>
+          <div><span>Degree: </span><input [(ngModel)]="degree" type="text"></div>
+          <div><span>More about: </span><textarea [(ngModel)]="description" cols="30" rows="10"></textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

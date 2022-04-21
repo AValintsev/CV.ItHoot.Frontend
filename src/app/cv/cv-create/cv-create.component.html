@@ -1,0 +1,187 @@
+<div class="main-block">
+  <div class="container">
+    <form class="createForm" [formGroup]="cvForm" (ngSubmit)="onSubmit()">
+      <div class="form-main">
+        <div class="form-main-left">
+          <div>
+            <div class="cv-name">
+              <span>CV Name (alias): </span><input type="text" formControlName="cvName">
+              <span>Is Draft: </span><input type="checkbox" formControlName="isDraft">
+            </div>
+            <div class="user-pic">
+              <img src="{{personPhoto}}" alt="">
+              <input type="text" formControlName="picture" hidden>
+              <div class="name-block">
+                <div class="user-name">
+                  <div><span>Name:</span><input formControlName="userName" type="text"></div>
+                  <div><span>Last Name:</span><input formControlName="lastName" type="text"></div>
+                </div>
+              </div>
+              <div class="load">
+                <input type="file" (change)="onSelectPhoto($event)">
+              </div>
+            </div>
+            <div class="position">
+              <div><span>Required Position:</span><input formControlName="requiredPosition" type="text"></div>
+            </div>
+            <div class="birthdate">
+              <span>Birthday:</span><input type="date" formControlName="birthdate">
+            </div>
+            <div class="left-item-title about">
+              <span>ABOUT ME</span>
+            </div>
+            <div class="about-me">
+              <angular-editor id="about" formControlName="aboutMe" [config]="editorConfig"></angular-editor>
+            </div>
+            <div class="left-item-title">
+              <span>CONTACTS</span>
+            </div>
+            <div class="contact">
+              <div class="contact-ico">
+                <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+              </div>
+              <div class="contact-description">
+                <div><span>Country:</span><input formControlName="country" type="text"></div>
+                <div><span>City:</span><input formControlName="city" type="text"></div>
+                <div><span>Street:</span><input formControlName="street" type="text"></div>
+                <div><span>Code:</span><input formControlName="code" type="text"></div>
+              </div>
+            </div>
+            <div class="contact">
+              <div class="contact-ico">
+                <fa-icon [icon]="faMobileAlt"></fa-icon>
+              </div>
+              <div class="contact-description">
+                <div><span>Phone:</span><input formControlName="phone" type="text"></div>
+              </div>
+            </div>
+            <div class="contact email">
+              <div class="contact-ico">
+                <fa-icon [icon]="faAt"></fa-icon>
+              </div>
+              <div class="contact-description">
+                <div><span>Email:</span><input formControlName="email" type="text"></div>
+              </div>
+            </div>
+            <div class="contact site">
+              <div class="contact-ico">
+                <fa-icon [icon]="faGlobe"></fa-icon>
+              </div>
+              <div class="contact-description">
+                <div><span>Site:</span><input formControlName="site" type="text"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="left-item-title">
+            <span>SKILLS</span>
+          </div>
+
+          <div class="skills" formGroupName="skills">
+            <div class="addBtn">
+              <button class="cv-btn" type="button" (click)="addSkill()">Add Skill</button>
+            </div>
+            <div class="skill" *ngFor="let item of getFormsControls('skills')['controls']; let idx = index">
+              <div class="skill-top" formGroupName={{idx}}>
+                <div class="skill-name"><span>Skill:</span><input formControlName="name" type="text"></div>
+                <div class="skill-level"><span>Level:</span><input formControlName="level" type="range" min="1" max="5"></div>
+              </div>
+              <div class="skill-bottom">
+                <div class="deleteBtn">
+                  <button class="cv-btn" type="button" (click)="removeSkill(idx)">Delete Skill</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-main-right">
+          <div class="right-title">
+            <span>Educations</span>
+          </div>
+          <div class="right-items" formGroupName="educations">
+            <div class="addBtn">
+              <button class="cv-btn" type="button" (click)="addEducation()">Add Education</button>
+            </div>
+            <!-- ['controls'] -->
+            <div class="right-item" *ngFor="let item of getFormsControls('educations')['controls']; let index = index">
+              <div class="item-top" formGroupName="{{index}}">
+                <div class="item-date">
+                  <div><span>Start Date: </span><input formControlName="startDate" type="date"></div>
+                  <div><span>End Date: </span><input formControlName="endDate" type="date"></div>
+                </div>
+                <div class="item-info">
+                  <div><span>University Name: </span><input formControlName="institutionName" type="text"></div>
+                  <div><span>Specialization: </span><input formControlName="specialization" type="text"></div>
+                  <div><span>Degree: </span><input formControlName="degree" type="text"></div>
+                  <div><span>More about: </span><textarea formControlName="description" cols="30" rows="10"></textarea></div>
+                </div>
+              </div>
+              <div class="item-bottom">
+                <div class="deleteBtn">
+                  <button class="cv-btn" type="button" (click)="removeEducation(index)">Delete Education</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-title">
+            <span>Experiences</span>
+          </div>
+
+          <div class="right-items" formGroupName="experiences">
+            <div class="addBtn">
+              <button class="cv-btn" type="button" (click)="addExperience()">Add Experience</button>
+            </div>
+            <div class="right-item"
+              *ngFor="let experience of getFormsControls('experiences')['controls']; let index = index">
+              <div class="item-top" formGroupName="{{index}}">
+                <div class="item-date">
+                  <div><span>Start Date: </span><input formControlName="startDate" type="date" name="" id=""></div>
+                  <div><span>End Date: </span><input formControlName="endDate" type="date" name="" id=""></div>
+                </div>
+                <div class="item-info">
+                  <div><span>Company: </span><input formControlName="company" type="text"></div>
+                  <div><span>Position: </span><input formControlName="position" type="text"></div>
+                  <div><span>More about: </span><textarea formControlName="description" name="" id="" cols="30"
+                      rows="10"></textarea></div>
+                </div>
+              </div>
+              <div class="item-bottom">
+                <div class="deleteBtn">
+                  <button class="cv-btn" type="button" (click)="removeExperience(index)">Delete Experience</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-title">
+            <span>Languages</span>
+          </div>
+          <div class="right-items" formGroupName="userLanguages">
+            <div class="addBtn">
+              <button class="cv-btn" type="button" (click)="addLanguage()">Add Language</button>
+            </div>
+            <div class="skill" *ngFor="let language of getFormsControls('userLanguages')['controls']; let index = index">
+              <div class="skill-top" formGroupName="{{index}}">
+                <div class="skill-name"><span>Language:</span><input formControlName="name" type="text"></div>
+                <div class="skill-level"><span>Level:</span><input formControlName="level" type="range" min="1" max="5">
+                </div>
+              </div>
+              <div class="skill-bottom">
+                <div class="deleteBtn">
+                  <button class="cv-btn" type="button" (click)="removeLanguage(index)">Delete Language</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <div class="saveBtn">
+          <button class="cv-btn" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

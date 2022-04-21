@@ -1,0 +1,61 @@
+<div class="main-block">
+<div class="my-container">
+    <div class="form-wrapper">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2 class="form-title">Register</h2>
+
+        <div class="my-form-control">
+          <i class="fa fa-user input-icon fa-lg"></i>
+          <input formControlName="email" type="text" spellcheck="false" name="email">
+          <span class="line"
+          [ngClass]="{ 'bg-grey': registerForm.get('email')?.pristine,
+                       'bg-green': registerForm.get('email')?.valid,
+                       'bg-red': registerForm.get('email')?.invalid && registerForm.get('email')?.dirty
+                     }">
+         </span>
+          <span class="label grey-text">E-mail</span>
+        </div>
+        <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="red-text">
+          * Field is invalid
+          <span *ngIf="registerForm.get('email')?.errors?.required">
+            field is required
+          </span>
+          <span *ngIf="registerForm.get('email')?.errors?.email">
+            email format is incorrect
+          </span>
+        </div>
+
+        <div class="my-form-control">
+          <i class="fa fa-lock input-icon fa-lg"></i>
+          <input type="password" spellcheck="false" name="password" formControlName="password">
+          <span class="line"
+          [ngClass]="{ 'bg-grey': registerForm.get('password')?.pristine,
+                       'bg-green': registerForm.get('password')?.valid,
+                       'bg-red': registerForm.get('password')?.invalid && registerForm.get('email')?.dirty
+                     }">
+         </span>
+          <span class="label grey-text">Password</span>
+        </div>
+
+        <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="red-text">
+          * Field is invalid
+          <span *ngIf="registerForm.get('password')?.errors?.required">
+            password is required
+          </span>
+        </div>
+
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+          <li *ngFor="let error of errors">
+              {{error}}
+          </li>
+        </ul>
+
+        <div class="my-form-control corners">
+          <button type="submit" class="form-btn">Confirm</button>
+        </div>
+
+        <a class="link" routerLink="/account/login" routerLinkActive="active">Already have account?</a>
+      </form>
+    </div>
+</div>
+</div>

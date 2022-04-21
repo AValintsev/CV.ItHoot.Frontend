@@ -1,0 +1,20 @@
+<div class="right-items">
+  <div class="addBtn">
+    <button class="cv-btn" (click)="addExperiance()" type="button">Add Experience</button>
+  </div>
+  <div class="right-item"  >
+    <div>
+      <div class="item-top">
+        <div class="item-date">
+          <div><span>Start Date: </span><input [(ngModel)]="startDate" type="date"></div>
+          <div><span>End Date: </span><input [(ngModel)]="endDate" type="date"></div>
+        </div>
+        <div class="item-info">
+          <div><span>Company: </span><input [(ngModel)]="company" type="text"></div>
+          <div><span>Position: </span><input [(ngModel)]="position" type="text"></div>
+          <div><span>More about: </span><textarea [(ngModel)]="description" cols="30" rows="10"></textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div >
+  <div class="addBtn">
+    <button class="cv-btn" (click)="addSkill()"  type="button">Add Skill</button>
+  </div>
+  <div class="skill" >
+    <div>
+      <div class="skill-top">
+        <div class="skill-name"><span>Skill:</span><input [(ngModel)]="name" type="text"></div>
+        <div class="skill-level"><span>Level:</span><input [(ngModel)]="level" type="range" min="1" max="5"></div>
+      </div>
+    </div>
+  </div>
+</div>

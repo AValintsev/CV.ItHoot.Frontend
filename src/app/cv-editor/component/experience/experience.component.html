@@ -1,0 +1,36 @@
+<div class="right-item">
+  <div class="item-top" >
+    <div class="item-date">
+      <mat-form-field appearance="fill">
+        <mat-label>Date start education</mat-label>
+        <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="experience.startDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Date end education</mat-label>
+        <input matInput [matDatepicker]="pickerTo" [(ngModel)]="experience.endDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="item-info">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Company :</mat-label>
+        <input matInput [(ngModel)]="experience.company">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Position :</mat-label>
+        <input matInput [(ngModel)]="experience.position">
+      </mat-form-field>
+      <div>
+        <mat-label>More about: </mat-label>
+        <app-text-editor [(content)]="experience.description"></app-text-editor>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a (click)="onUpPosition()"> <mat-icon>expand_less</mat-icon></a>
+<a (click)="onLowerPosition()"> <mat-icon>expand_more</mat-icon></a>
+<a (click)="onUpDelete()"><mat-icon>delete_forever</mat-icon></a>

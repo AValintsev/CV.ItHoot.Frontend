@@ -1,0 +1,14 @@
+<div>
+    <p>test</p>
+    <form [formGroup]="formTest" (ngSubmit)="submit()">
+    <ng-container formArrayName="testAray">
+        <div *ngFor ="let _ of testAray.controls; index as i">
+                <ng-container  [formGroupName] ="i">
+                    <span><input title="text"  formControlName="itemValue"  ></span>
+                    <span><input title="text"  formControlName="itemId"  ></span>
+                </ng-container>
+        </div>
+    </ng-container>
+    <button (click)='submit()' >test</button>
+    </form>
+</div>

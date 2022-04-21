@@ -1,0 +1,264 @@
+// @import "./main.scss";
+// @import "./cv-button.scss";
+
+// input {
+//   margin-left: 10px;
+//   height: 1.6rem;
+//   width: 180px;
+//   border-radius: 5px;
+//   border: 1px solid $blurBackColor;
+// }
+// input[type=radio], input[type=checkbox] {
+//   margin: 0 5px;
+//   height: 1.2rem;
+//   width: fit-content;
+// }
+
+// label {
+//   display: flex;
+//   align-items: center;
+//   input[type="radio"]:checked + * {
+//     color: $mainBackColor;
+//   }
+// }
+
+// .addBtn {
+//   margin: 10px 0 0 10px;
+// }
+// .deleteBtn {
+//   margin-right: 10px;
+// }
+// .form-main {
+//   position: relative;
+//   margin: 20px 0;
+//   display: flex;
+// }
+// .form-main-left,
+// .form-main-right {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 2px;
+// }
+// .form-main-left {
+//   width: 35%;
+//   background-color: $lightningColor;
+//   box-shadow: 5px 0 10px $lightningColor;
+// }
+// .cv-name {
+//   position: absolute;
+//   top: -60px;
+//   padding: 10px;
+//   font-weight: 700;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-evenly;
+//   span {
+//     padding: 0 5px 0 10px;
+//   }
+// }
+// .user-pic {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 400px;
+//   img {
+//     max-width: 100%;
+//     max-height: 100%;
+//   }
+//   .load {
+//     position: absolute;
+//     top: 10px;
+//     right: 10px;
+//     input {
+//       width: 300px;
+//     }
+//   }
+// }
+// .name-block {
+//   position: absolute;
+//   bottom: 0;
+//   background-color: $blurBackColor;
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-end;;
+//   .user-name {
+//     padding: 10px 0;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-end;
+//     width: fit-content;
+//     margin-right: 40px;
+//     :first-child {
+//       margin-bottom: 5px;
+//     }
+//     span {
+//       color: $mainForeColor;
+//       font-size: 22px;
+//       font-weight: 700;
+//     }
+//   }
+// }
+// .position {
+//   padding: 10px 0 20px 20px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;;
+//   div {
+//     margin-right: 40px;
+//   }
+// }
+// .position span {
+//   font-size: 24px;
+// }
+// .left-item-title {
+//   background-color: $mainBackColor;
+//   font-size: 24px;
+//   font-weight: 700;
+//   color: $mainForeColor;
+//   width: 70%;
+//   border-top-right-radius: 20px;
+//   border-bottom-right-radius: 20px;
+//   padding: 12px;
+// }
+// .left-item-title span {
+//   margin-left: 10px;
+// }
+// .about-me {
+//   margin: 10px;
+//   background-color: $mainForeColor;
+// }
+// .contact {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 10px 40px 10px 0;
+//   margin: 1px 0;
+//   /* box-shadow: 0 0 2px #fff; */
+// }
+// .site {
+//   margin-bottom: 10px;
+// }
+// .contact-ico {
+//   background-color: $mainBackColor;
+//   border-top-right-radius: 20px;
+//   border-bottom-right-radius: 20px;
+//   padding: 5px;
+//   width: 18%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+// .contact-ico fa-icon {
+
+//   font-size: 32px;
+//   color: $mainForeColor;
+// }
+
+// .contact-description {
+//   padding-left: 10px;
+//   display: flex;
+//   align-items: flex-end;
+//   flex-direction: column;
+//   div {
+//     margin-bottom: 5px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;;
+//   }
+// }
+// .skills {
+//   margin-bottom: 20px;
+// }
+
+// .skill {
+//   margin-bottom: 10px;
+// }
+// .skill-top {
+//   display: flex;
+//   padding: 10px;
+//   span {
+//     margin-left: 20px;
+//   }
+// }
+// .skill-bottom {
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+// }
+
+// .form-main-right {
+//   padding: 30px 0 20px 20px;
+//   box-shadow: 0 0 5px $lightningColor;
+// }
+// .right-title {
+//   margin-top: 10px;
+//   border-bottom-left-radius: 20px;
+//   border-top-left-radius: 20px;
+//   background-color: $lightningColor;
+//   padding: 5px 0 5px 20px;
+//   display: flex;
+//   align-items: center;
+// }
+// .right-title span {
+//   font-size: 28px;
+//   font-weight: 700;
+
+// }
+// .right-items {
+//   margin-left: 20px;
+//   min-width: 30px;
+//   background-color: $mainForeColor;
+// }
+// .right-item {
+//   margin: 10px 5px 20px;
+//   box-shadow: 0 0 5px $lightningColor;
+//   .item-top {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 5px 10px;
+//     .item-date,
+//     .item-info {
+//       div {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         margin: 5px 0;
+//       }
+//     }
+//     .item-info {
+//       margin-left: 20px;
+//       input, textarea {
+//         width: 260px;
+//       }
+//       textarea {
+//         border: 1px solid $blurBackColor;
+//         border-radius: 5px;
+//       }
+
+//     }
+//   }
+//   .item-bottom {
+//     display: flex;
+//     justify-content: flex-end;
+//     padding-bottom: 10px;
+//   }
+// }
+
+// .form-bottom {
+//   width: 70%;
+//   margin: auto;
+//   padding: 20px;
+//   box-shadow: 0 0 5px $lightningColor;
+//   display: flex;
+//   justify-content: flex-end;
+//   .status-block {
+//     margin-right: 60px;
+//     display: flex;
+//     align-items: center;
+//     span {
+//       margin: 0 5px;
+//     }
+//   }
+// }

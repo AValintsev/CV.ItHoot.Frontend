@@ -1,0 +1,204 @@
+// @import "./main.scss";
+
+// .cv-card-full {
+//   margin: 20px 0;
+//   display: flex;
+// }
+// .cv-card-left,
+// .cv-card-right {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 2px;
+// }
+// .cv-card-left {
+//   width: 35%;
+//   background-color: $lightningColor;
+//   box-shadow: 5px 0 10px $lightningColor;
+// }
+// .user-pic {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .user-pic img {
+//   width: 100%;
+//   max-height: 100%;
+// }
+// .user-name {
+//   position: absolute;
+//   bottom: 0;
+//   background-color: $blurBackColor;
+//   width: 100%;
+//   text-align: center;
+//   padding: 10px 0;
+// }
+// .user-name span {
+//   color: $mainForeColor;
+//   font-size: 34px;
+//   font-weight: 700;
+// }
+// .position {
+//   padding: 10px 0 20px 20px;
+// }
+// .position span {
+//   font-size: 24px;
+// }
+// .left-item-title {
+//   background-color: $mainBackColor;
+//   font-size: 24px;
+//   font-weight: 700;
+//   color: #fff;
+//   width: 70%;
+//   border-top-right-radius: 20px;
+//   border-bottom-right-radius: 20px;
+//   padding: 12px;
+// }
+// .left-item-title span {
+//   margin-left: 10px;
+// }
+// .about-me {
+//   padding: 10px 20px;
+// }
+// .contact {
+//   display: flex;
+//   margin-top: 10px;
+// }
+// .site {
+//   margin-bottom: 10px;
+// }
+// .contact-ico {
+//   background-color: $mainBackColor;
+//   border-top-right-radius: 20px;
+//   border-bottom-right-radius: 20px;
+//   padding: 5px;
+//   width: 18%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+// .contact-ico fa-icon {
+
+//   font-size: 32px;
+//   color: #fff;
+// }
+
+// .contact-description {
+//   padding-left: 10px;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: row;
+// }
+// .skills {
+//   padding: 10px 0 20px 20px;
+// }
+
+// .cv-card-right {
+//   padding: 30px 0 20px 20px;
+//   width: 65%;
+//   box-shadow: 0 0 5px $lightningColor;
+// }
+// .right-title {
+//   margin-top: 10px;
+//   border-bottom-left-radius: 20px;
+//   border-top-left-radius: 20px;
+//   background-color: $mainBackColor;
+//   padding: 10px 0 10px 20px;
+//   color: $mainForeColor;
+// }
+// .right-title span {
+//   font-size: 28px;
+//   font-weight: 700;
+
+// }
+// .right-items {
+//   margin-left: 20px;
+//   min-width: 30px;
+//   background-color: #fff;
+// }
+// .right-items .item {
+//   h4 {
+//     margin: 0;
+//   }
+//   .item-name {
+//     margin-top: 10px;
+//     border-bottom-left-radius: 20px;
+//     border-top-left-radius: 20px;
+//     background-color: $lightningColor;
+//     padding: 10px 0 10px 20px;
+//   }
+//   .item-body {
+//     display: flex;
+//     padding: 10px;
+//     .item-visual-date {
+//       display: flex;
+//       height: 60px;
+//       .visual {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+
+//         .visual-circle {
+//           display: flex;
+//           justify-content: space-between;
+//           align-items: center;
+//         }
+//         .circle {
+//           width: 20px;
+//           height: 20px;
+//           border-radius: 50%;
+//           background-color: $mainBackColor;
+//         }
+//         .visual-line {
+//           display: flex;
+//           justify-content: center;
+//         }
+//         .line {
+//           height: 20px;
+//           width: 3px;
+//           background-color: $mainBackColor;
+//         }
+//       }
+//       .date {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         margin-left: 10px;
+//       }
+//     }
+//     .item-description {
+//       margin-left: 20px;
+//     }
+//   }
+// }
+// .skill {
+//   display: flex;
+//   align-items: center;
+//   .skill-name {
+//     margin: 5px 10px;
+//   }
+// }
+
+// .button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 20px 10px ;
+//   width: 100%;
+//   height: 31px;
+//   background: #528bd6;
+//   border-radius: 8px;
+//   text-align: center;
+//   border-color: #528bd6;
+//   color: #fff;
+//   font-size: 18px;
+//   //margin-left: 10px;
+
+// }
+// .buttons {
+//   max-width: 80%;
+//   display: flex;
+//   justify-content: flex-end;;
+//   align-items: center;
+//   margin: 20px 0;
+// }

@@ -1,0 +1,11 @@
+<div class="form-main-right">
+  <div class="right-title">
+    <span>{{title}}</span>
+  </div>
+  <div class="right-items">
+    <div *ngIf="!singleObject" class="addBtn">
+      <button (click)="onButtonClick($event)" class="cv-btn" type="button">Add Education</button>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

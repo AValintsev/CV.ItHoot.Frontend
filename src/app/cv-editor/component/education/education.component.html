@@ -1,0 +1,39 @@
+<div class="right-item">
+  <div class="item-top">
+    <div class="item-date">
+      <mat-form-field appearance="fill">
+        <mat-label>Date start education</mat-label>
+        <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="education.startDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Date end education</mat-label>
+        <input matInput [matDatepicker]="pickerTo" [(ngModel)]="education.endDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="item-info">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>University Name:</mat-label>
+        <input matInput [(ngModel)]="education.institutionName">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Specialization:</mat-label>
+        <input matInput [(ngModel)]="education.specialization">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Degree :</mat-label>
+        <input matInput [(ngModel)]="education.degree">
+      </mat-form-field>
+      <div>
+        <mat-label>More about: </mat-label>
+        <app-text-editor [(content)]="education.description"></app-text-editor>
+      </div>
+    </div>
+  </div>
+  <a (click)="onUpPosition()"> <mat-icon>expand_less</mat-icon></a>
+  <a (click)="onLowerPosition()"> <mat-icon>expand_more</mat-icon></a>
+  <a (click)="onUpPosition()"><mat-icon>delete_forever</mat-icon></a>
+</div>
