@@ -10,6 +10,9 @@ const routes: Routes = [
   },
   {
     path: 'editor', loadChildren: ()=> import('./cv-editor/cv-editor.module').then(mod => mod.CvEditorModule)
+  },
+  {
+   path:'', redirectTo: 'cv', pathMatch:'full'
   }
 ];
 

@@ -14,10 +14,9 @@ export class LoginComponent implements OnInit {
   errors!: string[];
   loginForm!: FormGroup;
 
-  constructor(private accountService: AccountService,
+  constructor(public accountService: AccountService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthService
               )
   {
 
@@ -25,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('itdxr5@gmail.com',[Validators.required, Validators.email]),
-      password : new FormControl('f99910124F',[Validators.required])
+      email: new FormControl('user@example.com',[Validators.required, Validators.email]),
+      password : new FormControl('12345678',[Validators.required])
     })
   }
 
@@ -38,13 +37,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.authService.login(this.loginForm.value).subscribe(
+    if (this.loginForm.value){
+      this.accountService.login(this.loginForm.value).subscribe(
       (res)=>{
-        this.router.navigateByUrl('/cv/list')
+        console.log(res)
+        // this.router.navigateByUrl('/cv/list')
       },
       (error => {
         console.log('eror',error)
       })
     )
-  }
+  } 
+    }
+   logout(){
+     this.accountService.logout().subscribe(
+       e=>console.log(e)
+     )
+   }
+   refresh(){
+     this.accountService.refreshToken().subscribe(
+       e => console.log(e)
+     )
+   }
 }

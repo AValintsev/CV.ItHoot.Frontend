@@ -27,15 +27,15 @@ export class AuthService {
     return this.userSubject.asObservable()
   }
 
-  login(form :object) {
-    return this.http.post<any>('https://localhost:5001/api/v1/identity/login', form)
-      .pipe(map((x:UserAuthData) =>{
-        localStorage.setItem('user',JSON.stringify(x));
-        this.userSubject.next(x);
-        this.router.navigateByUrl('/cv/list');
-        return x
-      }))
-  }
+  // login(form :object) {
+  //   return this.http.post<any>('https://localhost:5001/api/v1/identity/login', form)
+  //     .pipe(map((x:UserAuthData) =>{
+  //       localStorage.setItem('user',JSON.stringify(x));
+  //       this.userSubject.next(x);
+  //       this.router.navigateByUrl('/cv/list');
+  //       return x
+  //     }))
+  // }
 
   logOut(){
     this.router.navigateByUrl('/')
