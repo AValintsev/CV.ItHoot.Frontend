@@ -6,40 +6,41 @@ import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserAuthData } from 'src/app/shared/models/userAuthData';
+import { userLoginResponse } from '../shared/models/responses/userLoginResponse';
 
-const JWT_TOKEN = 'JWT_TOKEN'
-const REFRESH_TOKEN = 'REFRESH_TOKEN'
+// const JWT_TOKEN = 'JWT_TOKEN'
+// const REFRESH_TOKEN = 'REFRESH_TOKEN'
  
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-// 
+
   private JWT_TOKEN = 'JWT_TOKEN'
   private REFRESH_TOKEN = 'REFRESH_TOKEN'
-// 
   baseUrl = environment.apiUrl;
-  private currentUserSource = new ReplaySubject<UserAuthData>(1);
-  currentUser$ = this.currentUserSource.asObservable();
-  currentUserEmail$ = "";
+  private userId$ = new BehaviorSubject<number>(-1)
+  // private currentUserSource = new ReplaySubject<UserAuthData>(1);
+  // currentUser$ = this.currentUserSource.asObservable();
+  // currentUserEmail$ = "";
 
   constructor(private http: HttpClient, private router: Router) {}
-  get CurrentUser(){
-      return this
-  }
-
-  loadCurrentUser() {
-    return this.http.get<any>(this.baseUrl + "identity/getcurrentuserbytoken").pipe(
-      map((user: UserAuthData) => {
-        if (user) {
-          localStorage.setItem('token', user.token);
-          localStorage.setItem('refreshToken', user.refreshToken);
-          localStorage.setItem('roles',user.roles[0])
-          this.currentUserSource.next(user);
-          console.log(user)
-        }
-      }))
-  }
+  // get CurrentUser(){
+  //     return this
+  // }
+   
+  // loadCurrentUser() {
+  //   return this.http.get<any>(this.baseUrl + "identity/getcurrentuserbytoken").pipe(
+  //     map((user: UserAuthData) => {
+  //       if (user) {
+  //         localStorage.setItem('token', user.token);
+  //         localStorage.setItem('refreshToken', user.refreshToken);
+  //         localStorage.setItem('roles',user.roles[0])
+  //         this.currentUserSource.next(user);
+  //         console.log(user)
+  //       }
+  //     }))
+  // }
 
   // login(values: any) {
   //   return this.http.post<UserAuthData>(this.baseUrl + "identity/login", values).pipe(
@@ -63,7 +64,7 @@ export class AccountService {
           localStorage.setItem('token', user.token);
           localStorage.setItem('refreshToken',user.refreshToken)
           localStorage.setItem('roles',user.roles[0])
-          this.currentUserSource.next(user);
+          // this.currentUserSource.next(user);
           console.log(user)
 
         }
@@ -87,7 +88,7 @@ export class AccountService {
   login(user:{email:string,password:string}):Observable<boolean>{
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
     .pipe(
-      tap<any>(tokens => this.storeTokens(tokens)),
+      tap<any>(tokens => this.doLoginUser(tokens)),
       mapTo(true),
       catchError(error=>{
         console.log(error)
@@ -95,8 +96,9 @@ export class AccountService {
       })
     )
   }
-  doLoginUser(tokens:string){
-
+  doLoginUser(tokens: userLoginResponse){
+    this.setUserId(tokens.userId)
+    this.storeTokens(tokens)
   }
   storeTokens(tokens: any){
     console.log(tokens)
@@ -117,19 +119,22 @@ export class AccountService {
       })
     )
   }
+  setUserId(id:number){
+    this.userId$.next(id)
+  }
+  getUserId(){
+    return this.userId$
+  }
   getRefreshToken(){
    return localStorage.getItem(this.REFRESH_TOKEN)
   }
   getJwtToken(){
-
    return localStorage.getItem(this.JWT_TOKEN)
   }
   doLogoutUser(){
-    console.log('ckean2')
     this.removeTokens()
   }
   removeTokens(){
-    console.log('ckean1')
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
   }
@@ -142,14 +147,19 @@ export class AccountService {
     })
     .pipe(
       tap((tokens:any)=>{
-        this.storeJwtToken(tokens.token)
+        console.log('ref-function',tokens.refreshToken)
+        this.storeJwtToken(tokens)
       })
      
     )
   }
   storeJwtToken(tokens: any){
-    console.log(tokens)
-    localStorage.set(this.JWT_TOKEN, tokens.token)
-     
+    console.log('storeJwtToken0', tokens)
+    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
+    localStorage.setItem(this.JWT_TOKEN, tokens.token)   
+  }
+
+  geg(){
+    return this.http.get(`${this.baseUrl}cv`)
   }
 }

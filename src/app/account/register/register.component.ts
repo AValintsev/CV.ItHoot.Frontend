@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup ,Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/account/account.service';
 
@@ -13,33 +13,33 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   errors!: string[];
 
-  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute ) { }
+  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.registerForm = new  FormGroup(
+    this.registerForm = new FormGroup(
       {
         email: new FormControl('user@example.com', [Validators.required, Validators.email]),
         password: new FormControl('12345678', [Validators.required]),
-        confirmPassword : new FormControl('', [Validators.required])
+        confirmPassword: new FormControl('', [Validators.required])
       }
     )
   }
 
-  onSubmit(){
+  onSubmit() {
 
     console.log({
-      email : this.registerForm.value.email,
-      password : this.registerForm.value.password,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
     });
 
     this.accountService.register(
       {
-        Email : this.registerForm.value.email,
-        Password : this.registerForm.value.password,
+        Email: this.registerForm.value.email,
+        Password: this.registerForm.value.password,
       }
     ).subscribe(
-      ()=>{
-        this.router.navigateByUrl('/cv/list')
+      () => {
+        this.router.navigateByUrl('/cv')
       },
       (res) => {
         this.errors = res.error.errors;

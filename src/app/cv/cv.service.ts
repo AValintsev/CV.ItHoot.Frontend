@@ -6,13 +6,14 @@ import { map } from 'rxjs/operators';
 import { CV } from '../shared/models/cv';
 import { CvCard } from '../shared/models/cv-card';
 import { GetCvCardsResponse } from '../shared/models/responses/getCvCardsResponse';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CVService {
-   baseUrl = "https://localhost:5001/api/v1/cv";
+  [x: string]: any;
+  
 
   private cvCards = new BehaviorSubject<Array<CvCard>>(null as any);
   cvCards$ = this.cvCards.asObservable();
@@ -24,12 +25,12 @@ export class CVService {
    }
 
    editCv(data:any){
-     return this.http.post<any>(this.baseUrl + "/updateCv",data).pipe(map(p => 
+     return this.http.post<any>(environment.apiUrl + "updateCv",data).pipe(map(p => 
       p))
    }
 
    getAllCvCards() {
-    return this.http.get<GetCvCardsResponse>(this.baseUrl + "/list")
+     return this.http.get<GetCvCardsResponse>(environment.apiUrl + "list")
     .pipe(
       map((data:GetCvCardsResponse)=>{
         if(data) {
@@ -41,7 +42,7 @@ export class CVService {
   }
 
   getCVbyId(id: number) {
-    return this.http.get<CV>(this.baseUrl + "?Id=" + id)
+    return this.http.get<CV>(environment.apiUrl+ id)
      .pipe(
        map((data:CV)=>{
          if(data) {
@@ -53,7 +54,7 @@ export class CVService {
   };
 
   getCVbyIdV2(id: number) {
-    return this.http.get<any>(this.baseUrl + "?Id=" + id)
+    return this.http.get<any>(environment.apiUrl + id)
      .pipe(
        map((data:CV)=>{
          return data;
@@ -63,7 +64,7 @@ export class CVService {
   
   createCV(data: any) {
     console.log("data: ", data)
-    let postUrl = this.baseUrl + "/create";
+    let postUrl = environment.apiUrl+ "create";
     return this.http.post<any>(postUrl, data).pipe(map(user=>{
        return user
     }));
@@ -71,7 +72,7 @@ export class CVService {
 
   loadingFileToCv(data:any){
     console.log("file vith id",data)
-    let postUrl = "https://localhost:5001/api/v1/file/create";
+    let postUrl = `${environment.apiUrl}file/create`;
 
     return this.http.post<any>(postUrl,data).pipe(map(FulCv =>{
       console.log("fulCv",FulCv)

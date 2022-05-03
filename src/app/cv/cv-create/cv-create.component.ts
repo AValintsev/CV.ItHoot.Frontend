@@ -114,7 +114,7 @@ export class CvCreateComponent implements OnInit {
       (resault) => {
 
         this.createFileToCv(resault)
-        this.router.navigateByUrl('/cv/list')
+        this.router.navigateByUrl('/cv')
 
       });
   }
