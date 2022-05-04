@@ -1,3 +1,4 @@
+import { AccountService } from 'src/app/services/account.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { CvCard } from 'src/app/shared/models/cv-card';
 import {Observable} from "rxjs";
@@ -10,10 +11,10 @@ import {UserAuthData} from "../../../shared/models/userAuthData";
 })
 export class CvSmallComponent implements OnInit {
   @Input() cvCard: CvCard = new CvCard;
-  authData$: Observable<UserAuthData>;
+  authData$!: Observable<UserAuthData>;
 
-  constructor(private authService : AuthService) {
-    this.authData$ = this.authService.UserValue2();
+  constructor(private accountService : AccountService) {
+    // this.authData$ = this.authService.UserValue2();
   }
 
   ngOnInit(): void {
@@ -21,11 +22,14 @@ export class CvSmallComponent implements OnInit {
 
   guardEdit(){
     let toggle = false
-    this.authService.UserValue().roles.forEach(p => {
-      if(p=="Admin" || p == "User"){
+    this.accountService.getUserRole().subscribe({
+      next: next => {
+        if (next == "Admin" || next == "User" || next == "Client"){
         toggle = true
       }
-    })
+    },
+     error:error=>console.log(error)
+    }) 
     return toggle
   }
 
@@ -33,12 +37,15 @@ export class CvSmallComponent implements OnInit {
       return true
   }
 
-  guardDelete(){
+  guardDelete() {
     let toggle = false
-    this.authService.UserValue().roles.forEach(p => {
-      if(p=="Admin" || p == "User" ){
-        toggle = true
-      }
+    this.accountService.getUserRole().subscribe({
+      next: next => {
+        if (next == "Admin" || next == "User" || next == "Client") {
+          toggle = true
+        }
+      },
+      error: error => console.log(error)
     })
     return toggle
   }

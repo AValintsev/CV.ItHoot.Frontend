@@ -177,7 +177,7 @@
     </div>
   </div>
   <div class="buttons">
-    <button btnText="Edit" [routerLink]="['/cv/edit/', (cv$ | async)?.id]">Edit</button>
+    <button btnText="Edit" [routerLink]="['/home/cv/edit/', (cv$ | async)?.id]">Edit</button>
     <!-- <button btnText="Back" routerLink="/cv/list"></button> -->
     <div class="col-md-4 text-right">
       <button  class="btn btn-success btn-block button" (click)="openPDF2()">Download PDF</button>

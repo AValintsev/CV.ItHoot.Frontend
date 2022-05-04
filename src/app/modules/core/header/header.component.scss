@@ -1,3 +1,25 @@
-.next{
-	
+@import "../../../shared/styles/main.scss";
+@import "../../../shared/styles/nav.scss";
+
+.header {
+  background-color: $backHeaderColor;
+
+}
+.right-arrow{
+	color: red;
+}
+header {
+  height: $headerHeight;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  color: $foreHeaderColor;
+}
+
+.center {
+  display: flex;
+}
+
+.auth_block {
+  display: flex;
 }
