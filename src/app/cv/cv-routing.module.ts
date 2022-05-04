@@ -8,6 +8,10 @@ import { CvTestComponent } from './cv-test/cv-test.component';
 
 const routes: Routes = [
   {
+    path: ':id',
+    component: CvFullComponent
+  },
+  {
     path: 'list',
     component: CvListComponent
   },
@@ -19,10 +23,7 @@ const routes: Routes = [
     path: 'test1',
     component : CvTestComponent
   },
-  {
-    path: ':id',
-    component: CvFullComponent
-  },
+  
   {
     path: 'edit/:id',
     component: CvEditComponent

@@ -4,6 +4,7 @@ import { AccountService } from 'src/app/account/account.service';
 import { UserAuthData } from 'src/app/shared/models/userAuthData';
 import { Validators } from '@angular/forms';
 import {AuthService} from "../../../authServeces/auth-service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-bar',
@@ -16,16 +17,19 @@ export class AuthBarComponent implements OnInit {
   currentUser$!: Observable<UserAuthData>;
 
   constructor(private accountService: AccountService,
-              private authService: AuthService
+    private router:Router
+              // private authService: AuthService
   ) {
-    this.userData = this.authService.UserValue()
-    this.currentUser$ = this.authService.UserValue2()
+    // this.userData = this.authService.UserValue()
+    // this.currentUser$ = this.authService.UserValue2()
 
   }
   ngOnInit(): void {
 
   }
   logout() {
-    this.authService.logOut()
+    this.accountService.logout().subscribe({
+      next: () => this.router.navigate(['/account/login'])
+    })
   }
 }

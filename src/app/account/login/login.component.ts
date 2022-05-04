@@ -40,9 +40,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.value){
       this.accountService.login(this.loginForm.value).subscribe(
       (res)=>{
-//         if(this.accountService.getUserId().value>=0){}
-//           this.router.navigateByUrl(`/cv/${this.accountService.getUserId().value
-// }`)
+        if(this.accountService.getUserId().value>=0){}
+          this.router.navigate([`/home/cv/${this.accountService.getUserId().value}`])
       },
       (error => {
         console.log('eror',error)
@@ -50,17 +49,4 @@ export class LoginComponent implements OnInit {
     )
   } 
     }
-   logout(){
-     this.accountService.logout().subscribe(
-       e=>console.log(e)
-     )
-   }
-   refresh(){
-     this.accountService.refreshToken().subscribe(
-       e => console.log(e)
-     )
-   }
-   a(){
-     this.accountService.geg().subscribe((e) => console.log(e), (e) => console.log(e))
-   }
 }

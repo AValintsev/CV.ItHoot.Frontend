@@ -1,24 +1,29 @@
 @import "./globals.scss";
-
+// :host{
+//   display: block;
+//  height: 100vh;
+//  overflow-x: hidden;
+// }
 .main-block {
-  margin: $headerHeight 0 0;
-  padding: 60px 0 40px;
-  min-height: 77vh;
+  margin: 0 ;
+  // padding: 60px 0 40px;
+  min-height: 100vh;
+  padding-top: 60px;
 }
-// .container {
-//   width: 1200px;
-//   margin: auto;
-// }
-// * {
-//   font-size: 18px;
-// }
-// h1 {
-//   font-size: 2rem;
-// }
-// h2 {
-//   font-size: 1.5rem;
-// }
-// h3 {
-//   font-size: 1.2rem;
-// }
+.container {
+  width: 1200px;
+  margin: auto;
+}
+* {
+  font-size: 18px;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.2rem;
+}
 

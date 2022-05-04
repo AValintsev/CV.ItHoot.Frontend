@@ -34,8 +34,8 @@ export class RegisterComponent implements OnInit {
 
     this.accountService.register(
       {
-        Email: this.registerForm.value.email,
-        Password: this.registerForm.value.password,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
       }
     ).subscribe(
       () => {

@@ -1,4 +1,4 @@
-export interface userLoginResponse{
+export interface userResponse{
 	refreshToken: string
 	roles: string[]
 	token: string

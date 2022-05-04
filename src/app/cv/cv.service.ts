@@ -42,7 +42,7 @@ export class CVService {
   }
 
   getCVbyId(id: number) {
-    return this.http.get<CV>(environment.apiUrl+ id)
+    return this.http.get<CV>(environment.apiUrl+"cv/"+id)
      .pipe(
        map((data:CV)=>{
          if(data) {
@@ -54,7 +54,7 @@ export class CVService {
   };
 
   getCVbyIdV2(id: number) {
-    return this.http.get<any>(environment.apiUrl + id)
+    return this.http.get<any>(environment.apiUrl+"cv/"+id)
      .pipe(
        map((data:CV)=>{
          return data;

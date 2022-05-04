@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MainPageModule } from './main-page/main-page.module';
 
 const routes: Routes = [
   {
     path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
   },
   {
-    path: 'cv', loadChildren: () => import('./cv/cv.module').then(mod => mod.CvModule),
+    path: 'home', loadChildren: ()=>import('./main-page/main-page.module').then(m=>m.MainPageModule)
   },
   {
-    path: 'editor', loadChildren: ()=> import('./cv-editor/cv-editor.module').then(mod => mod.CvEditorModule)
+    path: '', redirectTo:'account',pathMatch:"full"
   },
-  {
-   path:'', redirectTo: 'cv', pathMatch:'full'
-  }
+  // {
+  //   path: '**', redirectTo:'account',pathMatch:"full"
+  // }
 ];
 
 @NgModule({
   imports: [
+    MainPageModule,
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule]

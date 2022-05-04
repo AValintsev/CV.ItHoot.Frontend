@@ -1,3 +1,4 @@
+import { MainPageComponent } from './main-page/main-page.component';
 import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,12 +15,14 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { RouterModule } from '@angular/router';
 import { MaterialModule} from './material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MainPageModule } from './main-page/main-page.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
+   
   ],
   imports: [
     MatNativeDateModule,

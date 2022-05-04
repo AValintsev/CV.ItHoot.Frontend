@@ -39,7 +39,7 @@ import { ChangePersonalDataForHRComponent } from './shared/change-personal-data-
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    // RouterModule,
     SharedModule,
     CvRoutingModule,
     FormsModule,
