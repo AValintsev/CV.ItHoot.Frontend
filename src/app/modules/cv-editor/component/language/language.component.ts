@@ -1,10 +1,10 @@
-import { ILanguageLevel, ICvLanguage } from '../../../../shared/models/cvEditorModels/EditorModels';
+import { ILanguageLevel, ICvLanguage } from '../../../../models/cvEditorModels/EditorModels';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSelectChange } from '@angular/material/select';
 import { Observable } from 'rxjs';
-import { ILanguage } from 'src/app/shared/models/cvEditorModels/EditorModels';
+import { ILanguage } from 'src/app/models/cvEditorModels/EditorModels';
 import { CvEditorService } from '../../cv-editor.service';
 import { LanguageService } from '../../services/language.service';
 import { mergeMap, startWith } from 'rxjs/operators';

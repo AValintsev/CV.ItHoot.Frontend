@@ -1,5 +1,5 @@
 import { Component, OnInit, Input,  Output, EventEmitter} from '@angular/core';
-import { IEducation } from 'src/app/shared/models/cvEditorModels/EditorModels';
+import { IEducation } from 'src/app/models/cvEditorModels/EditorModels';
 import { CvEditorService } from '../../cv-editor.service';
 
 @Component({

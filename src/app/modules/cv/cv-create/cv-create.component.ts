@@ -4,7 +4,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CVService } from '../../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CV } from 'src/app/shared/models/cv';
+import { CV } from 'src/app/models/cv';
 //import { Observable } from 'rxjs';
 @Component({
   selector: 'app-cv-create',

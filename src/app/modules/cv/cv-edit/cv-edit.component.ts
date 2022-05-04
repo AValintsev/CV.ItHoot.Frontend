@@ -3,17 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { CVService } from '../../../services/cv.service';
 import { faGlobe, faMapMarkerAlt, faMobileAlt, faAt } from '@fortawesome/free-solid-svg-icons';
-import { CV } from 'src/app/shared/models/cv';
+import { CV } from 'src/app/models/cv';
 import { map, retry } from 'rxjs/operators';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { UserAuthData } from 'src/app/shared/models/userAuthData';
+import { UserAuthData } from 'src/app/models/userAuthData';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { Language } from 'src/app/shared/models/language';
+import { Language } from 'src/app/models/language';
 import { FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import {Education} from "../../../shared/models/education";
-import {Skill} from "../../../shared/models/skill";
-import {Experience} from "../../../shared/models/experience";
+import {Education} from "../../../models/education";
+import {Skill} from "../../../models/skill";
+import {Experience} from "../../../models/experience";
 
 @Component({
   selector: 'app-cv-edit',

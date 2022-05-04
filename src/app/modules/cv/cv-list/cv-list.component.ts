@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CvCard } from 'src/app/shared/models/cv-card';
+import { CvCard } from 'src/app/models/cv-card';
 import { CVService } from '../../../services/cv.service';
 
 @Component({

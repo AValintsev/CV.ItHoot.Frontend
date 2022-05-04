@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Skill} from "../../../../shared/models/skill";
+import {Skill} from "../../../../models/skill";
 
 @Component({
   selector: 'app-skill',

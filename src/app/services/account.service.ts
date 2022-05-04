@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
-import { UserAuthData } from 'src/app/shared/models/userAuthData';
-import { userResponse } from '../shared/models/responses/userResponse';
+import { UserAuthData } from 'src/app/models/userAuthData';
+import { userResponse } from '../models/responses/userResponse';
 import {environment} from "../../environments/environment";
 
 

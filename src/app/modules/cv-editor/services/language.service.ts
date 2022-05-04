@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BaseApiService} from "../../../services/base-api.service";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ILanguage, ILanguageLevel, ISkill} from "../../../shared/models/cvEditorModels/EditorModels";
+import {ILanguage, ILanguageLevel, ISkill} from "../../../models/cvEditorModels/EditorModels";
 import {map} from "rxjs/operators";
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ICv } from '../../../../shared/models/cvEditorModels/EditorModels';
+import { ICv } from '../../../../models/cvEditorModels/EditorModels';
 import { Component, OnInit } from '@angular/core';
 import { CvEditorService } from '../../cv-editor.service';
 

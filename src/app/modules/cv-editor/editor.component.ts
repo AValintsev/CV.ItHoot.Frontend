@@ -1,8 +1,8 @@
-import { ILanguageLevel, ISkillLevel } from '../../shared/models/cvEditorModels/EditorModels';
+import { ILanguageLevel, ISkillLevel } from '../../models/cvEditorModels/EditorModels';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICv } from '../../shared/models/cvEditorModels/EditorModels';
+import { ICv } from '../../models/cvEditorModels/EditorModels';
 import { CvEditorService } from './cv-editor.service';
 import {SkillService} from "./services/skill.service";
 

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {CvCard} from "../shared/models/cv-card";
-import {CV} from "../shared/models/cv";
-import {GetCvCardsResponse} from "../shared/models/responses/getCvCardsResponse";
+import {CvCard} from "../models/cv-card";
+import {CV} from "../models/cv";
+import {GetCvCardsResponse} from "../models/responses/getCvCardsResponse";
 import {environment} from "../../environments/environment";
 
 @Injectable({
