@@ -3,7 +3,7 @@
   <span>{{cvCard.lastName}}</span>
 </div>
 <div class="user-pic">
-  <img src="{{cvCard.picture}}" alt=""> -->
+  <img src="{{cvCard.picture}}" alt="">
   <!-- <img src="../../../assets/fall.jpg" alt=""> -->
  </div>
 <div class="cv-info">
@@ -18,8 +18,8 @@
 </div>
 <div class="button-block">
   <div class="buttons">
-    <app-cv-button *ngIf="guardOpen()" btnText="Open" routerLink="/cv/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="guardEdit()" btnText="Edit" routerLink="/cv/edit/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="guardDelete()" btnText="Delete" routerLink=""></app-cv-button>
+    <app-cv-button *ngIf="checkRole" btnText="Open" routerLink="/home/cv/{{cvCard.id}}"></app-cv-button>
+    <app-cv-button *ngIf="checkRole" btnText="Edit" routerLink="/home/cv/edit/{{cvCard.id}}"></app-cv-button>
+    <app-cv-button *ngIf="checkRole" btnText="Delete" routerLink=""></app-cv-button>
   </div>
 </div>

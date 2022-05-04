@@ -6,7 +6,7 @@ import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { UserAuthData } from 'src/app/models/userAuthData';
 import { userResponse } from '../models/responses/userResponse';
-import {environment} from "../../environments/environment";
+import { environment } from "../../environments/environment";
 
 
 
@@ -17,6 +17,7 @@ export class AccountService {
 
   private JWT_TOKEN = 'JWT_TOKEN'
   private REFRESH_TOKEN = 'REFRESH_TOKEN'
+  private USER_ROLE = 'USER_ROLE'
   baseUrl = environment.apiUrl;
   private userId$ = new BehaviorSubject<number>(-1)
   private userRole$ = new BehaviorSubject<string>('')
@@ -24,7 +25,7 @@ export class AccountService {
   // currentUser$ = this.currentUserSource.asObservable();
   // currentUserEmail$ = "";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
   // get CurrentUser(){
   //     return this
   // }
@@ -42,94 +43,100 @@ export class AccountService {
   //     }))
   // }
 
-
-
-  register(value:{email:string,password:string}):Observable<userResponse>{
-  return this.http.post<userResponse>(this.baseUrl + 'identity/register', value)
-  .pipe(
-    tap(userData => this.doLoginUser(userData))
-  )
-}
-
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'identity/emailexists?email=' + email);
   }
   // ///////////////////////////////////////////////////////
-  isLoggedIn():boolean{
-     return true
+
+  register(value: { email: string, password: string }): Observable<userResponse> {
+    return this.http.post<userResponse>(this.baseUrl + 'identity/register', value)
+      .pipe(
+        tap(userData => this.doLoginUser(userData))
+      )
   }
-  login(user:{email:string,password:string}):Observable<boolean>{
+
+  isLoggedIn(): boolean {
+    return true
+  }
+  login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
-    .pipe(
-      tap<any>(tokens => this.doLoginUser(tokens)),
-      mapTo(true),
-      catchError(error=>{
-        console.log(error)
-        return of(error)
-      })
-    )
+      .pipe(
+        tap<any>(tokens => this.doLoginUser(tokens)),
+        mapTo(true),
+        catchError(error => {
+          console.log(error)
+          return of(error)
+        })
+      )
   }
-  doLoginUser(tokens: userResponse){
+  storeRole(role: string) {
+    localStorage.setItem(this.USER_ROLE, role)
+  }
+  getStoreRole() {
+   return localStorage.getItem(this.USER_ROLE)
+  }
+  doLoginUser(tokens: userResponse) {
+    this.storeRole(tokens.roles[0])
     this.setUserRole(tokens.roles[0])
     this.setUserId(tokens.userId)
     this.storeTokens(tokens)
   }
-  setUserRole(role:string){
+  setUserRole(role: string) {
     this.userRole$.next(role)
   }
-  getUserRole(){
+  getUserRole() {
     return this.userRole$
   }
-  storeTokens(tokens: any){
+  storeTokens(tokens: any) {
     console.log(tokens)
     localStorage.setItem(this.JWT_TOKEN, tokens.token)
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
   }
   logout(): Observable<boolean> {
 
-    return this.http.post(`${this.baseUrl}identity/logout`,{
+    return this.http.post(`${this.baseUrl}identity/logout`, {
       'refreshToken': this.getRefreshToken()
     })
-    .pipe(
+      .pipe(
         tap(() => this.doLogoutUser()),
-      mapTo(true),
-      catchError(error=>{
-        console.log(error)
-        return of(error)
-      })
-    )
+        mapTo(true),
+        catchError(error => {
+          console.log(error)
+          return of(error)
+        })
+      )
   }
-  setUserId(id:number){
+  setUserId(id: number) {
     this.userId$.next(id)
   }
-  getUserId(){
+  getUserId() {
     return this.userId$
   }
-  getRefreshToken(){
-   return localStorage.getItem(this.REFRESH_TOKEN)
+  getRefreshToken() {
+    return localStorage.getItem(this.REFRESH_TOKEN)
   }
-  getJwtToken(){
-   return localStorage.getItem(this.JWT_TOKEN)
+  getJwtToken() {
+    return localStorage.getItem(this.JWT_TOKEN)
   }
-  doLogoutUser(){
+  doLogoutUser() {
     this.removeTokens()
   }
-  removeTokens(){
+  removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
   }
-  refreshToken(){
+  refreshToken() {
     return this.http.post<boolean>(`${this.baseUrl}identity/refresh`, {
       "refreshToken": this.getRefreshToken(),
     })
-    .pipe(
-      tap((tokens:any)=>{
-        this.storeJwtToken(tokens)
-      })
+      .pipe(
+        tap((tokens: any) => {
+          this.storeJwtToken(tokens)
+        })
 
-    )
+      )
   }
-  storeJwtToken(tokens: any){
+  storeJwtToken(tokens: any) {
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
     localStorage.setItem(this.JWT_TOKEN, tokens.token)
   }

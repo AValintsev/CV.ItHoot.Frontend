@@ -19,34 +19,36 @@ export class CvSmallComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  guardEdit(){
-    let toggle = false
-    this.accountService.getUserRole().subscribe({
-      next: next => {
-        if (next == "Admin" || next == "User" || next == "Client"){
-        toggle = true
-      }
-    },
-     error:error=>console.log(error)
-    }) 
-    return toggle
+ get checkRole(){
+    return this.accountService.getStoreRole() === "Admin" || "User" || "Client"
   }
+  // guardEdit(){
+  //   let toggle = false
+  //   this.accountService.getUserRole().subscribe({
+  //     next: next => {
+  //       if (next == "Admin" || next == "User" || next == "Client"){
+  //       toggle = true
+  //     }
+  //   },
+  //    error:error=>console.log(error)
+  //   }) 
+  //   return toggle
+  // }
 
-  guardOpen(): boolean{
-      return true
-  }
+  // guardOpen(): boolean{
+  //     return true
+  // }
 
-  guardDelete() {
-    let toggle = false
-    this.accountService.getUserRole().subscribe({
-      next: next => {
-        if (next == "Admin" || next == "User" || next == "Client") {
-          toggle = true
-        }
-      },
-      error: error => console.log(error)
-    })
-    return toggle
-  }
+  // guardDelete() {
+  //   let toggle = false
+  //   this.accountService.getUserRole().subscribe({
+  //     next: next => {
+  //       if (next == "Admin" || next == "User" || next == "Client") {
+  //         toggle = true
+  //       }
+  //     },
+  //     error: error => console.log(error)
+  //   })
+  //   return toggle
+  // }
 }
