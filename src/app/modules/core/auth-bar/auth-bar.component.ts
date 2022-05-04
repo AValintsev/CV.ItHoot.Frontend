@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
-import { UserAuthData } from 'src/app/shared/models/userAuthData';
+import { UserAuthData } from 'src/app/models/userAuthData';
 import { Validators } from '@angular/forms';
 import {AuthService} from "../../../services/auth-service";
 import { Router } from '@angular/router';

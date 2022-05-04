@@ -1,9 +1,9 @@
 import { AccountService } from 'src/app/services/account.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { CvCard } from 'src/app/shared/models/cv-card';
+import { CvCard } from 'src/app/models/cv-card';
 import {Observable} from "rxjs";
 import {AuthService} from "../../../services/auth-service";
-import {UserAuthData} from "../../../shared/models/userAuthData";
+import {UserAuthData} from "../../../models/userAuthData";
 @Component({
   selector: 'app-cv-small',
   templateUrl: './cv-small.component.html',

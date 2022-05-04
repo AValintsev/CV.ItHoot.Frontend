@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Itest, ITestAray } from 'src/app/shared/models/cv-test';
+import { Itest, ITestAray } from 'src/app/models/cv-test';
 import { map } from 'rxjs/operators';
 @Component({
     selector: 'app-cv-test',
@@ -45,7 +45,7 @@ export class CvTestComponent implements OnInit{
         }));
     }
 
-    valueItemById(id:number){  
+    valueItemById(id:number){
         if(this.testAray.value[id]!= null){
             return  this.testAray.value[id]
         }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BehaviorSubject, Observable} from "rxjs";
-import {UserAuthData} from "../shared/models/userAuthData";
+import {UserAuthData} from "../models/userAuthData";
 import {map} from "rxjs/operators";
 
 @Injectable({

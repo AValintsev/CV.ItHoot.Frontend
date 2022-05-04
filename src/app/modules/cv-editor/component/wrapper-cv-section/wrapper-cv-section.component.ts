@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import { IOrder } from 'src/app/shared/models/cvEditorModels/EditorModels';
+import { IOrder } from 'src/app/models/cvEditorModels/EditorModels';
 
 @Component({
   selector: 'app-wrapper-cv-section',

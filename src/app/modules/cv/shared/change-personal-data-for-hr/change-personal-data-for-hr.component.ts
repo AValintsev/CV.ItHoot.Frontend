@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
-import {CV} from "../../../../shared/models/cv";
+import {CV} from "../../../../models/cv";
 
 @Component({
   selector: 'app-change-personal-data-for-hr',

@@ -1,4 +1,4 @@
-import { ICv } from 'src/app/shared/models/cvEditorModels/EditorModels';
+import { ICv } from 'src/app/models/cvEditorModels/EditorModels';
 import { Component, OnInit, Input } from '@angular/core';
 import { CvEditorService } from '../../cv-editor.service';
 

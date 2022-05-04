@@ -3,7 +3,7 @@ import { CVService } from '../../../services/cv.service';
 import {interval, Observable} from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faGlobe, faMapMarkerAlt, faMobileAlt, faAt } from '@fortawesome/free-solid-svg-icons';
-import { CV } from 'src/app/shared/models/cv';
+import { CV } from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import {filter, map, take} from "rxjs/operators";

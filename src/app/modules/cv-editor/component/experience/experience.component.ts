@@ -1,4 +1,4 @@
-import { IExperience } from 'src/app/shared/models/cvEditorModels/EditorModels';
+import { IExperience } from 'src/app/models/cvEditorModels/EditorModels';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CvEditorService } from '../../cv-editor.service';
 
