@@ -5,11 +5,12 @@
 
         </div>
         <div class="center">
-          <div class="nav-url" routerLink="/cv/list">My CVs</div>
-          <div class="nav-url" routerLink="/">About</div>
+         <button (click)="getAllCv()">All CV</button>
+          <button class="next" (click)="nextCv()">Edit</button>
+          <button (click)="nextCv()">Next <span >&#10148;</span></button>
         </div>
         <div class="right">
-          <button (click)="logout()">Logout</button>
+          <button (click)="logout()">Logout</button>  
         </div>
       </header>
     </div>

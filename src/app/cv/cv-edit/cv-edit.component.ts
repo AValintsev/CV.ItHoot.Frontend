@@ -111,7 +111,7 @@ export class CvEditComponent implements OnInit {
     onSubmit() {
       this.cVService.editCv(this.profileForm.value).subscribe(r=>{
       })
-      this.router.navigateByUrl("/cv/list")
+      // this.router.navigateByUrl("/cv/list")
     }
 
     get skills(){

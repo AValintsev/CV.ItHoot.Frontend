@@ -15,6 +15,6 @@ export class CvListComponent implements OnInit {
 
   ngOnInit(): void {
     this.cvCards$ = this.cVService.cvCards$;
-    this.cVService.getAllCvCards().subscribe();
+    this.cVService.getAllCvCards().subscribe(console.log);
   }
 }

@@ -40,8 +40,11 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.value){
       this.accountService.login(this.loginForm.value).subscribe(
       (res)=>{
-        if(this.accountService.getUserId().value>=0){}
+          if (this.accountService.getUserId().value >= 0 && this.accountService.getUserRole().value === 'User'){
           this.router.navigate([`/home/cv/${this.accountService.getUserId().value}`])
+
+        }
+          
       },
       (error => {
         console.log('eror',error)

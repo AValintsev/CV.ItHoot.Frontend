@@ -12,7 +12,7 @@ const routes: Routes = [
     component: CvFullComponent
   },
   {
-    path: 'list',
+    path: '',
     component: CvListComponent
   },
   {

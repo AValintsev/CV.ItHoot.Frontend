@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/account.service';
 import { Component, OnInit } from '@angular/core';
+import { CVService } from 'src/app/cv/cv.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private accountService:AccountService,
-    private router:Router
+    private router:Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -21,5 +23,11 @@ export class HeaderComponent implements OnInit {
     this.accountService.logout().subscribe({
       next: () => this.router.navigate(['/account/login'])
     })
+  }
+  getAllCv(){
+   this.router.navigate(['/home/cv/'])
+  }
+  nextCv(){
+
   }
 }
