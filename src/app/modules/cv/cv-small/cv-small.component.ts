@@ -19,8 +19,9 @@ export class CvSmallComponent implements OnInit {
 
   ngOnInit(): void {
   }
- get checkRole(){
-    return this.accountService.getStoreRole() === "Admin" || "User" || "Client"
+  
+  checkRole(){
+    return this.accountService.getStoreRole()
   }
   // guardEdit(){
   //   let toggle = false

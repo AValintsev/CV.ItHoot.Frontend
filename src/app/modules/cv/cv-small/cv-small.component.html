@@ -18,8 +18,9 @@
 </div>
 <div class="button-block">
   <div class="buttons">
-    <app-cv-button *ngIf="checkRole" btnText="Open" routerLink="/home/cv/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="checkRole" btnText="Edit" routerLink="/home/cv/edit/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="checkRole" btnText="Delete" routerLink=""></app-cv-button>
+    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() === 'Client'" btnText="Open" routerLink="/home/cv/{{cvCard.id}}"></app-cv-button>
+    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Edit" routerLink="/home/cv/edit/{{cvCard.id}}"></app-cv-button>
+    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Delete" routerLink=""></app-cv-button>
   </div>
 </div>
+{{checkRole() === ('Admin' || 'Client')}}
