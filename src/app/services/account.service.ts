@@ -119,7 +119,11 @@ export class AccountService {
     return localStorage.getItem(this.JWT_TOKEN)
   }
   doLogoutUser() {
+    this.removeStoreUserRole()
     this.removeTokens()
+  }
+  removeStoreUserRole(){
+    localStorage.removeItem(this.USER_ROLE)
   }
   removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
