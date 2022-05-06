@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ResumeCardCreateDto} from "../../../models/cv-card";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {Router} from "@angular/router";
+import {ResumeDto} from "../../../models/resume-dto";
 
 @Component({
   selector: 'app-cv-create-page',
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class CvCreatePageComponent implements OnInit {
 
-  resumeCreateDto:ResumeCardCreateDto = {} as ResumeCardCreateDto;
+  resumeCreateDto:ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
   constructor(private resumeService: ResumeService,
               private snackbarService: SnackBarService,
@@ -67,7 +67,7 @@ export class CvCreatePageComponent implements OnInit {
     });
   }
 
-  public submit(resume: ResumeCardCreateDto){
+  public submit(resume: ResumeDto){
     this.resumeService.createResume(resume).subscribe({
       next:()=>{
         this.snackbarService.showSuccess('Created');
