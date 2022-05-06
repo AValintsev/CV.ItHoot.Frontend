@@ -18,6 +18,8 @@ import { ChangeEducationsForHRComponent } from './shared/change-educations-for-h
 import { ChangeSkillsForHrComponent } from './shared/change-skills-for-hr/change-skills-for-hr.component';
 import { ChangePersonalDataForHRComponent } from './shared/change-personal-data-for-hr/change-personal-data-for-hr.component';
 import {SharedModule} from "../../shared/shared.module";
+import { CvCreatePageComponent } from './cv-create-page/cv-create-page.component';
+import { CvCreateLeftBarComponent } from './cv-create-leftbar/cv-create-left-bar.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import {SharedModule} from "../../shared/shared.module";
     ChangeEducationsForHRComponent,
     ChangeSkillsForHrComponent,
     ChangePersonalDataForHRComponent,
+    CvCreatePageComponent,
+    CvCreateLeftBarComponent,
 
   ],
   imports: [

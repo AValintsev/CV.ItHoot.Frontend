@@ -5,31 +5,27 @@ import { CvEditComponent } from './cv-edit/cv-edit.component';
 import { CvFullComponent } from './cv-full/cv-full.component';
 import { CvListComponent } from './cv-list/cv-list.component';
 import { CvTestComponent } from './cv-test/cv-test.component';
+import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 
 const routes: Routes = [
-  {
-    path: ':id',
-    component: CvFullComponent
-  },
   {
     path: '',
     component: CvListComponent
   },
   {
     path: 'create',
-    component: CvCreateComponent
+    component: CvCreatePageComponent
   },
   {
-    path: 'test1',
-    component : CvTestComponent
+    path: ':id',
+    component: CvFullComponent
   },
-  
   {
     path: 'edit/:id',
     component: CvEditComponent
   },
 
-  
+
 ];
 
 @NgModule({

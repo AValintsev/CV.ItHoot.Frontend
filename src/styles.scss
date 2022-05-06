@@ -13,3 +13,14 @@ body {
 
 html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.success-snackbar{
+  background: green;
+  color: white;
+  font-size: 1em;
+}
+
+.danger-snackbar{
+  background: red;
+  color: white;
+  font-size: 1em;
+}

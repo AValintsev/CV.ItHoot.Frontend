@@ -1,7 +1,6 @@
 <div class="main-block">
   <div class="container">
-    <app-cv-button btnText="Create" routerLink="home/cv/create"></app-cv-button>
-<!--    <app-cv-button btnText="test" routerLink="/cv/test1"></app-cv-button>-->
+    <app-cv-button btnText="Create" routerLink="/home/cv/create"></app-cv-button>
     <div class="cv-list">
       <app-cv-small *ngFor="let item of cvCards$ | async" [cvCard]=item class="cv-card-small"> </app-cv-small>
     </div>

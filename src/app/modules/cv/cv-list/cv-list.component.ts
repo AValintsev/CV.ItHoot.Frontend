@@ -6,7 +6,7 @@ import { CVService } from '../../../services/cv.service';
 @Component({
   selector: 'app-cv-list',
   templateUrl: './cv-list.component.html',
-  styleUrls: ['../../../shared/styles/cvlist.scss']
+  styleUrls: ['./cv-list.component.scss']
 })
 export class CvListComponent implements OnInit {
   public cvCards$!: Observable<Array<CvCard>>;

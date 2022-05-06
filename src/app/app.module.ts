@@ -13,10 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { RouterModule } from '@angular/router';
 import { MaterialModule} from './modules/material/material.module';
-import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 
 registerLocaleData(en);
-
 @NgModule({
   declarations: [
     AppComponent,

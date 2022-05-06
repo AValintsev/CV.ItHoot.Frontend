@@ -1,25 +1,40 @@
-<div class="user-info">
-  <span>{{cvCard.userName}}</span>
-  <span>{{cvCard.lastName}}</span>
-</div>
-<div class="user-pic">
-  <img src="{{cvCard.picture}}" alt="">
-  <!-- <img src="../../../assets/fall.jpg" alt=""> -->
- </div>
-<div class="cv-info">
-  <div class="cv-name">
-    <span>CV name: <strong>{{cvCard.cvName}}</strong></span>
-  </div>
-  <div class="cv-status">
-    <span>CV status: </span>
-    <span *ngIf="cvCard.isDraft; else elseSpan">Draft</span>
-    <ng-template #elseSpan><span>Open</span></ng-template>
-  </div>
-</div>
-<div class="button-block">
-  <div class="buttons">
-    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() === 'Client'" btnText="Open" routerLink="/home/cv/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Edit" routerLink="/home/cv/edit/{{cvCard.id}}"></app-cv-button>
-    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Delete" routerLink=""></app-cv-button>
-  </div>
-</div>
+<!--<div class="user-info">-->
+<!--  <span>{{cvCard.userName}}</span>-->
+<!--  <span>{{cvCard.lastName}}</span>-->
+<!--</div>-->
+<!--<div class="user-pic">-->
+<!--  <img src="{{cvCard.picture}}" alt="">-->
+<!--  &lt;!&ndash; <img src="../../../assets/fall.jpg" alt=""> &ndash;&gt;-->
+<!-- </div>-->
+<!--<div class="cv-info">-->
+<!--  <div class="cv-name">-->
+<!--    <span>CV name: <strong>{{cvCard.cvName}}</strong></span>-->
+<!--  </div>-->
+<!--  <div class="cv-status">-->
+<!--    <span>CV status: </span>-->
+<!--    <span *ngIf="cvCard.isDraft; else elseSpan">Draft</span>-->
+<!--    <ng-template #elseSpan><span>Open</span></ng-template>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="button-block">-->
+<!--  <div class="buttons">-->
+<!--    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() === 'Client'" btnText="Open" routerLink="/home/cv/{{cvCard.id}}"></app-cv-button>-->
+<!--    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Edit" routerLink="/home/cv/edit/{{cvCard.id}}"></app-cv-button>-->
+<!--    <app-cv-button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" btnText="Delete" routerLink=""></app-cv-button>-->
+<!--  </div>-->
+<!--</div>-->
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>{{cvCard.firstName}} {{cvCard.lastName}}</mat-card-title>
+    <mat-card-subtitle>{{cvCard.cvName}}</mat-card-subtitle>
+    <img mat-card-lg-image *ngIf="cvCard.picture === null" src="../../../../assets/no-image.png" alt="Resume image" >
+    <img mat-card-lg-image *ngIf="cvCard.picture" src="{{cvCard.picture" alt="Resume image">
+  </mat-card-title-group>
+  <mat-card-content>
+    <div class="button-group">
+      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() ==='Client'" mat-raised-button color="primary">Open</button>
+      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="accent" routerLink="/home/cv/edit/{{cvCard.id}}">Edit</button>
+      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="warn">Delete</button>
+    </div>
+  </mat-card-content>
+</mat-card>

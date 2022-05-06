@@ -12,9 +12,9 @@ const routes: Routes = [
   {
     path: '', redirectTo:'account',pathMatch:"full"
   },
-  {
-    path: '**', redirectTo:'account',pathMatch:"full"
-  }
+  // {
+    // path: '**', redirectTo:'account',pathMatch:"full"
+  // }
 ];
 
 @NgModule({
