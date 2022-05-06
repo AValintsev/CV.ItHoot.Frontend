@@ -1,0 +1,112 @@
+<form [formGroup]="resumeCreateForm">
+  <div class="input-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Name resume</mat-label>
+      <input matInput placeholder=".NET Junior Developer" formControlName="cvName">
+      <mat-error *ngIf="resumeCreateForm.controls['cvName'].errors?.['required']">
+        Name resume is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Nikita" formControlName="firstName">
+      <mat-error *ngIf="resumeCreateForm.controls['firstName'].errors?.['required']">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Savchuk" formControlName="lastName">
+      <mat-error *ngIf="resumeCreateForm.controls['lastName'].errors?.['required']">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthdate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="resumeCreateForm.controls['birthdate'].errors?.['required']">
+        Birthdate is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input email matInput placeholder="example@gmail.com" formControlName="email">
+      <mat-error *ngIf="resumeCreateForm.controls['email'].errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="resumeCreateForm.controls['email'].errors?.['required']">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput placeholder="3809600001" formControlName="phone">
+      <mat-error *ngIf="resumeCreateForm.controls['phone'].errors?.['required']">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Site</mat-label>
+      <input matInput placeholder="github.com" formControlName="site">
+      <mat-error *ngIf="resumeCreateForm.controls['site'].errors?.['required']">
+        Site is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Postal code</mat-label>
+      <input matInput placeholder="29001" formControlName="code">
+      <mat-error *ngIf="resumeCreateForm.controls['code'].errors?.['required']">
+        Postal code is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <input matInput placeholder="Ukraine" formControlName="country">
+      <mat-error *ngIf="resumeCreateForm.controls['country'].errors?.['required']">
+        Country is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Khmelnytskyi" formControlName="city">
+      <mat-error *ngIf="resumeCreateForm.controls['city'].errors?.['required']">
+        City is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Street</mat-label>
+      <input matInput placeholder="Pushkina 14" formControlName="street">
+      <mat-error *ngIf="resumeCreateForm.controls['street'].errors?.['required']">
+        Street is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Required Position</mat-label>
+      <input matInput placeholder="Junior" formControlName="requiredPosition">
+      <mat-error *ngIf="resumeCreateForm.controls['requiredPosition'].errors?.['required']">
+        Required Position is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>About me</mat-label>
+      <textarea matInput placeholder="I'm Nikita" formControlName="aboutMe"></textarea>
+      <mat-error *ngIf="resumeCreateForm.controls['aboutMe'].errors?.['required']">
+        About me is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>
