@@ -47,6 +47,7 @@ export class CvCreateLeftBarComponent implements OnInit {
       (<FormArray>this.resumeForm.controls["skills"])
         .push(new FormGroup({
           id: new FormControl(skill.id),
+          skillId: new FormControl(skill.skillId),
           name: new FormControl(skill.name),
           level: new FormControl(skill.level)
         }));
@@ -97,6 +98,7 @@ export class CvCreateLeftBarComponent implements OnInit {
       (<FormArray>this.resumeForm.controls["userLanguages"])
         .push(new FormGroup({
           id: new FormControl(languages.id),
+          languageId: new FormControl(languages.languageId),
           name: new FormControl(languages.name),
           level: new FormControl(languages.level)
         }));
@@ -106,7 +108,7 @@ export class CvCreateLeftBarComponent implements OnInit {
     let data:UserLanguageDto;
     let dialogType:DialogType;
     if(language == null){
-      data = {} as SkillDto;
+      data = {} as UserLanguageDto;
       dialogType = DialogType.Create;
     }
     else{
@@ -123,7 +125,6 @@ export class CvCreateLeftBarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
       if (language == null)
         return;
-
       let languageDto = this.resume.userLanguages.find(e => e.name == language.name);
       if (languageDto != null)
         languageDto = language;

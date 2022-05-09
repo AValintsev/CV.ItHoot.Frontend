@@ -28,6 +28,7 @@ export class LanguageDialog implements OnInit {
     private languageService: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.language = data.data;
+    console.log(this.language)
     this.typeDialog = data.type;
     this.myControl.setValue(this.language.name)
     this.filteredOptions = this.myControl.valueChanges.pipe(

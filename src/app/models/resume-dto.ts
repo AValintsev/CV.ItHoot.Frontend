@@ -41,6 +41,7 @@ export interface ExperienceDto{
 
 export interface SkillDto{
   id: number;
+  skillId:number;
   name:string;
   level:number;
 }
@@ -57,6 +58,7 @@ export interface UserLanguageTestDto{
 
 export interface UserLanguageDto{
   id: number;
+  languageId:number;
   name:string;
   level:number;
 }
