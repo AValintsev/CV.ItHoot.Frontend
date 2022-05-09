@@ -20,6 +20,10 @@ export class CvCreatePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm();
+    this.resumeCreateDto.experiences = [];
+    this.resumeCreateDto.skills = [];
+    this.resumeCreateDto.educations = [];
+    this.resumeCreateDto.userLanguages = [];
   }
 
   private validateForm(){
@@ -61,13 +65,14 @@ export class CvCreatePageComponent implements OnInit {
         Validators.required
       ]),
       educations: new FormArray([]),
-      experiences: new FormControl([]),
-      skills: new FormControl([]),
-      userLanguages: new FormControl([]),
+      experiences: new FormArray([]),
+      skills: new FormArray([]),
+      userLanguages: new FormArray([]),
     });
   }
 
   public submit(resume: ResumeDto){
+    // console.log(resume)
     this.resumeService.createResume(resume).subscribe({
       next:()=>{
         this.snackbarService.showSuccess('Created');

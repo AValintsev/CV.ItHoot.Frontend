@@ -14,14 +14,14 @@ export interface ResumeDto{
   requiredPosition: string;
   birthdate: string;
   aboutMe: string;
-  educations: Array<EducationDto>;
-  experiences: Array<ExperienceDto>;
-  skills: Array<SkillDto>;
-  userLanguages: Array<UserLanguageDto>;
+  educations: EducationDto[];
+  experiences: ExperienceDto[];
+  skills: SkillDto[];
+  userLanguages: UserLanguageDto[];
 }
 
 export interface EducationDto{
-  id: 0;
+  id: number;
   institutionName: string;
   specialization: string;
   degree: string;
@@ -31,7 +31,7 @@ export interface EducationDto{
 }
 
 export interface ExperienceDto{
-  id: 0;
+  id: number;
   company: string;
   position: string;
   description: string;
@@ -40,23 +40,23 @@ export interface ExperienceDto{
 }
 
 export interface SkillDto{
-  id: 0;
+  id: number;
   name:string;
   level:number;
+}
+
+export interface SkillTestDto{
+  id: number;
+  name:string;
+}
+
+export interface UserLanguageTestDto{
+  id: number;
+  name:string;
 }
 
 export interface UserLanguageDto{
-  id: 0;
+  id: number;
   name:string;
   level:number;
-}
-
-export interface SkillDto{
-  id: 0;
-  institutionName: string;
-  specialization: string;
-  degree: string;
-  description: string;
-  startDate: string;
-  endDate:string;
 }

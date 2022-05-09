@@ -6,6 +6,7 @@ import { CvFullComponent } from './cv-full/cv-full.component';
 import { CvListComponent } from './cv-list/cv-list.component';
 import { CvTestComponent } from './cv-test/cv-test.component';
 import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
+import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
 
 const routes: Routes = [
   {
@@ -13,18 +14,18 @@ const routes: Routes = [
     component: CvListComponent
   },
   {
+    path: 'edit/:id',
+    component: CvEditPageComponent
+  },
+
+  {
     path: 'create',
     component: CvCreatePageComponent
   },
   {
     path: ':id',
     component: CvFullComponent
-  },
-  {
-    path: 'edit/:id',
-    component: CvEditComponent
-  },
-
+  }
 
 ];
 
