@@ -75,6 +75,7 @@ export class CvEditPageComponent implements OnInit {
           id: new FormControl(education.id),
           institutionName: new FormControl(education.institutionName),
           specialization: new FormControl(education.specialization),
+          description: new FormControl(education.description),
           degree: new FormControl(education.degree),
           startDate: new FormControl(education.startDate),
           endDate: new FormControl(education.endDate),

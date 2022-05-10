@@ -41,9 +41,6 @@ export class LanguageDialog implements OnInit {
   }
   filter(val: string): Observable<UserLanguageTestDto[]> {
     return this.languageService.searchLanguage(val).pipe(map(data=>{
-      if(data.length === 0){
-        data = [{id:0,name:val}]
-      };
       return data;
     }));
   }
@@ -51,7 +48,7 @@ export class LanguageDialog implements OnInit {
 
   skillSelected(option:any) {
     this.language.name = option.name;
-    this.language.id = option.id;
+    this.language.languageId = option.id;
   }
 
   canCreate(): boolean {

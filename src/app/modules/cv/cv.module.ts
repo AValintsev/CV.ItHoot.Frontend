@@ -12,7 +12,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {CvTestComponent} from './cv-test/cv-test.component';
 import {SkillComponent} from './haredCv/skill/skill.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
-import {CvCreateLeftBarComponent} from './cv-create-leftbar/cv-create-left-bar.component';
+import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
 import {LanguageDialog} from "./language-dialog/language-dialog.component";
 import {EducationDialog} from './education-dialog/education-dialog.component';
@@ -44,7 +44,7 @@ import {MatButtonModule} from "@angular/material/button";
     CvTestComponent,
     SkillComponent,
     CvCreatePageComponent,
-    CvCreateLeftBarComponent,
+    CvLeftBarComponent,
     SkillDialog,
     LanguageDialog,
     EducationDialog,

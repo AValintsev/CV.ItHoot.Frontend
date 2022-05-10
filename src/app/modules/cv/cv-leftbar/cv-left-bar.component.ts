@@ -11,11 +11,11 @@ import {ExperienceDialog} from "../experience-dialog/experience-dialog.component
 
 @Component({
   selector: 'app-cv-create-left-bar',
-  templateUrl: './cv-create-left-bar.component.html',
-  styleUrls: ['./cv-create-left-bar.component.scss'],
+  templateUrl: './cv-left-bar.component.html',
+  styleUrls: ['./cv-left-bar.component.scss'],
 })
 
-export class CvCreateLeftBarComponent implements OnInit {
+export class CvLeftBarComponent implements OnInit {
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
@@ -149,6 +149,7 @@ export class CvCreateLeftBarComponent implements OnInit {
           id: new FormControl(education.id),
           institutionName: new FormControl(education.institutionName),
           specialization: new FormControl(education.specialization),
+          description: new FormControl(education.description),
           degree: new FormControl(education.degree),
           startDate: new FormControl(education.startDate),
           endDate: new FormControl(education.endDate),
