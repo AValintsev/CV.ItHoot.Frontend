@@ -56,7 +56,7 @@
             <span>{{cv.site}}</span>
           </div>
         </div>
-        <app-change-personal-data-for-hr *ngIf="isChange" [Cv]="cv"> </app-change-personal-data-for-hr>
+<!--        <app-change-personal-data-for-hr *ngIf="isChange" [Cv]="cv"> </app-change-personal-data-for-hr>-->
 
 
         <div class="left-item-title">
@@ -70,7 +70,7 @@
             <div *ngIf="isChange" ><button class="button" (click)="removeSkill(i)"> hide </button></div>
           </div>
         </div>
-        <app-change-skills-for-hr *ngIf="isChange" (addSkills)="addSkills($event)"></app-change-skills-for-hr>
+<!--        <app-change-skills-for-hr *ngIf="isChange" (addSkills)="addSkills($event)"></app-change-skills-for-hr>-->
       </div>
       <div class="cv-card-right">
         <div class="right-title">
@@ -115,7 +115,7 @@
         </div>
 
 
-        <app-change-educations-for-hr *ngIf="isChange " (addEducations)="addEducations($event)"></app-change-educations-for-hr>
+<!--        <app-change-educations-for-hr *ngIf="isChange " (addEducations)="addEducations($event)"></app-change-educations-for-hr>-->
         <div class="right-title">
           <span>Experiences</span>
         </div>
@@ -154,7 +154,7 @@
             </div>
           </div>
         </div>
-        <app-change-experiences-for-hr *ngIf="isChange" (addExperiences)="addExperiences($event)"></app-change-experiences-for-hr>
+<!--        <app-change-experiences-for-hr *ngIf="isChange" (addExperiences)="addExperiences($event)"></app-change-experiences-for-hr>-->
         <div class="right-title">
           <span>Languages</span>
         </div>
@@ -170,8 +170,8 @@
           </div>
         </div>
         <div>
-          <app-change-language-for-hr *ngIf="isChange" (onChangedLanguege)="addLanguage($event)">
-          </app-change-language-for-hr>
+<!--          <app-change-language-for-hr *ngIf="isChange" (onChangedLanguege)="addLanguage($event)">-->
+<!--          </app-change-language-for-hr>-->
         </div>
       </div>
     </div>

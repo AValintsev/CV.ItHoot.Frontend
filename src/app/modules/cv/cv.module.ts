@@ -11,14 +11,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {CvTestComponent} from './cv-test/cv-test.component';
 import {SkillComponent} from './haredCv/skill/skill.component';
-import {ChangeLanguageForHrComponent} from './shared/change-language-for-hr/change-language-for-hr.component';
-import {ChangeExperiencesForHRComponent} from './shared/change-experiences-for-hr/change-experiences-for-hr.component';
-import {ChangeEducationsForHRComponent} from './shared/change-educations-for-hr/change-educations-for-hr.component';
-import {ChangeSkillsForHrComponent} from './shared/change-skills-for-hr/change-skills-for-hr.component';
-import {
-  ChangePersonalDataForHRComponent
-} from './shared/change-personal-data-for-hr/change-personal-data-for-hr.component';
-import {SharedModule} from "../../shared/shared.module";
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvCreateLeftBarComponent} from './cv-create-leftbar/cv-create-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -26,6 +18,17 @@ import {LanguageDialog} from "./language-dialog/language-dialog.component";
 import {EducationDialog} from './education-dialog/education-dialog.component';
 import {ExperienceDialog} from './experience-dialog/experience-dialog.component';
 import {CvEditPageComponent} from './cv-edit-page/cv-edit-page.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCardModule} from "@angular/material/card";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatOptionModule} from "@angular/material/core";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatDialogModule} from "@angular/material/dialog";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -38,11 +41,6 @@ import {CvEditPageComponent} from './cv-edit-page/cv-edit-page.component';
     CvFormComponent,
     CvTestComponent,
     SkillComponent,
-    ChangeLanguageForHrComponent,
-    ChangeExperiencesForHRComponent,
-    ChangeEducationsForHRComponent,
-    ChangeSkillsForHrComponent,
-    ChangePersonalDataForHRComponent,
     CvCreatePageComponent,
     CvCreateLeftBarComponent,
     SkillDialog,
@@ -54,11 +52,21 @@ import {CvEditPageComponent} from './cv-edit-page/cv-edit-page.component';
   imports: [
     CommonModule,
     // RouterModule,
-    SharedModule,
     CvRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AngularEditorModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatButtonToggleModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    FontAwesomeModule,
 
   ]
 })
