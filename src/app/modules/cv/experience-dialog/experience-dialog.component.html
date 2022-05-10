@@ -1,0 +1,46 @@
+<div class="experience-dialog" [formGroup]="experienceForm">
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Add new experience</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit experience</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name of company</mat-label>
+      <input matInput placeholder="ITHoot" formControlName="company">
+      <mat-error *ngIf="experienceForm.controls['company'].errors?.['required']">
+        Institution Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Position</mat-label>
+      <input matInput placeholder=".NET Junior Developer" formControlName="position">
+      <mat-error *ngIf="experienceForm.controls['position'].errors?.['required']">
+        Position is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Bachelor's" formControlName="description">
+      <mat-error *ngIf="experienceForm.controls['description'].errors?.['required']">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Start date">
+        <input matEndDate formControlName="endDate" placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+    </mat-form-field>
+    <div mat-dialog-actions class="actions">
+      <button mat-button [mat-dialog-close]="experienceForm.value" cdkFocusInitial [disabled]="!experienceForm.valid" *ngIf="typeDialog===DialogType.Create">Create</button>
+      <button mat-button [mat-dialog-close]="experienceForm.value" cdkFocusInitial [disabled]="!experienceForm.valid" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+    </div>
+  </div>
+</div>

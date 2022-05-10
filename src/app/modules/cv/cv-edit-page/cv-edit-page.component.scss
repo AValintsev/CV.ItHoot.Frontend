@@ -1,0 +1,16 @@
+.edit-page{
+  padding: 30px 30px 0 30px;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: 1fr;
+  .left-bar {
+    max-height: 83vh;
+    overflow: hidden auto;
+    scrollbar-width: none;
+  }
+  .left-bar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+}
