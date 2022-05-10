@@ -1,12 +1,11 @@
-import { map, retry } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { IOrder, ILanguageLevel, ISkillLevel } from '../../models/cvEditorModels/EditorModels';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { DraftCv, ICv , ISkill} from 'src/app/models/cvEditorModels/EditorModels'
-import { BaseApiService } from '../../services/base-api.service';
+import {map} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {ILanguageLevel, IOrder, ISkillLevel} from '../../models/cvEditorModels/EditorModels';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {DraftCv, ICv} from 'src/app/models/cvEditorModels/EditorModels'
+import {BaseApiService} from '../../services/base-api.service';
 
 
 @Injectable({

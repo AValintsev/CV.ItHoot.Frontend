@@ -1,18 +1,8 @@
-import { BehaviorSubject } from 'rxjs';
-import { filter, switchMap, take } from 'rxjs/operators';
-import { catchError } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/account.service';
-import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpHeaderResponse,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Observable, of, Subject, throwError } from 'rxjs';
-import { AuthService } from "../services/auth-service";
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {AccountService} from 'src/app/services/account.service';
+import {Injectable} from '@angular/core';
+import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

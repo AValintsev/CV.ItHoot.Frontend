@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { faGlobe, faMapMarkerAlt, faMobileAlt, faAt } from '@fortawesome/free-solid-svg-icons';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { CVService } from '../../../services/cv.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CV } from 'src/app/models/cv';
+import {Component, OnInit} from '@angular/core';
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {CVService} from '../../../services/cv.service';
+import {Router} from '@angular/router';
+
 //import { Observable } from 'rxjs';
 @Component({
   selector: 'app-cv-create',

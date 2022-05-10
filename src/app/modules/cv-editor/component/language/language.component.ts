@@ -1,13 +1,13 @@
-import { ILanguageLevel, ICvLanguage } from '../../../../models/cvEditorModels/EditorModels';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectChange } from '@angular/material/select';
-import { Observable } from 'rxjs';
-import { ILanguage } from 'src/app/models/cvEditorModels/EditorModels';
-import { CvEditorService } from '../../cv-editor.service';
-import { LanguageService } from '../../services/language.service';
-import { mergeMap, startWith } from 'rxjs/operators';
+import {ICvLanguage, ILanguageLevel} from '../../../../models/cvEditorModels/EditorModels';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatSelectChange} from '@angular/material/select';
+import {Observable} from 'rxjs';
+import {ILanguage} from 'src/app/models/cvEditorModels/EditorModels';
+import {CvEditorService} from '../../cv-editor.service';
+import {LanguageService} from '../../services/language.service';
+import {mergeMap, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-language',

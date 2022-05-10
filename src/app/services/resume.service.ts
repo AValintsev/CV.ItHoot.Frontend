@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/small-resume-dto";
 import {ResumeDto} from "../models/resume-dto";

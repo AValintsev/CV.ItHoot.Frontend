@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { BaseApiService } from '../../../services/base-api.service';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from "rxjs";
-import { ISkill} from "../../../models/cvEditorModels/EditorModels";
-import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {BaseApiService} from '../../../services/base-api.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from "rxjs";
+import {ISkill} from "../../../models/cvEditorModels/EditorModels";
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

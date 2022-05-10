@@ -1,9 +1,9 @@
-import { AccountService } from 'src/app/services/account.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { CvCard } from 'src/app/models/cv-card';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {CvCard} from 'src/app/models/cv-card';
 import {Observable} from "rxjs";
-import {AuthService} from "../../../services/auth-service";
 import {UserAuthData} from "../../../models/userAuthData";
+
 @Component({
   selector: 'app-cv-small',
   templateUrl: './cv-small.component.html',
@@ -19,7 +19,7 @@ export class CvSmallComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   checkRole(){
     return this.accountService.getStoreRole()
   }
@@ -32,7 +32,7 @@ export class CvSmallComponent implements OnInit {
   //     }
   //   },
   //    error:error=>console.log(error)
-  //   }) 
+  //   })
   //   return toggle
   // }
 

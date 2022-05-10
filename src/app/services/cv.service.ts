@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {CvCard} from "../models/cv-card";
 import {CV} from "../models/cv";
 import {GetCvCardsResponse} from "../models/responses/getCvCardsResponse";

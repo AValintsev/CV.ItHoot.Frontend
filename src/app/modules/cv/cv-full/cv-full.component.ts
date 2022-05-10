@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CVService } from '../../../services/cv.service';
-import {interval, Observable} from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faGlobe, faMapMarkerAlt, faMobileAlt, faAt } from '@fortawesome/free-solid-svg-icons';
-import { CV } from 'src/app/models/cv';
+import {Component, Input, OnInit} from '@angular/core';
+import {CVService} from '../../../services/cv.service';
+import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+import {CV} from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import {filter, map, take} from "rxjs/operators";
+
 // import objectContaining = jasmine.objectContaining;
 
 @Component({

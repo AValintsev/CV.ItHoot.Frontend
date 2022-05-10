@@ -1,6 +1,6 @@
-import { Component, OnInit, Input,  Output, EventEmitter} from '@angular/core';
-import { IEducation } from 'src/app/models/cvEditorModels/EditorModels';
-import { CvEditorService } from '../../cv-editor.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IEducation} from 'src/app/models/cvEditorModels/EditorModels';
+import {CvEditorService} from '../../cv-editor.service';
 
 @Component({
   selector: 'app-education',

@@ -1,4 +1,5 @@
-import { CvCard } from "../cv-card";
+import {CvCard} from "../cv-card";
+
 export interface GetAllCvInfosResponse {
     cVs: Array<CvCard>;
 }

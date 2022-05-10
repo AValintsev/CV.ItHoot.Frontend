@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {EducationDto, ExperienceDto} from "../../../models/resume-dto";
+import {ExperienceDto} from "../../../models/resume-dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DialogType} from "../../../models/dialog-type";

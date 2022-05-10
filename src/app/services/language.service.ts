@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
-import {SkillDto, SkillTestDto, UserLanguageTestDto} from "../models/resume-dto";
+import {UserLanguageTestDto} from "../models/resume-dto";
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {

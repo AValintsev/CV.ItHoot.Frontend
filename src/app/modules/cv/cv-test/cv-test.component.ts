@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Itest, ITestAray } from 'src/app/models/cv-test';
-import { map } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {Itest} from 'src/app/models/cv-test';
+
 @Component({
     selector: 'app-cv-test',
     templateUrl: './cv-test.component.html',

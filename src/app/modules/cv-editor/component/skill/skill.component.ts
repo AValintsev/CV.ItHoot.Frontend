@@ -1,13 +1,13 @@
-import { mergeMap, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { ICvSkill, ISkillLevel } from '../../../../models/cvEditorModels/EditorModels';
-import { ISkill } from 'src/app/models/cvEditorModels/EditorModels';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { CvEditorService } from '../../cv-editor.service';
-import { FormControl } from '@angular/forms';
-import { SkillService } from "../../services/skill.service";
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectChange } from '@angular/material/select';
+import {mergeMap, startWith} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {ICvSkill, ISkillLevel} from '../../../../models/cvEditorModels/EditorModels';
+import {ISkill} from 'src/app/models/cvEditorModels/EditorModels';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {CvEditorService} from '../../cv-editor.service';
+import {FormControl} from '@angular/forms';
+import {SkillService} from "../../services/skill.service";
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatSelectChange} from '@angular/material/select';
 
 @Component({
   selector: 'app-skill',

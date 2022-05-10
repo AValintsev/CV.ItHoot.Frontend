@@ -1,7 +1,15 @@
-import { Router } from '@angular/router';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { AccountService } from 'src/app/services/account.service';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree
+} from '@angular/router';
+import {Observable, of} from 'rxjs';
+import {AccountService} from 'src/app/services/account.service';
 
 export class UserGuard implements CanLoad,CanActivate{
 	constructor(private accountService:AccountService,private router:Router){}

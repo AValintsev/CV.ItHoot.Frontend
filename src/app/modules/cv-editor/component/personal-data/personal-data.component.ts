@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs';
-import { ICv } from '../../../../models/cvEditorModels/EditorModels';
-import { Component, OnInit } from '@angular/core';
-import { CvEditorService } from '../../cv-editor.service';
+import {Observable} from 'rxjs';
+import {ICv} from '../../../../models/cvEditorModels/EditorModels';
+import {Component, OnInit} from '@angular/core';
+import {CvEditorService} from '../../cv-editor.service';
 
 @Component({
   selector: 'app-personal-data',

@@ -1,6 +1,6 @@
-import { ICv } from 'src/app/models/cvEditorModels/EditorModels';
-import { Component, OnInit, Input } from '@angular/core';
-import { CvEditorService } from '../../cv-editor.service';
+import {ICv} from 'src/app/models/cvEditorModels/EditorModels';
+import {Component, Input, OnInit} from '@angular/core';
+import {CvEditorService} from '../../cv-editor.service';
 
 @Component({
   selector: 'app-about-me',

@@ -23,9 +23,9 @@ import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvCreateLeftBarComponent} from './cv-create-leftbar/cv-create-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
 import {LanguageDialog} from "./language-dialog/language-dialog.component";
-import { EducationDialog } from './education-dialog/education-dialog.component';
-import { ExperienceDialog } from './experience-dialog/experience-dialog.component';
-import { CvEditPageComponent } from './cv-edit-page/cv-edit-page.component';
+import {EducationDialog} from './education-dialog/education-dialog.component';
+import {ExperienceDialog} from './experience-dialog/experience-dialog.component';
+import {CvEditPageComponent} from './cv-edit-page/cv-edit-page.component';
 
 
 @NgModule({

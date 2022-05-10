@@ -1,13 +1,10 @@
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
-import { catchError, map, mapTo, tap } from 'rxjs/operators';
-import { UserAuthData } from 'src/app/models/userAuthData';
-import { userResponse } from '../models/responses/userResponse';
-import { environment } from "../../environments/environment";
-
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {catchError, mapTo, tap} from 'rxjs/operators';
+import {userResponse} from '../models/responses/userResponse';
+import {environment} from "../../environments/environment";
 
 
 @Injectable({

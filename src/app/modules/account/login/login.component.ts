@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup ,Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import {AuthService} from "../../../services/auth-service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/home/cv/${this.accountService.getUserId().value}`])
 
         }
-          
+
       },
       (error => {
         console.log('eror',error)

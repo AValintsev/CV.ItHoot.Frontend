@@ -1,6 +1,6 @@
-import { Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({

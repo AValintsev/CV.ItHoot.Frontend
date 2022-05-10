@@ -9,7 +9,6 @@ import {EducationDialog} from "../education-dialog/education-dialog.component";
 import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
 
 
-
 @Component({
   selector: 'app-cv-create-left-bar',
   templateUrl: './cv-create-left-bar.component.html',
