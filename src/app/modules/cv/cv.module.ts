@@ -30,6 +30,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import {MatInput, MatInputModule} from "@angular/material/input";
     MatDialogModule,
     FontAwesomeModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class CvModule {
