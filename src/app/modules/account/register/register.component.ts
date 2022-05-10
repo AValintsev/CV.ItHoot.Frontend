@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       }
     ).subscribe(
       () => {
-        this.router.navigateByUrl('/cv')
+        this.router.navigate(['home/cv'])
       },
       (res) => {
         this.errors = res.error.errors;

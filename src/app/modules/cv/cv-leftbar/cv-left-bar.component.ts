@@ -29,6 +29,7 @@ export class CvLeftBarComponent implements OnInit {
     this.listLanguageChanged();
     this.experienceListChanged();
     this.educationListChanged();
+   
   }
 
 

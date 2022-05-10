@@ -1,9 +1,12 @@
-<div class="edit-page">
-  <form class="left-bar">
+<div class="container">
+  <div class="edit-page">
+    <form class="left-bar">
 
-        <app-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto"></app-cv-create-left-bar>
-    <!--    <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Create</button>-->
-    <button mat-raised-button color="primary" (click)="submit(resumeEditForm.value)">Edit</button>
-  </form>
+      <app-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
+      </app-cv-create-left-bar>
+      <!--    <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Create</button>-->
+      <button mat-raised-button color="primary" (click)="submit(resumeEditForm.value)">Edit</button>
+    </form>
+  </div>
+    <app-cv-template [resumeEditForm]="resumeEditForm"></app-cv-template>
 </div>
-

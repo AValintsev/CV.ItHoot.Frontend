@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import {Component, Input, OnInit} from '@angular/core';
 import {CVService} from '../../../services/cv.service';
 import {Observable} from 'rxjs';
@@ -20,14 +21,12 @@ export class CvFullComponent implements OnInit {
   @Input() id: number = 0;
   public cv$!: Observable<CV>;
 
-  faGlobe = faGlobe;
-  faMapMarkerAlt = faMapMarkerAlt;
-  faMobileAlt = faMobileAlt;
-  faAt = faAt;
+
   photoUrl!:string
   photoString!: string;
   isChange:boolean=false;
-  cv!:CV;
+  // cv!:CV;
+  cv!:FormGroup;
 
   constructor(public cVService: CVService,private route: ActivatedRoute,
     private router: Router) {
@@ -40,8 +39,9 @@ export class CvFullComponent implements OnInit {
     this.route.params.subscribe(params=>this.id=params['id']);
     this.cv$ = this.cVService.cv$;
     this.cVService.getCVbyId(this.id).subscribe(data => {
+      console.log(data)
       this.photoUrl = data.picture
-      this.cv = data
+      this.cv = data as any
     });
   }
 
@@ -94,54 +94,54 @@ export class CvFullComponent implements OnInit {
 
   }
   // @ts-ignore
-  getImgFromUrl(logo_url, callback) {
-    var img = new Image();
-    img.src = logo_url;
-    img.onload = function () {
-      callback(img);
-    };
-  }
-  change() {
-    this.isChange = !this.isChange
-    console.log(this.isChange)
-    console.log(this.cv)
-  }
+  // getImgFromUrl(logo_url, callback) {
+  //   var img = new Image();
+  //   img.src = logo_url;
+  //   img.onload = function () {
+  //     callback(img);
+  //   };
+  // }
+  // change() {
+  //   this.isChange = !this.isChange
+  //   console.log(this.isChange)
+  //   console.log(this.cv)
+  // }
 
-  rmveLanguage(id:number) {
-    console.log(id)
-    this.cv.userLanguages.splice(0,id+1)
-    console.log(this.cv.userLanguages)
-  }
+  // rmveLanguage(id:number) {
+  //   console.log(id)
+  //   this.cv.userLanguages.splice(0,id+1)
+  //   console.log(this.cv.userLanguages)
+  // }
 
-  addLanguage(language:any){
-   this.cv.userLanguages.push(language)
-   console.log(language);
-  }
+  // addLanguage(language:any){
+  //  this.cv.userLanguages.push(language)
+  //  console.log(language);
+  // }
 
-  addExperiences($event: any) {
-   this.cv.experiences.push($event)
-    console.log($event)
-  }
+  // addExperiences($event: any) {
+  //  this.cv.experiences.push($event)
+  //   console.log($event)
+  // }
 
-  addEducations($event: any) {
-   this.cv.educations.push($event)
-    console.log($event)
-  }
+  // addEducations($event: any) {
+  //  this.cv.educations.push($event)
+  //   console.log($event)
+  // }
 
-  addSkills($event: any) {
-   this.cv.skills.push($event)
-    console.log($event)
-  }
+  // addSkills($event: any) {
+  //  this.cv.skills.push($event)
+  //   console.log($event)
+  // }
 
-  removeExperience(id:number) {
-    this.cv.experiences.splice(0,id+1)
-  }
+  // removeExperience(id:number) {
+  //   this.cv.experiences.splice(0,id+1)
+  // }
 
-  removeEducation(id:number) {
-    this.cv.educations.splice(0,id+1)
-  }
+  // removeEducation(id:number) {
+  //   this.cv.educations.splice(0,id+1)
+  // }
 
-  removeSkill(id:number) {
-    this.cv.skills.splice(0,id+1)
-  }
+  // removeSkill(id:number) {
+  //   this.cv.skills.splice(0,id+1)
+  // }
 }

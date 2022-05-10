@@ -1,3 +1,4 @@
+import { CV } from './../../../models/cv';
 import {Component, OnInit} from '@angular/core';
 import {ResumeDto} from "../../../models/resume-dto";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -5,13 +6,18 @@ import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {map} from "rxjs/operators";
-
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-cv-edit-page',
   templateUrl: './cv-edit-page.component.html',
   styleUrls: ['./cv-edit-page.component.scss']
 })
 export class CvEditPageComponent implements OnInit {
+  
+  faGlobe = faGlobe;
+  faMapMarkerAlt = faMapMarkerAlt;
+  faMobileAlt = faMobileAlt;
+  faAt = faAt;
   resumeId: number = 0;
   resumeEditDto: ResumeDto = {} as ResumeDto;
   public resumeEditForm: FormGroup = {} as FormGroup;
@@ -20,16 +26,18 @@ export class CvEditPageComponent implements OnInit {
               private snackbarService: SnackBarService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.validateForm()
-    route.params.pipe(map(params => params['id'])).subscribe(id => {
+ 
+  }
+
+  ngOnInit(): void {
+       this.validateForm()
+    this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
+        console.log(this.resumeEditForm.controls['educations'])
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto)
       });
     });
-  }
-
-  ngOnInit(): void {
   }
 
   patchForm(resume: ResumeDto) {

@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {CvCard} from "../models/cv-card";
 import {CV} from "../models/cv";
 import {GetCvCardsResponse} from "../models/responses/getCvCardsResponse";
@@ -44,6 +44,7 @@ export class CVService {
   getCVbyId(id: number) {
     return this.http.get<CV>(environment.apiUrl + "cv/" + id)
       .pipe(
+        tap(e=>console.log('tap',e)),
         map((data: CV) => {
           if (data) {
             this.cv.next(data);
@@ -84,3 +85,5 @@ export class CVService {
   }
 
 }
+
+

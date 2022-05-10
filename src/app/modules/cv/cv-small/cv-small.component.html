@@ -28,11 +28,11 @@
     <mat-card-title>{{cvCard.firstName}} {{cvCard.lastName}}</mat-card-title>
     <mat-card-subtitle>{{cvCard.cvName}}</mat-card-subtitle>
     <img mat-card-lg-image *ngIf="cvCard.picture === null" src="../../../../assets/no-image.png" alt="Resume image" >
-    <img mat-card-lg-image *ngIf="cvCard.picture" src="{{cvCard.picture" alt="Resume image">
+    <img mat-card-lg-image *ngIf="cvCard.picture" src="{{cvCard.picture}}" alt="Resume image">
   </mat-card-title-group>
   <mat-card-content>
     <div class="button-group">
-      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() ==='Client'" mat-raised-button color="primary">Open</button>
+      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() ==='Client'" mat-raised-button color="primary" [routerLink]="['/home/cv/',cvCard.id]">Open</button>
       <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="accent" routerLink="/home/cv/edit/{{cvCard.id}}">Edit</button>
       <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="warn">Delete</button>
     </div>

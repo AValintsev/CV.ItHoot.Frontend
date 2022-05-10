@@ -31,6 +31,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import { CvTemplateModule } from './cv-template/cv-template.module';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import {MatButtonModule} from "@angular/material/button";
     LanguageDialog,
     EducationDialog,
     ExperienceDialog,
-    CvEditPageComponent
+    CvEditPageComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +72,8 @@ import {MatButtonModule} from "@angular/material/button";
     FontAwesomeModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    CvTemplateModule
   ]
 })
 export class CvModule {
