@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {CvCard} from 'src/app/models/cv-card';
-import {CVService} from '../../../services/cv.service';
+import {ResumeService} from "../../../services/resume.service";
+import {SmallResumeDto} from "../../../models/small-resume-dto";
+import {SnackBarService} from "../../../services/snack-bar.service";
 
 @Component({
   selector: 'app-cv-list',
@@ -9,12 +9,30 @@ import {CVService} from '../../../services/cv.service';
   styleUrls: ['./cv-list.component.scss']
 })
 export class CvListComponent implements OnInit {
-  public cvCards$!: Observable<Array<CvCard>>;
+  displayedColumns: string[] = ['name', 'position', 'skills', 'loading', 'status', 'action'];
+  resumes: SmallResumeDto[] = [];
 
-  constructor(public cVService: CVService) { }
+  constructor(public resumeService: ResumeService, private snackService: SnackBarService) {
+  }
+
 
   ngOnInit(): void {
-    this.cvCards$ = this.cVService.cvCards$;
-    this.cVService.getAllCvCards().subscribe(console.log);
+    this.resumeService.getAllResume().subscribe(resumeArray => {
+      this.resumes = resumeArray;
+    });
+  }
+
+
+  deleteResume(resume: SmallResumeDto): void {
+    this.resumeService.deleteResume(resume.id).subscribe(
+      {
+        next: () => {
+          this.resumes = this.resumes.filter(i => i.id !== resume.id);
+          this.snackService.showSuccess('Success');
+        },
+        error: () => {
+          this.snackService.showDanger('Something went wrong');
+        }
+      });
   }
 }

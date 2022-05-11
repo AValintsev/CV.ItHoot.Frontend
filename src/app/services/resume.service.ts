@@ -13,8 +13,8 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix,resume);
   }
 
-  public getAllResume():Observable<Array<SmallResumeDto>>{
-    return this.httpService.getRequest<Array<SmallResumeDto>>(this.routePrefix);
+  public getAllResume():Observable<SmallResumeDto[]>{
+    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix);
   }
 
   public getResumeById(id:number):Observable<ResumeDto>{
