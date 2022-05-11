@@ -1,17 +1,21 @@
-<div class="header">
-    <div class="container">
-      <header>
-        <div class="left">
-
-        </div>
-        <div class="center">
-         <button (click)="getAllCv()">All CV</button>
-          <button  (click)="nextCv()"><span class="right-arrow">&#11164;</span>&nbsp;Prev</button>
-          <button (click)="nextCv()">Next&nbsp;<span class="right-arrow">&#11166;</span></button>
-        </div>
-        <div class="right">
-          <button (click)="logout()">Logout</button>
-        </div>
-      </header>
+<header>
+  <div class="header-inner">
+    <div class="col">
+      <img src="assets/label.jpg" alt="label">
     </div>
-</div>
+    <div class="col">
+      <button class="btn btn-left" (click)="getAllCv()">
+        <img src="assets/arrow.svg" alt="arrow">
+        <span>Previous</span>
+      </button>
+
+      <button class="btn btn-right" (click)="nextCv()">
+        <img src="assets/arrow.svg" alt="arrow">
+        <span>Next</span>
+      </button>
+    </div>
+    <div class="col">
+      <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</header>

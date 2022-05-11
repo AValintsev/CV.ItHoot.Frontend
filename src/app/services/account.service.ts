@@ -54,7 +54,7 @@ export class AccountService {
   }
 
   isLoggedIn(): boolean {
-    return true
+    return !!this.getJwtToken()
   }
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {AccountService} from 'src/app/services/account.service';
@@ -8,7 +9,9 @@ import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@ang
 export class JwtInterceptor implements HttpInterceptor {
   isRefreshing = false
   refreshTokenSubject = new BehaviorSubject<any>(null)
-  constructor(private accountService: AccountService) { }
+  constructor(
+    private router:Router,
+    private accountService: AccountService) { }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<any> {
     if (this.accountService.getJwtToken()) {
@@ -23,8 +26,13 @@ export class JwtInterceptor implements HttpInterceptor {
             console.log('error instanceof HttpHeaderResponse');
             return this.handle401Error(req, next)
           } else {
-            console.log(' return throwError(error)')
-            return throwError(error)
+            if (error instanceof HttpErrorResponse && error.status === 400 && this.accountService.getUserRole().value === 'User'){
+              if (this.accountService.getUserRole().value === 'User') {
+                this.router.navigate([`/home/cv/create`])
+              }
+            }
+              return throwError(error)
+            
           }
         })
       )

@@ -37,14 +37,15 @@ export class CvEditPageComponent implements OnInit {
     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
-        console.log(resume)
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto)
       });
     });
-    this.resumeEditForm.valueChanges.subscribe(arr=>this.templateForm = arr)
+    this.changeFormDate()
   }
-
+  private changeFormDate() {
+    this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
+  }
   patchForm(resume: ResumeDto) {
     this.resumeEditForm.patchValue({ id: resume.id });
     this.resumeEditForm.patchValue({ cvName: resume.cvName });

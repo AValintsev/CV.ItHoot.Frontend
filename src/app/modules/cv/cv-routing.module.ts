@@ -1,3 +1,4 @@
+import { UserCvListGuard } from './../../guards/userCvList.guard';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CvFullComponent} from './cv-full/cv-full.component';
@@ -8,7 +9,8 @@ import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
 const routes: Routes = [
   {
     path: '',
-    component: CvListComponent
+    component: CvListComponent,
+    canActivate:[UserCvListGuard]
   },
   {
     path: 'edit/:id',

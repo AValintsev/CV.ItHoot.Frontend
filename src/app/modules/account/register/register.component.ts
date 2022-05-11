@@ -37,13 +37,18 @@ export class RegisterComponent implements OnInit {
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
       }
-    ).subscribe(
-      () => {
-        this.router.navigate(['home/cv'])
+    ).subscribe({
+      next:next => {
+        if (this.accountService.getUserRole().value === 'User') {
+          this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
+        } else {
+          this.router.navigate([`/home/cv/`])
+        }
+        
       },
-      (res) => {
-        this.errors = res.error.errors;
+      error:error => {
+        this.errors = error.error.errors;
       }
-    );
+  });
   }
 }

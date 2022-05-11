@@ -14,6 +14,7 @@ export class CvCreatePageComponent implements OnInit {
 
   resumeCreateDto:ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
+  templateForm!: ResumeDto
   constructor(private resumeService: ResumeService,
               private snackbarService: SnackBarService,
               private router:Router) { }
@@ -24,8 +25,11 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateDto.skills = [];
     this.resumeCreateDto.educations = [];
     this.resumeCreateDto.userLanguages = [];
+    this.changeFormDate()
   }
-
+  private changeFormDate(){
+    this.resumeCreateForm.valueChanges.subscribe(resume => this.templateForm = resume)
+  }
   private validateForm(){
     this.resumeCreateForm = new FormGroup({
       cvName: new FormControl(this.resumeCreateDto.firstName,[

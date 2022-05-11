@@ -1,7 +1,7 @@
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, OnInit} from '@angular/core';
-
+import { Users } from 'src/app/models/users-type';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +10,11 @@ import {Component, OnInit} from '@angular/core';
   //styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+Users = Users
   constructor(
-    private accountService:AccountService,
+    public accountService:AccountService,
     private router:Router,
+
 
   ) { }
 

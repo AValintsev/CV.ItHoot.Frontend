@@ -3,6 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CvCard} from 'src/app/models/cv-card';
 import {Observable} from "rxjs";
 import {UserAuthData} from "../../../models/userAuthData";
+import { Users } from "../../../models/users-type";
 
 @Component({
   selector: 'app-cv-small',
@@ -12,12 +13,13 @@ import {UserAuthData} from "../../../models/userAuthData";
 export class CvSmallComponent implements OnInit {
   @Input() cvCard: CvCard = new CvCard;
   authData$!: Observable<UserAuthData>;
-
+  Users = Users
   constructor(private accountService : AccountService) {
     // this.authData$ = this.authService.UserValue2();
   }
 
   ngOnInit(): void {
+
   }
 
   checkRole(){

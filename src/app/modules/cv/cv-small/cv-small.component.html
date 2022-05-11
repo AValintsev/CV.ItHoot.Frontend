@@ -32,9 +32,9 @@
   </mat-card-title-group>
   <mat-card-content>
     <div class="button-group">
-      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User' || checkRole() ==='Client'" mat-raised-button color="primary" [routerLink]="['/home/cv/',cvCard.id]">Open</button>
-      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="accent" routerLink="/home/cv/edit/{{cvCard.id}}">Edit</button>
-      <button *ngIf="checkRole() === 'Admin' || checkRole() === 'User'" mat-raised-button color="warn">Delete</button>
+      <button mat-raised-button color="primary" [routerLink]="['/home/cv/',cvCard.id]">Open</button>
+      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1]" mat-raised-button color="accent" routerLink="/home/cv/edit/{{cvCard.id}}">Edit</button>
+      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1]" mat-raised-button color="warn">Delete</button>
     </div>
   </mat-card-content>
 </mat-card>
