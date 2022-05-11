@@ -15,6 +15,7 @@ export class AccountService {
   private JWT_TOKEN = 'JWT_TOKEN'
   private REFRESH_TOKEN = 'REFRESH_TOKEN'
   private USER_ROLE = 'USER_ROLE'
+  private USER_ID = 'USER_ID'
   baseUrl = environment.apiUrl;
   private userId$ = new BehaviorSubject<number>(-1)
   private userRole$ = new BehaviorSubject<string>('')
@@ -104,10 +105,11 @@ export class AccountService {
       )
   }
   setUserId(id: number) {
+    localStorage.setItem(this.USER_ID,id.toString());
     this.userId$.next(id)
   }
   getUserId() {
-    return this.userId$
+    return localStorage.getItem(this.USER_ID);
   }
   getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN)
@@ -125,6 +127,7 @@ export class AccountService {
   removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
+    localStorage.removeItem(this.USER_ID);
   }
   refreshToken() {
     return this.http.post<boolean>(`${this.baseUrl}identity/refresh`, {

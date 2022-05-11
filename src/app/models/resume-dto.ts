@@ -1,4 +1,5 @@
 export interface ResumeDto{
+  [key:string]:any;
   id:0;
   cvName:string;
   isDraft:boolean;

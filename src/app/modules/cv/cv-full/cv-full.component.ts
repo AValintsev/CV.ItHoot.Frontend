@@ -1,12 +1,15 @@
 import { FormGroup } from '@angular/forms';
-import {Component, Input, OnInit} from '@angular/core';
-import {CVService} from '../../../services/cv.service';
-import {Observable} from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
-import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
-import {CV} from 'src/app/models/cv';
+import { Component, Input, OnInit } from '@angular/core';
+import { CVService } from '../../../services/cv.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { CV } from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ResumeService } from 'src/app/services/resume.service';
+import { map } from 'rxjs/operators';
+import { ResumeDto } from 'src/app/models/resume-dto';
 
 // import objectContaining = jasmine.objectContaining;
 
@@ -22,30 +25,34 @@ export class CvFullComponent implements OnInit {
   public cv$!: Observable<CV>;
 
 
-  photoUrl!:string
+  photoUrl!: string
   photoString!: string;
-  isChange:boolean=false;
+  isChange: boolean = false;
   // cv!:CV;
-  cv!:FormGroup;
+  cv!: ResumeDto;
 
-  constructor(public cVService: CVService,private route: ActivatedRoute,
-    private router: Router) {
+  constructor(
+    public cVService: CVService, 
+    private route: ActivatedRoute,
+    private router: Router,
+    private resumeService: ResumeService
+    ) {
 
-     }
+  }
 
-  name ='Angular'
+  name = 'Angular'
 
   ngOnInit(): void {
-    this.route.params.subscribe(params=>this.id=params['id']);
-    this.cv$ = this.cVService.cv$;
-    this.cVService.getCVbyId(this.id).subscribe(data => {
-      console.log(data)
-      this.photoUrl = data.picture
-      this.cv = data as any
+    this.route.params.pipe(map(params => params['id'])).subscribe(id => {
+      this.resumeService.getResumeById(id).subscribe(resume => {
+        console.log('======',resume)
+        this.cv = resume;
+        // this.patchForm(this.resumeEditDto)
+      });
     });
   }
 
-  toDataURL = async (url: string ) => {
+  toDataURL = async (url: string) => {
     console.log("Downloading image...");
     var res = await fetch(url);
     var blob = await res.blob();
@@ -65,32 +72,32 @@ export class CvFullComponent implements OnInit {
   };
 
 
- async load(){
+  async load() {
     var temp = await this.toDataURL(this.photoUrl)
     // @ts-ignore
-   document.getElementById('img-full').setAttribute("src",temp as string)
+    document.getElementById('img-full').setAttribute("src", temp as string)
     console.log(typeof temp)
     return temp
   }
 
-  public openPDF2():void {
-   this.load().then(()=>{
-     let DATA = document.getElementById('container-cv');
+  public openPDF2(): void {
+    this.load().then(() => {
+      let DATA = document.getElementById('container-cv');
 
-     // @ts-ignore
-     html2canvas(DATA).then(canvas => {
+      // @ts-ignore
+      html2canvas(DATA).then(canvas => {
 
-       let fileWidth = 208;
-       let fileHeight = canvas.height * fileWidth / canvas.width;
+        let fileWidth = 208;
+        let fileHeight = canvas.height * fileWidth / canvas.width;
 
-       const FILEURI = canvas.toDataURL('image/png')
-       let PDF = new jsPDF('p', 'mm', 'a4');
-       let position = 0;
-       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+        const FILEURI = canvas.toDataURL('image/png')
+        let PDF = new jsPDF('p', 'mm', 'a4');
+        let position = 0;
+        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
 
-       PDF.save('angular-demo.pdf');
-     });
-   })
+        PDF.save('angular-demo.pdf');
+      });
+    })
 
   }
   // @ts-ignore
