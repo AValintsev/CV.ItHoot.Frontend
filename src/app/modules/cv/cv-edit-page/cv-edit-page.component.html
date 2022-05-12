@@ -4,9 +4,12 @@
 
       <app-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
       </app-cv-create-left-bar>
-      <!--    <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Create</button>-->
-      <button mat-raised-button color="primary" (click)="submit(resumeEditForm.value)">Edit</button>
+      <div class="action">
+        <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid"
+                (click)="submit(resumeEditForm.value)">Edit
+        </button>
+      </div>
     </form>
   </div>
-    <app-cv-template id="cv-template" [resumeEditForm]="templateForm" ></app-cv-template>
+  <app-cv-template id="cv-template" [resumeEditForm]="templateForm"></app-cv-template>
 </div>

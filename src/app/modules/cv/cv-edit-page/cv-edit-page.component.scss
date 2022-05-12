@@ -9,9 +9,14 @@
   flex: 0 1 30%;
 
   .left-bar {
-    max-height: 83vh;
     overflow: hidden auto;
     scrollbar-width: none;
+
+    .action{
+      margin: 15px 0;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 
   .left-bar::-webkit-scrollbar {
@@ -22,7 +27,7 @@
 }
 
 .cv {
-  
+
   flex: 0 1 70%;
   height: 100%;
 }
