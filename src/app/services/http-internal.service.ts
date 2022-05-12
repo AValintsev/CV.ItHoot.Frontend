@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 
@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 export class HttpInternalService {
   public baseUrl: string = environment.apiUrl;
   public headers = new HttpHeaders();
+  public params = new HttpParams()
 
   constructor(private http: HttpClient) {}
 
@@ -21,10 +22,14 @@ export class HttpInternalService {
   public setHeader(key: string, value: string): void {
     this.headers.set(key,value);
   }
-
+ 
   public deleteHeader(key: string): void {
     this.headers.delete(key);
   }
+
+public setParams(key:string,value:string):void{
+   this.params.set(key,value)
+}
 
   public getRequest<T>(url: string, httpParams?: any): Observable<T> {
     return this.http.get<T>(this.buildUrl(url), { headers: this.getHeaders(), params: httpParams });

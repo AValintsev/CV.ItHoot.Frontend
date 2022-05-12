@@ -1,3 +1,5 @@
+import { AccountService } from 'src/app/services/account.service';
+import { ResumeService } from 'src/app/services/resume.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
@@ -21,7 +23,11 @@ export class CvLeftBarComponent implements OnInit {
   @Input()
   public resume: ResumeDto = {} as ResumeDto;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private resumeService: ResumeService,
+    private accountService: AccountService,
+    ) {
   }
 
   ngOnInit(): void{
@@ -29,11 +35,24 @@ export class CvLeftBarComponent implements OnInit {
     this.listLanguageChanged();
     this.experienceListChanged();
     this.educationListChanged();
-   
   }
 
-
-
+  addPicture(picture:any){
+    const userId = this.accountService.getUserId()
+    if(userId!==null){
+      this.resumeService.addPhoto(+userId,picture).subscribe({
+        next:next=>console.log(next),
+        error:error=>console.log(error)
+      })
+    }
+    
+  }
+  getPhoto(){
+    this.resumeService.getPhoto(3).subscribe({
+      next: next => console.log(next),
+      error: error => console.log(error)
+    })
+  }
   removeSkill(skill: SkillDto): void {
     const index = this.resume.skills.indexOf(skill);
     if (index >= 0) {
@@ -143,8 +162,10 @@ export class CvLeftBarComponent implements OnInit {
     }
   }
   educationListChanged() {
+    console.log('start',this.resume.educations);
     (<FormArray>this.resumeForm.controls["educations"]).clear();
-    this.resume.educations?.forEach(education =>{
+    const arr = this.resume.educations?.sort((a: EducationDto, b: EducationDto) => Date.parse(a.startDate) - Date.parse(b.startDate))
+   arr.forEach(education =>{
       (<FormArray>this.resumeForm.controls["educations"])
         .push(new FormGroup({
           id: new FormControl(education.id),
@@ -156,6 +177,7 @@ export class CvLeftBarComponent implements OnInit {
           endDate: new FormControl(education.endDate),
         }));
     })
+    console.log('start', this.resume.educations);
   }
   openEducationDialog(education:EducationDto|null = null){
     let data:EducationDto;
@@ -200,7 +222,7 @@ export class CvLeftBarComponent implements OnInit {
   }
   experienceListChanged() {
     (<FormArray>this.resumeForm.controls["experiences"]).clear();
-    this.resume.experiences?.forEach(experience =>{
+    this.resume.experiences?.sort((a: ExperienceDto, b: ExperienceDto)=>Date.parse(a.startDate) - Date.parse(b.startDate)).forEach(experience =>{
       (<FormArray>this.resumeForm.controls["experiences"])
         .push(new FormGroup({
           id: new FormControl(experience.id),

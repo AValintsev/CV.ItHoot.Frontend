@@ -1,16 +1,28 @@
-.create-page{
-  padding: 30px 30px 0 30px;
-  display: grid;
-  grid-template-columns: 25% auto;
-  grid-template-rows: 1fr;
+.container {
+  display: flex;
+  height: 100%;
+
+}
+
+.create-page {
+  padding: 30px 30px 0 20px;
+  flex: 0 1 30%;
+
   .left-bar {
     max-height: 83vh;
     overflow: hidden auto;
     scrollbar-width: none;
   }
-    .left-bar::-webkit-scrollbar {
-      width: 0;
-      background: transparent;
-    }
 
+  .left-bar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+}
+
+.cv {
+
+  flex: 0 1 70%;
+  height: 100%;
 }

@@ -19,27 +19,10 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private userId$ = new BehaviorSubject<number>(-1)
   private userRole$ = new BehaviorSubject<string>('')
-  // private currentUserSource = new ReplaySubject<UserAuthData>(1);
-  // currentUser$ = this.currentUserSource.asObservable();
-  // currentUserEmail$ = "";
+
 
   constructor(private http: HttpClient, private router: Router) { }
-  // get CurrentUser(){
-  //     return this
-  // }
 
-  // loadCurrentUser() {
-  //   return this.http.get<any>(this.baseUrl + "identity/getcurrentuserbytoken").pipe(
-  //     map((user: UserAuthData) => {
-  //       if (user) {
-  //         localStorage.setItem('token', user.token);
-  //         localStorage.setItem('refreshToken', user.refreshToken);
-  //         localStorage.setItem('roles',user.roles[0])
-  //         this.currentUserSource.next(user);
-  //         console.log(user)
-  //       }
-  //     }))
-  // }
 
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'identity/emailexists?email=' + email);
