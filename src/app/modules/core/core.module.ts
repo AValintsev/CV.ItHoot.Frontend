@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 // import { FooterComponent } from './footer/footer.component';
 import {AboutComponent} from './about/about.component';
 import {SharedModule} from '../../shared/shared.module';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 // import { AuthBarComponent } from './auth-bar/auth-bar.component';
 
@@ -13,6 +14,7 @@ import {SharedModule} from '../../shared/shared.module';
     // HeaderComponent,
     // FooterComponent,
     AboutComponent,
+    SideBarComponent,
     // AuthBarComponent
   ],
   imports: [
@@ -21,6 +23,7 @@ import {SharedModule} from '../../shared/shared.module';
     SharedModule
   ],
   exports: [
+    SideBarComponent,
     // HeaderComponent,
     // FooterComponent
   ]

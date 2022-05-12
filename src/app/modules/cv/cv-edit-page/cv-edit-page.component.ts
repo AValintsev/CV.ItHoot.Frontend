@@ -177,7 +177,7 @@ export class CvEditPageComponent implements OnInit {
       // let DATA: any = document.getElementById('resume-templete');
       // html2canvas(DATA).then((canvas) => {
       //   let fileWidth = 208;
-      //   console.log(canvas.height)
+      //   // console.log(canvas.height)
       //   let fileHeight = (canvas.height * fileWidth) / canvas.width;
       //   const FILEURI = canvas.toDataURL('image/png');
       //   let PDF = new jsPDF('p', 'cm', 'a4');
@@ -186,12 +186,11 @@ export class CvEditPageComponent implements OnInit {
       //   PDF.save('angular-demo.pdf');
       // });
 
-      // let data = document.getElementById('cv-template');
-      // const data = '<html style=\\"font-family: \'MyFont\';\\">А ну чики брики и в дамки!</html>';
-      // var pdf = new jsPDF('p', 'pt', 'a4');
-      // pdf.html(data!,{
-      //   callback: ()=> pdf.save('DOC.pdf')
-      // })
+      let data = document.getElementById('cv-template');
+      var pdf = new jsPDF('p', 'pt', 'a4');
+      pdf.html(data!,{
+        callback: ()=> pdf.save('DOC.pdf')
+      })
       // html2canvas(data!).then(canvas => {
       //   const contentDataURL = canvas.toDataURL('image/png')
       //   let pdf = new jsPDF('l', 'cm', 'a4'); //Generates PDF in landscape mode

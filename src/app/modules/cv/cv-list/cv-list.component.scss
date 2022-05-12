@@ -1,10 +1,23 @@
-.table-page {
-  width: 100%;
+.wrapper {
   height: 100%;
   background: #E5E5E5;
   display: grid;
-  align-items: baseline;
-  padding: 30px;
+  align-items: start;
+  grid-template-columns: 13% auto;
+
+  @media (max-width: 1450px) {
+    &{
+      grid-template-columns: 15% auto;
+    }
+    @media (max-width: 1290px) {
+      grid-template-columns: 20% auto;
+
+    }
+  }
+
+  .table-page{
+    padding: 40px;
+  }
 
   table {
     font-size: 1.1em;
