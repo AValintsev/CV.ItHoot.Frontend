@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {UserLanguageDto, UserLanguageTestDto} from "../../../models/resume-dto";
+import {UserLanguageDto, LanguageTestDto} from "../../../models/resume-dto";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
@@ -18,7 +18,7 @@ export class LanguageDialog implements OnInit {
   typeDialog: DialogType;
   DialogType = DialogType;
   myControl = new FormControl();
-  filteredOptions: Observable<UserLanguageTestDto[]>;
+  filteredOptions: Observable<LanguageTestDto[]>;
 
   ngOnInit() {}
 
@@ -39,7 +39,7 @@ export class LanguageDialog implements OnInit {
       })
     )
   }
-  filter(val: string): Observable<UserLanguageTestDto[]> {
+  filter(val: string): Observable<LanguageTestDto[]> {
     return this.languageService.searchLanguage(val).pipe(map(data=>{
       return data;
     }));
@@ -52,8 +52,7 @@ export class LanguageDialog implements OnInit {
   }
 
   canCreate(): boolean {
-    if (this.language.name === '' || this.language.name === undefined || this.language.level === undefined)
-      return false;
-    return true;
+    return !(this.language.name === '' || this.language.name === undefined || this.language.level === undefined);
+
   }
 }

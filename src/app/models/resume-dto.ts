@@ -52,7 +52,7 @@ export interface SkillTestDto{
   name:string;
 }
 
-export interface UserLanguageTestDto{
+export interface LanguageTestDto {
   id: number;
   name:string;
 }

@@ -6,11 +6,12 @@
       <span>Dashboard</span>
     </a></li>
     <mat-divider></mat-divider>
-    <li class="active"><a>
-      <mat-icon>groups</mat-icon>
-      <span>Cv list</span>
-      <mat-icon>expand_more</mat-icon>
-    </a></li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/home/cv">
+        <mat-icon>groups</mat-icon>
+        <span>Cv list</span>
+      </a>
+    </li>
     <li><a>
       <mat-icon>sports_esports</mat-icon>
       <span>Teams</span>
@@ -25,7 +26,25 @@
     </a></li>
     <mat-divider></mat-divider>
     <li class="title-section"><span>Setting</span></li>
-    <li class="active">
+    <li [routerLinkActive]="['active']">
+      <mat-expansion-panel [expanded]="settingOpened()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>settings</mat-icon>
+            <span>Setting</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a routerLink="/home/languages">
+          <mat-icon>language</mat-icon>
+          <span>Languages</span>
+        </a>
+        <a routerLink="/home/skills">
+          <mat-icon>settings_accessibility</mat-icon>
+          <span>Skills</span>
+        </a>
+      </mat-expansion-panel>
+    </li>
+    <li>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -33,12 +52,10 @@
             <span>Teams setting</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="panel-content">
-          <a>
-            <mat-icon>sports_esports</mat-icon>
-            <span>Teams</span>
-          </a>
-        </div>
+        <a>
+          <mat-icon>sports_esports</mat-icon>
+          <span>Teams</span>
+        </a>
       </mat-expansion-panel>
     </li>
     <li><a>

@@ -34,7 +34,6 @@
       border-radius: 4px;
       display: flex;
       align-items: center;
-
       span {
         margin: 0;
       }
@@ -56,6 +55,22 @@
       }
     }
 
+    li.active > .mat-expansion-panel {
+      background: #3A57E8;
+    }
+
+    li.active > .mat-expansion-panel .mat-expansion-panel-header-title{
+      color: white;
+    }
+    // ::ng-deep .mat-expansion-indicator::after{
+    //  color: white;
+    //}
+
+    li.active > ::ng-deep .mat-expansion-indicator::after {
+      color: white;
+    }
+
+
     .mat-expansion-panel {
       box-shadow: none;
 
@@ -63,17 +78,16 @@
         background: #3A57E8;
       }
 
-      li.active > a > .mat-expansion-panel-header .mat-expansion-panel-header-title {
-        color: white;
-      }
-
       & .mat-expansion-panel-header {
-        padding: 1px 24px;
-
+        padding: 8px 24px;
+        height: auto;
 
         .mat-expansion-panel-header-title {
           color: #8A92A6;
           font-size: 1.1em;
+          display: flex;
+          align-items: center;
+
         }
       }
 
@@ -90,3 +104,5 @@
     }
   }
 }
+
+

@@ -1,17 +1,13 @@
-<!--<div class="main-block">-->
-<!--  <div class="container">-->
-<!--    -->
-<!--    <app-cv-button btnText="Create" routerLink="/home/cv/create"></app-cv-button>-->
-<!--    <div class="cv-list">-->
-<!--      <app-cv-small *ngFor="let item of cvCards$ | async" [cvCard]=item class="cv-card-small"> </app-cv-small>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="wrapper">
   <app-side-bar></app-side-bar>
   <div class="table-page">
     <div class="table-wrapper">
-      <h1>Cv list with Involvement</h1>
+      <div class="title-section">
+        <h1>CV list with Involvement</h1>
+        <button mat-raised-button routerLink="/home/cv/create">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
       <table mat-table [dataSource]="resumes" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
