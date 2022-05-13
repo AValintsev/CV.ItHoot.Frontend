@@ -3,7 +3,7 @@
 		<div class="col left">
 			<div class="left-inner">
 				<div class="photo">
-					<img *ngIf="getFormControlValue('picture') == undefined; else image" src="assets/avatar.jpg" alt="user photo">
+					<img *ngIf="getFormControlValue('picture') == undefined; else image" src="assets/no-image.png" alt="user photo">
           <ng-template #image>
           <img src="data:image/jpeg;base64,{{getFormControlValue('picture')}}" alt="user photo">
           </ng-template>
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 
