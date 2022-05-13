@@ -1,11 +1,12 @@
-import {FooterComponent} from './../core/footer/footer.component';
-import {HeaderComponent} from './../core/header/header.component';
+import {FooterComponent} from '../core/footer/footer.component';
+import {HeaderComponent} from '../core/header/header.component';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {MainPageComponent} from './main-page.component';
 import {AuthBarComponent} from '../core/auth-bar/auth-bar.component';
 import {CommonModule} from '@angular/common';
 import {CoreModule} from "../core/core.module";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild([
@@ -30,7 +31,7 @@ import {CoreModule} from "../core/core.module";
     // }
 
 
-  ]), CoreModule],
+  ]), CoreModule, MatButtonModule],
   exports: [RouterModule],
   declarations: [HeaderComponent, FooterComponent, MainPageComponent, AuthBarComponent]
 })
