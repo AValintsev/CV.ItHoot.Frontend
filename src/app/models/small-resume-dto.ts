@@ -1,3 +1,5 @@
+import {SkillTestDto} from "./resume-dto";
+
 export interface SmallResumeDto{
   id: number;
   cvName: string;
@@ -5,4 +7,5 @@ export interface SmallResumeDto{
   firstName: string;
   lastName: string;
   picture: string
+  skills:SkillTestDto[];
 }

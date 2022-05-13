@@ -1,5 +1,4 @@
-import { CV } from './../../../models/cv';
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { ResumeDto } from "../../../models/resume-dto";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
@@ -8,6 +7,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs/operators";
 import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/services/account.service';
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 @Component({
   selector: 'app-cv-edit-page',
   templateUrl: './cv-edit-page.component.html',
@@ -23,6 +25,8 @@ export class CvEditPageComponent implements OnInit {
   resumeEditDto: ResumeDto = {} as ResumeDto;
   templateForm!:ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
+
+
 
   constructor(private resumeService: ResumeService,
     private snackbarService: SnackBarService,
@@ -156,7 +160,7 @@ export class CvEditPageComponent implements OnInit {
   }
 
 
-  public submit(resume: ResumeDto) {
+  submit(resume: ResumeDto) {
     // console.log(resume)
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
@@ -169,5 +173,32 @@ export class CvEditPageComponent implements OnInit {
     })
   }
 
+  saveAsPdf(){
+    {
+      // let DATA: any = document.getElementById('resume-templete');
+      // html2canvas(DATA).then((canvas) => {
+      //   let fileWidth = 208;
+      //   // console.log(canvas.height)
+      //   let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      //   const FILEURI = canvas.toDataURL('image/png');
+      //   let PDF = new jsPDF('p', 'cm', 'a4');
+      //   let position = 0;
+      //   PDF.addImage(FILEURI, 'PNG', 0, 0);
+      //   PDF.save('angular-demo.pdf');
+      // });
+
+      let data = document.getElementById('cv-template');
+      var pdf = new jsPDF('p', 'pt', 'a4');
+      pdf.html(data!,{
+        callback: ()=> pdf.save('DOC.pdf')
+      })
+      // html2canvas(data!).then(canvas => {
+      //   const contentDataURL = canvas.toDataURL('image/png')
+      //   let pdf = new jsPDF('l', 'cm', 'a4'); //Generates PDF in landscape mode
+      //   pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
+      //   pdf.save('Filename.pdf');
+      // });
+    }
+  }
 
 }

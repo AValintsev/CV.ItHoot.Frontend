@@ -1,0 +1,40 @@
+<div class="skill-page">
+  <app-side-bar></app-side-bar>
+  <div class="skill-list">
+    <div class="table-page">
+      <div class="title-section">
+        <h1>Skill list</h1>
+        <button mat-raised-button (click)="openSkillDialog()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+        <table mat-table [dataSource]="skills" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let skill">{{skill.id}}.</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let skill"> {{skill.name}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
+            <td mat-cell *matCellDef="let skill">
+              <div class="action-wrapper">
+                <button class="edit" (click)="openSkillDialog(skill)">Edit</button>
+                <button class="delete" (click)="deleteSkill(skill)">Delete</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+  </div>
+</div>
