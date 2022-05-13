@@ -1,11 +1,13 @@
-.wrapper {
+.language-page {
+  min-height: 100%;
+
   background: #E5E5E5;
   display: grid;
   align-items: start;
   grid-template-columns: 13% auto;
-  min-height: 100%;
+
   @media (max-width: 1450px) {
-    &{
+    & {
       grid-template-columns: 15% auto;
     }
     @media (max-width: 1290px) {
@@ -14,19 +16,12 @@
     }
   }
 
-  .table-page{
+  .language-list {
     padding: 40px;
   }
 
-  table {
-    font-size: 1.1em;
-  }
 
-  .mat-row:hover {
-    background: #f1f1f1;
-  }
-
-  .table-wrapper {
+  .table-page {
     padding: 24px;
     box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     border-radius: 8px;
@@ -41,6 +36,10 @@
       }
     }
 
+    .mat-row:hover {
+      background: #f1f1f1;
+    }
+
     h1 {
       font-weight: 700;
       line-height: 130%;
@@ -51,14 +50,12 @@
     table {
       width: 100%;
       box-shadow: none;
-
+      font-size: 1.1em;
 
       th {
         vertical-align: middle;
         border-bottom: 1px #C4C4C4 solid;
         font-weight: 400;
-
-
       }
 
       td {
@@ -67,8 +64,6 @@
         line-height: 28px;
         color: #04040B;
         font-weight: 400;
-
-
       }
 
       .mat-cell {
@@ -85,27 +80,6 @@
         color: #04040B;
       }
 
-      .th-action {
-        text-align: right;
-      }
-
-      .mat-column-action {
-        width: 30%;
-      }
-
-      .mat-column-skills {
-        width: 10%;
-        word-wrap: break-word;
-        text-align: center;
-      }
-
-      .mat-column-loading {
-        text-align: center;
-      }
-
-      .mat-column-status {
-        text-align: left;
-      }
 
       .action-wrapper {
         display: grid;
@@ -124,24 +98,8 @@
             opacity: .9;
           }
 
-
-          &.pdf {
-            background: #3A57E8;
-          }
-
-          &.docx {
-            background: #FF5DCD;
-
-          }
-
-          &.open {
-            background: #1AA053;
-
-          }
-
           &.edit {
             background: #F16A1B;
-
           }
 
           &.delete {

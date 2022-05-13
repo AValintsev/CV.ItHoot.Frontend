@@ -1,4 +1,4 @@
-<div style="width:1000px"  class="wrapper cv">
+<div style="max-width: 1400px;margin: 0 auto;"  class="wrapper cv">
 	<div class="row parent-row">
 		<div class="col left">
 			<div class="left-inner">
@@ -69,7 +69,7 @@
 							</ul>
 						</div>
 					</div>
-					<div *ngIf="getFormControlValue('skills')?.length" class="skill padding-right"> 
+					<div *ngIf="getFormControlValue('skills')?.length" class="skill padding-right">
 						<div class="skills__title  blue-line">
 							<span class="title-white">SKILLS</span>
 						</div>
@@ -84,7 +84,7 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 
@@ -113,7 +113,7 @@
 							</div>
 						</li>
 					</ul>
-				</div> 
+				</div>
 				<div *ngIf="getFormControlValue('experiences')?.length" class="row">
 					<div class="education__title  gray-line">
 						<span class="title-black ">EXPERINCE</span>

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: CvListComponent,
-    canActivate:[UserCvListGuard]
+    // canActivate:[UserCvListGuard]
   },
   {
     path: 'edit/:id',

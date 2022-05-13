@@ -12,4 +12,19 @@ export class SkillService {
     return this.httpService.getRequest<SkillTestDto[]>(this.routePrefix+`/search?content=${text}`);
   }
 
+  public getAllSkills():Observable<SkillTestDto[]>{
+    return this.httpService.getRequest<SkillTestDto[]>(this.routePrefix);
+  }
+
+  public createSkill(skill:SkillTestDto):Observable<SkillTestDto>{
+    return this.httpService.postRequest<SkillTestDto>(this.routePrefix,skill);
+  }
+
+  public updateSkill(skill:SkillTestDto):Observable<SkillTestDto>{
+    return this.httpService.putRequest(this.routePrefix,skill);
+  }
+
+  public deleteSkill(skill:SkillTestDto):Observable<any>{
+    return this.httpService.deleteRequest(this.routePrefix+`/${skill.id}`);
+  }
 }
