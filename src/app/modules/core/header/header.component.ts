@@ -5,6 +5,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {Component, OnInit} from '@angular/core';
 import { Users } from 'src/app/models/users-type';
 import { UserEventService } from 'src/app/services/userEvent.service';
+import { ResumeService } from 'src/app/services/resume.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ usersId$!:BehaviorSubject<string>
     private userEventService: UserEventService,
     public accountService:AccountService,
     private router:Router,
-    private cvFullComponent: CvFullComponent
+    private cvFullComponent: CvFullComponent,
+
 
   ) { }
 

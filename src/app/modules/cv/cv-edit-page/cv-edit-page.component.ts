@@ -1,8 +1,8 @@
+import { ResumeService } from 'src/app/services/resume.service';
 import { CV } from './../../../models/cv';
 import { Component, OnInit } from '@angular/core';
 import { ResumeDto } from "../../../models/resume-dto";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs/operators";
@@ -24,11 +24,13 @@ export class CvEditPageComponent implements OnInit {
   templateForm!:ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
-  constructor(private resumeService: ResumeService,
+  constructor(
+    private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+
   ) {
 
   }
@@ -36,6 +38,21 @@ export class CvEditPageComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
+      // 
+      this.resumeService.getAllResume().subscribe({
+        next: next => {
+          if (next[0]) {
+            this.resumeService.getResumeById(next[0].id).subscribe(resume => {
+              console.log(resume)
+              this.resumeEditDto = resume;
+              this.patchForm(this.resumeEditDto)
+            });
+          } 
+        },
+        error: error => { }
+      }
+      )
+      // 
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto)
@@ -157,9 +174,11 @@ export class CvEditPageComponent implements OnInit {
 
 
   public submit(resume: ResumeDto) {
+    console.log(resume)
     // console.log(resume)
     this.resumeService.updateResume(resume).subscribe({
-      next: () => {
+      next: response => {
+        console.log(response)
         this.snackbarService.showSuccess('Created');
         this.router.navigate(['/home/cv',this.accountService.getUserId()])
       },
