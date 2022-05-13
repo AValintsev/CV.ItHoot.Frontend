@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: CvFullComponent,
-    canActivate: [CheckUserGuard]
+    // canActivate: [CheckUserGuard]
   }
 
 ];

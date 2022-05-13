@@ -38,7 +38,7 @@ export class CvFullComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private resumeService: ResumeService,
-    private accountService:AccountService
+    private accountService: AccountService
   ) {
 
   }
@@ -49,18 +49,30 @@ export class CvFullComponent implements OnInit {
     console.log(this.route.snapshot.params['id'])
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.userEventService.setUserId(id)
-      this.resumeService.getResumeById(id).pipe(
-        catchError(error=>{
-          if (this.accountService.getStoreRole() === Users[2]) {
-            if(error instanceof HttpErrorResponse&&error.status===400){
-              this.router.navigate([`/home/cv/create`, this.accountService.getUserId()])
-            }
+      this.resumeService.getAllResume().subscribe({
+        next: next => {
+          if (next[0]){
+            this.resumeService.getResumeById(next[0].id).pipe(
+              catchError(error => {
+                if (this.accountService.getStoreRole() === Users[2]) {
+                  if (error instanceof HttpErrorResponse && error.status === 400) {
+                    this.router.navigate([`/home/cv/create`])
+                  }
+                }
+                return of(error)
+              })
+            ).subscribe(resume => {
+              this.cv = resume;
+            });
+          }else{
+            this.router.navigate([`/home/cv/create`])
           }
-          return of(error)
-        })
-      ).subscribe(resume => {
-        this.cv = resume;
-      });
+        
+        },
+        error: error => { }
+      }
+      )
+
     });
   }
 
@@ -117,20 +129,20 @@ export class CvFullComponent implements OnInit {
 
   pdf() {
     let Doc = document.getElementById('doc');
-    if (Doc){
-    html2canvas(Doc).then(canvas => {
+    if (Doc) {
+      html2canvas(Doc).then(canvas => {
 
-      let docWidth = 208;
-      let docHeight = canvas.height * docWidth / canvas.width;
+        let docWidth = 208;
+        let docHeight = canvas.height * docWidth / canvas.width;
 
-      const contentDataURL = canvas.toDataURL('image/png')
-      let doc = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
+        const contentDataURL = canvas.toDataURL('image/png')
+        let doc = new jsPDF('p', 'mm', 'a4');
+        let position = 0;
+        doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
 
-      doc.save('exportedPdf.pdf');
-    });
-  }
+        doc.save('exportedPdf.pdf');
+      });
+    }
 
   }
 

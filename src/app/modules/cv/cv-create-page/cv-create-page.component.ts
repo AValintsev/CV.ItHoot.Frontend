@@ -1,9 +1,11 @@
+import { AccountService } from './../../../services/account.service';
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume-dto";
+import { Users } from 'src/app/models/users-type';
 
 @Component({
   selector: 'app-cv-create-page',
@@ -17,7 +19,9 @@ export class CvCreatePageComponent implements OnInit {
   templateForm!: ResumeDto
   constructor(private resumeService: ResumeService,
               private snackbarService: SnackBarService,
-              private router:Router) { }
+              private router:Router,
+    private accountService: AccountService,
+    ) { }
 
   ngOnInit(): void {
     this.validateForm();
@@ -80,7 +84,12 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeService.createResume(resume).subscribe({
       next:()=>{
         this.snackbarService.showSuccess('Created');
-        this.router.navigate(['/home/cv'])
+        if(this.accountService.getStoreRole()===Users[2]){
+          this.router.navigate(['/home/cv', this.accountService.getUserId()])
+        }else{
+          this.router.navigate(['/home/cv'])
+        }
+        
       },
       error:(error)=>{
         this.snackbarService.showDanger('Something went wrong!')

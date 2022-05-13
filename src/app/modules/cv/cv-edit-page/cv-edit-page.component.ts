@@ -31,7 +31,8 @@ export class CvEditPageComponent implements OnInit {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+
   ) {
 
   }
@@ -39,6 +40,21 @@ export class CvEditPageComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
+      //
+      this.resumeService.getAllResume().subscribe({
+        next: next => {
+          if (next[0]) {
+            this.resumeService.getResumeById(next[0].id).subscribe(resume => {
+              console.log(resume)
+              this.resumeEditDto = resume;
+              this.patchForm(this.resumeEditDto)
+            });
+          }
+        },
+        error: error => { }
+      }
+      )
+      //
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto)
@@ -48,7 +64,6 @@ export class CvEditPageComponent implements OnInit {
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
-
   }
   patchForm(resume: ResumeDto) {
     this.resumeEditForm.patchValue({ id: resume.id });
