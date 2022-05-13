@@ -1,6 +1,5 @@
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { delay } from 'rxjs/operators';
+import {BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
 
 @Injectable({
 	providedIn:'root'

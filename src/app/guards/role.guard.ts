@@ -1,8 +1,8 @@
-import { AccountService } from 'src/app/services/account.service';
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Users } from '../models/users-type';
+import {AccountService} from 'src/app/services/account.service';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Users} from '../models/users-type';
 
 
 @Injectable({

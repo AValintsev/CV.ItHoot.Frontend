@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { AccountGuard } from './guards/account.guard';
-import { AuthenticationGuard } from './guards/authentication.guard';
-import { RoleGuard } from './guards/role.guard';
+import {RoleGuard} from './guards/role.guard';
 
 
 const routes: Routes = [
@@ -10,15 +8,15 @@ const routes: Routes = [
     path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),
   },
    {
-    path: '', 
+    path: '',
     canActivate: [RoleGuard],
     children:[]
   },
- 
+
   {
-    path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(m => m.MainPageModule), 
+    path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(m => m.MainPageModule),
   },
- 
+
   {
     path: '**', redirectTo:''
   }

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {AccountService} from 'src/app/services/account.service';
@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
             //   }
             // }
               return throwError(error)
-            
+
           }
         })
       )

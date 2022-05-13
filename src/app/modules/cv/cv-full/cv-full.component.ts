@@ -1,19 +1,16 @@
-import { AccountService } from 'src/app/services/account.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CVService } from '../../../services/cv.service';
-import { Observable, of } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
-import { CV } from 'src/app/models/cv';
+import {AccountService} from 'src/app/services/account.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CV} from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { ResumeService } from 'src/app/services/resume.service';
-import { map, catchError } from 'rxjs/operators';
-import { ResumeDto } from 'src/app/models/resume-dto';
-import { UserEventService } from 'src/app/services/userEvent.service';
-import { Users } from 'src/app/models/users-type';
+import {ResumeService} from 'src/app/services/resume.service';
+import {catchError, map} from 'rxjs/operators';
+import {ResumeDto} from 'src/app/models/resume-dto';
+import {UserEventService} from 'src/app/services/userEvent.service';
+import {Users} from 'src/app/models/users-type';
 
 // import objectContaining = jasmine.objectContaining;
 

@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-	ActivatedRoute,
-	ActivatedRouteSnapshot,
-	CanActivate,
-	CanLoad,
-	Route,
-	Router,
-	RouterStateSnapshot,
-	UrlSegment,
-	UrlTree
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from '../models/users-type';
-import { ResumeService } from '../services/resume.service';
+import {Observable} from 'rxjs';
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from '../models/users-type';
+import {ResumeService} from '../services/resume.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -38,7 +38,7 @@ export class CheckUserGuard implements CanLoad, CanActivate {
 		// 	}
 
 		// }
- 
+
 		// return this.router.navigate(['/home/cv/', route.params['id']]);
 
 return true
@@ -55,7 +55,7 @@ return true
 		// 		} else {
 		// 			return this.router.navigate(['/home/cv/', this.accountService.getUserId()])
 		// 		}
-		
+
 		// 	case Users[3]:
 		// 		this.router.navigate(['/home/cv/', route.params['id']]);
 		// 		break;

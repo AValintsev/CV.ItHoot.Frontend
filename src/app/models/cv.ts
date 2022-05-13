@@ -1,7 +1,7 @@
-import { Education } from "./education";
-import { Experience } from "./experience";
-import { Language } from "./language";
-import { Skill } from "./skill";
+import {Education} from "./education";
+import {Experience} from "./experience";
+import {Language} from "./language";
+import {Skill} from "./skill";
 
 export class CV {
   public id?: number;

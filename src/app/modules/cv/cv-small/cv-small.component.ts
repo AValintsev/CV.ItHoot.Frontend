@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CvCard} from 'src/app/models/cv-card';
 import {Observable} from "rxjs";
 import {UserAuthData} from "../../../models/userAuthData";
-import { Users } from "../../../models/users-type";
+import {Users} from "../../../models/users-type";
 
 @Component({
   selector: 'app-cv-small',

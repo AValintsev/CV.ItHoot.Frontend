@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {SkillRoutingModule} from "./skill-routing.module";
-import { SkillPageComponent } from './skill-page/skill-page.component';
+import {SkillPageComponent} from './skill-page/skill-page.component';
 import {CoreModule} from "../core/core.module";
 import {MatTableModule} from "@angular/material/table";
-import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
+import {SkillDialogComponent} from './skill-dialog/skill-dialog.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";

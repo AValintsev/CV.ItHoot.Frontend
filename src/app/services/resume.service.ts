@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/small-resume-dto";
 import {ResumeDto} from "../models/resume-dto";
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
@@ -33,7 +33,17 @@ export class ResumeService {
     return this.httpService.deleteRequest(this.routePrefix+`/${id}`);
   }
  public addPhoto(id:number,photo:any):Observable<any>{
-   return this.http.post<any>(this.baseUrl+'files',photo,{params:{CvId:id}})
+   const formData = new FormData();
+
+   // Store form name as "file" with file data
+   formData.append("file", photo, photo.name);
+   formData.append("cvId", id.toString());
+
+   // Make http post request over api
+   // with formData as req
+   return this.http.post(this.baseUrl+'files', formData)
+
+   // return this.httpService.postRequest<any>(this.baseUrl+'files',{cvId: id, file:photo})
  }
  public getPhoto(id:number):Observable<any>{
    return this.httpService.getRequest<any>('files' + `/${id}`)

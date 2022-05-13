@@ -2,6 +2,7 @@ export interface ResumeDto{
   [key:string]:any;
   id:0;
   cvName:string;
+  picture:string;
   isDraft:boolean;
   firstName:string;
   lastName: string;

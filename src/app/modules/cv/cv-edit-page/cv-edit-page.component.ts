@@ -1,14 +1,13 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { ResumeDto } from "../../../models/resume-dto";
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ResumeService } from "../../../services/resume.service";
-import { SnackBarService } from "../../../services/snack-bar.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
-import { AccountService } from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
+import {ResumeDto} from "../../../models/resume-dto";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ResumeService} from "../../../services/resume.service";
+import {SnackBarService} from "../../../services/snack-bar.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {map} from "rxjs/operators";
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+import {AccountService} from 'src/app/services/account.service';
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 @Component({
   selector: 'app-cv-edit-page',
@@ -49,6 +48,7 @@ export class CvEditPageComponent implements OnInit {
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
+
   }
   patchForm(resume: ResumeDto) {
     this.resumeEditForm.patchValue({ id: resume.id });
@@ -65,6 +65,7 @@ export class CvEditPageComponent implements OnInit {
     this.resumeEditForm.patchValue({ requiredPosition: resume.requiredPosition });
     this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
+    this.resumeEditForm.patchValue({ picture: resume.picture });
 
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeEditForm.controls["skills"])
@@ -152,6 +153,7 @@ export class CvEditPageComponent implements OnInit {
       aboutMe: new FormControl(this.resumeEditDto.aboutMe, [
         Validators.required
       ]),
+      picture: new FormControl(this.resumeEditDto.picture),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -164,8 +166,8 @@ export class CvEditPageComponent implements OnInit {
     // console.log(resume)
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
-        this.snackbarService.showSuccess('Created');
-        this.router.navigate(['/home/cv',this.accountService.getUserId()])
+        this.snackbarService.showSuccess('Edited');
+        this.router.navigate(['/home/cv'])
       },
       error: (error) => {
         this.snackbarService.showDanger('Something went wrong!')

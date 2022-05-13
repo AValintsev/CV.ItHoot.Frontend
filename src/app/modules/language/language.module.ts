@@ -10,8 +10,8 @@ import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {LanguageRoutingModule} from "./language-routing.module";
-import { LanguagePageComponent } from './language-page/language-page.component';
-import { LanguageDialogComponent } from './language-dialog/language-dialog.component';
+import {LanguagePageComponent} from './language-page/language-page.component';
+import {LanguageDialogComponent} from './language-dialog/language-dialog.component';
 
 
 @NgModule({

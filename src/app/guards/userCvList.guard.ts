@@ -1,17 +1,17 @@
-import { Users } from './../models/users-type';
-import { Injectable } from '@angular/core';
+import {Users} from './../models/users-type';
+import {Injectable} from '@angular/core';
 import {
-	ActivatedRouteSnapshot,
-	CanActivate,
-	CanLoad,
-	Route,
-	Router,
-	RouterStateSnapshot,
-	UrlSegment,
-	UrlTree
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { AccountService } from 'src/app/services/account.service';
+import {Observable} from 'rxjs';
+import {AccountService} from 'src/app/services/account.service';
 
 
 @Injectable({

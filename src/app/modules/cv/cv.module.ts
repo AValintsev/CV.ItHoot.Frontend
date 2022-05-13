@@ -29,9 +29,9 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import { CvTemplateModule } from './cv-template/cv-template.module';
+import {CvTemplateModule} from './cv-template/cv-template.module';
 import {SharedModule} from "../../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 

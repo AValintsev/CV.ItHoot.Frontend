@@ -3,8 +3,11 @@
 		<div class="col left">
 			<div class="left-inner">
 				<div class="photo">
-					<img src="assets/avatar.jpg" alt="user photo">
-					<div *ngIf="getFormControlValue('firstName')" class="user-name left-block-content"><span>
+					<img *ngIf="getFormControlValue('picture') == undefined; else image" src="assets/avatar.jpg" alt="user photo">
+          <ng-template #image>
+          <img src="data:image/jpeg;base64,{{getFormControlValue('picture')}}" alt="user photo">
+          </ng-template>
+          <div *ngIf="getFormControlValue('firstName')" class="user-name left-block-content"><span>
 							{{getFormControlValue('firstName')}}&nbsp;{{getFormControlValue('lastName')}}
 						</span>
 					</div>

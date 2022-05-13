@@ -11,5 +11,5 @@
       </div>
     </form>
   </div>
-  <app-cv-template id="cv-template" [resumeEditForm]="templateForm"></app-cv-template>
+  <app-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></app-cv-template>
 </div>

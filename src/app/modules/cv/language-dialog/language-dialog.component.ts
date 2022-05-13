@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {UserLanguageDto, LanguageTestDto} from "../../../models/resume-dto";
+import {LanguageTestDto, UserLanguageDto} from "../../../models/resume-dto";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";

@@ -1,9 +1,9 @@
-import { Users } from './../../../models/users-type';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import {Users} from './../../../models/users-type';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -41,16 +41,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.value) {
       this.accountService.login(this.loginForm.value).subscribe({
         next: next => {
-      
+
           if (this.accountService.getUserRole().value === Users[2]) {
             this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
           } else {
             this.router.navigate([`/home/cv/`])
-           
+
           }
-         
+
             // this.router.navigate([`/home/cv/`])
-    
+
         },
         error: error => {
           this.snackbarService.showDanger('Email or password wrong')

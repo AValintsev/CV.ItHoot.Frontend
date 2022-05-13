@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +15,8 @@ export class RegisterComponent implements OnInit {
   errors!: string[];
 
   constructor(
-    private accountService: AccountService, 
-    private router: Router, 
+    private accountService: AccountService,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private snackbarService: SnackBarService,
     ) { }
