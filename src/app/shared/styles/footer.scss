@@ -12,6 +12,7 @@ footer {
   height: $headerHeight;
   display: flex;
   align-items: center;
-  justify-content:space-between;
-  color: #fff;
+  justify-content:flex-end;
+  color: black;
+  padding: 0 20px;
 }

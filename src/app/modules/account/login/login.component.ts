@@ -42,12 +42,12 @@ export class LoginComponent implements OnInit {
       this.accountService.login(this.loginForm.value).subscribe({
         next: next => {
 
-          if (this.accountService.getUserRole().value === Users[2]) {
-            this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-          } else {
+          // if (this.accountService.getUserRole().value === Users[2]) {
+            // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
+          // } else {
             this.router.navigate([`/home/cv/`])
-
-          }
+          //
+          // }
 
             // this.router.navigate([`/home/cv/`])
 
