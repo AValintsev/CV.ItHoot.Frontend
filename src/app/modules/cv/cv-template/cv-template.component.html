@@ -85,6 +85,23 @@
 							</div>
 						</div>
 					</div>
+					<div *ngIf="getFormControlValue('userLanguages')?.length" class="skill padding-right">
+						<div class="skills__title  blue-line">
+							<span class="title-white">language</span>
+						</div>
+						<div class="skills__content padding-right">
+							<div class="contact__content-inner skills-inner">
+									<div *ngFor="let language of getFormControlValue('userLanguages')" class="spiner">
+										<mat-progress-spinner [color]="'red'" [value]="language.level*33.333" [diameter]="50"
+											[strokeWidth]="3"></mat-progress-spinner>
+										<div class="spiner-skill">
+											{{language.name}}
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 
