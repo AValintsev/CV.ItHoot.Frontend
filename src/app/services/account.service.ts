@@ -42,12 +42,13 @@ export class AccountService {
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
       .pipe(
-        tap<any>(tokens => this.doLoginUser(tokens)),
-        mapTo(true),
-        catchError(error => {
+          catchError(error => {
           console.log(error)
           return of(error)
-        })
+        }),
+        tap<any>(tokens => this.doLoginUser(tokens)),
+        mapTo(true),
+      
       )
   }
   storeRole(role: string) {

@@ -1,15 +1,19 @@
+import { AccountService } from 'src/app/services/account.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CVService } from '../../../services/cv.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 import { CV } from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ResumeService } from 'src/app/services/resume.service';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { ResumeDto } from 'src/app/models/resume-dto';
+import { UserEventService } from 'src/app/services/userEvent.service';
+import { Users } from 'src/app/models/users-type';
 
 // import objectContaining = jasmine.objectContaining;
 
@@ -21,6 +25,7 @@ import { ResumeDto } from 'src/app/models/resume-dto';
     './cv-full.component.scss']
 })
 export class CvFullComponent implements OnInit {
+  // @ViewChild('doc') doc!: ElementRef
   @Input() id: number = 0;
   public cv$!: Observable<CV>;
 
@@ -28,26 +33,36 @@ export class CvFullComponent implements OnInit {
   photoUrl!: string
   photoString!: string;
   isChange: boolean = false;
-  // cv!:CV;
+  userId$!: Observable<string>
   cv!: ResumeDto;
 
   constructor(
-    public cVService: CVService, 
+    private userEventService: UserEventService,
     private route: ActivatedRoute,
     private router: Router,
-    private resumeService: ResumeService
-    ) {
+    private resumeService: ResumeService,
+    private accountService:AccountService
+  ) {
 
   }
 
   name = 'Angular'
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.params['id'])
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getResumeById(id).subscribe(resume => {
-        console.log('======',resume)
+      this.userEventService.setUserId(id)
+      this.resumeService.getResumeById(id).pipe(
+        catchError(error=>{
+          if (this.accountService.getStoreRole() === Users[2]) {
+            if(error instanceof HttpErrorResponse&&error.status===400){
+              this.router.navigate([`/home/cv/create`, this.accountService.getUserId()])
+            }
+          }
+          return of(error)
+        })
+      ).subscribe(resume => {
         this.cv = resume;
-        // this.patchForm(this.resumeEditDto)
       });
     });
   }
@@ -100,6 +115,31 @@ export class CvFullComponent implements OnInit {
     })
 
   }
+  // ===================================
+
+
+  pdf() {
+    let Doc = document.getElementById('doc');
+    if (Doc){
+    html2canvas(Doc).then(canvas => {
+
+      let docWidth = 208;
+      let docHeight = canvas.height * docWidth / canvas.width;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      let doc = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
+
+      doc.save('exportedPdf.pdf');
+    });
+  }
+
+  }
+
+
+
+
   // @ts-ignore
   // getImgFromUrl(logo_url, callback) {
   //   var img = new Image();

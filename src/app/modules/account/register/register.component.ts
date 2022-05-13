@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AccountService} from 'src/app/services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,12 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   errors!: string[];
 
-  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private accountService: AccountService, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute,
+    private snackbarService: SnackBarService,
+    ) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup(
@@ -38,17 +44,17 @@ export class RegisterComponent implements OnInit {
         password: this.registerForm.value.password,
       }
     ).subscribe({
-      next:next => {
+      next: next => {
         if (this.accountService.getUserRole().value === 'User') {
           this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
         } else {
           this.router.navigate([`/home/cv/`])
         }
-        
+
       },
-      error:error => {
-        this.errors = error.error.errors;
+      error: error => {
+        this.snackbarService.showDanger('user exists, log in please')
       }
-  });
+    });
   }
 }

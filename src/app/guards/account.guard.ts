@@ -19,8 +19,7 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountGuard implements CanLoad, CanActivate {
 	constructor(private accountService: AccountService, private router: Router) { }
 	canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-		console.log('route', route)
-		console.log('segments', segments)
+	
 		if (this.accountService.isLoggedIn()) {
 			return false
 		}

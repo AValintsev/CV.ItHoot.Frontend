@@ -26,11 +26,11 @@ export class JwtInterceptor implements HttpInterceptor {
             console.log('error instanceof HttpHeaderResponse');
             return this.handle401Error(req, next)
           } else {
-            if (error instanceof HttpErrorResponse && error.status === 400 && this.accountService.getUserRole().value === 'User'){
-              if (this.accountService.getUserRole().value === 'User') {
-                this.router.navigate([`/home/cv/create`])
-              }
-            }
+            // if (error instanceof HttpErrorResponse && error.status === 400 && this.accountService.getUserRole().value === 'User'){
+            //   if (this.accountService.getUserRole().value === 'User') {
+            //     this.router.navigate([`/home/cv/create`])
+            //   }
+            // }
               return throwError(error)
             
           }

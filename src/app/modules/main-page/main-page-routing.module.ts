@@ -1,10 +1,10 @@
-import {FooterComponent} from './../core/footer/footer.component';
-import {HeaderComponent} from './../core/header/header.component';
+import { FooterComponent } from './../core/footer/footer.component';
+import { HeaderComponent } from './../core/header/header.component';
 import { RouterModule, Routes } from '@angular/router';
-import {NgModule} from '@angular/core';
-import {MainPageComponent} from './main-page.component';
-import {AuthBarComponent} from '../core/auth-bar/auth-bar.component';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MainPageComponent } from './main-page.component';
+import { AuthBarComponent } from '../core/auth-bar/auth-bar.component';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 
@@ -29,7 +29,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		CommonModule, 
+		CommonModule,
 		MatButtonModule,
 		RouterModule.forChild(routes)],
 	exports: [RouterModule],

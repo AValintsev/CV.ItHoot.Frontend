@@ -5,12 +5,13 @@ import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvListComponent} from './cv-list/cv-list.component';
 import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
+import { CheckUserGuard } from 'src/app/guards/checkUser.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: CvListComponent,
-    canActivate:[UserCvListGuard]
+    // canActivate:[UserCvListGuard]
   },
   {
     path: 'edit/:id',
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: CvFullComponent
+    component: CvFullComponent,
+    canActivate: [CheckUserGuard]
   }
 
 ];
