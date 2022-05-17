@@ -36,7 +36,7 @@ export class CvCreatePageComponent implements OnInit {
   }
   private validateForm(){
     this.resumeCreateForm = new FormGroup({
-      cvName: new FormControl(this.resumeCreateDto.firstName,[
+      resumeName: new FormControl(this.resumeCreateDto.resumeName,[
         Validators.required
       ]),
       firstName: new FormControl(this.resumeCreateDto.firstName,[
@@ -89,7 +89,7 @@ export class CvCreatePageComponent implements OnInit {
         }else{
           this.router.navigate(['/home/cv'])
         }
-        
+
       },
       error:(error)=>{
         this.snackbarService.showDanger('Something went wrong!')

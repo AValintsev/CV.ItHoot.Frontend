@@ -55,7 +55,7 @@ export class SkillPageComponent implements OnInit {
   openSkillDialog(skill:SkillTestDto|null = null): void {
     let dialogType:DialogType = DialogType.Edit;
     if(skill == null){
-      skill = {} as SkillDto;
+      skill = {} as SkillTestDto;
       dialogType = DialogType.Create;
     }
 

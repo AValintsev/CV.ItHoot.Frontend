@@ -31,7 +31,9 @@ export class CvLeftBarComponent implements OnInit {
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService.addPhoto(this.resume.id,this.file).subscribe();
+    this.resumeService.addPhoto(this.resume.id,this.file!).subscribe(x=>{
+      console.log(x);
+    });
   }
 
 
@@ -42,19 +44,19 @@ export class CvLeftBarComponent implements OnInit {
     this.educationListChanged();
   }
 
-  addPicture(picture: File) {
-    this.resumeService.addPhoto(this.resume.id,picture).subscribe({
-      next: next => console.log(next),
-      error: error => console.log(error)
-    })
-  }
+  // addPicture(picture: File) {
+  //   this.resumeService.addPhoto(this.resume.id,picture).subscribe({
+  //     next: next => console.log(next),
+  //     error: error => console.log(error)
+  //   })
+  // }
 
-  getPhoto() {
-    this.resumeService.getPhoto(3).subscribe({
-      next: next => console.log(next),
-      error: error => console.log(error)
-    })
-  }
+  // getPhoto() {
+  //   this.resumeService.getPhoto(3).subscribe({
+  //     next: next => console.log(next),
+  //     error: error => console.log(error)
+  //   })
+  // }
 
 
   removeSkill(skill: SkillDto): void {
@@ -72,7 +74,7 @@ export class CvLeftBarComponent implements OnInit {
         .push(new FormGroup({
           id: new FormControl(skill.id),
           skillId: new FormControl(skill.skillId),
-          name: new FormControl(skill.name),
+          skillName: new FormControl(skill.skillName),
           level: new FormControl(skill.level)
         }));
     })
@@ -99,32 +101,31 @@ export class CvLeftBarComponent implements OnInit {
       if (skill == null)
         return;
 
-      let skillDto = this.resume.skills.find(e => e.name == skill.name);
+      let skillDto = this.resume.skills.find(e => e.skillName == skill.skillName);
       if (skillDto != null)
         skillDto = skill;
       else
         this.resume.skills.push(skill);
-
       this.listSkillsChanged()
     });
   }
 
   removeLanguage(language: UserLanguageDto) {
-    const index = this.resume.userLanguages.indexOf(language);
+    const index = this.resume.languages.indexOf(language);
     if (index >= 0) {
-      this.resume.userLanguages.splice(index, 1);
+      this.resume.languages.splice(index, 1);
       this.listLanguageChanged()
     }
   }
 
   listLanguageChanged(): void {
-    (<FormArray>this.resumeForm.controls["userLanguages"]).clear();
-    this.resume.userLanguages?.forEach(languages => {
-      (<FormArray>this.resumeForm.controls["userLanguages"])
+    (<FormArray>this.resumeForm.controls["languages"]).clear();
+    this.resume.languages?.forEach(languages => {
+      (<FormArray>this.resumeForm.controls["languages"])
         .push(new FormGroup({
           id: new FormControl(languages.id),
           languageId: new FormControl(languages.languageId),
-          name: new FormControl(languages.name),
+          languageName: new FormControl(languages.languageName),
           level: new FormControl(languages.level)
         }));
     })
@@ -150,11 +151,11 @@ export class CvLeftBarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
       if (language == null)
         return;
-      let languageDto = this.resume.userLanguages.find(e => e.name == language.name);
+      let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);
       if (languageDto != null)
         languageDto = language;
       else
-        this.resume.userLanguages.push(language);
+        this.resume.languages.push(language);
 
       this.listLanguageChanged()
     });

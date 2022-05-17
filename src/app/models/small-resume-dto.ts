@@ -2,7 +2,7 @@ import {SkillTestDto} from "./resume-dto";
 
 export interface SmallResumeDto{
   id: number;
-  cvName: string;
+  resumeName: string;
   isDraft: true;
   firstName: string;
   lastName: string;

@@ -25,9 +25,7 @@ usersId$!:BehaviorSubject<string>
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.pipe().subscribe(
-      e=>console.log('id',e['id'])
-    )
+    this.activatedRoute.params.pipe().subscribe()
     // setTimeout()
     this.usersId$ = this.userEventService.getUserId()
 
