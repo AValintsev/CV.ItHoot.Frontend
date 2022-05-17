@@ -1,7 +1,7 @@
 export interface ResumeDto{
   [key:string]:any;
   id:0;
-  cvName:string;
+  resumeName:string;
   picture:string;
   isDraft:boolean;
   firstName:string;
@@ -19,7 +19,7 @@ export interface ResumeDto{
   educations: EducationDto[];
   experiences: ExperienceDto[];
   skills: SkillDto[];
-  userLanguages: UserLanguageDto[];
+  languages: UserLanguageDto[];
 }
 
 export interface EducationDto{
@@ -44,7 +44,7 @@ export interface ExperienceDto{
 export interface SkillDto{
   id: number;
   skillId:number;
-  name:string;
+  skillName:string;
   level:number;
 }
 
@@ -61,6 +61,6 @@ export interface LanguageTestDto {
 export interface UserLanguageDto{
   id: number;
   languageId:number;
-  name:string;
+  languageName:string;
   level:number;
 }
