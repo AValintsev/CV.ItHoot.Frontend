@@ -1,0 +1,11 @@
+.education-dialog{
+  .content{
+    display: grid;
+    gap: 10px;
+
+    .actions{
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

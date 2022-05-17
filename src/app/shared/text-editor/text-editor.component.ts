@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-text-editor',

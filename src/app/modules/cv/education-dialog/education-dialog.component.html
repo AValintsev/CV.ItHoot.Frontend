@@ -1,0 +1,54 @@
+<div class="education-dialog" [formGroup]="educationForm">
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Add new education</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit education</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Institution Name</mat-label>
+      <input matInput placeholder="KHNU" formControlName="institutionName">
+      <mat-error *ngIf="educationForm.controls['institutionName'].errors?.['required']">
+        Institution Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Specialization</mat-label>
+      <input matInput placeholder="Computer Science" formControlName="specialization">
+      <mat-error *ngIf="educationForm.controls['specialization'].errors?.['required']">
+        Specialization is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Degree</mat-label>
+      <input matInput placeholder="Bachelor's" formControlName="degree">
+      <mat-error *ngIf="educationForm.controls['degree'].errors?.['required']">
+        Degree is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description">
+      <mat-error *ngIf="educationForm.controls['description'].errors?.['required']">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Start date">
+        <input matEndDate formControlName="endDate" placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+    </mat-form-field>
+    <div mat-dialog-actions class="actions">
+      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Create">Create</button>
+      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+    </div>
+  </div>
+</div>

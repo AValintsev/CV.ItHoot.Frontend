@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <app-side-bar></app-side-bar>
+  <div class="table-page">
+    <div class="table-wrapper">
+      <div class="title-section">
+        <h1>CV list with Involvement</h1>
+        <button mat-raised-button routerLink="/home/cv/create">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <table mat-table [dataSource]="resumes" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Cv Name&Surname</th>
+          <td mat-cell *matCellDef="let resume"> {{resume.cvName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> Position </th>
+          <td mat-cell *matCellDef="let resume"> Frontend </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skills">
+          <th mat-header-cell *matHeaderCellDef>Skills</th>
+          <td mat-cell *matCellDef="let resume"><span *ngFor="let skill of resume.skills">{{skill.name}} </span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="loading">
+          <th mat-header-cell *matHeaderCellDef>Loading, %</th>
+          <td mat-cell *matCellDef="let resume">75%</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let resume">Busy</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
+          <td mat-cell *matCellDef="let resume">
+            <div class="action-wrapper">
+              <button class="pdf">PDF</button>
+              <button class="docx">DocX</button>
+              <button class="open" routerLink="/home/cv/{{resume.id}}">Open</button>
+              <button class="edit" routerLink="/home/cv/edit/{{resume.id}}">Edit</button>
+              <button class="delete" (click)="deleteResume(resume)">Delete</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>

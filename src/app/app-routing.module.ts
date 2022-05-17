@@ -1,15 +1,24 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {RoleGuard} from './guards/role.guard';
+
 
 const routes: Routes = [
-  {
-    path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
+   {
+    path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),
   },
-  {
-    path: 'cv', loadChildren: () => import('./cv/cv.module').then(mod => mod.CvModule),
+   {
+    path: '',
+    canActivate: [RoleGuard],
+    children:[]
   },
+
   {
-    path: 'editor', loadChildren: ()=> import('./cv-editor/cv-editor.module').then(mod => mod.CvEditorModule)
+    path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(m => m.MainPageModule),
+  },
+
+  {
+    path: '**', redirectTo:''
   }
 ];
 

@@ -1,10 +1,10 @@
-// @import "./main.scss";
-// @import "./nav.scss";
+@import "./main.scss";
+@import "./nav.scss";
 
-// .auth_block {
-//   display: flex;
-// }
-// a {
-//   text-decoration: none;
-//   color: $lightningColor;
-// }
+.auth_block {
+  display: flex;
+}
+a {
+  text-decoration: none;
+  color: $lightningColor;
+}

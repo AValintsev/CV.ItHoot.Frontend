@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  height: 100%;
+
+}
+
+.create-page {
+  padding: 30px 30px 0 20px;
+  flex: 0 1 30%;
+
+  .left-bar {
+    overflow: hidden auto;
+    scrollbar-width: none;
+
+    .action{
+      margin: 15px 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .left-bar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+}
+
+.cv {
+
+  flex: 0 1 70%;
+  height: 100%;
+}

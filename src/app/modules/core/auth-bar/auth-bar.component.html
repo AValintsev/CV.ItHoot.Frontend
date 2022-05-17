@@ -1,0 +1,16 @@
+<div class="auth-block">
+  <ng-container *ngIf="!(currentUser$ | async)?.token ">
+    <a routerLink="/account/login" class="nav-url" href="#">Login</a>
+    <a routerLink="/account/registration" class="nav-url" href="#">Sign up</a>
+  </ng-container>
+  <ng-container *ngIf="(currentUser$ | async)?.token">
+    <div class="dropdown ml-3 mr-5">
+      <a class="dropdown-toggle" style="cursor: pointer;">
+        <strong>Welcome {{ (currentUser$ | async)?.userEmail }}</strong>
+      </a>
+      <button style="background-color: red; width: 100px;height: 100px;" (click)="logout()" class="nav-url">
+        Logout
+      </button>
+    </div>
+  </ng-container>
+</div>

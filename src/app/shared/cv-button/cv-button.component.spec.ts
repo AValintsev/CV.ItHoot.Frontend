@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CvButtonComponent } from './cv-button.component';
+import {CvButtonComponent} from './cv-button.component';
 
 describe('CvButtonComponent', () => {
   let component: CvButtonComponent;
