@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AccountService} from 'src/app/services/account.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'cv-register',
   templateUrl: './register.component.html',
   styleUrls: ['../../../shared/styles/auth.scss']
 })
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private snackbarService: SnackBarService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup(
@@ -46,9 +46,9 @@ export class RegisterComponent implements OnInit {
     ).subscribe({
       next: next => {
         // if (this.accountService.getUserRole().value === 'User') {
-          // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
+        // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
         // } else {
-          this.router.navigate([`/home/cv/`])
+        this.router.navigate([`/home/cv/`])
         // }
 
       },

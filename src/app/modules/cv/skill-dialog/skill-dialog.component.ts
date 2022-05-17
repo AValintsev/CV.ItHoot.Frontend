@@ -1,14 +1,14 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {SkillService} from "../../../services/skill.service";
-import {SkillDto, SkillTestDto} from "../../../models/resume-dto";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
-import {DialogType} from "../../../models/dialog-type";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { SkillService } from "../../../services/skill.service";
+import { SkillDto, SkillTestDto } from "../../../models/resume-dto";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
+import { DialogType } from "../../../models/dialog-type";
 
 @Component({
-  selector: 'app-skill-dialog',
+  selector: 'cv-skill-dialog',
   templateUrl: './skill-dialog.component.html',
   styleUrls: ['./skill-dialog.component.scss']
 })
@@ -20,7 +20,7 @@ export class SkillDialog implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<SkillTestDto[]>;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
   constructor(
@@ -40,16 +40,16 @@ export class SkillDialog implements OnInit {
     )
   }
   filter(val: string): Observable<SkillTestDto[]> {
-    return this.skillService.searchSkill(val).pipe(map(data=>{
-      if(data.length === 0){
-        data = [{id:0,name:val}]
+    return this.skillService.searchSkill(val).pipe(map(data => {
+      if (data.length === 0) {
+        data = [{ id: 0, name: val }]
       };
       return data;
     }));
   }
 
 
-  skillSelected(option:any) {
+  skillSelected(option: any) {
     this.skill.name = option.name;
     this.skill.skillId = option.id;
   }

@@ -1,17 +1,17 @@
-import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {SkillDialog} from "../skill-dialog/skill-dialog.component";
-import {EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto} from "../../../models/resume-dto";
-import {DialogType} from "../../../models/dialog-type";
-import {LanguageDialog} from "../language-dialog/language-dialog.component";
-import {EducationDialog} from "../education-dialog/education-dialog.component";
-import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
+import { ResumeService } from 'src/app/services/resume.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { SkillDialog } from "../skill-dialog/skill-dialog.component";
+import { EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto } from "../../../models/resume-dto";
+import { DialogType } from "../../../models/dialog-type";
+import { LanguageDialog } from "../language-dialog/language-dialog.component";
+import { EducationDialog } from "../education-dialog/education-dialog.component";
+import { ExperienceDialog } from "../experience-dialog/experience-dialog.component";
 
 
 @Component({
-  selector: 'app-cv-create-left-bar',
+  selector: 'cv-cv-create-left-bar',
   templateUrl: './cv-left-bar.component.html',
   styleUrls: ['./cv-left-bar.component.scss'],
 })
@@ -21,7 +21,7 @@ export class CvLeftBarComponent implements OnInit {
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume: ResumeDto = {} as ResumeDto;
-  file:File|null = null;
+  file: File | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -31,7 +31,7 @@ export class CvLeftBarComponent implements OnInit {
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService.addPhoto(this.resume.id,this.file).subscribe();
+    this.resumeService.addPhoto(this.resume.id, this.file).subscribe();
   }
 
 
@@ -43,7 +43,7 @@ export class CvLeftBarComponent implements OnInit {
   }
 
   addPicture(picture: File) {
-    this.resumeService.addPhoto(this.resume.id,picture).subscribe({
+    this.resumeService.addPhoto(this.resume.id, picture).subscribe({
       next: next => console.log(next),
       error: error => console.log(error)
     })
@@ -92,7 +92,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((skill: SkillDto) => {
@@ -144,7 +144,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
@@ -198,7 +198,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((education: EducationDto) => {
@@ -252,7 +252,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((experience: ExperienceDto) => {

@@ -1,13 +1,13 @@
-import {ICv, ILanguageLevel, ISkillLevel} from '../../models/cvEditorModels/EditorModels';
-import {Observable} from 'rxjs';
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {CvEditorService} from './cv-editor.service';
+import { ICv, ILanguageLevel, ISkillLevel } from '../../models/cvEditorModels/EditorModels';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CvEditorService } from './cv-editor.service';
 
 @Component({
-  selector: 'app-editor',
+  selector: 'cv-editor',
   templateUrl: './editor.component.html',
-    styleUrls: ['../../shared/styles/cvcreate.scss']
+  styleUrls: ['../../shared/styles/cvcreate.scss']
   // styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
@@ -48,70 +48,70 @@ export class EditorComponent implements OnInit {
 
 
   //#region education
-  addNewEducation(){
+  addNewEducation() {
 
     this._cvEditorService.addNewEducation();
   }
 
-  upEducationPositionInOrder(){
+  upEducationPositionInOrder() {
 
   }
 
-  lowerEducationPositionInOrder(){
+  lowerEducationPositionInOrder() {
 
   }
   //#endregion
 
 
   //#region Experience
-  addNewExperience(){
+  addNewExperience() {
     this._cvEditorService.addNewExperience();
   }
 
-  upExperiencePositionInOrder(){
+  upExperiencePositionInOrder() {
 
   }
 
-  lowerExperiencePositionInOrder(){
+  lowerExperiencePositionInOrder() {
 
   }
   //#endregion
 
 
- //#region Language
-  addNewLanguage(){
+  //#region Language
+  addNewLanguage() {
     this._cvEditorService.addNewLanguage();
   }
 
-  languagePutUpInOrder(index: number){
+  languagePutUpInOrder(index: number) {
     this._cvEditorService.languagePutUpInOrder(index)
   }
 
-  languageLowerDownInOrder(index : number){
+  languageLowerDownInOrder(index: number) {
     this._cvEditorService.languageDownInOrder(index)
   }
- //#endregion
+  //#endregion
 
 
- //#region skill
-  addNewSkill(){
+  //#region skill
+  addNewSkill() {
     this._cvEditorService.addNewSkill();
   }
 
-  removeSkill(index: number){
+  removeSkill(index: number) {
     this._cvEditorService.removeSkill(index);
   }
 
-  skillPutUpInOrder(index: number){
+  skillPutUpInOrder(index: number) {
     this._cvEditorService.skillPutUpInOrder(index)
   }
 
-  skillDownInOrder(index : number){
+  skillDownInOrder(index: number) {
     this._cvEditorService.skillDownInOrder(index)
   }
 
-  click1(){
+  click1() {
     console.log(this._cvEditorService.getCurrentCv)
   }
- //#endregion
+  //#endregion
 }

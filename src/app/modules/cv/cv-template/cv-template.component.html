@@ -1,13 +1,14 @@
-<div style="max-width: 1400px;margin: 0 auto;"  class="wrapper cv">
+<div style="max-width: 1400px;margin: 0 auto;" class="wrapper cv">
 	<div class="row parent-row">
 		<div class="col left">
 			<div class="left-inner">
 				<div class="photo">
-					<img *ngIf="getFormControlValue('picture') == undefined; else image" src="assets/avatar.jpg" alt="user photo">
-          <ng-template #image>
-          <img src="data:image/jpeg;base64,{{getFormControlValue('picture')}}" alt="user photo">
-          </ng-template>
-          <div *ngIf="getFormControlValue('firstName')" class="user-name left-block-content"><span>
+					<img *ngIf="getFormControlValue('picture') == undefined; else image" src="assets/avatar.jpg"
+						alt="user photo">
+					<ng-template #image>
+						<img src="data:image/jpeg;base64,{{getFormControlValue('picture')}}" alt="user photo">
+					</ng-template>
+					<div *ngIf="getFormControlValue('firstName')" class="user-name left-block-content"><span>
 							{{getFormControlValue('firstName')}}&nbsp;{{getFormControlValue('lastName')}}
 						</span>
 					</div>
@@ -24,7 +25,8 @@
 							{{getFormControlValue('aboutMe')}}
 						</div>
 					</div>
-					<div *ngIf="getFormControlValue('country')||getFormControlValue('city')||getFormControlValue('street')" class="contact">
+					<div *ngIf="getFormControlValue('country')||getFormControlValue('city')||getFormControlValue('street')"
+						class="contact">
 						<div class="contact__title blue-line">
 							<span class=" title-white">CONTACT</span>
 						</div>
@@ -78,12 +80,12 @@
 						</div>
 						<div class="skills__content padding-right">
 							<div class="contact__content-inner skills-inner">
-									<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
-										<mat-progress-spinner [color]="'red'" [value]="skill.level*33.333" [diameter]="50"
-											[strokeWidth]="3"></mat-progress-spinner>
-										<div class="spiner-skill">
-											{{skill.name}}
-										</div>
+								<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
+									<mat-progress-spinner [color]="'red'" [value]="skill.level*33.333" [diameter]="50"
+										[strokeWidth]="3"></mat-progress-spinner>
+									<div class="spiner-skill">
+										{{skill.name}}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -94,12 +96,12 @@
 						</div>
 						<div class="skills__content padding-right">
 							<div class="contact__content-inner skills-inner">
-									<div *ngFor="let language of getFormControlValue('userLanguages')" class="spiner">
-										<mat-progress-spinner [color]="'red'" [value]="language.level*33.333" [diameter]="50"
-											[strokeWidth]="3"></mat-progress-spinner>
-										<div class="spiner-skill">
-											{{language.name}}
-										</div>
+								<div *ngFor="let language of getFormControlValue('userLanguages')" class="spiner">
+									<mat-progress-spinner [color]="'red'" [value]="language.level*33.333" [diameter]="50"
+										[strokeWidth]="3"></mat-progress-spinner>
+									<div class="spiner-skill">
+										{{language.name}}
+									</div>
 								</div>
 							</div>
 						</div>
