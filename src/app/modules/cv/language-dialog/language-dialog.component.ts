@@ -29,7 +29,7 @@ export class LanguageDialog implements OnInit {
     this.language = data.data;
     console.log(this.language)
     this.typeDialog = data.type;
-    this.myControl.setValue(this.language.name)
+    this.myControl.setValue(this.language.languageName)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(400),
@@ -47,12 +47,12 @@ export class LanguageDialog implements OnInit {
 
 
   skillSelected(option:any) {
-    this.language.name = option.name;
+    this.language.languageName = option.name;
     this.language.languageId = option.id;
   }
 
   canCreate(): boolean {
-    return !(this.language.name === '' || this.language.name === undefined || this.language.level === undefined);
+    return !(this.language.languageName === '' || this.language.languageName === undefined || this.language.level === undefined);
 
   }
 }

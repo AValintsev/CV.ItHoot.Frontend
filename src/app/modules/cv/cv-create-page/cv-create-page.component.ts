@@ -1,4 +1,4 @@
-import { AccountService } from './../../../services/account.service';
+import { AccountService } from '../../../services/account.service';
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
@@ -36,7 +36,7 @@ export class CvCreatePageComponent implements OnInit {
   }
   private validateForm(){
     this.resumeCreateForm = new FormGroup({
-      cvName: new FormControl(this.resumeCreateDto.firstName,[
+      resumeName: new FormControl(this.resumeCreateDto.resumeName,[
         Validators.required
       ]),
       firstName: new FormControl(this.resumeCreateDto.firstName,[
@@ -75,7 +75,7 @@ export class CvCreatePageComponent implements OnInit {
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
-      userLanguages: new FormArray([]),
+      languages: new FormArray([]),
     });
   }
 
@@ -89,7 +89,7 @@ export class CvCreatePageComponent implements OnInit {
         }else{
           this.router.navigate(['/home/cv'])
         }
-        
+
       },
       error:(error)=>{
         this.snackbarService.showDanger('Something went wrong!')

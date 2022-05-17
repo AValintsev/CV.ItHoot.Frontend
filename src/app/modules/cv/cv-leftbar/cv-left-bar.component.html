@@ -34,8 +34,8 @@
     <input id="fileInput" type='file' (change)="onSelectFile($event)">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
-      <input matInput placeholder=".NET Junior Developer" formControlName="cvName">
-      <mat-error *ngIf="resumeForm.controls['cvName'].errors?.['required']">
+      <input matInput placeholder=".NET Junior Developer" formControlName="resumeName">
+      <mat-error *ngIf="resumeForm.controls['resumeName'].errors?.['required']">
         Name resume is required
       </mat-error>
     </mat-form-field>
@@ -148,7 +148,7 @@
       <mat-card-content>
         <mat-chip-list #chipList>
           <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)" (click)="openSkillDialog(skill)">
-            {{skill.name}}
+            {{skill.skillName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
@@ -167,8 +167,8 @@
       <mat-card-title>Language</mat-card-title>
       <mat-card-content>
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let language of resume.userLanguages" (removed)="removeLanguage(language)" (click)="openLanguageDialog(language)">
-            {{language.name}}
+          <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)" (click)="openLanguageDialog(language)">
+            {{language.languageName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>

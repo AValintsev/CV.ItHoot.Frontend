@@ -28,8 +28,7 @@ export class SkillDialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.skill = data.data;
     this.typeDialog = data.type;
-    console.log(this.skill)
-    this.myControl.setValue(this.skill.name)
+    this.myControl.setValue(this.skill.skillName)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(400),
@@ -50,12 +49,12 @@ export class SkillDialog implements OnInit {
 
 
   skillSelected(option:any) {
-    this.skill.name = option.name;
+    this.skill.skillName = option.name;
     this.skill.skillId = option.id;
   }
 
   canCreate(): boolean {
-    if (this.skill.name === '' || this.skill.name === undefined || this.skill.level === undefined)
+    if (this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined)
       return false;
     return true;
   }
