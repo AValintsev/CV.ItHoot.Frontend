@@ -1,5 +1,5 @@
 <div class="right-item">
-  <div class="item-top" >
+  <div class="item-top">
     <div class="item-date">
       <mat-form-field appearance="fill">
         <mat-label>Date start education</mat-label>
@@ -25,12 +25,18 @@
       </mat-form-field>
       <div>
         <mat-label>More about: </mat-label>
-        <app-text-editor [(content)]="experience.description"></app-text-editor>
+        <cv-text-editor [(content)]="experience.description"></cv-text-editor>
       </div>
     </div>
   </div>
 </div>
 
-<a (click)="onUpPosition()"> <mat-icon>expand_less</mat-icon></a>
-<a (click)="onLowerPosition()"> <mat-icon>expand_more</mat-icon></a>
-<a (click)="onUpDelete()"><mat-icon>delete_forever</mat-icon></a>
+<a (click)="onUpPosition()">
+  <mat-icon>expand_less</mat-icon>
+</a>
+<a (click)="onLowerPosition()">
+  <mat-icon>expand_more</mat-icon>
+</a>
+<a (click)="onUpDelete()">
+  <mat-icon>delete_forever</mat-icon>
+</a>

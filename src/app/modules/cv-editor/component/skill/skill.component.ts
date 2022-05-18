@@ -1,16 +1,16 @@
-import {mergeMap, startWith} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {ICvSkill, ISkillLevel} from '../../../../models/cvEditorModels/EditorModels';
-import {ISkill} from 'src/app/models/cvEditorModels/EditorModels';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CvEditorService} from '../../cv-editor.service';
-import {FormControl} from '@angular/forms';
-import {SkillService} from "../../services/skill.service";
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatSelectChange} from '@angular/material/select';
+import { mergeMap, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ICvSkill, ISkillLevel } from '../../../../models/cvEditorModels/EditorModels';
+import { ISkill } from 'src/app/models/cvEditorModels/EditorModels';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CvEditorService } from '../../cv-editor.service';
+import { FormControl } from '@angular/forms';
+import { SkillService } from "../../services/skill.service";
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
-  selector: 'app-skill',
+  selector: 'cv-skill',
   templateUrl: './skill.component.html',
   styleUrls: ['./skill.component.scss']
 })
@@ -29,13 +29,12 @@ export class SkillComponent implements OnInit {
   selectedSkillLevel!: ISkillLevel;
 
   constructor(private _cvEditorService: CvEditorService,
-  private _skillService: SkillService)
-  {
+    private _skillService: SkillService) {
     this.selectedSkill = {
       id: undefined,
       name: "",
       level: -1,
-      order : -1,
+      order: -1,
     }
   }
 
@@ -43,13 +42,13 @@ export class SkillComponent implements OnInit {
 
     this.skillLevels = this._cvEditorService.getAllSkillLevels;
     this.filteredOptions$ = this.myControl.valueChanges
-    .pipe(
-      startWith(""),
-      mergeMap((data) => this._skillService.getSkillByContent(data))
-    )
+      .pipe(
+        startWith(""),
+        mergeMap((data) => this._skillService.getSkillByContent(data))
+      )
 
     this.myControl.valueChanges.subscribe(data => {
-      if( this.cvSkill.name !== data){
+      if (this.cvSkill.name !== data) {
         this.cvSkill.name = data;
         this.cvSkill.skillId = undefined;
       }
@@ -57,18 +56,18 @@ export class SkillComponent implements OnInit {
     this.inputsInit();
   }
 
-  private inputsInit(){
-    if(this.cvSkill.level != null){
+  private inputsInit() {
+    if (this.cvSkill.level != null) {
       this.myControl.setValue(this.cvSkill.name);
     }
 
     var carnetSkillLevel = this.skillLevels.find(level => level.id == this.cvSkill.skillId);
-    if(carnetSkillLevel != undefined){
+    if (carnetSkillLevel != undefined) {
       this.selectedSkillLevel = carnetSkillLevel;
     }
   }
 
-  onSkillSelected($event: MatAutocompleteSelectedEvent ){
+  onSkillSelected($event: MatAutocompleteSelectedEvent) {
     this.selectedSkill = <ISkill>$event.option.value;
     this.cvSkill.skillId = this.selectedSkillLevel.id;
     this.cvSkill.name = this.selectedSkillLevel.name;
@@ -76,19 +75,19 @@ export class SkillComponent implements OnInit {
     this.myControl.setValue(this.selectedSkill.name);
   }
 
-  onSelectionSkillLevelChanged($event : MatSelectChange){
+  onSelectionSkillLevelChanged($event: MatSelectChange) {
     this.cvSkill.level = this.selectedSkillLevel.id;
   }
 
-  onUpPosition(){
+  onUpPosition() {
     this.upPosition.emit()
   }
 
-  onLowerPosition(){
+  onLowerPosition() {
     this.lowerPosition.emit()
   }
 
-  onDeletePosition(){
+  onDeletePosition() {
 
   }
 

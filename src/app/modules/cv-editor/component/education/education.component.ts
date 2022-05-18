@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IEducation} from 'src/app/models/cvEditorModels/EditorModels';
-import {CvEditorService} from '../../cv-editor.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IEducation } from 'src/app/models/cvEditorModels/EditorModels';
+import { CvEditorService } from '../../cv-editor.service';
 
 @Component({
-  selector: 'app-education',
+  selector: 'cv-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']
 })
@@ -15,7 +15,7 @@ export class EducationComponent implements OnInit {
   @Output() lowerPosition = new EventEmitter<Event>();
 
 
-  constructor(private сvEditorService : CvEditorService) {
+  constructor(private сvEditorService: CvEditorService) {
 
   }
 
@@ -23,15 +23,15 @@ export class EducationComponent implements OnInit {
     console.log(this.index, this.education)
   }
 
-  onUpPosition(){
+  onUpPosition() {
     this.сvEditorService.educationPutUpInOrder(this.index)
   }
 
-  onLowerPosition(){
+  onLowerPosition() {
     this.сvEditorService.educationDownInOrder(this.index)
   }
 
-  onDeleteItem(){
+  onDeleteItem() {
 
   }
 }

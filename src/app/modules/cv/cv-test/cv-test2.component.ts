@@ -1,6 +1,6 @@
 // @Component({
 //     template:'',
-//     selector:'app-test-component',
+//     selector:'cv-test-component',
 //     styles:[]
 // })
 // export class CvTestComponent{

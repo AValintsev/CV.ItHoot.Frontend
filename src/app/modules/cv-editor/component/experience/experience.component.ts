@@ -1,9 +1,9 @@
-import {IExperience} from 'src/app/models/cvEditorModels/EditorModels';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CvEditorService} from '../../cv-editor.service';
+import { IExperience } from 'src/app/models/cvEditorModels/EditorModels';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CvEditorService } from '../../cv-editor.service';
 
 @Component({
-  selector: 'app-experience',
+  selector: 'cv-experience',
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss']
 })
@@ -14,24 +14,24 @@ export class ExperienceComponent implements OnInit {
   @Output() upPosition = new EventEmitter<Event>();
   @Output() lowerPosition = new EventEmitter<Event>();
 
-  constructor(private сvEditorService : CvEditorService) { }
+  constructor(private сvEditorService: CvEditorService) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
 
-  onUpPosition(){
+  onUpPosition() {
     debugger;
     this.сvEditorService.experiencePutUpInOrder(this.index);
   }
 
-  onLowerPosition(){
+  onLowerPosition() {
     debugger;
     this.сvEditorService.experienceDownInOrder(this.index);
   }
 
-  onUpDelete(){
+  onUpDelete() {
 
   }
 }
