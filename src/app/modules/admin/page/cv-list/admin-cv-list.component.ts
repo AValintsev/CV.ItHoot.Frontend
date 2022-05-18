@@ -1,8 +1,8 @@
-import { SmallResumeDto } from '../../../../models/small-resume-dto';
-import { Component, OnInit } from '@angular/core';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { tap } from 'rxjs/operators';
+import {SmallResumeDto} from '../../../../models/small-resume-dto';
+import {Component, OnInit} from '@angular/core';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'cv-admin-cv-list',
@@ -13,11 +13,12 @@ export class AdminCvListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'position', 'skills', 'loading', 'status', 'action'];
   resumes: SmallResumeDto[] = [];
-  
+
   constructor(
-    public resumeService: ResumeService, 
+    public resumeService: ResumeService,
     private snackService: SnackBarService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.resumeService.getAllResume().subscribe(resumeArray => {
@@ -38,10 +39,10 @@ export class AdminCvListComponent implements OnInit {
         }
       });
   }
-  savePdf(id:number){
-    this.resumeService.getPdf(id).pipe(
-      tap(tap=>console.log(tap))
-    ).subscribe(console.log)
-    console.log(id)
+
+  getResumePdf(resume: SmallResumeDto) {
+    this.resumeService.getPdf(resume.id).subscribe(response => {
+      saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`);
+    });
   }
 }

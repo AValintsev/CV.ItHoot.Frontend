@@ -8,12 +8,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import {CvEditPageComponent} from "../../../cv/cv-edit-page/cv-edit-page.component";
+import {CvCreatePageComponent} from "../../../cv/cv-create-page/cv-create-page.component";
+import {CvFullComponent} from "../../../cv/cv-full/cv-full.component";
 
 const routes: Routes = [
 	{
 		path: '',
-		component: AdminCvListComponent
-	}
+		component: AdminCvListComponent,
+	},
+  {
+    path: 'edit/:id',
+    component: CvEditPageComponent,
+  },
+  {
+    path: 'create',
+    component:CvCreatePageComponent
+  },
+  {
+    path:':id',
+    component:CvFullComponent
+  }
 
 ];
 
