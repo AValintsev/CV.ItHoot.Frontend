@@ -9,9 +9,8 @@ import {CheckUserGuard} from 'src/app/guards/checkUser.guard';
 const routes: Routes = [
   {
     path: '',
-    // component: CvListComponent,
+    loadChildren:()=>import('./cv-list/cv-list.module').then(mod=>mod.CvListModule)
     // canActivate:[UserCvListGuard]
-    children:[]
   },
   {
     path: 'edit/:id',

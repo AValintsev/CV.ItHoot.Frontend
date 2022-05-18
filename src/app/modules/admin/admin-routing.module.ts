@@ -29,7 +29,7 @@ const routs: Routes = [
 			},
 			{
 				path: '',
-				redirectTo: 'cv-list',
+				redirectTo: 'cv',
 				pathMatch: 'full'
 			}
 		]

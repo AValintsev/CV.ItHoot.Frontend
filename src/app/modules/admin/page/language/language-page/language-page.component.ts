@@ -6,7 +6,7 @@ import { LanguageTestDto } from 'src/app/models/resume-dto';
 import { LanguageService } from 'src/app/services/language.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
-import { LanguageDialogComponent } from "../language-dialog/language-dialog.component";
+import { LanguageDialog } from "../language-dialog/language-dialog.component";
 
 
 @Component({
@@ -64,7 +64,7 @@ export class LanguagePageComponent implements OnInit {
       dialogType = DialogType.Create;
     }
 
-    const dialogRef = this.dialog.open(LanguageDialogComponent, {
+    const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
       data: { type: dialogType, data: language },

@@ -4,7 +4,6 @@ import {CvRoutingModule} from './cv-routing.module';
 import {CvFormComponent} from './cv-form/cv-form.component';
 import {CvEditComponent} from './cv-edit/cv-edit.component';
 import {CvFullComponent} from './cv-full/cv-full.component';
-import {CvSmallComponent} from './cv-small/cv-small.component';
 import {CvCreateComponent} from './cv-create/cv-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
@@ -39,7 +38,6 @@ import {CoreModule} from "../core/core.module";
   declarations: [
     CvEditComponent,
     CvFullComponent,
-    CvSmallComponent,
     CvCreateComponent,
     CvFormComponent,
     CvTestComponent,

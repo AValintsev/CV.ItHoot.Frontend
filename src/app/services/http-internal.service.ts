@@ -37,7 +37,7 @@ export class HttpInternalService {
   }
 
   public getFullRequest<T>(url: string, httpParams?: any): Observable<HttpResponse<T>> {
-    return this.http.get<T>(this.buildUrl(url), {observe: 'response', headers: this.getHeaders(), params: httpParams});
+    return this.http.get<T>(this.buildUrl(url), {observe: 'response', headers: this.getHeaders(), params: httpParams,});
   }
 
   public postClearRequest<T>(url: string, payload: object): Observable<T> {

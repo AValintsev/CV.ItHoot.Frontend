@@ -40,8 +40,12 @@ export class AdminCvListComponent implements OnInit {
   }
   savePdf(id:number){
     this.resumeService.getPdf(id).pipe(
-      tap(tap=>console.log(tap))
-    ).subscribe(console.log)
-    console.log(id)
+    ).subscribe(respons=>this.downloadFile(respons))
+  }
+  downloadFile(data: Blob) {
+    console.log('url')
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 }

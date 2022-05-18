@@ -4,7 +4,7 @@ import { MaterialModule } from 'src/app/modules/material/material.module';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { LanguageDialogComponent } from './language-dialog/language-dialog.component';
+import { LanguageDialog } from './language-dialog/language-dialog.component';
 import { LanguagePageComponent } from './language-page/language-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +19,7 @@ const routes:Routes = [
 ]
 
 @NgModule({
-	declarations: [LanguagePageComponent, LanguageDialogComponent],
+	declarations: [LanguagePageComponent, LanguageDialog],
 	imports: [
 		MaterialModule,
 		MatTableModule,

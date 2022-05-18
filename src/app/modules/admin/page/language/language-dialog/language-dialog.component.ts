@@ -13,7 +13,7 @@ import { LanguageService } from 'src/app/services/language.service';
   templateUrl: './language-dialog.component.html',
   styleUrls: ['./language-dialog.component.scss']
 })
-export class LanguageDialogComponent implements OnInit {
+export class LanguageDialog implements OnInit {
 
   language: UserLanguageDto = {} as UserLanguageDto;
   typeDialog: DialogType;

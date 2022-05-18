@@ -6,7 +6,7 @@ import {SmallResumeDto} from "../models/small-resume-dto";
 import {ResumeDto} from "../models/resume-dto";
 import {environment} from '../../environments/environment';
 
-
+const options = { headers: { 'Content-Type': 'application/pdf' }, observe: 'response', responseType: 'blob' as 'json' }
 
 @Injectable({ providedIn: 'root' })
 export class ResumeService {
@@ -40,7 +40,11 @@ export class ResumeService {
    return this.httpService.postForm(this.routePrefix+`/${resumeId}/image`, data);
 
  }
- getPdf(id:number):Observable<any>{
-   return this.http.get<any>('https://cvbuilder-it.azurewebsites.net/api/v1/resume/pdf' + `/${id}`, 
-  //  { observe:'response', responseType:'text'}
-   )}}
+public GetPdf(id:number):Observable<Blob>{
+  return this.httpService.getRequest(this.routePrefix + `pdf/${id}`);
+
+}
+
+ getPdf(id:number):Observable<Blob>{
+   return this.http.get<any>('https://cvbuilder-it.azurewebsites.net/api/v1/resume/pdf' + `/${id}`, { headers: { 'Content-Type': 'application/pdf' }, observe: 'body', responseType: 'blob' as 'json' })
+  }}

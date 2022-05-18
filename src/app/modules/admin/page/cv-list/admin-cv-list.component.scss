@@ -2,23 +2,23 @@
    background: #E5E5E5;
    display: grid;
    align-items: start;
-   grid-template-columns: 13% auto;
+   grid-template-columns: 100%;
    min-height: 100%;
 
-   @media (max-width: 1450px) {
-      & {
-         grid-template-columns:auto;
-      }
+   // @media (max-width: 1450px) {
+   //    & {
+   //       grid-template-columns:auto;
+   //    }
 
-      @media (max-width: 1290px) {
-         grid-template-columns:auto;
+   //    @media (max-width: 1290px) {
+   //       grid-template-columns:auto;
 
-      }
-   }
+   //    }
+   // }
 
-   .table-page {
-      padding: 40px;
-   }
+   // .table-page {
+   //    padding: 40px;
+   // }
 
    table {
       font-size: 1.1em;
