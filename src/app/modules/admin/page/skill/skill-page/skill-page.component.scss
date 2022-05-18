@@ -3,21 +3,21 @@
   background: #E5E5E5;
   display: grid;
   align-items: start;
-  grid-template-columns: 13% auto;
+  grid-template-columns: 100%;
 
-  @media (max-width: 1450px) {
-    & {
-      grid-template-columns: 15% auto;
-    }
-    @media (max-width: 1290px) {
-      grid-template-columns: 20% auto;
+  // @media (max-width: 1450px) {
+  //   & {
+  //     grid-template-columns: 15% auto;
+  //   }
+  //   @media (max-width: 1290px) {
+  //     grid-template-columns: 20% auto;
 
-    }
-  }
+  //   }
+  // }
 
-  .skill-list {
-    padding: 40px;
-  }
+  // .skill-list {
+  //   padding: 40px;
+  // }
 
 
   .table-page {

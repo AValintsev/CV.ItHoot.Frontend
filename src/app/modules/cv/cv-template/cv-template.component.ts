@@ -30,11 +30,7 @@ export class CvTemplateComponent implements OnInit {
     }
 
   }
-  pdf(){
-    this.resumeService.getPdf(1).subscribe(
-      c=>console.log(c)
-    )
-  }
+
 }
 
 

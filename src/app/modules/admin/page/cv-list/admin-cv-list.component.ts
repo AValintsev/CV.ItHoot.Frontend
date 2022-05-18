@@ -2,6 +2,7 @@ import { SmallResumeDto } from '../../../../models/small-resume-dto';
 import { Component, OnInit } from '@angular/core';
 import { ResumeService } from 'src/app/services/resume.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'cv-admin-cv-list',
@@ -37,5 +38,10 @@ export class AdminCvListComponent implements OnInit {
         }
       });
   }
-  
+  savePdf(id:number){
+    this.resumeService.getPdf(id).pipe(
+      tap(tap=>console.log(tap))
+    ).subscribe(console.log)
+    console.log(id)
+  }
 }

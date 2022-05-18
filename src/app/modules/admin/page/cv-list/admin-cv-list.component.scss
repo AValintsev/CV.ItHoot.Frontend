@@ -7,11 +7,11 @@
 
    @media (max-width: 1450px) {
       & {
-         grid-template-columns: 15% auto;
+         grid-template-columns:auto;
       }
 
       @media (max-width: 1290px) {
-         grid-template-columns: 20% auto;
+         grid-template-columns:auto;
 
       }
    }
