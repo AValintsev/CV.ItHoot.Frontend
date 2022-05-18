@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume-dto";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ResumeService} from "../../../services/resume.service";
-import {SnackBarService} from "../../../services/snack-bar.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {map} from "rxjs/operators";
-import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
-import {AccountService} from 'src/app/services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { ResumeDto } from "../../../models/resume-dto";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ResumeService } from "../../../services/resume.service";
+import { SnackBarService } from "../../../services/snack-bar.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { map } from "rxjs/operators";
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { AccountService } from 'src/app/services/account.service';
 import jsPDF from "jspdf";
 
 @Component({
-  selector: 'app-cv-edit-page',
+  selector: 'cv-cv-edit-page',
   templateUrl: './cv-edit-page.component.html',
   styleUrls: ['./cv-edit-page.component.scss']
 })
@@ -22,7 +22,7 @@ export class CvEditPageComponent implements OnInit {
   faAt = faAt;
   resumeId: number = 0;
   resumeEditDto: ResumeDto = {} as ResumeDto;
-  templateForm!:ResumeDto
+  templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
 
@@ -40,21 +40,6 @@ export class CvEditPageComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      //
-      this.resumeService.getAllResume().subscribe({
-        next: next => {
-          if (next[0]) {
-            this.resumeService.getResumeById(next[0].id).subscribe(resume => {
-              console.log(resume)
-              this.resumeEditDto = resume;
-              this.patchForm(this.resumeEditDto)
-            });
-          }
-        },
-        error: error => { }
-      }
-      )
-      //
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto)
@@ -67,7 +52,7 @@ export class CvEditPageComponent implements OnInit {
   }
   patchForm(resume: ResumeDto) {
     this.resumeEditForm.patchValue({ id: resume.id });
-    this.resumeEditForm.patchValue({ cvName: resume.cvName });
+    this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
     this.resumeEditForm.patchValue({ firstName: resume.firstName });
     this.resumeEditForm.patchValue({ lastName: resume.lastName });
     this.resumeEditForm.patchValue({ email: resume.email });
@@ -87,17 +72,17 @@ export class CvEditPageComponent implements OnInit {
         .push(new FormGroup({
           id: new FormControl(skill.id),
           skillId: new FormControl(skill.skillId),
-          name: new FormControl(skill.name),
+          skillName: new FormControl(skill.skillName),
           level: new FormControl(skill.level)
         }));
     });
 
-    resume.userLanguages?.forEach(languages => {
-      (<FormArray>this.resumeEditForm.controls["userLanguages"])
+    resume.languages?.forEach(languages => {
+      (<FormArray>this.resumeEditForm.controls["languages"])
         .push(new FormGroup({
           id: new FormControl(languages.id),
           languageId: new FormControl(languages.languageId),
-          name: new FormControl(languages.name),
+          languageName: new FormControl(languages.languageName),
           level: new FormControl(languages.level)
         }));
     });
@@ -132,13 +117,16 @@ export class CvEditPageComponent implements OnInit {
   validateForm() {
     this.resumeEditForm = new FormGroup({
       id: new FormControl(this.resumeEditDto.id, [Validators.required]),
-      cvName: new FormControl(this.resumeEditDto.cvName, [
+      resumeName: new FormControl(this.resumeEditDto.resumeName, [
         Validators.required
       ]),
       firstName: new FormControl(this.resumeEditDto.firstName, [
         Validators.required
       ]),
       lastName: new FormControl(this.resumeEditDto.lastName, [
+        Validators.required
+      ]),
+      birthdate: new FormControl(this.resumeEditDto.birthdate, [
         Validators.required
       ]),
       email: new FormControl(this.resumeEditDto.email, [
@@ -162,9 +150,6 @@ export class CvEditPageComponent implements OnInit {
       requiredPosition: new FormControl(this.resumeEditDto.requiredPosition, [
         Validators.required
       ]),
-      birthdate: new FormControl(this.resumeEditDto.birthdate, [
-        Validators.required
-      ]),
       aboutMe: new FormControl(this.resumeEditDto.aboutMe, [
         Validators.required
       ]),
@@ -172,7 +157,7 @@ export class CvEditPageComponent implements OnInit {
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
-      userLanguages: new FormArray([]),
+      languages: new FormArray([]),
     });
   }
 
@@ -190,7 +175,7 @@ export class CvEditPageComponent implements OnInit {
     })
   }
 
-  saveAsPdf(){
+  saveAsPdf() {
     {
       // let DATA: any = document.getElementById('resume-templete');
       // html2canvas(DATA).then((canvas) => {
@@ -206,8 +191,8 @@ export class CvEditPageComponent implements OnInit {
 
       let data = document.getElementById('cv-template');
       var pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.html(data!,{
-        callback: ()=> pdf.save('DOC.pdf')
+      pdf.html(data!, {
+        callback: () => pdf.save('DOC.pdf')
       })
       // html2canvas(data!).then(canvas => {
       //   const contentDataURL = canvas.toDataURL('image/png')

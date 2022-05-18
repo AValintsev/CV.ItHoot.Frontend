@@ -1,0 +1,35 @@
+<div class="skill-dialog">
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Add new skill</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit skill</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose or create skill</mat-label>
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name"
+          (onSelectionChange)="skillSelected(option)">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+
+
+    <mat-button-toggle-group [(ngModel)]="skill.level">
+      <mat-button-toggle [value]="1">Basic</mat-button-toggle>
+      <mat-button-toggle [value]="2">Intermediate</mat-button-toggle>
+      <mat-button-toggle [value]="3">Advanced</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()"
+      *ngIf="typeDialog===DialogType.Create">Create</button>
+    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()"
+      *ngIf="typeDialog===DialogType.Edit">Edit</button>
+  </div>
+
+</div>
+

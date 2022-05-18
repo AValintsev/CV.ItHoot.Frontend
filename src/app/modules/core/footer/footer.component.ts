@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'cv-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['../../../shared/styles/footer.scss']
 })

@@ -1,17 +1,17 @@
-import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {SkillDialog} from "../skill-dialog/skill-dialog.component";
-import {EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto} from "../../../models/resume-dto";
-import {DialogType} from "../../../models/dialog-type";
-import {LanguageDialog} from "../language-dialog/language-dialog.component";
-import {EducationDialog} from "../education-dialog/education-dialog.component";
-import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
+import { ResumeService } from 'src/app/services/resume.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { SkillDialog } from "../skill-dialog/skill-dialog.component";
+import { EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto } from "../../../models/resume-dto";
+import { DialogType } from "../../../models/dialog-type";
+import { LanguageDialog } from "../language-dialog/language-dialog.component";
+import { EducationDialog } from "../education-dialog/education-dialog.component";
+import { ExperienceDialog } from "../experience-dialog/experience-dialog.component";
 
 
 @Component({
-  selector: 'app-cv-create-left-bar',
+  selector: 'cv-cv-create-left-bar',
   templateUrl: './cv-left-bar.component.html',
   styleUrls: ['./cv-left-bar.component.scss'],
 })
@@ -21,7 +21,7 @@ export class CvLeftBarComponent implements OnInit {
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume: ResumeDto = {} as ResumeDto;
-  file:File|null = null;
+  file: File | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -31,7 +31,9 @@ export class CvLeftBarComponent implements OnInit {
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService.addPhoto(this.resume.id,this.file).subscribe();
+    this.resumeService.addPhoto(this.resume.id,this.file!).subscribe(x=>{
+      console.log(x);
+    });
   }
 
 
@@ -42,19 +44,19 @@ export class CvLeftBarComponent implements OnInit {
     this.educationListChanged();
   }
 
-  addPicture(picture: File) {
-    this.resumeService.addPhoto(this.resume.id,picture).subscribe({
-      next: next => console.log(next),
-      error: error => console.log(error)
-    })
-  }
+  // addPicture(picture: File) {
+  //   this.resumeService.addPhoto(this.resume.id,picture).subscribe({
+  //     next: next => console.log(next),
+  //     error: error => console.log(error)
+  //   })
+  // }
 
-  getPhoto() {
-    this.resumeService.getPhoto(3).subscribe({
-      next: next => console.log(next),
-      error: error => console.log(error)
-    })
-  }
+  // getPhoto() {
+  //   this.resumeService.getPhoto(3).subscribe({
+  //     next: next => console.log(next),
+  //     error: error => console.log(error)
+  //   })
+  // }
 
 
   removeSkill(skill: SkillDto): void {
@@ -72,7 +74,7 @@ export class CvLeftBarComponent implements OnInit {
         .push(new FormGroup({
           id: new FormControl(skill.id),
           skillId: new FormControl(skill.skillId),
-          name: new FormControl(skill.name),
+          skillName: new FormControl(skill.skillName),
           level: new FormControl(skill.level)
         }));
     })
@@ -92,39 +94,38 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((skill: SkillDto) => {
       if (skill == null)
         return;
 
-      let skillDto = this.resume.skills.find(e => e.name == skill.name);
+      let skillDto = this.resume.skills.find(e => e.skillName == skill.skillName);
       if (skillDto != null)
         skillDto = skill;
       else
         this.resume.skills.push(skill);
-
       this.listSkillsChanged()
     });
   }
 
   removeLanguage(language: UserLanguageDto) {
-    const index = this.resume.userLanguages.indexOf(language);
+    const index = this.resume.languages.indexOf(language);
     if (index >= 0) {
-      this.resume.userLanguages.splice(index, 1);
+      this.resume.languages.splice(index, 1);
       this.listLanguageChanged()
     }
   }
 
   listLanguageChanged(): void {
-    (<FormArray>this.resumeForm.controls["userLanguages"]).clear();
-    this.resume.userLanguages?.forEach(languages => {
-      (<FormArray>this.resumeForm.controls["userLanguages"])
+    (<FormArray>this.resumeForm.controls["languages"]).clear();
+    this.resume.languages?.forEach(languages => {
+      (<FormArray>this.resumeForm.controls["languages"])
         .push(new FormGroup({
           id: new FormControl(languages.id),
           languageId: new FormControl(languages.languageId),
-          name: new FormControl(languages.name),
+          languageName: new FormControl(languages.languageName),
           level: new FormControl(languages.level)
         }));
     })
@@ -144,17 +145,17 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
       if (language == null)
         return;
-      let languageDto = this.resume.userLanguages.find(e => e.name == language.name);
+      let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);
       if (languageDto != null)
         languageDto = language;
       else
-        this.resume.userLanguages.push(language);
+        this.resume.languages.push(language);
 
       this.listLanguageChanged()
     });
@@ -198,7 +199,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((education: EducationDto) => {
@@ -252,7 +253,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      data: {type: dialogType, data: data},
+      data: { type: dialogType, data: data },
     });
 
     dialogRef.afterClosed().subscribe((experience: ExperienceDto) => {

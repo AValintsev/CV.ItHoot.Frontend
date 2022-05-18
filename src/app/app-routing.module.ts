@@ -5,6 +5,9 @@ import {RoleGuard} from './guards/role.guard';
 
 const routes: Routes = [
    {
+    path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
+  },
+   {
     path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),
   },
    {
@@ -14,12 +17,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(m => m.MainPageModule),
+    path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(mod => mod.MainPageModule),
   },
 
-  {
-    path: '**', redirectTo:''
-  }
+  // {
+  //   path: '**', redirectTo:''
+  // }
 ];
 
 @NgModule({

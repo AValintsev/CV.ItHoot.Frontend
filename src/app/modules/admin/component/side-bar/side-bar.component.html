@@ -1,0 +1,68 @@
+<div class="side-bar">
+  <ol class="links">
+    <li class="title-section"><span>Home</span></li>
+    <li><a>
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a></li>
+    <mat-divider></mat-divider>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/admin/cv">
+        <mat-icon>groups</mat-icon>
+        <span>Cv list</span>
+      </a>
+    </li>
+    <li><a>
+      <mat-icon>sports_esports</mat-icon>
+      <span>Teams</span>
+    </a></li>
+    <li><a>
+      <mat-icon>verified_user</mat-icon>
+      <span> Resource planning</span>
+    </a></li>
+    <li><a>
+      <mat-icon>bookmark</mat-icon>
+      <span>Archive</span>
+    </a></li>
+    <mat-divider></mat-divider>
+    <li class="title-section"><span>Setting</span></li>
+    <li [routerLinkActive]="['active']">
+      <!-- <mat-expansion-panel [expanded]="settingOpened()"> -->
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>settings</mat-icon>
+            <span>Setting</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a routerLink="/admin/languages">
+          <mat-icon>language</mat-icon>
+          <span>Languages</span>
+        </a>
+        <a routerLink="/admin/skills">
+          <mat-icon>settings_accessibility</mat-icon>
+          <span>Skills</span>
+        </a>
+      </mat-expansion-panel>
+    </li>
+    <li>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>wallet</mat-icon>
+            <span>Teams setting</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a>
+          <mat-icon>sports_esports</mat-icon>
+          <span>Teams</span>
+        </a>
+      </mat-expansion-panel>
+    </li>
+    <li><a>
+      <mat-icon>military_tech</mat-icon>
+      <span>Roles</span>
+    </a></li>
+    <mat-divider></mat-divider>
+  </ol>
+</div>

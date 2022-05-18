@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="create-page">
-      <div class="left-bar">
-        <app-cv-create-left-bar [resumeForm]="resumeCreateForm" [resume]="resumeCreateDto"></app-cv-create-left-bar>
-        <div class="action">
-          <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid" (click)="submit(resumeCreateForm.value)">Create</button>
-        </div>
+  <div class="create-page">
+    <div class="left-bar">
+      <cv-cv-create-left-bar [resumeForm]="resumeCreateForm" [resume]="resumeCreateDto"></cv-cv-create-left-bar>
+      <div class="action">
+        <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
+          (click)="submit(resumeCreateForm.value)">Create</button>
       </div>
     </div>
-    <app-cv-template [resumeEditForm]="templateForm"></app-cv-template>
+  </div>
+  <cv-cv-template [resumeEditForm]="templateForm"></cv-cv-template>
 </div>
-

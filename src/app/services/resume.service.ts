@@ -7,9 +7,10 @@ import {ResumeDto} from "../models/resume-dto";
 import {environment} from '../../environments/environment';
 
 
+
 @Injectable({ providedIn: 'root' })
 export class ResumeService {
-  private routePrefix: string = 'cv'
+  private routePrefix: string = 'resume'
   public baseUrl: string = environment.apiUrl;
   constructor(private httpService: HttpInternalService,private http:HttpClient){}
 
@@ -32,20 +33,14 @@ export class ResumeService {
   public deleteResume(id:number):Observable<any>{
     return this.httpService.deleteRequest(this.routePrefix+`/${id}`);
   }
- public addPhoto(id:number,photo:any):Observable<any>{
-   const formData = new FormData();
+ public addPhoto(resumeId:number, image:Blob):Observable<any>{
 
-   // Store form name as "file" with file data
-   formData.append("file", photo, photo.name);
-   formData.append("cvId", id.toString());
+   const data = new FormData();
+   data.append('image', image);
+   return this.httpService.postForm(this.routePrefix+`/${resumeId}/image`, data);
 
-   // Make http post request over api
-   // with formData as req
-   return this.http.post(this.baseUrl+'files', formData)
-
-   // return this.httpService.postRequest<any>(this.baseUrl+'files',{cvId: id, file:photo})
  }
- public getPhoto(id:number):Observable<any>{
-   return this.httpService.getRequest<any>('files' + `/${id}`)
- }
-}
+ getPdf(id:number):Observable<any>{
+   return this.http.get<any>('https://cvbuilder-it.azurewebsites.net/api/v1/resume/pdf' + `/${id}`, 
+  //  { observe:'response', responseType:'text'}
+   )}}

@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IOrder} from 'src/app/models/cvEditorModels/EditorModels';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IOrder } from 'src/app/models/cvEditorModels/EditorModels';
 
 @Component({
-  selector: 'app-wrapper-cv-section',
+  selector: 'cv-wrapper-cv-section',
   templateUrl: './wrapper-cv-section.component.html',
   styleUrls: ['../../../../shared/styles/cvcreate.scss']
 })
@@ -19,11 +19,11 @@ export class WrapperCvSectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onButtonClick($event:Event){
+  onButtonClick($event: Event) {
     this.onAddClick.emit($event)
   }
 
-  movePosition(index: number, value: string ){
+  movePosition(index: number, value: string) {
 
   }
 }

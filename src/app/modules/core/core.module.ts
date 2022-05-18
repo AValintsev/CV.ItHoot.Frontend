@@ -3,9 +3,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 // import { HeaderComponent } from './header/header.component';
 // import { FooterComponent } from './footer/footer.component';
-import {AboutComponent} from './about/about.component';
+
 import {SharedModule} from '../../shared/shared.module';
-import {SideBarComponent} from './side-bar/side-bar.component';
+// import {SideBarComponent} from '../admin/admin-layout/side-bar.component';
 
 // import { AuthBarComponent } from './auth-bar/auth-bar.component';
 
@@ -13,8 +13,8 @@ import {SideBarComponent} from './side-bar/side-bar.component';
   declarations: [
     // HeaderComponent,
     // FooterComponent,
-    AboutComponent,
-    SideBarComponent,
+
+    // SideBarComponent,
     // AuthBarComponent
   ],
   imports: [
@@ -23,7 +23,7 @@ import {SideBarComponent} from './side-bar/side-bar.component';
     SharedModule
   ],
   exports: [
-    SideBarComponent,
+    // SideBarComponent,
     // HeaderComponent,
     // FooterComponent
   ]

@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Skill} from "../../../../models/skill";
+import { Component, Input, OnInit } from '@angular/core';
+import { Skill } from "../../../../models/skill";
 
 @Component({
-  selector: 'app-skill',
+  selector: 'cv-skill',
   template: `
      <div class="left-item-title">
           <span>SKILLS</span>
@@ -18,7 +18,7 @@ import {Skill} from "../../../../models/skill";
   styleUrls: ['./skill.component.scss']
 })
 export class SkillComponent implements OnInit {
-  @Input() skills:Skill[]=[];
+  @Input() skills: Skill[] = [];
 
   constructor() { }
 

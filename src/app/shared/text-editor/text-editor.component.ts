@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AngularEditorConfig} from '@kolkov/angular-editor';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
-  selector: 'app-text-editor',
+  selector: 'cv-text-editor',
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.scss']
 })
@@ -28,10 +28,10 @@ export class TextEditorComponent implements OnInit {
     defaultFontName: '',
     defaultFontSize: '',
     fonts: [
-      {class: 'arial', name: 'Arial'},
-      {class: 'times-new-roman', name: 'Times New Roman'},
-      {class: 'calibri', name: 'Calibri'},
-      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
     ],
     customClasses: [
       {
@@ -58,7 +58,7 @@ export class TextEditorComponent implements OnInit {
 
   }
 
-  changeHtmlContent($event:any){
+  changeHtmlContent($event: any) {
     this.contentChange.emit($event)
   }
 }
