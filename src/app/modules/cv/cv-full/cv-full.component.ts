@@ -48,30 +48,31 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.route.snapshot.params['id'])
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.userEventService.setUserId(id)
-      this.resumeService.getAllResume().subscribe({
-        next: next => {
-          if (next[0]) {
-            this.resumeService.getResumeById(next[0].id).pipe(
-              catchError(error => {
-                if (this.accountService.getStoreRole() === Users[2]) {
-                  if (error instanceof HttpErrorResponse && error.status === 400) {
-                    this.router.navigate([`/home/cv/create`])
-                  }
-                }
-                return of(error)
-              })
-            ).subscribe(resume => {
-              this.cv = resume;
-            });
-          } else {
-            this.router.navigate([`/home/cv/create`])
-          }
+      this.resumeService.getResumeById(id).subscribe(resume=>this.cv = resume);
+      // this.userEventService.setUserId(id)
+      // this.resumeService.getAllResume().subscribe({
+      //   next: next => {
+      //     if (next[0]) {
+      //       this.resumeService.getResumeById(next[0].id).pipe(
+      //         catchError(error => {
+      //           if (this.accountService.getStoreRole() === Users[2]) {
+      //             if (error instanceof HttpErrorResponse && error.status === 400) {
+      //               this.router.navigate([`/home/cv/create`])
+      //             }
+      //           }
+      //           return of(error)
+      //         })
+      //       ).subscribe(resume => {
+      //         this.cv = resume;
+      //       });
+      //     } else {
+      //       this.router.navigate([`/home/cv/create`])
+      //     }
 
-        },
-        error: error => { }
-      }
-      )
+        // },
+        // error: error => { }
+      // }
+      // )
 
     });
   }
