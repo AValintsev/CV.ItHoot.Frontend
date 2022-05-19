@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume-dto";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ResumeService} from "../../../services/resume.service";
-import {SnackBarService} from "../../../services/snack-bar.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {map} from "rxjs/operators";
-import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
-import {AccountService} from 'src/app/services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { ResumeDto } from "../../../models/resume-dto";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ResumeService } from "../../../services/resume.service";
+import { SnackBarService } from "../../../services/snack-bar.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { map } from "rxjs/operators";
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { AccountService } from 'src/app/services/account.service';
 import jsPDF from "jspdf";
 
 @Component({
-  selector: 'app-cv-edit-page',
+  selector: 'cv-cv-edit-page',
   templateUrl: './cv-edit-page.component.html',
   styleUrls: ['./cv-edit-page.component.scss']
 })
@@ -22,7 +22,7 @@ export class CvEditPageComponent implements OnInit {
   faAt = faAt;
   resumeId: number = 0;
   resumeEditDto: ResumeDto = {} as ResumeDto;
-  templateForm!:ResumeDto
+  templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
 
@@ -175,7 +175,7 @@ export class CvEditPageComponent implements OnInit {
     })
   }
 
-  saveAsPdf(){
+  saveAsPdf() {
     {
       // let DATA: any = document.getElementById('resume-templete');
       // html2canvas(DATA).then((canvas) => {
@@ -191,8 +191,8 @@ export class CvEditPageComponent implements OnInit {
 
       let data = document.getElementById('cv-template');
       var pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.html(data!,{
-        callback: ()=> pdf.save('DOC.pdf')
+      pdf.html(data!, {
+        callback: () => pdf.save('DOC.pdf')
       })
       // html2canvas(data!).then(canvas => {
       //   const contentDataURL = canvas.toDataURL('image/png')

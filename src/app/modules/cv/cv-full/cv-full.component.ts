@@ -1,21 +1,21 @@
-import {AccountService} from 'src/app/services/account.service';
-import {HttpErrorResponse} from '@angular/common/http';
-import {Component, Input, OnInit} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
-import {CV} from 'src/app/models/cv';
+import { AccountService } from 'src/app/services/account.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CV } from 'src/app/models/cv';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import {ResumeService} from 'src/app/services/resume.service';
-import {catchError, map} from 'rxjs/operators';
-import {ResumeDto} from 'src/app/models/resume-dto';
-import {UserEventService} from 'src/app/services/userEvent.service';
-import {Users} from 'src/app/models/users-type';
+import { ResumeService } from 'src/app/services/resume.service';
+import { catchError, map } from 'rxjs/operators';
+import { ResumeDto } from 'src/app/models/resume-dto';
+import { UserEventService } from 'src/app/services/userEvent.service';
+import { Users } from 'src/app/models/users-type';
 
 // import objectContaining = jasmine.objectContaining;
 
 @Component({
-  selector: 'app-cv-full',
+  selector: 'cv-cv-full',
   templateUrl: './cv-full.component.html',
   styleUrls: [
     '../../../shared/styles/cvfull.scss',
@@ -48,30 +48,31 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.route.snapshot.params['id'])
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.userEventService.setUserId(id)
-      this.resumeService.getAllResume().subscribe({
-        next: next => {
-          if (next[0]){
-            this.resumeService.getResumeById(next[0].id).pipe(
-              catchError(error => {
-                if (this.accountService.getStoreRole() === Users[2]) {
-                  if (error instanceof HttpErrorResponse && error.status === 400) {
-                    this.router.navigate([`/home/cv/create`])
-                  }
-                }
-                return of(error)
-              })
-            ).subscribe(resume => {
-              this.cv = resume;
-            });
-          }else{
-            this.router.navigate([`/home/cv/create`])
-          }
-        
-        },
-        error: error => { }
-      }
-      )
+      this.resumeService.getResumeById(id).subscribe(resume=>this.cv = resume);
+      // this.userEventService.setUserId(id)
+      // this.resumeService.getAllResume().subscribe({
+      //   next: next => {
+      //     if (next[0]) {
+      //       this.resumeService.getResumeById(next[0].id).pipe(
+      //         catchError(error => {
+      //           if (this.accountService.getStoreRole() === Users[2]) {
+      //             if (error instanceof HttpErrorResponse && error.status === 400) {
+      //               this.router.navigate([`/home/cv/create`])
+      //             }
+      //           }
+      //           return of(error)
+      //         })
+      //       ).subscribe(resume => {
+      //         this.cv = resume;
+      //       });
+      //     } else {
+      //       this.router.navigate([`/home/cv/create`])
+      //     }
+
+        // },
+        // error: error => { }
+      // }
+      // )
 
     });
   }

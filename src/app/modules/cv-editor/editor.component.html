@@ -1,61 +1,52 @@
-
-  <div class="main-block">
-    <div class="container">
-        <div class="form-main">
-          <div class="form-main-left">
-          </div>
-
-          <div class="form-main-right">
-            <div class="right-items">
-
-              <app-wrapper-cv-section [title]="'About me'" [singleObject]="true">
-                <app-about-me [aboutMy]="(cv$ | async)?.aboutMe"></app-about-me>
-              </app-wrapper-cv-section>
-
-              <app-personal-data>
-                [cv]="(cv$ | async)"
-              </app-personal-data>
-
-              <ng-container *ngIf="(skillLevels$ | async)">
-                <app-wrapper-cv-section [title]="'Skill'" (onAddClick)="addNewSkill()">
-                  <app-skill *ngFor="let skill of (cv$ | async)?.skills; index as i"
-                    [cvSkill]="skill"
-                    (upPosition)="skillPutUpInOrder(i)"
-                    (lowerPosition)="skillDownInOrder(i)">
-                  </app-skill>
-                </app-wrapper-cv-section>
-              </ng-container>
-
-              <app-wrapper-cv-section #wrapper [arr]="(cv$ | async)?.skills" [title]="'Education'" (onAddClick)="addNewEducation()">
-                <app-education *ngFor="let education of (cv$ | async)?.educations; index as i"
-                  [index]="i"
-                  [education]="education"
-                  (upPosition)="upEducationPositionInOrder()"
-                  (lowerPosition)="lowerEducationPositionInOrder()">
-                </app-education>
-              </app-wrapper-cv-section>
-
-              <app-wrapper-cv-section [title]="'Experience'" (onAddClick)="addNewExperience()">
-                <app-experience *ngFor="let experience of (cv$  | async)?.experiences; index as i"
-                  [index]="i"
-                  [experience]="experience"
-                  (upPosition)="upExperiencePositionInOrder()"
-                  (lowerPosition)="lowerExperiencePositionInOrder()">
-                </app-experience>
-              </app-wrapper-cv-section>
-
-              <ng-container *ngIf="(skillLevels$ | async)">
-                <app-wrapper-cv-section [title]="'Language'" (onAddClick)="addNewLanguage()">
-                  <app-language *ngFor="let language of (cv$  | async)?.userLanguages index as i"
-                    [cvLanguage]="language"
-                    (upPosition)="languagePutUpInOrder(i)"
-                    (lowerPosition)="languageLowerDownInOrder(i)"
-                  ></app-language>
-                </app-wrapper-cv-section>
-              </ng-container>
-            </div>
-          </div>
-          <button (click)="click1()">my button</button>
+<div class="main-block">
+  <div class="container">
+    <div class="form-main">
+      <div class="form-main-left">
       </div>
+
+      <div class="form-main-right">
+        <div class="right-items">
+
+          <cv-wrapper-cv-section [title]="'About me'" [singleObject]="true">
+            <cv-about-me [aboutMy]="(cv$ | async)?.aboutMe"></cv-about-me>
+          </cv-wrapper-cv-section>
+
+          <cv-personal-data>
+            [cv]="(cv$ | async)"
+          </cv-personal-data>
+
+          <ng-container *ngIf="(skillLevels$ | async)">
+            <cv-wrapper-cv-section [title]="'Skill'" (onAddClick)="addNewSkill()">
+              <cv-skill *ngFor="let skill of (cv$ | async)?.skills; index as i" [cvSkill]="skill"
+                (upPosition)="skillPutUpInOrder(i)" (lowerPosition)="skillDownInOrder(i)">
+              </cv-skill>
+            </cv-wrapper-cv-section>
+          </ng-container>
+
+          <cv-wrapper-cv-section #wrapper [arr]="(cv$ | async)?.skills" [title]="'Education'"
+            (onAddClick)="addNewEducation()">
+            <cv-education *ngFor="let education of (cv$ | async)?.educations; index as i" [index]="i"
+              [education]="education" (upPosition)="upEducationPositionInOrder()"
+              (lowerPosition)="lowerEducationPositionInOrder()">
+            </cv-education>
+          </cv-wrapper-cv-section>
+
+          <cv-wrapper-cv-section [title]="'Experience'" (onAddClick)="addNewExperience()">
+            <cv-experience *ngFor="let experience of (cv$  | async)?.experiences; index as i" [index]="i"
+              [experience]="experience" (upPosition)="upExperiencePositionInOrder()"
+              (lowerPosition)="lowerExperiencePositionInOrder()">
+            </cv-experience>
+          </cv-wrapper-cv-section>
+
+          <ng-container *ngIf="(skillLevels$ | async)">
+            <cv-wrapper-cv-section [title]="'Language'" (onAddClick)="addNewLanguage()">
+              <cv-language *ngFor="let language of (cv$  | async)?.userLanguages index as i" [cvLanguage]="language"
+                (upPosition)="languagePutUpInOrder(i)" (lowerPosition)="languageLowerDownInOrder(i)"></cv-language>
+            </cv-wrapper-cv-section>
+          </ng-container>
+        </div>
+      </div>
+      <button (click)="click1()">my button</button>
     </div>
   </div>
+</div>

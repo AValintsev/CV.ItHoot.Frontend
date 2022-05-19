@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {CvRoutingModule} from './cv-routing.module';
 import {CvFormComponent} from './cv-form/cv-form.component';
 import {CvEditComponent} from './cv-edit/cv-edit.component';
-import {CvListComponent} from './cv-list/cv-list.component';
 import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
 import {CvCreateComponent} from './cv-create/cv-create.component';
@@ -40,7 +39,6 @@ import {CoreModule} from "../core/core.module";
   declarations: [
     CvEditComponent,
     CvFullComponent,
-    CvListComponent,
     CvSmallComponent,
     CvCreateComponent,
     CvFormComponent,

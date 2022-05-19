@@ -76,6 +76,10 @@ export class HttpInternalService {
     });
   }
 
+  public getFile(url:string):Observable<Blob>{
+    return this.http.get(this.buildUrl(url), {responseType: 'blob'})
+  }
+
   public buildUrl(url: string): string {
     if (url.startsWith('http://') || url.startsWith('https://')) {
       return url;

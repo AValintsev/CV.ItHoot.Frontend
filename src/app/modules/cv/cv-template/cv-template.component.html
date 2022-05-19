@@ -1,4 +1,4 @@
-<div style="max-width: 1400px;margin: 0 auto;"  class="wrapper cv">
+<div   class="wrapper cv">
 	<div class="row parent-row">
 		<div class="col left">
 			<div class="left-inner">
@@ -24,7 +24,8 @@
 							{{getFormControlValue('aboutMe')}}
 						</div>
 					</div>
-					<div *ngIf="getFormControlValue('country')||getFormControlValue('city')||getFormControlValue('street')" class="contact">
+					<div *ngIf="getFormControlValue('country')||getFormControlValue('city')||getFormControlValue('street')"
+						class="contact">
 						<div class="contact__title blue-line">
 							<span class=" title-white">CONTACT</span>
 						</div>
@@ -80,7 +81,7 @@
 							<div class="contact__content-inner skills-inner">
 									<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
 										<mat-progress-spinner [color]="'red'" [value]="skill.level*33.333" [diameter]="50"
-											[strokeWidth]="3"></mat-progress-spinner>
+											[strokeWidth]="5"></mat-progress-spinner>
 										<div class="spiner-skill">
 											{{skill.skillName}}
 										</div>
@@ -96,7 +97,7 @@
 							<div class="contact__content-inner skills-inner">
 									<div *ngFor="let language of getFormControlValue('languages')" class="spiner">
 										<mat-progress-spinner [color]="'red'" [value]="language.level*33.333" [diameter]="50"
-											[strokeWidth]="3"></mat-progress-spinner>
+											[strokeWidth]="5"></mat-progress-spinner>
 										<div class="spiner-skill">
 											{{language.languageName}}
 										</div>

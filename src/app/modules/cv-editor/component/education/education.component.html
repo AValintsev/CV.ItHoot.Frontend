@@ -29,11 +29,17 @@
       </mat-form-field>
       <div>
         <mat-label>More about: </mat-label>
-        <app-text-editor [(content)]="education.description"></app-text-editor>
+        <cv-text-editor [(content)]="education.description"></cv-text-editor>
       </div>
     </div>
   </div>
-  <a (click)="onUpPosition()"> <mat-icon>expand_less</mat-icon></a>
-  <a (click)="onLowerPosition()"> <mat-icon>expand_more</mat-icon></a>
-  <a (click)="onUpPosition()"><mat-icon>delete_forever</mat-icon></a>
+  <a (click)="onUpPosition()">
+    <mat-icon>expand_less</mat-icon>
+  </a>
+  <a (click)="onLowerPosition()">
+    <mat-icon>expand_more</mat-icon>
+  </a>
+  <a (click)="onUpPosition()">
+    <mat-icon>delete_forever</mat-icon>
+  </a>
 </div>
