@@ -12,10 +12,12 @@
         <span>Resume list</span>
       </a>
     </li>
-    <li><a>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/admin/teams">
       <mat-icon>sports_esports</mat-icon>
       <span>Teams</span>
-    </a></li>
+    </a>
+    </li>
     <li><a>
       <mat-icon>verified_user</mat-icon>
       <span> Resource planning</span>
