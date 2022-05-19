@@ -26,7 +26,11 @@ const routs: Routes = [
 			{
 				path: 'skills',
 				loadChildren: () => import('./page/skill/skill.module').then(mod => mod.SkillModule)
-			}
+			},
+      {
+        path: 'teams',
+        loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
+      }
 		]
 	}
 
