@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AdminCvListComponent } from './admin-cv-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from 'src/app/modules/material/material.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -36,7 +35,6 @@ const routes: Routes = [
 	declarations:[AdminCvListComponent],
 	imports: [
 		CommonModule,
-		MaterialModule,
 		MatIconModule,
 		MatDividerModule,
 		MatExpansionModule,

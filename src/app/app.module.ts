@@ -1,4 +1,3 @@
-import {CoreModule} from './modules/core/core.module';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -11,7 +10,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {RouterModule} from '@angular/router';
-import {MaterialModule} from './modules/material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
 
 registerLocaleData(en);
@@ -22,12 +20,10 @@ registerLocaleData(en);
   ],
   imports: [
     MatNativeDateModule,
-    MaterialModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CoreModule,
     RouterModule,
   ],
   providers: [

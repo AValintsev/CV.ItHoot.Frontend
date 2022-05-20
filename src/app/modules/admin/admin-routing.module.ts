@@ -1,4 +1,3 @@
-import { MaterialModule } from './../material/material.module';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -36,7 +35,6 @@ const routs: Routes = [
 	imports: [
 
 		CommonModule,
-		MaterialModule,
 		MatIconModule,
 		MatDividerModule,
 		MatExpansionModule,

@@ -4,7 +4,6 @@ import {CommonModule} from '@angular/common';
 // import { HeaderComponent } from './header/header.component';
 // import { FooterComponent } from './footer/footer.component';
 
-import {SharedModule} from '../../shared/shared.module';
 // import {SideBarComponent} from '../admin/admin-layout/side-bar.component';
 
 // import { AuthBarComponent } from './auth-bar/auth-bar.component';
@@ -20,7 +19,6 @@ import {SharedModule} from '../../shared/shared.module';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
   ],
   exports: [
     // SideBarComponent,

@@ -31,7 +31,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {CvTemplateModule} from './cv-template/cv-template.module';
-import {SharedModule} from "../../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 
 
@@ -74,7 +73,6 @@ import {CoreModule} from "../core/core.module";
         MatInputModule,
         MatButtonModule,
         CvTemplateModule,
-        SharedModule,
         CoreModule
     ]
 })

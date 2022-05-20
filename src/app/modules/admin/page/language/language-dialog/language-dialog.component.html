@@ -15,12 +15,12 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <mat-button-toggle-group [(ngModel)]="language.level">
+    <mat-button-togg1le-group [(ngModel)]="language.level">
       <mat-button-toggle [value]="1">Basic</mat-button-toggle>
       <mat-button-toggle [value]="2">Intermediate</mat-button-toggle>
       <mat-button-toggle [value]="3">Advanced</mat-button-toggle>
       <mat-button-toggle [value]="4">Fluent</mat-button-toggle>
-    </mat-button-toggle-group>
+    </mat-button-togg1le-group>
   </div>
   <div mat-dialog-actions class="actions">
     <button mat-button [mat-dialog-close]="language" cdkFocusInitial [disabled]="!canCreate()"

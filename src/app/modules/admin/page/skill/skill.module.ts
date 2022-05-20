@@ -8,7 +8,6 @@ import {SkillRoutingModule} from "./skill-routing.module";
   ],
   imports: [
     SkillRoutingModule,
-    // CoreModule,
   ]
 })
 export class SkillModule {
