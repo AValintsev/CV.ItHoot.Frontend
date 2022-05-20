@@ -36,28 +36,12 @@ export class CvLeftBarComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     this.listSkillsChanged();
     this.listLanguageChanged();
     this.experienceListChanged();
     this.educationListChanged();
   }
-
-  // addPicture(picture: File) {
-  //   this.resumeService.addPhoto(this.resume.id,picture).subscribe({
-  //     next: next => console.log(next),
-  //     error: error => console.log(error)
-  //   })
-  // }
-
-  // getPhoto() {
-  //   this.resumeService.getPhoto(3).subscribe({
-  //     next: next => console.log(next),
-  //     error: error => console.log(error)
-  //   })
-  // }
-
 
   removeSkill(skill: SkillDto): void {
     const index = this.resume.skills.indexOf(skill);

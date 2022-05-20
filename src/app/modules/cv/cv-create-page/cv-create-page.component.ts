@@ -28,7 +28,7 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateDto.experiences = [];
     this.resumeCreateDto.skills = [];
     this.resumeCreateDto.educations = [];
-    this.resumeCreateDto.userLanguages = [];
+    this.resumeCreateDto.languages = [];
     this.changeFormDate()
   }
   private changeFormDate() {

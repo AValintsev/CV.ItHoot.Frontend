@@ -1,20 +1,18 @@
-.skill-dialog {
+.skill-dialog{
   display: grid;
-
-  .content {
+  .content{
     display: grid;
 
-    mat-button-toggle-group {
+    mat-button-toggle-group{
       justify-content: center;
 
-      mat-button-toggle {
+      mat-button-toggle{
         width: 100%;
       }
 
     }
   }
-
-  .actions {
+  .actions{
     justify-content: end;
   }
 }
