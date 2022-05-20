@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {DatePipe, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -29,7 +28,6 @@ registerLocaleData(en);
   ],
   providers: [
     {provide:DatePipe},
-    { provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

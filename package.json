@@ -25,9 +25,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@kolkov/angular-editor": "^1.2.0",
     "file-saver": "^2.0.5",
-    "jspdf": "^2.5.1",
-    "ng-zorro-antd": "^12.0.1",
-    "ngx-quill": "^14.3.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
