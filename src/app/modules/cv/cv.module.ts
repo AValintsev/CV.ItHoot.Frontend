@@ -5,7 +5,6 @@ import {CvFormComponent} from './cv-form/cv-form.component';
 import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AngularEditorModule} from '@kolkov/angular-editor';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -48,7 +47,6 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
         CvRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        AngularEditorModule,
         MatFormFieldModule,
         MatCardModule,
         MatChipsModule,
