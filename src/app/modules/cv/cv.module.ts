@@ -2,14 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CvRoutingModule} from './cv-routing.module';
 import {CvFormComponent} from './cv-form/cv-form.component';
-import {CvEditComponent} from './cv-edit/cv-edit.component';
 import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
-import {CvCreateComponent} from './cv-create/cv-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-import {CvTestComponent} from './cv-test/cv-test.component';
-import {SkillComponent} from './haredCv/skill/skill.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -31,19 +27,13 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {CvTemplateModule} from './cv-template/cv-template.module';
-import {SharedModule} from "../../shared/shared.module";
-import {CoreModule} from "../core/core.module";
 
 
 @NgModule({
   declarations: [
-    CvEditComponent,
     CvFullComponent,
     CvSmallComponent,
-    CvCreateComponent,
     CvFormComponent,
-    CvTestComponent,
-    SkillComponent,
     CvCreatePageComponent,
     CvLeftBarComponent,
     SkillDialog,
@@ -74,8 +64,6 @@ import {CoreModule} from "../core/core.module";
         MatInputModule,
         MatButtonModule,
         CvTemplateModule,
-        SharedModule,
-        CoreModule
     ]
 })
 export class CvModule {

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { MatDialog } from "@angular/material/dialog";
-import { DialogType } from 'src/app/models/dialog-type';
-import { LanguageTestDto } from 'src/app/models/resume-dto';
-import { LanguageService } from 'src/app/services/language.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogType} from 'src/app/models/dialog-type';
+import {LanguageTestDto} from 'src/app/models/resume-dto';
+import {LanguageService} from 'src/app/services/language.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
-import { LanguageDialogComponent } from "../language-dialog/language-dialog.component";
+import {LanguageDialogComponent} from "../language-dialog/language-dialog.component";
 
 
 @Component({

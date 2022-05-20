@@ -1,11 +1,11 @@
-import { DialogType } from './../../../../../models/dialog-type';
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
-import { LanguageTestDto, UserLanguageDto } from 'src/app/models/resume-dto';
-import { LanguageService } from 'src/app/services/language.service';
+import {DialogType} from '../../../../../models/dialog-type';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {FormControl} from "@angular/forms";
+import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
+import {LanguageTestDto, UserLanguageDto} from 'src/app/models/resume-dto';
+import {LanguageService} from 'src/app/services/language.service';
 
 
 @Component({

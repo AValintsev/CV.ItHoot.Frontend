@@ -1,13 +1,13 @@
-import { ResumeService } from 'src/app/services/resume.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { SkillDialog } from "../skill-dialog/skill-dialog.component";
-import { EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto } from "../../../models/resume-dto";
-import { DialogType } from "../../../models/dialog-type";
-import { LanguageDialog } from "../language-dialog/language-dialog.component";
-import { EducationDialog } from "../education-dialog/education-dialog.component";
-import { ExperienceDialog } from "../experience-dialog/experience-dialog.component";
+import {ResumeService} from 'src/app/services/resume.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {SkillDialog} from "../skill-dialog/skill-dialog.component";
+import {EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto} from "../../../models/resume-dto";
+import {DialogType} from "../../../models/dialog-type";
+import {LanguageDialog} from "../language-dialog/language-dialog.component";
+import {EducationDialog} from "../education-dialog/education-dialog.component";
+import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
 
 
 @Component({

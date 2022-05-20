@@ -1,13 +1,10 @@
-import { CvFullComponent } from './../../cv/cv-full/cv-full.component';
-import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users-type';
-import { UserEventService } from 'src/app/services/userEvent.service';
-import {saveAs} from "file-saver";
-import {map} from "rxjs/operators";
-import {ResumeService} from "../../../services/resume.service";
+import {CvFullComponent} from '../../cv/cv-full/cv-full.component';
+import {BehaviorSubject} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {UserEventService} from 'src/app/services/userEvent.service';
 
 @Component({
   selector: 'cv-header',
@@ -22,10 +19,7 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userEventService: UserEventService,
     public accountService: AccountService,
-    private route: ActivatedRoute,
-    public router:Router,
-    public resumeService:ResumeService,
-    private cvFullComponent: CvFullComponent
+    private router: Router,
 
   ) { }
 
@@ -54,12 +48,5 @@ export class HeaderComponent implements OnInit {
     }
     this.router.navigate(['/home/cv/edit', this.usersId$.value])
   }
-  savePdf() {
-    this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getPdf(id).subscribe(response => {
-        saveAs(response, `resume.pdf`);
-      });
-    });
 
-  }
 }
