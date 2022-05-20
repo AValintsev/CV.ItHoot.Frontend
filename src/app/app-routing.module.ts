@@ -19,10 +19,6 @@ const routes: Routes = [
   {
     path: 'home', loadChildren: () => import('./modules/main-page/main-page.module').then(mod => mod.MainPageModule),
   },
-
-  // {
-  //   path: '**', redirectTo:''
-  // }
 ];
 
 @NgModule({

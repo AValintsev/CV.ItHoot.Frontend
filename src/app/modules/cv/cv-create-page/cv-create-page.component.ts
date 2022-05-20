@@ -1,11 +1,11 @@
-import { AccountService } from '../../../services/account.service';
+import {AccountService} from '../../../services/account.service';
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume-dto";
-import { Users } from 'src/app/models/users-type';
+import {Users} from 'src/app/models/users-type';
 
 @Component({
   selector: 'cv-cv-create-page',

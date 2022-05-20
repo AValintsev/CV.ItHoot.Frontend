@@ -1,11 +1,11 @@
-import { SkillService } from './../../../../../services/skill.service';
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
-import { SkillDto, SkillTestDto } from 'src/app/models/resume-dto';
-import { DialogType } from 'src/app/models/dialog-type';
+import {SkillService} from '../../../../../services/skill.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {FormControl} from "@angular/forms";
+import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
+import {SkillDto, SkillTestDto} from 'src/app/models/resume-dto';
+import {DialogType} from 'src/app/models/dialog-type';
 
 
 @Component({
@@ -43,7 +43,7 @@ export class SkillDialogComponent implements OnInit {
     return this.skillService.searchSkill(val).pipe(map(data => {
       if (data.length === 0) {
         data = [{ id: 0, name: val }]
-      };
+      }
       return data;
     }));
   }
@@ -55,8 +55,7 @@ export class SkillDialogComponent implements OnInit {
   }
 
   canCreate(): boolean {
-    if (this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined)
-      return false;
-    return true;
+    return !(this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined);
+
   }
 }

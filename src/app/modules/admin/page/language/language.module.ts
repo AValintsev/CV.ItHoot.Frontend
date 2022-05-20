@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { LanguageRouterModule } from './language-routing.module';
+import {NgModule} from '@angular/core';
+import {LanguageRouterModule} from './language-routing.module';
 
 @NgModule({
 	imports: [LanguageRouterModule]
