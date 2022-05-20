@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { MatDialog } from "@angular/material/dialog";
-import { DialogType } from 'src/app/models/dialog-type';
-import { SkillDto, SkillTestDto } from 'src/app/models/resume-dto';
-import { SkillService } from 'src/app/services/skill.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { SkillDialogComponent } from "../skill-dialog/skill-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogType} from 'src/app/models/dialog-type';
+import {SkillTestDto} from 'src/app/models/resume-dto';
+import {SkillService} from 'src/app/services/skill.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {SkillDialogComponent} from "../skill-dialog/skill-dialog.component";
 
 
 @Component({

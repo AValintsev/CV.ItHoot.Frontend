@@ -1,0 +1,49 @@
+<div class="team-page">
+  <!-- <cv-side-bar></cv-side-bar> -->
+  <div class="team-list">
+    <div class="table-page">
+      <div class="title-section">
+        <h1>Team list</h1>
+        <button mat-raised-button>
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let team">{{team.id}}.</td>
+        </ng-container>
+
+        <ng-container matColumnDef="teamName">
+          <th mat-header-cell *matHeaderCellDef>Team Name</th>
+          <td mat-cell *matCellDef="let team"> {{team.teamName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="countResumes">
+          <th mat-header-cell *matHeaderCellDef>Count Resumes</th>
+          <td mat-cell *matCellDef="let team"> {{team.countResumes}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="statusTeam">
+          <th mat-header-cell *matHeaderCellDef>Status Team</th>
+          <td mat-cell *matCellDef="let team"> {{team.statusTeam}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let team">
+            <div class="action-wrapper">
+              <button class="edit" >Edit</button>
+              <button class="delete">Delete</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>
