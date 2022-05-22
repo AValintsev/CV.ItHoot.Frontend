@@ -16,7 +16,7 @@ const routs: Routes = [
 	{
 		path: '', component: AdminLayoutComponent, children: [
 			{
-				path: 'cv',
+				path: 'resume',
 				loadChildren: () => import('./page/cv-list/admin-cv-list.module').then(mod => mod.AdminCvListModule)
 			},
 			{
@@ -29,7 +29,7 @@ const routs: Routes = [
 			},
 			{
 				path: '',
-				redirectTo: 'cv',
+				redirectTo: 'resume',
 				pathMatch: 'full'
 			}
 		]
@@ -39,7 +39,7 @@ const routs: Routes = [
 
 @NgModule({
 	imports: [
-		
+
 		CommonModule,
 		MaterialModule,
 		MatIconModule,

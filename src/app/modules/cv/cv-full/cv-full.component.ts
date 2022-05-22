@@ -48,26 +48,16 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.userEventService.setUserId(id)
-     
-    
-      
-            this.resumeService.getResumeById(id).pipe(
-              catchError(error => {
-                if (this.accountService.getStoreRole() === Users[2]) {
-                  if (error instanceof HttpErrorResponse && error.status === 400) {
-                    this.router.navigate([`/home/cv/create`])
-                  }
-                }
-                return of(error)
-              })
-            ).subscribe(resume => {
-              this.cv = resume;
-            });
-          
-
-      
-      
+      this.resumeService.getResumeById(12).subscribe(
+        {
+          next:resume=>{
+            console.log('id', id)
+            console.log('resume',resume)
+            this.cv = resume
+          },
+          error:error=>console.log(error)
+        }
+        );
 
     });
   }

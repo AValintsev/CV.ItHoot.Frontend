@@ -5,6 +5,7 @@ import { CvCard } from 'src/app/models/cv-card';
 import { Observable } from "rxjs";
 import { UserAuthData } from "../../../models/userAuthData";
 import { Users } from "../../../models/users-type";
+import { ResumeService } from 'src/app/services/resume.service';
 
 @Component({
   selector: 'cv-cv-small',
@@ -15,17 +16,24 @@ export class CvSmallComponent implements OnInit {
   @Input() resume!: SmallResumeDto;
   authData$!: Observable<UserAuthData>;
   Users = Users
-  constructor(private accountService: AccountService) {
+  constructor(
+    private accountService: AccountService,
+    private resumeService: ResumeService
+    ) {
     // this.authData$ = this.authService.UserValue2();
   }
 
   ngOnInit(): void {
- console.log(this.resume);
  
   }
 
   checkRole() {
     return this.accountService.getStoreRole()
   }
-  
+  deleteResume(id:number){
+    this.resumeService.deleteResume(id).subscribe({
+      next:response=>console.log(response),
+      error:error=>console.log(error),
+    })
+  }
 }

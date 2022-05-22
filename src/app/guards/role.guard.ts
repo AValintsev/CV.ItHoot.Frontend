@@ -16,10 +16,10 @@ export class RoleGuard implements CanActivate {
 		switch (this.accountService.getStoreRole()) {
 			case Users[0]:
 			case Users[1]:
-				this.router.navigate(['/home/cv']);
+				this.router.navigate(['/admin']);
 				break;
 			case Users[2]:
-				this.router.navigate(['/home/cv/',this.accountService.getUserId()]);
+				this.router.navigate(['/home/cv/user-list']);
 				break;
 			case Users[3]:
 				this.router.navigate(['/home/cv/']);

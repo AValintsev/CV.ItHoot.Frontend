@@ -20,7 +20,9 @@ export class SkillDialog implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<SkillTestDto[]>;
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+  }
 
 
   constructor(
@@ -29,6 +31,7 @@ export class SkillDialog implements OnInit {
     this.skill = data.data;
     this.typeDialog = data.type;
     this.myControl.setValue(this.skill.skillName)
+    
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(400),

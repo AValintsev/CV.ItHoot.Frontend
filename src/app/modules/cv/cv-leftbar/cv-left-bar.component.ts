@@ -44,21 +44,6 @@ export class CvLeftBarComponent implements OnInit {
 		this.educationListChanged();
 	}
 
-	// addPicture(picture: File) {
-	//   this.resumeService.addPhoto(this.resume.id,picture).subscribe({
-	//     next: next => console.log(next),
-	//     error: error => console.log(error)
-	//   })
-	// }
-
-	// getPhoto() {
-	//   this.resumeService.getPhoto(3).subscribe({
-	//     next: next => console.log(next),
-	//     error: error => console.log(error)
-	//   })
-	// }
-
-
 	removeSkill(skill: SkillDto): void {
 		const index = this.resume.skills.indexOf(skill);
 		if (index >= 0) {
@@ -104,6 +89,7 @@ export class CvLeftBarComponent implements OnInit {
 			let skillDto = this.resume.skills.find(e => e.skillName == skill.skillName);
 			if (skillDto != null)
 				skillDto = skill;
+				
 			else
 				this.resume.skills.push(skill);
 			this.listSkillsChanged()
@@ -149,6 +135,8 @@ export class CvLeftBarComponent implements OnInit {
 		});
 
 		dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
+			console.log('language', language)
+			console.log('this.resume.languages', this.resume)
 			if (language == null)
 				return;
 			let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);

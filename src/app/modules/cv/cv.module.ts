@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvRoutingModule } from './cv-routing.module';
 import { CvFormComponent } from './cv-form/cv-form.component';
-import { CvEditComponent } from './cv-edit/cv-edit.component';
 import { CvFullComponent } from './cv-full/cv-full.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -33,11 +32,11 @@ import { CvTemplateModule } from './cv-template/cv-template.module';
 import { SharedModule } from "../../shared/shared.module";
 import { CoreModule } from "../core/core.module";
 import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
+import { CvDublicatePageComponent } from './cv-dublicate-page/cv-dublicate-page.component';
 
 
 @NgModule({
   declarations: [
-    CvEditComponent,
     CvFullComponent,
     CvFormComponent,
     CvTestComponent,
@@ -50,6 +49,7 @@ import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
+    CvDublicatePageComponent,
   ],
   imports: [
     CommonModule,

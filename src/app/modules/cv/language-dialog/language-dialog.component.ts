@@ -41,6 +41,11 @@ export class LanguageDialog implements OnInit {
   }
   filter(val: string): Observable<LanguageTestDto[]> {
     return this.languageService.searchLanguage(val).pipe(map(data => {
+      console.log(data)
+      if (!data.length){
+        console.log(data.length)
+      return [{id:0,name:val}]
+      }
       return data;
     }));
   }

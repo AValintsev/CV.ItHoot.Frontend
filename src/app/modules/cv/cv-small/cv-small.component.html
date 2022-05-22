@@ -1,17 +1,23 @@
 <mat-card>
   <mat-card-title-group>
-    <mat-card-title>{{resume.firstName}} {{resume.lastName}}</mat-card-title>
-    <mat-card-subtitle>{{resume.resumeName}}</mat-card-subtitle>
+    <mat-card-title>{{resume?.firstName}} {{resume?.lastName}}</mat-card-title>
+    <mat-card-subtitle>{{resume?.resumeName}}</mat-card-subtitle>
     <img mat-card-lg-image *ngIf="resume.picture === null" src="../../../../assets/no-image.png" alt="Resume image">
     <img mat-card-lg-image *ngIf="resume.picture" src="{{resume.picture}}" alt="Resume image">
   </mat-card-title-group>
   <mat-card-content>
     <div class="button-group">
       <button mat-raised-button color="primary" [routerLink]="['/home/cv/',resume.id]">Open</button>
-      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1] || checkRole() === Users[2]" mat-raised-button color="accent"
+      <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
         routerLink="/home/cv/edit/{{resume.id}}">Edit</button>
-      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1] || checkRole() === Users[2]" mat-raised-button
-        color="warn">Delete</button>
+      <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
+        [routerLink]="['/home/cv/create/']"[queryParams]="{userId:12}">Duplicate</button>
+      <button 
+      *ngIf="checkRole() !== Users[3]" 
+      mat-raised-button
+      color="warn"
+      (click)=" deleteResume(resume.id)"
+        >Delete</button>
     </div>
   </mat-card-content>
 </mat-card>
