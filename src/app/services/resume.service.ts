@@ -40,11 +40,7 @@ export class ResumeService {
    return this.httpService.postForm(this.routePrefix+`/${resumeId}/image`, data);
 
  }
-public GetPdf(id:number):Observable<Blob>{
-  return this.httpService.getRequest(this.routePrefix + `pdf/${id}`);
 
-}
-
- getPdf(id:number):Observable<Blob>{
+public getPdf(id:number):Observable<Blob>{
    return this.http.get<any>('https://cvbuilder-it.azurewebsites.net/api/v1/resume/pdf' + `/${id}`, { headers: { 'Content-Type': 'application/pdf' }, observe: 'body', responseType: 'blob' as 'json' })
   }}

@@ -10,7 +10,7 @@ import { UserEventService } from 'src/app/services/userEvent.service';
   selector: 'cv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [CvFullComponent]
+  
 })
 export class HeaderComponent implements OnInit {
   Users = Users
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     private userEventService: UserEventService,
     public accountService: AccountService,
     private router: Router,
-    private cvFullComponent: CvFullComponent
+   
 
   ) { }
 
@@ -49,11 +49,11 @@ export class HeaderComponent implements OnInit {
     }
     this.router.navigate(['/home/cv/edit', this.usersId$.value])
   }
-  savePdf() {
-    if (!+this.usersId$.value) return
-    this.router.navigate(['/home/cv/', this.usersId$.value]).then(
-      e => this.cvFullComponent.pdf()
-    )
+  // savePdf() {
+  //   if (!+this.usersId$.value) return
+  //   this.router.navigate(['/home/cv/', this.usersId$.value]).then(
+  //     e => this.cvFullComponent.pdf()
+  //   )
 
-  }
+  // }
 }

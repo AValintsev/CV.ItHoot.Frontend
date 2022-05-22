@@ -46,13 +46,13 @@ export class CvFullComponent implements OnInit {
   name = 'Angular'
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params['id'])
+
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.userEventService.setUserId(id)
-      this.resumeService.getAllResume().subscribe({
-        next: next => {
-          if (next[0]) {
-            this.resumeService.getResumeById(next[0].id).pipe(
+     
+    
+      
+            this.resumeService.getResumeById(id).pipe(
               catchError(error => {
                 if (this.accountService.getStoreRole() === Users[2]) {
                   if (error instanceof HttpErrorResponse && error.status === 400) {
@@ -64,14 +64,10 @@ export class CvFullComponent implements OnInit {
             ).subscribe(resume => {
               this.cv = resume;
             });
-          } else {
-            this.router.navigate([`/home/cv/create`])
-          }
+          
 
-        },
-        error: error => { }
-      }
-      )
+      
+      
 
     });
   }
@@ -96,55 +92,55 @@ export class CvFullComponent implements OnInit {
   };
 
 
-  async load() {
-    var temp = await this.toDataURL(this.photoUrl)
-    // @ts-ignore
-    document.getElementById('img-full').setAttribute("src", temp as string)
-    console.log(typeof temp)
-    return temp
-  }
+  // async load() {
+  //   var temp = await this.toDataURL(this.photoUrl)
+  //   // @ts-ignore
+  //   document.getElementById('img-full').setAttribute("src", temp as string)
+  //   console.log(typeof temp)
+  //   return temp
+  // }
 
-  public openPDF2(): void {
-    this.load().then(() => {
-      let DATA = document.getElementById('container-cv');
+  // public openPDF2(): void {
+  //   this.load().then(() => {
+  //     let DATA = document.getElementById('container-cv');
 
-      // @ts-ignore
-      html2canvas(DATA).then(canvas => {
+  //     // @ts-ignore
+  //     html2canvas(DATA).then(canvas => {
 
-        let fileWidth = 208;
-        let fileHeight = canvas.height * fileWidth / canvas.width;
+  //       let fileWidth = 208;
+  //       let fileHeight = canvas.height * fileWidth / canvas.width;
 
-        const FILEURI = canvas.toDataURL('image/png')
-        let PDF = new jsPDF('p', 'mm', 'a4');
-        let position = 0;
-        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+  //       const FILEURI = canvas.toDataURL('image/png')
+  //       let PDF = new jsPDF('p', 'mm', 'a4');
+  //       let position = 0;
+  //       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
 
-        PDF.save('angular-demo.pdf');
-      });
-    })
+  //       PDF.save('angular-demo.pdf');
+  //     });
+  //   })
 
-  }
+  // }
   // ===================================
 
 
-  pdf() {
-    let Doc = document.getElementById('doc');
-    if (Doc) {
-      html2canvas(Doc).then(canvas => {
+  // pdf() {
+  //   let Doc = document.getElementById('doc');
+  //   if (Doc) {
+  //     html2canvas(Doc).then(canvas => {
 
-        let docWidth = 208;
-        let docHeight = canvas.height * docWidth / canvas.width;
+  //       let docWidth = 208;
+  //       let docHeight = canvas.height * docWidth / canvas.width;
 
-        const contentDataURL = canvas.toDataURL('image/png')
-        let doc = new jsPDF('p', 'mm', 'a4');
-        let position = 0;
-        doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
+  //       const contentDataURL = canvas.toDataURL('image/png')
+  //       let doc = new jsPDF('p', 'mm', 'a4');
+  //       let position = 0;
+  //       doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
 
-        doc.save('exportedPdf.pdf');
-      });
-    }
+  //       doc.save('exportedPdf.pdf');
+  //     });
+  //   }
 
-  }
+  // }
 
 
 

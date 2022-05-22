@@ -4,15 +4,19 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes:Routes = [
+	{path:'',component:CvListComponent}
+]
 
 @NgModule({
-	declarations: [CvListComponent],
+	declarations: [CvListComponent,],
 	imports:[
 		CommonModule,
 		MaterialModule,
 		MatCardModule,
-		RouterModule,
+		RouterModule.forChild(routes),
 		CvSmallModule,
 	],
 	exports: [CvListComponent],

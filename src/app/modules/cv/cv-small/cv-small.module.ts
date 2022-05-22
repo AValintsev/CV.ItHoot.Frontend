@@ -1,3 +1,5 @@
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MaterialModule } from './../../material/material.module';
@@ -9,9 +11,11 @@ import { NgModule } from '@angular/core';
 	declarations: [CvSmallComponent],
 	imports: [
 		CommonModule,
-		MaterialModule,
 		MatCardModule,
 		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatButtonModule
 	],
 	exports: [CvSmallComponent],
 })

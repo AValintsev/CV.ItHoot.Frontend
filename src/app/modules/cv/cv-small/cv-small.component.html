@@ -1,16 +1,16 @@
 <mat-card>
   <mat-card-title-group>
-    <mat-card-title>{{cvCard.firstName}} {{cvCard.lastName}}</mat-card-title>
-    <mat-card-subtitle>{{cvCard.cvName}}</mat-card-subtitle>
-    <img mat-card-lg-image *ngIf="cvCard.picture === null" src="../../../../assets/no-image.png" alt="Resume image">
-    <img mat-card-lg-image *ngIf="cvCard.picture" src="{{cvCard.picture}}" alt="Resume image">
+    <mat-card-title>{{resume.firstName}} {{resume.lastName}}</mat-card-title>
+    <mat-card-subtitle>{{resume.resumeName}}</mat-card-subtitle>
+    <img mat-card-lg-image *ngIf="resume.picture === null" src="../../../../assets/no-image.png" alt="Resume image">
+    <img mat-card-lg-image *ngIf="resume.picture" src="{{resume.picture}}" alt="Resume image">
   </mat-card-title-group>
   <mat-card-content>
     <div class="button-group">
-      <button mat-raised-button color="primary" [routerLink]="['/home/cv/',cvCard.id]">Open</button>
-      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1]" mat-raised-button color="accent"
-        routerLink="/home/cv/edit/{{cvCard.id}}">Edit</button>
-      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1]" mat-raised-button
+      <button mat-raised-button color="primary" [routerLink]="['/home/cv/',resume.id]">Open</button>
+      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1] || checkRole() === Users[2]" mat-raised-button color="accent"
+        routerLink="/home/cv/edit/{{resume.id}}">Edit</button>
+      <button *ngIf="checkRole() === Users[0] || checkRole() === Users[1] || checkRole() === Users[2]" mat-raised-button
         color="warn">Delete</button>
     </div>
   </mat-card-content>
