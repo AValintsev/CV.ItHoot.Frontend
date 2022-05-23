@@ -11,7 +11,7 @@
       <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
         routerLink="/home/cv/edit/{{resume.id}}">Edit</button>
       <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
-        [routerLink]="['/home/cv/create/']"[queryParams]="{userId:12}">Duplicate</button>
+        [routerLink]="['/home/cv/create/']"[queryParams]="{userId:resume.id}">Duplicate</button>
       <button 
       *ngIf="checkRole() !== Users[3]" 
       mat-raised-button

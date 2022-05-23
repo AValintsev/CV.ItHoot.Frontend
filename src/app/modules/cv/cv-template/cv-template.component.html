@@ -96,7 +96,7 @@
 						<div class="skills__content padding-right">
 							<div class="contact__content-inner skills-inner">
 									<div *ngFor="let language of getFormControlValue('languages')" class="spiner">
-										<mat-progress-spinner [color]="'red'" [value]="language.level*33.333" [diameter]="50"
+										<mat-progress-spinner [color]="'red'" [value]="language.level*25" [diameter]="50"
 											[strokeWidth]="5"></mat-progress-spinner>
 										<div class="spiner-skill">
 											{{language.languageName}}

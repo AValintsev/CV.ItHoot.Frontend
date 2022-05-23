@@ -11,21 +11,13 @@ import { map, share } from 'rxjs/operators';
 })
 export class UserCvListComponent implements OnInit {
   // smallResumeDto$!:Observable<SmallResumeDto[]>
-  smallResumeDto$!:Observable<any>
+  smallResumeDto$!: Observable<SmallResumeDto[]>
   constructor(
     private resumeService: ResumeService
   ) { }
 
   ngOnInit(): void {
-    this.smallResumeDto$ = this.resumeService.getAllResume().pipe(map(e => ([{
-      id: 1,
-      resumeName: "string",
-      isDraft:true,
-      firstName: "string",
-      lastName: "string",
-      picture:" string",
-  skills: [{id:1,name:''}],
-    }])))
+    this.smallResumeDto$ = this.resumeService.getAllResume()
     this.smallResumeDto$.subscribe(e=>{console.log('user-list',e)})
   }
 

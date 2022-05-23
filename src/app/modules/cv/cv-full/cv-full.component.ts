@@ -25,11 +25,9 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getResumeById(12).subscribe(
+      this.resumeService.getResumeById(id).subscribe(
         {
           next:resume=>{
-            console.log('id', id)
-            console.log('resume',resume)
             this.resume = resume
           },
           error:error=>console.log(error)
