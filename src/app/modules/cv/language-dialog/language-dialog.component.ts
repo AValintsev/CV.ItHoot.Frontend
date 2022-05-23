@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { LanguageTestDto, UserLanguageDto } from "../../../models/resume-dto";
-import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
-import { DialogType } from "../../../models/dialog-type";
-import { LanguageService } from "../../../services/language.service";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {LanguageTestDto, UserLanguageDto} from "../../../models/resume-dto";
+import {FormControl} from "@angular/forms";
+import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
+import {DialogType} from "../../../models/dialog-type";
+import {LanguageService} from "../../../services/language.service";
 
 @Component({
   selector: 'cv-language-dialog',

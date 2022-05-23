@@ -1,49 +1,26 @@
-import { AccountService } from 'src/app/services/account.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CV } from 'src/app/models/cv';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import { ResumeService } from 'src/app/services/resume.service';
-import { catchError, map } from 'rxjs/operators';
-import { ResumeDto } from 'src/app/models/resume-dto';
-import { UserEventService } from 'src/app/services/userEvent.service';
-import { Users } from 'src/app/models/users-type';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ResumeService} from 'src/app/services/resume.service';
+import {map} from 'rxjs/operators';
+import {ResumeDto} from 'src/app/models/resume-dto';
+import {UserEventService} from 'src/app/services/userEvent.service';
 
-// import objectContaining = jasmine.objectContaining;
 
 @Component({
   selector: 'cv-cv-full',
   templateUrl: './cv-full.component.html',
-  styleUrls: [
-    '../../../shared/styles/cvfull.scss',
-    './cv-full.component.scss']
+  styleUrls: ['./cv-full.component.scss']
 })
 export class CvFullComponent implements OnInit {
-  // @ViewChild('doc') doc!: ElementRef
   @Input() id: number = 0;
-  public cv$!: Observable<CV>;
-
-
-  photoUrl!: string
-  photoString!: string;
-  isChange: boolean = false;
-  userId$!: Observable<string>
-  cv!: ResumeDto;
+  resume!: ResumeDto;
 
   constructor(
     private userEventService: UserEventService,
     private route: ActivatedRoute,
     private router: Router,
-    private resumeService: ResumeService,
-    private accountService: AccountService
-  ) {
-
+    private resumeService: ResumeService) {
   }
-
-  name = 'Angular'
 
   ngOnInit(): void {
 
@@ -53,7 +30,7 @@ export class CvFullComponent implements OnInit {
           next:resume=>{
             console.log('id', id)
             console.log('resume',resume)
-            this.cv = resume
+            this.resume = resume
           },
           error:error=>console.log(error)
         }

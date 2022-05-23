@@ -7,6 +7,7 @@ import { UserAuthData } from "../../../models/userAuthData";
 import { Users } from "../../../models/users-type";
 import { ResumeService } from 'src/app/services/resume.service';
 
+
 @Component({
   selector: 'cv-cv-small',
   templateUrl: './cv-small.component.html',

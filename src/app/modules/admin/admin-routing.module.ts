@@ -1,4 +1,3 @@
-import { MaterialModule } from './../material/material.module';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -31,6 +30,10 @@ const routs: Routes = [
 				path: '',
 				redirectTo: 'resume',
 				pathMatch: 'full'
+			},
+			{
+				path: 'teams',
+				loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
 			}
 		]
 	}
@@ -41,7 +44,6 @@ const routs: Routes = [
 	imports: [
 
 		CommonModule,
-		MaterialModule,
 		MatIconModule,
 		MatDividerModule,
 		MatExpansionModule,

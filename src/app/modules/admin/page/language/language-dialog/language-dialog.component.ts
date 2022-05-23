@@ -1,9 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { DialogType } from 'src/app/models/dialog-type';
-import { LanguageTestDto } from 'src/app/models/resume-dto';
-
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {LanguageTestDto} from "../../../../../models/resume-dto";
+import {DialogType} from "../../../../../models/dialog-type";
 
 @Component({
   selector: 'app-language-dialog',
