@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TeamService} from "../../../../../services/team.service";
-import {TeamDto, TeamResumeDto} from "../../../../../models/create-team-dto";
+import {StatusTeam, TeamDto, TeamResumeDto} from "../../../../../models/create-team-dto";
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../../../services/resume.service";
@@ -78,5 +78,18 @@ export class TeamPageComponent implements OnInit {
   getPdf(resume: TeamResumeDto) {
     this.resumeService.getPdf(resume.resumeId)
       .subscribe(response => saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`));
+  }
+
+  getStatusTeam(status:StatusTeam):string{
+    switch (status){
+      case StatusTeam.Created:
+        return 'Created';
+      case StatusTeam.InReview:
+        return 'In Review';
+      case StatusTeam.Approved:
+        return 'Approved';
+      case StatusTeam.Done:
+        return 'Done';
+    }
   }
 }

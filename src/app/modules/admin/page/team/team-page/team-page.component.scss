@@ -23,6 +23,13 @@
         span{
           display: block;
           color: #8A92A6;
+          font-size: 1.2em;
+        }
+        span.status{
+          color: #1AA053;
+          font-weight: 500;
+        }
+        span:last-child{
           margin-bottom: 60px;
         }
       }

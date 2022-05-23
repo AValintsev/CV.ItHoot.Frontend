@@ -22,18 +22,18 @@ export class TeamPageDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<TeamPageDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              userService: UserService,
-              resumeService: ResumeService) {
+              userService: UserService) {
     this.team = data;
     userService.getUsersByRole('client').subscribe(clients=>this.clients = clients);
+    console.log(this.team)
   }
 
   canUpdate() {
-    return !this.team || !this.team.client.userId || !this.team.statusTeam;
+    return !this.team || !this.team?.client?.userId || !this.team.statusTeam;
   }
 
 
   compareUser(user:any, user1:any) {
-    return user.userId === user1.userId;
+    return user?.userId === user1?.userId;
   }
 }

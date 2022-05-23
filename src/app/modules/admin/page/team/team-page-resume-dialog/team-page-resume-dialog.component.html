@@ -3,7 +3,7 @@
   <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
-      <mat-label>Select Client</mat-label>
+      <mat-label>Select resume</mat-label>
       <mat-select [(value)]="resumeDto">
         <mat-option *ngFor="let resume of allResumes" [value]="resume">
          {{resume.resumeName}} {{resume.firstName}} {{resume.lastName}}
@@ -13,6 +13,6 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button cdkFocusInitial (click)="click()" [disabled]="canCreate()">Update</button>
+    <button mat-button cdkFocusInitial (click)="click()" [disabled]="canCreate()">Add</button>
   </div>
 </div>
