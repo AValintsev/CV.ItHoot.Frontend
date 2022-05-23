@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {TeamRoutingModule} from "./team-routing.module";
-import { TeamDialogComponent } from './team-dialog/team-dialog.component';
+import {TeamDialogComponent} from './team-dialog/team-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -9,20 +9,26 @@ import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {TeamPageComponent} from './team-page/team-page.component';
+import {MatTableModule} from "@angular/material/table";
+import {TeamPageDialogComponent} from './team-page-dialog/team-page-dialog.component';
+import {TeamPageResumeDialogComponent} from './team-page-resume-dialog/team-page-resume-dialog.component';
 
 
 @NgModule({
-  imports: [TeamRoutingModule, MatFormFieldModule, MatInputModule, MatDialogModule, FormsModule, CommonModule, MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, ReactiveFormsModule, MatAutocompleteModule],
+    imports: [TeamRoutingModule, MatFormFieldModule, MatInputModule, MatDialogModule, FormsModule, CommonModule, MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, ReactiveFormsModule, MatAutocompleteModule, MatTableModule],
   exports: [
   ],
   declarations: [
     TeamDialogComponent,
+    TeamPageComponent,
+    TeamPageDialogComponent,
+    TeamPageResumeDialogComponent,
   ]
 })
 

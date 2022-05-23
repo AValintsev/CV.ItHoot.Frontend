@@ -1,9 +1,24 @@
-.team-page {
+.team-list {
   min-height: 100%;
   background: #E5E5E5;
   display: grid;
   align-items: start;
   grid-template-columns: 100%;
+
+  // @media (max-width: 1450px) {
+  //   & {
+  //     grid-template-columns: 15% auto;
+  //   }
+  //   @media (max-width: 1290px) {
+  //     grid-template-columns: 20% auto;
+
+  //   }
+  // }
+
+  // .skill-list {
+  //   padding: 40px;
+  // }
+
 
   .table-page {
     padding: 24px;
@@ -16,26 +31,9 @@
       display: flex;
       justify-content: space-between;
 
-      .title{
-        h1{
-          margin-bottom: 20px;
-        }
-        span{
-          display: block;
-          color: #8A92A6;
-          margin-bottom: 60px;
-        }
+      button{
+        max-height: 40px;
       }
-
-      .actions{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        button{
-          max-height: 40px;
-        }
-      }
-
     }
 
     .mat-row:hover {
@@ -87,8 +85,6 @@
 
       .action-wrapper {
         display: grid;
-        grid-template-columns: repeat(4, 20%);
-        justify-content: space-between;
 
         button {
           height: 35px;
@@ -96,35 +92,16 @@
           color: white;
           border: 0;
           border-radius: 4px;
-          font-size: 1em;
+
           &:hover {
             cursor: pointer;
             opacity: .9;
           }
 
-
-          &.pdf {
+          &.edit {
             background: #3A57E8;
           }
 
-          &.docx {
-            background: #FF5DCD;
-
-          }
-
-          &.open {
-            background: #1AA053;
-
-          }
-
-          &.edit {
-            background: #F16A1B;
-
-          }
-
-          &.delete {
-            background: #BA3020E5;
-          }
         }
 
       }

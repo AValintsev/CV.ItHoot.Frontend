@@ -1,7 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DialogType} from "../../../../../models/dialog-type";
-import {TeamDto} from "../../../../../models/team-dto";
+import {CreateTeamDto} from "../../../../../models/create-team-dto";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -20,9 +19,7 @@ import {ResumeService} from "../../../../../services/resume.service";
 })
 export class TeamDialogComponent implements OnInit {
 
-  typeDialog: DialogType = DialogType.Create;
-  DialogType = DialogType;
-  team: TeamDto = {} as TeamDto;
+  team: CreateTeamDto = {} as CreateTeamDto;
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
 
@@ -41,19 +38,9 @@ export class TeamDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<TeamDialogComponent>,
               userService: UserService,
               resumeService: ResumeService) {
-    this.team = data.data;
-    this.typeDialog = data.type;
-    console.log(this.team)
+    this.team = data;
     userService.getUsersByRole('client').subscribe(clients => this.clients = clients);
     resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
-    if(this.typeDialog === DialogType.Edit){
-      this.allResumes.forEach(resume=>{
-        this.team.resumes.forEach(resumeTeam =>{
-          if(resume.id == resumeTeam.resumeId)
-            this.resumes.push(resume)
-        })
-      })
-    }
 
     this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
       startWith(''),
@@ -82,7 +69,7 @@ export class TeamDialogComponent implements OnInit {
 
   private _filter(value: string): SmallResumeDto[] {
     const filterValue = "" + value;
-    return this.allResumes.filter(fruit => fruit.resumeName.toLowerCase().trim().includes(filterValue.toLowerCase().trim()));
+    return this.allResumes.filter(fruit => fruit.resumeName?.toLowerCase().trim().includes(filterValue.toLowerCase().trim()));
   }
 
   canCreate(): boolean {
