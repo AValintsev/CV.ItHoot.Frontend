@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ResumeDto } from "../../../models/resume-dto";
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ResumeService } from "../../../services/resume.service";
-import { SnackBarService } from "../../../services/snack-bar.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
-import { AccountService } from 'src/app/services/account.service';
-import jsPDF from "jspdf";
+import {Component, OnInit} from '@angular/core';
+import {ResumeDto} from "../../../models/resume-dto";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ResumeService} from "../../../services/resume.service";
+import {SnackBarService} from "../../../services/snack-bar.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {map} from "rxjs/operators";
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -173,34 +172,6 @@ export class CvEditPageComponent implements OnInit {
         this.snackbarService.showDanger('Something went wrong!')
       }
     })
-  }
-
-  saveAsPdf() {
-    {
-      // let DATA: any = document.getElementById('resume-templete');
-      // html2canvas(DATA).then((canvas) => {
-      //   let fileWidth = 208;
-      //   // console.log(canvas.height)
-      //   let fileHeight = (canvas.height * fileWidth) / canvas.width;
-      //   const FILEURI = canvas.toDataURL('image/png');
-      //   let PDF = new jsPDF('p', 'cm', 'a4');
-      //   let position = 0;
-      //   PDF.addImage(FILEURI, 'PNG', 0, 0);
-      //   PDF.save('angular-demo.pdf');
-      // });
-
-      let data = document.getElementById('cv-template');
-      var pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.html(data!, {
-        callback: () => pdf.save('DOC.pdf')
-      })
-      // html2canvas(data!).then(canvas => {
-      //   const contentDataURL = canvas.toDataURL('image/png')
-      //   let pdf = new jsPDF('l', 'cm', 'a4'); //Generates PDF in landscape mode
-      //   pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
-      //   pdf.save('Filename.pdf');
-      // });
-    }
   }
 
 }

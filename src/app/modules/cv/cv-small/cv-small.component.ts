@@ -1,9 +1,9 @@
-import { AccountService } from 'src/app/services/account.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { CvCard } from 'src/app/models/cv-card';
-import { Observable } from "rxjs";
-import { UserAuthData } from "../../../models/userAuthData";
-import { Users } from "../../../models/users-type";
+import {AccountService} from 'src/app/services/account.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {CvCard} from 'src/app/models/cv-card';
+import {Observable} from "rxjs";
+import {UserAuthData} from "../../../models/userAuthData";
+import {Users} from "../../../models/users-type";
 
 @Component({
   selector: 'cv-cv-small',
@@ -25,33 +25,4 @@ export class CvSmallComponent implements OnInit {
   checkRole() {
     return this.accountService.getStoreRole()
   }
-  // guardEdit(){
-  //   let toggle = false
-  //   this.accountService.getUserRole().subscribe({
-  //     next: next => {
-  //       if (next == "Admin" || next == "User" || next == "Client"){
-  //       toggle = true
-  //     }
-  //   },
-  //    error:error=>console.log(error)
-  //   })
-  //   return toggle
-  // }
-
-  // guardOpen(): boolean{
-  //     return true
-  // }
-
-  // guardDelete() {
-  //   let toggle = false
-  //   this.accountService.getUserRole().subscribe({
-  //     next: next => {
-  //       if (next == "Admin" || next == "User" || next == "Client") {
-  //         toggle = true
-  //       }
-  //     },
-  //     error: error => console.log(error)
-  //   })
-  //   return toggle
-  // }
 }

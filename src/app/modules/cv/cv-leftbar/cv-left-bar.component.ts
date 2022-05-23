@@ -1,13 +1,13 @@
-import { ResumeService } from 'src/app/services/resume.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { SkillDialog } from "../skill-dialog/skill-dialog.component";
-import { EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto } from "../../../models/resume-dto";
-import { DialogType } from "../../../models/dialog-type";
-import { LanguageDialog } from "../language-dialog/language-dialog.component";
-import { EducationDialog } from "../education-dialog/education-dialog.component";
-import { ExperienceDialog } from "../experience-dialog/experience-dialog.component";
+import {ResumeService} from 'src/app/services/resume.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {SkillDialog} from "../skill-dialog/skill-dialog.component";
+import {EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto} from "../../../models/resume-dto";
+import {DialogType} from "../../../models/dialog-type";
+import {LanguageDialog} from "../language-dialog/language-dialog.component";
+import {EducationDialog} from "../education-dialog/education-dialog.component";
+import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
 
 
 @Component({
@@ -36,28 +36,12 @@ export class CvLeftBarComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     this.listSkillsChanged();
     this.listLanguageChanged();
     this.experienceListChanged();
     this.educationListChanged();
   }
-
-  // addPicture(picture: File) {
-  //   this.resumeService.addPhoto(this.resume.id,picture).subscribe({
-  //     next: next => console.log(next),
-  //     error: error => console.log(error)
-  //   })
-  // }
-
-  // getPhoto() {
-  //   this.resumeService.getPhoto(3).subscribe({
-  //     next: next => console.log(next),
-  //     error: error => console.log(error)
-  //   })
-  // }
-
 
   removeSkill(skill: SkillDto): void {
     const index = this.resume.skills.indexOf(skill);

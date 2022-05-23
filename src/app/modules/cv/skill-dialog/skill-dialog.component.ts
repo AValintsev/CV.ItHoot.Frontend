@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { SkillService } from "../../../services/skill.service";
-import { SkillDto, SkillTestDto } from "../../../models/resume-dto";
-import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from "rxjs/operators";
-import { DialogType } from "../../../models/dialog-type";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {SkillService} from "../../../services/skill.service";
+import {SkillDto, SkillTestDto} from "../../../models/resume-dto";
+import {FormControl} from "@angular/forms";
+import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
+import {DialogType} from "../../../models/dialog-type";
 
 @Component({
   selector: 'cv-skill-dialog',
