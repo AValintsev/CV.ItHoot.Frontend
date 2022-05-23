@@ -12,19 +12,18 @@ import {SmallResumeDto} from "../../../../../models/small-resume-dto";
 export class TeamPageResumeDialogComponent implements OnInit {
 
   allResumes: SmallResumeDto[] = [];
-  resumeDto: SmallResumeDto = {} as SmallResumeDto;
+  resumeDto: SmallResumeDto | null = null;
 
   constructor(public dialogRef: MatDialogRef<TeamPageResumeDialogComponent>,
               resumeService: ResumeService) {
     resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
-
   }
 
   ngOnInit(): void {
   }
 
-  canCreate(): boolean {
-    return false;
+  canAdd(): boolean {
+    return this.resumeDto == null;
   }
 
 

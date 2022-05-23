@@ -60,6 +60,7 @@ export class TeamPageComponent implements OnInit {
       if (resume == null)
         return;
       this.team.resumes.push({resumeId:resume.id} as TeamResumeDto);
+      this.team.clientId = this.team.client.userId;
       this.teamService.updateTeam(this.team).subscribe(team => this.team = team);
     });
   }
