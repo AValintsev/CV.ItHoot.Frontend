@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
-import {TeamDto} from "../models/team-dto";
 import {SmallTeamDto} from "../models/small-team-dto";
+import {TeamDto} from "../models/team-dto";
 
 
 @Injectable({providedIn: 'root'})

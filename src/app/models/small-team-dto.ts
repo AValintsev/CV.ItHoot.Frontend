@@ -1,6 +1,9 @@
 export interface SmallTeamDto{
   id:number;
   teamName:string;
-  countResumes:number;
+  clientUserName:string;
+  teamSize:number;
+  lastUpdated:Date;
+  createdUserName:string,
   statusTeam:string;
 }

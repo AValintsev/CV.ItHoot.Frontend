@@ -53,12 +53,14 @@
       font-size: 1.1em;
 
       th {
+        text-align: center;
         vertical-align: middle;
         border-bottom: 1px #C4C4C4 solid;
         font-weight: 400;
       }
 
       td {
+        text-align: center;
         vertical-align: middle;
         font-size: 1em;
         line-height: 28px;
@@ -83,8 +85,6 @@
 
       .action-wrapper {
         display: grid;
-        grid-template-columns: repeat(5, 15%);
-        justify-content: space-between;
 
         button {
           height: 35px;
@@ -99,12 +99,9 @@
           }
 
           &.edit {
-            background: #F16A1B;
+            background: #3A57E8;
           }
 
-          &.delete {
-            background: #BA3020E5;
-          }
         }
 
       }

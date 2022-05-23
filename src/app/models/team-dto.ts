@@ -1,9 +1,8 @@
-export interface TeamDto{
+export interface TeamDto {
   teamName:string;
-  resumes:CreateTeamResume[];
+  clientId:number;
+  resumes:TeamResumeDto[];
 }
-
-export interface CreateTeamResume{
-  id:number;
+export interface TeamResumeDto {
   resumeId:number;
 }

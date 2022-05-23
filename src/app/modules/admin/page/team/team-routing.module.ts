@@ -10,6 +10,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DateUtcPipe} from "../../../../helpers/date.pipe";
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TeamPageComponent],
+  declarations: [TeamPageComponent, DateUtcPipe],
   imports:
     [
       MatTableModule,
@@ -33,7 +34,7 @@ const routes: Routes = [
       MatInputModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule.forChild(routes)
+      RouterModule.forChild(routes),
     ],
   exports: [RouterModule]
 })
