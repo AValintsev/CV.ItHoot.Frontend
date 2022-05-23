@@ -1,0 +1,7 @@
+
+<div class="wrapper">
+	<div class="inner">
+		<cv-cv-small *ngFor="let resume of smallResumeDto$|async" [resume]="resume" class="cv-card-small"> </cv-cv-small>
+	</div>
+	<button [routerLink]="['/home/cv/create']" mat-button class="create-resume">Crete Resume</button>
+</div>

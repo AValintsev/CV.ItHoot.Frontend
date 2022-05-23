@@ -1,14 +1,14 @@
-import {MatTableModule} from '@angular/material/table';
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import {RouterModule, Routes} from '@angular/router';
-import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
-import {SideBarComponent} from './component/side-bar/side-bar.component';
-import {FooterModule} from '../core/footer/footer.module';
-import {HeaderModule} from '../core/header/header.module';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { SideBarComponent } from './component/side-bar/side-bar.component';
+import { FooterModule } from '../core/footer/footer.module';
+import { HeaderModule } from '../core/header/header.module';
 
 
 const routs: Routes = [
@@ -26,10 +26,15 @@ const routs: Routes = [
 				path: 'skills',
 				loadChildren: () => import('./page/skill/skill.module').then(mod => mod.SkillModule)
 			},
-      {
-        path: 'teams',
-        loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
-      }
+			{
+				path: '',
+				redirectTo: 'resume',
+				pathMatch: 'full'
+			},
+			{
+				path: 'teams',
+				loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
+			}
 		]
 	}
 

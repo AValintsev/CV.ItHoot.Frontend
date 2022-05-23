@@ -10,7 +10,7 @@ import {UserEventService} from 'src/app/services/userEvent.service';
   selector: 'cv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [CvFullComponent]
+  
 })
 export class HeaderComponent implements OnInit {
   Users = Users
@@ -40,13 +40,6 @@ export class HeaderComponent implements OnInit {
   }
   nextCv() {
 
-  }
-  navigateTo() {
-    if (!+this.usersId$.value) return
-    if (this.accountService.getStoreRole() === Users[2]) {
-      this.router.navigate(['/home/cv/edit', this.accountService.getUserId()])
-    }
-    this.router.navigate(['/home/cv/edit', this.usersId$.value])
   }
 
 }

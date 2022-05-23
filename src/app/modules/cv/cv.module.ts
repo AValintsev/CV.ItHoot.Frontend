@@ -1,10 +1,13 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CvRoutingModule} from './cv-routing.module';
-import {CvFormComponent} from './cv-form/cv-form.component';
-import {CvFullComponent} from './cv-full/cv-full.component';
+import { CvSmallModule } from './cv-small/cv-small.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CvRoutingModule } from './cv-routing.module';
+import { CvFormComponent } from './cv-form/cv-form.component';
+import { CvFullComponent } from './cv-full/cv-full.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
+import { CvDublicatePageComponent } from './cv-dublicate-page/cv-dublicate-page.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -31,7 +34,6 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
 @NgModule({
   declarations: [
     CvFullComponent,
-    CvSmallComponent,
     CvFormComponent,
     CvCreatePageComponent,
     CvLeftBarComponent,
@@ -40,6 +42,8 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
     EducationDialog,
     ExperienceDialog,
     CvEditPageComponent,
+    UserCvListComponent,
+    CvDublicatePageComponent,
   ],
     imports: [
         CommonModule,
@@ -62,6 +66,7 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
         MatInputModule,
         MatButtonModule,
         CvTemplateModule,
+        CvSmallModule
     ]
 })
 export class CvModule {

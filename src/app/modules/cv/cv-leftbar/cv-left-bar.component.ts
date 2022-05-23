@@ -11,9 +11,9 @@ import {ExperienceDialog} from "../experience-dialog/experience-dialog.component
 
 
 @Component({
-  selector: 'cv-cv-create-left-bar',
-  templateUrl: './cv-left-bar.component.html',
-  styleUrls: ['./cv-left-bar.component.scss'],
+	selector: 'cv-cv-create-left-bar',
+	templateUrl: './cv-left-bar.component.html',
+	styleUrls: ['./cv-left-bar.component.scss'],
 })
 
 export class CvLeftBarComponent implements OnInit {

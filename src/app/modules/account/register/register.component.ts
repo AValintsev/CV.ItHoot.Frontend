@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         // if (this.accountService.getUserRole().value === 'User') {
         // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
         // } else {
-        this.router.navigate([`/home/cv/`])
+        this.router.navigate([''])
         // }
 
       },

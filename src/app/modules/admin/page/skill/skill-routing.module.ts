@@ -14,10 +14,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 const routes: Routes = [
-  {
-    path: '',
-    component: SkillPageComponent
-  }
+	{
+		path: '',
+		component: SkillPageComponent
+	}
 
 ];
 

@@ -1,16 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-
-import {MatDialog} from "@angular/material/dialog";
-import {DialogType} from 'src/app/models/dialog-type';
-import {LanguageTestDto} from 'src/app/models/resume-dto';
-import {LanguageService} from 'src/app/services/language.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
-
-import {LanguageDialogComponent} from "../language-dialog/language-dialog.component";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { DialogType } from 'src/app/models/dialog-type';
+import { LanguageTestDto } from 'src/app/models/resume-dto';
+import { LanguageService } from 'src/app/services/language.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { LanguageDialogComponent } from "../language-dialog/language-dialog.component";
 
 
 @Component({
-  selector: 'cv-language-page',
+  selector: 'app-language-page',
   templateUrl: './language-page.component.html',
   styleUrls: ['./language-page.component.scss']
 })

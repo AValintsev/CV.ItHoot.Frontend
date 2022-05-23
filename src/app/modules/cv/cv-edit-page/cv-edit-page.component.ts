@@ -1,12 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume-dto";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ResumeService} from "../../../services/resume.service";
-import {SnackBarService} from "../../../services/snack-bar.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {map} from "rxjs/operators";
-import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
-import {AccountService} from 'src/app/services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { ResumeDto } from "../../../models/resume-dto";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ResumeService } from "../../../services/resume.service";
+import { SnackBarService } from "../../../services/snack-bar.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { map } from "rxjs/operators";
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { AccountService } from 'src/app/services/account.service';
+import { Users } from 'src/app/models/users-type';
+
+
+
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -30,8 +34,7 @@ export class CvEditPageComponent implements OnInit {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService,
-
+    private accountService: AccountService
   ) {
 
   }
@@ -166,7 +169,12 @@ export class CvEditPageComponent implements OnInit {
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Edited');
-        this.router.navigate(['/home/cv'])
+        if (this.accountService.getStoreRole() === Users[2]) {
+          this.router.navigate(['/home/cv/user-list', this.accountService.getUserId()])
+        } else {
+          this.router.navigate(['/home/cv'])
+        }
+        
       },
       error: (error) => {
         this.snackbarService.showDanger('Something went wrong!')
