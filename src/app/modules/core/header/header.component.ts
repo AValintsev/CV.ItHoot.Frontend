@@ -1,10 +1,10 @@
-import { CvFullComponent } from './../../cv/cv-full/cv-full.component';
-import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users-type';
-import { UserEventService } from 'src/app/services/userEvent.service';
+import {CvFullComponent} from '../../cv/cv-full/cv-full.component';
+import {BehaviorSubject} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {UserEventService} from 'src/app/services/userEvent.service';
 
 @Component({
   selector: 'cv-header',
@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
     private userEventService: UserEventService,
     public accountService: AccountService,
     private router: Router,
-    private cvFullComponent: CvFullComponent
 
   ) { }
 
@@ -49,11 +48,5 @@ export class HeaderComponent implements OnInit {
     }
     this.router.navigate(['/home/cv/edit', this.usersId$.value])
   }
-  savePdf() {
-    if (!+this.usersId$.value) return
-    this.router.navigate(['/home/cv/', this.usersId$.value]).then(
-      e => this.cvFullComponent.pdf()
-    )
 
-  }
 }

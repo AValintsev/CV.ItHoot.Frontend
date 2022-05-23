@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Education } from 'src/app/models/education';
-import { Experience } from 'src/app/models/experience';
-import { Language } from 'src/app/models/language';
-import { Skill } from 'src/app/models/skill';
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
-import { CV } from "../../../models/cv";
+import {Component, Input, OnInit} from '@angular/core';
+import {Education} from 'src/app/models/education';
+import {Experience} from 'src/app/models/experience';
+import {Language} from 'src/app/models/language';
+import {Skill} from 'src/app/models/skill';
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+import {CV} from "../../../models/cv";
 
 @Component({
   selector: 'cv-cv-form',

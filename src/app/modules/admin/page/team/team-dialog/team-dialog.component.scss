@@ -1,7 +1,14 @@
-.skill-dialog{
+.team-dialog{
   display: grid;
+  min-width: 600px;
   .content{
     display: grid;
+
+    .resume-section{
+      mat-form-field{
+        width: 100%;
+      }
+    }
 
     mat-button-toggle-group{
       justify-content: center;

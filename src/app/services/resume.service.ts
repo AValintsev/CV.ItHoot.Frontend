@@ -1,18 +1,14 @@
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/small-resume-dto";
 import {ResumeDto} from "../models/resume-dto";
-import {environment} from '../../environments/environment';
-import * as FileSaver from "file-saver";
-import {saveAs} from "file-saver";
 
 
 @Injectable({providedIn: 'root'})
 export class ResumeService {
   private routePrefix: string = 'resume'
-  public baseUrl: string = environment.apiUrl;
 
   constructor(private httpService: HttpInternalService, private http: HttpClient) {
   }
