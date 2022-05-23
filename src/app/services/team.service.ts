@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallTeamDto} from "../models/small-team-dto";
-import {TeamDto} from "../models/team-dto";
+import {CreateTeamDto, TeamDto} from "../models/create-team-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -13,8 +13,8 @@ export class TeamService {
   constructor(private httpService: HttpInternalService, private http: HttpClient) {
   }
 
-  public createTeam(team: TeamDto): Observable<TeamDto> {
-    return this.httpService.postRequest<TeamDto>(this.routePrefix, team);
+  public createTeam(team: CreateTeamDto): Observable<CreateTeamDto> {
+    return this.httpService.postRequest<CreateTeamDto>(this.routePrefix, team);
   }
 
   public updateTeam(team: TeamDto): Observable<TeamDto> {
@@ -23,5 +23,9 @@ export class TeamService {
 
   public getAllTeams(): Observable<SmallTeamDto[]> {
     return this.httpService.getRequest<SmallTeamDto[]>(this.routePrefix);
+  }
+
+  public getTeamById(id:number):Observable<TeamDto>{
+    return this.httpService.getRequest<TeamDto>(this.routePrefix+`/${id}`);
   }
 }

@@ -1,3 +1,5 @@
+import {StatusTeam} from "./create-team-dto";
+
 export interface SmallTeamDto{
   id:number;
   teamName:string;
@@ -5,5 +7,5 @@ export interface SmallTeamDto{
   teamSize:number;
   lastUpdated:Date;
   createdUserName:string,
-  statusTeam:string;
+  statusTeam:StatusTeam;
 }

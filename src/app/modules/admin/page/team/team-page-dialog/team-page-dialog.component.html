@@ -1,0 +1,35 @@
+<div class="team-dialog">
+  <h1 mat-dialog-title >Settings team</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Team name</mat-label>
+      <input matInput placeholder=".Net Team" [(ngModel)]="team.teamName">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Client</mat-label>
+      <mat-select [(value)]="team.client" [compareWith]="compareUser">
+        <mat-option *ngFor="let client of clients" [value]="client">
+          {{client.firstName}} {{client.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status team</mat-label>
+      <mat-select [(ngModel)]="team.statusTeam">
+        <mat-option [value]="1">Created</mat-option>
+        <mat-option [value]="2">In Review</mat-option>
+        <mat-option [value]="3">Approved</mat-option>
+        <mat-option [value]="4">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button cdkFocusInitial [mat-dialog-close]="team"  [disabled]="canUpdate()">Update</button>
+  </div>
+</div>

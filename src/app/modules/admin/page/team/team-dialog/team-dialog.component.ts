@@ -1,7 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DialogType} from "../../../../../models/dialog-type";
-import {TeamDto} from "../../../../../models/team-dto";
+import {CreateTeamDto} from "../../../../../models/create-team-dto";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -20,7 +19,7 @@ import {ResumeService} from "../../../../../services/resume.service";
 })
 export class TeamDialogComponent implements OnInit {
 
-  team: TeamDto = {} as TeamDto;
+  team: CreateTeamDto = {} as CreateTeamDto;
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
 
