@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {map} from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import {TeamDto} from "../../../../../models/create-team-dto";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../../services/team.service";
-import {TeamDto} from "../../../../../models/create-team-dto";
+import {map} from "rxjs/operators";
 
 @Component({
-  selector: 'cv-team-page',
-  templateUrl: './team-page.component.html',
-  styleUrls: ['./team-page.component.scss']
+  selector: 'cv-archive-page',
+  templateUrl: './archive-page.component.html',
+  styleUrls: ['./archive-page.component.scss']
 })
-export class TeamPageComponent implements OnInit {
+export class ArchivePageComponent implements OnInit {
 
   team:TeamDto = {} as TeamDto
 
@@ -20,8 +20,6 @@ export class TeamPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
-
 
 }

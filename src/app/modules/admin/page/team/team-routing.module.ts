@@ -12,11 +12,12 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {TeamPageComponent} from "./team-page/team-page.component";
+import {TeamListPageComponent} from "./team-list-page/team-list-page.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: TeamListComponent
+    component: TeamListPageComponent
   },
   {
     path: ':id',
@@ -41,6 +42,6 @@ const routes: Routes = [
       ReactiveFormsModule,
       RouterModule.forChild(routes),
     ],
-  exports: [RouterModule]
+  exports: [RouterModule, TeamListComponent]
 })
 export class TeamRoutingModule { }

@@ -6,6 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class DateUtcPipe implements PipeTransform {
   transform(date: Date): any {
     const dateUTC = new Date(`${date}`)
-    return dateUTC.toLocaleString();
+
+    return dateUTC.toLocaleString().replace(/.\d+Z$/g, "Z");
   }
 }

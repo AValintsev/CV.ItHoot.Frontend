@@ -23,7 +23,6 @@ export class TeamDialogComponent implements OnInit {
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
 
-
   separatorKeysCodes: number[] = [ENTER, COMMA];
   resumeCtrl = new FormControl();
   filteredResumes: Observable<SmallResumeDto[]>;

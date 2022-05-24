@@ -41,10 +41,7 @@
       <ng-container matColumnDef="statusTeam">
         <th mat-header-cell *matHeaderCellDef>Status Team</th>
         <td mat-cell *matCellDef="let team">
-          <span *ngIf="team.statusTeam ==1">Created</span>
-          <span *ngIf="team.statusTeam ==2">In Review</span>
-          <span *ngIf="team.statusTeam ==3">Approved</span>
-          <span *ngIf="team.statusTeam ==4">Done</span>
+         {{getStatusTeam(team.statusTeam)}}
         </td>
       </ng-container>
 

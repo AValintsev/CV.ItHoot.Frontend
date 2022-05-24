@@ -18,17 +18,22 @@ import {TeamPageComponent} from './team-page/team-page.component';
 import {MatTableModule} from "@angular/material/table";
 import {TeamPageDialogComponent} from './team-page-dialog/team-page-dialog.component';
 import {TeamPageResumeDialogComponent} from './team-page-resume-dialog/team-page-resume-dialog.component';
+import { TeamComponent } from './team/team.component';
+import { TeamListPageComponent } from './team-list-page/team-list-page.component';
 
 
 @NgModule({
     imports: [TeamRoutingModule, MatFormFieldModule, MatInputModule, MatDialogModule, FormsModule, CommonModule, MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, ReactiveFormsModule, MatAutocompleteModule, MatTableModule],
   exports: [
+    TeamListPageComponent
   ],
   declarations: [
     TeamDialogComponent,
     TeamPageComponent,
     TeamPageDialogComponent,
     TeamPageResumeDialogComponent,
+    TeamComponent,
+    TeamListPageComponent,
   ]
 })
 

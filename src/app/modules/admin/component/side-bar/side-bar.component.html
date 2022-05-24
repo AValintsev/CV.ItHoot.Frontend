@@ -14,23 +14,24 @@
     </li>
     <li [routerLinkActive]="['active']">
       <a routerLink="/admin/teams">
-      <mat-icon>sports_esports</mat-icon>
-      <span>Teams</span>
-    </a>
+        <mat-icon>sports_esports</mat-icon>
+        <span>Teams</span>
+      </a>
     </li>
     <li><a>
       <mat-icon>verified_user</mat-icon>
       <span> Resource planning</span>
     </a></li>
-    <li><a>
-      <mat-icon>bookmark</mat-icon>
-      <span>Archive</span>
-    </a></li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/admin/archive">
+        <mat-icon>bookmark</mat-icon>
+        <span>Archive</span>
+      </a>
+    </li>
     <mat-divider></mat-divider>
     <li class="title-section"><span>Setting</span></li>
     <li [routerLinkActive]="['active']">
-      <!-- <mat-expansion-panel [expanded]="settingOpened()"> -->
-      <mat-expansion-panel >
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>settings</mat-icon>

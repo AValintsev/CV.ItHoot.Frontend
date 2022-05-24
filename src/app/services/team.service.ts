@@ -1,4 +1,3 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
@@ -10,7 +9,7 @@ import {CreateTeamDto, TeamDto} from "../models/create-team-dto";
 export class TeamService {
   private routePrefix: string = 'teams'
 
-  constructor(private httpService: HttpInternalService, private http: HttpClient) {
+  constructor(private httpService: HttpInternalService) {
   }
 
   public createTeam(team: CreateTeamDto): Observable<CreateTeamDto> {
@@ -27,5 +26,9 @@ export class TeamService {
 
   public getTeamById(id:number):Observable<TeamDto>{
     return this.httpService.getRequest<TeamDto>(this.routePrefix+`/${id}`);
+  }
+
+  public getArchiveTeams():Observable<SmallTeamDto[]>{
+    return this.httpService.getRequest<SmallTeamDto[]>(this.routePrefix+'/archive');
   }
 }
