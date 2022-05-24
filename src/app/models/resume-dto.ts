@@ -6,6 +6,7 @@ export interface ResumeDto{
   isDraft:boolean;
   firstName:string;
   lastName: string;
+  position:PositionDto;
   email: string;
   site: string;
   phone: string;
@@ -20,6 +21,11 @@ export interface ResumeDto{
   experiences: ExperienceDto[];
   skills: SkillDto[];
   languages: UserLanguageDto[];
+}
+
+export interface PositionDto{
+  positionId:number;
+  positionName:string;
 }
 
 export interface EducationDto{

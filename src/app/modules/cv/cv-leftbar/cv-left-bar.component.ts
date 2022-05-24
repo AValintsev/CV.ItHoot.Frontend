@@ -3,11 +3,19 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {SkillDialog} from "../skill-dialog/skill-dialog.component";
-import {EducationDto, ExperienceDto, ResumeDto, SkillDto, UserLanguageDto} from "../../../models/resume-dto";
+import {
+  EducationDto,
+  ExperienceDto,
+  PositionDto,
+  ResumeDto,
+  SkillDto,
+  UserLanguageDto
+} from "../../../models/resume-dto";
 import {DialogType} from "../../../models/dialog-type";
 import {LanguageDialog} from "../language-dialog/language-dialog.component";
 import {EducationDialog} from "../education-dialog/education-dialog.component";
 import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
+import {PositionService} from "../../../services/position.service";
 
 
 @Component({
@@ -22,11 +30,15 @@ export class CvLeftBarComponent implements OnInit {
   @Input()
   public resume: ResumeDto = {} as ResumeDto;
   file: File | null = null;
-
+  positions!:PositionDto[];
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
+    private positionService:PositionService
   ) {
+    positionService.getAllPositions().subscribe(positions => {
+      this.positions = positions
+    });
   }
 
   onSelectFile(event: any) {
@@ -41,6 +53,14 @@ export class CvLeftBarComponent implements OnInit {
     this.listLanguageChanged();
     this.experienceListChanged();
     this.educationListChanged();
+  }
+
+  test(position: PositionDto) {
+    this.resumeForm.patchValue({ position: position });
+  }
+
+  comparePosition(position:any, position1:any){
+      return position?.positionId === position1?.positionId;
   }
 
   removeSkill(skill: SkillDto): void {
@@ -253,6 +273,7 @@ export class CvLeftBarComponent implements OnInit {
       this.experienceListChanged()
     });
   }
+
 
 
 }

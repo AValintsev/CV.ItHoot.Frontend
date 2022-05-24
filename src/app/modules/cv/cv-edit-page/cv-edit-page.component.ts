@@ -68,6 +68,7 @@ export class CvEditPageComponent implements OnInit {
     this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
+    this.resumeEditForm.patchValue({ position: resume.position });
 
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeEditForm.controls["skills"])
@@ -128,6 +129,9 @@ export class CvEditPageComponent implements OnInit {
       lastName: new FormControl(this.resumeEditDto.lastName, [
         Validators.required
       ]),
+      position: new FormControl(this.resumeEditDto.position,[
+        Validators.required
+      ]),
       birthdate: new FormControl(this.resumeEditDto.birthdate, [
         Validators.required
       ]),
@@ -165,16 +169,18 @@ export class CvEditPageComponent implements OnInit {
 
 
   submit(resume: ResumeDto) {
-    // console.log(resume)
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Edited');
-        if (this.accountService.getStoreRole() === Users[2]) {
+        const role = this.accountService.getStoreRole();
+        if (role === Users[2]) {
           this.router.navigate(['/home/cv/user-list', this.accountService.getUserId()])
-        } else {
+        }if(role === Users[0] || role === Users[1])
+          this.router.navigate(['/admin/resume'])
+        else {
           this.router.navigate(['/home/cv'])
         }
-        
+
       },
       error: (error) => {
         this.snackbarService.showDanger('Something went wrong!')

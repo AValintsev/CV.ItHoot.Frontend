@@ -29,6 +29,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {CvTemplateModule} from './cv-template/cv-template.module';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -45,29 +46,30 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
     UserCvListComponent,
     CvDublicatePageComponent,
   ],
-    imports: [
-        CommonModule,
-        // RouterModule,
-        CvRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatChipsModule,
-        MatIconModule,
-        MatDividerModule,
-        MatDatepickerModule,
-        MatButtonToggleModule,
-        MatOptionModule,
-        MatAutocompleteModule,
-        MatDialogModule,
-        FontAwesomeModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        CvTemplateModule,
-        CvSmallModule
-    ]
+  imports: [
+    CommonModule,
+    // RouterModule,
+    CvRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatButtonToggleModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    CvTemplateModule,
+    CvSmallModule,
+    MatSelectModule
+  ]
 })
 export class CvModule {
 }
