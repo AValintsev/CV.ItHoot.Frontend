@@ -13,9 +13,14 @@ export class SecondTemplateComponent implements OnInit {
   @Input() public resumeEditForm!: ResumeDto
 
   ngOnInit(): void {
-    this.color = localStorage.getItem('color') ||'#37474f'
-  }
+    this.getStoreColor()
+    // setTimeout(()=>{console.log(this.resumeEditForm)},400)
+    
 
+  }
+   getStoreColor(){
+     return this.color = localStorage.getItem('color') ||'#37474f';
+   }
   storeColor(color:string){
    localStorage.setItem('color',color)
   }
