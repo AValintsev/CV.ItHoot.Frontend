@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CvTemplateComponent} from './cv-template.component';
@@ -10,8 +11,9 @@ import { SecondTemplateComponent } from './second-template/second-template.compo
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
   ],
-  exports: [CvTemplateComponent]
+  exports: [CvTemplateComponent, SecondTemplateComponent]
 })
 export class CvTemplateModule  { }
