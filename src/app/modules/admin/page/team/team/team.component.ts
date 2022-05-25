@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StatusTeam, TeamDto, TeamResumeDto} from "../../../../../models/create-team-dto";
+import {StatusTeam, StatusTeamResume, TeamDto, TeamResumeDto} from "../../../../../models/create-team-dto";
 import {TeamService} from "../../../../../services/team.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../../../services/resume.service";
@@ -19,7 +19,7 @@ export class TeamComponent implements OnInit {
 
   displayedColumns: string[] = ['resumeName', 'fullName', 'isSelected', 'action'];
   @Input()team: TeamDto = {} as TeamDto;
-
+  StatusResume=StatusTeamResume;
 
   constructor(private teamService: TeamService,
               private route: ActivatedRoute,

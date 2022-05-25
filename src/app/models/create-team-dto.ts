@@ -39,8 +39,13 @@ export enum StatusTeam{
 export interface TeamResumeDto{
   id:number;
   resumeId:number;
-  isSelected:boolean;
+  statusResume:StatusTeamResume;
   resumeName:string;
   firstName:string;
   lastName:string;
+}
+export enum StatusTeamResume{
+  NotSelected=1,
+  Selected,
+ Denied
 }
