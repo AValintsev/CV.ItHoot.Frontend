@@ -1,4 +1,3 @@
-import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from '../../../models/resume-dto';
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
@@ -16,20 +15,9 @@ export class CvTemplateComponent implements OnInit {
   faMobileAlt = faMobileAlt;
   faAt = faAt;
 
-  constructor(
-    private resumeService: ResumeService
-  ) {
-  }
-  ngOnInit(): void {
-  }
+  constructor() {}
+  ngOnInit(): void {}
 
-
-  getFormControlValue(name: string) {
-    if (this.resumeEditForm && this.resumeEditForm[name]) {
-      return this.resumeEditForm[name]
-    }
-
-  }
 
 }
 

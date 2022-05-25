@@ -28,7 +28,7 @@ export class CvLeftBarComponent implements OnInit {
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
-  public resume: ResumeDto = {} as ResumeDto;
+  public resume!: ResumeDto;
   file: File | null = null;
   positions!:PositionDto[];
   constructor(

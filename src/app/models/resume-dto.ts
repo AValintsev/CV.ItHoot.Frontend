@@ -1,5 +1,4 @@
 export interface ResumeDto{
-  [key:string]:any;
   id:0;
   resumeName:string;
   picture:string;

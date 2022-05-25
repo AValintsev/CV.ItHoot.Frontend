@@ -2,12 +2,12 @@
   <div class="edit-page">
     <form class="left-bar">
 
-      
       <cv-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
       </cv-cv-create-left-bar>
+
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid"
-          (click)="submit(resumeEditForm.value)">Edit
+                (click)="submit(resumeEditForm.value)">Edit
         </button>
       </div>
     </form>

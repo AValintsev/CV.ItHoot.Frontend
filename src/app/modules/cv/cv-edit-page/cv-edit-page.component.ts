@@ -5,7 +5,6 @@ import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs/operators";
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/services/account.service';
 import { Users } from 'src/app/models/users-type';
 
@@ -19,12 +18,7 @@ import { Users } from 'src/app/models/users-type';
 })
 export class CvEditPageComponent implements OnInit {
 
-  faGlobe = faGlobe;
-  faMapMarkerAlt = faMapMarkerAlt;
-  faMobileAlt = faMobileAlt;
-  faAt = faAt;
-  resumeId: number = 0;
-  resumeEditDto: ResumeDto = {} as ResumeDto;
+  resumeEditDto: ResumeDto|null = null;
   templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
@@ -36,18 +30,18 @@ export class CvEditPageComponent implements OnInit {
     private route: ActivatedRoute,
     private accountService: AccountService
   ) {
-
-  }
-
-  ngOnInit(): void {
-    this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
-        this.patchForm(this.resumeEditDto)
+        this.patchForm(this.resumeEditDto!)
       });
     });
+    this.validateForm()
     this.changeFormDate()
+  }
+
+  ngOnInit(): void {
+
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
@@ -119,47 +113,47 @@ export class CvEditPageComponent implements OnInit {
 
   validateForm() {
     this.resumeEditForm = new FormGroup({
-      id: new FormControl(this.resumeEditDto.id, [Validators.required]),
-      resumeName: new FormControl(this.resumeEditDto.resumeName, [
+      id: new FormControl(this.resumeEditDto?.id, [Validators.required]),
+      resumeName: new FormControl(this.resumeEditDto?.resumeName, [
         Validators.required
       ]),
-      firstName: new FormControl(this.resumeEditDto.firstName, [
+      firstName: new FormControl(this.resumeEditDto?.firstName, [
         Validators.required
       ]),
-      lastName: new FormControl(this.resumeEditDto.lastName, [
+      lastName: new FormControl(this.resumeEditDto?.lastName, [
         Validators.required
       ]),
-      position: new FormControl(this.resumeEditDto.position,[
+      position: new FormControl(this.resumeEditDto?.position,[
         Validators.required
       ]),
-      birthdate: new FormControl(this.resumeEditDto.birthdate, [
+      birthdate: new FormControl(this.resumeEditDto?.birthdate, [
         Validators.required
       ]),
-      email: new FormControl(this.resumeEditDto.email, [
+      email: new FormControl(this.resumeEditDto?.email, [
         Validators.required,
         Validators.email
       ]),
-      site: new FormControl(this.resumeEditDto.site),
-      phone: new FormControl(this.resumeEditDto.phone, [
+      site: new FormControl(this.resumeEditDto?.site),
+      phone: new FormControl(this.resumeEditDto?.phone, [
         Validators.pattern('[- +()0-9]+')
       ]),
-      code: new FormControl(this.resumeEditDto.code),
-      country: new FormControl(this.resumeEditDto.country, [
+      code: new FormControl(this.resumeEditDto?.code),
+      country: new FormControl(this.resumeEditDto?.country, [
         Validators.required
       ]),
-      city: new FormControl(this.resumeEditDto.city, [
+      city: new FormControl(this.resumeEditDto?.city, [
         Validators.required
       ]),
-      street: new FormControl(this.resumeEditDto.street, [
+      street: new FormControl(this.resumeEditDto?.street, [
         Validators.required
       ]),
-      requiredPosition: new FormControl(this.resumeEditDto.requiredPosition, [
+      requiredPosition: new FormControl(this.resumeEditDto?.requiredPosition, [
         Validators.required
       ]),
-      aboutMe: new FormControl(this.resumeEditDto.aboutMe, [
+      aboutMe: new FormControl(this.resumeEditDto?.aboutMe, [
         Validators.required
       ]),
-      picture: new FormControl(this.resumeEditDto.picture),
+      picture: new FormControl(this.resumeEditDto?.picture),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -182,7 +176,7 @@ export class CvEditPageComponent implements OnInit {
         }
 
       },
-      error: (error) => {
+      error: () => {
         this.snackbarService.showDanger('Something went wrong!')
       }
     })
