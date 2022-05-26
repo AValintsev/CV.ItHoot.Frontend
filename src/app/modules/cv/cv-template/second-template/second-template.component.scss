@@ -42,7 +42,7 @@
       justify-content: flex-end;
 
       div {
-         margin-right: 1rem;
+         margin-left: 1rem;
       }
 
       input {
@@ -117,17 +117,36 @@
       }
    }
 }
-.header-action{
+
+.header-action {
    flex-direction: column;
    align-items: flex-end;
+   justify-content: center;
 }
-.action-column{
+
+.action-column {
    display: flex;
+   &:first-child{
+      margin-bottom: .7rem;
+   }
+   &:last-child{
+      margin-right: 1rem;
+   }
 }
 
 .first-name {}
 
 .last-name {}
+
+.img-block {
+   height: 8rem;
+   width: 20rem;
+
+   img {
+      height: 100%;
+      width: 100%;
+   }
+}
 
 .main {
    height: 100%;
