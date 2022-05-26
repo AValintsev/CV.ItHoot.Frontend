@@ -20,10 +20,11 @@ import {TeamPageDialogComponent} from './team-page-dialog/team-page-dialog.compo
 import {TeamPageResumeDialogComponent} from './team-page-resume-dialog/team-page-resume-dialog.component';
 import { TeamComponent } from './team/team.component';
 import { TeamListPageComponent } from './team-list-page/team-list-page.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
-    imports: [TeamRoutingModule, MatFormFieldModule, MatInputModule, MatDialogModule, FormsModule, CommonModule, MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, ReactiveFormsModule, MatAutocompleteModule, MatTableModule],
+    imports: [TeamRoutingModule, MatFormFieldModule, MatInputModule, MatDialogModule, FormsModule, CommonModule, MatButtonModule, MatOptionModule, MatSelectModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, ReactiveFormsModule, MatAutocompleteModule, MatTableModule, MatCheckboxModule],
   exports: [
     TeamListPageComponent
   ],

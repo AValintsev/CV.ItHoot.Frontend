@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallTeamDto} from "../models/small-team-dto";
-import {CreateTeamDto, TeamDto} from "../models/create-team-dto";
+import {CreateTeamDto, TeamDto, TeamResumeDto} from "../models/create-team-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -30,5 +30,9 @@ export class TeamService {
 
   public getArchiveTeams():Observable<SmallTeamDto[]>{
     return this.httpService.getRequest<SmallTeamDto[]>(this.routePrefix+'/archive');
+  }
+
+  public getTeamResume(teamId:number, resumeId:number):Observable<TeamResumeDto>{
+    return this.httpService.getRequest<TeamResumeDto>(this.routePrefix+`/${teamId}/resume/${resumeId}`);
   }
 }

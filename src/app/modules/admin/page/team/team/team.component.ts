@@ -17,8 +17,8 @@ import {saveAs} from "file-saver";
 })
 export class TeamComponent implements OnInit {
 
-  displayedColumns: string[] = ['resumeName', 'fullName', 'isSelected', 'action'];
-  @Input()team: TeamDto = {} as TeamDto;
+  displayedColumns: string[] = ['resumeName', 'fullName', 'skills', 'isSelected', 'action'];
+  @Input()team!: TeamDto;
   StatusResume=StatusTeamResume;
 
   constructor(private teamService: TeamService,
@@ -29,6 +29,7 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.team)
   }
 
   openTeamDialog(): void {

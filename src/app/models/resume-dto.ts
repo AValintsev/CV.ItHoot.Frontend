@@ -1,5 +1,6 @@
 export interface ResumeDto{
   id:0;
+  showLogo:boolean;
   resumeName:string;
   picture:string;
   isDraft:boolean;

@@ -1,4 +1,5 @@
 import {UserDto} from "./user-dto";
+import {ResumeDto, SkillTestDto} from "./resume-dto";
 
 export interface CreateTeamDto {
   teamName:string;
@@ -9,7 +10,10 @@ export interface CreateTeamResumeDto {
   resumeId:number;
 }
 
-
+export interface TeamResumeDto{
+  showLogo:boolean;
+  resume:ResumeDto;
+}
 
 
 export interface TeamDto{
@@ -19,7 +23,8 @@ export interface TeamDto{
   statusTeam:StatusTeam;
   teamName:string;
   resumes:TeamResumeDto[];
-
+  showLogo:true;
+  showContacts:true;
 }
 
 export interface TeamClientDto{
@@ -43,6 +48,7 @@ export interface TeamResumeDto{
   resumeName:string;
   firstName:string;
   lastName:string;
+  skills:SkillTestDto[];
 }
 export enum StatusTeamResume{
   NotSelected=1,

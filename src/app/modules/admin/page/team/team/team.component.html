@@ -1,4 +1,4 @@
-<div class="team-page" *ngIf="team != null">
+<div class="team-page" *ngIf="team">
   <div class="resume-list">
     <div class="table-page">
       <div class="title-section">
@@ -31,6 +31,14 @@
           <td mat-cell *matCellDef="let resume"> {{resume.firstName}} {{resume.lastName}}</td>
         </ng-container>
 
+        <ng-container matColumnDef="skills">
+          <th mat-header-cell *matHeaderCellDef>Skills</th>
+          <td mat-cell *matCellDef="let resume">
+            <div *ngIf="resume.skills.length > 0"><span *ngFor="let skill of resume.skills">{{skill.name}} </span></div>
+            <div *ngIf="resume.skills.length <= 0"><span>None</span></div>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="isSelected">
           <th mat-header-cell *matHeaderCellDef>Is Selected</th>
           <td mat-cell *matCellDef="let resume">
@@ -46,7 +54,7 @@
             <div class="action-wrapper">
               <button class="pdf" (click)="getPdf(resume)">PDF</button>
               <button class="docx">DocX</button>
-              <button class="open" routerLink="/admin/resume/{{resume.resumeId}}">Open</button>
+              <button class="open" routerLink="/teams/{{team.id}}/resume/{{resume.resumeId}}">Open</button>
               <button class="delete" (click)="deleteResume(resume)">Remove</button>
             </div>
           </td>

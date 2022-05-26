@@ -6,6 +6,7 @@ import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
 import {CheckUserGuard} from 'src/app/guards/checkUser.guard';
 import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
+import {TeamResumePageComponent} from "./team-resume-page/team-resume-page.component";
 
 const routes: Routes = [
   {
@@ -31,9 +32,7 @@ const routes: Routes = [
     path: ':id',
     component: CvFullComponent,
     // canActivate: [CheckUserGuard]
-  },
-
-
+  }
 ];
 
 @NgModule({

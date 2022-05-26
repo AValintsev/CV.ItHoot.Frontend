@@ -30,6 +30,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {CvTemplateModule} from './cv-template/cv-template.module';
 import {MatSelectModule} from "@angular/material/select";
+import { TeamResumePageComponent } from './team-resume-page/team-resume-page.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {MatSelectModule} from "@angular/material/select";
     CvEditPageComponent,
     UserCvListComponent,
     CvDublicatePageComponent,
+    TeamResumePageComponent,
   ],
   imports: [
     CommonModule,
