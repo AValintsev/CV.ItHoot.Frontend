@@ -35,4 +35,8 @@ export class TeamService {
   public getTeamResume(teamId:number, resumeId:number):Observable<TeamResumeDto>{
     return this.httpService.getRequest<TeamResumeDto>(this.routePrefix+`/${teamId}/resume/${resumeId}`);
   }
+
+  public getTeamResumePdf(teamId:number, resumeId:number){
+    return this.httpService.getFile(this.routePrefix+`/${teamId}/resume/${resumeId}/pdf`);
+  }
 }

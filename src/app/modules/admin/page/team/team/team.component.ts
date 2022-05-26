@@ -9,6 +9,7 @@ import {TeamPageDialogComponent} from "../team-page-dialog/team-page-dialog.comp
 import {TeamPageResumeDialogComponent} from "../team-page-resume-dialog/team-page-resume-dialog.component";
 import {SmallResumeDto} from "../../../../../models/small-resume-dto";
 import {saveAs} from "file-saver";
+import {ResumeDto} from "../../../../../models/resume-dto";
 
 @Component({
   selector: 'cv-team',
@@ -28,8 +29,12 @@ export class TeamComponent implements OnInit {
               public dialog: MatDialog,) {
   }
 
-  ngOnInit(): void {
-    console.log(this.team)
+  ngOnInit(): void {}
+
+  getPdf(resume:TeamResumeDto){
+    this.teamService.getTeamResumePdf(this.team.id,resume.resumeId).subscribe(file=>{
+      saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
+    })
   }
 
   openTeamDialog(): void {
@@ -71,11 +76,6 @@ export class TeamComponent implements OnInit {
       },
       error: ()=> this.snackBarService.showDanger('Something went wrong')
     });
-  }
-
-  getPdf(resume: TeamResumeDto) {
-    this.resumeService.getPdf(resume.resumeId)
-      .subscribe(response => saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`));
   }
 
   getStatusTeam(status:StatusTeam):string{
