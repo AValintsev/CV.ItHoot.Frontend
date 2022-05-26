@@ -1,11 +1,13 @@
 <div class="wrapper">
-	<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 	<div class="header-top">
-		<div class=" header-user">
+		<div class=" header-user" [style.background]="color">
 			<div class="header__icon-block">
 				<div class="header__label">
-					<img src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg"
-						alt="user icon">
+					<img *ngIf="getFormControlValue('picture'); else image" src="{{getFormControlValue('picture')}}"
+						alt="user photo">
+					<ng-template #image>
+						<img src="/assets/no-image.png" alt="user photo">
+					</ng-template>
 				</div>
 			</div>
 		</div>
@@ -13,7 +15,86 @@
 			<div class="header-name__inner">
 				<div *ngIf="getFormControlValue('firstName')" class="first-name">{{getFormControlValue('firstName')}}</div>
 				<div class="last-name">{{getFormControlValue('lastName')}}</div>
+				<div class="position">{{getFormControlValue('resumeName')}}</div>
 			</div>
+		</div>
+		<div class="header-action">
+			<div class="action-column">
+				<div class="header-action__item">
+					<svg width="200" height="140" version="1.1" id="logo_new" xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 250 50" xml:space="preserve">
+						<style type="text/css">
+							.st0 {
+								fill: #FFFFFF;
+							}
+
+							.st1 {
+								fill: #08f;
+							}
+						</style>
+						<rect x="1.9" y="1.6" class="st0" width="217.7" height="56.9"></rect>
+						<g transform="translate(0.000000,60.000000) scale(0.100000,-0.100000)">
+							<path d="M0,300V0h1175h1175v300v300H1175H0V300z M650,300V30H340H30v270v270h310h310V300z M928,393l3-63h69h70v66v65l28-3l27-3
+			                            l3-157l3-158h-31h-30v70v70h-70h-70v-70v-70h-30h-30v161v160l28-3C924,455,925,452,928,393z M2180,435c0-23-3-25-50-25h-50V275V140
+			                            h-30h-30v135v135h-50c-47,0-50,2-50,25v25h130h130V435z"></path>
+							<path d="M180,290V130h25h25v160v160h-25h-25V290z"></path>
+							<path d="M270,425c0-23,3-25,50-25h50V265V130h30h30v135v135h50c47,0,50,2,50,25v25H400H270V425z">
+							</path>
+						</g>
+						<path class="st1" d="M143.8,14.8c4.1,2.1,6.3,4.9,5.2,6.6c-0.8,1.3-1.5,1.2-4.9-0.8c-9.7-5.4-19.1-0.8-19.1,9.4
+		                                c0,7.2,4.1,11.3,11.2,11.4c5.9,0,9.1-2.5,14.8-11.8c7.6-12,12.7-16.2,20-16.2c8.2,0,13.9,4.4,16.1,12.3c1.4,5.3,0.1,11.2-2.6,11.2
+		                                c-1.7,0-2-0.7-2-6.2c0-5.1-0.4-6.6-2.4-8.7c-2.8-3-7.7-4.6-11.6-3.8c-3.3,0.6-10.3,7.4-11.1,10.8c-0.4,1.7,0.2,3.5,2.1,5.9
+		                                c3.9,5.2,7.2,7,12.9,7c3.3,0,5.1,0.5,5.4,1.4c0.7,2-1.7,3.1-6.6,3.1c-5.4,0-11.3-3-14.8-7.5l-2.7-3.5l-3.4,4c-4.5,5.2-8.1,7-14,7
+		                                c-6.6,0-11.3-2.7-14-8c-6.1-11.9,1.2-24.9,14-25C138.9,13.4,142.3,14,143.8,14.8z">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div class="action-column">
+				<div class="header-action__item">
+					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
+				</div>
+				<div class="header-action__item">
+					<svg (click)="getResumePdf()" _ngcontent-sqy-c43="" xmlns="http://www.w3.org/2000/svg" width="22"
+						height="21" viewBox="0 0 31 32" fill="none">
+						<path _ngcontent-sqy-c43=""
+							d="M28.7853 0.5H2.21482C0.99355 0.5 0 1.49348 0 2.71475V29.2853C0 30.5065 0.99355 31.5 2.21482 31.5H28.7853C30.0066 31.5 31.0001 30.5065 31.0001 29.2853V2.71475C31.0001 1.49348 30.0066 0.5 28.7853 0.5ZM28.9784 8.43378H21.3124V16.2597C23.3053 17.0871 23.8127 19.6828 22.2903 21.205L17.6445 25.8509C16.4593 27.0361 14.541 27.0363 13.3557 25.8509L8.71006 21.2053C7.16538 19.6612 7.72196 17.0758 9.6877 16.2597V8.43378H2.02174V2.71475C2.02174 2.60827 2.10834 2.52167 2.21482 2.52167H28.7853C28.8918 2.52167 28.9784 2.60827 28.9784 2.71475V8.43378Z"
+							fill="black"></path>
+						<path _ngcontent-sqy-c43=""
+							d="M5.17911 7.14338C6.15608 7.14338 6.94806 6.35139 6.94806 5.37442C6.94806 4.39746 6.15608 3.60547 5.17911 3.60547C4.20214 3.60547 3.41016 4.39746 3.41016 5.37442C3.41016 6.35139 4.20214 7.14338 5.17911 7.14338Z"
+							fill="black"></path>
+						<path _ngcontent-sqy-c43=""
+							d="M20.1473 18.0512H19.292V8.22962C19.292 7.67135 18.8394 7.21875 18.2811 7.21875H12.7216C12.1633 7.21875 11.7107 7.67135 11.7107 8.22962V18.0512H10.8554C9.94805 18.0512 9.50981 19.1463 10.1407 19.7769L14.7865 24.4227C15.1813 24.8175 15.8213 24.8175 16.2161 24.4227L20.862 19.7769C20.862 19.7769 20.8621 19.7768 20.8621 19.7767C21.5026 19.1365 21.0373 18.0512 20.1473 18.0512Z"
+							fill="black"></path>
+					</svg>
+				</div>
+
+				<div (click)="navigateToEditPage()" class="header-action__item">
+					<svg _ngcontent-wmh-c43="" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 22"
+						fill="none">
+						<path _ngcontent-wmh-c43=""
+							d="M20.6428 2.8825V2.53818C20.6428 1.16089 19.5248 0.0429688 18.1476 0.0429688C16.7703 0.0429688 15.6523 1.16089 15.6523 2.53818V2.8825H20.6428Z"
+							fill="#8A92A6"></path>
+						<path _ngcontent-wmh-c43=""
+							d="M14.8237 19.7031H1.12687C0.505302 19.7031 0 20.2084 0 20.83C0 21.4516 0.505302 21.9569 1.12687 21.9569H16.3709L14.8237 19.7031Z"
+							fill="#D0D3DB"></path>
+						<path _ngcontent-wmh-c43=""
+							d="M14.1932 6.18359H1.12687C0.505302 6.18359 0 6.6889 0 7.31046C0 7.93203 0.505302 8.43733 1.12687 8.43733H14.1932V6.18359Z"
+							fill="#D0D3DB"></path>
+						<path _ngcontent-wmh-c43=""
+							d="M14.1932 10.6875H1.12687C0.505302 10.6875 0 11.1928 0 11.8144C0 12.4359 0.505302 12.9412 1.12687 12.9412H14.1932V10.6875Z"
+							fill="#D0D3DB"></path>
+						<path _ngcontent-wmh-c43=""
+							d="M14.1932 15.1914H1.12687C0.505302 15.1914 0 15.6967 0 16.3183C0 16.9398 0.505302 17.4451 1.12687 17.4451H14.1932V15.1914Z"
+							fill="#D0D3DB"></path>
+						<path _ngcontent-wmh-c43=""
+							d="M15.6543 4.34766V18.3396L17.9259 21.6218C18.0332 21.7783 18.2658 21.7783 18.3776 21.6218L20.6492 18.3396V4.34766H15.6543Z"
+							fill="#8A92A6"></path>
+					</svg>
+				</div>
+			</div>
+
+
 
 		</div>
 	</div>
@@ -41,15 +122,16 @@
 				<div class="content left-side__content">
 					<div class="left-side__inner">
 						<ul class="left-side__list side-list">
-							<li  *ngFor="let education of getFormControlValue('educations')" class="side-list__item ">
+							<li *ngFor="let education of getFormControlValue('educations')" class="side-list__item ">
 								<div class="side-list__header">
 									<div class="left-side__text">{{education.institutionName}}</div>
-									<div class="left-side__date"><span>{{education.startDate|date:"MM/yyyy"}} - {{education.endDate|date:"MM/yyyy"}}</span></div>
+									<div class="left-side__date"><span>{{education.startDate|date:"MM/yyyy"}} -
+											{{education.endDate|date:"MM/yyyy"}}</span></div>
 								</div>
 								<div class="side-list__content">{{education.specialization}}</div>
 								<!-- education description -->
 								<div class="side-list__content">{{education.description}}</div>
-									<!-- education description -->
+								<!-- education description -->
 							</li>
 						</ul>
 					</div>
@@ -74,7 +156,8 @@
 							<li *ngFor="let experiences of getFormControlValue('experiences')" class="side-list__item ">
 								<div class="side-list__header">
 									<div class="left-side__text">{{experiences.company}}</div>
-									<div class="left-side__date"><span>{{experiences.startDate|date:"MM/yyyy"}} - {{experiences.endDate|date:"MM/yyyy"}}</span></div>
+									<div class="left-side__date"><span>{{experiences.startDate|date:"MM/yyyy"}} -
+											{{experiences.endDate|date:"MM/yyyy"}}</span></div>
 								</div>
 								<div class="left-side__subtext">{{experiences.position}}</div>
 								<ul class="side-list__content-list">
@@ -136,20 +219,21 @@
 										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
 									</path>
 								</svg>
-								<span>{{getFormControlValue('country')}} / {{getFormControlValue('city')}} / {{getFormControlValue('street')}}</span>
+								<span>{{getFormControlValue('country')}} / {{getFormControlValue('city')}} /
+									{{getFormControlValue('street')}}</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div *ngIf="getFormControlValue('aboutMe')" class="row">
+			<div *ngIf="getFormControlValue('aboutMe') || getFormControlValue('birthdate')" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
-						<path fill="#fff"
-							d="M448 160h-128v64h128v-64zM448 256h-128v32h128v-32zM288 160h-96v128h96v-128zM288 352h160v-32h-160v32zM384 416h64v-32h-64v32zM448 448h-256v32h256v-32zM352 384h-160v32h160v-32zM256 320h-64v32h64v-32zM544 32h-448c-17.696 0-32 14.304-32 32v512c0 17.664 14.304 32 32 32h448c17.696 0 32-14.336 32-32v-512c0-17.664-14.304-32-32-32zM512 544h-384v-448h384v448z">
-						</path>
-					</svg>
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
+							<path fill="#fff"
+								d="M448 160h-128v64h128v-64zM448 256h-128v32h128v-32zM288 160h-96v128h96v-128zM288 352h160v-32h-160v32zM384 416h64v-32h-64v32zM448 448h-256v32h256v-32zM352 384h-160v32h160v-32zM256 320h-64v32h64v-32zM544 32h-448c-17.696 0-32 14.304-32 32v512c0 17.664 14.304 32 32 32h448c17.696 0 32-14.336 32-32v-512c0-17.664-14.304-32-32-32zM512 544h-384v-448h384v448z">
+							</path>
+						</svg>
 					</div>
 					<div class="header__title">
 						<span>About</span>
@@ -159,13 +243,15 @@
 				<div class="content right-side__content">
 					<div class="right-side__inner">
 						<div *ngIf="getFormControlValue('birthdate')" class="right-side__age">
-							Age:<span>{{howOld(getFormControlValue('birthdate'))}}</span></div>
+							Age:<span>{{howOld(getFormControlValue('birthdate'))
+								<=0?'i am baby or embryon))':howOld(getFormControlValue('birthdate'))}}</span>
+						</div>
 						<div *ngIf="getFormControlValue('aboutMe')" class="right-side__description">
 							{{getFormControlValue('aboutMe')}}</div>
 					</div>
 				</div>
 			</div>
-			<div  *ngIf="getFormControlValue('languages')?.length" class="row">
+			<div *ngIf="getFormControlValue('languages')?.length" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
@@ -181,14 +267,16 @@
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner languages">
-							<div *ngFor="let language of getFormControlValue('languages')" class="spiner">
-								<div class="language-name">
-									{{language.languageName}}
-								</div>
-								<div class="value">
-									<div class="value-box" [style.width.%]="language.level*25"></div>
-								</div>
+						<div *ngFor="let language of getFormControlValue('languages')" class="spiner">
+							<div class="language-name">
+								{{language.languageName}}
 							</div>
+							<div class="value four-section">
+								<div *ngFor="let leng of getArray(4) let i = index"
+									[style.background]="language.level>=(i+1)?'#fe8503':'#ddd'"></div>
+								<!-- <div class="value-box" [style.width.%]="language.level*25"></div> -->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -208,18 +296,20 @@
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner skills">
-								<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
-											<div class="skill-name">
-												{{skill.skillName}}
-											</div>
-											<div class="value">
-												<div class="value-box" [style.width.%]="skill.level*33.333"></div>
-											</div>
-								</div>
+						<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
+							<div class="skill-name">
+								{{skill.skillName}}
+							</div>
+							<div class="value three-section">
+								<div *ngFor="let leng of getArray(3) let i = index"
+									[style.background]="skill.level>=(i+1)?'#fe8503':'#ddd'"></div>
+								<!-- <div class="value-box" [style.width.%]="skill.level*33.333"></div> -->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="116 42 800 924">
@@ -249,7 +339,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 	</main>

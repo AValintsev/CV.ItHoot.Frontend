@@ -2,8 +2,8 @@
   <mat-card-title-group>
     <mat-card-title>{{resume?.firstName}} {{resume?.lastName}}</mat-card-title>
     <mat-card-subtitle>{{resume?.resumeName}}</mat-card-subtitle>
-    <img mat-card-lg-image *ngIf="resume.picture === null" src="../../../../assets/no-image.png" alt="Resume image">
-    <img mat-card-lg-image *ngIf="resume.picture" src="{{resume.picture}}" alt="Resume image">
+    <!-- <img mat-card-lg-image *ngIf="resume.picture" else img src="{{resume.picture}}" alt="Resume image"> -->
+    <!-- <ng-template #img><img mat-card-lg-image src="/assets/no-image.png" alt="Resume image"></ng-template> -->
   </mat-card-title-group>
   <mat-card-content>
     <div class="button-group">

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -13,6 +14,7 @@ import { SecondTemplateComponent } from './second-template/second-template.compo
     MatProgressSpinnerModule,
     FontAwesomeModule,
     FormsModule,
+    RouterModule
   ],
   exports: [CvTemplateComponent, SecondTemplateComponent]
 })

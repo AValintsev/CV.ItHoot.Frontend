@@ -3,8 +3,19 @@
    background-color: #fff;
    padding-left: 1.5rem;
    padding-right: 1.5rem;
-   padding-top: 1rem;
+   min-width: 100rem;
+   min-height: 100%;
+
+   // padding-top: 1rem;
+   .position {
+      font-size: 2rem;
+      margin-top: 0.7rem;
+      font-weight: 500;
+      color: #666766;
+   }
 }
+
+
 
 .header {
    &-top {
@@ -23,6 +34,20 @@
       display: flex;
       padding-left: 2.75rem;
       align-items: center;
+   }
+
+   &-action {
+      flex: 1 1 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      div {
+         margin-right: 1rem;
+      }
+
+      input {
+         height: 2rem;
+      }
    }
 
    // .header__label
@@ -81,7 +106,7 @@
 .header-name {
    display: flex;
    align-items: center;
-   margin-left: 8rem;
+   margin-left: 6rem;
 
    &__inner {
       div {
@@ -91,6 +116,13 @@
          text-transform: uppercase;
       }
    }
+}
+.header-action{
+   flex-direction: column;
+   align-items: flex-end;
+}
+.action-column{
+   display: flex;
 }
 
 .first-name {}
@@ -371,10 +403,54 @@
 
 .value {
    width: 100%;
-   height: 10px;
+   height: 1rem;
    background: #ddd;
-   margin-bottom: 20px;
+   margin-bottom: 2rem;
+   // border-left: 1rem;
+   border-radius: 1rem;
 }
+
+.three-section,
+.four-section {
+   display: flex;
+
+   div {
+      height: 100%;
+      background: #ddd;
+      border-left: .1rem solid #fff;
+      border-right: .1rem solid #fff;
+
+      &:first-child {
+         border-left: .1rem solid transparent;
+         border-top-left-radius: 1rem;
+         border-bottom-left-radius: 1rem;
+      }
+
+      &:last-child {
+         border-right: .1rem solid transparent;
+         border-top-right-radius: 1rem;
+         border-bottom-right-radius: 1rem;
+      }
+   }
+
+}
+
+.three-section {
+   div {
+      display: block;
+      width: 33.333%;
+      flex: 1 1 33.33333%;
+   }
+}
+
+.four-section {
+   div {
+      display: block;
+      width: 25%;
+      flex: 1 1 25%;
+   }
+}
+
 
 .value-box {
    height: 10px;
@@ -382,9 +458,10 @@
 }
 
 .skill-name,
-.language-name{
-   &::first-letter{
+.language-name {
+   &::first-letter {
       text-transform: uppercase;
    }
+
    margin-bottom: 0.3rem;
 }
