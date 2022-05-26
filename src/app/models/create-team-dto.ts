@@ -4,6 +4,8 @@ import {ResumeDto, SkillTestDto} from "./resume-dto";
 export interface CreateTeamDto {
   teamName:string;
   clientId:number;
+  showLogo:boolean;
+  showContacts:boolean;
   resumes:CreateTeamResumeDto[];
 }
 export interface CreateTeamResumeDto {
