@@ -1,5 +1,5 @@
 import { ResumeService } from 'src/app/services/resume.service';
-import { SmallResumeDto } from './../../../models/small-resume-dto';
+import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';

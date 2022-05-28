@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {PositionDto} from "../../../../../models/resume-dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {DialogType} from "../../../../../models/dialog-type";
+import {DialogType} from "../../../../../models/enums";
+import {PositionDto} from "../../../../../models/position/position-dto";
 
 @Component({
   selector: 'cv-position-dialog',

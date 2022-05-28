@@ -1,4 +1,4 @@
-import {SkillTestDto} from "./resume-dto";
+import {SkillDto} from "../skill/skill-dto";
 
 export interface SmallResumeDto{
   id: number;
@@ -8,5 +8,5 @@ export interface SmallResumeDto{
   firstName: string;
   lastName: string;
   picture: string
-  skills:SkillTestDto[];
+  skills:SkillDto[];
 }

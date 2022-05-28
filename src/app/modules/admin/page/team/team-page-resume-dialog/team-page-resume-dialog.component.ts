@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {ResumeService} from "../../../../../services/resume.service";
-import {SmallResumeDto} from "../../../../../models/small-resume-dto";
+import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 
 
 @Component({

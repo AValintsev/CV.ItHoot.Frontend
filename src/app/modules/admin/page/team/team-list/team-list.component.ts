@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TeamService} from "../../../../../services/team.service";
-import {SmallTeamDto} from "../../../../../models/small-team-dto";
-import {CreateTeamDto, StatusTeam} from "../../../../../models/create-team-dto";
+import {SmallTeamDto} from "../../../../../models/team/small-team-dto";
 import {TeamDialogComponent} from "../team-dialog/team-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TeamDto} from "../../../../../models/team/create-team-dto";
+import {StatusTeam} from "../../../../../models/enums";
 
 
 @Component({
@@ -23,14 +24,14 @@ export class TeamListComponent implements OnInit {
   }
 
   openTeamDialog(): void {
-    const team = {} as CreateTeamDto;
+    const team = {} as TeamDto;
 
     const dialogRef = this.dialog.open(TeamDialogComponent, {
       autoFocus: false,
       data: team
     });
 
-    dialogRef.afterClosed().subscribe((team: CreateTeamDto) => {
+    dialogRef.afterClosed().subscribe((team: TeamDto) => {
       if (team == null)
         return;
 

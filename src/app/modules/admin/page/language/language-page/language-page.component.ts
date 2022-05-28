@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { DialogType } from 'src/app/models/dialog-type';
-import { LanguageTestDto } from 'src/app/models/resume-dto';
 import { LanguageService } from 'src/app/services/language.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { LanguageDialogComponent } from "../language-dialog/language-dialog.component";
+import {LanguageDto} from "../../../../../models/language/language-dto";
+import {DialogType} from "../../../../../models/enums";
 
 
 @Component({
@@ -14,7 +14,7 @@ import { LanguageDialogComponent } from "../language-dialog/language-dialog.comp
 })
 export class LanguagePageComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'action'];
-  languages: LanguageTestDto[] = [];
+  languages: LanguageDto[] = [];
 
   constructor(private languageService: LanguageService,
     private dialog: MatDialog,
@@ -24,7 +24,7 @@ export class LanguagePageComponent implements OnInit {
     this.languageService.getAllLanguage().subscribe(language => this.languages = language);
   }
 
-  createLanguage(language: LanguageTestDto) {
+  createLanguage(language: LanguageDto) {
     this.languageService.createLanguage(language).subscribe({
       next: () => {
         this.snackBar.showSuccess('Created');
@@ -34,7 +34,7 @@ export class LanguagePageComponent implements OnInit {
     })
   }
 
-  updateLanguage(language: LanguageTestDto) {
+  updateLanguage(language: LanguageDto) {
     this.languageService.updateLanguage(language).subscribe({
       next: () => {
         this.snackBar.showSuccess('Updated');
@@ -44,7 +44,7 @@ export class LanguagePageComponent implements OnInit {
     })
   }
 
-  deleteLanguage(skill: LanguageTestDto) {
+  deleteLanguage(skill: LanguageDto) {
     this.languageService.deleteLanguage(skill).subscribe({
       next: () => {
         this.snackBar.showSuccess('Deleted');
@@ -55,10 +55,10 @@ export class LanguagePageComponent implements OnInit {
   }
 
 
-  openLanguageDialog(language: LanguageTestDto | null = null): void {
+  openLanguageDialog(language: LanguageDto | null = null): void {
     let dialogType: DialogType = DialogType.Edit;
     if (language == null) {
-      language = {} as LanguageTestDto;
+      language = {} as LanguageDto;
       dialogType = DialogType.Create;
     }
 
@@ -68,7 +68,7 @@ export class LanguagePageComponent implements OnInit {
       data: { type: dialogType, data: language },
     });
 
-    dialogRef.afterClosed().subscribe((language: LanguageTestDto) => {
+    dialogRef.afterClosed().subscribe((language: LanguageDto) => {
       if (language == null)
         return;
       if (dialogType == DialogType.Create) {

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {map} from 'rxjs/operators';
-import {ResumeDto} from 'src/app/models/resume-dto';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {UserEventService} from 'src/app/services/userEvent.service';
 
 

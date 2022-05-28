@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpInternalService} from "./http-internal.service";
 import {Observable} from "rxjs";
-import {PositionDto} from "../models/resume-dto";
+import {PositionDto} from "../models/position/position-dto";
 
 @Injectable({ providedIn: 'root' })
 export class PositionService {

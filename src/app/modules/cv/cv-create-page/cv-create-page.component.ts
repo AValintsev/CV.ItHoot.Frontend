@@ -4,7 +4,7 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ResumeDto } from "../../../models/resume-dto";
+import { ResumeDto } from "../../../models/resume/resume-dto";
 import { Users } from 'src/app/models/users-type';
 import { map} from 'rxjs/operators';
 

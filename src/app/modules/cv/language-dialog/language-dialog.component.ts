@@ -1,11 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {LanguageTestDto, UserLanguageDto} from "../../../models/resume-dto";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
-import {DialogType} from "../../../models/dialog-type";
 import {LanguageService} from "../../../services/language.service";
+import {ResumeLanguageDto} from "../../../models/resume/resume-language-dto";
+import {DialogType} from "../../../models/enums";
+import {LanguageDto} from "../../../models/language/language-dto";
 
 @Component({
   selector: 'cv-language-dialog',
@@ -14,11 +15,11 @@ import {LanguageService} from "../../../services/language.service";
 })
 export class LanguageDialog implements OnInit {
 
-  language: UserLanguageDto = {} as UserLanguageDto;
+  language: ResumeLanguageDto = {} as ResumeLanguageDto;
   typeDialog: DialogType;
   DialogType = DialogType;
   myControl = new FormControl();
-  filteredOptions: Observable<LanguageTestDto[]>;
+  filteredOptions: Observable<LanguageDto[]>;
 
   ngOnInit() { }
 
@@ -39,7 +40,7 @@ export class LanguageDialog implements OnInit {
       })
     )
   }
-  filter(val: string): Observable<LanguageTestDto[]> {
+  filter(val: string): Observable<LanguageDto[]> {
     return this.languageService.searchLanguage(val).pipe(map(data => {
       console.log(data)
       if (!data.length){

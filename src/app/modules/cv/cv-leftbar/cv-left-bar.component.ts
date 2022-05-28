@@ -3,19 +3,17 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {SkillDialog} from "../skill-dialog/skill-dialog.component";
-import {
-  EducationDto,
-  ExperienceDto,
-  PositionDto,
-  ResumeDto,
-  SkillDto,
-  UserLanguageDto
-} from "../../../models/resume-dto";
-import {DialogType} from "../../../models/dialog-type";
 import {LanguageDialog} from "../language-dialog/language-dialog.component";
 import {EducationDialog} from "../education-dialog/education-dialog.component";
 import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
 import {PositionService} from "../../../services/position.service";
+import {ResumeDto} from "../../../models/resume/resume-dto";
+import {PositionDto} from "../../../models/position/position-dto";
+import {ResumeSkillDto} from "../../../models/resume/resume-skill-dto";
+import {DialogType} from "../../../models/enums";
+import {ResumeLanguageDto} from "../../../models/resume/resume-language-dto";
+import {EducationDto} from "../../../models/resume/education-dto";
+import {ExperienceDto} from "../../../models/resume/experience-dto";
 
 
 @Component({
@@ -63,7 +61,7 @@ export class CvLeftBarComponent implements OnInit {
       return position?.positionId === position1?.positionId;
   }
 
-  removeSkill(skill: SkillDto): void {
+  removeSkill(skill: ResumeSkillDto): void {
     const index = this.resume.skills.indexOf(skill);
     if (index >= 0) {
       this.resume.skills.splice(index, 1);
@@ -84,11 +82,11 @@ export class CvLeftBarComponent implements OnInit {
     })
   }
 
-  openSkillDialog(skill: SkillDto | null = null): void {
-    let data: SkillDto;
+  openSkillDialog(skill: ResumeSkillDto | null = null): void {
+    let data: ResumeSkillDto;
     let dialogType: DialogType;
     if (skill == null) {
-      data = {} as SkillDto;
+      data = {} as ResumeSkillDto;
       dialogType = DialogType.Create;
     } else {
       data = skill;
@@ -101,7 +99,7 @@ export class CvLeftBarComponent implements OnInit {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((skill: SkillDto) => {
+    dialogRef.afterClosed().subscribe((skill: ResumeSkillDto) => {
       if (skill == null)
         return;
 
@@ -114,7 +112,7 @@ export class CvLeftBarComponent implements OnInit {
     });
   }
 
-  removeLanguage(language: UserLanguageDto) {
+  removeLanguage(language: ResumeLanguageDto) {
     const index = this.resume.languages.indexOf(language);
     if (index >= 0) {
       this.resume.languages.splice(index, 1);
@@ -135,11 +133,11 @@ export class CvLeftBarComponent implements OnInit {
     })
   }
 
-  openLanguageDialog(language: UserLanguageDto | null = null) {
-    let data: UserLanguageDto;
+  openLanguageDialog(language: ResumeLanguageDto | null = null) {
+    let data: ResumeLanguageDto;
     let dialogType: DialogType;
     if (language == null) {
-      data = {} as UserLanguageDto;
+      data = {} as ResumeLanguageDto;
       dialogType = DialogType.Create;
     } else {
       data = language;
@@ -152,7 +150,7 @@ export class CvLeftBarComponent implements OnInit {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((language: UserLanguageDto) => {
+    dialogRef.afterClosed().subscribe((language: ResumeLanguageDto) => {
       if (language == null)
         return;
       let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);

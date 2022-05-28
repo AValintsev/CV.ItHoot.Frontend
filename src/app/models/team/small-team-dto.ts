@@ -1,4 +1,4 @@
-import {StatusTeam} from "./create-team-dto";
+import {StatusTeam} from "../enums";
 
 export interface SmallTeamDto{
   id:number;

@@ -2,7 +2,6 @@ import { CvSmallModule } from './cv-small/cv-small.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvRoutingModule } from './cv-routing.module';
-import { CvFormComponent } from './cv-form/cv-form.component';
 import { CvFullComponent } from './cv-full/cv-full.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
@@ -36,7 +35,6 @@ import { TeamResumePageComponent } from './team-resume-page/team-resume-page.com
 @NgModule({
   declarations: [
     CvFullComponent,
-    CvFormComponent,
     CvCreatePageComponent,
     CvLeftBarComponent,
     SkillDialog,

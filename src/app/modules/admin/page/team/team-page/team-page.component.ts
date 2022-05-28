@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../../services/team.service";
-import {TeamDto} from "../../../../../models/create-team-dto";
+import {TeamDto} from "../../../../../models/team/create-team-dto";
 
 @Component({
   selector: 'cv-team-page',

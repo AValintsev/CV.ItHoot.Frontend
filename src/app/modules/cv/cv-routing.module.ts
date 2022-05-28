@@ -10,11 +10,6 @@ import {TeamResumePageComponent} from "./team-resume-page/team-resume-page.compo
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren:()=>import('./cv-list/cv-list.module').then(mod=>mod.CvListModule)
-    // canActivate:[UserCvListGuard]
-  },
-  {
     path: 'edit/:id',
     component: CvEditPageComponent
   },

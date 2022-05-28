@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume-dto";
+import {ResumeDto} from "../../../models/resume/resume-dto";
 import {TeamService} from "../../../services/team.service";
 import {ActivatedRoute} from "@angular/router";
 
@@ -17,9 +17,9 @@ export class TeamResumePageComponent implements OnInit {
       const teamId = params['teamId'];
       const resumeId = params['resumeId'];
 
-      this.teamService.getTeamResume(teamId, resumeId).subscribe(resume => {
-        this.resume = resume.resume;
-        this.resume.showLogo = resume.showLogo;
+      this.teamService.getTeamResume(teamId, resumeId).subscribe(data => {
+        this.resume = data.resume;
+        this.resume!.showLogo = data.showLogo;
       })
     })
 

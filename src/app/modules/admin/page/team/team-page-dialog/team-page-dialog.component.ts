@@ -2,7 +2,7 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../../../../services/user.service";
 import {ResumeService} from "../../../../../services/resume.service";
-import {TeamDto} from "../../../../../models/create-team-dto";
+import {TeamDto} from "../../../../../models/team/create-team-dto";
 import {UserDto} from "../../../../../models/user-dto";
 
 @Component({

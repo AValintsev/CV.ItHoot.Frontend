@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SmallTeamDto} from "../../../../../models/small-team-dto";
+import {SmallTeamDto} from "../../../../../models/team/small-team-dto";
 import {TeamService} from "../../../../../services/team.service";
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PositionDto} from "../../../../../models/resume-dto";
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
-import {DialogType} from "../../../../../models/dialog-type";
 import {PositionService} from "../../../../../services/position.service";
 import {PositionDialogComponent} from "../position-dialog/position-dialog.component";
+import {PositionDto} from "../../../../../models/position/position-dto";
+import {DialogType} from "../../../../../models/enums";
 
 @Component({
   selector: 'cv-position-page',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TeamDto} from "../../../../../models/create-team-dto";
+import {TeamDto} from "../../../../../models/team/create-team-dto";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../../services/team.service";
 import {map} from "rxjs/operators";

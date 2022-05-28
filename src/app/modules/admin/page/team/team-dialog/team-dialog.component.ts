@@ -1,6 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CreateTeamDto} from "../../../../../models/create-team-dto";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -9,8 +8,9 @@ import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {SmallResumeDto} from "../../../../../models/small-resume-dto";
+import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {ResumeService} from "../../../../../services/resume.service";
+import {TeamDto, TeamResumeDto} from "../../../../../models/team/create-team-dto";
 
 @Component({
   selector: 'cv-team-dialog',
@@ -19,7 +19,7 @@ import {ResumeService} from "../../../../../services/resume.service";
 })
 export class TeamDialogComponent implements OnInit {
 
-  team: CreateTeamDto = {} as CreateTeamDto;
+  team: TeamDto = {} as TeamDto;
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
 
@@ -80,7 +80,7 @@ export class TeamDialogComponent implements OnInit {
       this.team.resumes = []
 
     this.resumes.forEach(resume =>{
-      this.team.resumes.push({resumeId:resume.id});
+      this.team.resumes.push({resumeId:resume.id} as TeamResumeDto);
     })
     this.dialogRef.close(this.team);
   }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StatusTeam, StatusTeamResume, TeamDto, TeamResumeDto} from "../../../../../models/create-team-dto";
+import {StatusTeamResume, TeamDto, TeamResumeDto} from "../../../../../models/team/create-team-dto";
 import {TeamService} from "../../../../../services/team.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../../../services/resume.service";
@@ -7,9 +7,10 @@ import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TeamPageDialogComponent} from "../team-page-dialog/team-page-dialog.component";
 import {TeamPageResumeDialogComponent} from "../team-page-resume-dialog/team-page-resume-dialog.component";
-import {SmallResumeDto} from "../../../../../models/small-resume-dto";
+import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {saveAs} from "file-saver";
-import {ResumeDto} from "../../../../../models/resume-dto";
+import {ResumeDto} from "../../../../../models/resume/resume-dto";
+import {StatusTeam} from "../../../../../models/enums";
 
 @Component({
   selector: 'cv-team',
