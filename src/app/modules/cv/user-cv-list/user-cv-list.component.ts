@@ -26,7 +26,7 @@ export class UserCvListComponent implements OnInit {
       picture:" string",
   skills: [{id:1,name:''}],
     }])))
-    this.smallResumeDto$.subscribe(e=>{console.log('user-list',e)})
+    this.smallResumeDto$.subscribe()
   }
 
 }

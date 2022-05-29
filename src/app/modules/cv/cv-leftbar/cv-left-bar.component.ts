@@ -42,7 +42,6 @@ export class CvLeftBarComponent implements OnInit {
   onSelectFile(event: any) {
     this.file = event.target.files[0];
     this.resumeService.addPhoto(this.resume.id,this.file!).subscribe(x=>{
-      console.log(x);
     });
   }
 

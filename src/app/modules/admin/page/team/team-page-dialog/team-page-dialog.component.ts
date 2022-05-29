@@ -25,7 +25,6 @@ export class TeamPageDialogComponent implements OnInit {
               userService: UserService) {
     this.team = data;
     userService.getUsersByRole('client').subscribe(clients=>this.clients = clients);
-    console.log(this.team)
   }
 
   canUpdate() {

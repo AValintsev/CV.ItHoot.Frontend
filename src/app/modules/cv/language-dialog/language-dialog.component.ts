@@ -28,7 +28,6 @@ export class LanguageDialog implements OnInit {
     private languageService: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.language = data.data;
-    console.log(this.language)
     this.typeDialog = data.type;
     this.myControl.setValue(this.language.languageName)
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -42,9 +41,7 @@ export class LanguageDialog implements OnInit {
   }
   filter(val: string): Observable<LanguageDto[]> {
     return this.languageService.searchLanguage(val).pipe(map(data => {
-      console.log(data)
       if (!data.length){
-        console.log(data.length)
       return [{id:0,name:val}]
       }
       return data;

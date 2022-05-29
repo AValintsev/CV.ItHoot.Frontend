@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit {
       //   this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
       // } else {
       //   this.router.navigate([`/home/cv/`])
-      //   console.log('gggg',res)
       // }
 
       // },
