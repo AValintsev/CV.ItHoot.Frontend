@@ -17,6 +17,7 @@ chrome-profiler-events*.json
 /.idea
 /.vscode
 /.angular
+.angular
 .project
 .classpath
 .c9/
