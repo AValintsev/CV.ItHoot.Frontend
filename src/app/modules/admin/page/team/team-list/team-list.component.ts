@@ -14,7 +14,7 @@ import {StatusTeam} from "../../../../../models/enums";
 })
 export class TeamListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'teamName', 'clientUserName', 'teamSize', 'lastUpdated', 'createdUserName', 'statusTeam', 'action'];
+  displayedColumns: string[] = ['id', 'teamName', 'clientUserName', 'teamSize', 'showLogo', 'showContacts', 'lastUpdated', 'createdUserName', 'statusTeam', 'action'];
   @Input()teams: SmallTeamDto[] = [];
   @Output() refreshTeams: EventEmitter<any> = new EventEmitter<any>();
   constructor(private teamService: TeamService, public dialog: MatDialog) {
