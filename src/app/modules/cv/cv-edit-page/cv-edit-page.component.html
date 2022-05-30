@@ -4,7 +4,6 @@
 
       <cv-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
       </cv-cv-create-left-bar>
-
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid"
                 (click)="submit(resumeEditForm.value)">Edit
@@ -12,5 +11,7 @@
       </div>
     </form>
   </div>
-  <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template>
+  <!-- <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template> -->
+  <cv-second-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-second-template>
 </div>
+

@@ -13,7 +13,9 @@ import {FooterModule} from '../core/footer/footer.module';
         {
           path: 'cv', loadChildren: () => import('./../cv/cv.module').then(mod => mod.CvModule),
         },
-
+        {
+          path: 'client', loadChildren: () => import('./../client/client.module').then(mod => mod.ClientModule),
+        },
       ]
     }
 

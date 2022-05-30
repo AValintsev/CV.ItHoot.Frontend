@@ -40,16 +40,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.value) {
       this.accountService.login(this.loginForm.value).subscribe({
         next: next => {
-
-          // if (this.accountService.getUserRole().value === Users[2]) {
-          // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-          // } else {
           this.router.navigate([''])
-          //
-          // }
-
-          // this.router.navigate([`/home/cv/`])
-
         },
         error: error => {
           this.snackbarService.showDanger('Email or password wrong')
@@ -62,12 +53,6 @@ export class LoginComponent implements OnInit {
       //   this.router.navigate([`/home/cv/`])
       // }
 
-      // },
-      // (error) => {
-      //   this.snackbarService.showDanger(error.error.errors)
-      // })
-
-      // }
     }
   }
 }

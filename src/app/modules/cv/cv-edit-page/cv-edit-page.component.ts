@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ResumeDto } from "../../../models/resume/resume-dto";
+import { ResumeDto } from "../../../models/resume-dto";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs/operators";
+import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/services/account.service';
 import { Users } from 'src/app/models/users-type';
 
