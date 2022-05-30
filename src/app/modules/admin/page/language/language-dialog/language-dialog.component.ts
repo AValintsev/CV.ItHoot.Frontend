@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {LanguageTestDto} from "../../../../../models/resume-dto";
-import {DialogType} from "../../../../../models/dialog-type";
+import {DialogType} from "../../../../../models/enums";
+import {LanguageDto} from "../../../../../models/language/language-dto";
 
 @Component({
   selector: 'app-language-dialog',
@@ -12,7 +12,7 @@ export class LanguageDialogComponent implements OnInit {
 
   typeDialog: DialogType = DialogType.Create;
   DialogType = DialogType;
-  language: LanguageTestDto = {} as LanguageTestDto;
+  language: LanguageDto = {} as LanguageDto;
 
   ngOnInit() {
   }

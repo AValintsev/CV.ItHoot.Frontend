@@ -46,6 +46,12 @@ export class LoginComponent implements OnInit {
           this.snackbarService.showDanger('Email or password wrong')
         }
       })
+      // (res) => {
+      // if (this.accountService.getUserRole().value === 'User') {
+      //   this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
+      // } else {
+      //   this.router.navigate([`/home/cv/`])
+      // }
 
     }
   }

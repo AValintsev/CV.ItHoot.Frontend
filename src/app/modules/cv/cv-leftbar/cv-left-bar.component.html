@@ -55,6 +55,16 @@
         Last Name is required
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Position</mat-label>
+      <mat-select [(value)]="resume.position" [compareWith]="comparePosition">
+        <mat-option *ngFor="let position of positions" [value]="position" (onSelectionChange)="test(position)">
+          {{position.positionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Date of birth</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="birthdate">

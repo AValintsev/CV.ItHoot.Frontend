@@ -4,9 +4,9 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ResumeDto } from "../../../models/resume-dto";
+import { ResumeDto } from "../../../models/resume/resume-dto";
 import { Users } from 'src/app/models/users-type';
-import { map, switchMap } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 
 
 @Component({
@@ -42,7 +42,6 @@ export class CvCreatePageComponent implements OnInit {
         if(params){
            this.resumeService.getResumeById(params).subscribe({
              next:response=>this.patchForm(response),
-             error:error=>console.log
            })
         }
       },
@@ -62,6 +61,9 @@ export class CvCreatePageComponent implements OnInit {
         Validators.required
       ]),
       lastName: new FormControl(this.resumeCreateDto.lastName, [
+        Validators.required
+      ]),
+      position: new FormControl(this.resumeCreateDto.position,[
         Validators.required
       ]),
       email: new FormControl(this.resumeCreateDto.email, [
@@ -115,6 +117,7 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateForm.patchValue({ birthdate: resume.birthdate });
     this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeCreateForm.patchValue({ picture: resume.picture });
+    this.resumeCreateForm.patchValue({ position: resume.position });
 
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeCreateForm.controls["skills"])
@@ -165,7 +168,6 @@ export class CvCreatePageComponent implements OnInit {
 
 
   public submit(resume: ResumeDto) {
-    // console.log(resume)
     this.resumeService.createResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Created');
@@ -176,7 +178,7 @@ export class CvCreatePageComponent implements OnInit {
         }
 
       },
-      error: (error) => {
+      error: () => {
         this.snackbarService.showDanger('Something went wrong!')
       }
     })

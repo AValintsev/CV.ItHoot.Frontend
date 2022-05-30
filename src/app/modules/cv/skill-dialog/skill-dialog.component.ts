@@ -1,11 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {SkillService} from "../../../services/skill.service";
-import {SkillDto, SkillTestDto} from "../../../models/resume-dto";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
-import {DialogType} from "../../../models/dialog-type";
+import {ResumeSkillDto} from "../../../models/resume/resume-skill-dto";
+import {SkillDto} from "../../../models/skill/skill-dto";
+import {DialogType} from "../../../models/enums";
+
 
 @Component({
   selector: 'cv-skill-dialog',
@@ -14,13 +16,13 @@ import {DialogType} from "../../../models/dialog-type";
 })
 export class SkillDialog implements OnInit {
 
-  skill: SkillDto = {} as SkillDto;
+  skill: ResumeSkillDto = {} as ResumeSkillDto;
   typeDialog: DialogType;
   DialogType = DialogType;
   myControl = new FormControl();
-  filteredOptions: Observable<SkillTestDto[]>;
+  filteredOptions: Observable<SkillDto[]>;
 
-  ngOnInit() { 
+  ngOnInit() {
 
   }
 
@@ -31,7 +33,7 @@ export class SkillDialog implements OnInit {
     this.skill = data.data;
     this.typeDialog = data.type;
     this.myControl.setValue(this.skill.skillName)
-    
+
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(400),
@@ -41,7 +43,7 @@ export class SkillDialog implements OnInit {
       })
     )
   }
-  filter(val: string): Observable<SkillTestDto[]> {
+  filter(val: string): Observable<SkillDto[]> {
     return this.skillService.searchSkill(val).pipe(map(data => {
       if (data.length === 0) {
         data = [{ id: 0, name: val }]
@@ -57,8 +59,6 @@ export class SkillDialog implements OnInit {
   }
 
   canCreate(): boolean {
-    if (this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined)
-      return false;
-    return true;
+    return !(this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined);
   }
 }

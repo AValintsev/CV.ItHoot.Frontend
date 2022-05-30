@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {EducationDto} from "../../../models/resume-dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {DialogType} from "../../../models/dialog-type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {EducationDto} from "../../../models/resume/education-dto";
+import {DialogType} from "../../../models/enums";
 
 @Component({
   selector: 'cv-education-dialog',

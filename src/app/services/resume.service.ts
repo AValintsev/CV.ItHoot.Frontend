@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
-import {SmallResumeDto} from "../models/small-resume-dto";
-import {ResumeDto} from "../models/resume-dto";
+import {SmallResumeDto} from "../models/resume/small-resume-dto";
+import {ResumeDto} from "../models/resume/resume-dto";
 
 
 @Injectable({providedIn: 'root'})

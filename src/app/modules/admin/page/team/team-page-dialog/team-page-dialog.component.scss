@@ -1,0 +1,15 @@
+.team-dialog{
+  .content{
+    mat-form-field{
+      width: 100%;
+    }
+
+    .checkbox-section{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .actions{
+    justify-content: end;
+  }
+}

@@ -34,7 +34,15 @@ const routs: Routes = [
 			{
 				path: 'teams',
 				loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
-			}
+			},
+      {
+        path:'archive',
+        loadChildren:() => import('./page/archive/archive.module').then(mod=>mod.ArchiveModule)
+      },
+      {
+        path:'positions',
+        loadChildren:()=>import('./page/position/position.module').then(mod=>mod.PositionModule)
+      }
 		]
 	}
 

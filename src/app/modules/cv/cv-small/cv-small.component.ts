@@ -1,7 +1,6 @@
-import { SmallResumeDto } from './../../../models/small-resume-dto';
+import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
 import { AccountService } from 'src/app/services/account.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { CvCard } from 'src/app/models/cv-card';
 import { Observable } from "rxjs";
 import { UserAuthData } from "../../../models/userAuthData";
 import { Users } from "../../../models/users-type";
@@ -25,7 +24,7 @@ export class CvSmallComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
+
   }
 
   checkRole() {

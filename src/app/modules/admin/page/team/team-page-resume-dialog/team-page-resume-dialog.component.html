@@ -1,0 +1,18 @@
+<div class="resume-dialog">
+  <h1 mat-dialog-title >Add resume</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select resume</mat-label>
+      <mat-select [(value)]="resumeDto">
+        <mat-option *ngFor="let resume of allResumes" [value]="resume">
+         {{resume.resumeName}} {{resume.firstName}} {{resume.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button cdkFocusInitial (click)="click()" [disabled]="canAdd()">Add</button>
+  </div>
+</div>

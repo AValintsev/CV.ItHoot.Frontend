@@ -1,0 +1,18 @@
+<div class="position-dialog">
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Create new position</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit position</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Position name</mat-label>
+      <input matInput placeholder="Fullstack" [(ngModel)]="positionDto.positionName">
+    </mat-form-field>
+
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button [mat-dialog-close]="positionDto" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create">Create</button>
+    <button mat-button [mat-dialog-close]="positionDto" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+  </div>
+
+</div>

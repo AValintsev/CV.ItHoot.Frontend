@@ -10,7 +10,9 @@ import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {RouterModule} from '@angular/router';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-
+import { Injector } from '@angular/core';
+import {ErrorInterceptor} from "./helpers/error.interceptor";
+export let AppInjector: Injector;
 registerLocaleData(en);
 @NgModule({
   declarations: [
@@ -29,7 +31,13 @@ registerLocaleData(en);
   providers: [
     {provide:DatePipe},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    AppInjector = this.injector;
+  }
+}

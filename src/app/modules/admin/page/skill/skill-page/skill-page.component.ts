@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
 import {MatDialog} from "@angular/material/dialog";
-import {DialogType} from 'src/app/models/dialog-type';
-import {SkillTestDto} from 'src/app/models/resume-dto';
 import {SkillService} from 'src/app/services/skill.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {SkillDialogComponent} from "../skill-dialog/skill-dialog.component";
+import {SkillDto} from "../../../../../models/skill/skill-dto";
+import {DialogType} from "../../../../../models/enums";
 
 
 @Component({
@@ -16,7 +16,7 @@ import {SkillDialogComponent} from "../skill-dialog/skill-dialog.component";
 export class SkillPageComponent implements OnInit {
 
 	displayedColumns: string[] = ['id', 'name', 'action'];
-	skills: SkillTestDto[] = [];
+	skills: SkillDto[] = [];
 
 	constructor(private skillService: SkillService, public dialog: MatDialog, private snackBar: SnackBarService) { }
 
@@ -24,7 +24,7 @@ export class SkillPageComponent implements OnInit {
 		this.skillService.getAllSkills().subscribe(skills => this.skills = skills);
 	}
 
-	createSkill(skill: SkillTestDto) {
+	createSkill(skill: SkillDto) {
 		this.skillService.createSkill(skill).subscribe({
 			next: () => {
 				this.snackBar.showSuccess('Created');
@@ -34,7 +34,7 @@ export class SkillPageComponent implements OnInit {
 		})
 	}
 
-	updateSkill(skill: SkillTestDto) {
+	updateSkill(skill: SkillDto) {
 		this.skillService.updateSkill(skill).subscribe({
 			next: () => {
 				this.snackBar.showSuccess('Updated');
@@ -44,7 +44,7 @@ export class SkillPageComponent implements OnInit {
 		})
 	}
 
-	deleteSkill(skill: SkillTestDto) {
+	deleteSkill(skill: SkillDto) {
 		this.skillService.deleteSkill(skill).subscribe({
 			next: () => {
 				this.snackBar.showSuccess('Deleted');
@@ -54,10 +54,10 @@ export class SkillPageComponent implements OnInit {
 		})
 	}
 
-	openSkillDialog(skill: SkillTestDto | null = null): void {
+	openSkillDialog(skill: SkillDto | null = null): void {
 		let dialogType: DialogType = DialogType.Edit;
 		if (skill == null) {
-			skill = {} as SkillTestDto;
+			skill = {} as SkillDto;
 			dialogType = DialogType.Create;
 		}
 
@@ -67,7 +67,7 @@ export class SkillPageComponent implements OnInit {
 			data: { type: dialogType, data: skill },
 		});
 
-		dialogRef.afterClosed().subscribe((skill: SkillTestDto) => {
+		dialogRef.afterClosed().subscribe((skill: SkillDto) => {
 			if (skill == null)
 				return;
 			if (dialogType == DialogType.Create) {

@@ -1,10 +1,8 @@
 import { ResumeService } from 'src/app/services/resume.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
-import { ResumeDto } from 'src/app/models/resume-dto';
-import { map } from 'rxjs/operators';
 import * as saveAs from 'file-saver';
+import {ResumeDto} from "../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'cv-second-template',
@@ -30,7 +28,7 @@ export class SecondTemplateComponent implements OnInit {
          error: error => console.log(error),
        }
      )
-   
+
   }
    getStoreColor(){
      return this.color = localStorage.getItem('color') ||'#37474f';
@@ -38,20 +36,14 @@ export class SecondTemplateComponent implements OnInit {
   storeColor(color:string){
    localStorage.setItem('color',color)
   }
-  
-  getFormControlValue(name: string) {
-    if (this.resumeEditForm && this.resumeEditForm[name]) {
-      return this.resumeEditForm[name]
-    }
 
-  }
- howOld(birthDay:Date){
-  return Math.floor(new Date(Date.now()).getFullYear() - new Date(birthDay).getFullYear())
+ howOld(birthDay:string){
+  return Math.floor(new Date(Date.now()).getFullYear() - new Date(birthDay!).getFullYear())
  }
   getResumePdf() {
     if (!this.userId) return
     this.resumeService.getPdf(this.userId).subscribe(response => {
-      saveAs(response, `${this.getFormControlValue('firstName')} ${this.getFormControlValue('lastName')}.pdf`);
+      saveAs(response, `${this.resumeEditForm.firstName} ${this.resumeEditForm.lastName}.pdf`);
     });
   }
   navigateToEditPage(){

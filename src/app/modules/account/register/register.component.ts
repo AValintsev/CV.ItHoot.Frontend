@@ -33,11 +33,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-    console.log({
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password,
-    });
-
     this.accountService.register(
       {
         email: this.registerForm.value.email,

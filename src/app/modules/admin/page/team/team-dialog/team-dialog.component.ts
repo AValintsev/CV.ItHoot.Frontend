@@ -1,7 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DialogType} from "../../../../../models/dialog-type";
-import {TeamDto} from "../../../../../models/team-dto";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -10,8 +8,9 @@ import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {SmallResumeDto} from "../../../../../models/small-resume-dto";
+import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {ResumeService} from "../../../../../services/resume.service";
+import {TeamDto, TeamResumeDto} from "../../../../../models/team/create-team-dto";
 
 @Component({
   selector: 'cv-team-dialog',
@@ -20,12 +19,9 @@ import {ResumeService} from "../../../../../services/resume.service";
 })
 export class TeamDialogComponent implements OnInit {
 
-  typeDialog: DialogType = DialogType.Create;
-  DialogType = DialogType;
   team: TeamDto = {} as TeamDto;
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
-
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   resumeCtrl = new FormControl();
@@ -41,19 +37,9 @@ export class TeamDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<TeamDialogComponent>,
               userService: UserService,
               resumeService: ResumeService) {
-    this.team = data.data;
-    this.typeDialog = data.type;
-    console.log(this.team)
+    this.team = data;
     userService.getUsersByRole('client').subscribe(clients => this.clients = clients);
     resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
-    if(this.typeDialog === DialogType.Edit){
-      this.allResumes.forEach(resume=>{
-        this.team.resumes.forEach(resumeTeam =>{
-          if(resume.id == resumeTeam.resumeId)
-            this.resumes.push(resume)
-        })
-      })
-    }
 
     this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
       startWith(''),
@@ -82,7 +68,7 @@ export class TeamDialogComponent implements OnInit {
 
   private _filter(value: string): SmallResumeDto[] {
     const filterValue = "" + value;
-    return this.allResumes.filter(fruit => fruit.resumeName.toLowerCase().trim().includes(filterValue.toLowerCase().trim()));
+    return this.allResumes.filter(fruit => fruit.resumeName?.toLowerCase().trim().includes(filterValue.toLowerCase().trim()));
   }
 
   canCreate(): boolean {
@@ -94,7 +80,7 @@ export class TeamDialogComponent implements OnInit {
       this.team.resumes = []
 
     this.resumes.forEach(resume =>{
-      this.team.resumes.push({resumeId:resume.id});
+      this.team.resumes.push({resumeId:resume.id} as TeamResumeDto);
     })
     this.dialogRef.close(this.team);
   }

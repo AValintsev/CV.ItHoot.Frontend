@@ -10,6 +10,11 @@
       }
     }
 
+    .checkbox-section{
+      display: flex;
+      flex-direction: column;
+    }
+
     mat-button-toggle-group{
       justify-content: center;
 
