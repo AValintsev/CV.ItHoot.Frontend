@@ -16,9 +16,7 @@ export class CvTemplateComponent implements OnInit {
   faMobileAlt = faMobileAlt;
   faAt = faAt;
 
-  constructor(
-    private resumeService: ResumeService
-  ) {
+  constructor( ) {
   }
   ngOnInit(): void {
   }

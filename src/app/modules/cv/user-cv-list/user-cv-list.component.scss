@@ -3,6 +3,9 @@
 }
 
 .inner {
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap: 2rem 2rem ;
    padding: 0 1.5rem;
 }
 
@@ -10,8 +13,11 @@
    background-color: #3f51b5;
 	color: #fff;
 }
-
-cv-cv-small {
-   display: block;
-   margin-bottom: 1rem;
+.btn{
+   margin-top: 2rem;
+   justify-content: center;
+   display: flex;
+   button{
+      width: 20rem;
+   }
 }

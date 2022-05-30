@@ -45,12 +45,7 @@ export class RegisterComponent implements OnInit {
       }
     ).subscribe({
       next: next => {
-        // if (this.accountService.getUserRole().value === 'User') {
-        // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-        // } else {
         this.router.navigate([''])
-        // }
-
       },
       error: error => {
         this.snackbarService.showDanger('User exists, log in please')

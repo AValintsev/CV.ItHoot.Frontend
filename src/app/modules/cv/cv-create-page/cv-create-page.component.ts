@@ -170,7 +170,7 @@ export class CvCreatePageComponent implements OnInit {
       next: () => {
         this.snackbarService.showSuccess('Created');
         if (this.accountService.getStoreRole() === Users[2]) {
-          this.router.navigate(['/home/cv/user-list', this.accountService.getUserId()])
+          this.router.navigate(['/home/cv/user-list'])
         } else {
           this.router.navigate(['/home/cv'])
         }
