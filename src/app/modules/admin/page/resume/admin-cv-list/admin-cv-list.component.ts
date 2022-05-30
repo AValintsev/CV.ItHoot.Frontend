@@ -1,11 +1,11 @@
-import {SmallResumeDto} from '../../../../models/resume/small-resume-dto';
+import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
 import {Component, OnInit} from '@angular/core';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
 
 @Component({
-  selector: 'cv-admin-cv-list',
+  selector: 'cv-admin-resume',
   templateUrl: './admin-cv-list.component.html',
   styleUrls: ['./admin-cv-list.component.scss']
 })

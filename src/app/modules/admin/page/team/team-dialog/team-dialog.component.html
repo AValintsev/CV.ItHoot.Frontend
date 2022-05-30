@@ -50,6 +50,15 @@
       <mat-checkbox [(ngModel)]="team.showContacts">Show Contacts</mat-checkbox>
     </div>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Select Template</mat-label>
+      <mat-select [(value)]="team.resumeTemplateId">
+        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+          {{template.templateName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </div>
   <div mat-dialog-actions class="actions">
     <button mat-button (click)="click()" cdkFocusInitial [disabled]="canCreate()">Create</button>
