@@ -52,8 +52,6 @@ export class SecondTemplateComponent implements OnInit {
   }
 
   getArray(number:number){
-    console.log(number)
-    console.log(new Array(number).fill(1))
    return new Array(number).fill(1)
   }
 }
