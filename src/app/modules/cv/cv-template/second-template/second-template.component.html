@@ -3,8 +3,7 @@
 		<div class=" header-user" [style.background]="color">
 			<div class="header__icon-block">
 				<div class="header__label">
-					<img *ngIf="getFormControlValue('picture'); else image" src="{{getFormControlValue('picture')}}"
-						alt="user photo">
+					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="assets/avatar.jpg" alt="user photo">
 					<ng-template #image>
 						<img src="/assets/no-image.png" alt="user photo">
 					</ng-template>
@@ -13,9 +12,9 @@
 		</div>
 		<div class="header-name">
 			<div class="header-name__inner">
-				<div *ngIf="getFormControlValue('firstName')" class="first-name">{{getFormControlValue('firstName')}}</div>
-				<div class="last-name">{{getFormControlValue('lastName')}}</div>
-				<div class="position">{{getFormControlValue('resumeName')}}</div>
+				<div *ngIf="resumeEditForm?.firstName" class="first-name">{{resumeEditForm?.firstName}}</div>
+				<div class="last-name">{{resumeEditForm?.lastName}}</div>
+				<div class="position">{{resumeEditForm?.resumeName}}</div>
 			</div>
 		</div>
 		<div class="header-action">
@@ -101,7 +100,7 @@
 	</div>
 	<main class="main">
 		<div class="left-side">
-			<div *ngIf="getFormControlValue('educations')?.length" class="row">
+			<div *ngIf="resumeEditForm.educations?.length" class="row">
 				<div class="header left-side__header" [style.background]="color">
 					<div class="header__title">
 						<span>Education</span>
@@ -123,7 +122,7 @@
 				<div class="content left-side__content">
 					<div class="left-side__inner">
 						<ul class="left-side__list side-list">
-							<li *ngFor="let education of getFormControlValue('educations')" class="side-list__item ">
+							<li *ngFor="let education of resumeEditForm?.educations" class="side-list__item ">
 								<div class="side-list__header">
 									<div class="left-side__text">{{education.institutionName}}</div>
 									<div class="left-side__date"><span>{{education.startDate|date:"MM/yyyy"}} -
@@ -138,7 +137,7 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="getFormControlValue('experiences')?.length" class="row">
+			<div *ngIf="resumeEditForm?.experiences?.length" class="row">
 				<div class="header left-side__header" [style.background]="color">
 					<div class="header__title">
 						<span>Work experience</span>
@@ -154,7 +153,7 @@
 				<div class="content left-side__content">
 					<div class="left-side__inner">
 						<ul class="left-side__list side-list">
-							<li *ngFor="let experiences of getFormControlValue('experiences')" class="side-list__item ">
+							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item ">
 								<div class="side-list__header">
 									<div class="left-side__text">{{experiences.company}}</div>
 									<div class="left-side__date"><span>{{experiences.startDate|date:"MM/yyyy"}} -
@@ -173,11 +172,11 @@
 			</div>
 		</div>
 		<div class="right-side">
-			<div *ngIf="getFormControlValue('country')
-			||getFormControlValue('city')
-			||getFormControlValue('street')
-			||getFormControlValue('email')
-			||getFormControlValue('phone')" class="row">
+			<div *ngIf="resumeEditForm?.country
+			||resumeEditForm?.city
+			||resumeEditForm?.street
+			||resumeEditForm?.email
+			||resumeEditForm?.phone" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -193,41 +192,41 @@
 				<div class="content right-side__content">
 					<div class="right-side__inner">
 						<ul class="right-side__list side-list">
-							<li *ngIf="getFormControlValue('phone')" class="right-side-list__item telephone">
+							<li *ngIf="resumeEditForm?.phone" class="right-side-list__item telephone">
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="20"
 									viewBox="0 0 768 768">
 									<path fill="#37474f"
 										d="M640.5 492q13.5 0 22.5 9t9 22.5v111q0 37.5-31.5 37.5-223.5 0-384-160.5t-160.5-384q0-31.5 37.5-31.5h111q13.5 0 22.5 9t9 22.5q0 58.5 18 112.5 6 19.5-7.5 33l-61.5 54q69 144 220.5 217.5l49.5-63q9-9 22.5-9 7.5 0 10.5 1.5 54 18 112.5 18z">
 									</path>
 								</svg>
-								<span>{{getFormControlValue('phone')}}</span>
+								<span>{{resumeEditForm?.phone}}</span>
 							</li>
-							<li *ngIf="getFormControlValue('email')" class="right-side-list__item mail">
+							<li *ngIf="resumeEditForm?.email" class="right-side-list__item mail">
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
 									viewBox="0 0 768 768">
 									<path fill="#37474f"
 										d="M608 224h-448c-35.328 0-64 28.672-64 64v288c0 35.328 28.672 64 64 64h448c35.328 0 64-28.672 64-64v-288c0-35.328-28.672-64-64-64zM298.112 458.112l51.264 44.8c9.76 8.512 22.112 12.736 34.624 12.736s24.864-4.256 34.624-12.736l51.264-44.8-1.184 1.184 116.672 116.672h-402.752l116.672-116.672-1.184-1.184zM160 553.376v-216.096l115.264 100.832-115.264 115.264zM492.736 438.112l115.264-100.832v216l-115.264-115.168zM608 288v6.72l-210.432 184.128c-7.264 6.336-19.872 6.336-27.136 0l-210.432-184.128v-6.72h448z">
 									</path>
 								</svg>
-								<span>{{getFormControlValue('email')}}</span>
+								<span>{{resumeEditForm?.email}}</span>
 							</li>
-							<li *ngIf="getFormControlValue('country')
-			               ||getFormControlValue('city')
-			               ||getFormControlValue('street')" class="right-side-list__item location">
+							<li *ngIf="resumeEditForm?.country
+			               ||resumeEditForm?.city
+			               ||resumeEditForm?.street" class="right-side-list__item location">
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="22"
 									viewBox="150 -11 550 768">
 									<path fill="#37474f"
 										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
 									</path>
 								</svg>
-								<span>{{getFormControlValue('country')}} / {{getFormControlValue('city')}} /
-									{{getFormControlValue('street')}}</span>
+								<span>{{resumeEditForm?.country}} / {{resumeEditForm?.city}} /
+									{{resumeEditForm?.street}}</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div *ngIf="getFormControlValue('aboutMe') || getFormControlValue('birthdate')" class="row">
+			<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -243,16 +242,15 @@
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner">
-						<div *ngIf="getFormControlValue('birthdate')" class="right-side__age">
-							Age:<span>{{howOld(getFormControlValue('birthdate'))
-								<=0?'i am baby or embryon))':howOld(getFormControlValue('birthdate'))}}</span>
+						<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
+							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
-						<div *ngIf="getFormControlValue('aboutMe')" class="right-side__description">
-							{{getFormControlValue('aboutMe')}}</div>
+						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description">
+							{{resumeEditForm?.aboutMe}}</div>
 					</div>
 				</div>
 			</div>
-			<div *ngIf="getFormControlValue('languages')?.length" class="row">
+			<div *ngIf="resumeEditForm?.languages?.length" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
@@ -268,7 +266,7 @@
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner languages">
-						<div *ngFor="let language of getFormControlValue('languages')" class="spiner">
+						<div *ngFor="let language of resumeEditForm?.languages" class="spiner">
 							<div class="language-name">
 								{{language.languageName}}
 							</div>
@@ -281,7 +279,7 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="getFormControlValue('skills')?.length" class="row">
+			<div *ngIf="resumeEditForm?.skills?.length" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
@@ -297,7 +295,7 @@
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner skills">
-						<div *ngFor="let skill of getFormControlValue('skills')" class="spiner">
+						<div *ngFor="let skill of resumeEditForm?.skills" class="spiner">
 							<div class="skill-name">
 								{{skill.skillName}}
 							</div>
