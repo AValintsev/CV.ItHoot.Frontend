@@ -19,6 +19,7 @@ export class TeamResumePageComponent implements OnInit {
 
       this.teamService.getTeamResume(teamId, resumeId).subscribe(data => {
         this.resume = data.resume;
+        this.resume!.resumeTemplateId = data.resumeTemplateId;
         this.resume!.showLogo = data.showLogo;
       })
     })

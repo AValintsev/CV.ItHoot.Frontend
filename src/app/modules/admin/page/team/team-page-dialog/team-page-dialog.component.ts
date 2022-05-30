@@ -4,6 +4,7 @@ import {UserService} from "../../../../../services/user.service";
 import {ResumeService} from "../../../../../services/resume.service";
 import {TeamDto} from "../../../../../models/team/create-team-dto";
 import {UserDto} from "../../../../../models/user-dto";
+import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
 
 @Component({
   selector: 'cv-team-page-dialog',
@@ -12,8 +13,10 @@ import {UserDto} from "../../../../../models/user-dto";
 })
 export class TeamPageDialogComponent implements OnInit {
 
-  public team: TeamDto;
-  public clients:UserDto[] = [];
+  team: TeamDto;
+  clients:UserDto[] = [];
+  resumeTemplates:ResumeTemplateDto[] = [];
+
   @ViewChild('resumeInput') resumeInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
@@ -22,9 +25,11 @@ export class TeamPageDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<TeamPageDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              userService: UserService) {
+              userService: UserService,
+              resumeService:ResumeService) {
     this.team = data;
     userService.getUsersByRole('client').subscribe(clients=>this.clients = clients);
+    resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
   }
 
   canUpdate() {

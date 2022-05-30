@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 @Component({
-  selector: 'cv-user-cv-list',
+  selector: 'cv-user-resume',
   templateUrl: './user-cv-list.component.html',
   styleUrls: ['./user-cv-list.component.scss']
 })

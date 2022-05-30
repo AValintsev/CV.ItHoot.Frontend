@@ -54,7 +54,7 @@
             <div class="action-wrapper">
               <button class="pdf" (click)="getPdf(resume)">PDF</button>
               <button class="docx">DocX</button>
-              <button class="open" routerLink="/admin/resume/{{resume.resumeId}}">Open</button>
+              <button class="open" routerLink="/admin/teams/{{team.id}}/resume/{{resume.id}}">Open</button>
               <button class="delete" (click)="deleteResume(resume)">Remove</button>
             </div>
           </td>

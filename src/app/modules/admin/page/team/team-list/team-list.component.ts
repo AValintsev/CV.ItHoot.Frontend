@@ -34,7 +34,6 @@ export class TeamListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((team: TeamDto) => {
       if (team == null)
         return;
-
       this.teamService.createTeam(team).subscribe(() => {
         this.refreshTeams.emit(this.teams);
       });

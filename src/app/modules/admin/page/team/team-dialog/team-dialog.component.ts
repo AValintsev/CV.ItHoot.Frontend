@@ -11,6 +11,7 @@ import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {ResumeService} from "../../../../../services/resume.service";
 import {TeamDto, TeamResumeDto} from "../../../../../models/team/create-team-dto";
+import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
 
 @Component({
   selector: 'cv-team-dialog',
@@ -22,6 +23,7 @@ export class TeamDialogComponent implements OnInit {
   team: TeamDto = {} as TeamDto;
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
+  resumeTemplates:ResumeTemplateDto[] = [];
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   resumeCtrl = new FormControl();
@@ -40,7 +42,7 @@ export class TeamDialogComponent implements OnInit {
     this.team = data;
     userService.getUsersByRole('client').subscribe(clients => this.clients = clients);
     resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
-
+    resumeService.getAllTemplates().subscribe(templates=>this.resumeTemplates = templates);
     this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
       startWith(''),
       map((resume) => (resume ? this._filter(resume) : this.allResumes.slice())),

@@ -16,7 +16,7 @@ const routs: Routes = [
 		path: '', component: AdminLayoutComponent, children: [
 			{
 				path: 'resume',
-				loadChildren: () => import('./page/cv-list/admin-cv-list.module').then(mod => mod.AdminCvListModule)
+				loadChildren: () => import('./page/resume/admin-cv-list.module').then(mod => mod.AdminCvListModule)
 			},
 			{
 				path: 'languages',

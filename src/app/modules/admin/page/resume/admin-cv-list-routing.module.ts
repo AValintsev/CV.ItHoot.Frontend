@@ -1,6 +1,6 @@
 import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
-import {AdminCvListComponent} from './admin-cv-list.component';
+import {AdminCvListComponent} from './admin-cv-list/admin-cv-list.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path:':id',
     component:CvFullComponent
-  }
+  },
 
 ];
 
