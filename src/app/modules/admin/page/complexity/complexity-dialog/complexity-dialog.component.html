@@ -1,0 +1,17 @@
+<div class="complexity-dialog">
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Create new complexity</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit complexity</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Complexity name</mat-label>
+      <input matInput placeholder="Basic" [(ngModel)]="complexity.complexityName">
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button [mat-dialog-close]="complexity" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create">Create</button>
+    <button mat-button [mat-dialog-close]="complexity" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+  </div>
+
+</div>

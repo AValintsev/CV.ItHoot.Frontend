@@ -46,6 +46,10 @@ const routs: Routes = [
       {
         path: 'builds',
         loadChildren: () => import('./page/team-build/teamBuild.module').then(mod => mod.TeamBuildModule)
+      },
+      {
+        path:'complexities',
+        loadChildren: () => import('./page/complexity/complexity.module').then(mod=>mod.ComplexityModule)
       }
     ]
   }
