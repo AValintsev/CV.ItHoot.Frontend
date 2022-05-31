@@ -7,12 +7,11 @@ import { MainPageComponent } from './main-page.component';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from "@angular/material/button";
 import { FooterModule } from '../../shared/footer/footer.module';
-import { CardsRowComponent } from '../../component/cards-row/cards-row.component';
 import { ModalDeleteUserComponent } from '../../component/modal-delete-user/modal-delete-user.component';
-import { TeamComponent } from '../team/team.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TeamsComponent } from '../teams/teams.component';
-import { TeamMiniCardComponent } from '../../component/team-mini-card/team-mini-card.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 const routes: Routes = [
   {
@@ -21,10 +20,7 @@ const routes: Routes = [
         path: 'teams', component: TeamsComponent
       },
       {
-        path: 'team/:id', component: TeamComponent
-      },
-      {
-        path: '', redirectTo:'teams-list',pathMatch:'full'
+        path: '', redirectTo:'teams',pathMatch:'full'
       },
     ]
   }
@@ -33,8 +29,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    MainPageComponent, TeamMiniCardComponent, TeamsComponent,
-    TeamComponent, CardsRowComponent, ModalDeleteUserComponent
+    MainPageComponent, TeamsComponent
+    , ModalDeleteUserComponent
   ],
   imports: [
     CommonModule,
@@ -46,8 +42,7 @@ const routes: Routes = [
     HeaderModule,
     RouterModule.forChild(routes),
   ],
-  exports: [MainPageComponent, TeamMiniCardComponent, TeamsComponent,
-    TeamComponent, CardsRowComponent, ModalDeleteUserComponent],
+  exports: [MainPageComponent, TeamsComponent, ModalDeleteUserComponent],
 
 })
 

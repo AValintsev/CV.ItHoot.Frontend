@@ -56,9 +56,7 @@ img {
   padding-right: 0.5rem;
 }
 
-.cv-user-photo {
-
-}
+.cv-user-photo {}
 
 .cv-user-content {
   padding-left: 0.5rem;
@@ -89,6 +87,10 @@ img {
 
   li {
     padding: 0 1rem 0 1rem;
+
+    &:nth-child(2) {
+      position: relative;
+    }
   }
 }
 
@@ -116,4 +118,39 @@ img {
 
 .logo {
   height: 5rem;
+}
+
+
+
+:host {
+
+  &::ng-deep {
+    mat-form-field {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      width: 100%;
+
+    }
+
+    .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+      display: none !important;
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-underline {
+      display: none !important;
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      background-color: rgba(0, 0, 0, 0.0) !important;
+    }
+
+    .mat-select-min-line{
+      display: none;
+    }
+  }
 }
