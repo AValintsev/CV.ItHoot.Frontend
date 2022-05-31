@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ComplexityRoutingModule} from "../complexity/complexity-routing.module";
+import {SkillRoutingModule} from "./skill-routing.module";
 
 
 
@@ -7,7 +7,7 @@ import {ComplexityRoutingModule} from "../complexity/complexity-routing.module";
   declarations: [
   ],
   imports: [
-    ComplexityRoutingModule,
+    SkillRoutingModule,
   ]
 })
 export class SkillModule {
