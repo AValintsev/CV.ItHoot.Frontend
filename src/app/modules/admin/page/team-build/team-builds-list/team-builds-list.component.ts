@@ -6,6 +6,7 @@ import {DialogType} from "../../../../../models/enums";
 import {MatDialog} from "@angular/material/dialog";
 import {TeamBuildDialogComponent} from "../team-build-dialog/team-build-dialog.component";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
+import {TeamBuildComplexityDto} from "../../../../../models/teamBuild/teamBuildComplexity-dto";
 
 @Component({
   selector: 'cv-team-builds-list',
@@ -42,6 +43,11 @@ export class TeamBuildsListComponent implements OnInit {
     if (teamBuild == null) {
       dialogType = DialogType.Create
       teamBuild = {complexity: {}, positions: [] as TeamBuildPositionDto[]} as TeamBuildDto;
+    }
+    else{
+      if (teamBuild.complexity == null){
+        teamBuild.complexity = {} as TeamBuildComplexityDto;
+      }
     }
 
     const dialogRef = this.dialog.open(TeamBuildDialogComponent, {
