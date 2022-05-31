@@ -189,8 +189,19 @@
       font-size: 16px;
       line-height: 1.7;
       color: #04040B;
-      margin-left: 4rem;
+      margin-left: 6rem;
       margin-bottom: 3rem;
+      display: flex;
+      li{
+         text-transform: uppercase;
+         padding-right: 0.5rem;
+         &:not(:last-child){
+             &::after{
+            content:',';
+         }
+         }
+        
+      }
    }
 
    // .card__user-btns

@@ -21,6 +21,7 @@ export interface TeamResumeDto {
   resumeName: string;
   firstName: string;
   lastName: string;
+  picture:string
   skills: SkillDto[];
 }
 

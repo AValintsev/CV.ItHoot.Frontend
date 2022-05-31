@@ -1,5 +1,5 @@
+import { ResumeService } from 'src/app/services/resume.service';
 import { Observable, of } from 'rxjs';
-import { ResumeService } from './../../../services/resume.service';
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, OnInit} from '@angular/core';

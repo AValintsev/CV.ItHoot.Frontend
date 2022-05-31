@@ -1,0 +1,13 @@
+.wrapper {
+   margin-top: 2rem;
+}
+
+.inner {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-gap: 2rem 2rem;
+   padding: 0 1.5rem;
+}
+
+
+

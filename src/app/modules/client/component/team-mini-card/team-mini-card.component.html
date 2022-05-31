@@ -1,0 +1,13 @@
+<mat-card>
+	<mat-card-title-group>
+		<mat-card-title>{{team?.teamName}}</mat-card-title>
+		<!-- <mat-card-subtitle>{{team?.teamName}}</mat-card-subtitle> -->
+		<!-- <img mat-card-lg-image *ngIf="team.picture" else img src="{{team.picture}}" alt="team image"> -->
+		<!-- <ng-template #img><img mat-card-lg-image src="/assets/no-image.png" alt="team image"></ng-template> -->
+	</mat-card-title-group>
+	<mat-card-content>
+		<div class="button-group">
+			<button [routerLink]="['../team/',team.id]" mat-raised-button color="primary">Open team</button>
+		</div>
+	</mat-card-content>
+</mat-card>

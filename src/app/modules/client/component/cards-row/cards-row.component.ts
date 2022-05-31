@@ -1,7 +1,10 @@
+import { TeamDto } from './../../../../models/team/create-team-dto';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalDeleteUserComponent } from '../modal-delete-user/modal-delete-user.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { TeamResumeDto } from 'src/app/models/team/create-team-dto';
 
 @Component({
   selector: 'cv-cards-row',
@@ -23,46 +26,50 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])]
 })
 export class CardsRowComponent implements OnInit {
-  checkArray:number[]=[]
-  click=false
-  cardNumber!:number;
-  toggle = true
-  arr = [
-    {id:1, selected:false},
-    {id:2, selected:false},
-    {id:3, selected:false},
-    {id:4, selected:false},
-    {id:5, selected:false},
-    {id:6, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-    {id:7, selected:false},
-  ]
+  @Input() cards$!: Observable<TeamDto>
+  checkArray: number[] = []
+  // click = false
+  cardId!: number;
+  toggle = true;
+  teamId!: number
+  arr: { id: number, isSelected: boolean }[] = [];
+  resumeArray: TeamResumeDto[] = []
+
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.arr, this.cardNumber)
+    this.getResumeArray()
   }
-  deleteCard(i: number) {
 
+  getResumeArray() {
+    this.cards$.subscribe({
+      next: response => {
+        console.log(response)
+        this.resumeArray = response.resumes;
+        this.teamId = response.id
+      },
+      error: error => console.log(error),
+    })
+  }
+  deleteCard(id: number, event: Event) {
+    event.stopPropagation()
     let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
       height: '150px',
       width: '300px',
     });
     dialogRef.afterClosed().subscribe({
       next: response => {
-          if (response) {
-            this.click = true
-            this.cardNumber = i
-            this.arr = this.arr.filter(e=>e.id!=i)
-            // console.log(this.arr,response,this.cardNumber,i)
-          }
+        if (response) {
+          // this.click = true
+          this.cardId = id
+          this.checkArray = this.checkArray.filter(e => e != id)
+          this.arr = this.arr.filter(e => e.id != id)
+          this.resumeArray = this.resumeArray.filter(e => e.id != id)
+          // console.log(this.checkArray)
+          // console.log(this.arr)
+          // console.log(response)
+          // console.log(this.resumeArray)
+        }
       },
       error: error => console.log(error),
     })
@@ -81,34 +88,69 @@ export class CardsRowComponent implements OnInit {
       return -94 * i
     }
   }
-  selectToggler(id:number,select:boolean){
-          const selectedCard = this.arr.find(card=>card.id==id)
-    if (select){
-      this.checkArray.push(id)
-        this.arr = this.arr.filter(card=>card.id!=id)
-        if (selectedCard){
-          this.arr.unshift(selectedCard)
-        }
-      this.arr = this.arr.map(card=>{
-      
-        if(card.id == id){
-          return {id:id,selected:true}
-        }
-        return card
-      })
-    }else{
-      this.checkArray = this.checkArray.filter(e=>e!=id)
-      this.arr = this.arr.filter(card => card.id != id)
-      if (selectedCard) {
-        this.arr.push(selectedCard)
-      }
-      this.arr = this.arr.map(card => {
-        if (card.id == id) {
-          return { id: id, selected: false }
-        }
-        return card
-      })
-    }
+
+  showCard(i:number) {
+    const card = this.resumeArray.splice(i,1)
+    console.log(card)
+   if(card){
+     this.resumeArray.unshift(card[0])
+   }
     
   }
+
+  //   {
+  //   "teamId": 12,
+  //     "resumes": [
+  //       {
+  //         "id": 1,
+  //         "isSelected": false
+  //       }
+  //     ]
+  // }
+  checkSelect(id: number) {
+    return this.checkArray.filter(e => e == id).length
+  }
+  selectToggler(id: number, select: boolean,index:number, event: Event) {
+    event.stopPropagation()
+    if (select&&index==0) {  
+      if (!this.arr.filter(e => e.id == id).length) {
+        this.checkArray.push(id)
+        this.arr.push({
+          id,
+          isSelected: true
+        })
+      }
+    }
+    console.log(this.arr)
+  }
+  // selectToggler(id:number,select:boolean){
+  //         const selectedCard = this.arr.find(card=>card.id==id)
+  //   if (select){
+  //     this.checkArray.push(id)
+  //       this.arr = this.arr.filter(card=>card.id!=id)
+  //       if (selectedCard){
+  //         this.arr.unshift(selectedCard)
+  //       }
+  //     this.arr = this.arr.map(card=>{
+
+  //       if(card.id == id){
+  //         return {id:id,selected:true}
+  //       }
+  //       return card
+  //     })
+  //   }else{
+  //     this.checkArray = this.checkArray.filter(e=>e!=id)
+  //     this.arr = this.arr.filter(card => card.id != id)
+  //     if (selectedCard) {
+  //       this.arr.push(selectedCard)
+  //     }
+  //     this.arr = this.arr.map(card => {
+  //       if (card.id == id) {
+  //         return { id: id, selected: false }
+  //       }
+  //       return card
+  //     })
+  //   }
+
+  // }
 }

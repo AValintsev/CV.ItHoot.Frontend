@@ -100,7 +100,7 @@
 	</div>
 	<main class="main">
 		<div class="left-side">
-			<div *ngIf="resumeEditForm.educations?.length" class="row">
+			<div *ngIf="resumeEditForm?.educations?.length" class="row">
 				<div class="header left-side__header" [style.background]="color">
 					<div class="header__title">
 						<span>Education</span>
@@ -219,8 +219,7 @@
 										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
 									</path>
 								</svg>
-								<span>{{resumeEditForm?.country}} / {{resumeEditForm?.city}} /
-									{{resumeEditForm?.street}}</span>
+								<span>{{resumeEditForm?.country}},&nbsp;{{resumeEditForm?.city}},&nbsp;{{resumeEditForm?.street}}</span>
 							</li>
 						</ul>
 					</div>

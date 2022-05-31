@@ -1,10 +1,10 @@
 <div class="wrapper">
-	<div *ngIf="arr.length" class="row">
+	<div  class="row">
 		<div class="row__line"  (click)="toggle=!toggle">
 			<div class="row__line-item">
 				<div class="row__line-name">FrontEnd</div>
 				<div class="row__line-counter"><span class="row__line-counter-part">{{checkArray.length}}</span>/<span
-						class="row__line-counter-sum">{{arr.length}}</span></div>
+						class="row__line-counter-sum">{{resumeArray?.length}}</span></div>
 			</div>
 			<div class="row__line-item">
 				<button *ngIf="toggle; else btnMinus" (click)="toggle=!toggle" class="btn-reset btn-toggle">+</button>
@@ -15,17 +15,20 @@
 		</div>
 		<div class="row__cards">
 			<div class="row__cards-inner" [class.card-transform]="!toggle">
-				<ng-container  *ngFor="let card of arr; let i = index">
-				<div [@hidden]="'start'" *ngIf="!(card.id==cardNumber&&click)" class="row__card card"
+				<ng-container  *ngFor="let resume of resumeArray; let i = index">
+				<div [@hidden]="'start'" 
+				*ngIf="!(resume.id==cardId)"
+				class="row__card card"
+				(click)="showCard(i)"
 					[style.transform]="toggle&&i>1?'translateX('+calcTransform(i-1,arr.length)+'%)':'translateX(0)'"
 					[style.transition]="'all .3s ease'"
 					>
 					
 							<div class="card__user-block">
 						<div class="card__user-img">	
-							<img src="https://tinypng.com/images/social/website.jpg" alt="user logo">
+							<img *ngIf="resume.picture;else img" src="{{resume.picture}}" alt="user logo">
+							<ng-template #img><img src="/assets/no-image.png" alt="user logo"></ng-template>
 						</div>
-							{{card.id}}
 						<div class="card__user-docs">
 							<svg id="pdf" width="48" height="60" viewBox="0 0 48 60" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
@@ -81,15 +84,17 @@
 						</div>
 					</div>
 					<div class="card__user-line">
-						<div class="card__user-name">Jane</div>
-						<div class="card__user-last-name">Smith</div>
+						<div class="card__user-name">{{resume.firstName}}</div>
+						<div class="card__user-last-name">{{resume.lastName}}</div>
 					</div>
-					<div class="card__user-position">PHP, JS, JavaScript, Angular, React</div>
+					<ul class="card__user-position">
+						<li *ngFor="let skill of resume.skills">{{skill.name}}</li>
+					</ul>
 					<div class="card__user-btns">
-						<button (click)="selectToggler(card.id,true)" *ngIf="!card.selected; else selected" mat-button class="btn-reset btn select">Select</button>
-						<ng-template #selected><button (click)="selectToggler(card.id,false)" mat-button class="btn-reset btn select selected"><mat-icon class="check">check_circle_outline</mat-icon>&nbsp;Selected</button></ng-template>
+						<button (click)="selectToggler(resume.id, true, i, $event)" *ngIf="!checkSelect(resume.id); else selected" mat-button class="btn-reset btn select">Select</button>
+						<ng-template #selected><button  mat-button class="btn-reset btn select selected"><mat-icon class="check">check_circle_outline</mat-icon>&nbsp;Selected</button></ng-template>
 						
-						<button (click)="deleteCard(card.id)" mat-button class="btn-reset btn deny">Deny</button>
+						<button (click)="deleteCard(resume.id,$event)" mat-button class="btn-reset btn deny">Deny</button>
 					</div>
 					</div>
 					</ng-container>

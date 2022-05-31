@@ -6,10 +6,10 @@ import { ClientRoutingModule } from './client-routing.module';
 
 
 
-@NgModule({
-  declarations: [
 
-  ],
+
+@NgModule({
+  declarations: [ ],
   imports: [
     CommonModule,
     ClientRoutingModule,
