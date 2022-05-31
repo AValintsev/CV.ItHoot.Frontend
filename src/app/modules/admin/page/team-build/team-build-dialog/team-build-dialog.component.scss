@@ -1,0 +1,19 @@
+.team-build-dialog{
+  display: grid;
+  .content{
+    display: grid;
+
+    .position-section{
+      margin: 15px 0;
+
+      mat-card{
+        box-shadow: none;
+      }
+    }
+
+
+  }
+  .actions{
+    justify-content: end;
+  }
+}
