@@ -1,4 +1,4 @@
 <div *ngIf="resume">
-  <cv-cv-template *ngIf="resume.resumeTemplateId == 1;" id="doc" [resumeEditForm]="resume"></cv-cv-template>
-  <cv-second-template *ngIf="resume.resumeTemplateId == 2;" id="doc" [resumeEditForm]="resume"></cv-second-template>
+  <cv-template-one *ngIf="resume.resumeTemplateId == 1;" id="doc" [resumeEditForm]="resume"></cv-template-one>
+  <cv-template-two *ngIf="resume.resumeTemplateId == 2;" id="doc" [resumeEditForm]="resume"></cv-template-two>
 </div>

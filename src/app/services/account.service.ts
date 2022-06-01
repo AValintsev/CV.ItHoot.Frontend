@@ -43,7 +43,6 @@ export class AccountService {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
       .pipe(
           catchError(error => {
-          console.log(error)
           return of(error)
         }),
         tap<any>(tokens => this.doLoginUser(tokens)),
@@ -70,7 +69,6 @@ export class AccountService {
     return this.userRole$
   }
   storeTokens(tokens: any) {
-    console.log(tokens)
     localStorage.setItem(this.JWT_TOKEN, tokens.token)
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
   }

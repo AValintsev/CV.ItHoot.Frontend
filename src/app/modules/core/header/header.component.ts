@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   userNamed(){
     if (this.accountService.getStoreRole() === Users[2]){
-      this.userName$ = this.resumeService.getAllResume().pipe(map(resume => resume[0].firstName))
+      this.userName$ = this.resumeService.getAllResume().pipe(map(resume => resume[0]?.firstName))
     } else if (!this.resumeService.getAllResume()){
       this.userName$ = of('User')
     }

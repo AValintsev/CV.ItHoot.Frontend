@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {AdminCvListRouterModule} from './admin-cv-list-routing.module';
 import { ResumePageComponent } from '../team/resume-page/resume-page.component';
-import {CvTemplateModule} from "../../../cv/cv-template/cv-template.module";
 import {CommonModule} from "@angular/common";
+import { TemplatesModule } from 'src/app/modules/shared/templates/templates.module';
 
 @NgModule({
-  imports: [AdminCvListRouterModule, CvTemplateModule, CommonModule],
+	imports: [AdminCvListRouterModule, TemplatesModule, CommonModule],
 	declarations: [
    ResumePageComponent
 	]

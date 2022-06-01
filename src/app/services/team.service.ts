@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallTeamDto} from "../models/team/small-team-dto";
-import {TeamDto, TeamResumeDto} from "../models/team/create-team-dto";
+import {TeamApprove, TeamDto, TeamResumeDto} from "../models/team/create-team-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -14,6 +14,9 @@ export class TeamService {
 
   public createTeam(team: TeamDto): Observable<TeamDto> {
     return this.httpService.postRequest<TeamDto>(this.routePrefix, team);
+  }
+  public approveTeam(team: TeamApprove): Observable<TeamDto> {
+    return this.httpService.postRequest<TeamDto>(this.routePrefix+'/approve', team);
   }
 
   public updateTeam(team: TeamDto): Observable<TeamDto> {

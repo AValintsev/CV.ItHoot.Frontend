@@ -23,6 +23,7 @@ export interface TeamResumeDto {
   resumeName: string;
   firstName: string;
   lastName: string;
+  picture: string
   skills: SkillDto[];
 }
 
@@ -30,4 +31,13 @@ export enum StatusTeamResume {
   NotSelected = 1,
   Selected,
   Denied
+}
+
+export interface TeamApprove {
+  teamId: number,
+  resumes: TeamApproveResume[]
+}
+export interface TeamApproveResume {
+  id: number,
+  isSelected: boolean
 }

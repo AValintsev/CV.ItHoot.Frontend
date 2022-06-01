@@ -18,41 +18,14 @@
 			</div>
 		</div>
 		<div class="header-action">
-			<div class="action-column">
-				<div class="header-action__item img-block">
-					<!-- <svg width="200" height="140" version="1.1" id="logo_new" xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 250 50" xml:space="preserve">
-						<style type="text/css">
-							.st0 {
-								fill: #FFFFFF;
-							}
-
-							.st1 {
-								fill: #08f;
-							}
-						</style>
-						<rect x="1.9" y="1.6" class="st0" width="217.7" height="56.9"></rect>
-						<g transform="translate(0.000000,60.000000) scale(0.100000,-0.100000)">
-							<path d="M0,300V0h1175h1175v300v300H1175H0V300z M650,300V30H340H30v270v270h310h310V300z M928,393l3-63h69h70v66v65l28-3l27-3
-			                            l3-157l3-158h-31h-30v70v70h-70h-70v-70v-70h-30h-30v161v160l28-3C924,455,925,452,928,393z M2180,435c0-23-3-25-50-25h-50V275V140
-			                            h-30h-30v135v135h-50c-47,0-50,2-50,25v25h130h130V435z"></path>
-							<path d="M180,290V130h25h25v160v160h-25h-25V290z"></path>
-							<path d="M270,425c0-23,3-25,50-25h50V265V130h30h30v135v135h50c47,0,50,2,50,25v25H400H270V425z">
-							</path>
-						</g>
-						<path class="st1" d="M143.8,14.8c4.1,2.1,6.3,4.9,5.2,6.6c-0.8,1.3-1.5,1.2-4.9-0.8c-9.7-5.4-19.1-0.8-19.1,9.4
-		                                c0,7.2,4.1,11.3,11.2,11.4c5.9,0,9.1-2.5,14.8-11.8c7.6-12,12.7-16.2,20-16.2c8.2,0,13.9,4.4,16.1,12.3c1.4,5.3,0.1,11.2-2.6,11.2
-		                                c-1.7,0-2-0.7-2-6.2c0-5.1-0.4-6.6-2.4-8.7c-2.8-3-7.7-4.6-11.6-3.8c-3.3,0.6-10.3,7.4-11.1,10.8c-0.4,1.7,0.2,3.5,2.1,5.9
-		                                c3.9,5.2,7.2,7,12.9,7c3.3,0,5.1,0.5,5.4,1.4c0.7,2-1.7,3.1-6.6,3.1c-5.4,0-11.3-3-14.8-7.5l-2.7-3.5l-3.4,4c-4.5,5.2-8.1,7-14,7
-		                                c-6.6,0-11.3-2.7-14-8c-6.1-11.9,1.2-24.9,14-25C138.9,13.4,142.3,14,143.8,14.8z">
-						</path>
-					</svg> -->
-				<img *ngIf="resumeEditForm?.showLogo" src="/assets/logo.jpg" alt="logo">
-
+			<div *ngIf="showLogo" class="action-column">
+				
+				<div *ngIf="resumeEditForm?.showLogo === undefined || resumeEditForm?.showLogo === true" class="header-action__item img-block">
+					<img src="/assets/logo.jpg" alt="logo">
 				</div>
 			</div>
 			<div class="action-column">
-				<div class="header-action__item">
+				<div *ngIf="accountService.getStoreRole() === User[2]" class="header-action__item">
 					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 				</div>
 				<div class="header-action__item">
@@ -69,39 +42,12 @@
 							fill="black"></path>
 					</svg>
 				</div>
-
-				<div (click)="navigateToEditPage()" class="header-action__item">
-					<svg _ngcontent-wmh-c43="" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 22"
-						fill="none">
-						<path _ngcontent-wmh-c43=""
-							d="M20.6428 2.8825V2.53818C20.6428 1.16089 19.5248 0.0429688 18.1476 0.0429688C16.7703 0.0429688 15.6523 1.16089 15.6523 2.53818V2.8825H20.6428Z"
-							fill="#8A92A6"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.8237 19.7031H1.12687C0.505302 19.7031 0 20.2084 0 20.83C0 21.4516 0.505302 21.9569 1.12687 21.9569H16.3709L14.8237 19.7031Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 6.18359H1.12687C0.505302 6.18359 0 6.6889 0 7.31046C0 7.93203 0.505302 8.43733 1.12687 8.43733H14.1932V6.18359Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 10.6875H1.12687C0.505302 10.6875 0 11.1928 0 11.8144C0 12.4359 0.505302 12.9412 1.12687 12.9412H14.1932V10.6875Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 15.1914H1.12687C0.505302 15.1914 0 15.6967 0 16.3183C0 16.9398 0.505302 17.4451 1.12687 17.4451H14.1932V15.1914Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M15.6543 4.34766V18.3396L17.9259 21.6218C18.0332 21.7783 18.2658 21.7783 18.3776 21.6218L20.6492 18.3396V4.34766H15.6543Z"
-							fill="#8A92A6"></path>
-					</svg>
-				</div>
 			</div>
-
-
-
 		</div>
 	</div>
 	<main class="main">
 		<div class="left-side">
-			<div *ngIf="resumeEditForm.educations?.length" class="row">
+			<div *ngIf="resumeEditForm?.educations?.length" class="row">
 				<div class="header left-side__header" [style.background]="color">
 					<div class="header__title">
 						<span>Education</span>
@@ -220,8 +166,7 @@
 										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
 									</path>
 								</svg>
-								<span>{{resumeEditForm?.country}} / {{resumeEditForm?.city}} /
-									{{resumeEditForm?.street}}</span>
+								<span>{{resumeEditForm?.country}},&nbsp;{{resumeEditForm?.city}},&nbsp;{{resumeEditForm?.street}}</span>
 							</li>
 						</ul>
 					</div>
@@ -239,7 +184,6 @@
 					<div class="header__title">
 						<span>About</span>
 					</div>
-
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner">
@@ -247,7 +191,8 @@
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
 						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description">
-							{{resumeEditForm?.aboutMe}}</div>
+							{{resumeEditForm?.aboutMe}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -263,7 +208,6 @@
 					<div class="header__title">
 						<span>Languages</span>
 					</div>
-
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner languages">
@@ -303,43 +247,11 @@
 							<div class="value three-section">
 								<div *ngFor="let leng of getArray(3) let i = index"
 									[style.background]="skill.level>=(i+1)?'#fe8503':'#ddd'"></div>
-								<!-- <div class="value-box" [style.width.%]="skill.level*33.333"></div> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- <div class="row">
-				<div class="header right-side__header" [style.background]="color">
-					<div class="header__icon right-side__header-icon">
-						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="116 42 800 924">
-							<path fill="#fff"
-								d="M480 256h-128v672h480v-672h-16.15c-26.427 0-47.85-21.306-47.85-48 0-26.51 21.667-48 47.85-48h16.15v-32h-560.238c-44.052 0-79.762 35.509-79.762 80v624.017c0 53.010 42.986 95.983 95.814 95.983h32.186v-672h-48.212c-26.436 0-47.788-21.49-47.788-48 0-26.694 21.395-48 47.788-48h480.212c0 0-16 23.572-16 47.154s16 48.846 16 48.846h-80v384l-96-96-96 96v-384zM512 256v307.199l64-64 64 64v-307.199h-128z">
-							</path>
-						</svg>
-					</div>
-					<div class="header__title">
-						<span>COurses</span>
-					</div>
-
-				</div>
-				<div class="content right-side__content">
-					<div class="right-side__inner">
-						<ul class="right-side__list ">
-							<li class="side-list__item">
-								<div class="side-list__item-title">WEB ACADEEMY</div>
-								<div class="side-list__item-contem">WEB ACADEEMY</div>
-							</li>
-							<li class="side-list__item">
-								<div class="side-list__item-title">WEB ACADEEMY</div>
-								<div class="side-list__item-contem">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Aliquid quis, ullam quidem repellendus, voluptatibus tempore beatae iure accusamus doloremque
-									distinctio animi libero velit corporis repellat quae excepturi, labore minus! Sed.</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div> -->
 		</div>
 
 	</main>

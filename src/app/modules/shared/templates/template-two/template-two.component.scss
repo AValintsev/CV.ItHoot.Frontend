@@ -1,3 +1,7 @@
+
+:host{
+   min-height: 100%;
+}
 .wrapper {
    font-family: 'Inter', sans-serif;
    background-color: #fff;
@@ -126,10 +130,12 @@
 
 .action-column {
    display: flex;
-   &:first-child{
+
+   &:first-child {
       margin-bottom: .7rem;
    }
-   &:last-child{
+
+   &:last-child {
       margin-right: 1rem;
    }
 }
@@ -139,7 +145,7 @@
 .last-name {}
 
 .img-block {
-   height: 8rem;
+   height: 5rem;
    width: 20rem;
 
    img {

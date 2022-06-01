@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {map} from 'rxjs/operators';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
-import {UserEventService} from 'src/app/services/userEvent.service';
+
 
 
 @Component({
@@ -16,9 +16,7 @@ export class CvFullComponent implements OnInit {
   resume!: ResumeDto;
 
   constructor(
-    private userEventService: UserEventService,
     private route: ActivatedRoute,
-    private router: Router,
     private resumeService: ResumeService) {
   }
 
@@ -54,109 +52,4 @@ export class CvFullComponent implements OnInit {
     })
   };
 
-
-  // async load() {
-  //   var temp = await this.toDataURL(this.photoUrl)
-  //   // @ts-ignore
-  //   document.getElementById('img-full').setAttribute("src", temp as string)
-  //   console.log(typeof temp)
-  //   return temp
-  // }
-
-  // public openPDF2(): void {
-  //   this.load().then(() => {
-  //     let DATA = document.getElementById('container-cv');
-
-  //     // @ts-ignore
-  //     html2canvas(DATA).then(canvas => {
-
-  //       let fileWidth = 208;
-  //       let fileHeight = canvas.height * fileWidth / canvas.width;
-
-  //       const FILEURI = canvas.toDataURL('image/png')
-  //       let PDF = new jsPDF('p', 'mm', 'a4');
-  //       let position = 0;
-  //       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-
-  //       PDF.save('angular-demo.pdf');
-  //     });
-  //   })
-
-  // }
-  // ===================================
-
-
-  // pdf() {
-  //   let Doc = document.getElementById('doc');
-  //   if (Doc) {
-  //     html2canvas(Doc).then(canvas => {
-
-  //       let docWidth = 208;
-  //       let docHeight = canvas.height * docWidth / canvas.width;
-
-  //       const contentDataURL = canvas.toDataURL('image/png')
-  //       let doc = new jsPDF('p', 'mm', 'a4');
-  //       let position = 0;
-  //       doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
-
-  //       doc.save('exportedPdf.pdf');
-  //     });
-  //   }
-
-  // }
-
-
-
-
-  // @ts-ignore
-  // getImgFromUrl(logo_url, callback) {
-  //   var img = new Image();
-  //   img.src = logo_url;
-  //   img.onload = function () {
-  //     callback(img);
-  //   };
-  // }
-  // change() {
-  //   this.isChange = !this.isChange
-  //   console.log(this.isChange)
-  //   console.log(this.cv)
-  // }
-
-  // rmveLanguage(id:number) {
-  //   console.log(id)
-  //   this.cv.userLanguages.splice(0,id+1)
-  //   console.log(this.cv.userLanguages)
-  // }
-
-  // addLanguage(language:any){
-  //  this.cv.userLanguages.push(language)
-  //  console.log(language);
-  // }
-
-  // addExperiences($event: any) {
-  //  this.cv.experiences.push($event)
-  //   console.log($event)
-  // }
-
-  // addEducations($event: any) {
-  //  this.cv.educations.push($event)
-  //   console.log($event)
-  // }
-
-  // addSkills($event: any) {
-  //  this.cv.skills.push($event)
-  //   console.log($event)
-  // }
-
-  // removeExperience(id:number) {
-  //   this.cv.experiences.splice(0,id+1)
-  // }
-
-  // removeEducation(id:number) {
-  //   this.cv.educations.splice(0,id+1)
-  // }
-
-  // removeSkill(id:number) {
-  //   this.cv.skills.splice(0,id+1)
-  // }
 }

@@ -3,8 +3,30 @@
    min-height: 100%;
 }
 
+.btn-load {
+   margin: 4.6rem auto 0;
+   max-width: 66rem;
+   height: 6rem;
+   background: #527EA6;
+   box-shadow: 0px 8px 6px rgba(162, 164, 167, 0.59);
+   border-radius: 3rem;
+   font-weight: 700;
+   font-size: 2.4rem;
+   line-height: 1.2;
+   color: #FFFFFF;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
 .wrapper {
+   background: #E5E5E5;
    font-family: 'Inter';
+   padding: 4rem 2.5rem;
+   font-weight: 400;
+   min-height: 100%;
+   min-height: calc(100vh - 14rem);
+
 }
 
 .row {
@@ -96,6 +118,7 @@
    font-size: 25px;
    color: #3C6F9E;
    margin-right: 7rem;
+   pointer-events: none
 }
 
 .card {
@@ -189,8 +212,21 @@
       font-size: 16px;
       line-height: 1.7;
       color: #04040B;
-      margin-left: 4rem;
+      margin-left: 6rem;
       margin-bottom: 3rem;
+      display: flex;
+
+      li {
+         text-transform: uppercase;
+         padding-right: 0.5rem;
+
+         &:not(:last-child) {
+            &::after {
+               content: ',';
+            }
+         }
+
+      }
    }
 
    // .card__user-btns
@@ -230,6 +266,10 @@
    font-weight: 600;
    color: rgba(0, 0, 0, 0.372);
 }
-.selected{
+
+.selected {
    background-color: #ccc;
+}
+svg{
+   outline: none;
 }
