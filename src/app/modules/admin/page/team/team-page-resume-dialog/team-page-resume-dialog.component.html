@@ -3,10 +3,19 @@
   <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
+      <mat-label>Select position</mat-label>
+      <mat-select [(value)]="position" (selectionChange)="test()">
+        <mat-option *ngFor="let position of positions" [value]="position">
+          {{position.positionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Select resume</mat-label>
-      <mat-select [(value)]="resumeDto">
+      <mat-select [(value)]="resume">
         <mat-option *ngFor="let resume of allResumes" [value]="resume">
-         {{resume.resumeName}} {{resume.firstName}} {{resume.lastName}}
+         {{resume.positionName}} {{resume.firstName}} {{resume.lastName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

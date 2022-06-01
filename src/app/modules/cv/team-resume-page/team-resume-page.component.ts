@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TeamResumePageComponent implements OnInit {
 
-  resume: ResumeDto | null = null;
+  resume!: ResumeDto | null;
 
   constructor(private teamService: TeamService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {

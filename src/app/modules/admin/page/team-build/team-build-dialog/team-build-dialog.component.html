@@ -9,6 +9,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Estimation name</mat-label>
+      <input matInput placeholder="Landing page" [(ngModel)]="teamBuild.estimationName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Select Complexity</mat-label>
       <mat-select [(value)]="teamBuild.complexity.id" (selectionChange)="complexityChange()">
         <mat-option *ngFor="let complexity of complexities" [value]="complexity.id">

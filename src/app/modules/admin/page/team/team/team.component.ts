@@ -19,7 +19,7 @@ import {StatusTeam} from "../../../../../models/enums";
 })
 export class TeamComponent implements OnInit {
 
-  displayedColumns: string[] = ['resumeName', 'fullName', 'skills', 'isSelected', 'action'];
+  displayedColumns: string[] = ['resumeName', 'fullName', 'position', 'skills', 'isSelected', 'action'];
   @Input()team!: TeamDto;
   StatusResume=StatusTeamResume;
 

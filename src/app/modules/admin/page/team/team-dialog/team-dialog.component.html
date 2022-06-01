@@ -1,5 +1,5 @@
 <div class="team-dialog">
-  <h1 mat-dialog-title >Create new team</h1>
+  <h1 mat-dialog-title>Create new team</h1>
   <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
@@ -15,6 +15,16 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Team build</mat-label>
+      <mat-select [(value)]="team.teamBuild" (selectionChange)="test()">
+        <mat-option *ngFor="let teamBuild of teamBuilds" [value]="teamBuild">
+          {{teamBuild.projectTypeName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
 
     <div class="resume-section">
       <mat-form-field appearance="fill">
@@ -39,16 +49,12 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume">
-            {{resume.resumeName}} {{resume.firstName}}  {{resume.lastName}}
+           {{resume.positionName}} {{resume.firstName}}  {{resume.lastName}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
 
-    <div class="checkbox-section">
-      <mat-checkbox [(ngModel)]="team.showLogo">Show Logo</mat-checkbox>
-      <mat-checkbox [(ngModel)]="team.showContacts">Show Contacts</mat-checkbox>
-    </div>
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
@@ -58,6 +64,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <div class="checkbox-section">
+      <mat-checkbox [(ngModel)]="team.showLogo">Show Logo</mat-checkbox>
+      <mat-checkbox [(ngModel)]="team.showContacts">Show Contacts</mat-checkbox>
+    </div>
 
   </div>
   <div mat-dialog-actions class="actions">

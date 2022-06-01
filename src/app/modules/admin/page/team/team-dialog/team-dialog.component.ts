@@ -12,6 +12,8 @@ import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {ResumeService} from "../../../../../services/resume.service";
 import {TeamDto, TeamResumeDto} from "../../../../../models/team/create-team-dto";
 import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
+import {TeamBuildDto} from "../../../../../models/teamBuild/teamBuild-dto";
+import {TeamBuildService} from "../../../../../services/teamBuild.service";
 
 @Component({
   selector: 'cv-team-dialog',
@@ -24,6 +26,7 @@ export class TeamDialogComponent implements OnInit {
   clients: UserDto[] = [];
   resumes: SmallResumeDto[] = [];
   resumeTemplates:ResumeTemplateDto[] = [];
+  teamBuilds:TeamBuildDto[] =[];
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   resumeCtrl = new FormControl();
@@ -38,11 +41,14 @@ export class TeamDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<TeamDialogComponent>,
               userService: UserService,
-              resumeService: ResumeService) {
+              private resumeService: ResumeService,
+              teamBuildService:TeamBuildService) {
     this.team = data;
+    this.team.teamBuild = {} as TeamBuildDto;
     userService.getUsersByRole('client').subscribe(clients => this.clients = clients);
     resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
     resumeService.getAllTemplates().subscribe(templates=>this.resumeTemplates = templates);
+    teamBuildService.getAllTeamBuilds().subscribe(teamBuilds => this.teamBuilds = teamBuilds);
     this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
       startWith(''),
       map((resume) => (resume ? this._filter(resume) : this.allResumes.slice())),
@@ -85,5 +91,15 @@ export class TeamDialogComponent implements OnInit {
       this.team.resumes.push({resumeId:resume.id} as TeamResumeDto);
     })
     this.dialogRef.close(this.team);
+  }
+  //todo !!
+  test() {
+    if(this.team.teamBuild){
+      this.resumeService.getAllResumesByPositions(this.team.teamBuild.positions).subscribe(resumes=>this.allResumes = resumes);
+      this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
+        startWith(''),
+        map((resume) => (resume ? this._filter(resume) : this.allResumes.slice())),
+      );
+    }
   }
 }
