@@ -1,3 +1,4 @@
+import { TemplatesModule } from './../../../shared/templates/templates.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -14,8 +15,6 @@ import { ModalDeleteUserComponent } from '../../component/modal-delete-user/moda
 import { MatDialogModule } from '@angular/material/dialog';
 import { TeamsComponent } from '../teams/teams.component';
 import { ResumeComponent } from '../resume/resume.component';
-import { TemplateOneComponent } from '../../templates/template-one/template-one.component';
-import { TemplateTwoComponent } from '../../templates/template-two/template-two.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -26,7 +25,7 @@ const routes: Routes = [
         path: 'teams', component: TeamsComponent
       },
       {
-        path: 'resume', component: ResumeComponent
+        path: 'team/:teamId/resume/:resumeId', component: ResumeComponent
       },
       {
         path: '', redirectTo: 'teams', pathMatch: 'full'
@@ -41,8 +40,6 @@ const routes: Routes = [
     MainPageComponent, 
     TeamsComponent, 
     ModalDeleteUserComponent,
-    TemplateOneComponent, 
-    TemplateTwoComponent,
     ResumeComponent
   ],
   imports: [
@@ -57,6 +54,7 @@ const routes: Routes = [
     FontAwesomeModule,
     HeaderModule,
     FormsModule,
+    TemplatesModule,
     ReactiveFormsModule, 
     RouterModule.forChild(routes),
   ],
@@ -64,8 +62,6 @@ const routes: Routes = [
     MainPageComponent,
     TeamsComponent,
     ModalDeleteUserComponent,
-    TemplateOneComponent,
-    TemplateTwoComponent,
     ResumeComponent
   ],
 

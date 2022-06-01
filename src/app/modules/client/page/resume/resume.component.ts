@@ -23,7 +23,7 @@ export class ResumeComponent implements OnInit {
     this.getResume()
   }
   getResume(){
-    this.activatedRoute.queryParams.pipe(
+    this.activatedRoute.params.pipe(
       tap(params=>this.showLogo=params.showLogo),
       switchMap(params => this.teamService.getTeamResume(params.teamId, params.resumeId))
     ).subscribe({

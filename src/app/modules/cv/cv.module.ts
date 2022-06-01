@@ -5,7 +5,6 @@ import { CvRoutingModule } from './cv-routing.module';
 import { CvFullComponent } from './cv-full/cv-full.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
-import { CvDublicatePageComponent } from './cv-dublicate-page/cv-dublicate-page.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
@@ -27,9 +26,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {CvTemplateModule} from './cv-template/cv-template.module';
 import {MatSelectModule} from "@angular/material/select";
 import { TeamResumePageComponent } from './team-resume-page/team-resume-page.component';
+import { TemplatesModule } from '../shared/templates/templates.module';
 
 
 @NgModule({
@@ -43,7 +42,6 @@ import { TeamResumePageComponent } from './team-resume-page/team-resume-page.com
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
-    CvDublicatePageComponent,
     TeamResumePageComponent,
   ],
   imports: [
@@ -66,8 +64,9 @@ import { TeamResumePageComponent } from './team-resume-page/team-resume-page.com
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    CvTemplateModule,
+    TemplatesModule,
     CvSmallModule,
+    TemplatesModule,
     MatSelectModule
   ]
 })

@@ -3,13 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientTeamService } from 'src/app/services/client/client-team.service';
 
-
-
-
-
-
-
-
 @NgModule({
   declarations: [ 
   ],

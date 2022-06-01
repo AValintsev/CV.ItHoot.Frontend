@@ -1,3 +1,5 @@
+import { AccountService } from './../../../../services/account.service';
+import { Users } from './../../../../models/users-type';
 import { ResumeService } from 'src/app/services/resume.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,10 +12,11 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./template-two.component.scss']
 })
 export class TemplateTwoComponent implements OnInit {
+  User=Users
   color = '#37474f'
   userId!: number
   constructor(
- 
+    public accountService:AccountService,
     private resumeService: ResumeService,
     private router: Router
   ) { }
@@ -24,7 +27,6 @@ export class TemplateTwoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStoreColor()
-    console.log(this.resumeEditForm)
   }
   getStoreColor() {
     return this.color = localStorage.getItem('color') || '#37474f';

@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="action-column">
-				<div class="header-action__item">
+				<div *ngIf="accountService.getStoreRole() === User[2]" class="header-action__item">
 					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 				</div>
 				<div class="header-action__item">
