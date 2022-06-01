@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {TeamPageComponent} from "./team-page/team-page.component";
 import {TeamListPageComponent} from "./team-list-page/team-list-page.component";
+import {ResumePageComponent} from "./resume-page/resume-page.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: ':id',
     component:TeamPageComponent
+  },
+  {
+    path:':teamId/resume/:resumeId',
+    component:ResumePageComponent
   }
 
 ];

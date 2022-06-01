@@ -6,6 +6,7 @@ import {EducationDto} from "./education-dto";
 
 export interface ResumeDto{
   id:0;
+  resumeTemplateId:number;
   showLogo:boolean;
   resumeName:string;
   picture:string;

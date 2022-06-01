@@ -7,7 +7,6 @@ import {SkillRoutingModule} from "./skill-routing.module";
   declarations: [
   ],
   imports: [
-
     SkillRoutingModule,
   ]
 })

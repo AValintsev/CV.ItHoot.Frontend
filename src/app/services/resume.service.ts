@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/resume/small-resume-dto";
 import {ResumeDto} from "../models/resume/resume-dto";
+import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -43,5 +44,9 @@ export class ResumeService {
 
   public getPdf(resumeId: number) {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
+  }
+
+  public getAllTemplates():Observable<ResumeTemplateDto[]>{
+    return this.httpService.getRequest(this.routePrefix+`/templates`);
   }
 }

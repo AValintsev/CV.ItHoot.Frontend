@@ -1,6 +1,7 @@
 import {UserDto} from "../user-dto";
 import {StatusTeam} from "../enums";
 import {SkillDto} from "../skill/skill-dto";
+import {ResumeTemplateDto} from "../resume/resume-template-dto";
 
 export interface TeamDto {
   id: number;
@@ -11,6 +12,7 @@ export interface TeamDto {
   resumes: TeamResumeDto[];
   showLogo: true;
   showContacts: true;
+  resumeTemplateId:number;
 }
 
 

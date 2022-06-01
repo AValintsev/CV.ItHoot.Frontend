@@ -30,6 +30,7 @@
     </li>
     <mat-divider></mat-divider>
     <li class="title-section"><span>Setting</span></li>
+
     <li [routerLinkActive]="['active']">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -50,8 +51,13 @@
           <mat-icon>settings_accessibility</mat-icon>
           <span>Positions</span>
         </a>
+        <a routerLink="/admin/complexities">
+          <mat-icon>settings_accessibility</mat-icon>
+          <span>Complexities</span>
+        </a>
       </mat-expansion-panel>
     </li>
+
     <li>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -65,6 +71,12 @@
           <span>Teams</span>
         </a>
       </mat-expansion-panel>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/admin/builds">
+        <mat-icon>wallet</mat-icon>
+        <span>Team builder</span>
+      </a>
     </li>
     <li><a>
       <mat-icon>military_tech</mat-icon>

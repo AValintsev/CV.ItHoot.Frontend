@@ -17,7 +17,6 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     MatNativeDateModule,

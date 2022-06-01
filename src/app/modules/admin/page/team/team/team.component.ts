@@ -33,7 +33,7 @@ export class TeamComponent implements OnInit {
   ngOnInit(): void {}
 
   getPdf(resume:TeamResumeDto){
-    this.teamService.getTeamResumePdf(this.team.id,resume.resumeId).subscribe(file=>{
+    this.teamService.getTeamResumePdf(this.team.id,resume.id).subscribe(file=>{
       saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
     })
   }
