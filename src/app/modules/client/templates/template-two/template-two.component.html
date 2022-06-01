@@ -18,9 +18,10 @@
 			</div>
 		</div>
 		<div class="header-action">
-			<div class="action-column">
+			<div *ngIf="showLogo" class="action-column">
+				
 				<div class="header-action__item img-block">
-				<img src="/assets/logo.jpg" alt="logo">
+					<img src="/assets/logo.jpg" alt="logo">
 				</div>
 			</div>
 			<div class="action-column">
@@ -41,34 +42,7 @@
 							fill="black"></path>
 					</svg>
 				</div>
-
-				<div (click)="navigateToEditPage()" class="header-action__item">
-					<svg _ngcontent-wmh-c43="" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 22"
-						fill="none">
-						<path _ngcontent-wmh-c43=""
-							d="M20.6428 2.8825V2.53818C20.6428 1.16089 19.5248 0.0429688 18.1476 0.0429688C16.7703 0.0429688 15.6523 1.16089 15.6523 2.53818V2.8825H20.6428Z"
-							fill="#8A92A6"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.8237 19.7031H1.12687C0.505302 19.7031 0 20.2084 0 20.83C0 21.4516 0.505302 21.9569 1.12687 21.9569H16.3709L14.8237 19.7031Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 6.18359H1.12687C0.505302 6.18359 0 6.6889 0 7.31046C0 7.93203 0.505302 8.43733 1.12687 8.43733H14.1932V6.18359Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 10.6875H1.12687C0.505302 10.6875 0 11.1928 0 11.8144C0 12.4359 0.505302 12.9412 1.12687 12.9412H14.1932V10.6875Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M14.1932 15.1914H1.12687C0.505302 15.1914 0 15.6967 0 16.3183C0 16.9398 0.505302 17.4451 1.12687 17.4451H14.1932V15.1914Z"
-							fill="#D0D3DB"></path>
-						<path _ngcontent-wmh-c43=""
-							d="M15.6543 4.34766V18.3396L17.9259 21.6218C18.0332 21.7783 18.2658 21.7783 18.3776 21.6218L20.6492 18.3396V4.34766H15.6543Z"
-							fill="#8A92A6"></path>
-					</svg>
-				</div>
 			</div>
-
-
-
 		</div>
 	</div>
 	<main class="main">
@@ -210,7 +184,6 @@
 					<div class="header__title">
 						<span>About</span>
 					</div>
-
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner">
@@ -218,7 +191,8 @@
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
 						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description">
-							{{resumeEditForm?.aboutMe}}</div>
+							{{resumeEditForm?.aboutMe}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -234,7 +208,6 @@
 					<div class="header__title">
 						<span>Languages</span>
 					</div>
-
 				</div>
 				<div class="content right-side__content">
 					<div class="right-side__inner languages">

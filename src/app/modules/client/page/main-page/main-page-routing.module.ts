@@ -1,3 +1,6 @@
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderModule } from '../../shared/header/header.module';
@@ -10,7 +13,10 @@ import { FooterModule } from '../../shared/footer/footer.module';
 import { ModalDeleteUserComponent } from '../../component/modal-delete-user/modal-delete-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TeamsComponent } from '../teams/teams.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { ResumeComponent } from '../resume/resume.component';
+import { TemplateOneComponent } from '../../templates/template-one/template-one.component';
+import { TemplateTwoComponent } from '../../templates/template-two/template-two.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const routes: Routes = [
@@ -20,7 +26,10 @@ const routes: Routes = [
         path: 'teams', component: TeamsComponent
       },
       {
-        path: '', redirectTo:'teams',pathMatch:'full'
+        path: 'resume', component: ResumeComponent
+      },
+      {
+        path: '', redirectTo: 'teams', pathMatch: 'full'
       },
     ]
   }
@@ -29,8 +38,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    MainPageComponent, TeamsComponent
-    , ModalDeleteUserComponent
+    MainPageComponent, 
+    TeamsComponent, 
+    ModalDeleteUserComponent,
+    TemplateOneComponent, 
+    TemplateTwoComponent,
+    ResumeComponent
   ],
   imports: [
     CommonModule,
@@ -39,10 +52,22 @@ const routes: Routes = [
     MatCardModule,
     MatButtonModule,
     FooterModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    FontAwesomeModule,
     HeaderModule,
+    FormsModule,
+    ReactiveFormsModule, 
     RouterModule.forChild(routes),
   ],
-  exports: [MainPageComponent, TeamsComponent, ModalDeleteUserComponent],
+  exports: [
+    MainPageComponent,
+    TeamsComponent,
+    ModalDeleteUserComponent,
+    TemplateOneComponent,
+    TemplateTwoComponent,
+    ResumeComponent
+  ],
 
 })
 

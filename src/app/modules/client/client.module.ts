@@ -9,8 +9,10 @@ import { ClientTeamService } from 'src/app/services/client/client-team.service';
 
 
 
+
 @NgModule({
-  declarations: [ ],
+  declarations: [ 
+  ],
   imports: [
     CommonModule,
     ClientRoutingModule,

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TeamDto, TeamResumeDto } from 'src/app/models/team/create-team-dto';
 import { map, switchMap } from 'rxjs/operators';
 import { ClientTeamService } from 'src/app/services/client/client-team.service';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'cv-teams',
@@ -29,7 +30,7 @@ import { ClientTeamService } from 'src/app/services/client/client-team.service';
 
 })
 export class TeamsComponent implements OnInit {
-  cards$!: Observable<TeamDto>
+  teamInfoAll!: TeamDto
   checkArray: number[] = []
   cardId!: number;
   toggle = true;
@@ -40,9 +41,10 @@ export class TeamsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private clientTeamService: ClientTeamService,
-    ) {
-      
-     }
+    private teamService: TeamService
+  ) {
+
+  }
 
   ngOnInit(): void {
 
@@ -53,13 +55,15 @@ export class TeamsComponent implements OnInit {
     this.clientTeamService.getTeam().subscribe({
       next: response => {
         response.subscribe({
-          next: (response: TeamDto)=>{
-               this.resumeArray = response.resumes;
-        this.teamId = response.id
+          next: (response: TeamDto) => {
+            console.log(response)
+            this.teamInfoAll = response;
+            this.resumeArray = response.resumes;
+            this.teamId = response.id
           },
-          error: (error:any) => console.log(error),
+          error: (error: any) => console.log(error),
         })
-     
+
       },
       error: error => console.log(error),
     })
@@ -105,19 +109,25 @@ export class TeamsComponent implements OnInit {
     }
 
   }
+  savePdf(teamId: number, resumeId: number, firstName: string, lastName: string) {
+    this.teamService.getTeamResumePdf(teamId, resumeId).subscribe(response => {
+      saveAs(response, `${firstName} ${lastName}.pdf`);
+    });
+  }
 
-  //   {
-  //   "teamId": 12,
-  //     "resumes": [
-  //       {
-  //         "id": 1,
-  //         "isSelected": false
-  //       }
-  //     ]
-  // }
-
-  approveUsers(){
-
+  approveUsers() {
+    const approveObject = {
+      teamId: this.teamId,
+      resumes: this.arr,
+    }
+    console.log(approveObject)
+    this.teamService.approveTeam(approveObject).subscribe({
+      next: response => {
+        this.checkArray.length = 0;
+        this.arr.length = 0;
+      },
+      error: error => console.log(error),
+    })
   }
 
   checkSelect(id: number) {

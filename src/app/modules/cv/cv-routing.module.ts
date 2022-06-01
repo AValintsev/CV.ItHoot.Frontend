@@ -30,6 +30,11 @@ const routes: Routes = [
     path: ':id',
     component: CvFullComponent,
     // canActivate: [CheckUserGuard]
+  },
+  {
+    path: '',
+    redirectTo:'user-list',
+    pathMatch:'full'
   }
 ];
 

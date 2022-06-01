@@ -2,7 +2,7 @@
   <div class="header-inner">
     <div class="col">
       <div class="label">
-        <img src="assets/label.jpg" alt="label">
+        <img src="assets/client/team/team-logo.svg" alt="label">
       </div>
 
     </div>
@@ -66,7 +66,7 @@
             <mat-form-field appearance="fill">
               <mat-select (selectionChange)="changeTeam($event)">
                 <mat-option  *ngFor="let team of teamList$|async" [value]="team.id">
-                  {{team.teamName}}{{team.id}}
+                  {{team.teamName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
