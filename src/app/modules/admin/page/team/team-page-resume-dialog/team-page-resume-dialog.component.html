@@ -4,7 +4,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select position</mat-label>
-      <mat-select [(value)]="position" (selectionChange)="test()">
+      <mat-select [(value)]="position" (selectionChange)="getResumesByPosition()" disableOptionCentering>
         <mat-option *ngFor="let position of positions" [value]="position">
           {{position.positionName}}
         </mat-option>
@@ -13,7 +13,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select resume</mat-label>
-      <mat-select [(value)]="resume">
+      <mat-select [(value)]="resume" disableOptionCentering>
         <mat-option *ngFor="let resume of allResumes" [value]="resume">
          {{resume.positionName}} {{resume.firstName}} {{resume.lastName}}
         </mat-option>

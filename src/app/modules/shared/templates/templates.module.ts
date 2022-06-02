@@ -26,7 +26,7 @@ import { TemplateTwoComponent } from './template-two/template-two.component';
     MatButtonToggleModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    
+
     RouterModule
   ],
   exports: [TemplateOneComponent, TemplateTwoComponent]

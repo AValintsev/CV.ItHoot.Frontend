@@ -9,7 +9,6 @@ import {TeamPageDialogComponent} from "../team-page-dialog/team-page-dialog.comp
 import {TeamPageResumeDialogComponent} from "../team-page-resume-dialog/team-page-resume-dialog.component";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {saveAs} from "file-saver";
-import {ResumeDto} from "../../../../../models/resume/resume-dto";
 import {StatusTeam} from "../../../../../models/enums";
 
 @Component({

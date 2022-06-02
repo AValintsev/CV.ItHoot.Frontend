@@ -39,11 +39,12 @@ export class TeamPageResumeDialogComponent implements OnInit {
   click(): void {
     this.dialogRef.close(this.resume);
   }
- //todo !!
-  test() {
+
+  getResumesByPosition() {
       if(this.position){
-        let positions = [] as TeamBuildPositionDto[];
-        positions.push({positionName:this.position.positionName} as TeamBuildPositionDto);
+        this.resume = null;
+        let positions = [] as PositionDto[];
+        positions.push(this.position);
         this.resumeService.getAllResumesByPositions(positions).subscribe(resumes=>this.allResumes = resumes);
       }
   }

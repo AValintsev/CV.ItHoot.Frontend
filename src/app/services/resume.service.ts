@@ -6,6 +6,7 @@ import {SmallResumeDto} from "../models/resume/small-resume-dto";
 import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {TeamBuildPositionDto} from "../models/teamBuild/teamBuildPosition-dto";
+import {PositionDto} from "../models/position/position-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -52,10 +53,15 @@ export class ResumeService {
   }
 
   //todo !!
-  public getAllResumesByPositions(positions:TeamBuildPositionDto[]):Observable<SmallResumeDto[]>{
+  public getAllResumesByPositions(positions:PositionDto[]):Observable<SmallResumeDto[]>{
     let position = ''
     positions.forEach(x=>position +=x.positionName+',');
     position = position.slice(0,-1);
     return this.httpService.getRequest(this.routePrefix+`/position?positions=${position}`);
+  }
+
+  public getAllResumesByTeamBuild(teamBuildId:number):Observable<SmallResumeDto[]>{
+    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix+`/teamBuild/${teamBuildId}`);
+
   }
 }

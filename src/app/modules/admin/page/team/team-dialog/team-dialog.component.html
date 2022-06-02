@@ -7,18 +7,19 @@
       <input matInput placeholder=".Net Team" [(ngModel)]="team.teamName">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Select Client</mat-label>
-      <mat-select [(value)]="team.clientId">
-        <mat-option *ngFor="let client of clients" [value]="client.userId">
-          {{client.firstName}} {{client.lastName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select Client</mat-label>
+        <mat-select [(value)]="team.clientId" disableOptionCentering>
+          <mat-option *ngFor="let client of clients" [value]="client.userId" >
+            {{client.firstName}} {{client.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Select Team build</mat-label>
-      <mat-select [(value)]="team.teamBuild" (selectionChange)="test()">
+      <mat-select [(value)]="team.teamBuild" (selectionChange)="teamBuildSelected()" disableOptionCentering>
         <mat-option *ngFor="let teamBuild of teamBuilds" [value]="teamBuild">
           {{teamBuild.projectTypeName}}
         </mat-option>
@@ -33,7 +34,7 @@
           <mat-chip
             *ngFor="let resume of resumes"
             (removed)="remove(resume)">
-            {{resume.resumeName}}
+            {{resume.firstName}} {{resume.lastName}}
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
             </button>
@@ -49,7 +50,7 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume">
-           {{resume.positionName}} {{resume.firstName}}  {{resume.lastName}}
+            {{resume.positionName}} {{resume.firstName}}  {{resume.lastName}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -58,7 +59,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
-      <mat-select [(value)]="team.resumeTemplateId">
+      <mat-select [(value)]="team.resumeTemplateId" disableOptionCentering>
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           {{template.templateName}}
         </mat-option>

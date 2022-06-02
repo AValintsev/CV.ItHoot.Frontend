@@ -4,7 +4,7 @@ import {TeamBuildPositionDto} from "./teamBuildPosition-dto";
 export interface TeamBuildDto {
   id: number;
   projectTypeName: string;
-  estimationName:string;
+  estimation:number;
   complexity: TeamBuildComplexityDto;
   complexityId: number;
   positions: TeamBuildPositionDto[];
