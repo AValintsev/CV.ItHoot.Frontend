@@ -13,6 +13,7 @@ export interface TeamDto {
   showLogo: true;
   showContacts: true;
   resumeTemplateId:number;
+  positionResumes?: Record<string, TeamResumeDto[]>
 }
 
 

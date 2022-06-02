@@ -3,7 +3,7 @@
 		<div class=" header-user" [style.background]="color">
 			<div class="header__icon-block">
 				<div class="header__label">
-					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="assets/avatar.jpg" alt="user photo">
+					<img *ngIf="resumeEditForm?.picture; else image" src="{{resumeEditForm?.picture}}" alt="user photo">
 					<ng-template #image>
 						<img src="/assets/no-image.png" alt="user photo">
 					</ng-template>

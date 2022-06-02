@@ -70,6 +70,9 @@
       font-size: 25px;
       line-height: 1.2;
       color: #04040B;
+      &::first-letter{
+         text-transform: uppercase;
+      }
    }
 
    // .row__line-counter
@@ -122,12 +125,14 @@
 }
 
 .card {
+   display: flex;
+   flex-direction: column;
    flex: 0 0 53rem;
    height: 28rem;
    margin-top: 2.5rem;
    background-image: url('/assets/client/team/card.svg');
    background-repeat: no-repeat;
-   background-size: 100%;
+   background-size: cover;
    background-position: -4px -3px;
    transition: all .3s ease;
 
@@ -148,7 +153,7 @@
       border-radius: 50%;
       overflow: hidden;
       object-fit: cover;
-      margin-left: 4.4rem;
+      margin-left: 5.5rem;
       margin-top: 1.2rem;
 
       img {
@@ -210,11 +215,13 @@
 
    &__user-position {
       font-size: 16px;
-      line-height: 1.7;
+      line-height: 1.2;
       color: #04040B;
       margin-left: 6rem;
-      margin-bottom: 3rem;
+      // margin-bottom: 3rem;
       display: flex;
+      width: 69%;
+      flex-wrap: wrap;
 
       li {
          text-transform: uppercase;
@@ -233,8 +240,15 @@
 
    &__user-btns {
       display: flex;
+      flex-direction: column;
+      flex-grow: 2;
       justify-content: center;
-      align-items: center;
+
+      &-inner {
+         display: flex;
+         justify-content: center;
+         align-items: flex-end;
+      }
    }
 }
 
@@ -270,6 +284,26 @@
 .selected {
    background-color: #ccc;
 }
-svg{
+
+svg {
    outline: none;
+}
+
+button[disabled].btn-load {
+   background: rgba(82, 126, 166, .3);
+   color: rgba(255, 255, 255, .5);
+}
+
+button[disabled].select {
+   // color: rgba(255, 255, 255, .7);
+   // background-color: rgba(70, 69, 69, 0.438);
+   color: rgba(255, 255, 255, .7);
+   background: rgba(60, 111, 158, .5);
+}
+
+button[disabled].deny {
+   // color: rgba(255, 255, 255, .7);
+   // background-color: rgba(70, 69, 69, 0.438);
+   color: rgba(255, 255, 255, .7);
+   background: rgba(243, 111, 12, .5);
 }
