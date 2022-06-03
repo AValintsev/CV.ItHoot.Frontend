@@ -6,24 +6,24 @@
       </div>
 
     </div>
-    <div  class="col">
+    <div *ngIf="!showTeamName" class="col">
       <button class="btn btn-left btn-reset" (click)="getAllCv()">
-      <svg  xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
-        <path
-          d="M15.5 31.5C24.0668 31.5 31 24.5676 31 16C31 7.43317 24.0676 0.499997 15.5 0.499997C6.9331 0.499996 1.96706e-07 7.43241 -5.52296e-07 16C-1.30123e-06 24.5668 6.93235 31.5 15.5 31.5ZM6.95306 15.2774L11.65 10.5804C12.2885 9.94192 13.3946 10.3872 13.3946 11.3031L13.3946 12.1677L23.3241 12.1677C23.8885 12.1677 24.3461 12.6253 24.3461 13.1897L24.3461 18.8103C24.3461 19.3747 23.8885 19.8323 23.3241 19.8323L13.3946 19.8323L13.3946 20.697C13.3946 21.6073 12.2907 22.0607 11.65 21.4196L6.95306 16.7227C6.55394 16.3236 6.55395 15.6764 6.95306 15.2774Z"
-          fill="#8A92A6" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
+          <path
+            d="M15.5 31.5C24.0668 31.5 31 24.5676 31 16C31 7.43317 24.0676 0.499997 15.5 0.499997C6.9331 0.499996 1.96706e-07 7.43241 -5.52296e-07 16C-1.30123e-06 24.5668 6.93235 31.5 15.5 31.5ZM6.95306 15.2774L11.65 10.5804C12.2885 9.94192 13.3946 10.3872 13.3946 11.3031L13.3946 12.1677L23.3241 12.1677C23.8885 12.1677 24.3461 12.6253 24.3461 13.1897L24.3461 18.8103C24.3461 19.3747 23.8885 19.8323 23.3241 19.8323L13.3946 19.8323L13.3946 20.697C13.3946 21.6073 12.2907 22.0607 11.65 21.4196L6.95306 16.7227C6.55394 16.3236 6.55395 15.6764 6.95306 15.2774Z"
+            fill="#8A92A6" />
+        </svg>
         <span>Previous</span>
       </button>
-       <div class="cv-user">
-         <div class="cv-user-photo  img">
-           <img src="assets/face.jpg" alt="user picture">
-         </div>
-         <div class="cv-user-content">
-           <div class="cv-user-position">.Net developer</div>
-           <div class="cv-user-name">Nikita</div>
-         </div>
-       </div>
+      <div class="cv-user">
+        <div class="cv-user-photo  img">
+          <img src="assets/face.jpg" alt="user picture">
+        </div>
+        <div class="cv-user-content">
+          <div class="cv-user-position">.Net developer</div>
+          <div class="cv-user-name">Nikita</div>
+        </div>
+      </div>
       <button class="btn btn-right btn-reset" (click)="nextCv()">
         <span>Next</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
@@ -33,18 +33,27 @@
         </svg>
       </button>
     </div>
+    <div *ngIf="showTeamName" class="col">
+      <div class="team">
+        <div *ngIf="clientTeamService.headerTitle$|async;else cloneName" class="team__name">
+          {{clientTeamService.headerTitle$|async}}</div>
+        <ng-template #cloneName>
+          <div class="team__name">
+            You team</div>
+        </ng-template>
+      </div>
+    </div>
     <div class="col">
       <div class="user">
         <ul class="user-icons">
 
-          <li  matTooltip="Choose team"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-            <path
-              d="M16.2695 9.64534C15.539 8.79229 15.2071 8.05305 15.2071 6.79716V6.37013C15.2071 4.73354 14.8304 3.67907 14.0115 2.62459C12.7493 0.986993 10.6244 0 8.54423 0H8.45577C6.41935 0 4.36106 0.941671 3.077 2.5128C2.21333 3.58842 1.79293 4.68822 1.79293 6.37013V6.79716C1.79293 8.05305 1.48284 8.79229 0.730488 9.64534C0.176907 10.2738 0 11.0815 0 11.9557C0 12.8309 0.287226 13.6598 0.863666 14.3336C1.61602 15.1413 2.67846 15.6569 3.76375 15.7466C5.33505 15.9258 6.90634 15.9933 8.5005 15.9933C10.0937 15.9933 11.665 15.8805 13.2372 15.7466C14.3215 15.6569 15.384 15.1413 16.1363 14.3336C16.7118 13.6598 17 12.8309 17 11.9557C17 11.0815 16.8231 10.2738 16.2695 9.64534Z"
-              fill="#8A92A6" />
-          </svg></li>
-          <li matTooltip="Choose team"
-          (click)="navigateToTeams()"
-          >
+          <li matTooltip="Choose team"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="16"
+              viewBox="0 0 17 16" fill="none">
+              <path
+                d="M16.2695 9.64534C15.539 8.79229 15.2071 8.05305 15.2071 6.79716V6.37013C15.2071 4.73354 14.8304 3.67907 14.0115 2.62459C12.7493 0.986993 10.6244 0 8.54423 0H8.45577C6.41935 0 4.36106 0.941671 3.077 2.5128C2.21333 3.58842 1.79293 4.68822 1.79293 6.37013V6.79716C1.79293 8.05305 1.48284 8.79229 0.730488 9.64534C0.176907 10.2738 0 11.0815 0 11.9557C0 12.8309 0.287226 13.6598 0.863666 14.3336C1.61602 15.1413 2.67846 15.6569 3.76375 15.7466C5.33505 15.9258 6.90634 15.9933 8.5005 15.9933C10.0937 15.9933 11.665 15.8805 13.2372 15.7466C14.3215 15.6569 15.384 15.1413 16.1363 14.3336C16.7118 13.6598 17 12.8309 17 11.9557C17 11.0815 16.8231 10.2738 16.2695 9.64534Z"
+                fill="#8A92A6" />
+            </svg></li>
+          <li matTooltip="Choose team" [routerLink]="['/client/teams/']">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M23.417 8.05119C23.4112 6.90293 22.4723 5.96875 21.324 5.96875C20.9538 5.96875 17.8286 5.96875 17.4664 5.96875C17.5401 6.23928 17.5807 6.52322 17.5822 6.81618L17.6174 13.8182C17.6212 14.5696 17.207 15.2272 16.5938 15.5709V22.9276C16.5938 23.5137 17.0689 23.9889 17.6551 23.9889C18.2412 23.9889 18.7164 23.5138 18.7164 22.9276V14.6736C18.7164 14.547 18.819 14.4445 18.9455 14.4445C19.0721 14.4445 19.1747 14.5471 19.1747 14.6736V22.9277C19.1747 23.5138 19.6498 23.989 20.236 23.989C20.8221 23.989 21.2973 23.5139 21.2973 22.9277C21.2973 8.89397 21.2785 16.9262 21.278 8.06512C21.278 7.96387 21.3594 7.88134 21.4607 7.87998C21.5619 7.87863 21.6454 7.95891 21.6482 8.06016L21.6809 14.5577C21.6833 15.0447 22.0788 15.4377 22.5652 15.4377C22.5666 15.4377 22.5682 15.4377 22.5697 15.4377C23.0581 15.4352 23.4521 15.0373 23.4497 14.5489L23.417 8.05119Z"
@@ -67,19 +76,22 @@
             </svg>
             <mat-form-field appearance="fill">
               <mat-select (selectionChange)="changeTeam($event)">
-                <mat-option  *ngFor="let team of teamList$|async" [value]="team.id">
+                <mat-option *ngFor="let team of teamList$|async" [value]="team.id">
                   {{team.teamName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </li>          
+          </li>
         </ul>
         <div class="user-content">
           <div class="user-picture img">
             <img src="assets/face.jpg" alt="user picture">
           </div>
           <ul class="user-atrr">
-            <li class="user-name">{{userName$|async}}</li>
+            <li *ngIf="clientName$|async; else userName" class="user-name">{{clientName$|async}}</li>
+            <ng-template #userName>
+              <li class="user-name">Client</li>
+            </ng-template>
             <li class="user-role">{{accountService.getStoreRole()?accountService.getStoreRole():'User'}}</li>
           </ul>
         </div>
@@ -88,5 +100,3 @@
     </div>
   </div>
 </header>
-
-

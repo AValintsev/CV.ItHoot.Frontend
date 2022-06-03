@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Users } from 'src/app/models/users-type';
 import { map } from 'rxjs/operators';
 import { ClientTeamService } from 'src/app/services/client/client-team.service';
@@ -18,67 +19,47 @@ import { ClientTeamService } from 'src/app/services/client/client-team.service';
 export class HeaderComponent implements OnInit {
   Users = Users
   teamList$!: Observable<SmallTeamDto[]>
-  userName$: Observable<string> = of('User')
+  showTeamName:boolean = true
+  clientName$!:Observable<string>
   constructor(
+    private location:Location,
     public accountService: AccountService,
     private router: Router,
     private resumeService: ResumeService,
-    private clientTeamService: ClientTeamService,
+    public clientTeamService: ClientTeamService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.clientName$ = this.clientTeamService.getAllTeam().pipe(map(array => array[0].clientUserName))
     this.getTeamList()
-    this.clientTeamService.getAllTeam().subscribe(console.log)
-    this.userNamed()
-    // console.log(this.router.url)
-    // this.router.events.subscribe(e => console.log('events', e))
-    // this.activatedRoute.url.subscribe(value => console.log('path parts: ', value));
+    this.clientTeamService.getAllTeam().subscribe(e=>console.log('getAllTeam',e))
+    this.checkVisibleHeaderItem()
   }
 
   private getTeamList() {
     this.teamList$ = this.clientTeamService.getAllTeam()
   }
-
-  navigateToTeams() {
-this.router.navigate(['/client/teams/'])
+  checkVisibleHeaderItem() {
     this.router.events.subscribe({
       next: response => {
-        if (response instanceof NavigationStart){
-          let regexp = new RegExp(`/client/teams`,'g')
+        if (response instanceof NavigationStart) {
+          let regexp = new RegExp(`/client/teams`, 'g')
           const test = regexp.test(response.url);
-          // console.log('test', test)
-          if(test){
-            
-            return true
+          if (test) {
+            this.showTeamName = true
+          }else{
+            this.showTeamName = false
           }
-         
+        
         }
-        return []
       },
-      error: error => { }
+      error: error => {console.log(error) }
     })
-
-    
-
-    
-
-    
-
   }
 
   changeTeam(value: any) {
-
-
     this.clientTeamService.changeTeam(value.source.value)
-  }
-
-  userNamed() {
-    if (this.accountService.getStoreRole() === Users[2]) {
-      this.userName$ = this.resumeService.getAllResume().pipe(map(resume => resume[0]?.firstName))
-    } else if (!this.resumeService.getAllResume()) {
-      this.userName$ = of('User')
-    }
   }
 
   logout() {
@@ -86,6 +67,7 @@ this.router.navigate(['/client/teams/'])
       next: () => this.router.navigate(['/account/login'])
     })
   }
+
   getAllCv() {
     this.router.navigate(['/home/cv/'])
   }

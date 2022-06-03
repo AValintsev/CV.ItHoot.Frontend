@@ -149,8 +149,20 @@ img {
       background-color: rgba(0, 0, 0, 0.0) !important;
     }
 
-    .mat-select-min-line{
+    .mat-select-min-line {
       display: none;
     }
+  }
+}
+
+.team {
+  &__name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 1.2;
+    color: #3C6F9E;
+    text-transform: uppercase;
   }
 }

@@ -1,3 +1,5 @@
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { StatusTeamResume } from './../../../../models/team/create-team-dto';
 import { TeamService } from './../../../../services/team.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
@@ -8,6 +10,7 @@ import { TeamDto, TeamResumeDto } from 'src/app/models/team/create-team-dto';
 import { map, switchMap } from 'rxjs/operators';
 import { ClientTeamService } from 'src/app/services/client/client-team.service';
 import * as saveAs from 'file-saver';
+import { StatusTeam } from 'src/app/models/enums';
 
 @Component({
   selector: 'cv-teams',
@@ -30,7 +33,15 @@ import * as saveAs from 'file-saver';
 
 })
 export class TeamsComponent implements OnInit {
+  //
+
+  //
+  statusResume = StatusTeamResume
+  StatusTeam = StatusTeam
   teamInfoAll!: TeamDto
+  teamName!: string
+  statusTeam!: number
+  teamPosition!:any
   checkArray: number[] = []
   cardId!: number;
   toggle = true;
@@ -40,15 +51,16 @@ export class TeamsComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private clientTeamService: ClientTeamService,
-    private teamService: TeamService
+    public clientTeamService: ClientTeamService,
+    private teamService: TeamService,
+    private snackBarService:SnackBarService
   ) {
 
   }
 
   ngOnInit(): void {
-
     this.getResumeArray()
+    this.clientTeamService.headerTitle$
   }
 
   getResumeArray() {
@@ -56,17 +68,25 @@ export class TeamsComponent implements OnInit {
       next: response => {
         response.subscribe({
           next: (response: TeamDto) => {
+            console.log(response.positionResumes)
+            this.teamName = response.teamName;
+            this.clientTeamService.headerTitle$.next(this.teamName)
             this.teamInfoAll = response;
-            this.resumeArray = response.resumes;
+            this.resumeArray = response.resumes.filter(e => e.statusResume != this.statusResume.Denied);
             this.teamId = response.id
+            this.statusTeam = response.statusTeam
+            this.teamPosition = Array.from(response.positionResumes as any)
           },
           error: (error: any) => console.log(error),
         })
 
       },
-      error: error => console.log(error),
+      error: error => this.snackBarService.showDanger('Something went wrong!'),
     })
   }
+
+ 
+
   deleteCard(id: number, event: Event) {
     event.stopPropagation()
     let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
@@ -75,14 +95,29 @@ export class TeamsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe({
       next: response => {
+        console.log(this.arr)
         if (response) {
           this.cardId = id
           this.checkArray = this.checkArray.filter(e => e != id)
-          this.arr = this.arr.filter(e => e.id != id)
+          const checkExistElement = this.arr.filter(e => e.id == id)
+          if (checkExistElement.length) {
+            this.arr = this.arr.map(e => {
+              console.log('e.id == id', e.id == id)
+              if (e.id == id) {
+                return { id, isSelected: false }
+              }
+              return e
+            })
+          } else {
+            this.arr.push({
+              id,
+              isSelected: false
+            })
+          }
           this.resumeArray = this.resumeArray.filter(e => e.id != id)
         }
       },
-      error: error => console.log(error),
+      error: error => this.snackBarService.showDanger('Something went wrong!'),
     })
 
   }
@@ -120,10 +155,11 @@ export class TeamsComponent implements OnInit {
     }
     this.teamService.approveTeam(approveObject).subscribe({
       next: response => {
+        this.snackBarService.showSuccess('Success');
         this.checkArray.length = 0;
         this.arr.length = 0;
       },
-      error: error => console.log(error),
+      error: error => this.snackBarService.showDanger('Something went wrong!'),
     })
   }
 

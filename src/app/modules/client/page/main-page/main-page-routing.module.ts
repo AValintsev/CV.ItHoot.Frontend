@@ -1,3 +1,5 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TemplatesModule } from './../../../shared/templates/templates.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -56,6 +58,8 @@ const routes: Routes = [
     FormsModule,
     TemplatesModule,
     ReactiveFormsModule, 
+    MatSnackBarModule,
+    MatTooltipModule,
     RouterModule.forChild(routes),
   ],
   exports: [
