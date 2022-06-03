@@ -6,7 +6,7 @@
 					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="../../../../../assets/no-image.png" alt="user photo">
 					<img *ngIf="resumeEditForm?.picture; else image" src="{{resumeEditForm?.picture}}" alt="user photo">
 					<ng-template #image>
-						<img src="{{resumeEditForm.picture}}" alt="user photo">
+						<img src="{{resumeEditForm?.picture}}" alt="user photo">
 					</ng-template>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 				</div>
 				<div class="header-action__item">
-					<svg (click)="getResumePdf()" xmlns="http://www.w3.org/2000/svg" width="22"
+					<svg *ngIf="showPdfSave" (click)="getResumePdf()" _ngcontent-sqy-c43="" xmlns="http://www.w3.org/2000/svg" width="22"
 						height="21" viewBox="0 0 31 32" fill="none">
 						<path
 							d="M28.7853 0.5H2.21482C0.99355 0.5 0 1.49348 0 2.71475V29.2853C0 30.5065 0.99355 31.5 2.21482 31.5H28.7853C30.0066 31.5 31.0001 30.5065 31.0001 29.2853V2.71475C31.0001 1.49348 30.0066 0.5 28.7853 0.5ZM28.9784 8.43378H21.3124V16.2597C23.3053 17.0871 23.8127 19.6828 22.2903 21.205L17.6445 25.8509C16.4593 27.0361 14.541 27.0363 13.3557 25.8509L8.71006 21.2053C7.16538 19.6612 7.72196 17.0758 9.6877 16.2597V8.43378H2.02174V2.71475C2.02174 2.60827 2.10834 2.52167 2.21482 2.52167H28.7853C28.8918 2.52167 28.9784 2.60827 28.9784 2.71475V8.43378Z"
@@ -167,7 +167,7 @@
 										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
 									</path>
 								</svg>
-								<span>{{resumeEditForm?.country}},&nbsp;{{resumeEditForm?.city}},&nbsp;{{resumeEditForm?.street}}</span>
+								<span> <span class="span-location">{{resumeEditForm?.country}}</span>&nbsp;<span class="span-location">{{resumeEditForm?.city}}</span>&nbsp;<span class="span-location">{{resumeEditForm?.street}}</span></span>
 							</li>
 						</ul>
 					</div>

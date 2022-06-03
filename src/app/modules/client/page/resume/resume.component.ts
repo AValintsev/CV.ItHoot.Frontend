@@ -1,3 +1,4 @@
+import { ClientTeamService } from './../../../../services/client/client-team.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { TeamService } from './../../../../services/team.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +17,8 @@ export class ResumeComponent implements OnInit {
   resume!: ResumeDto
   constructor(
     private activatedRoute: ActivatedRoute,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private clientTeamService:ClientTeamService
   ) { }
 
   ngOnInit(): void {
@@ -24,14 +26,25 @@ export class ResumeComponent implements OnInit {
   }
   getResume(){
     this.activatedRoute.params.pipe(
-      tap(params=>this.showLogo=params.showLogo),
+      tap(params=>{
+        this.showLogo=params.showLogo
+       
+        this.teamService.getTeamById(params.teamId).subscribe(
+           response =>{
+          if(response){
+            console.log('response',response)
+             this.clientTeamService.headerTitle$.next(response.teamName)
+          }
+        }
+        )
+      }),
       switchMap(params => this.teamService.getTeamResume(params.teamId, params.resumeId))
     ).subscribe({
       next: response => { 
         this.resume = response.resume;
         this.resume.showLogo = response.showLogo;
         this.resumeTemplateId = response.resumeTemplateId;
-      
+        console.log('qqqqqqqqqqqqqqqqqqqq',response)
       
       },
       error: error => console.log(error)
