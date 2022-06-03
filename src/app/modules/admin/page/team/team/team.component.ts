@@ -21,6 +21,7 @@ export class TeamComponent implements OnInit {
   displayedColumns: string[] = ['resumeName', 'fullName', 'position', 'skills', 'isSelected', 'action'];
   @Input()team!: TeamDto;
   StatusResume=StatusTeamResume;
+  loading: boolean = false;
 
   constructor(private teamService: TeamService,
               private route: ActivatedRoute,
@@ -31,11 +32,7 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getPdf(resume:TeamResumeDto){
-    this.teamService.getTeamResumePdf(this.team.id,resume.id).subscribe(file=>{
-      saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
-    })
-  }
+
 
   openTeamDialog(): void {
     const dialogRef = this.dialog.open(TeamPageDialogComponent, {

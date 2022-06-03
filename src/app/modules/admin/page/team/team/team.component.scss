@@ -101,7 +101,9 @@
         grid-template-columns: repeat(4, 20%);
         justify-content: space-between;
 
-        button {
+
+
+        & button {
           height: 35px;
           padding: .1rem .1rem;
           color: white;
@@ -113,10 +115,6 @@
             opacity: .9;
           }
 
-
-          &.pdf {
-            background: #3A57E8;
-          }
 
           &.docx {
             background: #FF5DCD;
