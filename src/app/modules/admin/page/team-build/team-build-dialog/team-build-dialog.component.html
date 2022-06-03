@@ -9,8 +9,13 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Estimation days</mat-label>
+      <input matInput type="number" placeholder="Count days" [defaultValue]="1" [(ngModel)]="teamBuild.estimation">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Select Complexity</mat-label>
-      <mat-select [(value)]="teamBuild.complexity.id" (selectionChange)="complexityChange()">
+      <mat-select [(value)]="teamBuild.complexity.id" (selectionChange)="complexityChange()" disableOptionCentering>
         <mat-option *ngFor="let complexity of complexities" [value]="complexity.id">
           {{complexity.complexityName}}
         </mat-option>

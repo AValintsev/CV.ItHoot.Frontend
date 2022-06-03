@@ -1,12 +1,14 @@
 import {UserDto} from "../user-dto";
 import {StatusTeam} from "../enums";
 import {SkillDto} from "../skill/skill-dto";
-import {ResumeTemplateDto} from "../resume/resume-template-dto";
+import {TeamBuildDto} from "../teamBuild/teamBuild-dto";
 
 export interface TeamDto {
   id: number;
   clientId: number;
   client: UserDto;
+  teamBuild:TeamBuildDto;
+  teamBuildId:number;
   statusTeam: StatusTeam;
   teamName: string;
   resumes: TeamResumeDto[];
@@ -24,6 +26,8 @@ export interface TeamResumeDto {
   resumeName: string;
   firstName: string;
   lastName: string;
+  positionId:number;
+  positionName:string;
   picture: string
   skills: SkillDto[];
 }

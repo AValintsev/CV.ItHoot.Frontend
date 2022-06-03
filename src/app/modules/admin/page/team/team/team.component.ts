@@ -9,7 +9,6 @@ import {TeamPageDialogComponent} from "../team-page-dialog/team-page-dialog.comp
 import {TeamPageResumeDialogComponent} from "../team-page-resume-dialog/team-page-resume-dialog.component";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
 import {saveAs} from "file-saver";
-import {ResumeDto} from "../../../../../models/resume/resume-dto";
 import {StatusTeam} from "../../../../../models/enums";
 
 @Component({
@@ -19,9 +18,10 @@ import {StatusTeam} from "../../../../../models/enums";
 })
 export class TeamComponent implements OnInit {
 
-  displayedColumns: string[] = ['resumeName', 'fullName', 'skills', 'isSelected', 'action'];
+  displayedColumns: string[] = ['resumeName', 'fullName', 'position', 'skills', 'isSelected', 'action'];
   @Input()team!: TeamDto;
   StatusResume=StatusTeamResume;
+  loading: boolean = false;
 
   constructor(private teamService: TeamService,
               private route: ActivatedRoute,
@@ -32,11 +32,7 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getPdf(resume:TeamResumeDto){
-    this.teamService.getTeamResumePdf(this.team.id,resume.id).subscribe(file=>{
-      saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
-    })
-  }
+
 
   openTeamDialog(): void {
     const dialogRef = this.dialog.open(TeamPageDialogComponent, {

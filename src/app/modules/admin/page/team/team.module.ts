@@ -21,7 +21,8 @@ import {TeamPageResumeDialogComponent} from './team-page-resume-dialog/team-page
 import {TeamComponent} from './team/team.component';
 import {TeamListPageComponent} from './team-list-page/team-list-page.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-
+import {NgxLoadingButtonsModule} from "ngx-loading-buttons";
+import {PdfTableButton} from "./table-actions/pdf-table-button.component";
 
 @NgModule({
   imports: [
@@ -41,7 +42,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatTableModule,
-    MatCheckboxModule],
+    MatCheckboxModule,
+    NgxLoadingButtonsModule,
+  ],
   exports: [
     TeamListPageComponent
   ],
@@ -52,6 +55,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     TeamPageResumeDialogComponent,
     TeamComponent,
     TeamListPageComponent,
+    PdfTableButton,
   ]
 })
 

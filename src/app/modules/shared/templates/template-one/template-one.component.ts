@@ -8,7 +8,7 @@ import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-so
   styleUrls: ['./template-one.component.scss']
 })
 export class TemplateOneComponent implements OnInit {
-  
+
   @ViewChild('doc') doc!: ElementRef
   @Input() public resumeEditForm!: ResumeDto
   @Input() public showLogo: boolean = true
@@ -20,7 +20,10 @@ export class TemplateOneComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  
+
   }
 
+  floor(number: number) {
+    return Math.floor(number);
+  }
 }

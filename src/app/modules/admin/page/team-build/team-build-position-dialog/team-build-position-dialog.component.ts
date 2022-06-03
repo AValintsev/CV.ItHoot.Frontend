@@ -21,6 +21,9 @@ export class TeamBuildPositionDialogComponent implements OnInit {
               positionService: PositionService){
     this.position = data.data;
     this.dialogType = data.type;
+    if (this.dialogType == DialogType.Create){
+      this.position.countMembers = 1;
+    }
     positionService.getAllPositions().subscribe(positions => this.positions = positions);
   }
 

@@ -1,0 +1,19 @@
+.pdf {
+  width: 100%;
+  & button {
+    height: 35px;
+    padding: .1rem .1rem;
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: normal;
+    box-shadow: none;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .9;
+    }
+    background: #3A57E8;
+  }
+}

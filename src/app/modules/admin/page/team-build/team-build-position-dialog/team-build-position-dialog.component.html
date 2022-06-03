@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Position</mat-label>
-      <mat-select [(value)]="position.positionId" (selectionChange)="positionChange()">
+      <mat-select [(value)]="position.positionId" (selectionChange)="positionChange()" disableOptionCentering>
         <mat-option *ngFor="let position of positions" [value]="position.positionId" >
           {{position.positionName}}
         </mat-option>
@@ -14,7 +14,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Count members</mat-label>
-      <input type="number" matInput placeholder="2" [(ngModel)]="position.countMembers">
+      <input type="number" matInput placeholder="2" [defaultValue]="10" [(ngModel)]="position.countMembers">
     </mat-form-field>
 
 

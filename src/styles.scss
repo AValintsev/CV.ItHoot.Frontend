@@ -42,3 +42,25 @@ a:visited {
 .side-bar li.active .mat-expansion-indicator::after {
   color: white;
 }
+.mat-select-panel{
+  position: absolute;
+  top: 32px;
+  left: 4px;
+  min-width: calc(100% + 22px) !important;
+  border-radius: 0px !important;
+  border-top-style: none;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start{
+  border-radius: 0px !important;
+  border-right-style: none !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-end{
+  border-radius: 0px !important;
+  border-left-style: none !important;
+}
+
+.mat-select-panel ng-animating {
+  visibility: hidden;
+}
