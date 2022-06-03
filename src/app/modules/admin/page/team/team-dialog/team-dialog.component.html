@@ -50,7 +50,7 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume">
-            {{resume.positionName}} {{resume.firstName}}  {{resume.lastName}}
+            <span style="font-weight: bold">{{resume.positionName}} </span>{{resume.firstName}}  {{resume.lastName}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

@@ -23,4 +23,7 @@ export class TemplateOneComponent implements OnInit {
 
   }
 
+  floor(number: number) {
+    return Math.floor(number);
+  }
 }

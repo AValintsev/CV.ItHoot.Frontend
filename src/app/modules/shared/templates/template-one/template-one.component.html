@@ -3,13 +3,13 @@
 		<div class="col left">
 			<div class="left-inner">
 				<div class="photo">
-					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="assets/avatar.jpg" alt="user photo">
+					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="../../../../../assets/no-image.png" alt="user photo">
 					<ng-template #image>
 						<img src="{{resumeEditForm?.picture}}" alt="user photo">
 					</ng-template>
-					<div *ngIf="resumeEditForm?.firstName" class="user-name left-block-content"><span>
-							{{resumeEditForm?.firstName}} {{resumeEditForm?.lastName}}
-						</span>
+					<div *ngIf="resumeEditForm?.firstName" class="user-name left-block-content">
+            <span>{{resumeEditForm?.firstName}} </span>
+            <span>{{resumeEditForm?.lastName}}</span>
 					</div>
 				</div>
 				<div class="user-description">
@@ -21,7 +21,7 @@
 							<span class="title-white">About me</span>
 						</div>
 						<div class="about-me__text left-block-content">
-							{{resumeEditForm?.aboutMe}}
+              {{resumeEditForm?.aboutMe}}
 						</div>
 					</div>
 					<div *ngIf="resumeEditForm?.country || resumeEditForm?.city||resumeEditForm?.street" class="contact">
@@ -79,13 +79,24 @@
 						</div>
 						<div class="skills__content padding-right">
 							<div class="contact__content-inner skills-inner">
-								<div *ngFor="let skill of resumeEditForm?.skills" class="spiner">
-									<mat-progress-spinner [value]="skill.level*33.333" [diameter]="50" [strokeWidth]="5">
-									</mat-progress-spinner>
-									<div class="spiner-skill">
-										{{skill.skillName}}
-									</div>
-								</div>
+                <div *ngFor="let skill of resumeEditForm.skills">
+                    <div class="skill-wrapper">
+                      <svg viewBox="0 0 36 36" class="circular-chart blue">
+                        <path class="circle-bg"
+                              d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle"
+                                attr.stroke-dasharray="{{floor(skill.level*33.33)}}, 100"
+                              d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                      </svg>
+                      <span class="skill-name">{{skill.skillName}}</span>
+                    </div>
+                  </div>
 							</div>
 						</div>
 					</div>
@@ -95,12 +106,23 @@
 						</div>
 						<div class="skills__content padding-right">
 							<div class="contact__content-inner skills-inner">
-								<div *ngFor="let language of resumeEditForm?.languages" class="spiner">
-									<mat-progress-spinner [value]="language.level*33.333" [diameter]="50" [strokeWidth]="5">
-									</mat-progress-spinner>
-									<div class="spiner-skill">
-										{{language.languageName}}
-									</div>
+								<div *ngFor="let language of resumeEditForm?.languages">
+                  <div class="skill-wrapper">
+                    <svg viewBox="0 0 36 36" class="circular-chart blue">
+                      <path class="circle-bg"
+                            d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path class="circle"
+                            attr.stroke-dasharray="{{floor(language.level*33.33)}}, 100"
+                            d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                    </svg>
+                    <span class="skill-name">{{language.languageName}}</span>
+                  </div>
 								</div>
 							</div>
 						</div>
@@ -124,12 +146,11 @@
 						<span class="title-black ">EDUCATION</span>
 					</div>
 					<ul class="right-list">
-						<li *ngFor="let education of resumeEditForm?.educations" class="right-list__item">
+						<li *ngFor="let education of resumeEditForm?.educations!.reverse()" class="right-list__item">
 							<div class="right-row right-item__row">
 								<ul class="right__column right-item__column">
 									<li class="right-item__name right-item__title">{{education.institutionName}}</li>
-									<li class="right-item__specialization right-item__title">{{education.specialization}}</li>
-									<li class="right-item__date right-item__title">
+									<li class="right-item__date right-item__title" style="font-weight: bold">
 										({{education.startDate|date:"MM/yyyy"}}-{{education.endDate|date:"MM/yyyy"}})</li>
 									<li class="right-item__specialization right-item__title">{{education.degree}}</li>
 								</ul>
@@ -147,7 +168,7 @@
 						<span class="title-black ">EXPERINCE</span>
 					</div>
 					<ul class="right-list">
-						<li *ngFor="let experiences of resumeEditForm?.experiences" class="right-list__item">
+						<li *ngFor="let experiences of resumeEditForm?.experiences!.reverse()" class="right-list__item">
 							<div class="right-row right-item__row">
 								<ul class="right__column right-item__column">
 									<li class="right-item__company right-item__title">{{experiences.company}}</li>
