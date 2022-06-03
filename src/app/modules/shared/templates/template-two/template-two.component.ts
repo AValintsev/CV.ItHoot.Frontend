@@ -47,7 +47,11 @@ export class TemplateTwoComponent implements OnInit {
       saveAs(response, `${this.resumeEditForm.firstName} ${this.resumeEditForm.lastName}.pdf`);
     });
   }
-
+  savePdf(resumeId: number, firstName: string='', lastName: string='') {
+    this.resumeService.getPdf(resumeId).subscribe(response => {
+      saveAs(response, `${firstName} ${lastName}.pdf`);
+    });
+  }
 
   getArray(number: number) {
     return new Array(number).fill(1)
