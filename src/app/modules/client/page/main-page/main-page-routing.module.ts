@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TeamsComponent } from '../teams/teams.component';
 import { ResumeComponent } from '../resume/resume.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TeamComponent } from '../team/team.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ const routes: Routes = [
     MainPageComponent, 
     TeamsComponent, 
     ModalDeleteUserComponent,
-    ResumeComponent
+    ResumeComponent,
+    TeamComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +68,8 @@ const routes: Routes = [
     MainPageComponent,
     TeamsComponent,
     ModalDeleteUserComponent,
-    ResumeComponent
+    ResumeComponent,
+    TeamComponent
   ],
 
 })

@@ -25,6 +25,7 @@ export class TemplateTwoComponent implements OnInit {
   // @Input() public resumeEditForm!: ResumeDto
   @Input() public resumeEditForm!: ResumeDto
   @Input() public showLogo:boolean = true
+  @Input() public showPdfSave:boolean = true
 
   ngOnInit(): void {
     this.getStoreColor()

@@ -172,7 +172,7 @@ export class CvLeftBarComponent implements OnInit {
 
   educationListChanged() {
     (<FormArray>this.resumeForm.controls["educations"]).clear();
-    this.resume.educations?.sort((a: EducationDto, b: EducationDto) => Date.parse(a.startDate) - Date.parse(b.startDate)).forEach(education => {
+    this.resume.educations?.sort((a: EducationDto, b: EducationDto) =>Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(education => {
       (<FormArray>this.resumeForm.controls["educations"])
         .push(new FormGroup({
           id: new FormControl(0),
@@ -227,7 +227,7 @@ export class CvLeftBarComponent implements OnInit {
 
   experienceListChanged() {
     (<FormArray>this.resumeForm.controls["experiences"]).clear();
-    this.resume.experiences?.sort((a: ExperienceDto, b: ExperienceDto) => Date.parse(a.startDate) - Date.parse(b.startDate)).forEach(experience => {
+    this.resume.experiences?.sort((a: ExperienceDto, b: ExperienceDto) =>  Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(experience => {
       (<FormArray>this.resumeForm.controls["experiences"])
         .push(new FormGroup({
           id: new FormControl(0),
