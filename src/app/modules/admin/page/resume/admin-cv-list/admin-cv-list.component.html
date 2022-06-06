@@ -40,7 +40,7 @@
         <td mat-cell *matCellDef="let resume">
           <div class="action-wrapper">
             <button class="pdf" (click)="getResumePdf(resume)">PDF</button>
-            <button class="docx">DocX</button>
+<!--            <button class="docx">DocX</button>-->
             <button class="open" routerLink="/admin/resume/{{resume.id}}">Open</button>
             <button class="edit" routerLink="/admin/resume/edit/{{resume.id}}">Edit</button>
             <button class="delete" (click)="deleteResume(resume)">Delete</button>

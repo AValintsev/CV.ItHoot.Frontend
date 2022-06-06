@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {TeamPageDialogComponent} from "../team-page-dialog/team-page-dialog.component";
 import {TeamPageResumeDialogComponent} from "../team-page-resume-dialog/team-page-resume-dialog.component";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
-import {saveAs} from "file-saver";
 import {StatusTeam} from "../../../../../models/enums";
 
 @Component({
@@ -94,4 +93,18 @@ export class TeamComponent implements OnInit {
     }
   }
 
+  copyLink() {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = window.location.origin+`/account/${this.team.client.shortAuthUrl}`;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.snackBarService.showSuccess('Link copied');
+  }
 }

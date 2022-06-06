@@ -15,24 +15,15 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(public accountService: AccountService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private snackbarService: SnackBarService,
-  ) {
-
-  }
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private snackbarService: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('user@example.com', [Validators.required, Validators.email]),
       password: new FormControl('12345678', [Validators.required])
-    })
-  }
-
-  createLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
-      password: new FormControl('', Validators.required)
     })
   }
 
@@ -46,13 +37,6 @@ export class LoginComponent implements OnInit {
           this.snackbarService.showDanger('Email or password wrong')
         }
       })
-      // (res) => {
-      // if (this.accountService.getUserRole().value === 'User') {
-      //   this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-      // } else {
-      //   this.router.navigate([`/home/cv/`])
-      // }
-
     }
   }
 }

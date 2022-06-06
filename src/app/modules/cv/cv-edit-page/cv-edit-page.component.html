@@ -1,7 +1,9 @@
 <div class="container">
+  <!-- <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template> -->
+  <cv-template-two *ngIf="resumeEditDto" [resumeEditForm]="templateForm" ></cv-template-two>
+
   <div class="edit-page">
     <form class="left-bar">
-
       <cv-cv-create-left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
       </cv-cv-create-left-bar>
       <div class="action">
@@ -11,7 +13,5 @@
       </div>
     </form>
   </div>
-  <!-- <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template> -->
-  <cv-template-two *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-template-two>
 </div>
 

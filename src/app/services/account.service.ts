@@ -47,7 +47,19 @@ export class AccountService {
         }),
         tap<any>(tokens => this.doLoginUser(tokens)),
         mapTo(true),
-      
+
+      )
+  }
+
+  loginByUrl(shortUrl:string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}identity/login/${shortUrl}`,null)
+      .pipe(
+        catchError(error => {
+          return of(error)
+        }),
+        tap<any>(tokens => this.doLoginUser(tokens)),
+        mapTo(true),
+
       )
   }
   storeRole(role: string) {
