@@ -23,28 +23,30 @@ import {TeamListPageComponent} from './team-list-page/team-list-page.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NgxLoadingButtonsModule} from "ngx-loading-buttons";
 import {PdfTableButton} from "./table-actions/pdf-table-button.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
-  imports: [
-    TeamRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    FormsModule,
-    CommonModule,
-    MatButtonModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatCardModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatTableModule,
-    MatCheckboxModule,
-    NgxLoadingButtonsModule,
-  ],
+    imports: [
+        TeamRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+        FormsModule,
+        CommonModule,
+        MatButtonModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatCardModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatTableModule,
+        MatCheckboxModule,
+        NgxLoadingButtonsModule,
+        MatTooltipModule,
+    ],
   exports: [
     TeamListPageComponent
   ],

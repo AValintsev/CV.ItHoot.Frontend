@@ -29,8 +29,20 @@
           color: #1AA053;
           font-weight: 500;
         }
-        span:last-child{
+
+
+        .client-section{
+          display: flex;
+          gap: 10px;
           margin-bottom: 60px;
+
+          mat-icon{
+            color: #8A92A6;
+          }
+          mat-icon:hover{
+            opacity: .8;
+            cursor: pointer;
+          }
         }
       }
 

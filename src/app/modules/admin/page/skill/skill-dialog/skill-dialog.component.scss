@@ -1,4 +1,8 @@
 .skill-dialog{
+  .mat-dialog-content{
+    overflow: hidden;
+  }
+
   display: grid;
   .content{
     display: grid;

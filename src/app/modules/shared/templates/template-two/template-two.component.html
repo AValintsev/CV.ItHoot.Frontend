@@ -4,7 +4,6 @@
 			<div class="header__icon-block">
 				<div class="header__label">
 					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="../../../../../assets/no-image.png" alt="user photo">
-					<img *ngIf="resumeEditForm?.picture; else image" src="{{resumeEditForm?.picture}}" alt="user photo">
 					<ng-template #image>
 						<img src="{{resumeEditForm?.picture}}" alt="user photo">
 					</ng-template>
@@ -30,7 +29,7 @@
 					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 				</div>
 				<div class="header-action__item">
-					
+
 					<svg *ngIf="showPdfSave" (click)="savePdf(resumeEditForm.id, resumeEditForm?.firstName, resumeEditForm?.lastName)" _ngcontent-sqy-c43="" xmlns="http://www.w3.org/2000/svg" width="22"
 						height="21" viewBox="0 0 31 32" fill="none">
 						<path

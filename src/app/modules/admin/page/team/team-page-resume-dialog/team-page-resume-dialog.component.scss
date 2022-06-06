@@ -1,4 +1,8 @@
 .resume-dialog{
+  .mat-dialog-content{
+    overflow: hidden;
+  }
+
   .content{
     mat-form-field{
       width: 100%;
