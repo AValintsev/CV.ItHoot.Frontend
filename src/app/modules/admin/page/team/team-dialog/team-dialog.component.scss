@@ -1,6 +1,9 @@
 .team-dialog{
   display: grid;
   min-width: 600px;
+  .mat-dialog-content{
+   overflow: hidden;
+  }
   .content{
     display: grid;
 
