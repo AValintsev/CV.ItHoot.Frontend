@@ -52,13 +52,11 @@ objZeroing(){
   getResumeArray(id:number|null=null) {
     this.clientTeamService.getTeam().subscribe({
       next: response => {
-        console.log('response-1', response)
         response.subscribe({
           next: (response: TeamDto) => {
             this.statusTeam = response.statusTeam
             this.resume = this.filterResponseArray(response)
             this.teamId = response.id;
-            console.log('куізщтіу-2', this.resume)
             this.clientTeamService.headerTitle$.next(response.teamName)
             this.objZeroing()
           },
@@ -71,7 +69,6 @@ objZeroing(){
   }
   filterResponseArray(resumes:any){
     let array = Array.from(resumes.positionResumes as any);
-    console.log('filterResponseArray',array)
     return array.map((value: any) =>{
       if (resumes.statusTeam === StatusTeam.Approved){
         return [value[0], value[1].filter((e: any) => e.statusResume==this.statusResume.Selected)]

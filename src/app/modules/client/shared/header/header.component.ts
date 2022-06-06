@@ -96,7 +96,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUrlFromArrow(this.router)
-    console.log()
     this.clientTeamService.headerTitle$.subscribe(e => {})
     this.clientName$ = this.clientTeamService.getAllTeam().pipe(map(array => array[0].clientUserName))
     this.getTeamList()
@@ -129,10 +128,8 @@ export class HeaderComponent implements OnInit {
 
  
 private  checkUrlFromArrow(response: any) {
-  console.log('=========', response)
       let regexp = new RegExp(`/client/teams`, 'g')
       const test = regexp.test(response.url);
-  console.log('+=======++++', test)
       if (test) {
         this.showTeamName = true
       } else {
@@ -158,7 +155,6 @@ private  checkUrlFromArrow(response: any) {
         }
         
       })
-    console.log('[[[[[[[[[[[[[[[[[[[[[', arr)
       return arr
   }
 
