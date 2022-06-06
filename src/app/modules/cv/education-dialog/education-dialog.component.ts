@@ -3,11 +3,34 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EducationDto} from "../../../models/resume/education-dto";
 import {DialogType} from "../../../models/enums";
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'cv-education-dialog',
   templateUrl: './education-dialog.component.html',
-  styleUrls: ['./education-dialog.component.scss']
+  styleUrls: ['./education-dialog.component.scss'],
+  providers:[
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ]
 })
 export class EducationDialog implements OnInit {
 
@@ -15,9 +38,12 @@ export class EducationDialog implements OnInit {
   typeDialog: DialogType;
   DialogType = DialogType;
   educationForm: FormGroup = {} as FormGroup;
-
+  maxDate = new Date(Date.now())
   ngOnInit() {
     this.validateForm();
+    this.educationForm.valueChanges.subscribe(
+      e=>console.log(e)
+    )
   }
 
   validateForm() {
@@ -38,7 +64,7 @@ export class EducationDialog implements OnInit {
       startDate: new FormControl(this.education.startDate, [
         Validators.required
       ]),
-      endDate: new FormControl(this.education.endDate, [
+      endDate: new FormControl(44/11/45, [
         Validators.required])
     });
   }
