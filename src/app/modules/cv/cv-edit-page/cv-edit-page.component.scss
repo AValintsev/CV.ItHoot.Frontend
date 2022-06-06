@@ -1,18 +1,23 @@
+:host {
+  min-height: 100%;
+}
+
 .container {
   display: flex;
-  height: 100%;
-
+  min-height: 100%;
 }
 
 .edit-page {
   padding: 30px 30px 0 20px;
   flex: 0 1 30%;
-
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin: 0 auto;
   .left-bar {
     overflow: hidden auto;
     scrollbar-width: none;
-
-    .action{
+    .action {
       margin: 15px 0;
       display: flex;
       justify-content: flex-end;
@@ -75,7 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-wrap: wrap;
+  //text-wrap: wrap;
   padding-left: 1rem;
   padding-right: 1rem;
   line-height: 1.1;

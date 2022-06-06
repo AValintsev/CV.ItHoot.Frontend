@@ -1,0 +1,18 @@
+<div class="wrapper">
+		<div *ngFor="let position of resume" class="row">
+			<cv-team 
+			(statusChang)="statusChang($event)" 
+			[statusObject]="statusObject" 
+			[resumeArray]="position" 
+			[teamId]="teamId"
+			[statusTeam]="statusTeam"
+			[checkArrayAll]="checkArrayAll"
+			></cv-team>
+		</div>
+
+	<button *ngIf="statusTeam !== StatusTeam.Approved;else btnApproveClone" (click)="approveUsers()" mat-button class="btn-load reset-btn">You selected ({{checkArrayAll.length}}) CV. Approve team. Start work</button>
+	<ng-template #btnApproveClone>
+		<button [disabled]="statusTeam === StatusTeam.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn">You selected  CV. Approve team. Start work</button>
+	</ng-template> 
+   
+</div>

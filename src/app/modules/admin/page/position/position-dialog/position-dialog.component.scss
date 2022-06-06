@@ -1,0 +1,21 @@
+.position-dialog{
+  display: grid;
+  .mat-dialog-content{
+    overflow: hidden;
+  }
+  .content{
+    display: grid;
+
+    mat-button-toggle-group{
+      justify-content: center;
+
+      mat-button-toggle{
+        width: 100%;
+      }
+
+    }
+  }
+  .actions{
+    justify-content: end;
+  }
+}

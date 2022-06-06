@@ -1,10 +1,11 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CvRoutingModule} from './cv-routing.module';
-import {CvFormComponent} from './cv-form/cv-form.component';
-import {CvFullComponent} from './cv-full/cv-full.component';
+import { CvSmallModule } from './cv-small/cv-small.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CvRoutingModule } from './cv-routing.module';
+import { CvFullComponent } from './cv-full/cv-full.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
 import {CvSmallComponent} from './cv-small/cv-small.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -25,14 +26,14 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {CvTemplateModule} from './cv-template/cv-template.module';
+import {MatSelectModule} from "@angular/material/select";
+import { TeamResumePageComponent } from './team-resume-page/team-resume-page.component';
+import { TemplatesModule } from '../shared/templates/templates.module';
 
 
 @NgModule({
   declarations: [
     CvFullComponent,
-    CvSmallComponent,
-    CvFormComponent,
     CvCreatePageComponent,
     CvLeftBarComponent,
     SkillDialog,
@@ -40,29 +41,34 @@ import {CvTemplateModule} from './cv-template/cv-template.module';
     EducationDialog,
     ExperienceDialog,
     CvEditPageComponent,
+    UserCvListComponent,
+    TeamResumePageComponent,
   ],
-    imports: [
-        CommonModule,
-        // RouterModule,
-        CvRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatChipsModule,
-        MatIconModule,
-        MatDividerModule,
-        MatDatepickerModule,
-        MatButtonToggleModule,
-        MatOptionModule,
-        MatAutocompleteModule,
-        MatDialogModule,
-        FontAwesomeModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        CvTemplateModule,
-    ]
+  imports: [
+    CommonModule,
+    // RouterModule,
+    CvRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatButtonToggleModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    TemplatesModule,
+    CvSmallModule,
+    TemplatesModule,
+    MatSelectModule
+  ]
 })
 export class CvModule {
 }

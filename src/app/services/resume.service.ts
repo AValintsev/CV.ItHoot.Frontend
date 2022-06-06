@@ -2,8 +2,11 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
-import {SmallResumeDto} from "../models/small-resume-dto";
-import {ResumeDto} from "../models/resume-dto";
+import {SmallResumeDto} from "../models/resume/small-resume-dto";
+import {ResumeDto} from "../models/resume/resume-dto";
+import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
+import {TeamBuildPositionDto} from "../models/teamBuild/teamBuildPosition-dto";
+import {PositionDto} from "../models/position/position-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -43,5 +46,22 @@ export class ResumeService {
 
   public getPdf(resumeId: number) {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
+  }
+
+  public getAllTemplates():Observable<ResumeTemplateDto[]>{
+    return this.httpService.getRequest(this.routePrefix+`/templates`);
+  }
+
+  //todo !!
+  public getAllResumesByPositions(positions:PositionDto[]):Observable<SmallResumeDto[]>{
+    let position = ''
+    positions.forEach(x=>position +=x.positionName+',');
+    position = position.slice(0,-1);
+    return this.httpService.getRequest(this.routePrefix+`/position?positions=${position}`);
+  }
+
+  public getAllResumesByTeamBuild(teamBuildId:number):Observable<SmallResumeDto[]>{
+    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix+`/teamBuild/${teamBuildId}`);
+
   }
 }

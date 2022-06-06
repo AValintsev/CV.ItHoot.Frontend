@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {TeamPageComponent} from "./team-page/team-page.component";
+import {TeamListComponent} from "./team-list/team-list.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
@@ -11,17 +11,28 @@ import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
+import {TeamPageComponent} from "./team-page/team-page.component";
+import {TeamListPageComponent} from "./team-list-page/team-list-page.component";
+import {ResumePageComponent} from "./resume-page/resume-page.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: TeamPageComponent
+    component: TeamListPageComponent
+  },
+  {
+    path: ':id',
+    component:TeamPageComponent
+  },
+  {
+    path:':teamId/resume/:resumeId',
+    component:ResumePageComponent
   }
 
 ];
 
 @NgModule({
-  declarations: [TeamPageComponent, DateUtcPipe],
+  declarations: [TeamListComponent, DateUtcPipe],
   imports:
     [
       MatTableModule,
@@ -36,6 +47,6 @@ const routes: Routes = [
       ReactiveFormsModule,
       RouterModule.forChild(routes),
     ],
-  exports: [RouterModule]
+  exports: [RouterModule, TeamListComponent]
 })
 export class TeamRoutingModule { }

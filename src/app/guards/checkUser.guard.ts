@@ -24,7 +24,6 @@ export class CheckUserGuard implements CanLoad, CanActivate {
 	canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		if (this.accountService.getStoreRole() === Users[2]) {
 			// return this.router.navigate(['account/login'])
-			console.log(this.activatedRoute.snapshot.params['id'])
 			return true
 		}
 		return true
@@ -46,7 +45,6 @@ return true
 		// switch (this.accountService.getStoreRole()) {
 		// 	case Users[0]:
 		// 	case Users[1]:
-		// 		console.log(route.params['id'])
 		// 		this.router.navigate(['/home/cv', route.params['id']]);
 		// 		break;
 		// 	case Users[2]:

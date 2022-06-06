@@ -1,0 +1,23 @@
+.wrapper {
+   margin-top: 2rem;
+}
+
+.inner {
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap: 2rem 2rem ;
+   padding: 0 1.5rem;
+}
+
+.create-resume {
+   background-color: #3f51b5;
+	color: #fff;
+}
+.btn{
+   margin-top: 2rem;
+   justify-content: center;
+   display: flex;
+   button{
+      width: 20rem;
+   }
+}

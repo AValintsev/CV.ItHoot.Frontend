@@ -1,0 +1,27 @@
+<div class="resume-dialog">
+  <h1 mat-dialog-title >Add resume</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select position</mat-label>
+      <mat-select [(value)]="position" (selectionChange)="getResumesByPosition()" disableOptionCentering>
+        <mat-option *ngFor="let position of positions" [value]="position">
+          {{position.positionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select resume</mat-label>
+      <mat-select [(value)]="resume" disableOptionCentering>
+        <mat-option *ngFor="let resume of allResumes" [value]="resume">
+         {{resume.positionName}} {{resume.firstName}} {{resume.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button cdkFocusInitial (click)="click()" [disabled]="canAdd()">Add</button>
+  </div>
+</div>

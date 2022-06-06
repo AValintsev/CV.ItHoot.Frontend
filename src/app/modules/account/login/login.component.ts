@@ -15,12 +15,10 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(public accountService: AccountService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private snackbarService: SnackBarService,
-  ) {
-
-  }
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private snackbarService: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -29,46 +27,16 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  createLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
-      password: new FormControl('', Validators.required)
-    })
-  }
-
   onSubmit() {
     if (this.loginForm.value) {
       this.accountService.login(this.loginForm.value).subscribe({
         next: next => {
-
-          // if (this.accountService.getUserRole().value === Users[2]) {
-          // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-          // } else {
-          this.router.navigate([`/home/cv/`])
-          //
-          // }
-
-          // this.router.navigate([`/home/cv/`])
-
+          this.router.navigate([''])
         },
         error: error => {
           this.snackbarService.showDanger('Email or password wrong')
         }
       })
-      // (res) => {
-      // if (this.accountService.getUserRole().value === 'User') {
-      //   this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-      // } else {
-      //   this.router.navigate([`/home/cv/`])
-      //   console.log('gggg',res)
-      // }
-
-      // },
-      // (error) => {
-      //   this.snackbarService.showDanger(error.error.errors)
-      // })
-
-      // }
     }
   }
 }

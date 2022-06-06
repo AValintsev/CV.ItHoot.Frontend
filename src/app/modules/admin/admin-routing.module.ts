@@ -12,43 +12,64 @@ import {HeaderModule} from '../core/header/header.module';
 
 
 const routs: Routes = [
-	{
-		path: '', component: AdminLayoutComponent, children: [
-			{
-				path: 'resume',
-				loadChildren: () => import('./page/cv-list/admin-cv-list.module').then(mod => mod.AdminCvListModule)
-			},
-			{
-				path: 'languages',
-				loadChildren: () => import('./page/language/language.module').then(mod => mod.LanguageModule)
-			},
-			{
-				path: 'skills',
-				loadChildren: () => import('./page/skill/skill.module').then(mod => mod.SkillModule)
-			},
+  {
+    path: '', component: AdminLayoutComponent, children: [
+      {
+        path: 'resume',
+        loadChildren: () => import('./page/resume/admin-cv-list.module').then(mod => mod.AdminCvListModule)
+      },
+      {
+        path: 'languages',
+        loadChildren: () => import('./page/language/language.module').then(mod => mod.LanguageModule)
+      },
+      {
+        path: 'skills',
+        loadChildren: () => import('./page/skill/skill.module').then(mod => mod.SkillModule)
+      },
+      {
+        path: '',
+        redirectTo: 'resume',
+        pathMatch: 'full'
+      },
       {
         path: 'teams',
         loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
+      },
+      {
+        path: 'archive',
+        loadChildren: () => import('./page/archive/archive.module').then(mod => mod.ArchiveModule)
+      },
+      {
+        path: 'positions',
+        loadChildren: () => import('./page/position/position.module').then(mod => mod.PositionModule)
+      },
+      {
+        path: 'builds',
+        loadChildren: () => import('./page/team-build/teamBuild.module').then(mod => mod.TeamBuildModule)
+      },
+      {
+        path:'complexities',
+        loadChildren: () => import('./page/complexity/complexity.module').then(mod=>mod.ComplexityModule)
       }
-		]
-	}
+    ]
+  }
 
 ]
 
 @NgModule({
-	imports: [
+  imports: [
 
-		CommonModule,
-		MatIconModule,
-		MatDividerModule,
-		MatExpansionModule,
-		MatTableModule,
-		FooterModule,
-		HeaderModule,
-		RouterModule.forChild(routs),
-	],
-	declarations: [AdminLayoutComponent, SideBarComponent],
-	exports: [AdminLayoutComponent, SideBarComponent],
+    CommonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatTableModule,
+    FooterModule,
+    HeaderModule,
+    RouterModule.forChild(routs),
+  ],
+  declarations: [AdminLayoutComponent, SideBarComponent],
+  exports: [AdminLayoutComponent, SideBarComponent],
 
 })
 

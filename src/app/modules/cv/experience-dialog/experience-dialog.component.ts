@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ExperienceDto} from "../../../models/resume-dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {DialogType} from "../../../models/dialog-type";
+import {ExperienceDto} from "../../../models/resume/experience-dto";
+import {DialogType} from "../../../models/enums";
 
 @Component({
   selector: 'cv-experience-dialog',

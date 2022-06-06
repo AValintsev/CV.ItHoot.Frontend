@@ -1,12 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume-dto";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ResumeService} from "../../../services/resume.service";
-import {SnackBarService} from "../../../services/snack-bar.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {map} from "rxjs/operators";
-import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
-import {AccountService} from 'src/app/services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ResumeService } from "../../../services/resume.service";
+import { SnackBarService } from "../../../services/snack-bar.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { map } from "rxjs/operators";
+import { AccountService } from 'src/app/services/account.service';
+import { Users } from 'src/app/models/users-type';
+import {ResumeDto} from "../../../models/resume/resume-dto";
+
+
+
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -15,12 +18,7 @@ import {AccountService} from 'src/app/services/account.service';
 })
 export class CvEditPageComponent implements OnInit {
 
-  faGlobe = faGlobe;
-  faMapMarkerAlt = faMapMarkerAlt;
-  faMobileAlt = faMobileAlt;
-  faAt = faAt;
-  resumeId: number = 0;
-  resumeEditDto: ResumeDto = {} as ResumeDto;
+  resumeEditDto: ResumeDto|null = null;
   templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
@@ -30,21 +28,20 @@ export class CvEditPageComponent implements OnInit {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService,
-
+    private accountService: AccountService
   ) {
-
-  }
-
-  ngOnInit(): void {
-    this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
-        this.patchForm(this.resumeEditDto)
+        this.patchForm(this.resumeEditDto!)
       });
     });
+    this.validateForm()
     this.changeFormDate()
+  }
+
+  ngOnInit(): void {
+
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
@@ -65,6 +62,7 @@ export class CvEditPageComponent implements OnInit {
     this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
+    this.resumeEditForm.patchValue({ position: resume.position });
 
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeEditForm.controls["skills"])
@@ -115,44 +113,47 @@ export class CvEditPageComponent implements OnInit {
 
   validateForm() {
     this.resumeEditForm = new FormGroup({
-      id: new FormControl(this.resumeEditDto.id, [Validators.required]),
-      resumeName: new FormControl(this.resumeEditDto.resumeName, [
+      id: new FormControl(this.resumeEditDto?.id, [Validators.required]),
+      resumeName: new FormControl(this.resumeEditDto?.resumeName, [
         Validators.required
       ]),
-      firstName: new FormControl(this.resumeEditDto.firstName, [
+      firstName: new FormControl(this.resumeEditDto?.firstName, [
         Validators.required
       ]),
-      lastName: new FormControl(this.resumeEditDto.lastName, [
+      lastName: new FormControl(this.resumeEditDto?.lastName, [
         Validators.required
       ]),
-      birthdate: new FormControl(this.resumeEditDto.birthdate, [
+      position: new FormControl(this.resumeEditDto?.position,[
         Validators.required
       ]),
-      email: new FormControl(this.resumeEditDto.email, [
+      birthdate: new FormControl(this.resumeEditDto?.birthdate, [
+        Validators.required
+      ]),
+      email: new FormControl(this.resumeEditDto?.email, [
         Validators.required,
         Validators.email
       ]),
-      site: new FormControl(this.resumeEditDto.site),
-      phone: new FormControl(this.resumeEditDto.phone, [
+      site: new FormControl(this.resumeEditDto?.site),
+      phone: new FormControl(this.resumeEditDto?.phone, [
         Validators.pattern('[- +()0-9]+')
       ]),
-      code: new FormControl(this.resumeEditDto.code),
-      country: new FormControl(this.resumeEditDto.country, [
+      code: new FormControl(this.resumeEditDto?.code),
+      country: new FormControl(this.resumeEditDto?.country, [
         Validators.required
       ]),
-      city: new FormControl(this.resumeEditDto.city, [
+      city: new FormControl(this.resumeEditDto?.city, [
         Validators.required
       ]),
-      street: new FormControl(this.resumeEditDto.street, [
+      street: new FormControl(this.resumeEditDto?.street, [
         Validators.required
       ]),
-      requiredPosition: new FormControl(this.resumeEditDto.requiredPosition, [
+      requiredPosition: new FormControl(this.resumeEditDto?.requiredPosition, [
         Validators.required
       ]),
-      aboutMe: new FormControl(this.resumeEditDto.aboutMe, [
+      aboutMe: new FormControl(this.resumeEditDto?.aboutMe, [
         Validators.required
       ]),
-      picture: new FormControl(this.resumeEditDto.picture),
+      picture: new FormControl(this.resumeEditDto?.picture),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -162,13 +163,20 @@ export class CvEditPageComponent implements OnInit {
 
 
   submit(resume: ResumeDto) {
-    // console.log(resume)
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Edited');
-        this.router.navigate(['/home/cv'])
+        const role = this.accountService.getStoreRole();
+        if (role === Users[2]) {
+          this.router.navigate(['/home/cv/user-list', this.accountService.getUserId()])
+        }if(role === Users[0] || role === Users[1])
+          this.router.navigate(['/admin/resume'])
+        else {
+          this.router.navigate(['/home/cv'])
+        }
+
       },
-      error: (error) => {
+      error: () => {
         this.snackbarService.showDanger('Something went wrong!')
       }
     })

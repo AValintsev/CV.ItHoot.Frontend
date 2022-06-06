@@ -1,0 +1,78 @@
+<div class="team-list">
+  <div class="table-page">
+    <div class="title-section">
+      <h1>Team list</h1>
+      <button mat-raised-button (click)="openTeamDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let team">{{team.id}}.</td>
+      </ng-container>
+
+      <ng-container matColumnDef="teamName">
+        <th mat-header-cell *matHeaderCellDef>Team</th>
+        <td mat-cell *matCellDef="let team"> {{team.teamName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientUserName">
+        <th mat-header-cell *matHeaderCellDef>For client</th>
+        <td mat-cell *matCellDef="let team"> {{team.clientUserName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="teamSize">
+        <th mat-header-cell *matHeaderCellDef>Team Size</th>
+        <td mat-cell *matCellDef="let team"> {{team.teamSize}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="showLogo">
+        <th mat-header-cell *matHeaderCellDef>Show Logo</th>
+        <td mat-cell *matCellDef="let team">
+          <mat-icon *ngIf="team.showLogo">check</mat-icon>
+          <mat-icon  *ngIf="!team.showLogo">close</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="showContacts">
+        <th mat-header-cell *matHeaderCellDef>Show Contacts</th>
+        <td mat-cell *matCellDef="let team">
+          <mat-icon *ngIf="team.showContacts">check</mat-icon>
+          <mat-icon  *ngIf="!team.showContacts">close</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastUpdated">
+        <th mat-header-cell *matHeaderCellDef>Last updated</th>
+        <td mat-cell *matCellDef="let team"> {{team.lastUpdated | dateUtcPipe}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdUserName">
+        <th mat-header-cell *matHeaderCellDef>Created by</th>
+        <td mat-cell *matCellDef="let team"> {{team.createdUserName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="statusTeam">
+        <th mat-header-cell *matHeaderCellDef>Status Team</th>
+        <td mat-cell *matCellDef="let team">
+         {{getStatusTeam(team.statusTeam)}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let team">
+          <div class="action-wrapper">
+            <button class="edit" routerLink='/admin/teams/{{team.id}}'>Open</button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>

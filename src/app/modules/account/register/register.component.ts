@@ -33,11 +33,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-    console.log({
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password,
-    });
-
     this.accountService.register(
       {
         email: this.registerForm.value.email,
@@ -45,12 +40,7 @@ export class RegisterComponent implements OnInit {
       }
     ).subscribe({
       next: next => {
-        // if (this.accountService.getUserRole().value === 'User') {
-        // this.router.navigate([`/home/cv/${this.accountService.getUserId()}`])
-        // } else {
-        this.router.navigate([`/home/cv/`])
-        // }
-
+        this.router.navigate([''])
       },
       error: error => {
         this.snackbarService.showDanger('User exists, log in please')

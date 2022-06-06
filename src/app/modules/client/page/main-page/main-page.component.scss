@@ -1,0 +1,36 @@
+//.wrapper{
+//	display: flex;
+//	flex-direction: column;
+//	max-height: 100%;
+//}
+//.main{
+//	flex: 2 1 100%;
+//}
+
+.container {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+}
+
+header {
+  flex-shrink: 0;
+}
+
+.body {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 2em;
+  background: #cccccc4d;
+  // padding-top: 1rem;
+  // background-color: #e5e5e5;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: 2rem;
+}

@@ -1,0 +1,14 @@
+.complexity-dialog{
+  display: grid;
+
+  .mat-dialog-content{
+    overflow: hidden;
+  }
+
+  .content{
+    display: grid;
+  }
+  .actions{
+    justify-content: end;
+  }
+}

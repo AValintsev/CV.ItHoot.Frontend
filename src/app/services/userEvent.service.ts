@@ -9,7 +9,6 @@ export class UserEventService{
 	private userId$ = new BehaviorSubject<string>('0')
 	constructor(){}
 	setUserId(userId:string):void{
-		console.log('userId', userId)
      this.userId$.next(userId)
 	}
 	getUserId():BehaviorSubject<string>{

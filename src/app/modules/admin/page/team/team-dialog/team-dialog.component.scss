@@ -1,6 +1,9 @@
 .team-dialog{
   display: grid;
   min-width: 600px;
+  .mat-dialog-content{
+   overflow: hidden;
+  }
   .content{
     display: grid;
 
@@ -8,6 +11,11 @@
       mat-form-field{
         width: 100%;
       }
+    }
+
+    .checkbox-section{
+      display: flex;
+      flex-direction: column;
     }
 
     mat-button-toggle-group{
