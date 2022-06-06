@@ -57,8 +57,6 @@ export class ClientTeamService implements OnInit {
 			}),
 			tap(elem => {
 				this.headerTeam$.next(elem)
-			
-				
 			})
 		)
 	}
