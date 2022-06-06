@@ -1,6 +1,6 @@
 import { Router, NavigationStart } from '@angular/router';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { StatusTeamResume, TeamApprove } from './../../../../models/team/create-team-dto';
+import { StatusTeamResume, TeamApprove, TeamResumeDto } from './../../../../models/team/create-team-dto';
 import { TeamService } from './../../../../services/team.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -49,15 +49,16 @@ objZeroing(){
   this.checkArrayAll.length = 0
 }
 
-  getResumeArray() {
+  getResumeArray(id:number|null=null) {
     this.clientTeamService.getTeam().subscribe({
       next: response => {
+        console.log('response-1', response)
         response.subscribe({
           next: (response: TeamDto) => {
             this.statusTeam = response.statusTeam
-            this.resume = Array.from(response.positionResumes as any)
+            this.resume = this.filterResponseArray(response)
             this.teamId = response.id;
-            console.log('2222222222222222111111111',response)
+            console.log('куізщтіу-2', this.resume)
             this.clientTeamService.headerTitle$.next(response.teamName)
             this.objZeroing()
           },
@@ -68,11 +69,24 @@ objZeroing(){
       error: () => this.snackBarService.showDanger('Something went wrong!'),
     })
   }
+  filterResponseArray(resumes:any){
+    let array = Array.from(resumes.positionResumes as any);
+    console.log('filterResponseArray',array)
+    return array.map((value: any) =>{
+      if (resumes.statusTeam === StatusTeam.Approved){
+        return [value[0], value[1].filter((e: any) => e.statusResume==this.statusResume.Selected)]
+      } else{
+         return value 
+      }
+      
 
+    })
+    
+  }
   approveUsers() {
     this.teamService.approveTeam(this.statusObject).subscribe({
       next: response => {
-        this.getResumeArray()
+        this.getResumeArray(this.teamId)
         this.objZeroing()  
       },
       error: () => this.snackBarService.showSuccess('Success')
