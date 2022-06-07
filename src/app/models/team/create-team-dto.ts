@@ -12,8 +12,9 @@ export interface TeamDto {
   statusTeam: StatusTeam;
   teamName: string;
   resumes: TeamResumeDto[];
-  showLogo: true;
-  showContacts: true;
+  showLogo: boolean;
+  showContacts: boolean;
+  showCompanyNames:boolean;
   resumeTemplateId:number;
   positionResumes?: Record<string, TeamResumeDto[]>
 }
@@ -28,7 +29,8 @@ export interface TeamResumeDto {
   lastName: string;
   positionId:number;
   positionName:string;
-  picture: string
+  picture: string;
+  shortUrl:string;
   skills: SkillDto[];
 }
 

@@ -113,15 +113,19 @@
         grid-template-columns: repeat(4, 20%);
         justify-content: space-between;
 
+        .mat-menu-panel{
+          display: flex;
+        }
 
 
         & button {
-          height: 35px;
-          padding: .1rem .1rem;
           color: white;
           border: 0;
           border-radius: 4px;
           font-size: 1em;
+          font-weight: normal;
+          text-align: center;
+
           &:hover {
             cursor: pointer;
             opacity: .9;

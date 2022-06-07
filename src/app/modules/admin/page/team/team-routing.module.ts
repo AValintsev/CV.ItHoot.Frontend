@@ -14,6 +14,7 @@ import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {TeamPageComponent} from "./team-page/team-page.component";
 import {TeamListPageComponent} from "./team-list-page/team-list-page.component";
 import {ResumePageComponent} from "./resume-page/resume-page.component";
+import {TeamResumeDownloadPageComponent} from "../../../cv/team-resume-download-page/team-resume-download-page.component";
 
 const routes: Routes = [
   {

@@ -16,12 +16,22 @@ export class TeamResumePageComponent implements OnInit {
     this.route.params.subscribe(params => {
       const teamId = params['teamId'];
       const resumeId = params['resumeId'];
-
-      this.teamService.getTeamResume(teamId, resumeId).subscribe(data => {
-        this.resume = data.resume;
-        this.resume!.resumeTemplateId = data.resumeTemplateId;
-        this.resume!.showLogo = data.showLogo;
-      })
+      const shortUrl = params['shortUrl'];
+      if(!shortUrl)
+      {
+        this.teamService.getTeamResume(teamId, resumeId).subscribe(data => {
+          this.resume = data.resume;
+          this.resume!.resumeTemplateId = data.resumeTemplateId;
+          this.resume!.showLogo = data.showLogo;
+        });
+      }
+      else{
+        this.teamService.getTeamResumeByUrl(shortUrl).subscribe(data => {
+          this.resume = data.resume;
+          this.resume!.resumeTemplateId = data.resumeTemplateId;
+          this.resume!.showLogo = data.showLogo;
+        });
+      }
     })
 
   }
