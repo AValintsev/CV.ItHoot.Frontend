@@ -1,3 +1,7 @@
 <div class="pdf">
-  <button  mat-raised-button [mtBasicSpinner]="loading" [hideText]="loading" (click)="getPdf()">PDF</button>
+  <button mat-raised-button [matMenuTriggerFor]="menu" [mtBasicSpinner]="loading" [hideText]="loading">Pdf</button>
 </div>
+<mat-menu #menu="matMenu" class="pdf">
+  <button mat-menu-item   (click)="getPdf()">Download</button>
+  <button mat-menu-item  (click)="getLinkPdf()">Copy link</button>
+</mat-menu>

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from './guards/role.guard';
 import { TeamResumePageComponent } from "./modules/cv/team-resume-page/team-resume-page.component";
+import {
+  TeamResumeDownloadPageComponent
+} from "./modules/cv/team-resume-download-page/team-resume-download-page.component";
 
 
 const routes: Routes = [
@@ -25,6 +28,14 @@ const routes: Routes = [
   {
     path: 'teams/:teamId/resume/:resumeId',
     component: TeamResumePageComponent
+  },
+  {
+    path: 'teams/resume/:shortUrl',
+    component: TeamResumePageComponent
+  },
+  {
+    path : 'teams/resume/:shortUrl/pdf',
+    component: TeamResumeDownloadPageComponent
   }
 ];
 

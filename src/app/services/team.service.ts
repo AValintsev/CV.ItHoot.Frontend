@@ -39,7 +39,15 @@ export class TeamService {
     return this.httpService.getRequest<any>(this.routePrefix+`/${teamId}/resume/${resumeId}`);
   }
 
+  public getTeamResumeByUrl(shortUrl:string):Observable<any>{
+    return this.httpService.getRequest<any>(this.routePrefix+`/resume/${shortUrl}`);
+  }
+
   public getTeamResumePdf(teamId:number, resumeId:number){
     return this.httpService.getFile(this.routePrefix+`/${teamId}/resume/${resumeId}/pdf`);
+  }
+
+  public getTeamResumePdfByUrlShort(shortUrl:string){
+    return this.httpService.getFile(this.routePrefix+`/resume/${shortUrl}/pdf`);
   }
 }

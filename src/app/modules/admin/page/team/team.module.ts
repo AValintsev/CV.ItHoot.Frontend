@@ -24,6 +24,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NgxLoadingButtonsModule} from "ngx-loading-buttons";
 import {PdfTableButton} from "./table-actions/pdf-table-button.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatMenuModule} from "@angular/material/menu";
+import { TeamResumeDownloadPageComponent } from '../../../cv/team-resume-download-page/team-resume-download-page.component';
 
 @NgModule({
     imports: [
@@ -46,6 +48,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatCheckboxModule,
         NgxLoadingButtonsModule,
         MatTooltipModule,
+        MatMenuModule,
     ],
   exports: [
     TeamListPageComponent
@@ -58,6 +61,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     TeamComponent,
     TeamListPageComponent,
     PdfTableButton,
+    TeamResumeDownloadPageComponent,
   ]
 })
 
