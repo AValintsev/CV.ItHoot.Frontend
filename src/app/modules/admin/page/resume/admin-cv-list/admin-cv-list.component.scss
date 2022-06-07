@@ -37,6 +37,7 @@
 
 
       th {
+        text-align: center;
         vertical-align: middle;
         border-bottom: 1px #C4C4C4 solid;
         font-weight: 400;
@@ -45,6 +46,7 @@
       }
 
       td {
+        text-align: center;
         vertical-align: middle;
         font-size: 1em;
         line-height: 28px;
@@ -69,7 +71,6 @@
       }
       .mat-column-action {
         width: 30%;
-        text-align: right;
       }
 
       .mat-column-skills {
