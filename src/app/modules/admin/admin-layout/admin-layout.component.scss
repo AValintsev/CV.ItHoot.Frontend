@@ -1,10 +1,12 @@
 .page {
   min-height: 100%;
+  // height: calc(100vh - 160px);
   background: #E5E5E5;
   display: grid;
   align-items: start;
   grid-template-columns: 15% auto;
-  .page-content{
+
+  .page-content {
     padding: 30px;
   }
 
@@ -13,10 +15,11 @@
       grid-template-columns: 17% auto;
     }
   }
+
   @media (max-width: 1290px) {
-   &{
-     grid-template-columns: 20% auto;
-   }
+    & {
+      grid-template-columns: 20% auto;
+    }
   }
 
 

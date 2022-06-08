@@ -26,11 +26,7 @@ const routs: Routes = [
         path: 'skills',
         loadChildren: () => import('./page/skill/skill.module').then(mod => mod.SkillModule)
       },
-      {
-        path: '',
-        redirectTo: 'resume',
-        pathMatch: 'full'
-      },
+   
       {
         path: 'teams',
         loadChildren: () => import('./page/team/team.module').then(mod => mod.TeamModule)
@@ -50,7 +46,12 @@ const routs: Routes = [
       {
         path:'complexities',
         loadChildren: () => import('./page/complexity/complexity.module').then(mod=>mod.ComplexityModule)
-      }
+      },
+         {
+        path: '',
+        redirectTo: 'resume',
+        pathMatch: 'full'
+      },
     ]
   }
 

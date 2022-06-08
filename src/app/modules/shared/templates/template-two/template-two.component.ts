@@ -56,4 +56,24 @@ export class TemplateTwoComponent implements OnInit {
   getArray(number: number) {
     return new Array(number).fill(1)
   }
+
+  getYear(startDate:string,endDate:string){
+    let start =  Date.parse(startDate)
+    let end = Date.parse(endDate)
+    if(end>=start){
+      let t = end - start;
+      return Math.floor(t / (1000 * 60 * 60 * 24 * 30 * 12));
+    }
+    return 0
+  }
+  getMonth(startDate: string, endDate: string){
+    let start = Date.parse(startDate)
+    let end = Date.parse(endDate)
+    if (end >= start) {
+      let t = end - start;
+
+        return Math.floor(t / (1000 * 60 * 60 * 24 * 30) % 12);
+    }
+    return 0
+  }
 }

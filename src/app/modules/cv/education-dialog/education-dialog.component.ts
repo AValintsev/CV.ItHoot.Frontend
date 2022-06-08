@@ -1,11 +1,14 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EducationDto} from "../../../models/resume/education-dto";
-import {DialogType} from "../../../models/enums";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { EducationDto } from "../../../models/resume/education-dto";
+import { DialogType } from "../../../models/enums";
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import * as moment from 'moment';
+import { UserValidators } from '../../shared/validators/user.validators';
+
 
 export const MY_FORMATS = {
   parse: {
@@ -23,7 +26,7 @@ export const MY_FORMATS = {
   selector: 'cv-education-dialog',
   templateUrl: './education-dialog.component.html',
   styleUrls: ['./education-dialog.component.scss'],
-  providers:[
+  providers: [
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -41,9 +44,6 @@ export class EducationDialog implements OnInit {
   maxDate = new Date(Date.now())
   ngOnInit() {
     this.validateForm();
-    this.educationForm.valueChanges.subscribe(
-      e=>console.log(e)
-    )
   }
 
   validateForm() {
@@ -64,8 +64,8 @@ export class EducationDialog implements OnInit {
       startDate: new FormControl(this.education.startDate, [
         Validators.required
       ]),
-      endDate: new FormControl(44/11/45, [
-        Validators.required])
+      endDate: new FormControl(this.checkDataTypeFormControl(this.typeDialog), [
+        Validators.required, UserValidators.checkValidEndDateDialog(this)])
     });
   }
 
@@ -73,5 +73,19 @@ export class EducationDialog implements OnInit {
     this.typeDialog = data.type;
     this.education = data.data;
   }
-
+  date = new FormControl(moment());
+  checkDataTypeFormControl(type: DialogType) {
+    if (type === DialogType.Create) {
+      return moment();
+    }
+    return this.education.endDate;
+  }
+  setMonthAndYear(normalizedMonthAndYear: any, datepicker: MatDatepicker<any>, point: string) {
+    let ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonthAndYear.month());
+    ctrlValue.year(normalizedMonthAndYear.year());
+    this.educationForm.get(point)?.patchValue(ctrlValue.format());
+    datepicker.close();
+  }
+ 
 }

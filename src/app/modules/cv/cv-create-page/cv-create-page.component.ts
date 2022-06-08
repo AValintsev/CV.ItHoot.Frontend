@@ -118,7 +118,6 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeCreateForm.patchValue({ picture: resume.picture });
     this.resumeCreateForm.patchValue({ position: resume.position });
-
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeCreateForm.controls["skills"])
         .push(new FormGroup({
