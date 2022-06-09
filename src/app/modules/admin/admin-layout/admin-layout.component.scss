@@ -1,6 +1,6 @@
 .page {
-  min-height: 100%;
-  // height: calc(100vh - 160px);
+  // min-height: 100%;
+  height: calc(100vh - 160px);
   background: #E5E5E5;
   display: grid;
   align-items: start;
@@ -8,6 +8,13 @@
 
   .page-content {
     padding: 30px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+
+  cv-side-bar {
+    height: calc(100vh - 160px);
+    background-color: black;
   }
 
   @media (max-width: 1450px) {

@@ -5,6 +5,12 @@
 .container {
   display: flex;
   min-height: 100%;
+  height: calc(100vh - 220px);
+  justify-content: space-around;
+}
+
+.template {
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
 .create-page {
@@ -12,12 +18,14 @@
   flex: 0 1 30%;
   background: white;
   border-radius: 15px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   margin: 0 auto;
+
+  overflow-y: auto;
 
   .left-bar {
     overflow: hidden auto;
-    scrollbar-width: none;
+    // scrollbar-width: none;
 
     .action {
       margin: 15px 0;

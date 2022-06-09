@@ -1,27 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app/shared/styles/normalize.scss';
 @import url('https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900');
+
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   overflow-y: hidden;
 }
 
-html, body { height: 100%; font-size: 10px}
+html,
+body {
+  height: 100%;
+  font-size: 10px
+}
+
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.success-snackbar{
+.success-snackbar {
   background: green;
   color: white;
   font-size: 1em;
 }
 
-.danger-snackbar{
+.danger-snackbar {
   background: red;
   color: white;
   font-size: 1em;
@@ -32,6 +42,7 @@ html, body { height: 100%; font-size: 10px}
   outline: transparent;
   background-color: transparent;
 }
+
 a {
   text-decoration: none;
 }
@@ -43,7 +54,8 @@ a:visited {
 .side-bar li.active .mat-expansion-indicator::after {
   color: white;
 }
-.mat-select-panel{
+
+.mat-select-panel {
   position: absolute;
   top: 32px;
   left: 4px;
@@ -52,16 +64,37 @@ a:visited {
   border-top-style: none;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline-start{
+.mat-form-field-appearance-outline .mat-form-field-outline-start {
   border-radius: 0px !important;
   border-right-style: none !important;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline-end{
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
   border-radius: 0px !important;
   border-left-style: none !important;
 }
 
 .mat-select-panel ng-animating {
   visibility: hidden;
+}
+
+// style scrollbar
+
+::-webkit-scrollbar {
+  width: 12px;
+  /* ширина всей полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+  background: #E5E5E5;
+  /* цвет зоны отслеживания */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3A57E8;
+  /* цвет бегунка */
+  border-radius: 20px;
+  /* округлось бегунка */
+  // border: 3px solid orange;
+  /* отступ вокруг бегунка */
 }

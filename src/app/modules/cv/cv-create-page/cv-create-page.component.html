@@ -1,6 +1,7 @@
 <div class="container">
-  <cv-template-two [resumeEditForm]="templateForm"></cv-template-two>
-
+  <div class="template">
+    <cv-template-two [resumeEditForm]="templateForm"></cv-template-two>
+  </div>
   <div class="create-page">
     <div class="left-bar">
       <cv-cv-create-left-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></cv-cv-create-left-bar>

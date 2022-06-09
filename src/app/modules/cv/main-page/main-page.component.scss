@@ -23,11 +23,12 @@ header {
 }
 
 .body {
+  padding: 3rem;
   flex-grow: 1;
   height: calc(100vh - 160px);
   overflow: auto;
   // min-height: 2em;
-  background: #cccccc4d;
+  background: #E5E5E5;
   // padding-top: 1rem;
   // background-color: #e5e5e5;
 }
