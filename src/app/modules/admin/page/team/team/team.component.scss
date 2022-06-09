@@ -12,45 +12,49 @@
     background: white;
 
 
-    .title-section{
+    .title-section {
       display: flex;
       justify-content: space-between;
 
-      .title{
-        h1{
+      .title {
+        h1 {
           margin-bottom: 20px;
         }
-        span{
+
+        span {
           display: block;
           color: #8A92A6;
           font-size: 1.2em;
         }
-        span.status{
+
+        span.status {
           color: #1AA053;
           font-weight: 500;
         }
 
 
-        .client-section{
+        .client-section {
           display: flex;
           gap: 10px;
           margin-bottom: 60px;
 
-          mat-icon{
+          mat-icon {
             color: #8A92A6;
           }
-          mat-icon:hover{
+
+          mat-icon:hover {
             opacity: .8;
             cursor: pointer;
           }
         }
       }
 
-      .actions{
+      .actions {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        button{
+
+        button {
           max-height: 40px;
         }
       }
@@ -103,7 +107,7 @@
         color: #04040B;
       }
 
-      .mat-column-skills{
+      .mat-column-skills {
         width: 15%;
       }
 
@@ -113,7 +117,7 @@
         grid-template-columns: repeat(4, 20%);
         justify-content: space-between;
 
-        .mat-menu-panel{
+        .mat-menu-panel {
           display: flex;
         }
 
@@ -156,4 +160,9 @@
     }
   }
 
+}
+
+::ng-deep .mat-tooltip.tooltip {
+  font-size: 1.6rem;
+  font-family: 'Inter';
 }

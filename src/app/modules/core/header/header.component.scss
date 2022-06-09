@@ -56,9 +56,7 @@ img {
   padding-right: 0.5rem;
 }
 
-.cv-user-photo {
-
-}
+.cv-user-photo {}
 
 .cv-user-content {
   padding-left: 0.5rem;
@@ -116,4 +114,13 @@ img {
 
 .logo {
   height: 5rem;
+}
+
+svg {
+  cursor: pointer;
+}
+
+::ng-deep .mat-tooltip.tooltip {
+  font-size: 1.6rem;
+  font-family: 'Inter';
 }

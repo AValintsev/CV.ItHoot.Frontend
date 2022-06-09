@@ -180,3 +180,8 @@ img {
   }
 
 }
+
+::ng-deep .mat-tooltip.tooltip {
+  font-size: 1.6rem;
+  font-family: 'Inter';
+}

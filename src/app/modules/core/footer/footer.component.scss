@@ -1,13 +1,23 @@
 footer {
-   height: 3rem;
+   height: 8rem;
    width: 100%;
    display: flex;
-   justify-content: right;
-   color: black;
-   bottom: 0;
-   span {
-      font-size: 1.6em;
-      line-height: 50px;
+   align-items: center;
+   justify-content: space-between;
+   flex: 1 1 100%;
+   padding: 0 12rem;
+
+   span,a {
+      font-family: 'Inter';
+      font-size: 1.6rem;
       color: #000;
+   }
+   ul{
+      display: flex;
+      li{
+         &:not(:first-child){
+            margin-left: 2.4rem;
+         }
+      }
    }
 }
