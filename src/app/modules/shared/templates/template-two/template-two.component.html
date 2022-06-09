@@ -113,17 +113,22 @@
 						<ul class="left-side__list side-list">
 							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item ">
 								<div class="side-list__header">
-									<div class="left-side__text">{{experiences.position}}</div>
-									<div class="left-side__date"><span>{{experiences.startDate|date:"MM.yyyy"}}
+									<div class="left-side__text">
+										<div>{{experiences.position}}</div>
+									   <div><div class="left-side__subtext">{{experiences.company}}</div></div>
+									</div>
+									<div class="left-side__date">
+										<span>{{experiences.startDate|date:"MM.yyyy"}}
 											-{{experiences.endDate|date:"MM.yyyy"}}</span>
-										<div><span
+										<div>
+											<span
 												*ngIf="getYear(experiences.startDate,experiences.endDate)">{{getYear(experiences.startDate,experiences.endDate)}}&nbsp;{{getYear(experiences.startDate,experiences.endDate)
 												<=1?'year':'years'}}&nbsp; </span><span
 														*ngIf="getMonth(experiences.startDate,experiences.endDate)">{{getMonth(experiences.startDate,experiences.endDate)}}&nbsp;{{getMonth(experiences.startDate,experiences.endDate)==1?'month':'months'}}</span>
 										</div>
 									</div>
 								</div>
-								<div class="left-side__subtext">{{experiences.company}}</div>
+								
 								<ul class="side-list__content-list">
 									<li class="side-list__content-item">
 										<span class="line"></span> {{experiences.description}}
@@ -157,7 +162,7 @@
 								{{skill.skillName}}
 							</div>
 							<div class="value three-section">
-								<div *ngFor="let leng of getArray(3) let i = index"
+								<div *ngFor="let leng of getArray(5) let i = index"
 									[style.background]="skill.level>=(i+1)?'#fe8503':'#ddd'"></div>
 							</div>
 						</div>
@@ -264,7 +269,7 @@
 								{{language.languageName}}
 							</div>
 							<div class="value four-section">
-								<div *ngFor="let leng of getArray(4) let i = index"
+								<div *ngFor="let leng of getArray(5) let i = index"
 									[style.background]="language.level>=(i+1)?'#fe8503':'#ddd'"></div>
 								<!-- <div class="value-box" [style.width.%]="language.level*25"></div> -->
 							</div>

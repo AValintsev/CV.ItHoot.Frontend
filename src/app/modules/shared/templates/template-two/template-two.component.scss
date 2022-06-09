@@ -217,7 +217,7 @@
       font-weight: 700;
       color: #2d3e50;
       line-height: 1.2;
-      margin-bottom: 1rem;
+      // margin-bottom: 1rem;
    }
 
    // .left-side__date
@@ -229,12 +229,17 @@
       margin-left: 5rem;
       color: #515f6e;
       font-weight: 700;
+      margin-bottom: 1rem;
+      div{
+         margin-top: .1rem;
+      }
    }
 
    &__subtext {
       color: #666766;
       font-size: 1.4rem;
       line-height: 1.2;
+      margin-top: 1rem;
       margin-bottom: 2rem;
    }
 }

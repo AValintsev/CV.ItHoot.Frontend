@@ -1,0 +1,24 @@
+.education-dialog {
+
+  .mat-dialog-content {
+    overflow: hidden;
+  }
+
+  .content {
+    display: grid;
+    gap: 10px;
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+::ng-deep .example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+::ng-deep .example-month-picker .mat-calendar-arrow {
+  display: none;
+}

@@ -26,6 +26,7 @@ import {PdfTableButton} from "./table-actions/pdf-table-button.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatMenuModule} from "@angular/material/menu";
 import { TeamResumeDownloadPageComponent } from '../../../cv/team-resume-download-page/team-resume-download-page.component';
+import { TemplatesModule } from 'src/app/modules/shared/templates/templates.module';
 
 @NgModule({
     imports: [
@@ -49,6 +50,7 @@ import { TeamResumeDownloadPageComponent } from '../../../cv/team-resume-downloa
         NgxLoadingButtonsModule,
         MatTooltipModule,
         MatMenuModule,
+        TemplatesModule
     ],
   exports: [
     TeamListPageComponent
