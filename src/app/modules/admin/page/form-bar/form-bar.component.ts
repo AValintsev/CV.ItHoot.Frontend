@@ -30,6 +30,13 @@ export class FormBarComponent implements OnInit {
   public resume!: ResumeDto;
   file: File | null = null;
   positions!:PositionDto[];
+  userStatus = [
+    { status:'Available',value:1},
+    { status:'Busy',value:2},
+    { status:'Partial available',value:3},
+    { status:'Very careful available',value:4},
+  ]
+
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
@@ -272,6 +279,8 @@ export class FormBarComponent implements OnInit {
     });
   }
 
+  changeTeam(event:any){
 
+  }
 
 }

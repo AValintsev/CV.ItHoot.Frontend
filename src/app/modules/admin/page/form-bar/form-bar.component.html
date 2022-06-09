@@ -1,36 +1,5 @@
 <form [formGroup]="resumeForm">
   <div class="input-group">
-        <!-- <mat-form-field appearance="fill">
-          <mat-label>Name resume</mat-label>
-         <input type="text">
-        </mat-form-field> -->
-<!--        <label style="-->
-<!--        display: flex;-->
-<!--  justify-content: center;-->
-<!--  align-items: center;-->
-<!--  width: 132px;-->
-<!--  height: 32px;-->
-<!--  margin: 11px 0 0;-->
-<!--  padding: 8px 20px 7px;-->
-<!--  border-radius: 5px;-->
-<!--  font-family: OpenSans;-->
-<!--  font-size: 12px;-->
-<!--  text-align: center;-->
-<!--  background-color: #f5f6f7;-->
-<!--  color: #282828;-->
-<!--  cursor: pointer;-->
-<!--        ">-->
-<!--        <span style="-->
-<!--          margin-bottom: 7px;-->
-<!--  font-family: Montserrat;-->
-<!--  font-size: 16px;-->
-<!--  font-weight: 600;-->
-<!--  color: #282828;-->
-<!--        ">Save icon</span>-->
-<!--          <input style="display: none;" type="file" (input)="addPicture($event)">-->
-<!--        </label>-->
-<!--     <button (click)="getPhoto()">getPhoto</button>   -->
-
     <input id="fileInput" type='file' (change)="onSelectFile($event)">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
@@ -231,5 +200,30 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
+<div class="price-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Developer's price</mat-label>
+        <input type="number" min="0" matInput placeholder="100">
+        <!-- <mat-error *ngIf="resumeForm.controls['requiredPosition'].errors?.['required']">
+          Required Position is required
+        </mat-error> -->
+      </mat-form-field>
+</div>
+<div class="status-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Availability statuses</mat-label>
+      <mat-select (selectionChange)="changeTeam($event)">
+        <mat-option *ngFor="let status of userStatus; let i = index" [value]="status.value">
+          {{status.status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Number of days unavailable</mat-label>
+        <input type="number" min="0" matInput placeholder="1">
+        <!-- <mat-error *ngIf="resumeForm.controls['requiredPosition'].errors?.['required']">
+          Required Position is required
+        </mat-error> -->
+      </mat-form-field>
+</div>
 </form>
