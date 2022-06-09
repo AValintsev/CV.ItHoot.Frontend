@@ -1,0 +1,23 @@
+:host ::ng-deep{
+  @media print {
+
+    @page  {
+      size:A4;
+      margin-top:15px;
+    }
+    @page:first{
+      margin:0;
+    }
+
+    #skills{
+      page-break-inside: avoid;
+    }
+
+    #experience{
+      page-break-inside: avoid;
+    }
+    li{
+      page-break-inside: avoid;
+    }
+  }
+}

@@ -95,7 +95,7 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="resumeEditForm?.experiences?.length" class="row">
+			<div *ngIf="resumeEditForm?.experiences?.length" class="row" id="experience">
 				<div class="header left-side__header" [style.background]="color">
 					<div class="header__title">
 						<span>Work experience</span>
@@ -110,8 +110,8 @@
 				</div>
 				<div class="content left-side__content">
 					<div class="left-side__inner">
-						<ul class="left-side__list side-list">
-							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item ">
+						<ul class="left-side__list side-list" >
+							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item experience-item">
 								<div class="side-list__header">
 									<div class="left-side__text">{{experiences.position}}</div>
 									<div class="left-side__date"><span>{{experiences.startDate|date:"MM.yyyy"}}
@@ -136,7 +136,7 @@
 			</div>
 		</div>
 		<div class="right-side">
-			<div *ngIf="resumeEditForm?.skills?.length" class="row">
+			<div *ngIf="resumeEditForm?.skills?.length" class="row" id="skills">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
@@ -182,8 +182,8 @@
 						<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
-						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description">
-							{{resumeEditForm?.aboutMe}}
+						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me">
+              <p>{{resumeEditForm?.aboutMe}}</p>
 						</div>
 					</div>
 				</div>
@@ -243,7 +243,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div *ngIf="resumeEditForm?.languages?.length" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
@@ -272,7 +272,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 
 	</main>
