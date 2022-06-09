@@ -9,11 +9,12 @@
 
 .container {
   width: 100%;
-  min-height: 100%;
-  max-height: 100vh;
+  // min-height: 100%;
+  // max-height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  // padding-bottom: 8rem;
 
 }
 
@@ -22,10 +23,12 @@ header {
 }
 
 .body {
+  padding: 3rem;
   flex-grow: 1;
+  height: calc(100vh - 160px);
   overflow: auto;
-  min-height: 2em;
-  background: #cccccc4d;
+  // min-height: 2em;
+  background: #E5E5E5;
   // padding-top: 1rem;
   // background-color: #e5e5e5;
 }
@@ -33,4 +36,10 @@ header {
 footer {
   flex-shrink: 0;
   margin-top: 2rem;
+  // position: fixed;
+  // bottom: 0px;
+  // left: 0;
+  // right: 0;
+  // background-color: red;
+  // height: 8rem;
 }

@@ -32,7 +32,6 @@ export class ResumeComponent implements OnInit {
         this.teamService.getTeamById(params.teamId).subscribe(
            response =>{
           if(response){
-            console.log('response',response)
              this.clientTeamService.headerTitle$.next(response.teamName)
           }
         }

@@ -4,14 +4,6 @@
   <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
-      <mat-label>Name of company</mat-label>
-      <input matInput placeholder="ITHoot" formControlName="company">
-      <mat-error *ngIf="experienceForm.controls['company'].errors?.['required']">
-        Institution Name is required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
       <mat-label>Position</mat-label>
       <input matInput placeholder=".NET Junior Developer" formControlName="position">
       <mat-error *ngIf="experienceForm.controls['position'].errors?.['required']">
@@ -20,6 +12,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Name of company</mat-label>
+      <input matInput placeholder="ITHoot" formControlName="company">
+      <mat-error *ngIf="experienceForm.controls['company'].errors?.['required']">
+        Institution Name is required
+      </mat-error>
+    </mat-form-field>
+
+  
+    <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
       <input matInput placeholder="Bachelor's" formControlName="description">
       <mat-error *ngIf="experienceForm.controls['description'].errors?.['required']">
@@ -27,17 +28,33 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate formControlName="startDate" placeholder="Start date">
-        <input matEndDate formControlName="endDate" placeholder="End date">
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter start of education</mat-label>
+    <input matInput [matDatepicker]="dp" [max]="maxDate" formControlName="startDate">
+    <mat-hint>MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp, 'startDate')"
+      panelClass="example-month-picker">
+    </mat-datepicker>
+      <mat-error *ngIf="experienceForm.controls['endDate'].errors?.['required']">
+        Enter date
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter end of education</mat-label>
+    <input matInput [matDatepicker]="dp1" [max]="maxDate" formControlName="endDate">
+    <mat-hint>MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+    <mat-datepicker #dp1 startView="multi-year" (monthSelected)="setMonthAndYear($event, dp1,'endDate')"
+      panelClass="example-month-picker">
+    </mat-datepicker>
+        <mat-error *ngIf="experienceForm.controls['endDate'].errors?.['incorrectDate']">
+          Incorrect date
+        </mat-error>
+        <mat-error *ngIf="experienceForm.controls['endDate'].errors?.['required']">
+          Enter date
+        </mat-error>
+  </mat-form-field>
     <div mat-dialog-actions class="actions">
       <button mat-button [mat-dialog-close]="experienceForm.value" cdkFocusInitial [disabled]="!experienceForm.valid" *ngIf="typeDialog===DialogType.Create">Create</button>
       <button mat-button [mat-dialog-close]="experienceForm.value" cdkFocusInitial [disabled]="!experienceForm.valid" *ngIf="typeDialog===DialogType.Edit">Edit</button>

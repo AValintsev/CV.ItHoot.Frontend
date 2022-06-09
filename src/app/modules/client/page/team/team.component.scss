@@ -126,6 +126,8 @@
 }
 
 .card {
+   border-top-left-radius: 104px;
+   border-bottom-left-radius: 86px;
    display: flex;
    flex-direction: column;
    flex: 0 0 53rem;

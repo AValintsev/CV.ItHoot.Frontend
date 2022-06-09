@@ -3,11 +3,36 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ExperienceDto} from "../../../models/resume/experience-dto";
 import {DialogType} from "../../../models/enums";
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import * as moment from 'moment';
+import { UserValidators } from '../../shared/validators/user.validators';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'cv-experience-dialog',
   templateUrl: './experience-dialog.component.html',
-  styleUrls: ['./experience-dialog.component.scss']
+  styleUrls: ['./experience-dialog.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ]
 })
 export class ExperienceDialog implements OnInit {
 
@@ -15,7 +40,7 @@ export class ExperienceDialog implements OnInit {
   typeDialog: DialogType;
   DialogType = DialogType;
   experienceForm: FormGroup = {} as FormGroup;
-
+  maxDate = new Date(Date.now())
   ngOnInit() {
     this.validateForm();
   }
@@ -35,8 +60,8 @@ export class ExperienceDialog implements OnInit {
       startDate: new FormControl(this.experience.startDate, [
         Validators.required
       ]),
-      endDate: new FormControl(this.experience.endDate, [
-        Validators.required
+      endDate: new FormControl(this.checkDataTypeFormControl(this.typeDialog), [
+        Validators.required, UserValidators.checkValidEndDateExperience(this)
       ])
     });
   }
@@ -45,5 +70,19 @@ export class ExperienceDialog implements OnInit {
     this.typeDialog = data.type;
     this.experience = data.data;
   }
+  date = new FormControl(moment());
+  checkDataTypeFormControl(type: DialogType) {
+    if (type === DialogType.Create) {
+      return moment();
+    }
+    return this.experience.endDate;
+  }
+  setMonthAndYear(normalizedMonthAndYear: any, datepicker: MatDatepicker<any>, point: string) {
 
+    let ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonthAndYear.month());
+    ctrlValue.year(normalizedMonthAndYear.year());
+    this.experienceForm.get(point)?.patchValue(ctrlValue.format());
+    datepicker.close();
+  }
 }

@@ -23,9 +23,10 @@ header {
 
 .body {
   flex-grow: 1;
-  overflow: auto;
-  min-height: 2em;
-  background: #cccccc4d;
+  // overflow: auto;
+  // min-height: 2em;
+  height: calc(100vh - 160px);
+  background: #E5E5E5;
   // padding-top: 1rem;
   // background-color: #e5e5e5;
 }
