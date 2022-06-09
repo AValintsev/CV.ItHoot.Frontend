@@ -3,19 +3,40 @@
   flex: 0 1 100%;
 }
 
-//.wrapper {
-//   font-family: Inter, sans-serif;
-//   height: 100%;
-//   // background-color: #efeded;
-//}
+@media print {
 
+  @page {
+    size: A4;
+    margin-top: 15px;
+  }
+  @page :first {
+    margin: 0;
+  }
+
+  #contacts {
+    page-break-inside: avoid;
+  }
+
+  .about-me-content {
+    widows: 15;
+  }
+
+  #experience{
+    page-break-inside: avoid;
+  }
+
+  li {
+    page-break-inside: avoid;
+  }
+
+}
 
 
 .wrapper{
   display: flex;
   margin: 0 auto;
-  min-height: 100%;
-  max-width: 900px;
+  width: 210mm;
+  min-height: 297mm;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 

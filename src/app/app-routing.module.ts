@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from './guards/role.guard';
-import { TeamResumePageComponent } from "./modules/cv/team-resume-page/team-resume-page.component";
 import {
   TeamResumeDownloadPageComponent
 } from "./modules/cv/team-resume-download-page/team-resume-download-page.component";
+import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
 
 
 const routes: Routes = [
@@ -27,11 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'teams/:teamId/resume/:resumeId',
-    component: TeamResumePageComponent
+    component: ResumeFullSwitcherComponent
   },
   {
     path: 'teams/resume/:shortUrl',
-    component: TeamResumePageComponent
+    component: ResumeFullSwitcherComponent
   },
   {
     path : 'teams/resume/:shortUrl/pdf',

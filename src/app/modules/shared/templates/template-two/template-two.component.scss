@@ -1,4 +1,20 @@
-:host {
+@media print {
+
+  @page {
+    size: A4;
+    margin-top: 15px;
+  }
+  @page :first {
+    margin: 0;
+  }
+
+  #contacts {
+    page-break-inside: avoid;
+  }
+
+  .avoid-pdf-break{
+    page-break-inside: avoid;
+  }
 
 }
 
@@ -253,7 +269,7 @@
       padding-left: 2rem;
       position: relative;
       border-left: .3rem solid transparent;
-      padding-bottom: 2rem;
+      padding-bottom: 1.3rem;
 
       &:not(:last-child) {
          border-left: .3rem solid #d1d1d1;

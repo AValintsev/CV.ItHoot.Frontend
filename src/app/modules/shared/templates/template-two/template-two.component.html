@@ -95,8 +95,8 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="resumeEditForm?.experiences?.length" class="row" id="experience">
-				<div class="header left-side__header" [style.background]="color">
+			<div *ngIf="resumeEditForm?.experiences?.length" class="row">
+				<div class="header left-side__header avoid-pdf-break" [style.background]="color">
 					<div class="header__title">
 						<span>Work experience</span>
 					</div>
@@ -111,10 +111,10 @@
 				<div class="content left-side__content">
 					<div class="left-side__inner">
 						<ul class="left-side__list side-list" >
-							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item experience-item">
-								<div class="side-list__header">
-									<div class="left-side__text">{{experiences.position}}</div>
-									<div class="left-side__date"><span>{{experiences.startDate|date:"MM.yyyy"}}
+							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item">
+								<div class="side-list__header avoid-pdf-break">
+									<div class="left-side__text avoid-pdf-break">{{experiences.position}}</div>
+									<div class="left-side__date avoid-pdf-break"><span>{{experiences.startDate|date:"MM.yyyy"}}
 											-{{experiences.endDate|date:"MM.yyyy"}}</span>
 										<div><span
 												*ngIf="getYear(experiences.startDate,experiences.endDate)">{{getYear(experiences.startDate,experiences.endDate)}}&nbsp;{{getYear(experiences.startDate,experiences.endDate)
@@ -123,7 +123,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="left-side__subtext">{{experiences.company}}</div>
+								<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
 								<ul class="side-list__content-list">
 									<li class="side-list__content-item">
 										<span class="line"></span> {{experiences.description}}
@@ -164,7 +164,7 @@
 					</div>
 				</div>
 			</div>
-				<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row">
+				<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row" id="about-me">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -182,7 +182,7 @@
 						<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
-						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me">
+						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me-content">
               <p>{{resumeEditForm?.aboutMe}}</p>
 						</div>
 					</div>
@@ -192,7 +192,7 @@
 			||resumeEditForm?.city
 			||resumeEditForm?.street
 			||resumeEditForm?.email
-			||resumeEditForm?.phone" class="row">
+			||resumeEditForm?.phone" class="row" id="contacts">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -202,7 +202,7 @@
 						</svg>
 					</div>
 					<div class="header__title">
-						<span>COntacts</span>
+						<span>Contacts</span>
 					</div>
 				</div>
 				<div class="content right-side__content">

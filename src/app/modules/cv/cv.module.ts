@@ -27,8 +27,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
-import { TeamResumePageComponent } from './team-resume-page/team-resume-page.component';
 import { TemplatesModule } from '../shared/templates/templates.module';
+import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-switcher.component';
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { TemplatesModule } from '../shared/templates/templates.module';
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
-    TeamResumePageComponent,
+    ResumeFullSwitcherComponent,
   ],
   imports: [
     CommonModule,

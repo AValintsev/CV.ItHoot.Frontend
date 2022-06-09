@@ -1,4 +1,7 @@
-<!--<cv-cv-template *ngIf="resume" id="doc" [resumeEditForm]="resume"></cv-cv-template>-->
-
-<cv-template-two *ngIf="resume" id="doc" [resumeEditForm]="resume"></cv-template-two>
-
+<div class="resume-wrapper">
+  <div id="scene" #scene>
+    <div id="doc" *ngIf="resume">
+      <cv-template-two *ngIf="resume" [showPdfSave]="false" [resumeEditForm]="resume"></cv-template-two>
+    </div>
+  </div>
+</div>
