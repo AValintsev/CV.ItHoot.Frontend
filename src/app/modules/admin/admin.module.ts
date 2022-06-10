@@ -7,7 +7,7 @@ import {CvModule} from "../cv/cv.module";
 	imports:[
 		AdminRouterModule,
     CvModule,
-		RouterModule
+		RouterModule,
 	],
 	declarations: [],
 	exports: [AdminRouterModule],

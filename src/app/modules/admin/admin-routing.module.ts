@@ -7,8 +7,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
 import {SideBarComponent} from './component/side-bar/side-bar.component';
-import {FooterModule} from '../core/footer/footer.module';
-import {HeaderModule} from '../core/header/header.module';
+import { HeaderModule } from './component/header/header.module';
+import { FooterModule } from './component/footer/footer.module';
+
 
 
 const routs: Routes = [
@@ -59,7 +60,6 @@ const routs: Routes = [
 
 @NgModule({
   imports: [
-
     CommonModule,
     MatIconModule,
     MatDividerModule,
