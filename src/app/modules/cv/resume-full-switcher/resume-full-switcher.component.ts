@@ -3,12 +3,13 @@ import {ResumeDto} from "../../../models/resume/resume-dto";
 import {TeamService} from "../../../services/team.service";
 import {ActivatedRoute} from "@angular/router";
 
+
 @Component({
-  selector: 'cv-team-resume-page',
-  templateUrl: './team-resume-page.component.html',
-  styleUrls: ['./team-resume-page.component.scss']
+  selector: 'cv-resume-full-switcher',
+  templateUrl: './resume-full-switcher.component.html',
+  styleUrls: ['./resume-full-switcher.component.scss']
 })
-export class TeamResumePageComponent implements OnInit {
+export class ResumeFullSwitcherComponent implements OnInit {
 
   resume!: ResumeDto | null;
 
@@ -35,8 +36,5 @@ export class TeamResumePageComponent implements OnInit {
     })
 
   }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit() {}
 }

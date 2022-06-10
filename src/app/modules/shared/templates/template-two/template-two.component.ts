@@ -18,11 +18,8 @@ export class TemplateTwoComponent implements OnInit {
   obj:{[key:string]:any}={}
   constructor(
     public accountService:AccountService,
-    private resumeService: ResumeService,
-    private router: Router
-  ) { }
+    private resumeService: ResumeService,) { }
 
-  // @Input() public resumeEditForm!: ResumeDto
   @Input() public resumeEditForm!: ResumeDto
   @Input() public showLogo:boolean = true
   @Input() public showPdfSave:boolean = true
@@ -41,12 +38,7 @@ export class TemplateTwoComponent implements OnInit {
   howOld(birthDay: string) {
     return Math.floor(new Date(Date.now()).getFullYear() - new Date(birthDay!).getFullYear())
   }
-  getResumePdf() {
-    if (!this.userId) return
-    this.resumeService.getPdf(this.userId).subscribe(response => {
-      saveAs(response, `${this.resumeEditForm.firstName} ${this.resumeEditForm.lastName}.pdf`);
-    });
-  }
+
   savePdf(resumeId: number, firstName: string='', lastName: string='') {
     this.resumeService.getPdf(resumeId).subscribe(response => {
       saveAs(response, `${firstName} ${lastName}.pdf`);

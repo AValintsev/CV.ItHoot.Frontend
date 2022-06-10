@@ -15,12 +15,12 @@ html {
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  overflow-y: hidden;
+  //overflow-y: hidden;
 }
 
 html,
 body {
-  height: 100%;
+  max-height: 100vh;
   font-size: 10px
 }
 
@@ -98,7 +98,10 @@ a:visited {
   // border: 3px solid orange;
   /* отступ вокруг бегунка */
 }
+<<<<<<< HEAD
 
 a{
   cursor: pointer;
 }
+=======
+>>>>>>> db6f1275c8bd14dcdb32151f5e630bd300bb2a12

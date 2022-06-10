@@ -96,7 +96,7 @@
 				</div>
 			</div>
 			<div *ngIf="resumeEditForm?.experiences?.length" class="row">
-				<div class="header left-side__header" [style.background]="color">
+				<div class="header left-side__header avoid-pdf-break" [style.background]="color">
 					<div class="header__title">
 						<span>Work experience</span>
 					</div>
@@ -110,6 +110,7 @@
 				</div>
 				<div class="content left-side__content">
 					<div class="left-side__inner">
+<<<<<<< HEAD
 						<ul class="left-side__list side-list">
 							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item ">
 								<div class="side-list__header">
@@ -119,6 +120,13 @@
 									</div>
 									<div class="left-side__date">
 										<span>{{experiences.startDate|date:"MM.yyyy"}}
+=======
+						<ul class="left-side__list side-list" >
+							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item">
+								<div class="side-list__header avoid-pdf-break">
+									<div class="left-side__text avoid-pdf-break">{{experiences.position}}</div>
+									<div class="left-side__date avoid-pdf-break"><span>{{experiences.startDate|date:"MM.yyyy"}}
+>>>>>>> db6f1275c8bd14dcdb32151f5e630bd300bb2a12
 											-{{experiences.endDate|date:"MM.yyyy"}}</span>
 										<div>
 											<span
@@ -128,7 +136,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								
+=======
+								<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
+>>>>>>> db6f1275c8bd14dcdb32151f5e630bd300bb2a12
 								<ul class="side-list__content-list">
 									<li class="side-list__content-item">
 										<span class="line"></span> {{experiences.description}}
@@ -141,7 +153,7 @@
 			</div>
 		</div>
 		<div class="right-side">
-			<div *ngIf="resumeEditForm?.skills?.length" class="row">
+			<div *ngIf="resumeEditForm?.skills?.length" class="row" id="skills">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
@@ -169,7 +181,7 @@
 					</div>
 				</div>
 			</div>
-				<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row">
+				<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row" id="about-me">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -187,8 +199,8 @@
 						<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
-						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description">
-							{{resumeEditForm?.aboutMe}}
+						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me-content">
+              <p>{{resumeEditForm?.aboutMe}}</p>
 						</div>
 					</div>
 				</div>
@@ -197,7 +209,7 @@
 			||resumeEditForm?.city
 			||resumeEditForm?.street
 			||resumeEditForm?.email
-			||resumeEditForm?.phone" class="row">
+			||resumeEditForm?.phone" class="row" id="contacts">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
@@ -207,7 +219,7 @@
 						</svg>
 					</div>
 					<div class="header__title">
-						<span>COntacts</span>
+						<span>Contacts</span>
 					</div>
 				</div>
 				<div class="content right-side__content">
@@ -248,7 +260,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div *ngIf="resumeEditForm?.languages?.length" class="row">
 				<div class="header right-side__header" [style.background]="color">
 					<div class="header__icon right-side__header-icon">
@@ -277,7 +289,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 
 	</main>
