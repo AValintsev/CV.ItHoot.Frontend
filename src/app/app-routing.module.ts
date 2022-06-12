@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from './guards/role.guard';
 import {
-  TeamResumeDownloadPageComponent
-} from "./modules/cv/team-resume-download-page/team-resume-download-page.component";
+  ProposalResumeDownloadPageComponent
+} from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
 import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
 
 
@@ -26,16 +26,16 @@ const routes: Routes = [
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
   },
   {
-    path: 'teams/:teamId/resume/:resumeId',
+    path: 'proposals/:proposalId/resume/:resumeId',
     component: ResumeFullSwitcherComponent
   },
   {
-    path: 'teams/resume/:shortUrl',
+    path: 'proposals/resume/:shortUrl',
     component: ResumeFullSwitcherComponent
   },
   {
-    path : 'teams/resume/:shortUrl/pdf',
-    component: TeamResumeDownloadPageComponent
+    path : 'proposals/resume/:shortUrl/pdf',
+    component: ProposalResumeDownloadPageComponent
   }
 ];
 

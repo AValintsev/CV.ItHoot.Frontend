@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientRoutingModule } from './client-routing.module';
-import { ClientTeamService } from 'src/app/services/client/client-team.service';
-import { TeamComponent } from './page/team/team.component';
+import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
+import { ProposalComponent } from './page/proposal/proposal.component';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
 
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
   ],
-  providers: [ClientTeamService]
+  providers: [ClientProposalService]
 })
 export class ClientModule { }
