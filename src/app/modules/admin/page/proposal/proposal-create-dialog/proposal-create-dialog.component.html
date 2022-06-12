@@ -1,0 +1,80 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title>Create new proposal</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Proposal name</mat-label>
+      <input matInput placeholder=".Net Proposal" [(ngModel)]="proposal.proposalName">
+    </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select Client</mat-label>
+        <mat-select [(value)]="proposal.clientId" disableOptionCentering>
+          <mat-option *ngFor="let client of clients" [value]="client.userId" >
+            {{client.firstName}} {{client.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Proposal build</mat-label>
+      <mat-select [(value)]="proposal.proposalBuild" (selectionChange)="proposalBuildSelected()" disableOptionCentering>
+        <mat-option *ngFor="let proposalBuild of proposalBuilds" [value]="proposalBuild">
+          {{proposalBuild.projectTypeName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div class="resume-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Resumes</mat-label>
+        <mat-chip-list #chipList aria-label="Resume selection">
+          <mat-chip
+            *ngFor="let resume of resumes"
+            (removed)="remove(resume)">
+            {{resume.firstName}} {{resume.lastName}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Select resume"
+            #resumeInput
+            [formControl]="resumeCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume">
+            <span style="font-weight: bold">{{resume.positionName}} </span>{{resume.firstName}}  {{resume.lastName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Template</mat-label>
+      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
+        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+          {{template.templateName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="checkbox-section">
+      <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button (click)="click()" cdkFocusInitial [disabled]="canCreate()">Create</button>
+  </div>
+
+</div>

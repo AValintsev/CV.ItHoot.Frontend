@@ -1,4 +1,4 @@
-import { SmallTeamDto } from './../../../../models/team/small-team-dto';
+import { SmallProposalDto } from '../../../../models/proposal/small-proposal-dto';
 import { ResumeService } from 'src/app/services/resume.service';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
@@ -7,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Users } from 'src/app/models/users-type';
 import { map, tap } from 'rxjs/operators';
-import { ClientTeamService } from 'src/app/services/client/client-team.service';
-import { StatusTeamResume, TeamResumeDto } from 'src/app/models/team/create-team-dto';
-import { StatusTeam } from 'src/app/models/enums';
+import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
+import { StatusProposalResume, ProposalResumeDto } from 'src/app/models/proposal/proposal-dto';
+import { StatusProposal } from 'src/app/models/enums';
 
 interface IcontrolPanel{
   resumeId: number,
-  teamId: number,
-  arr: TeamResumeDto[]|[],
+  proposalId: number,
+  arr: ProposalResumeDto[]|[],
   component?: '',
   index:(id:number)=>number,
   prev: (component: HeaderComponent)=>void,
@@ -29,17 +29,17 @@ interface IcontrolPanel{
 
 })
 export class HeaderComponent implements OnInit {
-  statusResume = StatusTeamResume
-  StatusTeam = StatusTeam
+  statusResume = StatusProposalResume
+  statusProposal = StatusProposal
   Users = Users
-  teamList$!: Observable<SmallTeamDto[]>
-  showTeamName: boolean = true
+  proposals!: Observable<SmallProposalDto[]>
+  showProposalName: boolean = true
   clientName$!: Observable<string>
   notShowLeftBtnColor: boolean = true
   notShowRightBtnColor: boolean = true
   controlPanel: IcontrolPanel = {
     resumeId: 0,
-    teamId: 0,
+    proposalId: 0,
     arr: [],
     component: '',
     index: function (id: number) {
@@ -62,56 +62,56 @@ export class HeaderComponent implements OnInit {
       if (this.arr && this.arr.length && this.resumeId > 0) {
         component.notShowLeftBtnColor = true
         this.resumeId = this.resumeId - 1;
-        component.router.navigate(['client/team', this.teamId, 'resume', (this.arr[this.resumeId] as TeamResumeDto)?.id])
+        component.router.navigate(['client/proposal', this.proposalId, 'resume', (this.arr[this.resumeId] as ProposalResumeDto)?.id])
         if (~(this.resumeId - 1)){
           component.notShowLeftBtnColor = true
-          
+
         } else{
-          component.notShowLeftBtnColor = false 
+          component.notShowLeftBtnColor = false
         }
         component.notShowRightBtnColor = true
-        
+
       }
     },
     next: function (component: HeaderComponent) {
       if (this.arr && this.arr.length && this.resumeId < this.arr.length - 1) {
         this.resumeId = this.resumeId + 1
-        component.router.navigate(['client/team', this.teamId, 'resume', (this.arr[this.resumeId] as TeamResumeDto)?.id])
+        component.router.navigate(['client/proposal', this.proposalId, 'resume', (this.arr[this.resumeId] as ProposalResumeDto)?.id])
         component.notShowRightBtnColor = true
         component.notShowLeftBtnColor = true
         if (this.arr.length > this.resumeId + 1){
           component.notShowRightBtnColor = true
         }else{
           component.notShowRightBtnColor = false
-        } 
-        component.notShowLeftBtnColor = true 
-      } 
+        }
+        component.notShowLeftBtnColor = true
+      }
     },
   }
   constructor(
     public accountService: AccountService,
     public router: Router,
-    public clientTeamService: ClientTeamService,
+    public clientProposalService: ClientProposalService,
   ) { }
 
   ngOnInit(): void {
     this.checkUrlFromArrow(this.router)
-    this.clientTeamService.headerTitle$.subscribe(e => {})
-    this.clientName$ = this.clientTeamService.getAllTeam().pipe(map(array => array[0].clientUserName))
-    this.getTeamList()
-    this.clientTeamService.numberCheckedResume$.subscribe(
+    this.clientProposalService.headerTitle$.subscribe(e => {})
+    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array[0].clientUserName))
+    this.getProposalList()
+    this.clientProposalService.numberCheckedResume$.subscribe(
       response => {
         if (response?.resumeId) {
           this.controlPanel.index(response!.resumeId);
           this.controlPanel?.checkerColorArrow(this,response?.resumeId)
         }
-        if (response?.teamId) {
-          this.controlPanel.teamId = response!.teamId
+        if (response?.proposalId) {
+          this.controlPanel.proposalId = response!.proposalId
         }
       },
     )
 
-    this.clientTeamService.headerUsersTeam$.pipe(
+    this.clientProposalService.headerUsersProposal$.pipe(
       tap(response => {
         if (response) {
           this.controlPanel.arr = this.filterResponseArray(response);
@@ -126,25 +126,25 @@ export class HeaderComponent implements OnInit {
     this.checkVisibleHeaderItem()
   }
 
- 
+
 private  checkUrlFromArrow(response: any) {
-      let regexp = new RegExp(`/client/teams`, 'g')
+      let regexp = new RegExp(`/client/proposals`, 'g')
       const test = regexp.test(response.url);
       if (test) {
-        this.showTeamName = true
+        this.showProposalName = true
       } else {
-        this.showTeamName = false
+        this.showProposalName = false
       }
   }
 
-  private getTeamList() {
-    this.teamList$ = this.clientTeamService.getAllTeam()
+  private getProposalList() {
+    this.proposals = this.clientProposalService.getAllProposal()
   }
-  private filterResponseArray(resumes: any): TeamResumeDto[] {
-      const arr: TeamResumeDto[] = [];
+  private filterResponseArray(resumes: any): ProposalResumeDto[] {
+      const arr: ProposalResumeDto[] = [];
       resumes.positionResumes.map((value: any) => {
 
-        if (resumes.statusTeam === StatusTeam.Approved) {
+        if (resumes.statusProposal === StatusProposal.Approved) {
           value[1].filter((e: any) => {
             if (e.statusResume == this.statusResume.Selected) {
                arr.push(e)
@@ -153,7 +153,7 @@ private  checkUrlFromArrow(response: any) {
         }else{
           value[1].filter((e: any) => arr.push(e))
         }
-        
+
       })
       return arr
   }
@@ -167,14 +167,14 @@ private  checkUrlFromArrow(response: any) {
         if (response instanceof NavigationStart) {
           this.checkUrlFromArrow(response)
         }
-        
+
       },
       error: error => { console.log(error) }
     })
   }
 
-  changeTeam(value: any) {
-    this.clientTeamService.changeTeam(value.source.value)
+  changeProposal(value: any) {
+    this.clientProposalService.changeProposal(value.source.value)
   }
 
   logout() {
@@ -190,7 +190,7 @@ private  checkUrlFromArrow(response: any) {
     this.controlPanel.next(this)
   }
 
-  // getTeamName() {
-  //   return this.teamName
+  // getProposalName() {
+  //   return this.proposalName
   // }
 }

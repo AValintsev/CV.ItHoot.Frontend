@@ -15,23 +15,23 @@ import { MatButtonModule } from "@angular/material/button";
 import { FooterModule } from '../../shared/footer/footer.module';
 import { ModalDeleteUserComponent } from '../../component/modal-delete-user/modal-delete-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TeamsComponent } from '../teams/teams.component';
+import { ProposalsComponent } from '../proposals/proposals.component';
 import { ResumeComponent } from '../resume/resume.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TeamComponent } from '../team/team.component';
+import { ProposalComponent } from '../proposal/proposal.component';
 
 
 const routes: Routes = [
   {
     path: '', component: MainPageComponent, children: [
       {
-        path: 'teams', component: TeamsComponent
+        path: 'proposals', component: ProposalsComponent
       },
       {
-        path: 'team/:teamId/resume/:resumeId', component: ResumeComponent
+        path: 'proposal/:proposalId/resume/:resumeId', component: ResumeComponent
       },
       {
-        path: '', redirectTo: 'teams', pathMatch: 'full'
+        path: '', redirectTo: 'proposals', pathMatch: 'full'
       },
     ]
   }
@@ -40,11 +40,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    MainPageComponent, 
-    TeamsComponent, 
+    MainPageComponent,
+    ProposalsComponent,
     ModalDeleteUserComponent,
     ResumeComponent,
-    TeamComponent
+    ProposalComponent
   ],
   imports: [
     CommonModule,
@@ -59,17 +59,17 @@ const routes: Routes = [
     HeaderModule,
     FormsModule,
     TemplatesModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatSnackBarModule,
     MatTooltipModule,
     RouterModule.forChild(routes),
   ],
   exports: [
     MainPageComponent,
-    TeamsComponent,
+    ProposalsComponent,
     ModalDeleteUserComponent,
     ResumeComponent,
-    TeamComponent
+    ProposalComponent
   ],
 
 })
