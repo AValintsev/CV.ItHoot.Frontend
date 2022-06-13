@@ -110,23 +110,11 @@
 				</div>
 				<div class="content left-side__content">
 					<div class="left-side__inner">
-<<<<<<< HEAD
-						<ul class="left-side__list side-list">
-							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item ">
-								<div class="side-list__header">
-									<div class="left-side__text">
-										<div>{{experiences.position}}</div>
-									   <div><div class="left-side__subtext">{{experiences.company}}</div></div>
-									</div>
-									<div class="left-side__date">
-										<span>{{experiences.startDate|date:"MM.yyyy"}}
-=======
 						<ul class="left-side__list side-list" >
 							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item">
 								<div class="side-list__header avoid-pdf-break">
 									<div class="left-side__text avoid-pdf-break">{{experiences.position}}</div>
 									<div class="left-side__date avoid-pdf-break"><span>{{experiences.startDate|date:"MM.yyyy"}}
->>>>>>> db6f1275c8bd14dcdb32151f5e630bd300bb2a12
 											-{{experiences.endDate|date:"MM.yyyy"}}</span>
 										<div>
 											<span
@@ -136,11 +124,7 @@
 										</div>
 									</div>
 								</div>
-<<<<<<< HEAD
-								
-=======
 								<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
->>>>>>> db6f1275c8bd14dcdb32151f5e630bd300bb2a12
 								<ul class="side-list__content-list">
 									<li class="side-list__content-item">
 										<span class="line"></span> {{experiences.description}}
