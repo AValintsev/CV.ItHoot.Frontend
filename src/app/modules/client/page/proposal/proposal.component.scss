@@ -310,3 +310,8 @@ button[disabled].deny {
    color: rgba(255, 255, 255, .7);
    background: rgba(243, 111, 12, .5);
 }
+
+::ng-deep .mat-tooltip.tooltip {
+   font-size: 1.6rem;
+   font-family: 'Inter';
+}

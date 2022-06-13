@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="template">
+    <cv-template-two [resumeEditForm]="templateForm"></cv-template-two>
+  </div>
+  <div class="create-page">
+    <div class="left-bar">
+      <cv-create-form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></cv-create-form-bar>
+      <div class="action">
+        <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
+          (click)="submit(resumeCreateForm.value)">Create</button>
+      </div>
+    </div>
+  </div>
+  <!-- <cv-cv-template [resumeEditForm]="templateForm"></cv-cv-template> -->
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <!-- <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template> -->
+  <div class="template">
+    <cv-template-two *ngIf="resumeEditDto" [resumeEditForm]="templateForm" ></cv-template-two>
+  </div>
+  
+
+  <div class="edit-page">
+    <form class="left-bar">
+      <cv-create-form-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto">
+      </cv-create-form-bar>
+      <div class="action">
+        <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid"
+                (click)="submit(resumeEditForm.value)">Edit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

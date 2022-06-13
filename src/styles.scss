@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  //overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 html,
@@ -97,4 +97,9 @@ a:visited {
   /* округлось бегунка */
   // border: 3px solid orange;
   /* отступ вокруг бегунка */
+}
+
+.delete-modal {
+  height:150px;
+  width:300px;
 }

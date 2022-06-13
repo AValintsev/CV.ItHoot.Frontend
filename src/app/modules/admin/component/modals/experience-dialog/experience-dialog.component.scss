@@ -1,0 +1,16 @@
+.experience-dialog{
+
+  .mat-dialog-content{
+    overflow: hidden;
+  }
+
+  .content{
+    display: grid;
+    gap: 10px;
+
+    .actions{
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

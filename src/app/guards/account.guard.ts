@@ -20,12 +20,14 @@ export class AccountGuard implements CanLoad, CanActivate {
 	constructor(private accountService: AccountService, private router: Router) { }
 	canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		if (this.accountService.isLoggedIn()) {
+			console.log('canLoad',route)
 			return false
 		}
 		return true
 	}
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		if (this.accountService.isLoggedIn()) {
+			console.log('canActiv', route.data.role)
 			return false
 		}
 		return true
