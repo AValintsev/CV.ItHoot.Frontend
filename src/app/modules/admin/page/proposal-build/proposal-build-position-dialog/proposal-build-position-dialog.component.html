@@ -1,0 +1,27 @@
+<div class="proposal-build-position-dialog">
+  <h1 mat-dialog-title *ngIf="dialogType == DialogType.Create">Add new position</h1>
+  <h1 mat-dialog-title *ngIf="dialogType == DialogType.Edit">Edit position</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Position</mat-label>
+      <mat-select [(value)]="position.positionId" (selectionChange)="positionChange()" disableOptionCentering>
+        <mat-option *ngFor="let position of positions" [value]="position.positionId" >
+          {{position.positionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Count members</mat-label>
+      <input type="number" matInput placeholder="2" [defaultValue]="10" [(ngModel)]="position.countMembers">
+    </mat-form-field>
+
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button [mat-dialog-close]="position" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Create">Create</button>
+    <button mat-button [mat-dialog-close]="position" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Edit">Edit</button>
+  </div>
+
+</div>

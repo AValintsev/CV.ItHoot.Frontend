@@ -1,0 +1,54 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title >Settings proposal</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Proposal name</mat-label>
+      <input matInput placeholder=".Net" [(ngModel)]="proposal.proposalName">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Client</mat-label>
+      <mat-select [(value)]="proposal.client" [compareWith]="compareUser" disableOptionCentering>
+        <mat-option *ngFor="let client of clients" [value]="client">
+          {{client.firstName}} {{client.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status proposal</mat-label>
+      <mat-select [(ngModel)]="proposal.statusProposal" disableOptionCentering>
+        <mat-option [value]="1">Created</mat-option>
+        <mat-option [value]="2">In Review</mat-option>
+        <mat-option [value]="3">Approved</mat-option>
+        <mat-option [value]="4">Done</mat-option>
+        <mat-option [value]="5">Denied</mat-option>
+        <mat-option [value]="6">In Working</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Template</mat-label>
+      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
+        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId" >
+          {{template.templateName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="checkbox-section">
+      <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()">Update</button>
+  </div>
+</div>

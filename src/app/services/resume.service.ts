@@ -5,7 +5,7 @@ import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/resume/small-resume-dto";
 import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
-import {TeamBuildPositionDto} from "../models/teamBuild/teamBuildPosition-dto";
+import {ProposalBuildPositionDto} from "../models/proposal-build/proposal-build-position-dto";
 import {PositionDto} from "../models/position/position-dto";
 
 
@@ -64,8 +64,8 @@ export class ResumeService {
     return this.httpService.getRequest(this.routePrefix+`/position?positions=${position}`);
   }
 
-  public getAllResumesByTeamBuild(teamBuildId:number):Observable<SmallResumeDto[]>{
-    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix+`/teamBuild/${teamBuildId}`);
+  public getAllResumesByProposalBuild(proposalBuildId:number):Observable<SmallResumeDto[]>{
+    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix+`/proposalBuild/${proposalBuildId}`);
 
   }
 }

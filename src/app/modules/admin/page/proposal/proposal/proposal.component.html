@@ -1,0 +1,89 @@
+<div class="proposal-page" *ngIf="proposal">
+  <div class="resume-list">
+    <div class="table-page">
+      <div class="title-section">
+        <div class="title">
+          <h1>Proposal {{proposal.proposalName}}</h1>
+          <span class="status">Status: {{getStatusProposal(proposal.statusProposal)}}</span>
+          <div class="client-section">
+            <span>
+            {{proposal.client?.firstName}} {{proposal.client?.lastName}}
+          </span>
+            <mat-icon matTooltip="Copy client login link" (click)="copyClientLink()">content_copy</mat-icon>
+          </div>
+        </div>
+        <div class="actions">
+          <button mat-raised-button (click)="openProposalDialog()">
+            <mat-icon>settings</mat-icon>
+          </button>
+          <button mat-raised-button (click)="openResumeDialog()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <table mat-table [dataSource]="proposal.resumes" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="resumeName">
+          <th mat-header-cell *matHeaderCellDef>Resume Name</th>
+          <td mat-cell *matCellDef="let resume"> {{resume.resumeName}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef>Full name</th>
+          <td mat-cell *matCellDef="let resume"> {{resume.firstName}} {{resume.lastName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="skills">
+          <th mat-header-cell *matHeaderCellDef>Skills</th>
+          <td mat-cell *matCellDef="let resume">
+            <div *ngIf="resume.skills.length > 0"><span
+              *ngFor="let skill of resume.skills, let i=index">{{skill.name}}{{i === resume.skills.length - 1 ? '' : ', '}} </span>
+            </div>
+            <div *ngIf="resume.skills.length <= 0"><span>None</span></div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let resume">
+            {{resume.positionName}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isSelected">
+          <th mat-header-cell *matHeaderCellDef>Is Selected</th>
+          <td mat-cell *matCellDef="let resume">
+            <mat-icon *ngIf="resume.statusResume == StatusResume.Selected">check</mat-icon>
+            <mat-icon *ngIf="resume.statusResume == StatusResume.NotSelected">close</mat-icon>
+            <span *ngIf="resume.statusResume == StatusResume.Denied">Denied</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
+          <td mat-cell *matCellDef="let resume">
+            <div class="action-wrapper" style="text-align: center">
+              <pdf-table-button [resume]="resume" [proposal]="proposal"></pdf-table-button>
+              <button mat-raised-button class="docx">DocX</button>
+              <div>
+                <button class="open" mat-raised-button [matMenuTriggerFor]="menu">Open</button>
+                <mat-menu #menu="matMenu" >
+                  <button mat-menu-item  routerLink="/admin/proposals/{{proposal.id}}/resume/{{resume.id}}">Open</button>
+                  <button mat-menu-item  (click)="copyResumeLink(resume)">Copy link</button>
+                </mat-menu>
+              </div>
+              <button mat-raised-button class="delete" (click)="deleteResume(resume)">Remove</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>

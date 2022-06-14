@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpInternalService} from "./http-internal.service";
 import {Observable} from "rxjs";
-import {TeamBuildComplexityDto} from "../models/teamBuild/teamBuildComplexity-dto";
+import {ProposalBuildComplexityDto} from "../models/proposal-build/proposal-build-complexity-dto";
 
 @Injectable({providedIn: 'root'})
 export class ComplexityService {
@@ -10,20 +10,20 @@ export class ComplexityService {
   constructor(private httpService: HttpInternalService) {
   }
 
-  public createComplexity(complexity:TeamBuildComplexityDto):Observable<TeamBuildComplexityDto>{
-    return this.httpService.postRequest<TeamBuildComplexityDto>(this.routePrefix,complexity);
+  public createComplexity(complexity:ProposalBuildComplexityDto):Observable<ProposalBuildComplexityDto>{
+    return this.httpService.postRequest<ProposalBuildComplexityDto>(this.routePrefix,complexity);
   }
 
-  public updateComplexity(complexity:TeamBuildComplexityDto):Observable<TeamBuildComplexityDto>{
-    return this.httpService.putRequest<TeamBuildComplexityDto>(this.routePrefix,complexity);
+  public updateComplexity(complexity:ProposalBuildComplexityDto):Observable<ProposalBuildComplexityDto>{
+    return this.httpService.putRequest<ProposalBuildComplexityDto>(this.routePrefix,complexity);
   }
 
-  public deleteComplexity(complexity:TeamBuildComplexityDto):Observable<TeamBuildComplexityDto>{
-    return this.httpService.deleteRequest<TeamBuildComplexityDto>(this.routePrefix+`/${complexity.id}`);
+  public deleteComplexity(complexity:ProposalBuildComplexityDto):Observable<ProposalBuildComplexityDto>{
+    return this.httpService.deleteRequest<ProposalBuildComplexityDto>(this.routePrefix+`/${complexity.id}`);
   }
 
-  public getAllComplexities(): Observable<TeamBuildComplexityDto[]> {
-    return this.httpService.getRequest<TeamBuildComplexityDto[]>(this.routePrefix)
+  public getAllComplexities(): Observable<ProposalBuildComplexityDto[]> {
+    return this.httpService.getRequest<ProposalBuildComplexityDto[]>(this.routePrefix)
   }
 
 }

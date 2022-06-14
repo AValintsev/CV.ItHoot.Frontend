@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {DialogType} from "../../../../../models/enums";
-import {TeamBuildComplexityDto} from "../../../../../models/teamBuild/teamBuildComplexity-dto";
+import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/proposal-build-complexity-dto";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
@@ -12,7 +12,7 @@ export class ComplexityDialogComponent implements OnInit {
 
   typeDialog: DialogType = DialogType.Create;
   DialogType = DialogType;
-  complexity:TeamBuildComplexityDto = {} as TeamBuildComplexityDto;
+  complexity:ProposalBuildComplexityDto = {} as ProposalBuildComplexityDto;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.complexity = data.data;

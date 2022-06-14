@@ -1,6 +1,6 @@
-import { ClientTeamService } from './../../../../services/client/client-team.service';
+import { ClientProposalService } from '../../../../services/client/client-proposal.service';
 import { switchMap, tap } from 'rxjs/operators';
-import { TeamService } from './../../../../services/team.service';
+import { ProposalService } from '../../../../services/proposal.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ export class ResumeComponent implements OnInit {
   resume!: ResumeDto
   constructor(
     private activatedRoute: ActivatedRoute,
-    private teamService: TeamService,
-    private clientTeamService:ClientTeamService
+    private proposalService: ProposalService,
+    private clientProposalService:ClientProposalService
   ) { }
 
   ngOnInit(): void {
@@ -28,23 +28,23 @@ export class ResumeComponent implements OnInit {
     this.activatedRoute.params.pipe(
       tap(params=>{
         this.showLogo=params.showLogo
-       
-        this.teamService.getTeamById(params.teamId).subscribe(
+
+        this.proposalService.getProposalById(params.proposalId).subscribe(
            response =>{
           if(response){
-             this.clientTeamService.headerTitle$.next(response.teamName)
+             this.clientProposalService.headerTitle$.next(response.proposalName)
           }
         }
         )
       }),
-      switchMap(params => this.teamService.getTeamResume(params.teamId, params.resumeId))
+      switchMap(params => this.proposalService.getProposalResume(params.proposalId, params.resumeId))
     ).subscribe({
-      next: response => { 
+      next: response => {
         this.resume = response.resume;
         this.resume.showLogo = response.showLogo;
         this.resumeTemplateId = response.resumeTemplateId;
         console.log('qqqqqqqqqqqqqqqqqqqq',response)
-      
+
       },
       error: error => console.log(error)
     })

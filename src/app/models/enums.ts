@@ -1,4 +1,4 @@
-export enum StatusTeam {
+export enum StatusProposal {
   Created = 1,
   InReview,
   Approved,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {ComplexityService} from "../../../../../services/complexity.service";
-import {TeamBuildComplexityDto} from "../../../../../models/teamBuild/teamBuildComplexity-dto";
+import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/proposal-build-complexity-dto";
 import {DialogType} from "../../../../../models/enums";
 import {SkillDto} from "../../../../../models/skill/skill-dto";
 import {SkillDialogComponent} from "../../skill/skill-dialog/skill-dialog.component";
@@ -16,7 +16,7 @@ import {ComplexityDialogComponent} from "../complexity-dialog/complexity-dialog.
 export class ComplexityPageComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'action'];
-  complexities: TeamBuildComplexityDto[] = [];
+  complexities: ProposalBuildComplexityDto[] = [];
 
   constructor(private complexityService: ComplexityService,
               public dialog: MatDialog,
@@ -28,7 +28,7 @@ export class ComplexityPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createComplexity(complexity:TeamBuildComplexityDto){
+  createComplexity(complexity:ProposalBuildComplexityDto){
     this.complexityService.createComplexity(complexity).subscribe(
       () => {
         this.snackBar.showSuccess('Created');
@@ -37,7 +37,7 @@ export class ComplexityPageComponent implements OnInit {
     )
   }
 
-  updateComplexity(complexity:TeamBuildComplexityDto){
+  updateComplexity(complexity:ProposalBuildComplexityDto){
     this.complexityService.updateComplexity(complexity).subscribe(
       () => {
         this.snackBar.showSuccess('Updated');
@@ -46,7 +46,7 @@ export class ComplexityPageComponent implements OnInit {
     )
   }
 
-  deleteComplexity(complexity:TeamBuildComplexityDto){
+  deleteComplexity(complexity:ProposalBuildComplexityDto){
     this.complexityService.deleteComplexity(complexity).subscribe(
       () => {
         this.snackBar.showSuccess('Deleted');
@@ -55,10 +55,10 @@ export class ComplexityPageComponent implements OnInit {
     )
   }
 
-  openComplexityDialog(complexity:TeamBuildComplexityDto| null = null){
+  openComplexityDialog(complexity:ProposalBuildComplexityDto| null = null){
     let dialogType: DialogType = DialogType.Edit;
     if (complexity == null) {
-      complexity = {} as TeamBuildComplexityDto;
+      complexity = {} as ProposalBuildComplexityDto;
       dialogType = DialogType.Create;
     }
 
@@ -68,7 +68,7 @@ export class ComplexityPageComponent implements OnInit {
       data: { type: dialogType, data: complexity },
     });
 
-    dialogRef.afterClosed().subscribe((complexity: TeamBuildComplexityDto) => {
+    dialogRef.afterClosed().subscribe((complexity: ProposalBuildComplexityDto) => {
       if (complexity == null)
         return;
       if (dialogType == DialogType.Create) {
