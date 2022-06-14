@@ -1,0 +1,59 @@
+.input-group {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 50% 50%;
+
+  @media (max-width:1000px) {
+    &>* {
+      grid-column: 2 span;
+    }
+  }
+
+  &> :nth-child(2) {
+    grid-column: span 2;
+  }
+
+  //&>:nth-child(12){
+  //  grid-column: span 2;
+  //}
+  &> :last-child {
+    grid-column: span 2;
+  }
+}
+
+.mat-card {
+  box-shadow: none;
+  background: transparent;
+}
+
+.mat-card-actions {
+  button {
+    background: transparent;
+  }
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+.price-section {
+  margin-top: 1.5rem;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.status-section {
+  display: flex;
+
+  mat-form-field {
+    flex: 1 1 50%;
+    &:first-child{
+      margin-right: .5rem;
+    }
+    &:last-child{
+      margin-left: .5rem;
+    }
+  }
+}

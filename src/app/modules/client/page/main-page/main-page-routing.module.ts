@@ -1,3 +1,4 @@
+import { ModalDeleteUserModule } from './../../../shared/modals/modal-delete-user/modal-delete-user.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TemplatesModule } from './../../../shared/templates/templates.module';
@@ -13,12 +14,12 @@ import { MainPageComponent } from './main-page.component';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from "@angular/material/button";
 import { FooterModule } from '../../shared/footer/footer.module';
-import { ModalDeleteUserComponent } from '../../component/modal-delete-user/modal-delete-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProposalsComponent } from '../proposals/proposals.component';
 import { ResumeComponent } from '../resume/resume.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProposalComponent } from '../proposal/proposal.component';
+
 
 
 const routes: Routes = [
@@ -42,7 +43,6 @@ const routes: Routes = [
   declarations: [
     MainPageComponent,
     ProposalsComponent,
-    ModalDeleteUserComponent,
     ResumeComponent,
     ProposalComponent
   ],
@@ -62,12 +62,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatTooltipModule,
+    ModalDeleteUserModule,
     RouterModule.forChild(routes),
   ],
   exports: [
     MainPageComponent,
     ProposalsComponent,
-    ModalDeleteUserComponent,
     ResumeComponent,
     ProposalComponent
   ],

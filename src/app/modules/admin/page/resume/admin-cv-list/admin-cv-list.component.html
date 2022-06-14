@@ -43,7 +43,8 @@
 <!--            <button class="docx">DocX</button>-->
             <button class="open" routerLink="/admin/resume/{{resume.id}}">Open</button>
             <button class="edit" routerLink="/admin/resume/edit/{{resume.id}}">Edit</button>
-            <button class="delete" (click)="deleteResume(resume)">Delete</button>
+            <button *ngIf="resume.deletedAt == null; else recoverButton" class="delete" (click)="deleteResume(resume)">Delete</button>
+            <ng-template #recoverButton><button class="recover" (click)="recoverResume(resume)">Recover</button></ng-template>
           </div>
         </td>
       </ng-container>

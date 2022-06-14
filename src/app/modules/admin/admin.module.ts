@@ -7,10 +7,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTableModule} from "@angular/material/table";
-import {FooterModule} from "../core/footer/footer.module";
-import {HeaderModule} from "../core/header/header.module";
 import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
 import {SideBarComponent} from "./component/side-bar/side-bar.component";
+import { HeaderModule } from './component/header/header.module';
+import { FooterModule } from './component/footer/footer.module';
 
 @NgModule({
 	imports:[

@@ -1,5 +1,7 @@
 <!--<cv-cv-template *ngIf="resume" id="doc" [resumeEditForm]="resume"></cv-cv-template>-->
 
 <!-- <cv-second-template *ngIf="resume" id="doc" [resumeEditForm]="resume"></cv-second-template> -->
-<cv-template-one *ngIf="resumeTemplateId==2"  id="doc"   [resumeEditForm]="resume"></cv-template-one>
+<div class="templates">
+	<cv-template-one *ngIf="resumeTemplateId==2"  id="doc"   [resumeEditForm]="resume"></cv-template-one>
 <cv-template-two *ngIf="resumeTemplateId==1"  id="doc"  [showPdfSave]="false"  [resumeEditForm]="resume"></cv-template-two>
+</div>

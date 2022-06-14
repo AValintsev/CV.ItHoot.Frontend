@@ -36,6 +36,10 @@ export class ResumeService {
     return this.httpService.deleteRequest(this.routePrefix + `/${id}`);
   }
 
+  public recoverResume(resume: SmallResumeDto): Observable<any> {
+    return this.httpService.putRequest(this.routePrefix + `/${resume.id}`, resume);
+  }
+
   public addPhoto(resumeId: number, image: Blob): Observable<any> {
 
     const data = new FormData();

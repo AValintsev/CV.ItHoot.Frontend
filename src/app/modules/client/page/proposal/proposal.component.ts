@@ -8,8 +8,8 @@ import { StatusProposal } from 'src/app/models/enums';
 import { StatusProposalResume, ProposalApprove, ProposalApproveResume, ProposalDto, ProposalResumeDto } from 'src/app/models/proposal/proposal-dto';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ProposalService } from 'src/app/services/proposal.service';
-import { ModalDeleteUserComponent } from '../../component/modal-delete-user/modal-delete-user.component';
 import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
+import { ModalDeleteUserComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
 
 
 @Component({
@@ -67,8 +67,7 @@ export class ProposalComponent implements OnInit, OnChanges {
   deleteCard(id: number, event: Event, index: number, length: number) {
     event.stopPropagation()
     let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
-      height: '150px',
-      width: '300px',
+      panelClass:'delete-modal'
     });
     dialogRef.afterClosed().subscribe({
       next: response => {
