@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
-    canLoad: [UserGuard]
+    // canLoad: [UserGuard]
   },
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),

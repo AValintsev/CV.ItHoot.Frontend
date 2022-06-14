@@ -5,6 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import * as saveAs from 'file-saver';
+import 'grapesjs-preset-webpage';
+declare var grapesjs: any;
 
 @Component({
   selector: 'cv-template-two',
@@ -12,6 +14,7 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./template-two.component.scss']
 })
 export class TemplateTwoComponent implements OnInit {
+  public editor:any = null
   User=Users
   color = '#37474f'
   userId!: number
@@ -25,7 +28,29 @@ export class TemplateTwoComponent implements OnInit {
   @Input() public showPdfSave:boolean = true
 
   ngOnInit(): void {
-    this.getStoreColor()
+    this.getStoreColor();
+    this.editor = grapesjs.init({
+      // Indicate where to init the editor. You can also pass an HTMLElement
+      container: '#gjs',
+      // Get the content for the canvas directly from the element
+      // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
+      fromElement: true,
+      // Size of the editor
+      height: '700px',
+      width: 'auto',
+      // Disable the storage manager for the moment
+      storageManager: false,
+      // Avoid any default panel
+      panels: { defaults: [] },
+      plugins: ['gjs-preset-webpage'],
+      pluginsOpts: {
+        'gjs-preset-webpage': {
+          blocksBasicOpts: {
+            blocks: ['column2', 'column3', 'column3-7', 'text', 'link', 'image', 'video'],
+            flexGrid: 1,
+          },
+        }}
+    })
   }
 
   getStoreColor() {
