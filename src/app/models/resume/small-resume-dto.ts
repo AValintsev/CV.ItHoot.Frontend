@@ -7,6 +7,7 @@ export interface SmallResumeDto{
   isDraft: true;
   firstName: string;
   lastName: string;
-  picture: string
+  picture: string;
+  deletedAt: string | null
   skills:SkillDto[];
 }
