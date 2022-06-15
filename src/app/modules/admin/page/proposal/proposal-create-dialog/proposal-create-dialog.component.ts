@@ -51,7 +51,7 @@ export class ProposalCreateDialogComponent implements OnInit {
       this.clients = clients;
     });
     this.resumeService.getAllResume().subscribe(resumes => {
-      this.allResumes = resumes;
+      this.allResumes = resumes.items;
       this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
         startWith(null),
         map((resumeName: string | null) => (resumeName ? this._filterResume(resumeName) : this.allResumes.slice())),

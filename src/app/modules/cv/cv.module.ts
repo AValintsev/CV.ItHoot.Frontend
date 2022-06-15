@@ -26,6 +26,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import { TemplatesModule } from '../shared/templates/templates.module';
 import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-switcher.component';
@@ -67,7 +68,8 @@ import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-
     TemplatesModule,
     CvSmallModule,
     TemplatesModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CvModule {

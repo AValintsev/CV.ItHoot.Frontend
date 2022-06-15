@@ -7,6 +7,8 @@ import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {ProposalBuildPositionDto} from "../models/proposal-build/proposal-build-position-dto";
 import {PositionDto} from "../models/position/position-dto";
+import {SortDirection} from '@angular/material/sort';
+import {PagedResponse} from "../models/paginations/paged-response";
 
 
 @Injectable({providedIn: 'root'})
@@ -20,8 +22,10 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix, resume);
   }
 
-  public getAllResume(): Observable<SmallResumeDto[]> {
-    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix);
+  public getAllResume(term: string = '', sort: string = '', order: SortDirection = '', page: number = 0): Observable<PagedResponse<SmallResumeDto[]>> {
+    // var requestUrl = `${this.routePrefix}?term=${term}&sort=${sort}&order=${order}&page=${page + 1}`;
+    var requestUrl = `${this.routePrefix}?term=${term}&sort=${sort}&order=${order}&page=${page + 1}&pageSize=30`;
+    return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
   }
 
   public getResumeById(id: number): Observable<ResumeDto> {
