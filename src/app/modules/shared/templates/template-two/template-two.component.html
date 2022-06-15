@@ -1,281 +1,282 @@
 
-	<div class="wrapper" id = "gjs">
-		
-		<div class="header-top">
-			<div class=" header-user" [style.background]="color">
-				<div class="header__icon-block">
-					<div class="header__label">
-						<img  src="../../../../../assets/no-image.png"
-							alt="user photo">
-						<ng-template #image>
-							<img src="{{resumeEditForm?.picture}}" alt="user photo">
-						</ng-template>
-					</div>
+	<div class="wrapper" >
+<div class="header-top">
+		<div class=" header-user" [style.background]="color">
+			<div class="header__icon-block">
+				<div class="header__label">
+					<img *ngIf="resumeEditForm?.picture == undefined; else image" src="../../../../../assets/no-image.png"
+						alt="user photo">
+					<ng-template #image>
+						<img src="{{resumeEditForm?.picture}}" alt="user photo">
+					</ng-template>
 				</div>
 			</div>
-			<div class="header-name">
-				<div class="header-name__inner">
-					<div *ngIf="resumeEditForm?.firstName" class="first-name">{{resumeEditForm?.firstName}}</div>
-					<div class="last-name">{{resumeEditForm?.lastName}}</div>
-					<div class="position">{{resumeEditForm?.resumeName}}</div>
+		</div>
+		<div class="header-name">
+			<div class="header-name__inner">
+				<div *ngIf="resumeEditForm?.firstName" class="first-name">{{resumeEditForm?.firstName}}</div>
+				<div class="last-name">{{resumeEditForm?.lastName}}</div>
+				<div class="position">{{resumeEditForm?.resumeName}}</div>
+			</div>
+		</div>
+		<div class="header-action">
+			<div *ngIf="showLogo" class="action-column">
+
+				<div *ngIf="resumeEditForm?.showLogo === undefined || resumeEditForm?.showLogo === true"
+					class="header-action__item img-block">
+					<img src="/assets/logo.jpg" alt="logo">
 				</div>
 			</div>
-			<div class="header-action">
-				<div *ngIf="showLogo" class="action-column">
-	
-					<div *ngIf="resumeEditForm?.showLogo === undefined || resumeEditForm?.showLogo === true"
-						class="header-action__item img-block">
-						<img src="/assets/logo.jpg" alt="logo">
-					</div>
+			<div class="action-column">
+				<div *ngIf="accountService.getStoreRole() === User[2]" class="header-action__item">
+					<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
 				</div>
-				<div class="action-column">
-					<div *ngIf="accountService.getStoreRole() === User[2]" class="header-action__item">
-						<input type="color" (ngModelChange)="storeColor($event)" [(ngModel)]="color">
+				<div class="header-action__item">
+
+					<svg *ngIf="showPdfSave"
+						(click)="savePdf(resumeEditForm.id, resumeEditForm?.firstName, resumeEditForm?.lastName)"
+						_ngcontent-sqy-c43="" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 31 32"
+						fill="none">
+						<path
+							d="M28.7853 0.5H2.21482C0.99355 0.5 0 1.49348 0 2.71475V29.2853C0 30.5065 0.99355 31.5 2.21482 31.5H28.7853C30.0066 31.5 31.0001 30.5065 31.0001 29.2853V2.71475C31.0001 1.49348 30.0066 0.5 28.7853 0.5ZM28.9784 8.43378H21.3124V16.2597C23.3053 17.0871 23.8127 19.6828 22.2903 21.205L17.6445 25.8509C16.4593 27.0361 14.541 27.0363 13.3557 25.8509L8.71006 21.2053C7.16538 19.6612 7.72196 17.0758 9.6877 16.2597V8.43378H2.02174V2.71475C2.02174 2.60827 2.10834 2.52167 2.21482 2.52167H28.7853C28.8918 2.52167 28.9784 2.60827 28.9784 2.71475V8.43378Z"
+							fill="black"></path>
+						<path
+							d="M5.17911 7.14338C6.15608 7.14338 6.94806 6.35139 6.94806 5.37442C6.94806 4.39746 6.15608 3.60547 5.17911 3.60547C4.20214 3.60547 3.41016 4.39746 3.41016 5.37442C3.41016 6.35139 4.20214 7.14338 5.17911 7.14338Z"
+							fill="black"></path>
+						<path
+							d="M20.1473 18.0512H19.292V8.22962C19.292 7.67135 18.8394 7.21875 18.2811 7.21875H12.7216C12.1633 7.21875 11.7107 7.67135 11.7107 8.22962V18.0512H10.8554C9.94805 18.0512 9.50981 19.1463 10.1407 19.7769L14.7865 24.4227C15.1813 24.8175 15.8213 24.8175 16.2161 24.4227L20.862 19.7769C20.862 19.7769 20.8621 19.7768 20.8621 19.7767C21.5026 19.1365 21.0373 18.0512 20.1473 18.0512Z"
+							fill="black"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+	<main class="main">
+		<div class="left-side">
+			<div *ngIf="resumeEditForm?.educations?.length" class="row">
+				<div class="header left-side__header" [style.background]="color">
+					<div class="header__title">
+						<span>Education</span>
 					</div>
-					<div class="header-action__item">
-	
-						<svg *ngIf="showPdfSave"
-							(click)="savePdf(resumeEditForm.id, resumeEditForm?.firstName, resumeEditForm?.lastName)"
-							_ngcontent-sqy-c43="" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 31 32"
-							fill="none">
-							<path
-								d="M28.7853 0.5H2.21482C0.99355 0.5 0 1.49348 0 2.71475V29.2853C0 30.5065 0.99355 31.5 2.21482 31.5H28.7853C30.0066 31.5 31.0001 30.5065 31.0001 29.2853V2.71475C31.0001 1.49348 30.0066 0.5 28.7853 0.5ZM28.9784 8.43378H21.3124V16.2597C23.3053 17.0871 23.8127 19.6828 22.2903 21.205L17.6445 25.8509C16.4593 27.0361 14.541 27.0363 13.3557 25.8509L8.71006 21.2053C7.16538 19.6612 7.72196 17.0758 9.6877 16.2597V8.43378H2.02174V2.71475C2.02174 2.60827 2.10834 2.52167 2.21482 2.52167H28.7853C28.8918 2.52167 28.9784 2.60827 28.9784 2.71475V8.43378Z"
-								fill="black"></path>
-							<path
-								d="M5.17911 7.14338C6.15608 7.14338 6.94806 6.35139 6.94806 5.37442C6.94806 4.39746 6.15608 3.60547 5.17911 3.60547C4.20214 3.60547 3.41016 4.39746 3.41016 5.37442C3.41016 6.35139 4.20214 7.14338 5.17911 7.14338Z"
-								fill="black"></path>
-							<path
-								d="M20.1473 18.0512H19.292V8.22962C19.292 7.67135 18.8394 7.21875 18.2811 7.21875H12.7216C12.1633 7.21875 11.7107 7.67135 11.7107 8.22962V18.0512H10.8554C9.94805 18.0512 9.50981 19.1463 10.1407 19.7769L14.7865 24.4227C15.1813 24.8175 15.8213 24.8175 16.2161 24.4227L20.862 19.7769C20.862 19.7769 20.8621 19.7768 20.8621 19.7767C21.5026 19.1365 21.0373 18.0512 20.1473 18.0512Z"
-								fill="black"></path>
+					<div class="header__icon">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 576 512">
+							<path fill="#fff"
+								d="M112 64h-96c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16v-352c0-8.8-7.2-16-16-16zM96 160h-64v-32h64v32z">
+							</path>
+							<path fill="#fff"
+								d="M272 64h-96c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16v-352c0-8.8-7.2-16-16-16zM256 160h-64v-32h64v32z">
+							</path>
+							<path fill="#fff"
+								d="M382.544 88.74l-85.732 43.197c-7.858 3.959-11.048 13.629-7.089 21.488l143.989 285.774c3.959 7.859 13.629 11.049 21.488 7.089l85.732-43.196c7.858-3.96 11.048-13.63 7.089-21.487l-143.989-285.775c-3.96-7.859-13.63-11.050-21.488-7.090z">
+							</path>
 						</svg>
+					</div>
+				</div>
+				<div class="content left-side__content">
+					<div class="left-side__inner">
+						<ul class="left-side__list side-list">
+							<li *ngFor="let education of resumeEditForm?.educations" class="side-list__item ">
+								<div class="side-list__header">
+									<div class="left-side__text">{{education.institutionName}}</div>
+									<div class="left-side__date">
+										<span>{{education.startDate|date:"MM.yyyy"}} - {{education.endDate|date:"MM.yyyy"}}</span>
+										<div><span
+												*ngIf="getYear(education.startDate,education.endDate)">{{getYear(education.startDate,education.endDate)}}&nbsp;{{getYear(education.startDate,education.endDate)
+												<=1?'year':'years'}}&nbsp;</span><span
+														*ngIf="getMonth(education.startDate,education.endDate)">{{getMonth(education.startDate,education.endDate)}}&nbsp;{{getMonth(education.startDate,education.endDate)==1?'month':'months'}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="side-list__content">{{education.specialization}}</div>
+								<!-- education description -->
+								<div class="side-list__content">{{education.description}}</div>
+								<!-- education description -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="resumeEditForm?.experiences?.length" class="row">
+				<div class="header left-side__header avoid-pdf-break" [style.background]="color">
+					<div class="header__title">
+						<span>Work experience</span>
+					</div>
+					<div class="header__icon ">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 -1 20 20">
+							<path fill="#fff"
+								d="M9 10h2v2h9c0 0-0.149-4.459-0.2-5.854-0.050-1.326-0.525-2.146-2-2.146h-3.208c-0.497-0.938-1.032-1.945-1.197-2.256-0.331-0.623-0.444-0.744-1.179-0.744h-4.433c-0.735 0-0.847 0.121-1.179 0.744-0.165 0.311-0.7 1.318-1.196 2.256h-3.209c-1.476 0-1.945 0.82-2 2.146s-0.199 5.854-0.199 5.854h9v-2zM7.649 2.916c0.23-0.432 0.308-0.516 0.817-0.516h3.067c0.509 0 0.588 0.084 0.816 0.516 0.086 0.16 0.318 0.6 0.575 1.084h-5.85c0.257-0.484 0.489-0.924 0.575-1.084zM11 15h-2v-2h-8.5c0 0 0.124 1.797 0.199 3.322 0.031 0.633 0.218 1.678 1.8 1.678h15.001c1.582 0 1.765-1.047 1.8-1.678 0.087-1.568 0.2-3.322 0.2-3.322h-8.5v2z">
+							</path>
+						</svg>
+					</div>
+				</div>
+				<div class="content left-side__content">
+					<div class="left-side__inner">
+						<ul class="left-side__list side-list" >
+							<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item">
+								<div class="side-list__header avoid-pdf-break">
+									<div class="left-side__text avoid-pdf-break">{{experiences.position}}</div>
+									<div class="left-side__date avoid-pdf-break"><span>{{experiences.startDate|date:"MM.yyyy"}}
+											-{{experiences.endDate|date:"MM.yyyy"}}</span>
+										<div>
+											<span
+												*ngIf="getYear(experiences.startDate,experiences.endDate)">{{getYear(experiences.startDate,experiences.endDate)}}&nbsp;{{getYear(experiences.startDate,experiences.endDate)
+												<=1?'year':'years'}}&nbsp; </span><span
+														*ngIf="getMonth(experiences.startDate,experiences.endDate)">{{getMonth(experiences.startDate,experiences.endDate)}}&nbsp;{{getMonth(experiences.startDate,experiences.endDate)==1?'month':'months'}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
+								<ul class="side-list__content-list">
+									<li class="side-list__content-item">
+										<span class="line"></span> {{experiences.description}}
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<main class="main">
-			<div class="left-side">
-				<div *ngIf="resumeEditForm?.educations?.length" class="row">
-					<div class="header left-side__header" [style.background]="color">
-						<div class="header__title">
-							<span>Education</span>
-						</div>
-						<div class="header__icon">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 576 512">
-								<path fill="#fff"
-									d="M112 64h-96c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16v-352c0-8.8-7.2-16-16-16zM96 160h-64v-32h64v32z">
-								</path>
-								<path fill="#fff"
-									d="M272 64h-96c-8.8 0-16 7.2-16 16v352c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16v-352c0-8.8-7.2-16-16-16zM256 160h-64v-32h64v32z">
-								</path>
-								<path fill="#fff"
-									d="M382.544 88.74l-85.732 43.197c-7.858 3.959-11.048 13.629-7.089 21.488l143.989 285.774c3.959 7.859 13.629 11.049 21.488 7.089l85.732-43.196c7.858-3.96 11.048-13.63 7.089-21.487l-143.989-285.775c-3.96-7.859-13.63-11.050-21.488-7.090z">
-								</path>
-							</svg>
-						</div>
+		<div class="right-side">
+			<div *ngIf="resumeEditForm?.skills?.length" class="row" id="skills">
+				<div class="header right-side__header" [style.background]="color">
+					<div class="header__icon right-side__header-icon">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
+							<path fill="#fff"
+								d="M288 224v-224c132.544 0 224 91.456 224 224h-224zM240 512c-132.544 0-240-107.456-240-240 0-144.544 105.456-240 256-240v224h224c0 132.544-107.456 256-240 256z">
+							</path>
+						</svg>
 					</div>
-					<div class="content left-side__content">
-						<div class="left-side__inner">
-							<ul class="left-side__list side-list">
-								<li *ngFor="let education of resumeEditForm?.educations" class="side-list__item ">
-									<div class="side-list__header">
-										<div class="left-side__text">{{education.institutionName}}</div>
-										<div class="left-side__date">
-											<span>{{education.startDate|date:"MM.yyyy"}} - {{education.endDate|date:"MM.yyyy"}}</span>
-											<div><span
-													*ngIf="getYear(education.startDate,education.endDate)">{{getYear(education.startDate,education.endDate)}}&nbsp;{{getYear(education.startDate,education.endDate)
-													<=1?'year':'years'}}&nbsp;</span><span
-															*ngIf="getMonth(education.startDate,education.endDate)">{{getMonth(education.startDate,education.endDate)}}&nbsp;{{getMonth(education.startDate,education.endDate)==1?'month':'months'}}</span>
-											</div>
-										</div>
-									</div>
-									<div class="side-list__content">{{education.specialization}}</div>
-									<div class="side-list__content">{{education.description}}</div>
-								</li>
-							</ul>
-						</div>
+					<div class="header__title">
+						<span>Skills</span>
 					</div>
+
 				</div>
-				<div *ngIf="resumeEditForm?.experiences?.length" class="row">
-					<div class="header left-side__header avoid-pdf-break" [style.background]="color">
-						<div class="header__title">
-							<span>Work experience</span>
-						</div>
-						<div class="header__icon ">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 -1 20 20">
-								<path fill="#fff"
-									d="M9 10h2v2h9c0 0-0.149-4.459-0.2-5.854-0.050-1.326-0.525-2.146-2-2.146h-3.208c-0.497-0.938-1.032-1.945-1.197-2.256-0.331-0.623-0.444-0.744-1.179-0.744h-4.433c-0.735 0-0.847 0.121-1.179 0.744-0.165 0.311-0.7 1.318-1.196 2.256h-3.209c-1.476 0-1.945 0.82-2 2.146s-0.199 5.854-0.199 5.854h9v-2zM7.649 2.916c0.23-0.432 0.308-0.516 0.817-0.516h3.067c0.509 0 0.588 0.084 0.816 0.516 0.086 0.16 0.318 0.6 0.575 1.084h-5.85c0.257-0.484 0.489-0.924 0.575-1.084zM11 15h-2v-2h-8.5c0 0 0.124 1.797 0.199 3.322 0.031 0.633 0.218 1.678 1.8 1.678h15.001c1.582 0 1.765-1.047 1.8-1.678 0.087-1.568 0.2-3.322 0.2-3.322h-8.5v2z">
-								</path>
-							</svg>
-						</div>
-					</div>
-					<div class="content left-side__content">
-						<div class="left-side__inner">
-							<ul class="left-side__list side-list" >
-								<li *ngFor="let experiences of resumeEditForm?.experiences" class="side-list__item">
-									<div class="side-list__header avoid-pdf-break">
-										<div class="left-side__text avoid-pdf-break">{{experiences.position}}</div>
-										<div class="left-side__date avoid-pdf-break"><span>{{experiences.startDate|date:"MM.yyyy"}}
-												-{{experiences.endDate|date:"MM.yyyy"}}</span>
-											<div>
-												<span
-													*ngIf="getYear(experiences.startDate,experiences.endDate)">{{getYear(experiences.startDate,experiences.endDate)}}&nbsp;{{getYear(experiences.startDate,experiences.endDate)
-													<=1?'year':'years'}}&nbsp; </span><span
-															*ngIf="getMonth(experiences.startDate,experiences.endDate)">{{getMonth(experiences.startDate,experiences.endDate)}}&nbsp;{{getMonth(experiences.startDate,experiences.endDate)==1?'month':'months'}}</span>
-											</div>
-										</div>
-									</div>
-									<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
-									<ul class="side-list__content-list">
-										<li class="side-list__content-item">
-											<span class="line"></span> {{experiences.description}}
-										</li>
-									</ul>
-								</li>
-							</ul>
+				<div class="content right-side__content">
+					<div class="right-side__inner skills">
+						<div *ngFor="let skill of resumeEditForm?.skills" class="spiner">
+							<div class="skill-name">
+								{{skill.skillName}}
+							</div>
+							<div class="value three-section">
+								<div *ngFor="let leng of getArray(5) let i = index"
+									[style.background]="skill.level>=(i+1)?'#fe8503':'#ddd'"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="right-side">
-				<div *ngIf="resumeEditForm?.skills?.length" class="row" id="skills">
-					<div class="header right-side__header" [style.background]="color">
-						<div class="header__icon right-side__header-icon">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
-								<path fill="#fff"
-									d="M288 224v-224c132.544 0 224 91.456 224 224h-224zM240 512c-132.544 0-240-107.456-240-240 0-144.544 105.456-240 256-240v224h224c0 132.544-107.456 256-240 256z">
-								</path>
-							</svg>
-						</div>
-						<div class="header__title">
-							<span>Skills</span>
-						</div>
-	
+				<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row" id="about-me">
+				<div class="header right-side__header" [style.background]="color">
+					<div class="header__icon right-side__header-icon">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
+							<path fill="#fff"
+								d="M448 160h-128v64h128v-64zM448 256h-128v32h128v-32zM288 160h-96v128h96v-128zM288 352h160v-32h-160v32zM384 416h64v-32h-64v32zM448 448h-256v32h256v-32zM352 384h-160v32h160v-32zM256 320h-64v32h64v-32zM544 32h-448c-17.696 0-32 14.304-32 32v512c0 17.664 14.304 32 32 32h448c17.696 0 32-14.336 32-32v-512c0-17.664-14.304-32-32-32zM512 544h-384v-448h384v448z">
+							</path>
+						</svg>
 					</div>
-					<div class="content right-side__content">
-						<div class="right-side__inner skills">
-							<div *ngFor="let skill of resumeEditForm?.skills" class="spiner">
-								<div class="skill-name">
-									{{skill.skillName}}
-								</div>
-								<div class="value three-section">
-									<div *ngFor="let leng of getArray(5) let i = index"
-										[style.background]="skill.level>=(i+1)?'#fe8503':'#ddd'"></div>
-								</div>
-							</div>
+					<div class="header__title">
+						<span>About</span>
+					</div>
+				</div>
+				<div class="content right-side__content">
+					<div class="right-side__inner">
+						<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
+							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
+						</div>
+						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me-content">
+              <p>{{resumeEditForm?.aboutMe}}</p>
 						</div>
 					</div>
 				</div>
-					<div *ngIf="resumeEditForm?.aboutMe || resumeEditForm?.birthdate" class="row" id="about-me">
-					<div class="header right-side__header" [style.background]="color">
-						<div class="header__icon right-side__header-icon">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
-								<path fill="#fff"
-									d="M448 160h-128v64h128v-64zM448 256h-128v32h128v-32zM288 160h-96v128h96v-128zM288 352h160v-32h-160v32zM384 416h64v-32h-64v32zM448 448h-256v32h256v-32zM352 384h-160v32h160v-32zM256 320h-64v32h64v-32zM544 32h-448c-17.696 0-32 14.304-32 32v512c0 17.664 14.304 32 32 32h448c17.696 0 32-14.336 32-32v-512c0-17.664-14.304-32-32-32zM512 544h-384v-448h384v448z">
-								</path>
-							</svg>
-						</div>
-						<div class="header__title">
-							<span>About</span>
-						</div>
-					</div>
-					<div class="content right-side__content">
-						<div class="right-side__inner">
-							<div *ngIf="resumeEditForm?.birthdate" class="right-side__age">
-								Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
-							</div>
-							<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me-content">
-				  <p>{{resumeEditForm?.aboutMe}}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div *ngIf="resumeEditForm?.country
-				||resumeEditForm?.city
-				||resumeEditForm?.street
-				||resumeEditForm?.email
-				||resumeEditForm?.phone" class="row" id="contacts">
-					<div class="header right-side__header" [style.background]="color">
-						<div class="header__icon right-side__header-icon">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
-								<path fill="#fff"
-									d="M320 640c-176.731 0-320-143.269-320-320s143.269-320 320-320v0c176.731 0 320 143.269 320 320s-143.269 320-320 320v0zM568 384c5.157-19.206 8.119-41.258 8.119-64s-2.962-44.794-8.521-65.788l0.403 1.788h-122.24c1.417 19.148 2.224 41.48 2.224 64s-0.808 44.852-2.395 66.968l0.171-2.968h122.24zM541.76 448h-103.040c-5.939 41.929-16.574 79.779-31.535 115.362l1.135-3.042c57.039-21.441 103.229-60.802 132.784-111.113l0.656-1.207zM258.56 384h122.88c1.659-19.168 2.605-41.473 2.605-64s-0.946-44.834-2.8-66.881l0.195 2.881h-122.88c-1.659 19.168-2.605 41.473-2.605 64s0.946 44.834 2.8 66.881l-0.195-2.881zM266.56 448c13.12 76.8 36.16 128 53.44 128s40.32-51.2 53.44-128h-106.88zM72 384h122.24c-1.417-19.148-2.224-41.48-2.224-64s0.807-44.852 2.395-66.968l-0.171 2.968h-122.24c-5.157 19.206-8.119 41.258-8.119 64s2.962 44.794 8.521 65.788l-0.403-1.788zM98.24 448c30.211 51.518 76.401 90.879 131.671 111.734l1.769 0.586c-13.44-30.72-23.68-69.12-30.4-112.32h-103.040zM541.76 192c-30.211-51.518-76.401-90.879-131.671-111.734l-1.769-0.586c13.44 30.72 23.68 69.12 30.4 112.32h103.040zM266.56 192h106.88c-13.12-76.8-36.16-128-53.44-128s-40.32 51.2-53.44 128zM98.24 192h103.040c6.4-43.2 16.96-81.6 30.4-112.32-57.039 21.441-103.229 60.802-132.784 111.113l-0.656 1.207z">
-								</path>
-							</svg>
-						</div>
-						<div class="header__title">
-							<span>Contacts</span>
-						</div>
-					</div>
-					<div class="content right-side__content">
-						<div class="right-side__inner">
-							<ul class="right-side__list side-list">
-								<li *ngIf="resumeEditForm?.phone" class="right-side-list__item telephone">
-									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="20"
-										viewBox="0 0 768 768">
-										<path fill="#37474f"
-											d="M640.5 492q13.5 0 22.5 9t9 22.5v111q0 37.5-31.5 37.5-223.5 0-384-160.5t-160.5-384q0-31.5 37.5-31.5h111q13.5 0 22.5 9t9 22.5q0 58.5 18 112.5 6 19.5-7.5 33l-61.5 54q69 144 220.5 217.5l49.5-63q9-9 22.5-9 7.5 0 10.5 1.5 54 18 112.5 18z">
-										</path>
-									</svg>
-									<span>{{resumeEditForm?.phone}}</span>
-								</li>
-								<li *ngIf="resumeEditForm?.email" class="right-side-list__item mail">
-									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-										viewBox="0 0 768 768">
-										<path fill="#37474f"
-											d="M608 224h-448c-35.328 0-64 28.672-64 64v288c0 35.328 28.672 64 64 64h448c35.328 0 64-28.672 64-64v-288c0-35.328-28.672-64-64-64zM298.112 458.112l51.264 44.8c9.76 8.512 22.112 12.736 34.624 12.736s24.864-4.256 34.624-12.736l51.264-44.8-1.184 1.184 116.672 116.672h-402.752l116.672-116.672-1.184-1.184zM160 553.376v-216.096l115.264 100.832-115.264 115.264zM492.736 438.112l115.264-100.832v216l-115.264-115.168zM608 288v6.72l-210.432 184.128c-7.264 6.336-19.872 6.336-27.136 0l-210.432-184.128v-6.72h448z">
-										</path>
-									</svg>
-									<span>{{resumeEditForm?.email}}</span>
-								</li>
-								<li *ngIf="resumeEditForm?.country
-							   ||resumeEditForm?.city
-							   ||resumeEditForm?.street" class="right-side-list__item location">
-									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="22"
-										viewBox="150 -11 550 768">
-										<path fill="#37474f"
-											d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
-										</path>
-									</svg>
-									<span> <span class="span-location">{{resumeEditForm?.country}}</span>&nbsp;<span
-											class="span-location">{{resumeEditForm?.city}}</span>&nbsp;<span
-											class="span-location">{{resumeEditForm?.street}}</span></span>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-	
-				<div *ngIf="resumeEditForm?.languages?.length" class="row">
-					<div class="header right-side__header" [style.background]="color">
-						<div class="header__icon right-side__header-icon">
-							<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
-								<path fill="#fff"
-									d="M256 0c-141.385 0-256 114.615-256 256s114.615 256 256 256 256-114.615 256-256-114.615-256-256-256zM256 480.001c-31.479 0-61.436-6.506-88.615-18.226l116.574-131.145c2.603-2.929 4.041-6.711 4.041-10.63v-48c0-8.837-7.163-16-16-16-56.495 0-116.102-58.731-116.687-59.313-3-3.001-7.070-4.687-11.313-4.687h-64c-8.836 0-16 7.164-16 16v96c0 6.061 3.424 11.601 8.845 14.311l55.155 27.578v93.943c-58.026-40.478-96-107.716-96-183.832 0-34.357 7.745-66.903 21.569-96h58.431c4.244 0 8.313-1.686 11.314-4.686l64-64c3-3.001 4.686-7.070 4.686-11.314v-38.706c20.281-6.037 41.759-9.294 64-9.294 35.203 0 68.502 8.13 98.141 22.6-2.072 1.751-4.088 3.582-6.023 5.518-18.133 18.132-28.118 42.239-28.118 67.882s9.985 49.75 28.118 67.882c18.217 18.216 42.609 28.132 67.817 28.13 1.583 0 3.171-0.040 4.759-0.118 6.907 25.901 19.376 93.328-4.202 186.167-0.222 0.872-0.348 1.744-0.421 2.612-40.662 41.54-97.35 67.328-160.071 67.328z">
-								</path>
-							</svg>
-						</div>
-						<div class="header__title">
-							<span>Languages</span>
-						</div>
-					</div>
-					<div class="content right-side__content">
-						<div class="right-side__inner languages">
-							<div *ngFor="let language of resumeEditForm?.languages" class="spiner">
-								<div class="language-name">
-									{{language.languageName}}
-								</div>
-								<div class="value four-section">
-									<div *ngFor="let leng of getArray(5) let i = index"
-										[style.background]="language.level>=(i+1)?'#fe8503':'#ddd'"></div>
-									<!-- <div class="value-box" [style.width.%]="language.level*25"></div> -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-	
 			</div>
-	
-		</main>
+			<div *ngIf="resumeEditForm?.country
+			||resumeEditForm?.city
+			||resumeEditForm?.street
+			||resumeEditForm?.email
+			||resumeEditForm?.phone" class="row" id="contacts">
+				<div class="header right-side__header" [style.background]="color">
+					<div class="header__icon right-side__header-icon">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 640 640">
+							<path fill="#fff"
+								d="M320 640c-176.731 0-320-143.269-320-320s143.269-320 320-320v0c176.731 0 320 143.269 320 320s-143.269 320-320 320v0zM568 384c5.157-19.206 8.119-41.258 8.119-64s-2.962-44.794-8.521-65.788l0.403 1.788h-122.24c1.417 19.148 2.224 41.48 2.224 64s-0.808 44.852-2.395 66.968l0.171-2.968h122.24zM541.76 448h-103.040c-5.939 41.929-16.574 79.779-31.535 115.362l1.135-3.042c57.039-21.441 103.229-60.802 132.784-111.113l0.656-1.207zM258.56 384h122.88c1.659-19.168 2.605-41.473 2.605-64s-0.946-44.834-2.8-66.881l0.195 2.881h-122.88c-1.659 19.168-2.605 41.473-2.605 64s0.946 44.834 2.8 66.881l-0.195-2.881zM266.56 448c13.12 76.8 36.16 128 53.44 128s40.32-51.2 53.44-128h-106.88zM72 384h122.24c-1.417-19.148-2.224-41.48-2.224-64s0.807-44.852 2.395-66.968l-0.171 2.968h-122.24c-5.157 19.206-8.119 41.258-8.119 64s2.962 44.794 8.521 65.788l-0.403-1.788zM98.24 448c30.211 51.518 76.401 90.879 131.671 111.734l1.769 0.586c-13.44-30.72-23.68-69.12-30.4-112.32h-103.040zM541.76 192c-30.211-51.518-76.401-90.879-131.671-111.734l-1.769-0.586c13.44 30.72 23.68 69.12 30.4 112.32h103.040zM266.56 192h106.88c-13.12-76.8-36.16-128-53.44-128s-40.32 51.2-53.44 128zM98.24 192h103.040c6.4-43.2 16.96-81.6 30.4-112.32-57.039 21.441-103.229 60.802-132.784 111.113l-0.656 1.207z">
+							</path>
+						</svg>
+					</div>
+					<div class="header__title">
+						<span>Contacts</span>
+					</div>
+				</div>
+				<div class="content right-side__content">
+					<div class="right-side__inner">
+						<ul class="right-side__list side-list">
+							<li *ngIf="resumeEditForm?.phone" class="right-side-list__item telephone">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="20"
+									viewBox="0 0 768 768">
+									<path fill="#37474f"
+										d="M640.5 492q13.5 0 22.5 9t9 22.5v111q0 37.5-31.5 37.5-223.5 0-384-160.5t-160.5-384q0-31.5 37.5-31.5h111q13.5 0 22.5 9t9 22.5q0 58.5 18 112.5 6 19.5-7.5 33l-61.5 54q69 144 220.5 217.5l49.5-63q9-9 22.5-9 7.5 0 10.5 1.5 54 18 112.5 18z">
+									</path>
+								</svg>
+								<span>{{resumeEditForm?.phone}}</span>
+							</li>
+							<li *ngIf="resumeEditForm?.email" class="right-side-list__item mail">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+									viewBox="0 0 768 768">
+									<path fill="#37474f"
+										d="M608 224h-448c-35.328 0-64 28.672-64 64v288c0 35.328 28.672 64 64 64h448c35.328 0 64-28.672 64-64v-288c0-35.328-28.672-64-64-64zM298.112 458.112l51.264 44.8c9.76 8.512 22.112 12.736 34.624 12.736s24.864-4.256 34.624-12.736l51.264-44.8-1.184 1.184 116.672 116.672h-402.752l116.672-116.672-1.184-1.184zM160 553.376v-216.096l115.264 100.832-115.264 115.264zM492.736 438.112l115.264-100.832v216l-115.264-115.168zM608 288v6.72l-210.432 184.128c-7.264 6.336-19.872 6.336-27.136 0l-210.432-184.128v-6.72h448z">
+									</path>
+								</svg>
+								<span>{{resumeEditForm?.email}}</span>
+							</li>
+							<li *ngIf="resumeEditForm?.country
+			               ||resumeEditForm?.city
+			               ||resumeEditForm?.street" class="right-side-list__item location">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="22"
+									viewBox="150 -11 550 768">
+									<path fill="#37474f"
+										d="M384 367.5q33 0 56.25-23.25t23.25-56.25-23.25-56.25-56.25-23.25-56.25 23.25-23.25 56.25 23.25 56.25 56.25 23.25zM384 64.5q93 0 158.25 65.25t65.25 158.25q0 46.5-23.25 106.5t-56.25 112.5-65.25 98.25-54.75 72.75l-24 25.5q-9-10.5-24-27.75t-54-69-68.25-100.5-53.25-110.25-24-108q0-93 65.25-158.25t158.25-65.25z">
+									</path>
+								</svg>
+								<span> <span class="span-location">{{resumeEditForm?.country}}</span>&nbsp;<span
+										class="span-location">{{resumeEditForm?.city}}</span>&nbsp;<span
+										class="span-location">{{resumeEditForm?.street}}</span></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div *ngIf="resumeEditForm?.languages?.length" class="row">
+				<div class="header right-side__header" [style.background]="color">
+					<div class="header__icon right-side__header-icon">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 512 512">
+							<path fill="#fff"
+								d="M256 0c-141.385 0-256 114.615-256 256s114.615 256 256 256 256-114.615 256-256-114.615-256-256-256zM256 480.001c-31.479 0-61.436-6.506-88.615-18.226l116.574-131.145c2.603-2.929 4.041-6.711 4.041-10.63v-48c0-8.837-7.163-16-16-16-56.495 0-116.102-58.731-116.687-59.313-3-3.001-7.070-4.687-11.313-4.687h-64c-8.836 0-16 7.164-16 16v96c0 6.061 3.424 11.601 8.845 14.311l55.155 27.578v93.943c-58.026-40.478-96-107.716-96-183.832 0-34.357 7.745-66.903 21.569-96h58.431c4.244 0 8.313-1.686 11.314-4.686l64-64c3-3.001 4.686-7.070 4.686-11.314v-38.706c20.281-6.037 41.759-9.294 64-9.294 35.203 0 68.502 8.13 98.141 22.6-2.072 1.751-4.088 3.582-6.023 5.518-18.133 18.132-28.118 42.239-28.118 67.882s9.985 49.75 28.118 67.882c18.217 18.216 42.609 28.132 67.817 28.13 1.583 0 3.171-0.040 4.759-0.118 6.907 25.901 19.376 93.328-4.202 186.167-0.222 0.872-0.348 1.744-0.421 2.612-40.662 41.54-97.35 67.328-160.071 67.328z">
+							</path>
+						</svg>
+					</div>
+					<div class="header__title">
+						<span>Languages</span>
+					</div>
+				</div>
+				<div class="content right-side__content">
+					<div class="right-side__inner languages">
+						<div *ngFor="let language of resumeEditForm?.languages" class="spiner">
+							<div class="language-name">
+								{{language.languageName}}
+							</div>
+							<div class="value four-section">
+								<div *ngFor="let leng of getArray(5) let i = index"
+									[style.background]="language.level>=(i+1)?'#fe8503':'#ddd'"></div>
+								<!-- <div class="value-box" [style.width.%]="language.level*25"></div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</main>
 	</div>
 

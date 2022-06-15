@@ -3,7 +3,7 @@
   background: #E5E5E5;
   display: grid;
   align-items: start;
-  grid-template-columns: 15% auto;
+  grid-template-columns: minmax(22rem,35rem) auto;
 
   .page-content {
     padding: 30px;
@@ -13,20 +13,20 @@
 
   cv-side-bar {
     height: calc(100vh - 160px);
-    background-color: black;
+    background-color: #fff;
   }
 
-  @media (max-width: 1450px) {
-    & {
-      grid-template-columns: 17% auto;
-    }
-  }
+  // @media (max-width: 1450px) {
+  //   & {
+  //     grid-template-columns: 17% auto;
+  //   }
+  // }
 
-  @media (max-width: 1290px) {
-    & {
-      grid-template-columns: 20% auto;
-    }
-  }
+  // @media (max-width: 1290px) {
+  //   & {
+  //     grid-template-columns: 20% auto;
+  //   }
+  // }
 
 
 }

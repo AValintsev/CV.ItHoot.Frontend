@@ -89,9 +89,12 @@
 							<div class="card__user-name">{{resume.firstName}}</div>
 							<div class="card__user-last-name">{{resume.lastName}}</div>
 						</div>
-						<ul class="card__user-position">
+						<div class="card__user-position">
+							<ul class="card__user-position-list">
 							<li *ngFor="let skill of resume.skills">{{skill.name}}</li>
 						</ul>
+						</div>
+						
 						<div class="card__user-btns">
 							<div class="card__user-btns-inner">
 								<button [disabled]="status == statusProposal.Approved"
