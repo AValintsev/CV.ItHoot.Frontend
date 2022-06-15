@@ -7,7 +7,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 @Component({
   selector: 'cv-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../../../shared/styles/auth.scss']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('user@example.com', [Validators.required, Validators.email]),
-      password: new FormControl('12345678', [Validators.required])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required,Validators.minLength(6)])
     })
   }
 
   onSubmit() {
-    if (this.loginForm.value) {
+    if (this.loginForm.valid) {
       this.accountService.login(this.loginForm.value).subscribe({
         next: next => {
           this.router.navigate([''])

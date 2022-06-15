@@ -1,57 +1,33 @@
 <div class="main-block">
-  <div class="container">
-    <div class="form-wrapper">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h2 class="form-title">Login</h2>
-        <div class="my-form-control">
-          <input formControlName="email" type="text" spellcheck="false" name="email">
-          <span class="line" [ngClass]="{ 'bg-grey': loginForm.get('email')?.pristine,
-                        'bg-green': loginForm.get('email')?.valid,
-                        'bg-red': loginForm.get('email')?.invalid && loginForm.get('email')?.dirty
-                      }">
-          </span>
-          <span class="label grey-text">E-mail</span>
-        </div>
-
-        <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="red-text">
-          * Field is invalid
-          <span *ngIf="loginForm.get('email')?.errors?.required">
-            field is required
-          </span>
-          <span *ngIf="loginForm.get('email')?.errors?.email">
-            email format is incorrect
-          </span>
-        </div>
-
-        <div class="my-form-control">
-          <input formControlName='password' type="password" spellcheck="false" name="password" />
-          <span class="line" [ngClass]="{ 'bg-grey': loginForm.get('password')?.pristine,
-                        'bg-green': loginForm.get('password')?.valid,
-                        'bg-red': loginForm.get('password')?.invalid && loginForm.get('password')?.dirty
-                      }">
-          </span>
-          <span class="label grey-text">Password</span>
-        </div>
-
-        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="red-text">
-          * Field is invalid
-          <span *ngIf="loginForm.get('password')?.errors?.required">
-            password is required
-          </span>
-        </div>
-
-        <ul class="text-danger list-unstyled" *ngIf="errors">
-          <li *ngFor="let error of errors">
-            {{error}}
-          </li>
-        </ul>
-
-        <div class="my-form-control">
-          <button type="submit" class="form-btn" [disabled]="!loginForm?.valid">Confirm</button>
-        </div>
-        <!-- <pre>{{loginForm.valid}}</pre> -->
-        <a class="link" routerLink="/account/registration" routerLinkActive="active">Create account</a>
-      </form>
-    </div>
+  <div class="inner">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+              <input matInput type="text" matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-error *ngIf="loginForm?.get('email')?.errors?.required&&loginForm?.get('email')?.touched">Enter email</mat-error>
+            <mat-error *ngIf="loginForm?.get('email')?.errors?.email&&loginForm?.get('email')?.touched">Enter correct email</mat-error>
+            <mat-form-field>
+              <input matInput type="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+                <mat-error *ngIf="loginForm?.get('password')?.errors?.required&&loginForm?.get('password')?.touched">Enter password</mat-error>
+                <mat-error *ngIf="loginForm?.get('password')?.errors?.minlength&&loginForm?.get('password')?.touched">Enter a password of at least {{loginForm?.get('password')?.errors?.minlength?.requiredLength}} characters</mat-error>
+          <div class="button">
+            <button [disabled]="!loginForm.valid" type="submit" mat-raised-button >Login</button>
+          </div>
+          <div class="or">
+            <span ></span>
+            <span class="or-text">or</span>
+            <span></span>
+          </div>
+          <div class="link-wrapper">
+            <a class="link" routerLink="/account/registration" routerLinkActive="active">Create account</a>
+          </div>
+          
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
