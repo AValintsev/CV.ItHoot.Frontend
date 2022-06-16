@@ -1,35 +1,41 @@
-import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
+import {Component, ViewChild, AfterViewInit, OnDestroy, OnInit,} from '@angular/core';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
 import { Users } from 'src/app/models/users-type';
 import { AccountService } from 'src/app/services/account.service';
 import {FormControl} from "@angular/forms";
-import {debounceTime, distinctUntilChanged, map, startWith, switchMap, catchError} from "rxjs/operators";
-import {merge, Observable, of as observableOf} from "rxjs";
+import {debounceTime, map, startWith, switchMap, catchError, takeUntil, take} from "rxjs/operators";
+import {merge, of as observableOf, ReplaySubject, Subject} from "rxjs";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import {PositionDto} from "src/app/models/position/position-dto";
 import {PositionService} from "src/app/services/position.service";
 import {SkillDto} from "src/app/models/skill/skill-dto";
 import {SkillService} from "src/app/services/skill.service";
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'cv-admin-resume',
   templateUrl: './admin-cv-list.component.html',
   styleUrls: ['./admin-cv-list.component.scss']
 })
-export class AdminCvListComponent implements AfterViewInit {
+export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'position', 'skills', 'loading', 'status', 'action'];
   resumes: SmallResumeDto[] = [];
   searchControl = new FormControl();
 
-  positionControl = new FormControl();
-  skillsControl = new FormControl();
   positions!:PositionDto[];
+  positionControl = new FormControl();
+  positionFilterControl = new FormControl();
+  filteredPositionsMulti: ReplaySubject<PositionDto[]> = new ReplaySubject(1);
+
   skills!:SkillDto[];
+  skillsControl = new FormControl();
+  skillFilterControl = new FormControl();
+  filteredSkillsMulti: ReplaySubject<SkillDto[]> = new ReplaySubject(1);
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -37,6 +43,10 @@ export class AdminCvListComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('positionMultiSelect', { static: true }) positionMultiSelect: MatSelect;
+  @ViewChild('skillMultiSelect', { static: true }) skillMultiSelect: MatSelect;
+
+  protected _onDestroy = new Subject();
 
   constructor(
     public resumeService: ResumeService,
@@ -45,18 +55,42 @@ export class AdminCvListComponent implements AfterViewInit {
     private positionService:PositionService,
     private skillService: SkillService,
   ) {
-    positionService.getAllPositions().subscribe(positions => {
-      this.positions = positions
-    });
 
     skillService.searchSkill('').subscribe(skills => {
       this.skills = skills
     });
   }
+
+  ngOnInit() {
+
+    this.positionService.getAllPositions().subscribe(positions => {
+      this.positions = positions;
+      this.filteredPositionsMulti.next(this.positions.slice());
+      
+      this.positionFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterMulti(this.positions, "positionName", this.positionFilterControl, this.filteredPositionsMulti);
+      });
+    });
+        
+    this.skillService.searchSkill('').subscribe(skills => {
+      this.skills = skills;
+
+      this.filteredSkillsMulti.next(this.skills.slice());
+      
+      this.skillFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterMulti(this.skills, "name", this.skillFilterControl, this.filteredSkillsMulti);
+      });
+    });
+  }
+
   ngAfterViewInit() {
     // If the user changes the sort order, search or filters, reset back to the first page.
     merge(this.sort.sortChange, this.searchControl.valueChanges, this.skillsControl.valueChanges, this.positionControl.valueChanges)
-      .subscribe(() => (this.paginator.pageIndex = 0));
+      .subscribe(() => (this.paginator.pageIndex = 0));     
 
     merge(this.sort.sortChange, 
           this.paginator.page, 
@@ -69,13 +103,17 @@ export class AdminCvListComponent implements AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           var term = this.searchControl.value ?? '';
-          var values = this.skillsControl.value as SkillDto[];
+          // var valv = this.positionMultiSelect.value as number[];
+          var values = this.positionControl.value as number[];
           console.log(values);
+          // console.log(valv);
           return this.resumeService!.getAllResume(
             term,
             this.sort.active,
             this.sort.direction,
             this.paginator.pageIndex,
+            this.positionControl.value,
+            this.skillsControl.value
           ).pipe(catchError(() => observableOf(null)));
         }),
         map(data => {
@@ -95,6 +133,9 @@ export class AdminCvListComponent implements AfterViewInit {
         }),
       )
       .subscribe(data => (this.resumes = data));
+
+      this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
+      this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
   }
 
   deleteResume(resume: SmallResumeDto): void {
@@ -140,5 +181,36 @@ export class AdminCvListComponent implements AfterViewInit {
           this.snackService.showDanger('Something went wrong');
         }
       });
+  }
+
+  protected setInitialValue(filteredMulti: ReplaySubject<any>, multiSelect: MatSelect) {
+    filteredMulti
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
+      });
+  }
+
+  protected filterMulti(list: any[], filterFieldName: string, filterControl: FormControl, filteredMulti: ReplaySubject<any>) {
+    if (!list) {
+      return;
+    }
+  
+    let search = filterControl.value;
+    if (!search) {
+      filteredMulti.next(list.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    filteredMulti.next(
+      list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
+    );
+  }
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 }

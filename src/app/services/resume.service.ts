@@ -22,9 +22,21 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix, resume);
   }
 
-  public getAllResume(term: string = '', sort: string = '', order: SortDirection = '', page: number = 0): Observable<PagedResponse<SmallResumeDto[]>> {
-    // var requestUrl = `${this.routePrefix}?term=${term}&sort=${sort}&order=${order}&page=${page + 1}`;
+  public getAllResume(term: string = '', sort: string = '', order: SortDirection = '', page: number = 0, positions: number[] = [], skills: number[] = []): Observable<PagedResponse<SmallResumeDto[]>> {
     var requestUrl = `${this.routePrefix}?term=${term}&sort=${sort}&order=${order}&page=${page + 1}&pageSize=30`;
+
+    if (positions) {
+      positions.forEach(item => {
+        requestUrl = `${requestUrl}&positions=${item}`
+      });
+    }
+    
+    if(skills) {
+      skills.forEach(item => {
+        requestUrl = `${requestUrl}&skills=${item}`
+      });
+    }
+    
     return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
   }
 
