@@ -13,6 +13,7 @@
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid"
                 (click)="submit(resumeEditForm.value)">Edit
         </button>
+        <pre>{{!resumeEditForm.valid|json}}</pre>
       </div>
     </form>
   </div>

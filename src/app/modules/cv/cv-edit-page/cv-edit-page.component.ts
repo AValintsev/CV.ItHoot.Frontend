@@ -3,10 +3,11 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 import { AccountService } from 'src/app/services/account.service';
 import { Users } from 'src/app/models/users-type';
 import {ResumeDto} from "../../../models/resume/resume-dto";
+import { of } from 'rxjs';
 
 
 
@@ -22,26 +23,25 @@ export class CvEditPageComponent implements OnInit {
   templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
-
-
   constructor(private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService
   ) {
+
+  }
+
+  ngOnInit(): void {
+     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!)
       });
     });
-    this.validateForm()
+   
     this.changeFormDate()
-  }
-
-  ngOnInit(): void {
-
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
@@ -163,6 +163,7 @@ export class CvEditPageComponent implements OnInit {
 
 
   submit(resume: ResumeDto) {
+    if(this.resumeEditForm.valid){
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Edited');
@@ -181,5 +182,10 @@ export class CvEditPageComponent implements OnInit {
       }
     })
   }
-
+}
+ checkValidBtn(){
+ return  of(!this.resumeEditForm.valid).pipe(
+    delay(0)
+   )
+ }
 }

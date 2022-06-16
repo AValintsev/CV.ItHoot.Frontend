@@ -48,6 +48,7 @@ mat-card-title {
    justify-content: center;
    text-align: center;
    user-select: none;
+   margin-bottom: 1rem;
 }
 
 mat-card-title,
@@ -57,7 +58,9 @@ mat-card-content {
    flex: 1 1 100%;
 }
 
-
+mat-form-field {
+   // margin-bottom: 1rem;
+}
 
 .button {
    margin-top: 2rem;

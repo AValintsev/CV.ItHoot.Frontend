@@ -29,6 +29,7 @@ export class CvLeftBarComponent implements OnInit {
   public resume!: ResumeDto;
   file: File | null = null;
   positions!:PositionDto[];
+  maxDate = new Date(Date.now())
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
@@ -200,6 +201,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
+      panelClass:'remove-style-scroll',
       data: { type: dialogType, data: data },
     });
 
@@ -254,6 +256,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
+      panelClass:'remove-style-scroll',
       data: { type: dialogType, data: data },
     });
 

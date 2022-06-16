@@ -30,6 +30,7 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
 
   ngOnInit(): void {
     this.getStoreColor();
+    console.log('template', this.resumeEditForm)
  
   }
  ngAfterContentInit(){
@@ -88,8 +89,8 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
     let start =  Date.parse(startDate)
     let end = Date.parse(endDate)
     if(end>=start){
-      let t = end - start;
-      return Math.floor(t / (1000 * 60 * 60 * 24 * 30 * 12));
+      let time = end - start;
+      return Math.floor(time / (1000 * 60 * 60 * 24 * 30 * 12));
     }
     return 0
   }
@@ -97,9 +98,8 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
     let start = Date.parse(startDate)
     let end = Date.parse(endDate)
     if (end >= start) {
-      let t = end - start;
-
-        return Math.floor(t / (1000 * 60 * 60 * 24 * 30) % 12);
+      let time = end - start;
+        return Math.floor(time / (1000 * 60 * 60 * 24 * 30) % 12);
     }
     return 0
   }
