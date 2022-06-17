@@ -1,36 +1,5 @@
 <form [formGroup]="resumeForm">
   <div class="input-group">
-        <!-- <mat-form-field appearance="fill">
-          <mat-label>Name resume</mat-label>
-         <input type="text">
-        </mat-form-field> -->
-<!--        <label style="-->
-<!--        display: flex;-->
-<!--  justify-content: center;-->
-<!--  align-items: center;-->
-<!--  width: 132px;-->
-<!--  height: 32px;-->
-<!--  margin: 11px 0 0;-->
-<!--  padding: 8px 20px 7px;-->
-<!--  border-radius: 5px;-->
-<!--  font-family: OpenSans;-->
-<!--  font-size: 12px;-->
-<!--  text-align: center;-->
-<!--  background-color: #f5f6f7;-->
-<!--  color: #282828;-->
-<!--  cursor: pointer;-->
-<!--        ">-->
-<!--        <span style="-->
-<!--          margin-bottom: 7px;-->
-<!--  font-family: Montserrat;-->
-<!--  font-size: 16px;-->
-<!--  font-weight: 600;-->
-<!--  color: #282828;-->
-<!--        ">Save icon</span>-->
-<!--          <input style="display: none;" type="file" (input)="addPicture($event)">-->
-<!--        </label>-->
-<!--     <button (click)="getPhoto()">getPhoto</button>   -->
-
     <input id="fileInput" type='file' (change)="onSelectFile($event)">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
@@ -67,7 +36,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Date of birth</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthdate">
+      <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="birthdate">
       <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -145,7 +114,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>About me</mat-label>
-      <textarea matInput placeholder="I'm Nikita" formControlName="aboutMe"></textarea>
+      <textarea rows="5" class="textarea" matInput placeholder="I'm Nikita" formControlName="aboutMe"></textarea>
       <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required']">
         About me is required
       </mat-error>

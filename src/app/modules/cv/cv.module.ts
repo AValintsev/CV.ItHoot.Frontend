@@ -29,6 +29,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import { TemplatesModule } from '../shared/templates/templates.module';
 import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-switcher.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-
     CvEditPageComponent,
     UserCvListComponent,
     ResumeFullSwitcherComponent,
+    DeleteComponent,
   ],
   imports: [
     CommonModule,

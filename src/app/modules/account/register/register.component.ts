@@ -7,7 +7,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 @Component({
   selector: 'cv-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../../../shared/styles/auth.scss']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -24,15 +24,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = new FormGroup(
       {
-        email: new FormControl('user@example.com', [Validators.required, Validators.email]),
-        password: new FormControl('12345678', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required]),
         confirmPassword: new FormControl('', [Validators.required])
       }
     )
   }
 
   onSubmit() {
-
+    if (this.registerForm.valid) {
     this.accountService.register(
       {
         email: this.registerForm.value.email,
@@ -48,3 +48,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 }
+}
+
+
+// user @example.co

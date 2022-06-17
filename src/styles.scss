@@ -100,6 +100,28 @@ a:visited {
 }
 
 .delete-modal {
-  height:150px;
-  width:300px;
+  height: 150px;
+  width: 300px;
 }
+
+.admin-btn {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// resets the styles in the scroll-bar material in the component,but you need to add panelClass: 'remove-style-scroll'
+
+.remove-style-scroll {
+  .mat-dialog-actions {
+    margin-bottom: 0 !important;
+  }
+
+  
+}
+
+.change-material-style{
+  .mat-dialog-content{
+    max-height: 85vh !important;
+  }
+}
+

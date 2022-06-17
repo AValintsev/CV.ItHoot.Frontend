@@ -28,6 +28,7 @@ export class ProposalListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ProposalCreateDialogComponent, {
       autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style'],
       data: proposal
     });
 

@@ -41,7 +41,9 @@ export class CvCreatePageComponent implements OnInit {
       next:params=>{
         if(params){
            this.resumeService.getResumeById(params).subscribe({
-             next:response=>this.patchForm(response),
+             next:response=>{
+              this.patchForm(response)
+             },
            })
         }
       },
