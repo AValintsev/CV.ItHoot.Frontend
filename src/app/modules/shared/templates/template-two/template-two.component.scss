@@ -18,9 +18,11 @@
    }
 
 }
-span{
+
+span {
    display: inline-block;
 }
+
 .wrapper {
    font-family: 'Inter', sans-serif;
    background-color: #fff;
@@ -429,8 +431,8 @@ span{
          line-height: 1.2;
          word-wrap: break-word;
          overflow-wrap: break-word;
-          word-break: keep-all;
-          break-all:line-break;
+         word-break: keep-all;
+         break-all: line-break;
          //  hyphens:none auto
       }
    }
@@ -469,7 +471,7 @@ span{
 .mail {}
 
 .location {
-   &>span{
+   &>span {
       margin-left: 1rem;
    }
 }
@@ -545,6 +547,14 @@ span{
          content: ',';
       }
    }
+}
+
+.template-textarea {
+   overflow-y: hidden;
+   outline: transparent;
+   border: transparent;
+   width: 100%;
+   background-color: #f4f4f5;
 }
 
 li::first-letter {

@@ -29,7 +29,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <input matInput placeholder="Description" formControlName="description">
+      <textarea class="textarea" cdkAutosizeMaxRows="15" matInput placeholder="Description" formControlName="description"></textarea>
       <mat-error *ngIf="educationForm.controls['description'].errors?.['required']">
         Description is required
       </mat-error>

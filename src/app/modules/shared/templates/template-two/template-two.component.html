@@ -90,9 +90,9 @@
 								</div>
 								<div class="side-list__content">{{education.specialization}}</div>
 								<!-- education description -->
-								<div class="side-list__content">{{education.description}}</div>
-								<!-- education description -->
-								<!-- --<pre class="side-list__content">{{education.description}}</pre>-- -->
+								<!-- <div class="side-list__content">{{education.description}}</div> -->
+											<textarea readonly="true" class="template-textarea side-list__content" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+												cdkAutosizeMaxRows="99999">{{education.description}}</textarea>
 							</li>
 						</ul>
 					</div>
@@ -128,11 +128,15 @@
 									</div>
 								</div>
 								<div class="left-side__subtext avoid-pdf-break">{{experiences.company}}</div>
-								<ul class="side-list__content-list">
+								<!-- <ul class="side-list__content-list">
 									<li class="side-list__content-item">
 										<span class="line"></span> {{experiences.description}}
 									</li>
-								</ul>
+								</ul> -->
+								<div class="side-list__content-list">
+												<textarea readonly="true" class="template-textarea side-list__content" matInput cdkTextareaAutosize
+													#autosize="cdkTextareaAutosize" cdkAutosizeMaxRows="99999">{{experiences.description}}</textarea>
+								</div>
 							</li>
 						</ul>
 					</div>
@@ -187,8 +191,8 @@
 							Age:<span>{{howOld(resumeEditForm?.birthdate!) > 0 ? howOld(resumeEditForm?.birthdate!) : 'i am baby or embryon))'}}</span>
 						</div>
 						<div *ngIf="resumeEditForm?.aboutMe" class="right-side__description" id="about-me-content">
-							
-                    <div>{{resumeEditForm?.aboutMe}}</div> 
+									<textarea readonly="true" class="template-textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+										cdkAutosizeMaxRows="99999">{{resumeEditForm?.aboutMe}}</textarea>           
 						</div>
 					</div>
 				</div>

@@ -3,11 +3,10 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ResumeService } from "../../../services/resume.service";
 import { SnackBarService } from "../../../services/snack-bar.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { delay, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { AccountService } from 'src/app/services/account.service';
 import { Users } from 'src/app/models/users-type';
 import {ResumeDto} from "../../../models/resume/resume-dto";
-import { of } from 'rxjs';
 
 
 
@@ -183,9 +182,4 @@ export class CvEditPageComponent implements OnInit {
     })
   }
 }
- checkValidBtn(){
- return  of(!this.resumeEditForm.valid).pipe(
-    delay(0)
-   )
- }
 }

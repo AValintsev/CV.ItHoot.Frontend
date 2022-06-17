@@ -96,6 +96,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
+      panelClass: ['change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -147,6 +148,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
+      panelClass: ['change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -201,7 +203,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      panelClass:'remove-style-scroll',
+      panelClass: ['remove-style-scroll','change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -256,7 +258,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      panelClass:'remove-style-scroll',
+      panelClass: ['remove-style-scroll', 'change-material-style'],
       data: { type: dialogType, data: data },
     });
 

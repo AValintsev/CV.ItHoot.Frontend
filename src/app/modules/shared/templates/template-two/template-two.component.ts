@@ -1,13 +1,14 @@
 import { AccountService } from './../../../../services/account.service';
 import { Users } from './../../../../models/users-type';
 import { ResumeService } from 'src/app/services/resume.service';
-import { AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import * as saveAs from 'file-saver';
 import grapesjs from 'grapesjs';
 import 'grapesjs-preset-webpage';
-
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'cv-template-two',
@@ -19,16 +20,19 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
   User=Users
   color = '#37474f'
   userId!: number
+  textarea = document.querySelector('textarea');
   obj:{[key:string]:any}={}
   constructor(
+    private _ngZone: NgZone,
     public accountService:AccountService,
     private resumeService: ResumeService,) { }
-
+  @ViewChild('autosize', { static: false }) autosize!: CdkTextareaAutosize;
   @Input() public resumeEditForm!: ResumeDto
   @Input() public showLogo:boolean = true
   @Input() public showPdfSave:boolean = true
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+        this.textarea?.addEventListener('input', this.autoResize, false);
     this.getStoreColor();
     console.log('template', this.resumeEditForm)
  
@@ -36,6 +40,13 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
  ngAfterContentInit(){
  
  }
+
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1))
+      .subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+
  ngAfterViewInit(){
   this.editor = grapesjs.init({
     // Indicate where to init the editor. You can also pass an HTMLElement
@@ -103,4 +114,10 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
     }
     return 0
   }
+
+      
+   autoResize() {
+     this.textarea!.style.height = 'auto';
+     this.textarea!.style.height = this.textarea!.scrollHeight + 'px';
+}
 }
