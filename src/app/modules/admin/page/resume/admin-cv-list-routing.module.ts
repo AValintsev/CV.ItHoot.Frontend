@@ -16,6 +16,7 @@ import { EditPageComponent } from '../edit-page/edit-page.component';
 import { CvFullComponent } from '../cv-full/cv-full.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule  } from '@angular/material/input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 const routes: Routes = [
@@ -55,6 +56,7 @@ const routes: Routes = [
 		MatSelectModule,
 		MatFormFieldModule,
 		NgxMatSelectSearchModule,
+		MatInputModule,
 		RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })

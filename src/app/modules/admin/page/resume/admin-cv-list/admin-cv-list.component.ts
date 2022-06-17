@@ -103,10 +103,6 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         switchMap(() => {
           this.isLoadingResults = true;
           var term = this.searchControl.value ?? '';
-          // var valv = this.positionMultiSelect.value as number[];
-          var values = this.positionControl.value as number[];
-          console.log(values);
-          // console.log(valv);
           return this.resumeService!.getAllResume(
             term,
             this.sort.active,
