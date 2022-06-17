@@ -20,7 +20,7 @@
           </mat-error>
           </mat-form-field>
           <div class="button">
-            <button [disabled]="!registerForm.valid" type="submit" mat-raised-button>Login</button>
+            <button [disabled]="!registerForm.valid&&!registerForm.pristine" type="submit" mat-raised-button>Login</button>
           </div>
           <div class="or">
             <span></span>

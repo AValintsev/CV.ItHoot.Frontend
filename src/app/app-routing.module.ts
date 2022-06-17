@@ -8,8 +8,7 @@ import {
   ProposalResumeDownloadPageComponent
 } from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
 import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
-import { AccountGuard } from './guards/account.guard';
-import { AccountService } from './services/account.service';
+
 
 
 const routes: Routes = [

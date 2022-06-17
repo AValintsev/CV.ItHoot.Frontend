@@ -203,7 +203,7 @@ export class CvLeftBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      panelClass: ['remove-style-scroll','change-material-style'],
+      panelClass: ['remove-style-scroll', 'change-material-style'],
       data: { type: dialogType, data: data },
     });
 

@@ -20,7 +20,6 @@
 		<div class="row__cards">
 			<div class="row__cards-inner" [class.card-transform]="!toggleBtn">
 				<ng-container *ngFor="let resume of resumeArray[1]; let i = index">
-
 					<div [@hidden]="'start'" *ngIf="!(resume.id==cardId) && resume.statusResume!==statusResume.Denied" class="row__card card" (click)="showCard(i)"
 						[style.transform]="toggleBtn&&i>1?'translateX('+calcTransform(i-1,resumeArray[1].length)+'%)':'translateX(0)'"
 						[style.transition]="'all .3s ease'">
@@ -97,10 +96,11 @@
 						
 						<div class="card__user-btns">
 							<div class="card__user-btns-inner">
-								<button [disabled]="status == statusProposal.Approved"
+								<button [class.pointerevents]="i>=1&&i<(resumeArray[1].length-1)&&toggleBtn" [disabled]="status == statusProposal.Approved"
 									(click)="selectToggle(resume.id, true, i, $event ,(resumeArray[1].length-1))"
 									*ngIf="!checkSelect(resume.id); else selected" mat-button
-									class="btn-reset btn select">Select</button>
+									class="btn-reset btn select">Select </button>
+									{{i>=1&&i<(resumeArray[1].length-1)&&toggleBtn}}
 								<ng-template #selected><button mat-button class="btn-reset btn select selected">
 										<mat-icon class="check">check_circle_outline</mat-icon>&nbsp;Selected
 									</button></ng-template>

@@ -21,7 +21,7 @@
           </mat-form-field>
 
           <div class="button">
-            <button [disabled]="!loginForm.valid" type="submit" mat-raised-button>Login</button>
+            <button [disabled]="!loginForm.valid&&!loginForm.pristine" type="submit" mat-raised-button>Login</button>
           </div>
           <div class="or">
             <span></span>
@@ -31,7 +31,6 @@
           <div class="link-wrapper">
             <a class="link" routerLink="/account/registration" routerLinkActive="active">Create account</a>
           </div>
-
         </form>
       </mat-card-content>
     </mat-card>

@@ -267,6 +267,9 @@ span {
       line-height: 1.2;
       margin-top: 1rem;
       margin-bottom: 2rem;
+      font-weight: 400;
+      text-transform: none;
+      margin-top: .6rem;
    }
 }
 
@@ -554,7 +557,11 @@ span {
    outline: transparent;
    border: transparent;
    width: 100%;
+   font-size: 1.4rem;
+   color: #666766;
+   font-family: 'Inter',sans-serif;
    background-color: #f4f4f5;
+   line-height: 1.2;
 }
 
 li::first-letter {
