@@ -5,8 +5,6 @@ import { AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild, N
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import * as saveAs from 'file-saver';
-import grapesjs from 'grapesjs';
-import 'grapesjs-preset-webpage';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
 
@@ -31,14 +29,14 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
   @Input() public showLogo:boolean = true
   @Input() public showPdfSave:boolean = true
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
         this.textarea?.addEventListener('input', this.autoResize, false);
     this.getStoreColor();
     console.log('template', this.resumeEditForm)
- 
+
   }
  ngAfterContentInit(){
- 
+
  }
 
   triggerResize() {
@@ -48,32 +46,6 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
   }
 
  ngAfterViewInit(){
-  this.editor = grapesjs.init({
-    // Indicate where to init the editor. You can also pass an HTMLElement
-    container: '#gjs',
-    // Get the content for the canvas directly from the element
-    // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
-    fromElement: true,
-    // Size of the editor
-    height: '700px',
-    width: '1200px',
-    // Disable the storage manager for the moment
-    storageManager: false,
-    // Avoid any default panel
-    panels: { defaults: [] },
-    plugins: ['gjs-preset-webpage'],
-    pluginsOpts: {
-      'gjs-preset-webpage': {
-        blocksBasicOpts: {
-          blocks: [],
-          // flexGrid: 1,
-        },
-      }}
-  });
-//   this.editor.addComponents(`<div>
-//   <img src="https://path/image" />
-//   <span title="foo">Hello world!!!</span>
-// </div>`);
  }
   getStoreColor() {
     return this.color = localStorage.getItem('color') || '#37474f';
@@ -115,7 +87,7 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
     return 0
   }
 
-      
+
    autoResize() {
      this.textarea!.style.height = 'auto';
      this.textarea!.style.height = this.textarea!.scrollHeight + 'px';

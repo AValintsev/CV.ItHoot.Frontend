@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-declare var grapesjs: any;
 @Component({
   selector: 'cv-delete',
   templateUrl: './delete.component.html',
@@ -10,10 +9,6 @@ export class DeleteComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // const editor = grapesjs.init ({ 
-    //   container: '#gjs', 
-    //   fromElement: true, 
-    //  });
   }
 
 }
