@@ -12,11 +12,15 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { Injector } from '@angular/core';
 import {ErrorInterceptor} from "./helpers/error.interceptor";
+import {TestComponent} from "./modules/test/test.component";
+import {Test2Component} from "./modules/test2/test2.component";
 export let AppInjector: Injector;
 registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
+    TestComponent,
+    Test2Component
   ],
   imports: [
     MatNativeDateModule,

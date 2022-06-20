@@ -52,20 +52,23 @@ export class ResumeService {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
   }
 
-  public getAllTemplates():Observable<ResumeTemplateDto[]>{
-    return this.httpService.getRequest(this.routePrefix+`/templates`);
+  public getAllTemplates(): Observable<ResumeTemplateDto[]> {
+    return this.httpService.getRequest(this.routePrefix + `/templates`);
   }
 
   //todo !!
-  public getAllResumesByPositions(positions:PositionDto[]):Observable<SmallResumeDto[]>{
+  public getAllResumesByPositions(positions: PositionDto[]): Observable<SmallResumeDto[]> {
     let position = ''
-    positions.forEach(x=>position +=x.positionName+',');
-    position = position.slice(0,-1);
-    return this.httpService.getRequest(this.routePrefix+`/position?positions=${position}`);
+    positions.forEach(x => position += x.positionName + ',');
+    position = position.slice(0, -1);
+    return this.httpService.getRequest(this.routePrefix + `/position?positions=${position}`);
   }
 
-  public getAllResumesByProposalBuild(proposalBuildId:number):Observable<SmallResumeDto[]>{
-    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix+`/proposalBuild/${proposalBuildId}`);
+  public getAllResumesByProposalBuild(proposalBuildId: number): Observable<SmallResumeDto[]> {
+    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix + `/proposalBuild/${proposalBuildId}`);
+  }
 
+  public getTemplateById(id: number): Observable<ResumeTemplateDto> {
+    return this.httpService.getRequest<ResumeTemplateDto>(this.routePrefix + `/templates/${id}`);
   }
 }
