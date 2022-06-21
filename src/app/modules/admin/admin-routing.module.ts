@@ -1,10 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
-import {SideBarComponent} from './component/side-bar/side-bar.component';
-import { HeaderModule } from './component/header/header.module';
-import { FooterModule } from './component/footer/footer.module';
-
 
 
 const routs: Routes = [
@@ -42,6 +38,10 @@ const routs: Routes = [
       {
         path:'complexities',
         loadChildren: () => import('./page/complexity/complexity.module').then(mod=>mod.ComplexityModule)
+      },
+      {
+        path:'templates',
+        loadChildren: () => import('./page/resume-template/resume-template.module').then(mod=>mod.ResumeTemplateModule)
       },
          {
         path: '',

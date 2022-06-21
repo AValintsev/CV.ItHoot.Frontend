@@ -16,13 +16,13 @@ export class RoleGuard implements CanActivate {
 			case Users[0]:
 			case Users[1]:
 				this.router.navigate(['/admin']);
-				break;
-			case Users[2]:
-				this.router.navigate(['/home/cv/user-list']);
-				break;
-			case Users[3]:
-				this.router.navigate(['/client/proposals/']);
-				break;
+			// 	break;
+			// case Users[2]:
+			// 	this.router.navigate(['/home/cv/user-list']);
+			// 	break;
+			// case Users[3]:
+			// 	this.router.navigate(['/client/proposals/']);
+			// 	break;
 		}
 		return false;
 	}

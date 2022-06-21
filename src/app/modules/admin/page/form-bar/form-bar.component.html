@@ -27,9 +27,18 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Position</mat-label>
-      <mat-select [(value)]="resume.position" [compareWith]="comparePosition">
-        <mat-option *ngFor="let position of positions" [value]="position" (onSelectionChange)="test(position)">
+      <mat-select [(value)]="resume.position" formControlName="position" [compareWith]="comparePosition">
+        <mat-option *ngFor="let position of positions" [value]="position">
           {{position.positionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Template</mat-label>
+      <mat-select [(value)]="resume.resumeTemplateId"  formControlName="resumeTemplateId" [compareWith]="compareTemplate">
+        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+          {{template.templateName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

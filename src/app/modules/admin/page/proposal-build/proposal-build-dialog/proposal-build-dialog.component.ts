@@ -7,7 +7,9 @@ import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/p
 import {PositionService} from "../../../../../services/position.service";
 import {PositionDto} from "../../../../../models/position/position-dto";
 import {ProposalBuildPositionDto} from "../../../../../models/proposal-build/proposal-build-position-dto";
-import {ProposalBuildPositionDialogComponent} from "../proposal-build-position-dialog/proposal-build-position-dialog.component";
+import {
+  ProposalBuildPositionDialogComponent
+} from "../proposal-build-position-dialog/proposal-build-position-dialog.component";
 
 @Component({
   selector: 'proposal-build-dialog',

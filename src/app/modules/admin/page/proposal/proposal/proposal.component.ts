@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StatusProposalResume, ProposalDto, ProposalResumeDto} from "../../../../../models/proposal/proposal-dto";
+import {ProposalDto, ProposalResumeDto, StatusProposalResume} from "../../../../../models/proposal/proposal-dto";
 import {ProposalService} from "../../../../../services/proposal.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../../../services/resume.service";

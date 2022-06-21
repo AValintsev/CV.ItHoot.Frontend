@@ -1,8 +1,6 @@
-import { ResumeService } from 'src/app/services/resume.service';
-import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, share } from 'rxjs/operators';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'cv-user-resume',
@@ -20,7 +18,7 @@ export class UserCvListComponent implements OnInit {
     this.resumeService.getAllResume().subscribe(
       response => this.smallResumeDto = response.items
     )
-   
+
   }
   refresh(){
     this.resumeService.getAllResume().subscribe(

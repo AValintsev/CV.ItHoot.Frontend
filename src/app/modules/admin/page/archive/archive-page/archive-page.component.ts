@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProposalDto} from "../../../../../models/proposal/proposal-dto";
 import {ActivatedRoute} from "@angular/router";
 import {ProposalService} from "../../../../../services/proposal.service";

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProposalListFilter } from 'src/app/models/proposal/proposal-list-filter';
+import {Component, OnInit} from '@angular/core';
 import {SmallProposalDto} from "../../../../../../models/proposal/small-proposal-dto";
 import {ProposalService} from "../../../../../../services/proposal.service";
+import {ProposalListFilter} from "../../../../../../models/proposal/proposal-list-filter";
 
 @Component({
   selector: 'proposal-list-page',

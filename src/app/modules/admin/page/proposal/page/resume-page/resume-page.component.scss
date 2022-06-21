@@ -3,6 +3,12 @@
   max-height: 100%;
   max-width: 100%;
 }
+#doc{
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+}
+
 #doc:hover{
   cursor: pointer;
 }

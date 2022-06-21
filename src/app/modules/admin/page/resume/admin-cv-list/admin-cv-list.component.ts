@@ -67,19 +67,19 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionService.getAllPositions().subscribe(positions => {
       this.positions = positions;
       this.filteredPositionsMulti.next(this.positions.slice());
-      
+
       this.positionFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterMulti(this.positions, "positionName", this.positionFilterControl, this.filteredPositionsMulti);
       });
     });
-        
+
     this.skillService.searchSkill('').subscribe(skills => {
       this.skills = skills;
 
       this.filteredSkillsMulti.next(this.skills.slice());
-      
+
       this.skillFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
@@ -91,10 +91,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // If the user changes the sort order, search or filters, reset back to the first page.
     merge(this.sort.sortChange, this.searchControl.valueChanges, this.skillsControl.valueChanges, this.positionControl.valueChanges)
-      .subscribe(() => (this.paginator.pageIndex = 0));     
+      .subscribe(() => (this.paginator.pageIndex = 0));
 
-    merge(this.sort.sortChange, 
-          this.paginator.page, 
+    merge(this.sort.sortChange,
+          this.paginator.page,
           this.searchControl.valueChanges,
           this.skillsControl.valueChanges,
           this.positionControl.valueChanges)
@@ -134,9 +134,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         next: () => {
           const role = this.accountService.getStoreRole();
           if(role === Users[0]) {
-            var delResume = this.resumes.find(i => i.id == resume.id);
+            const delResume = this.resumes.find(i => i.id == resume.id);
             if (delResume != null) {
-              var currentDate = new Date();
+              const currentDate = new Date();
               delResume.deletedAt = currentDate.toString();
             }
           }
@@ -161,7 +161,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resumeService.recoverResume(resume).subscribe(
       {
         next: () => {
-          var recoverResume = this.resumes.find(i => i.id == resume.id);
+          const recoverResume = this.resumes.find(i => i.id == resume.id);
           if (recoverResume != null) {
             recoverResume.deletedAt = null;
           }
@@ -177,6 +177,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
+        if (multiSelect)
         multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
       });
   }
@@ -185,7 +186,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!list) {
       return;
     }
-  
+
     let search = filterControl.value;
     if (!search) {
       filteredMulti.next(list.slice());
@@ -193,7 +194,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-  
+
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );

@@ -1,9 +1,8 @@
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ModalDeleteUserComponent } from './modal-delete-user.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ModalDeleteUserComponent} from './modal-delete-user.component';
 
 
 @NgModule({

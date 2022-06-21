@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ResumeDto} from "../../../models/resume/resume-dto";
 import {ProposalService} from "../../../services/proposal.service";
 import {ActivatedRoute} from "@angular/router";
+import {ResumeService} from "../../../services/resume.service";
 
 
 @Component({
@@ -11,27 +11,33 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ResumeFullSwitcherComponent implements OnInit {
 
-  resume!: ResumeDto | null;
+  resume!:any;
 
-  constructor(private proposalService: ProposalService, private route: ActivatedRoute) {
+  constructor(private proposalService: ProposalService,
+              private route: ActivatedRoute,
+              private resumeService:ResumeService) {
     this.route.params.subscribe(params => {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const shortUrl = params['shortUrl'];
-      if(!shortUrl)
+      if(shortUrl != null)
       {
-        this.proposalService.getProposalResume(proposalId, resumeId).subscribe(data => {
-          this.resume = data.resume;
-          this.resume!.resumeTemplateId = data.resumeTemplateId;
-          this.resume!.showLogo = data.showLogo;
+        this.proposalService.getProposalResumeHtmlByUrl(shortUrl).subscribe(data => {
+          document.getElementById('resume')!.innerHTML = data.html;
+          this.resume = data;
         });
       }
-      else{
-        this.proposalService.getProposalResumeByUrl(shortUrl).subscribe(data => {
-          this.resume = data.resume;
-          this.resume!.resumeTemplateId = data.resumeTemplateId;
-          this.resume!.showLogo = data.showLogo;
+      else if(proposalId && resumeId){
+        this.proposalService.getProposalResumeHtml(proposalId, resumeId).subscribe(data => {
+          document.getElementById('resume')!.innerHTML = data.html;
+          this.resume = data;
         });
+      }else if(proposalId == null && resumeId){
+
+        this.resumeService.getResumeHtmlById(resumeId).subscribe(data=>{
+          document.getElementById('resume')!.innerHTML = data.html;
+          this.resume = data;
+        })
       }
     })
 

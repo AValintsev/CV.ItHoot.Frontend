@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {map} from 'rxjs/operators';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
-
+import panzoom from "panzoom";
 
 
 @Component({
@@ -13,6 +13,7 @@ import {ResumeDto} from 'src/app/models/resume/resume-dto';
 })
 export class CvFullComponent implements OnInit {
   @Input() id: number = 0;
+  @ViewChild('doc') doc!: ElementRef;
   resume!: ResumeDto;
 
   constructor(
@@ -23,33 +24,15 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getResumeById(id).subscribe(
-        {
-          next:resume=>{
-            this.resume = resume
-          },
-          error:error=>console.log(error)
-        }
-        );
-
+      this.resumeService.getResumeHtmlById(id).subscribe(resume => {
+        this.doc.nativeElement.innerHTML = resume.html;
+      });
+      const zoom = panzoom(document.getElementById('doc')!,{
+        minZoom:0.3,
+        maxZoom:3.5,
+        bounds:true
+      });
     });
   }
-
-  toDataURL = async (url: string) => {
-    var res = await fetch(url);
-    var blob = await res.blob();
-
-    return await new Promise((resolve, reject) => {
-      var reader = new FileReader();
-      reader.addEventListener("load", function () {
-        resolve(reader.result);
-      }, false);
-
-      reader.onerror = () => {
-        return reject(this);
-      };
-      reader.readAsDataURL(blob);
-    })
-  };
 
 }

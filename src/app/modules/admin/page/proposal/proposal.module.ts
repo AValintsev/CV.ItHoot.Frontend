@@ -30,7 +30,6 @@ import {
 } from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {ResumePageComponent} from "./page/resume-page/resume-page.component";
-import {TemplatesModule} from "../../../shared/templates/templates.module";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -69,7 +68,6 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    TemplatesModule,
     MatPaginatorModule,
     MatSortModule,
     NgxMatSelectSearchModule

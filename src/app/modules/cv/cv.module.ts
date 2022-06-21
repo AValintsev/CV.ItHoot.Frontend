@@ -1,11 +1,10 @@
-import { CvSmallModule } from './cv-small/cv-small.module';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CvRoutingModule } from './cv-routing.module';
-import { CvFullComponent } from './cv-full/cv-full.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
-import {CvSmallComponent} from './cv-small/cv-small.component';
+import {CvSmallModule} from './cv-small/cv-small.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {CvRoutingModule} from './cv-routing.module';
+import {CvFullComponent} from './cv-full/cv-full.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserCvListComponent} from './user-cv-list/user-cv-list.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
 import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
@@ -28,9 +27,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
-import { TemplatesModule } from '../shared/templates/templates.module';
-import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-switcher.component';
-import { DeleteComponent } from './delete/delete.component';
+import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-switcher.component';
+import {DeleteComponent} from './delete/delete.component';
 
 
 @NgModule({
@@ -67,11 +65,10 @@ import { DeleteComponent } from './delete/delete.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    TemplatesModule,
     CvSmallModule,
-    TemplatesModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ]
 })
 export class CvModule {

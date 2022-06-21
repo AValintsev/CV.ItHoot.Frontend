@@ -1,0 +1,36 @@
+<div class="template-page">
+  <div class="template-list">
+    <div class="table-page">
+      <div class="title-section">
+        <h1>Template list</h1>
+      </div>
+      <table mat-table [dataSource]="templates" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let template">{{template.templateId}}.</td>
+        </ng-container>
+
+        <ng-container matColumnDef="templateName">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let template"> {{template.templateName}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
+          <td mat-cell *matCellDef="let template">
+            <div class="action-wrapper">
+              <button class="open" routerLink='/admin/templates/{{template.templateId}}'>Open</button>
+              <button class="edit" routerLink='/admin/templates/edit/{{template.templateId}}'>Edit</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>

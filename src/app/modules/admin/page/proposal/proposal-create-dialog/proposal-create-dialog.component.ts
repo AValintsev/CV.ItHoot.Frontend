@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {FormControl} from "@angular/forms";
-import {Observable, of, ReplaySubject, Subject} from "rxjs";
-import {map, startWith, take, takeUntil} from "rxjs/operators";
+import {Observable, of} from "rxjs";
+import {map, startWith} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";

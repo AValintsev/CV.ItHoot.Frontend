@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountService} from "../../../services/account.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProposalService} from "../../../services/proposal.service";
 import {saveAs} from "file-saver";
@@ -19,7 +18,7 @@ export class ProposalResumeDownloadPageComponent implements OnInit {
       window.self.close();
 
       if (shortUrl) {
-        proposalService.getProposalResumePdfByUrlShort(shortUrl).subscribe((response) => {
+        proposalService.getProposalResumePdfByUrl(shortUrl).subscribe((response) => {
           saveAs(response, `resume.pdf`);
           this.router.navigate(['']);
         });

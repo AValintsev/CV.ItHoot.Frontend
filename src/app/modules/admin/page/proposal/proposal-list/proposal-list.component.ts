@@ -155,16 +155,16 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getProposalStatusList(): ProposalStatusItem[] {
-    let statuses: ProposalStatusItem[] = [];
+    const statuses: ProposalStatusItem[] = [];
 
     const enumKeysStartIndex = Object.keys(StatusProposal).length / 2;
     let i = 0;
-    for (var statusItem in StatusProposal) {
+    for (const statusItem in StatusProposal) {
       if (i >= enumKeysStartIndex) {
-        let typeStatusItem = statusItem as keyof typeof StatusProposal;
-        let enn: StatusProposal = StatusProposal[typeStatusItem];
-        let val = StatusProposal[typeStatusItem];
-        let listItem: ProposalStatusItem = {
+        const typeStatusItem = statusItem as keyof typeof StatusProposal;
+        const enn: StatusProposal = StatusProposal[typeStatusItem];
+        const val = StatusProposal[typeStatusItem];
+        const listItem: ProposalStatusItem = {
           id: val,
           name: this.getStatusProposal(enn)
         }
@@ -179,6 +179,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
+        if (multiSelect)
         multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
       });
   }
