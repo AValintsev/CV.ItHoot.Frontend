@@ -17,7 +17,7 @@ export class ResumeFullSwitcherComponent implements OnInit {
               private route: ActivatedRoute,
               private resumeService:ResumeService) {
     this.route.params.subscribe(params => {
-      console.log('----eee----', params)
+     
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const shortUrl = params['shortUrl'];
