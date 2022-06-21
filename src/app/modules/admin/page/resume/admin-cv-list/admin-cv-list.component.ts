@@ -9,12 +9,13 @@ import {FormControl} from "@angular/forms";
 import {debounceTime, map, startWith, switchMap, catchError, takeUntil, take} from "rxjs/operators";
 import {merge, of as observableOf, ReplaySubject, Subject} from "rxjs";
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, SortDirection} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import {PositionDto} from "src/app/models/position/position-dto";
 import {PositionService} from "src/app/services/position.service";
 import {SkillDto} from "src/app/models/skill/skill-dto";
 import {SkillService} from "src/app/services/skill.service";
 import { MatSelect } from '@angular/material/select';
+import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -102,15 +103,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         debounceTime(400),
         switchMap(() => {
           this.isLoadingResults = true;
-          var term = this.searchControl.value ?? '';
-          return this.resumeService!.getAllResume(
-            term,
-            this.sort.active,
-            this.sort.direction,
-            this.paginator.pageIndex,
-            this.positionControl.value,
-            this.skillsControl.value
-          ).pipe(catchError(() => observableOf(null)));
+          return this.resumeService!.getAllResume(this.collectAllFilters())
+          .pipe(catchError(() => observableOf(null)));
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -203,6 +197,19 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );
+  }
+
+  private collectAllFilters() : ResumeListFilter {
+    let resumeFilters: ResumeListFilter = {
+      term: this.searchControl.value,
+      page: this.paginator.pageIndex,
+      pageSize: this.paginator.pageSize,
+      sort: this.sort.active,
+      order: this.sort.direction,
+      positions: this.positionControl.value,
+      skills: this.skillsControl.value
+    };
+    return resumeFilters;
   }
 
   ngOnDestroy() {

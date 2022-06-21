@@ -32,7 +32,7 @@
       justify-content: space-between;
 
       button{
-        max-height: 40px;
+        max-height: 5.2rem;
       }
     }
 
@@ -45,6 +45,18 @@
       line-height: 130%;
       color: #04040B;
       margin-bottom: 60px;
+      margin-right: 3rem;
+    }
+
+    .left-block{
+      display: flex;
+      .filter-block {
+        display: flex;
+
+        & > * {
+          margin-right: 2rem;
+        } 
+      }
     }
 
     table {

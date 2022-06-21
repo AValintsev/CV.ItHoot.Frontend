@@ -7,8 +7,8 @@ import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {ProposalBuildPositionDto} from "../models/proposal-build/proposal-build-position-dto";
 import {PositionDto} from "../models/position/position-dto";
-import {SortDirection} from '@angular/material/sort';
 import {PagedResponse} from "../models/paginations/paged-response";
+import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
 
 
 @Injectable({providedIn: 'root'})
@@ -22,20 +22,25 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix, resume);
   }
 
-  public getAllResume(term: string = '', sort: string = '', order: SortDirection = '', page: number = 0, positions: number[] = [], skills: number[] = []): Observable<PagedResponse<SmallResumeDto[]>> {
-    var requestUrl = `${this.routePrefix}?term=${term}&sort=${sort}&order=${order}&page=${page + 1}&pageSize=30`;
-
-    if (positions) {
-      positions.forEach(item => {
-        requestUrl = `${requestUrl}&positions=${item}`
-      });
-    }
+  public getAllResume(filters: ResumeListFilter | null = null): Observable<PagedResponse<SmallResumeDto[]>> {
     
-    if(skills) {
-      skills.forEach(item => {
-        requestUrl = `${requestUrl}&skills=${item}`
-      });
-    }
+      if (filters == null) {
+        return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix);
+      } else {
+        var requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
+
+        if (filters.positions) {
+          filters.positions.forEach(item => {
+            requestUrl = `${requestUrl}&positions=${item}`
+          });
+        }
+        
+        if(filters.skills) {
+          filters.skills.forEach(item => {
+            requestUrl = `${requestUrl}&skills=${item}`
+          });
+        }
+      }
     
     return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
   }

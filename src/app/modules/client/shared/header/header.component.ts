@@ -6,7 +6,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Users } from 'src/app/models/users-type';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap, } from 'rxjs/operators';
 import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
 import { StatusProposalResume, ProposalResumeDto } from 'src/app/models/proposal/proposal-dto';
 import { StatusProposal } from 'src/app/models/enums';
@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.checkUrlFromArrow(this.router)
     this.clientProposalService.headerTitle$.subscribe(e => {})
-    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array[0].clientUserName))
+    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName))
     this.getProposalList()
     this.clientProposalService.numberCheckedResume$.subscribe(
       response => {
@@ -138,8 +138,15 @@ private  checkUrlFromArrow(response: any) {
   }
 
   private getProposalList() {
-    this.proposals = this.clientProposalService.getAllProposal()
+    this.proposals = this.clientProposalService.getAllProposal().pipe(
+      map(data => {
+        if (data === null) {
+          return [];
+        }
+        return data.items;
+      }));
   }
+  
   private filterResponseArray(resumes: any): ProposalResumeDto[] {
       const arr: ProposalResumeDto[] = [];
       resumes.positionResumes.map((value: any) => {
