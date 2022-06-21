@@ -1,0 +1,14 @@
+<div *ngIf="template" class="html-template">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Template name</mat-label>
+    <input matInput [(ngModel)]="template.templateName">
+  </mat-form-field>
+
+  <div style="height: 50vh">
+    <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="template.html" (onInit)="onInit($event)"></ngx-monaco-editor>
+  </div>
+
+
+  <button mat-raised-button (click)="updateResume()">Update template</button>
+</div>

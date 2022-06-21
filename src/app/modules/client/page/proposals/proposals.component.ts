@@ -1,12 +1,12 @@
-import { Router, NavigationStart } from '@angular/router';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { StatusProposalResume, ProposalApprove, ProposalResumeDto } from '../../../../models/proposal/proposal-dto';
-import { ProposalService } from '../../../../services/proposal.service';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ProposalDto} from 'src/app/models/proposal/proposal-dto';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { StatusProposal } from 'src/app/models/enums';
+import {Router} from '@angular/router';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {ProposalApprove, StatusProposalResume} from '../../../../models/proposal/proposal-dto';
+import {ProposalService} from '../../../../services/proposal.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {ProposalDto} from 'src/app/models/proposal/proposal-dto';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
+import {StatusProposal} from 'src/app/models/enums';
 
 @Component({
   selector: 'cv-proposals',

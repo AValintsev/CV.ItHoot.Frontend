@@ -1,10 +1,9 @@
-import { ClientProposalService } from '../../../../services/client/client-proposal.service';
-import { switchMap, tap } from 'rxjs/operators';
-import { ProposalService } from '../../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import {ClientProposalService} from '../../../../services/client/client-proposal.service';
+import {switchMap, tap} from 'rxjs/operators';
+import {ProposalService} from '../../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
 
 @Component({
   selector: 'cv-resume',

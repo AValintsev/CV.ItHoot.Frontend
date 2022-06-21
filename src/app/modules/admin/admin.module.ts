@@ -9,8 +9,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTableModule} from "@angular/material/table";
 import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
 import {SideBarComponent} from "./component/side-bar/side-bar.component";
-import { HeaderModule } from './component/header/header.module';
-import { FooterModule } from './component/footer/footer.module';
+import {HeaderModule} from './component/header/header.module';
+import {FooterModule} from './component/footer/footer.module';
 
 @NgModule({
 	imports:[

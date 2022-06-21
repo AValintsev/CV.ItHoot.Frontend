@@ -1,6 +1,6 @@
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { faAt, faGlobe, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'cv-template-one',

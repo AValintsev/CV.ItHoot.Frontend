@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {PositionService} from "../../../../../services/position.service";

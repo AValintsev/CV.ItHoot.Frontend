@@ -1,25 +1,22 @@
-import { ModalDeleteUserModule } from './../../../shared/modals/modal-delete-user/modal-delete-user.module';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { TemplatesModule } from './../../../shared/templates/templates.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { HeaderModule } from '../../shared/header/header.module';
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { MainPageComponent } from './main-page.component';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from "@angular/material/button";
-import { FooterModule } from '../../shared/footer/footer.module';
-import { MatDialogModule } from '@angular/material/dialog';
-import { ProposalsComponent } from '../proposals/proposals.component';
-import { ResumeComponent } from '../resume/resume.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProposalComponent } from '../proposal/proposal.component';
-
+import {ModalDeleteUserModule} from '../../../shared/modals/modal-delete-user/modal-delete-user.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {HeaderModule} from '../../shared/header/header.module';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {MainPageComponent} from './main-page.component';
+import {CommonModule} from '@angular/common';
+import {MatButtonModule} from "@angular/material/button";
+import {FooterModule} from '../../shared/footer/footer.module';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ProposalsComponent} from '../proposals/proposals.component';
+import {ResumeComponent} from '../resume/resume.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ProposalComponent} from '../proposal/proposal.component';
 
 
 const routes: Routes = [
@@ -58,7 +55,6 @@ const routes: Routes = [
     FontAwesomeModule,
     HeaderModule,
     FormsModule,
-    TemplatesModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     MatTooltipModule,

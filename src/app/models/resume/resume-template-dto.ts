@@ -1,4 +1,5 @@
 export interface ResumeTemplateDto{
   templateId:number;
-  templateName:number;
+  templateName:string;
+  html:string;
 }

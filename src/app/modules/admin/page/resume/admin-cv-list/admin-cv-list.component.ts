@@ -16,6 +16,8 @@ import {SkillDto} from "src/app/models/skill/skill-dto";
 import {SkillService} from "src/app/services/skill.service";
 import { MatSelect } from '@angular/material/select';
 import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
+import {Users} from 'src/app/models/users-type';
+import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -67,19 +69,19 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionService.getAllPositions().subscribe(positions => {
       this.positions = positions;
       this.filteredPositionsMulti.next(this.positions.slice());
-      
+
       this.positionFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterMulti(this.positions, "positionName", this.positionFilterControl, this.filteredPositionsMulti);
       });
     });
-        
+
     this.skillService.searchSkill('').subscribe(skills => {
       this.skills = skills;
 
       this.filteredSkillsMulti.next(this.skills.slice());
-      
+
       this.skillFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
@@ -91,10 +93,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // If the user changes the sort order, search or filters, reset back to the first page.
     merge(this.sort.sortChange, this.searchControl.valueChanges, this.skillsControl.valueChanges, this.positionControl.valueChanges)
-      .subscribe(() => (this.paginator.pageIndex = 0));     
+      .subscribe(() => (this.paginator.pageIndex = 0));
 
-    merge(this.sort.sortChange, 
-          this.paginator.page, 
+    merge(this.sort.sortChange,
+          this.paginator.page,
           this.searchControl.valueChanges,
           this.skillsControl.valueChanges,
           this.positionControl.valueChanges)
@@ -186,7 +188,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!list) {
       return;
     }
-  
+
     let search = filterControl.value;
     if (!search) {
       filteredMulti.next(list.slice());
@@ -194,7 +196,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-  
+
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );

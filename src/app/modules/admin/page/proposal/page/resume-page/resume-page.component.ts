@@ -21,14 +21,12 @@ export class ResumePageComponent implements OnInit {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
 
-      this.proposalService.getProposalResume(proposalId, resumeId).subscribe(data => {
-        this.resume = data.resume;
-        this.resume!.resumeTemplateId = data.resumeTemplateId;
-        this.resume!.showLogo = data.showLogo;
-
+      this.proposalService.getProposalResumeHtml(proposalId, resumeId).subscribe(data => {
+        console.log(data)
+        document.getElementById('doc')!.innerHTML= data.html
         const zoom = panzoom(this.doc.nativeElement,{
           minZoom:0.3,
-          maxZoom:1.3,
+          maxZoom:3.5,
           bounds:true
         });
       });

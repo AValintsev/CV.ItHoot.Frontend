@@ -30,13 +30,13 @@ export class JwtInterceptor implements HttpInterceptor {
             //     this.router.navigate([`/home/cv/create`])
             //   }
             // }
-            this.accountService.logout().subscribe({
-              next:()=>{
-                this.router.navigate(['account/login']);
-                
-              },
-              error: () => this.router.navigate(['account/login'])
-            })
+            // this.accountService.logout().subscribe({
+            //   next:()=>{
+            //     this.router.navigate(['account/login']);
+            //
+            //   },
+            //   error: () => this.router.navigate(['account/login'])
+            // })
               return throwError(error)
 
           }
