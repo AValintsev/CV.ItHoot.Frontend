@@ -155,16 +155,16 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getProposalStatusList(): ProposalStatusItem[] {
-    var statuses: ProposalStatusItem[] = [];
+    let statuses: ProposalStatusItem[] = [];
 
-    var enumKeysStartIndex = Object.keys(StatusProposal).length / 2;
-    var i = 0;
+    const enumKeysStartIndex = Object.keys(StatusProposal).length / 2;
+    let i = 0;
     for (var statusItem in StatusProposal) {
       if (i >= enumKeysStartIndex) {
-        var typeStatusItem = statusItem as keyof typeof StatusProposal;
-        var enn: StatusProposal = StatusProposal[typeStatusItem];
-        var val = StatusProposal[typeStatusItem];
-        var listItem: ProposalStatusItem = {
+        let typeStatusItem = statusItem as keyof typeof StatusProposal;
+        let enn: StatusProposal = StatusProposal[typeStatusItem];
+        let val = StatusProposal[typeStatusItem];
+        let listItem: ProposalStatusItem = {
           id: val,
           name: this.getStatusProposal(enn)
         }

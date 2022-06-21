@@ -27,7 +27,7 @@ export class ResumeService {
       if (filters == null) {
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix);
       } else {
-        var requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
+        let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
 
         if (filters.positions) {
           filters.positions.forEach(item => {
@@ -40,9 +40,8 @@ export class ResumeService {
             requestUrl = `${requestUrl}&skills=${item}`
           });
         }
-      }
-    
-    return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
+        return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
+      }    
   }
 
   public getResumeById(id: number): Observable<ResumeDto> {
