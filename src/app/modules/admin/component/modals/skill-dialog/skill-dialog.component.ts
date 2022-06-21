@@ -3,11 +3,10 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from "rxjs/operators";
-import { ResumeSkillDto } from 'src/app/models/resume/resume-skill-dto';
-import { DialogType } from 'src/app/models/enums';
-import { SkillDto } from 'src/app/models/skill/skill-dto';
-import { SkillService } from 'src/app/services/skill.service';
-
+import {ResumeSkillDto} from 'src/app/models/resume/resume-skill-dto';
+import {DialogType} from 'src/app/models/enums';
+import {SkillDto} from 'src/app/models/skill/skill-dto';
+import {SkillService} from 'src/app/services/skill.service';
 
 
 @Component({

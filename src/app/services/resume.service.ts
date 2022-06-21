@@ -5,7 +5,6 @@ import {HttpInternalService} from "./http-internal.service";
 import {SmallResumeDto} from "../models/resume/small-resume-dto";
 import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
-import {ProposalBuildPositionDto} from "../models/proposal-build/proposal-build-position-dto";
 import {PositionDto} from "../models/position/position-dto";
 
 
@@ -28,6 +27,9 @@ export class ResumeService {
     return this.httpService.getRequest<ResumeDto>(this.routePrefix + `/${id}`);
   }
 
+  public getResumeHtmlById(id:number):Observable<any>{
+    return this.httpService.getRequest(this.routePrefix+`/${id}/html`);
+  }
   public updateResume(resume: ResumeDto): Observable<ResumeDto> {
     return this.httpService.putRequest<ResumeDto>(this.routePrefix, resume);
   }
@@ -71,4 +73,9 @@ export class ResumeService {
   public getTemplateById(id: number): Observable<ResumeTemplateDto> {
     return this.httpService.getRequest<ResumeTemplateDto>(this.routePrefix + `/templates/${id}`);
   }
+
+  public updateTemplate(template:ResumeTemplateDto):Observable<ResumeTemplateDto>{
+    return this.httpService.putRequest<ResumeTemplateDto>(this.routePrefix+`/templates/${template.templateId}/${template.templateName}`,template.html);
+  }
+
 }

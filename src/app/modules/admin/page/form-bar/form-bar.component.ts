@@ -2,19 +2,19 @@ import {ResumeService} from 'src/app/services/resume.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { PositionDto } from 'src/app/models/position/position-dto';
-import { PositionService } from 'src/app/services/position.service';
-import { ResumeSkillDto } from 'src/app/models/resume/resume-skill-dto';
-import { DialogType } from 'src/app/models/enums';
-import { SkillDialog } from '../../component/modals/skill-dialog/skill-dialog.component';
-import { ResumeLanguageDto } from 'src/app/models/resume/resume-language-dto';
-import { LanguageDialog } from '../../component/modals/language-dialog/language-dialog.component';
-import { EducationDto } from 'src/app/models/resume/education-dto';
-import { EducationDialog } from '../../component/modals/education-dialog/education-dialog.component';
-import { ExperienceDto } from 'src/app/models/resume/experience-dto';
-import { ExperienceDialog } from '../../component/modals/experience-dialog/experience-dialog.component';
-
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {PositionDto} from 'src/app/models/position/position-dto';
+import {PositionService} from 'src/app/services/position.service';
+import {ResumeSkillDto} from 'src/app/models/resume/resume-skill-dto';
+import {DialogType} from 'src/app/models/enums';
+import {SkillDialog} from '../../component/modals/skill-dialog/skill-dialog.component';
+import {ResumeLanguageDto} from 'src/app/models/resume/resume-language-dto';
+import {LanguageDialog} from '../../component/modals/language-dialog/language-dialog.component';
+import {EducationDto} from 'src/app/models/resume/education-dto';
+import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
+import {ExperienceDto} from 'src/app/models/resume/experience-dto';
+import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
+import {ResumeTemplateDto} from "../../../../models/resume/resume-template-dto";
 
 
 @Component({
@@ -28,6 +28,9 @@ export class FormBarComponent implements OnInit {
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
+
+  resumeTemplates!:ResumeTemplateDto[];
+
   file: File | null = null;
   positions!:PositionDto[];
   userStatus = [
@@ -45,6 +48,7 @@ export class FormBarComponent implements OnInit {
     positionService.getAllPositions().subscribe(positions => {
       this.positions = positions
     });
+    this.resumeService.getAllTemplates().subscribe(templates=>this.resumeTemplates = templates);
   }
 
   onSelectFile(event: any) {
@@ -60,13 +64,15 @@ export class FormBarComponent implements OnInit {
     this.educationListChanged();
   }
 
-  test(position: PositionDto) {
-    this.resumeForm.patchValue({ position: position });
-  }
 
   comparePosition(position:any, position1:any){
       return position?.positionId === position1?.positionId;
   }
+
+  compareTemplate(template:any,template1:any) {
+    return template === template1;
+  }
+
 
   removeSkill(skill: ResumeSkillDto): void {
     const index = this.resume.skills.indexOf(skill);

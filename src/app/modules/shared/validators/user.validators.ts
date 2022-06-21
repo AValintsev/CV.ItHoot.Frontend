@@ -1,6 +1,4 @@
-import { ValidationErrors, ValidatorFn } from '@angular/forms';
-import { AbstractControl } from '@angular/forms'
-import { EducationDialog } from '../../cv/education-dialog/education-dialog.component';
+import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 export class UserValidators{
 	static checkValidEndDateDialog(component: any): ValidatorFn {

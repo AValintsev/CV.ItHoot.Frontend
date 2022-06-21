@@ -1,17 +1,17 @@
-import { Observable, of } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
-import { map } from 'rxjs/operators';
-import { ResumeService } from 'src/app/services/resume.service';
+import {map} from 'rxjs/operators';
+import {ResumeService} from 'src/app/services/resume.service';
 
 
 @Component({
   selector: 'cv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  
+
 })
 export class HeaderComponent implements OnInit {
   Users = Users

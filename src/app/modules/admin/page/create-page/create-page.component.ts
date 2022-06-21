@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Users } from 'src/app/models/users-type';
-import { map} from 'rxjs/operators';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { AccountService } from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Users} from 'src/app/models/users-type';
+import {map} from 'rxjs/operators';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {AccountService} from 'src/app/services/account.service';
 
 
 @Component({

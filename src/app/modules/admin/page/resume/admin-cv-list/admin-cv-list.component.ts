@@ -3,8 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
-import { Users } from 'src/app/models/users-type';
-import { AccountService } from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
+import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-admin-resume',

@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
-import {SkillRoutingModule} from "../skill/skill-routing.module";
-import { ComplexityPageComponent } from './complexity-page/complexity-page.component';
+import {ComplexityPageComponent} from './complexity-page/complexity-page.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";

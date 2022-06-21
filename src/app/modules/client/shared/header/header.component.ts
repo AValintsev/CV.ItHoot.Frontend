@@ -1,15 +1,13 @@
-import { SmallProposalDto } from '../../../../models/proposal/small-proposal-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { Users } from 'src/app/models/users-type';
-import { map, tap } from 'rxjs/operators';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { StatusProposalResume, ProposalResumeDto } from 'src/app/models/proposal/proposal-dto';
-import { StatusProposal } from 'src/app/models/enums';
+import {SmallProposalDto} from '../../../../models/proposal/small-proposal-dto';
+import {Observable} from 'rxjs';
+import {NavigationStart, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {map, tap} from 'rxjs/operators';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
+import {ProposalResumeDto, StatusProposalResume} from 'src/app/models/proposal/proposal-dto';
+import {StatusProposal} from 'src/app/models/enums';
 
 interface IcontrolPanel{
   resumeId: number,

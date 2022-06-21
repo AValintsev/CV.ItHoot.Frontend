@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {ComplexityService} from "../../../../../services/complexity.service";
 import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/proposal-build-complexity-dto";
 import {DialogType} from "../../../../../models/enums";
-import {SkillDto} from "../../../../../models/skill/skill-dto";
-import {SkillDialogComponent} from "../../skill/skill-dialog/skill-dialog.component";
 import {ComplexityDialogComponent} from "../complexity-dialog/complexity-dialog.component";
 
 @Component({

@@ -1,18 +1,28 @@
-import { SnackBarService } from './../services/snack-bar.service';
-import { Users } from './../models/users-type';
-import { AccountService } from './../services/account.service';
-import { Injectable } from '@angular/core';
-import { CanLoad, CanActivate, CanActivateChild, Route, UrlSegment, UrlTree, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import {SnackBarService} from './../services/snack-bar.service';
+import {Users} from './../models/users-type';
+import {AccountService} from './../services/account.service';
+import {Injectable} from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree
+} from '@angular/router';
+import {Observable} from 'rxjs';
 
 function checkerRole(accountService: AccountService, snackBarService: SnackBarService, router: Router): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 	if (accountService.isLoggedIn() && (accountService.getStoreRole() === Users[3])) {
 		return true
 	}
-	accountService.logout().subscribe({
-		next: () => { router.navigate(['account/login']); },
-		error: error => { snackBarService.showDanger('logout error'); console.log('error', error) }
-	})
+	// accountService.logout().subscribe({
+	// 	next: () => { router.navigate(['account/login']); },
+	// 	error: error => { snackBarService.showDanger('logout error'); console.log('error', error) }
+	// })
 	return false
 }
 

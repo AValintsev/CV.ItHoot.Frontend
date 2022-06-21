@@ -30,7 +30,6 @@ import {
 } from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {ResumePageComponent} from "./page/resume-page/resume-page.component";
-import {TemplatesModule} from "../../../shared/templates/templates.module";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 
 @NgModule({
@@ -65,7 +64,6 @@ import {ProposalListComponent} from "./proposal-list/proposal-list.component";
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    TemplatesModule,
   ],
   exports: [
     ProposalListPageComponent,

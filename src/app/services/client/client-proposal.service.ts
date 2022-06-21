@@ -1,10 +1,8 @@
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Injectable, OnInit } from '@angular/core';
-import { ProposalDto, ProposalResumeDto } from 'src/app/models/proposal/proposal-dto';
-import { ProposalService } from '../proposal.service';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
-import { ObserversModule } from '@angular/cdk/observers';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Injectable, OnInit} from '@angular/core';
+import {ProposalService} from '../proposal.service';
+import {map, switchMap, tap} from 'rxjs/operators';
+import {SmallProposalDto} from 'src/app/models/proposal/small-proposal-dto';
 
 @Injectable()
 

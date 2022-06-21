@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SmallProposalDto} from "../../../../../models/proposal/small-proposal-dto";
 import {ProposalService} from "../../../../../services/proposal.service";
 

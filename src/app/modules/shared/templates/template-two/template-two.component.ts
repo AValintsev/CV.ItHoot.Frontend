@@ -1,12 +1,11 @@
-import { AccountService } from './../../../../services/account.service';
-import { Users } from './../../../../models/users-type';
-import { ResumeService } from 'src/app/services/resume.service';
-import { AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild, NgZone } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import {AccountService} from './../../../../services/account.service';
+import {Users} from './../../../../models/users-type';
+import {ResumeService} from 'src/app/services/resume.service';
+import {AfterContentInit, AfterViewInit, Component, Input, NgZone, OnInit, ViewChild} from '@angular/core';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import * as saveAs from 'file-saver';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs/operators';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'cv-template-two',

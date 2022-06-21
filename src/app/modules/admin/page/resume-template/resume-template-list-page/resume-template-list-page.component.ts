@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
 import {ResumeService} from "../../../../../services/resume.service";
 

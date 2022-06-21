@@ -6,6 +6,12 @@ import {ResumeTemplatePageComponent} from "./resume-template-page/resume-templat
 import {ResumeTemplateEditPageComponent} from "./resume-template-edit-page/resume-template-edit-page.component";
 import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 import {MatTableModule} from "@angular/material/table";
+import {FormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MonacoEditorModule} from "ngx-monaco-editor";
 
 
 @NgModule({
@@ -13,7 +19,14 @@ import {MatTableModule} from "@angular/material/table";
     RouterModule,
     ResumeTemplateRoutingModule,
     CodemirrorModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    CommonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MonacoEditorModule,
   ],
   exports: [
   ],

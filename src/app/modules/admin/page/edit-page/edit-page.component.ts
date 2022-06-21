@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from 'src/app/models/users-type';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-
-
-
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {map} from "rxjs/operators";
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
 
 @Component({
@@ -35,6 +32,9 @@ export class EditPageComponent implements OnInit {
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!)
+        this.resumeService.getResumeHtmlById(id).subscribe(data => {
+          document.getElementById('doc')!.innerHTML = data.html;
+        });
       });
     });
     this.validateForm()
@@ -64,6 +64,7 @@ export class EditPageComponent implements OnInit {
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
     this.resumeEditForm.patchValue({ position: resume.position });
+    this.resumeEditForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
 
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeEditForm.controls["skills"])
@@ -155,6 +156,7 @@ export class EditPageComponent implements OnInit {
         Validators.required
       ]),
       picture: new FormControl(this.resumeEditDto?.picture),
+      resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),

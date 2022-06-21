@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {PositionRoutingModule} from "./position-routing.module";
-import { PositionPageComponent } from './position-page/position-page.component';
-import { PositionDialogComponent } from './position-dialog/position-dialog.component';
+import {PositionPageComponent} from './position-page/position-page.component';
+import {PositionDialogComponent} from './position-dialog/position-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";

@@ -39,7 +39,11 @@ export class ProposalService {
     return this.httpService.getRequest<any>(this.routePrefix+`/${proposalId}/resume/${resumeId}`);
   }
 
-  public getProposalResumeByUrl(shortUrl:string):Observable<any>{
+  public getProposalResumeHtml(proposalId:number, resumeId:number):Observable<any>{
+    return this.httpService.getRequest<any>(this.routePrefix+`/${proposalId}/resume/${resumeId}/html`);
+  }
+
+  public getProposalResumeHtmlByUrl(shortUrl:string):Observable<any>{
     return this.httpService.getRequest<any>(this.routePrefix+`/resume/${shortUrl}`);
   }
 
@@ -47,7 +51,7 @@ export class ProposalService {
     return this.httpService.getFile(this.routePrefix+`/${proposalId}/resume/${resumeId}/pdf`);
   }
 
-  public getProposalResumePdfByUrlShort(shortUrl:string){
+  public getProposalResumePdfByUrl(shortUrl:string){
     return this.httpService.getFile(this.routePrefix+`/resume/${shortUrl}/pdf`);
   }
 }

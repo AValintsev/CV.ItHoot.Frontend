@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepicker } from '@angular/material/datepicker';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { ExperienceDto } from 'src/app/models/resume/experience-dto';
-import { DialogType } from 'src/app/models/enums';
-import { UserValidators } from 'src/app/modules/shared/validators/user.validators';
+import {ExperienceDto} from 'src/app/models/resume/experience-dto';
+import {DialogType} from 'src/app/models/enums';
+import {UserValidators} from 'src/app/modules/shared/validators/user.validators';
 
 
 export const MY_FORMATS = {

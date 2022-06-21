@@ -7,9 +7,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
-import { CreatePageComponent } from '../create-page/create-page.component';
-import { EditPageComponent } from '../edit-page/edit-page.component';
-import { CvFullComponent } from '../cv-full/cv-full.component';
+import {CreatePageComponent} from '../create-page/create-page.component';
+import {EditPageComponent} from '../edit-page/edit-page.component';
+import {CvFullComponent} from '../cv-full/cv-full.component';
 
 const routes: Routes = [
 	{

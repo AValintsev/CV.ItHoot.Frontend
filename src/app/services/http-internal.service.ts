@@ -56,7 +56,7 @@ export class HttpInternalService {
     return this.http.post<T>(this.buildUrl(url), payload, {headers: this.getHeaders(), observe: 'response'});
   }
 
-  public putRequest<T>(url: string, payload: object): Observable<T> {
+  public putRequest<T>(url: string, payload: any): Observable<T> {
     return this.http.put<T>(this.buildUrl(url), payload, {headers: this.getHeaders()});
   }
 
