@@ -18,9 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {CreatePageComponent} from '../create-page/create-page.component';
-import {EditPageComponent} from '../edit-page/edit-page.component';
-import {CvFullComponent} from '../cv-full/cv-full.component';
 
 const routes: Routes = [
 	{

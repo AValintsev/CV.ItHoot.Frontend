@@ -4,7 +4,6 @@ import {RouterModule} from "@angular/router";
 import {ResumeTemplateListPageComponent} from "./resume-template-list-page/resume-template-list-page.component";
 import {ResumeTemplatePageComponent} from "./resume-template-page/resume-template-page.component";
 import {ResumeTemplateEditPageComponent} from "./resume-template-edit-page/resume-template-edit-page.component";
-import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 import {MatTableModule} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -18,7 +17,6 @@ import {MonacoEditorModule} from "ngx-monaco-editor";
   imports: [
     RouterModule,
     ResumeTemplateRoutingModule,
-    CodemirrorModule,
     MatTableModule,
     FormsModule,
     CommonModule,

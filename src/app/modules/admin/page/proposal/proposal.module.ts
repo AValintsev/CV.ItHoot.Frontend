@@ -68,7 +68,6 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    TemplatesModule,
     MatPaginatorModule,
     MatSortModule,
     NgxMatSelectSearchModule

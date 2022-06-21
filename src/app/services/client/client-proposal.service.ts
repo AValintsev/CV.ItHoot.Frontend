@@ -3,6 +3,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {ProposalService} from '../proposal.service';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {SmallProposalDto} from 'src/app/models/proposal/small-proposal-dto';
+import {PagedResponse} from "../../models/paginations/paged-response";
 
 @Injectable()
 

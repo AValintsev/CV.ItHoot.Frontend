@@ -16,8 +16,6 @@ import {SkillDto} from "src/app/models/skill/skill-dto";
 import {SkillService} from "src/app/services/skill.service";
 import { MatSelect } from '@angular/material/select';
 import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
-import {Users} from 'src/app/models/users-type';
-import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-admin-resume',

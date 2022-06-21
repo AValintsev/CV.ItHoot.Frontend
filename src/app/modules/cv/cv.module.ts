@@ -66,7 +66,6 @@ import {DeleteComponent} from './delete/delete.component';
     MatInputModule,
     MatButtonModule,
     CvSmallModule,
-    TemplatesModule,
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSelectModule
