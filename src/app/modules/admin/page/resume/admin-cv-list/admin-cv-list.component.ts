@@ -134,9 +134,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         next: () => {
           const role = this.accountService.getStoreRole();
           if(role === Users[0]) {
-            var delResume = this.resumes.find(i => i.id == resume.id);
+            const delResume = this.resumes.find(i => i.id == resume.id);
             if (delResume != null) {
-              var currentDate = new Date();
+              const currentDate = new Date();
               delResume.deletedAt = currentDate.toString();
             }
           }
@@ -161,7 +161,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resumeService.recoverResume(resume).subscribe(
       {
         next: () => {
-          var recoverResume = this.resumes.find(i => i.id == resume.id);
+          const recoverResume = this.resumes.find(i => i.id == resume.id);
           if (recoverResume != null) {
             recoverResume.deletedAt = null;
           }
@@ -177,6 +177,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
+        if (multiSelect)
         multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
       });
   }
