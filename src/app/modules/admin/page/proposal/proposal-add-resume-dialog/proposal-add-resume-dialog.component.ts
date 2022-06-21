@@ -22,7 +22,7 @@ export class ProposalAddResumeDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ProposalAddResumeDialogComponent>,
               private resumeService: ResumeService,
               private positionService:PositionService) {
-    resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes);
+    resumeService.getAllResume().subscribe(resumes => this.allResumes = resumes.items);
     positionService.getAllPositions().subscribe(positions=>this.positions = positions);
   }
 

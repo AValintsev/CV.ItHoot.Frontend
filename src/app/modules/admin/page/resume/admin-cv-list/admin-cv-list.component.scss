@@ -1,8 +1,13 @@
 .resume-list {
   //padding: 30px;
+  position: relative;
 
   .mat-row:hover {
     background: #f1f1f1;
+  }
+
+  .mat-sort-header-container {
+    justify-content: center;
   }
 
   .table-wrapper {
@@ -20,7 +25,7 @@
       justify-content: space-between;
 
       button{
-        max-height: 40px;
+        max-height: 5.2rem;
       }
     }
 
@@ -29,20 +34,29 @@
       line-height: 130%;
       color: #04040B;
       margin-bottom: 60px;
+      margin-right: 3rem;
+    }
+
+    .left-block{
+      display: flex;
+      .filter-block {
+        display: flex;
+
+        & > * {
+          margin-right: 2rem;
+        } 
+      }
     }
 
     table {
       width: 100%;
       box-shadow: none;
 
-
       th {
         text-align: center;
         vertical-align: middle;
         border-bottom: 1px #C4C4C4 solid;
-        font-weight: 400;
-
-
+        font-weight: 400;       
       }
 
       td {
@@ -52,8 +66,6 @@
         line-height: 28px;
         color: #04040B;
         font-weight: 400;
-
-
       }
 
       .mat-cell {
@@ -138,6 +150,24 @@
 
       }
     }
-  }
+  } 
 
+  .loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+
+    .rate-limit-reached {
+      max-width: 360px;
+      text-align: center;
+    }
+  }
 }
