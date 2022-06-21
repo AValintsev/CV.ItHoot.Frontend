@@ -31,8 +31,6 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
   ngOnInit(): void {
         this.textarea?.addEventListener('input', this.autoResize, false);
     this.getStoreColor();
-    console.log('template', this.resumeEditForm)
-
   }
  ngAfterContentInit(){
 

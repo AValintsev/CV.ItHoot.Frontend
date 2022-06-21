@@ -1,9 +1,10 @@
-import {BehaviorSubject, Observable} from 'rxjs';
-import {Injectable, OnInit} from '@angular/core';
-import {ProposalService} from '../proposal.service';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {SmallProposalDto} from 'src/app/models/proposal/small-proposal-dto';
-import {PagedResponse} from "../../models/paginations/paged-response";
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { ProposalService } from '../proposal.service';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
+import { ObserversModule } from '@angular/cdk/observers';
+import { PagedResponse } from 'src/app/models/paginations/paged-response';
 
 @Injectable()
 
@@ -11,12 +12,13 @@ export class ClientProposalService implements OnInit {
 	Map: any = new Map()
 	resumes: any;
 	public headerTitle$ = new BehaviorSubject<string|null>("You proposal")
-	private headerProposal = new BehaviorSubject<any>(null)
+	public showLogo$ = new BehaviorSubject<boolean>(false);
+	public headerProposal = new BehaviorSubject<any>(null)
 	public numberCheckedResume$ = new BehaviorSubject<{
 		proposalId:number,
 		resumeId:number
 }|null>(null)
-	public headerUsersProposal$ = this.headerProposal.asObservable()
+	// public headerUsersProposal$ = this.headerProposal.asObservable()
 	private proposal$ = new BehaviorSubject<any>(this.proposalService.getAllProposals().pipe(
 		switchMap(cards => this.getProposalById(cards.items[0].id)))
 	)

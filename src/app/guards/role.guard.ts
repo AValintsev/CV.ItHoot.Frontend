@@ -12,18 +12,18 @@ export class RoleGuard implements CanActivate {
 	constructor(private router: Router, private accountService:AccountService) { }
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-		switch (this.accountService.getStoreRole()) {
-			case Users[0]:
-			case Users[1]:
-				this.router.navigate(['/admin']);
-			// 	break;
-			// case Users[2]:
-			// 	this.router.navigate(['/home/cv/user-list']);
-			// 	break;
-			// case Users[3]:
-			// 	this.router.navigate(['/client/proposals/']);
-			// 	break;
+		if (this.accountService.getStoreRole() === Users[0] || this.accountService.getStoreRole() === Users[1]){
+			this.router.navigate(['/admin']);
+			return true
+		} else if (this.accountService.getStoreRole() === Users[2]){
+			this.router.navigate(['/home/cv/user-list']);
+			return true
+		} else if (this.accountService.getStoreRole() === Users[3]){
+			this.router.navigate(['/client/proposals/']);
+			return true
+		}else{
+			this.router.navigate(['/account/']);
+			return false
 		}
-		return false;
 	}
 }

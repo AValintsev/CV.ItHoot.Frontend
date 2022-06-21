@@ -24,3 +24,14 @@ footer {
       }
    }
 }
+
+.label {
+   height: 7rem;
+   display: flex;
+   align-items: center;
+
+   img {
+      width: 16rem;
+      height: 4.5rem;
+   }
+}

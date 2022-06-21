@@ -6,7 +6,13 @@
     <li>
       <a href="">Terms of Use</a>
     </li>
+    <li *ngIf="showLogo$|async">
+      <a href="">Contact us</a>
+    </li>
   </ul>
+  <div class="label">
+    <img *ngIf="showLogo$|async" src="../../../../../assets/logo.jpg" alt="label">
+  </div>
   <span>© 2022, IT Hoot</span>
 </footer>
 

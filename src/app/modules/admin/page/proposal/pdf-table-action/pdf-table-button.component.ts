@@ -22,7 +22,6 @@ export class PdfTableAction implements OnInit {
     this.loading = true;
     this.proposalService.getProposalResumePdf(this.proposal.id,this.resume.id).subscribe(file=>{
       saveAs(file, `${this.resume.firstName} ${this.resume.lastName}.pdf`);
-      console.log(file)
       this.loading = false;
     })
   }

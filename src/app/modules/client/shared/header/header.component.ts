@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
   Users = Users
+  showLogo$!:Observable<boolean>
   proposals!: Observable<SmallProposalDto[]>
   showProposalName: boolean = true
   clientName$!: Observable<string>
@@ -50,7 +51,6 @@ export class HeaderComponent implements OnInit {
 
     checkerColorArrow:function (component:HeaderComponent,id:number){
       if (id && this.arr && this.arr.length) {
-        // this.resumeId = this.arr.findIndex((elem: any) => elem.id == id)
         component.notShowLeftBtnColor = component.controlPanel.index(id)===0?false:true
         component.notShowRightBtnColor = (component.controlPanel.index(id)+1) === this.arr.length?false:true
       }
@@ -93,31 +93,36 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.showLogo$ = this.clientProposalService.showLogo$
     this.checkUrlFromArrow(this.router)
     this.clientProposalService.headerTitle$.subscribe(e => {})
     this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName))
     this.getProposalList()
-    this.clientProposalService.numberCheckedResume$.subscribe(
-      response => {
-        if (response?.resumeId) {
-          this.controlPanel.index(response!.resumeId);
-          this.controlPanel?.checkerColorArrow(this,response?.resumeId)
-        }
-        if (response?.proposalId) {
-          this.controlPanel.proposalId = response!.proposalId
-        }
-      },
-    )
 
-    this.clientProposalService.headerUsersProposal$.pipe(
+
+
+    this.clientProposalService.headerProposal.pipe(
       tap(response => {
         if (response) {
           this.controlPanel.arr = this.filterResponseArray(response);
+          this.clientProposalService.numberCheckedResume$.subscribe(
+            response => {
+              if (response?.resumeId) {
+                this.controlPanel.index(response!.resumeId);
+                this.controlPanel?.checkerColorArrow(this, response?.resumeId)
+              }
+              if (response?.proposalId) {
+                this.controlPanel.proposalId = response!.proposalId
+              }
+            },
+          )
         }
       }),
     ).subscribe(
       {
-        next: response => console.log(response),
+        next: response =>{
+          this.clientProposalService.showLogo$.next(response?.showLogo)
+        },
         error: error => console.log(error)
       }
     )

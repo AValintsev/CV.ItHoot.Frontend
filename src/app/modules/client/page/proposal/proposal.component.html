@@ -30,6 +30,7 @@
 							</div>
 							<div class="card__user-docs">
 								<svg matTooltip="Save pdf"
+								matTooltipClass="tooltip"
                                      (click)="savePdf(proposalId,resume.id, resume.firstName, resume.lastName)" id="pdf" width="48"
                                      height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path
@@ -100,7 +101,6 @@
 									(click)="selectToggle(resume.id, true, i, $event ,(resumeArray[1].length-1))"
 									*ngIf="!checkSelect(resume.id); else selected" mat-button
 									class="btn-reset btn select">Select </button>
-									{{i>=1&&i<(resumeArray[1].length-1)&&toggleBtn}}
 								<ng-template #selected><button mat-button class="btn-reset btn select selected">
 										<mat-icon class="check">check_circle_outline</mat-icon>&nbsp;Selected
 									</button></ng-template>

@@ -27,10 +27,14 @@ export class ResumeComponent implements OnInit {
     this.activatedRoute.params.pipe(
       tap(params=>{
         this.showLogo=params.showLogo
-
         this.proposalService.getProposalById(params.proposalId).subscribe(
            response =>{
           if(response){
+            this.clientProposalService.numberCheckedResume$.next({
+              proposalId: params.proposalId,
+              resumeId: params.resumeId
+            })
+            this.clientProposalService.getProposalById(params.proposalId).subscribe()
              this.clientProposalService.headerTitle$.next(response.proposalName)
           }
         }
@@ -42,8 +46,6 @@ export class ResumeComponent implements OnInit {
         this.resume = response.resume;
         this.resume.showLogo = response.showLogo;
         this.resumeTemplateId = response.resumeTemplateId;
-        console.log('qqqqqqqqqqqqqqqqqqqq',response)
-
       },
       error: error => console.log(error)
     })

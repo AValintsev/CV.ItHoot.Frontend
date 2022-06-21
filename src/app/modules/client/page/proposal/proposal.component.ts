@@ -159,9 +159,10 @@ export class ProposalComponent implements OnInit, OnChanges {
   navigateToResume(proposalId: number, resumeId: number) {
     this.router.navigate(['client/proposal', proposalId, 'resume', resumeId])
     this.clientProposalService.numberCheckedResume$.next({
-      proposalId: proposalId,
+      proposalId,
       resumeId
     })
+    // localStorage.setItem('userResume',JSON.stringify({proposalId,resumeId}))
   }
 
   chechVisibleCardLine(resumeArray: ProposalResumeDto[]){

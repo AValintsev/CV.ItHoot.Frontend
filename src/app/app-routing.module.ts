@@ -1,20 +1,22 @@
-import {AdminGuard} from './guards/admin.guard';
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {ClientGuard} from './guards/client.guard';
-import {RoleGuard} from './guards/role.guard';
+import { Users } from './models/users-type';
+import { UsersGuard } from './guards/users.guard';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from './guards/role.guard';
 import {
   ProposalResumeDownloadPageComponent
 } from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
-import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
-import {TestComponent} from "./modules/test/test.component";
-import {Test2Component} from "./modules/test2/test2.component";
+import { ResumeFullSwitcherComponent } from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
+import { TestComponent } from './modules/test/test.component';
+import { Test2Component } from './modules/test2/test2.component';
+
 
 
 const routes: Routes = [
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
-    canLoad: [AdminGuard]
+    canLoad: [UsersGuard],
+    data:{role:[Users[0],Users[1]]}
   },
   {
     path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),
@@ -26,11 +28,13 @@ const routes: Routes = [
   },
   {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
-    // canLoad: [UserGuard]
+    canLoad: [UsersGuard],
+    data: { role: [Users[2],] }
   },
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
-    canLoad: [ClientGuard]
+    canLoad: [UsersGuard],
+        data: { role: [Users[3]] }
   },
   {
     path: 'proposals/:proposalId/resume/:resumeId',

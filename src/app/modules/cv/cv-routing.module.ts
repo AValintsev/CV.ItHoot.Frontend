@@ -1,15 +1,21 @@
+import { Users } from './../../models/users-type';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
-import {UserCvListComponent} from './user-cv-list/user-cv-list.component';
+import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
+import { DeleteComponent } from './delete/delete.component';
+import { UsersGuard } from 'src/app/guards/users.guard';
+
 
 
 const routes: Routes = [
-  {
+  {path:'',children:[
+     {
     path: 'edit/:id',
-    component: CvEditPageComponent
+    component: CvEditPageComponent,
+    
   },
 
   {
@@ -32,6 +38,13 @@ const routes: Routes = [
     redirectTo:'user-list',
     pathMatch:'full'
   }
+  ],
+    canActivateChild: [UsersGuard],
+    data: {
+      role: [Users[2]]
+    }
+}
+ 
 ];
 
 @NgModule({
