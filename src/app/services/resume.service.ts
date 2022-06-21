@@ -7,6 +7,8 @@ import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {ProposalBuildPositionDto} from "../models/proposal-build/proposal-build-position-dto";
 import {PositionDto} from "../models/position/position-dto";
+import {PagedResponse} from "../models/paginations/paged-response";
+import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
 
 
 @Injectable({providedIn: 'root'})
@@ -20,8 +22,27 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix, resume);
   }
 
-  public getAllResume(): Observable<SmallResumeDto[]> {
-    return this.httpService.getRequest<SmallResumeDto[]>(this.routePrefix);
+  public getAllResume(filters: ResumeListFilter | null = null): Observable<PagedResponse<SmallResumeDto[]>> {
+    
+      if (filters == null) {
+        return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix);
+      } else {
+        var requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
+
+        if (filters.positions) {
+          filters.positions.forEach(item => {
+            requestUrl = `${requestUrl}&positions=${item}`
+          });
+        }
+        
+        if(filters.skills) {
+          filters.skills.forEach(item => {
+            requestUrl = `${requestUrl}&skills=${item}`
+          });
+        }
+      }
+    
+    return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
   }
 
   public getResumeById(id: number): Observable<ResumeDto> {

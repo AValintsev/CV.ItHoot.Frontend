@@ -18,13 +18,13 @@ export class UserCvListComponent implements OnInit {
 
   ngOnInit(): void {
     this.resumeService.getAllResume().subscribe(
-      response => this.smallResumeDto = response
+      response => this.smallResumeDto = response.items
     )
    
   }
   refresh(){
     this.resumeService.getAllResume().subscribe(
-      response => this.smallResumeDto = response
+      response => this.smallResumeDto = response.items
     )
   }
 }

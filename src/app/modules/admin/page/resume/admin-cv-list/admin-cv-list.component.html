@@ -1,22 +1,60 @@
 <div class="resume-list">
+  <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+      Database rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
   <div class="table-wrapper">
     <div class="title-section">
-      <h1>CV list with Involvement</h1>
+      <div class="left-block">
+        <h1>CV list with Involvement</h1>
+        <div class="filter-block">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search...</mat-label>
+            <input type="tel" matInput placeholder="" [formControl]="searchControl">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Position filter</mat-label>
+            <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="positionFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let position of filteredPositionsMulti | async" [value]="position.positionId">
+                {{position.positionName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Skills filter</mat-label>
+            <mat-select [formControl]="skillsControl" multiple="true" #skillMultiSelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="skillFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let skill of filteredSkillsMulti | async" [value]="skill.id">
+                {{skill.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>            
       <button mat-raised-button routerLink="/admin/resume/create">
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <table mat-table [dataSource]="resumes" class="mat-elevation-z8">
+    <table mat-table [dataSource]="resumes" class="mat-elevation-z8"
+           matSort matSortActive="" matSortDirection="">
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Cv Name&Surname</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cv Name&Surname</th>
         <td mat-cell *matCellDef="let resume">
           {{resume.firstName}} {{resume.lastName}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> Position</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Position</th>
         <td mat-cell *matCellDef="let resume">{{resume.positionName ?? 'None'}}</td>
       </ng-container>
 
@@ -53,5 +91,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
+    <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
   </div>
+
 </div>

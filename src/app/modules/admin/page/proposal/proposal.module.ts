@@ -32,6 +32,10 @@ import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {ResumePageComponent} from "./page/resume-page/resume-page.component";
 import {TemplatesModule} from "../../../shared/templates/templates.module";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 
 @NgModule({
   imports: [
@@ -66,6 +70,9 @@ import {ProposalListComponent} from "./proposal-list/proposal-list.component";
     FormsModule,
     ReactiveFormsModule,
     TemplatesModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule
   ],
   exports: [
     ProposalListPageComponent,

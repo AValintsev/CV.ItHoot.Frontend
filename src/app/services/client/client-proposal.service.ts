@@ -5,6 +5,7 @@ import { ProposalService } from '../proposal.service';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
 import { ObserversModule } from '@angular/cdk/observers';
+import { PagedResponse } from 'src/app/models/paginations/paged-response';
 
 @Injectable()
 
@@ -19,7 +20,7 @@ export class ClientProposalService implements OnInit {
 }|null>(null)
 	public headerUsersProposal$ = this.headerProposal.asObservable()
 	private proposal$ = new BehaviorSubject<any>(this.proposalService.getAllProposals().pipe(
-		switchMap(cards => this.getProposalById(cards[0].id)))
+		switchMap(cards => this.getProposalById(cards.items[0].id)))
 	)
 	constructor(
 		private proposalService: ProposalService
@@ -35,7 +36,7 @@ export class ClientProposalService implements OnInit {
 	getProposal() {
 		return this.proposal$
 	}
-	getAllProposal(): Observable<SmallProposalDto[]> {
+	getAllProposal(): Observable<PagedResponse<SmallProposalDto[]>> {
 		return this.proposalService.getAllProposals()
 	}
 	getProposalById(value: number) {

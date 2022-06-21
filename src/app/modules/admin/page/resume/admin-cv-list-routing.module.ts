@@ -7,9 +7,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 import { CreatePageComponent } from '../create-page/create-page.component';
 import { EditPageComponent } from '../edit-page/edit-page.component';
 import { CvFullComponent } from '../cv-full/cv-full.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule  } from '@angular/material/input';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 const routes: Routes = [
 	{
@@ -35,11 +43,20 @@ const routes: Routes = [
 	declarations:[AdminCvListComponent],
 	imports: [
 		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
 		MatIconModule,
 		MatDividerModule,
 		MatExpansionModule,
 		MatTableModule,
 		MatButtonModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		MatSortModule,
+		MatSelectModule,
+		MatFormFieldModule,
+		NgxMatSelectSearchModule,
+		MatInputModule,
 		RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
