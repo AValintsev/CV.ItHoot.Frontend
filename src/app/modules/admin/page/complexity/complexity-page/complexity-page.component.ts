@@ -13,7 +13,8 @@ import {ComplexityDialogComponent} from "../complexity-dialog/complexity-dialog.
 })
 export class ComplexityPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'action'];
+  // displayedColumns: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   complexities: ProposalBuildComplexityDto[] = [];
 
   constructor(private complexityService: ComplexityService,

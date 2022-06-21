@@ -13,7 +13,8 @@ import {DialogType} from "../../../../../models/enums";
 })
 export class PositionPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'action'];
+  // displayedColumns: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   positions: PositionDto[] = [];
 
   constructor(private positionService: PositionService, public dialog: MatDialog, private snackBar: SnackBarService) { }

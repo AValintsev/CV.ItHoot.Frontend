@@ -13,7 +13,8 @@ import {DialogType} from "../../../../../models/enums";
   styleUrls: ['./language-page.component.scss']
 })
 export class LanguagePageComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'action'];
+  // displayedColumns: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   languages: LanguageDto[] = [];
 
   constructor(private languageService: LanguageService,

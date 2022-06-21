@@ -15,7 +15,8 @@ import {DialogType} from "../../../../../models/enums";
 })
 export class SkillPageComponent implements OnInit {
 
-	displayedColumns: string[] = ['id', 'name', 'action'];
+	// displayedColumns: string[] = ['id', 'name', 'action'];
+	displayedColumns: string[] = ['name', 'action'];
 	skills: SkillDto[] = [];
 
 	constructor(private skillService: SkillService, public dialog: MatDialog, private snackBar: SnackBarService) { }
