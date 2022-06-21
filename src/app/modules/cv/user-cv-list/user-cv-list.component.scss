@@ -4,20 +4,26 @@
 
 .inner {
    display: grid;
-   grid-template-columns: repeat(3,1fr);
-   grid-gap: 2rem 2rem ;
+   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+   grid-gap: 2rem 2rem;
    padding: 0 1.5rem;
+
+   @media(max-width:992px) {
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+   }
 }
 
 .create-resume {
    background-color: #3f51b5;
-	color: #fff;
+   color: #fff;
 }
-.btn{
+
+.btn {
    margin-top: 2rem;
    justify-content: center;
    display: flex;
-   button{
+
+   button {
       width: 20rem;
    }
 }

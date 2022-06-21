@@ -4,6 +4,7 @@ import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
 import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 const routes: Routes = [

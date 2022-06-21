@@ -30,6 +30,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import { TemplatesModule } from '../shared/templates/templates.module';
 import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-switcher.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ResumeFullSwitcherComponent } from './resume-full-switcher/resume-full-
     CvEditPageComponent,
     UserCvListComponent,
     ResumeFullSwitcherComponent,
+    DeleteComponent,
   ],
   imports: [
     CommonModule,

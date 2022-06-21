@@ -1,7 +1,7 @@
 .education-dialog {
 
   .mat-dialog-content {
-    overflow: hidden;
+    overflow: auto;
   }
 
   .content {
@@ -21,4 +21,9 @@
 
 ::ng-deep .example-month-picker .mat-calendar-arrow {
   display: none;
+}
+
+.textarea{
+  resize: none;
+  height: 7rem;
 }

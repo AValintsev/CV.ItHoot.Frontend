@@ -22,26 +22,25 @@ export class CvEditPageComponent implements OnInit {
   templateForm!: ResumeDto
   public resumeEditForm: FormGroup = {} as FormGroup;
 
-
-
   constructor(private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService
   ) {
+
+  }
+
+  ngOnInit(): void {
+     this.validateForm()
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!)
       });
     });
-    this.validateForm()
+   
     this.changeFormDate()
-  }
-
-  ngOnInit(): void {
-
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.subscribe(resume => this.templateForm = resume)
@@ -163,6 +162,7 @@ export class CvEditPageComponent implements OnInit {
 
 
   submit(resume: ResumeDto) {
+    if(this.resumeEditForm.valid){
     this.resumeService.updateResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Edited');
@@ -181,5 +181,5 @@ export class CvEditPageComponent implements OnInit {
       }
     })
   }
-
+}
 }

@@ -1,3 +1,5 @@
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +28,8 @@ import { TemplateTwoComponent } from './template-two/template-two.component';
     MatButtonToggleModule,
     MatIconModule,
     MatProgressSpinnerModule,
-
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule
   ],
   exports: [TemplateOneComponent, TemplateTwoComponent]

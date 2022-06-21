@@ -84,7 +84,7 @@
 
       .action-wrapper {
         display: grid;
-        grid-template-columns: repeat(5, 15%);
+        grid-template-columns: repeat(5,  minmax(6rem,15%));
         justify-content: space-between;
 
         button {
@@ -93,6 +93,9 @@
           color: white;
           border: 0;
           border-radius: 4px;
+          &:not(:first-child){
+            margin-left: 0.4rem;
+          }
 
           &:hover {
             cursor: pointer;
