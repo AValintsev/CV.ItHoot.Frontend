@@ -31,12 +31,12 @@ export class ProposalService {
     }
     else {
 
-      var pageNumber = 1;
+      let pageNumber = 1;
       if (filters.page && filters.page > 0) {
         pageNumber = filters.page + 1;
       }
 
-      var requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
+      let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
                         `&order=${filters.order ?? ''}&page=${pageNumber}&pageSize=${filters.pageSize}`;
       
       if (filters.clients) {
@@ -63,11 +63,11 @@ export class ProposalService {
       return this.httpService.getRequest<PagedResponse<SmallProposalDto[]>>(this.routePrefix+'/archive');
     }
     else {
-      var pageNumber = 1;
+      let pageNumber = 1;
       if (filters.page && filters.page > 0) {
         pageNumber = filters.page + 1;
       }
-      var requestUrl = `${this.routePrefix}/archive?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
+      let requestUrl = `${this.routePrefix}/archive?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
                         `&order=${filters.order ?? ''}&page=${pageNumber}&pageSize=${filters.pageSize}`;
       
       if (filters.clients) {
