@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from "../../../services/account.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './login-by-url.component.html',
   styleUrls: ['./login-by-url.component.scss']
 })
-export class LoginByUrlComponent implements OnInit {
+export class LoginByUrlComponent implements OnInit,OnDestroy {
 
   constructor(public accountService: AccountService,
               private router: Router,
@@ -23,5 +23,5 @@ export class LoginByUrlComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy() { }
 }

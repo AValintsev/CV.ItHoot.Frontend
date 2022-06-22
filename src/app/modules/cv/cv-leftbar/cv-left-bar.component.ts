@@ -1,5 +1,5 @@
 import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {SkillDialog} from "../skill-dialog/skill-dialog.component";
@@ -22,7 +22,7 @@ import {ExperienceDto} from "../../../models/resume/experience-dto";
 	styleUrls: ['./cv-left-bar.component.scss'],
 })
 
-export class CvLeftBarComponent implements OnInit {
+export class CvLeftBarComponent implements OnInit,OnDestroy {
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
@@ -275,7 +275,5 @@ export class CvLeftBarComponent implements OnInit {
       this.experienceListChanged()
     });
   }
-
-
-
+  ngOnDestroy() { }
 }

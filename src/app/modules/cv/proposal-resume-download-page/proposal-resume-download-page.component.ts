@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProposalService} from "../../../services/proposal.service";
 import {saveAs} from "file-saver";
@@ -8,7 +8,7 @@ import {saveAs} from "file-saver";
   templateUrl: './proposal-resume-download-page.component.html',
   styleUrls: ['./proposal-resume-download-page.component.scss']
 })
-export class ProposalResumeDownloadPageComponent implements OnInit {
+export class ProposalResumeDownloadPageComponent implements OnInit,OnDestroy {
 
   constructor(private activatedRoute: ActivatedRoute,
               private proposalService: ProposalService,
@@ -28,5 +28,5 @@ export class ProposalResumeDownloadPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy() { }
 }

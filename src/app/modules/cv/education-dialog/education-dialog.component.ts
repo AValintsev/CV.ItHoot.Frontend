@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EducationDto} from "../../../models/resume/education-dto";
@@ -35,7 +35,7 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ]
 })
-export class EducationDialog implements OnInit {
+export class EducationDialog implements OnInit,OnDestroy {
 
   education: EducationDto = {} as EducationDto;
   typeDialog: DialogType;
@@ -87,5 +87,5 @@ export class EducationDialog implements OnInit {
     this.educationForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
-
+  ngOnDestroy() { }
 }

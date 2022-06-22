@@ -27,7 +27,7 @@ interface ProposalStatusItem  {
   styleUrls: ['./proposal-list.component.scss']
 })
 
-export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProposalListComponent implements OnInit,OnDestroy, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'proposalSize', 'showLogo', 'showContacts', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
   

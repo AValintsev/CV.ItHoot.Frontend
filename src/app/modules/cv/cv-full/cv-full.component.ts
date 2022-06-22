@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {map} from 'rxjs/operators';
@@ -11,7 +11,7 @@ import panzoom from "panzoom";
   templateUrl: './cv-full.component.html',
   styleUrls: ['./cv-full.component.scss']
 })
-export class CvFullComponent implements OnInit, AfterViewInit {
+export class CvFullComponent implements OnInit,OnDestroy, AfterViewInit {
   @Input() id: number = 0;
   resume!: ResumeDto;
   @ViewChild('scene', {static: false}) doc!: ElementRef;
@@ -43,5 +43,5 @@ export class CvFullComponent implements OnInit, AfterViewInit {
       bounds:true
     });
   }
-
+  ngOnDestroy() { }
 }

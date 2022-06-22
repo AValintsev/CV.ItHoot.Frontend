@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DialogType} from "../../../../../models/enums";
 import {SkillDto} from "../../../../../models/skill/skill-dto";
@@ -8,7 +8,7 @@ import {SkillDto} from "../../../../../models/skill/skill-dto";
   templateUrl: './skill-dialog.component.html',
   styleUrls: ['./skill-dialog.component.scss']
 })
-export class SkillDialogComponent implements OnInit {
+export class SkillDialogComponent implements OnInit,OnDestroy {
 
   typeDialog: DialogType = DialogType.Create;
   DialogType = DialogType;
@@ -29,5 +29,5 @@ export class SkillDialogComponent implements OnInit {
     return !(name == null || name.trim() === '');
 
   }
-
+  ngOnDestroy() { }
 }

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {SkillService} from "../../../services/skill.service";
 import {FormControl} from "@angular/forms";
@@ -14,7 +14,7 @@ import {DialogType} from "../../../models/enums";
   templateUrl: './skill-dialog.component.html',
   styleUrls: ['./skill-dialog.component.scss']
 })
-export class SkillDialog implements OnInit {
+export class SkillDialog implements OnInit,OnDestroy {
 
   skill: ResumeSkillDto = {} as ResumeSkillDto;
   typeDialog: DialogType;
@@ -61,4 +61,5 @@ export class SkillDialog implements OnInit {
   canCreate(): boolean {
     return !(this.skill.skillName === '' || this.skill.skillName === undefined || this.skill.level === undefined);
   }
+  ngOnDestroy() { }
 }

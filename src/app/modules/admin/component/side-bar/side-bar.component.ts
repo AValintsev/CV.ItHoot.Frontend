@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit,OnDestroy {
 
   constructor(private router: Router) { }
 
@@ -15,4 +15,5 @@ export class SideBarComponent implements OnInit {
   // settingOpened(): boolean {
   //   return this.router.url === '/home/skills' || this.router.url === '/home/languages';
   // }
+  ngOnDestroy() { }
 }

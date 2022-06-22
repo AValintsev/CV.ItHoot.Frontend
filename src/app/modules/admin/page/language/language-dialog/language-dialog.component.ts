@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DialogType} from "../../../../../models/enums";
 import {LanguageDto} from "../../../../../models/language/language-dto";
@@ -8,7 +8,7 @@ import {LanguageDto} from "../../../../../models/language/language-dto";
   templateUrl: './language-dialog.component.html',
   styleUrls: ['./language-dialog.component.scss']
 })
-export class LanguageDialogComponent implements OnInit {
+export class LanguageDialogComponent implements OnInit,OnDestroy {
 
   typeDialog: DialogType = DialogType.Create;
   DialogType = DialogType;
@@ -29,5 +29,5 @@ export class LanguageDialogComponent implements OnInit {
     return !(name == null || name.trim() === '');
 
   }
-
+  ngOnDestroy() { }
 }

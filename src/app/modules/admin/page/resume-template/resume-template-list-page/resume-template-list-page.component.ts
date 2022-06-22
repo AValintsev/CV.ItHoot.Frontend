@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
 import {ResumeService} from "../../../../../services/resume.service";
 
@@ -7,7 +7,7 @@ import {ResumeService} from "../../../../../services/resume.service";
   templateUrl: './resume-template-list-page.component.html',
   styleUrls: ['./resume-template-list-page.component.scss']
 })
-export class ResumeTemplateListPageComponent implements OnInit {
+export class ResumeTemplateListPageComponent implements OnInit,OnDestroy {
 
   displayedColumns: string[] = ['id', 'templateName', 'action'];
   templates!:ResumeTemplateDto[];
@@ -18,5 +18,5 @@ export class ResumeTemplateListPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy() { }
 }

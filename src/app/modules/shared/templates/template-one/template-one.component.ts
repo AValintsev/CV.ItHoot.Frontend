@@ -7,7 +7,7 @@ import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-soli
   templateUrl: './template-one.component.html',
   styleUrls: ['./template-one.component.scss']
 })
-export class TemplateOneComponent implements OnInit {
+export class TemplateOneComponent implements OnInit,OnDestroy {
 
   @ViewChild('doc') doc!: ElementRef
   @Input() public resumeEditForm!: ResumeDto

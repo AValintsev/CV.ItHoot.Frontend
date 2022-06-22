@@ -7,7 +7,7 @@ import { ClientProposalService } from 'src/app/services/client/client-proposal.s
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit{
   showLogo$!:Observable<boolean>
   constructor(private clientProposalService:ClientProposalService) { }
 

@@ -1,6 +1,6 @@
 import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
 import {AccountService} from 'src/app/services/account.service';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
 import {UserAuthData} from "../../../models/userAuthData";
 import {Users} from "../../../models/users-type";
@@ -14,7 +14,7 @@ import {ModalDeleteUserComponent} from '../../shared/modals/modal-delete-user/mo
   templateUrl: './cv-small.component.html',
   styleUrls: ['./cv-small.component.scss']
 })
-export class CvSmallComponent implements OnInit {
+export class CvSmallComponent implements OnInit,OnDestroy {
   @Input() resume!: SmallResumeDto;
   authData$!: Observable<UserAuthData>;
   Users = Users
@@ -53,4 +53,5 @@ export class CvSmallComponent implements OnInit {
     })
 
   }
+  ngOnDestroy() { }
 }

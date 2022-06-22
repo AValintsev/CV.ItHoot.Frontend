@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProposalListFilter } from 'src/app/models/proposal/proposal-list-filter';
 import {SmallProposalDto} from "../../../../../models/proposal/small-proposal-dto";
 import {ProposalService} from "../../../../../services/proposal.service";
@@ -8,7 +8,7 @@ import {ProposalService} from "../../../../../services/proposal.service";
   templateUrl: './archive-list-page.component.html',
   styleUrls: ['./archive-list-page.component.scss']
 })
-export class ArchiveListPageComponent implements OnInit {
+export class ArchiveListPageComponent implements OnInit,OnDestroy {
 
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;
@@ -29,5 +29,5 @@ export class ArchiveListPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy() { }
 }

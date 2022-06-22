@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
@@ -20,7 +20,7 @@ import {ProposalBuildService} from "../../../../../services/proposal-build.servi
   templateUrl: './proposal-create-dialog.component.html',
   styleUrls: ['./proposal-create-dialog.component.scss']
 })
-export class ProposalCreateDialogComponent implements OnInit {
+export class ProposalCreateDialogComponent implements OnInit,OnDestroy {
 
   proposal: ProposalDto = {} as ProposalDto;
   resumes: SmallResumeDto[] = [];
@@ -120,4 +120,5 @@ export class ProposalCreateDialogComponent implements OnInit {
       this.resumes = resumes;
     });
   }
+  ngOnDestroy() { }
 }

@@ -1,8 +1,9 @@
-import {Observable, of} from 'rxjs';
+import {  untilDestroyed } from '@ngneat/until-destroy';
+import {Observable, of, Subject} from 'rxjs';
 import {ResumeService} from './../../../services/resume.service';
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
 import {map} from 'rxjs/operators';
 
@@ -13,7 +14,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
   Users = Users
   userName$:Observable<string> = of('User')
   constructor(
@@ -35,7 +36,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.accountService.logout().subscribe({
+    this.accountService.logout().pipe(
+      untilDestroyed(this)
+    ).subscribe({
       next: () => this.router.navigate(['/account/login'])
     })
   }
@@ -45,5 +48,7 @@ export class HeaderComponent implements OnInit {
   nextCv() {
 
   }
+  ngOnDestroy(){
 
+  }
 }

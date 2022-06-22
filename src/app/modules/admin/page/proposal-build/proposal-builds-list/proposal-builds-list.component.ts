@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProposalBuildDto} from "../../../../../models/proposal-build/proposal-build-dto";
 import {ProposalBuildService} from "../../../../../services/proposal-build.service";
 import {ProposalBuildPositionDto} from "../../../../../models/proposal-build/proposal-build-position-dto";
@@ -13,7 +13,7 @@ import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/p
   templateUrl: './proposal-builds-list.component.html',
   styleUrls: ['./proposal-builds-list.component.scss']
 })
-export class ProposalBuildsListComponent implements OnInit {
+export class ProposalBuildsListComponent implements OnInit,OnDestroy {
 
   displayedColumns: string[] = ['projectType', 'complexity', 'positions', 'proposalSize', 'estimation', 'status', 'action'];
 
@@ -73,4 +73,5 @@ export class ProposalBuildsListComponent implements OnInit {
         });
     });
   }
+  ngOnDestroy() { }
 }

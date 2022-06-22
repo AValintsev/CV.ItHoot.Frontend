@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Users} from 'src/app/models/users-type';
@@ -14,7 +14,7 @@ import {AccountService} from 'src/app/services/account.service';
   templateUrl: './create-page.component.html',
   styleUrls: ['./create-page.component.scss']
 })
-export class CreatePageComponent implements OnInit {
+export class CreatePageComponent implements OnInit,OnDestroy {
 
   resumeCreateDto: ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
@@ -182,5 +182,5 @@ export class CreatePageComponent implements OnInit {
       }
     })
   }
-
+  ngOnDestroy() { }
 }

@@ -1,5 +1,5 @@
 import {AccountService} from '../../../services/account.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
@@ -7,14 +7,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
 import {map} from 'rxjs/operators';
-
+import {  untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'cv-cv-create-page',
   templateUrl: './cv-create-page.component.html',
   styleUrls: ['./cv-create-page.component.scss']
 })
-export class CvCreatePageComponent implements OnInit {
+export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
 
   resumeCreateDto: ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
@@ -37,10 +37,15 @@ export class CvCreatePageComponent implements OnInit {
   }
   private getFieldDate() {
     this.activatedRoute.queryParams.pipe(
-      map(params=>params.userId)).subscribe({
+      untilDestroyed(this),
+      map(params=>params.userId)).pipe(
+        untilDestroyed(this)
+      ).subscribe({
       next:params=>{
         if(params){
-           this.resumeService.getResumeById(params).subscribe({
+           this.resumeService.getResumeById(params).pipe(
+            untilDestroyed(this)
+          ).subscribe({
              next:response=>{
               this.patchForm(response)
              },
@@ -52,7 +57,9 @@ export class CvCreatePageComponent implements OnInit {
   }
 
   private changeFormDate() {
-    this.resumeCreateForm.valueChanges.subscribe(resume => this.templateForm = resume)
+    this.resumeCreateForm.valueChanges.pipe(
+      untilDestroyed(this)
+    ).subscribe(resume => this.templateForm = resume)
   }
   private validateForm() {
     this.resumeCreateForm = new FormGroup({
@@ -169,7 +176,9 @@ export class CvCreatePageComponent implements OnInit {
 
 
   public submit(resume: ResumeDto) {
-    this.resumeService.createResume(resume).subscribe({
+    this.resumeService.createResume(resume).pipe(
+      untilDestroyed(this)
+    ).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Created');
         if (this.accountService.getStoreRole() === Users[2]) {
@@ -184,5 +193,5 @@ export class CvCreatePageComponent implements OnInit {
       }
     })
   }
-
+  ngOnDestroy() { }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {PositionService} from "../../../../../services/position.service";
@@ -11,7 +11,7 @@ import {DialogType} from "../../../../../models/enums";
   templateUrl: './position-page.component.html',
   styleUrls: ['./position-page.component.scss']
 })
-export class PositionPageComponent implements OnInit {
+export class PositionPageComponent implements OnInit,OnDestroy {
 
   // displayedColumns: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['name', 'action'];
@@ -77,5 +77,5 @@ export class PositionPageComponent implements OnInit {
 
     });
   }
-
+  ngOnDestroy() { }
 }

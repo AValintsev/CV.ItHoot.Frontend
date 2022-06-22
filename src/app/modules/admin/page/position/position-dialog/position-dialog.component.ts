@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DialogType} from "../../../../../models/enums";
 import {PositionDto} from "../../../../../models/position/position-dto";
@@ -8,7 +8,7 @@ import {PositionDto} from "../../../../../models/position/position-dto";
   templateUrl: './position-dialog.component.html',
   styleUrls: ['./position-dialog.component.scss']
 })
-export class PositionDialogComponent implements OnInit {
+export class PositionDialogComponent implements OnInit,OnDestroy {
 
 
   typeDialog: DialogType = DialogType.Create;
@@ -30,5 +30,5 @@ export class PositionDialogComponent implements OnInit {
     return !(name == null || name.trim() === '');
 
   }
-
+  ngOnDestroy() { }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
@@ -9,7 +9,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit,OnDestroy {
 
   registerForm!: FormGroup;
   errors!: string[];
@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 }
+ngOnDestroy() { }
 }
 
 

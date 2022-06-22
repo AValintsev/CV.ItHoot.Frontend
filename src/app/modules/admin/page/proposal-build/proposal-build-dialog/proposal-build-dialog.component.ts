@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ProposalBuildDto} from "../../../../../models/proposal-build/proposal-build-dto";
 import {DialogType} from "../../../../../models/enums";
@@ -16,7 +16,7 @@ import {
   templateUrl: './proposal-build-dialog.component.html',
   styleUrls: ['./proposal-build-dialog.component.scss']
 })
-export class ProposalBuildDialogComponent implements OnInit {
+export class ProposalBuildDialogComponent implements OnInit,OnDestroy {
 
   DialogType = DialogType;
   dialogType: DialogType = DialogType.Create;
@@ -85,4 +85,5 @@ export class ProposalBuildDialogComponent implements OnInit {
   complexityChange() {
     this.proposalBuild.complexityId = this.proposalBuild.complexity.id;
   }
+  ngOnDestroy() { }
 }

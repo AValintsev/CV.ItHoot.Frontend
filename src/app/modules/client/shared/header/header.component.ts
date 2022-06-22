@@ -1,8 +1,9 @@
+import { takeUntil } from 'rxjs/operators';
 import {SmallProposalDto} from '../../../../models/proposal/small-proposal-dto';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {NavigationStart, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
 import {map, tap} from 'rxjs/operators';
 import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
@@ -26,7 +27,8 @@ interface IcontrolPanel{
   styleUrls: ['./header.component.scss'],
 
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
+  destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
   Users = Users
@@ -95,17 +97,22 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.showLogo$ = this.clientProposalService.showLogo$
     this.checkUrlFromArrow(this.router)
-    this.clientProposalService.headerTitle$.subscribe(e => {})
+    this.clientProposalService.headerTitle$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(e => {})
     this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName))
     this.getProposalList()
 
 
 
     this.clientProposalService.headerProposal.pipe(
+      takeUntil(this.destroy$),
       tap(response => {
         if (response) {
           this.controlPanel.arr = this.filterResponseArray(response);
-          this.clientProposalService.numberCheckedResume$.subscribe(
+          this.clientProposalService.numberCheckedResume$.pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(
             response => {
               if (response?.resumeId) {
                 this.controlPanel.index(response!.resumeId);
@@ -172,7 +179,9 @@ private  checkUrlFromArrow(response: any) {
 
 
  private checkVisibleHeaderItem() {
-    this.router.events.subscribe({
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: response => {
         if (response instanceof NavigationStart) {
           this.checkUrlFromArrow(response)
@@ -188,7 +197,9 @@ private  checkUrlFromArrow(response: any) {
   }
 
   logout() {
-    this.accountService.logout().subscribe({
+    this.accountService.logout().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: () => this.router.navigate(['/account/login'])
     })
   }
@@ -200,7 +211,8 @@ private  checkUrlFromArrow(response: any) {
     this.controlPanel.next(this)
   }
 
-  // getProposalName() {
-  //   return this.proposalName
-  // }
+  ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

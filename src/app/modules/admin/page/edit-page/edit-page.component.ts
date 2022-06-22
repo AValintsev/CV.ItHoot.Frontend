@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {map} from "rxjs/operators";
@@ -14,7 +14,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss']
 })
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit,OnDestroy {
 
   resumeEditDto: ResumeDto|null = null;
   templateForm!: ResumeDto
@@ -184,5 +184,5 @@ export class EditPageComponent implements OnInit {
       }
     })
   }
-
+  ngOnDestroy() { }
 }

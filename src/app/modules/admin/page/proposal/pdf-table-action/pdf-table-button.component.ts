@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProposalDto, ProposalResumeDto} from "../../../../../models/proposal/proposal-dto";
 import {saveAs} from "file-saver";
 import {ProposalService} from "../../../../../services/proposal.service";
@@ -9,7 +9,7 @@ import {SnackBarService} from "../../../../../services/snack-bar.service";
   templateUrl: './pdf-table-button.component.html',
   styleUrls: ['./pdf-table-button.component.scss']
 })
-export class PdfTableAction implements OnInit {
+export class PdfTableAction implements OnInit,OnDestroy {
 
     @Input() resume!:ProposalResumeDto;
     @Input() proposal!:ProposalDto;
@@ -40,5 +40,5 @@ export class PdfTableAction implements OnInit {
       document.body.removeChild(selBox);
       this.snackBarService.showSuccess('Link copied');
   }
-
+  ngOnDestroy() { }
 }

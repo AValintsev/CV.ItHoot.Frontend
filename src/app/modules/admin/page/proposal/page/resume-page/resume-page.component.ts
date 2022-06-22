@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ResumeDto} from "../../../../../../models/resume/resume-dto";
 import {ProposalService} from "../../../../../../services/proposal.service";
 import {ActivatedRoute} from "@angular/router";
@@ -9,7 +9,7 @@ import panzoom from "panzoom";
   templateUrl: './resume-page.component.html',
   styleUrls: ['./resume-page.component.scss']
 })
-export class ResumePageComponent implements OnInit {
+export class ResumePageComponent implements OnInit,OnDestroy {
 
   @ViewChild('doc', {static: false}) doc!: ElementRef;
   resume: ResumeDto | null = null;
@@ -32,4 +32,5 @@ export class ResumePageComponent implements OnInit {
       });
     });
   }
+  ngOnDestroy() { }
 }

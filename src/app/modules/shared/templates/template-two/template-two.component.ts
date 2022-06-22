@@ -12,7 +12,7 @@ import {take} from 'rxjs/operators';
   templateUrl: './template-two.component.html',
   styleUrls: ['./template-two.component.scss']
 })
-export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewInit {
+export class TemplateTwoComponent implements OnInit,OnDestroy,AfterContentInit,AfterViewInit {
   public editor:any = null
   User=Users
   color = '#37474f'

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProposalDto, ProposalResumeDto, StatusProposalResume} from "../../../../../models/proposal/proposal-dto";
 import {ProposalService} from "../../../../../services/proposal.service";
 import {ActivatedRoute} from "@angular/router";
@@ -15,7 +15,7 @@ import {StatusProposal} from "../../../../../models/enums";
   templateUrl: './proposal.component.html',
   styleUrls: ['./proposal.component.scss']
 })
-export class ProposalComponent implements OnInit {
+export class ProposalComponent implements OnInit,OnDestroy {
 
   displayedColumns: string[] = ['resumeName', 'fullName', 'position', 'skills', 'isSelected', 'action'];
   @Input()proposal!: ProposalDto;
@@ -126,4 +126,5 @@ export class ProposalComponent implements OnInit {
     document.body.removeChild(selBox);
     this.snackBarService.showSuccess('Link copied');
   }
+  ngOnDestroy() { }
 }

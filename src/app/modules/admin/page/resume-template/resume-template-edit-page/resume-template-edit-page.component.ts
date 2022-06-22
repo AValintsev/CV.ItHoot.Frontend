@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../../../services/resume.service";
@@ -11,7 +11,7 @@ import {SnackBarService} from "../../../../../services/snack-bar.service";
   templateUrl: './resume-template-edit-page.component.html',
   styleUrls: ['./resume-template-edit-page.component.scss']
 })
-export class ResumeTemplateEditPageComponent implements OnInit {
+export class ResumeTemplateEditPageComponent implements OnInit,OnDestroy {
 
   editorOptions = {
     theme: 'vs', language: 'html', "autoIndent": true,
@@ -49,5 +49,5 @@ export class ResumeTemplateEditPageComponent implements OnInit {
     }, 150)
   }
 
-
+  ngOnDestroy() { }
 }

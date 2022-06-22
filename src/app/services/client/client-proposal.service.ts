@@ -1,5 +1,5 @@
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ProposalService } from '../proposal.service';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
@@ -8,7 +8,7 @@ import { PagedResponse } from 'src/app/models/paginations/paged-response';
 
 @Injectable()
 
-export class ClientProposalService implements OnInit {
+export class ClientProposalService implements OnInit,OnDestroy {
 	Map: any = new Map()
 	resumes: any;
 	public headerTitle$ = new BehaviorSubject<string|null>("You proposal")
@@ -61,4 +61,5 @@ export class ClientProposalService implements OnInit {
 			})
 		)
 	}
+	ngOnDestroy() { }
 }

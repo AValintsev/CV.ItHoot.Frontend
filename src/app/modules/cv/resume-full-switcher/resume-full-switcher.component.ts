@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProposalService} from "../../../services/proposal.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResumeService} from "../../../services/resume.service";
@@ -9,7 +9,7 @@ import {ResumeService} from "../../../services/resume.service";
   templateUrl: './resume-full-switcher.component.html',
   styleUrls: ['./resume-full-switcher.component.scss']
 })
-export class ResumeFullSwitcherComponent implements OnInit {
+export class ResumeFullSwitcherComponent implements OnInit,OnDestroy {
 
   resume!:any;
 
@@ -44,4 +44,5 @@ export class ResumeFullSwitcherComponent implements OnInit {
 
   }
   ngOnInit() {}
+  ngOnDestroy() { }
 }

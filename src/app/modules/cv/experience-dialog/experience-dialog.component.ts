@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ExperienceDto} from "../../../models/resume/experience-dto";
@@ -34,7 +34,7 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ]
 })
-export class ExperienceDialog implements OnInit {
+export class ExperienceDialog implements OnInit,OnDestroy {
 
   experience: ExperienceDto = {} as ExperienceDto;
   typeDialog: DialogType;
@@ -85,4 +85,5 @@ export class ExperienceDialog implements OnInit {
     this.experienceForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
+  ngOnDestroy() { }
 }

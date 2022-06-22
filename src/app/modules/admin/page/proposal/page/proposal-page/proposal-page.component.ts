@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {ProposalService} from "../../../../../../services/proposal.service";
@@ -9,7 +9,7 @@ import {ProposalDto} from "../../../../../../models/proposal/proposal-dto";
   templateUrl: './proposal-page.component.html',
   styleUrls: ['./proposal-page.component.scss']
 })
-export class ProposalPageComponent implements OnInit {
+export class ProposalPageComponent implements OnInit,OnDestroy {
 
   proposal:ProposalDto = {} as ProposalDto
 
@@ -22,6 +22,6 @@ export class ProposalPageComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  ngOnDestroy() { }
 
 }

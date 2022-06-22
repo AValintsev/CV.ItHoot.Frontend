@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {ComplexityService} from "../../../../../services/complexity.service";
@@ -11,7 +11,7 @@ import {ComplexityDialogComponent} from "../complexity-dialog/complexity-dialog.
   templateUrl: './complexity-page.component.html',
   styleUrls: ['./complexity-page.component.scss']
 })
-export class ComplexityPageComponent implements OnInit {
+export class ComplexityPageComponent implements OnInit,OnDestroy {
 
   // displayedColumns: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['name', 'action'];
@@ -78,5 +78,5 @@ export class ComplexityPageComponent implements OnInit {
 
     });
   }
-
+  ngOnDestroy() { }
 }

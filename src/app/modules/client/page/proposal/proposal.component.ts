@@ -1,6 +1,7 @@
+import { takeUntil } from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output,} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import * as saveAs from 'file-saver';
 import {StatusProposal} from 'src/app/models/enums';
@@ -14,6 +15,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {ProposalService} from 'src/app/services/proposal.service';
 import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
 import {ModalDeleteUserComponent} from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -35,7 +37,8 @@ import {ModalDeleteUserComponent} from 'src/app/modules/shared/modals/modal-dele
       ])
     ])],
 })
-export class ProposalComponent implements OnInit, OnChanges {
+export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
+  destroy$ = new Subject<boolean>();
   statusProposal = StatusProposal
   statusResume = StatusProposalResume
   status = 1;
@@ -73,7 +76,9 @@ export class ProposalComponent implements OnInit, OnChanges {
     let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
       panelClass:'delete-modal'
     });
-    dialogRef.afterClosed().subscribe({
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: response => {
 
         if (response && (index == 0 || index == length || !this.toggleBtn)) {
@@ -124,7 +129,9 @@ export class ProposalComponent implements OnInit, OnChanges {
 
   }
   savePdf(proposalId: number, resumeId: number, firstName: string, lastName: string) {
-    this.proposalService.getProposalResumePdf(proposalId, resumeId).subscribe(response => {
+    this.proposalService.getProposalResumePdf(proposalId, resumeId).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(response => {
       saveAs(response, `${firstName} ${lastName}.pdf`);
     });
   }
@@ -169,8 +176,8 @@ export class ProposalComponent implements OnInit, OnChanges {
     return resumeArray.filter(resume => resume.statusResume !== this.statusResume.Denied).length
   }
 
-
-  ngOnChanges(changes: SimpleChanges): void {
-
+  ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
   }
 }

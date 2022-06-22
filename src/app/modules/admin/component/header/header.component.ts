@@ -1,7 +1,7 @@
 import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
 import {map} from 'rxjs/operators';
 import {ResumeService} from 'src/app/services/resume.service';
@@ -13,7 +13,7 @@ import {ResumeService} from 'src/app/services/resume.service';
   styleUrls: ['./header.component.scss'],
 
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
   Users = Users
   userName$:Observable<string> = of('User')
   constructor(
@@ -45,5 +45,5 @@ export class HeaderComponent implements OnInit {
   nextCv() {
 
   }
-
+  ngOnDestroy() { }
 }

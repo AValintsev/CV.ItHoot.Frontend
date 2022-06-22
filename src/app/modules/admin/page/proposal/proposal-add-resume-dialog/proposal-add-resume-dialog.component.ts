@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {ResumeService} from "../../../../../services/resume.service";
 import {SmallResumeDto} from "../../../../../models/resume/small-resume-dto";
@@ -11,7 +11,7 @@ import {PositionService} from "../../../../../services/position.service";
   templateUrl: './proposal-add-resume-dialog.component.html',
   styleUrls: ['./proposal-add-resume-dialog.component.scss']
 })
-export class ProposalAddResumeDialogComponent implements OnInit {
+export class ProposalAddResumeDialogComponent implements OnInit,OnDestroy {
 
   allResumes: SmallResumeDto[] = [];
   resume: SmallResumeDto | null = null;
@@ -46,4 +46,5 @@ export class ProposalAddResumeDialogComponent implements OnInit {
         this.resumeService.getAllResumesByPositions(positions).subscribe(resumes=>this.allResumes = resumes);
       }
   }
+  ngOnDestroy() { }
 }

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
@@ -13,7 +13,7 @@ import {LanguageDto} from "../../../models/language/language-dto";
   templateUrl: './language-dialog.component.html',
   styleUrls: ['./language-dialog.component.scss']
 })
-export class LanguageDialog implements OnInit {
+export class LanguageDialog implements OnInit,OnDestroy {
 
   language: ResumeLanguageDto = {} as ResumeLanguageDto;
   typeDialog: DialogType;
@@ -58,4 +58,5 @@ export class LanguageDialog implements OnInit {
     return !(this.language.languageName === '' || this.language.languageName === undefined || this.language.level === undefined);
 
   }
+  ngOnDestroy() { }
 }

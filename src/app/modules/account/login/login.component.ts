@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
@@ -9,7 +9,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
 
   errors!: string[];
   loginForm!: FormGroup;
@@ -39,4 +39,5 @@ export class LoginComponent implements OnInit {
       })
     }
   }
+  ngOnDestroy() { }
 }

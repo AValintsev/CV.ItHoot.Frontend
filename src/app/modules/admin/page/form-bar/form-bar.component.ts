@@ -1,5 +1,5 @@
 import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
@@ -23,7 +23,7 @@ import {ResumeTemplateDto} from "../../../../models/resume/resume-template-dto";
 	styleUrls: ['./form-bar.component.scss'],
 })
 
-export class FormBarComponent implements OnInit {
+export class FormBarComponent implements OnInit,OnDestroy {
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
@@ -288,5 +288,5 @@ export class FormBarComponent implements OnInit {
   changeTeam(event:any){
 
   }
-
+  ngOnDestroy() { }
 }

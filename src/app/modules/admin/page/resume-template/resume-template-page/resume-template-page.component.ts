@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
 import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dto";
@@ -10,7 +10,7 @@ import {ResumeService} from "../../../../../services/resume.service";
   styleUrls: ['./resume-template-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ResumeTemplatePageComponent implements OnInit {
+export class ResumeTemplatePageComponent implements OnInit,OnDestroy {
 
   template!:ResumeTemplateDto;
 
@@ -25,5 +25,5 @@ export class ResumeTemplatePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy() { }
 }

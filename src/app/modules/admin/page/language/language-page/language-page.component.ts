@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LanguageService} from 'src/app/services/language.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
@@ -12,7 +12,7 @@ import {DialogType} from "../../../../../models/enums";
   templateUrl: './language-page.component.html',
   styleUrls: ['./language-page.component.scss']
 })
-export class LanguagePageComponent implements OnInit {
+export class LanguagePageComponent implements OnInit,OnDestroy {
   // displayedColumns: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['name', 'action'];
   languages: LanguageDto[] = [];
@@ -80,4 +80,5 @@ export class LanguagePageComponent implements OnInit {
 
     });
   }
+  ngOnDestroy() { }
 }

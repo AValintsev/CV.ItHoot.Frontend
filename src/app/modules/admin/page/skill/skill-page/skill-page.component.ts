@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import {MatDialog} from "@angular/material/dialog";
 import {SkillService} from 'src/app/services/skill.service';
@@ -13,7 +13,7 @@ import {DialogType} from "../../../../../models/enums";
 	templateUrl: './skill-page.component.html',
 	styleUrls: ['./skill-page.component.scss']
 })
-export class SkillPageComponent implements OnInit {
+export class SkillPageComponent implements OnInit,OnDestroy {
 
 	// displayedColumns: string[] = ['id', 'name', 'action'];
 	displayedColumns: string[] = ['name', 'action'];
@@ -79,4 +79,5 @@ export class SkillPageComponent implements OnInit {
 
 		});
 	}
+	ngOnDestroy() { }
 }

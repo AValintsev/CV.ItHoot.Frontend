@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../../../../../services/user.service";
 import {ResumeService} from "../../../../../services/resume.service";
@@ -11,7 +11,7 @@ import {ResumeTemplateDto} from "../../../../../models/resume/resume-template-dt
   templateUrl: './proposal-setting-dialog.component.html',
   styleUrls: ['./proposal-setting-dialog.component.scss']
 })
-export class ProposalSettingDialogComponent implements OnInit {
+export class ProposalSettingDialogComponent implements OnInit,OnDestroy {
 
   proposal: ProposalDto;
   clients:UserDto[] = [];
@@ -40,4 +40,5 @@ export class ProposalSettingDialogComponent implements OnInit {
   compareUser(user:any, user1:any) {
     return user?.userId === user1?.userId;
   }
+  ngOnDestroy() { }
 }

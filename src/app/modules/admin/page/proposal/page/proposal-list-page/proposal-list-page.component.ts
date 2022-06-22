@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SmallProposalDto} from "../../../../../../models/proposal/small-proposal-dto";
 import {ProposalService} from "../../../../../../services/proposal.service";
 import {ProposalListFilter} from "../../../../../../models/proposal/proposal-list-filter";
@@ -8,7 +8,7 @@ import {ProposalListFilter} from "../../../../../../models/proposal/proposal-lis
   templateUrl: './proposal-list-page.component.html',
   styleUrls: ['./proposal-list-page.component.scss']
 })
-export class ProposalListPageComponent implements OnInit {
+export class ProposalListPageComponent implements OnInit,OnDestroy {
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;
   constructor(private proposalService:ProposalService) {
@@ -28,4 +28,5 @@ export class ProposalListPageComponent implements OnInit {
       this.proposalsCount = proposals.totalRecords
     });
   }
+  ngOnDestroy() { }
 }
