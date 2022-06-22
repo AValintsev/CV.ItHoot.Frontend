@@ -128,7 +128,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value =
-      window.location.origin + `/account/${this.proposal.client.shortAuthUrl}`;
+    selBox.value = window.location.origin+`/account/${this.proposal.client.shortAuthUrl}/${this.proposal.id}`;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
@@ -143,8 +143,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value =
-      window.location.origin + `/proposals/resume/${resume.shortUrl}`;
+    selBox.value = window.location.origin + `/proposals/resume/${resume.shortUrl}`;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();

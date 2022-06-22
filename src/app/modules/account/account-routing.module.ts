@@ -8,6 +8,7 @@ import {CanLoginingGuard} from 'src/app/guards/canLogining.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent,canActivate:[CanLoginingGuard]},
   { path: ':shortUrl', component: LoginByUrlComponent},
+  { path: ':shortUrl/:teamId', component: LoginByUrlComponent},
   { path: 'registration', component: RegisterComponent },
   { path: '', redirectTo:'login',pathMatch:'full'},
   { path: '**', redirectTo:'login',pathMatch:'full'}

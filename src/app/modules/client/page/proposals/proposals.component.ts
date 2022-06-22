@@ -51,25 +51,37 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
   }
 
   getResumeArray(id: number | null = null) {
-    this.clientProposalService.getProposal().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        response.pipe(
-          takeUntil(this.destroy$)
-        ).subscribe({
-          next: (response: ProposalDto) => {
-            this.statusProposal = response.statusProposal;
-            this.resume = this.filterResponseArray(response);
-            this.proposalId = response.id;
-            this.clientProposalService.headerTitle$.next(response.proposalName);
-            this.objZeroing();
-          },
-          error: () => this.snackBarService.showDanger('Something went wrong!'),
-        });
-      },
-      error: () => this.snackBarService.showDanger('Something went wrong!'),
-    });
+
+    const teamId = sessionStorage.getItem('teamId')
+    if (teamId != null) {
+      this.clientProposalService.getProposalById(parseInt(teamId)).subscribe((data) => {
+        this.statusProposal = data.statusProposal
+        this.resume = this.filterResponseArray(data)
+        this.proposalId = data.id;
+        this.clientProposalService.headerTitle$.next(data.proposalName)
+        this.objZeroing()
+      })
+      sessionStorage.removeItem('teamId');
+    } else {
+      this.clientProposalService.getProposal().subscribe({
+        next: response => {
+          response.subscribe({
+            next: (response: ProposalDto) => {
+              this.statusProposal = response.statusProposal
+              this.resume = this.filterResponseArray(response)
+              this.proposalId = response.id;
+              this.clientProposalService.headerTitle$.next(response.proposalName)
+              this.objZeroing()
+            },
+            error: () => this.snackBarService.showDanger('Something went wrong!'),
+          })
+
+        },
+        error: () => this.snackBarService.showDanger('Something went wrong!'),
+      })
+    }
+
+
   }
   filterResponseArray(resumes: any) {
     let array = Array.from(resumes.positionResumes as any);
@@ -86,6 +98,7 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
       }
     });
   }
+
   approveUsers() {
     this.proposalService.approveProposal(this.statusObject).pipe(
       takeUntil(this.destroy$)

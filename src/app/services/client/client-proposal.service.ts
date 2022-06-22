@@ -6,7 +6,9 @@ import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PagedResponse } from 'src/app/models/paginations/paged-response';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ClientProposalService implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   Map: any = new Map();

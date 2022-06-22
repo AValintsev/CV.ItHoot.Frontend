@@ -29,13 +29,13 @@ interface ProposalStatusItem  {
 
 export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'proposalSize', 'showLogo', 'showContacts', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
-  
+  displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
+
   searchControl = new FormControl();
   // proposals: SmallProposalDto[] = [];
 
   resultsLength = 0;
-  
+
   @Input()proposals: SmallProposalDto[];
   @Input()proposalsCount: number;
   @Input()hideStatusFiter: boolean;
@@ -60,7 +60,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('statusMultiSelect', { static: true }) statusMultiSelect: MatSelect;
 
-  constructor(private proposalService: ProposalService, 
+  constructor(private proposalService: ProposalService,
               public dialog: MatDialog,
               private userService: UserService,) {
   }
@@ -76,7 +76,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     .subscribe(clients => {
       this.clients = clients;
       this.filteredClientsMulti.next(this.clients.slice());
-      
+
       this.clientFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
@@ -96,10 +96,10 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // If the user changes the sort order, search or filters, reset back to the first page.
     merge(this.sort.sortChange, this.searchControl.valueChanges, this.clientsControl.valueChanges, this.statusesControl.valueChanges)
-      .subscribe(() => (this.paginator.pageIndex = 0));     
+      .subscribe(() => (this.paginator.pageIndex = 0));
 
-    merge(this.sort.sortChange, 
-          this.paginator.page, 
+    merge(this.sort.sortChange,
+          this.paginator.page,
           this.searchControl.valueChanges,
           this.clientsControl.valueChanges,
           this.statusesControl.valueChanges)
@@ -201,7 +201,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!list) {
       return;
     }
-  
+
     let search = filterControl.value;
     if (!search) {
       filteredMulti.next(list.slice());
@@ -209,7 +209,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-  
+
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );
