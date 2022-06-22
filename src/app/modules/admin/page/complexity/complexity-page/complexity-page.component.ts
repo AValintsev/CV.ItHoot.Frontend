@@ -1,60 +1,78 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {SnackBarService} from "../../../../../services/snack-bar.service";
-import {ComplexityService} from "../../../../../services/complexity.service";
-import {ProposalBuildComplexityDto} from "../../../../../models/proposal-build/proposal-build-complexity-dto";
-import {DialogType} from "../../../../../models/enums";
-import {ComplexityDialogComponent} from "../complexity-dialog/complexity-dialog.component";
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackBarService } from '../../../../../services/snack-bar.service';
+import { ComplexityService } from '../../../../../services/complexity.service';
+import { ProposalBuildComplexityDto } from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import { DialogType } from '../../../../../models/enums';
+import { ComplexityDialogComponent } from '../complexity-dialog/complexity-dialog.component';
 
 @Component({
   selector: 'cv-complexity-page',
   templateUrl: './complexity-page.component.html',
-  styleUrls: ['./complexity-page.component.scss']
+  styleUrls: ['./complexity-page.component.scss'],
 })
-export class ComplexityPageComponent implements OnInit,OnDestroy {
-
+export class ComplexityPageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   // displayedColumns: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['name', 'action'];
   complexities: ProposalBuildComplexityDto[] = [];
 
-  constructor(private complexityService: ComplexityService,
-              public dialog: MatDialog,
-              private snackBar: SnackBarService) {
-    this.complexityService.getAllComplexities().subscribe(complexities=> this.complexities = complexities);
+  constructor(
+    private complexityService: ComplexityService,
+    public dialog: MatDialog,
+    private snackBar: SnackBarService
+  ) {
+    this.complexityService
+      .getAllComplexities().pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((complexities) => (this.complexities = complexities));
   }
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  createComplexity(complexity: ProposalBuildComplexityDto) {
+    this.complexityService.createComplexity(complexity).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.snackBar.showSuccess('Created');
+      this.complexityService
+        .getAllComplexities().pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe((complexities) => (this.complexities = complexities));
+    });
   }
 
-  createComplexity(complexity:ProposalBuildComplexityDto){
-    this.complexityService.createComplexity(complexity).subscribe(
-      () => {
-        this.snackBar.showSuccess('Created');
-        this.complexityService.getAllComplexities().subscribe(complexities => this.complexities = complexities);
-      }
-    )
+  updateComplexity(complexity: ProposalBuildComplexityDto) {
+    this.complexityService.updateComplexity(complexity).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.snackBar.showSuccess('Updated');
+      this.complexityService
+        .getAllComplexities().pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe((complexities) => (this.complexities = complexities));
+    });
   }
 
-  updateComplexity(complexity:ProposalBuildComplexityDto){
-    this.complexityService.updateComplexity(complexity).subscribe(
-      () => {
-        this.snackBar.showSuccess('Updated');
-        this.complexityService.getAllComplexities().subscribe(complexities => this.complexities = complexities);
-      }
-    )
+  deleteComplexity(complexity: ProposalBuildComplexityDto) {
+    this.complexityService.deleteComplexity(complexity).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.snackBar.showSuccess('Deleted');
+      this.complexityService
+        .getAllComplexities().pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe((complexities) => (this.complexities = complexities));
+    });
   }
 
-  deleteComplexity(complexity:ProposalBuildComplexityDto){
-    this.complexityService.deleteComplexity(complexity).subscribe(
-      () => {
-        this.snackBar.showSuccess('Deleted');
-        this.complexityService.getAllComplexities().subscribe(complexities => this.complexities = complexities);
-      }
-    )
-  }
-
-  openComplexityDialog(complexity:ProposalBuildComplexityDto| null = null){
+  openComplexityDialog(complexity: ProposalBuildComplexityDto | null = null) {
     let dialogType: DialogType = DialogType.Edit;
     if (complexity == null) {
       complexity = {} as ProposalBuildComplexityDto;
@@ -67,16 +85,21 @@ export class ComplexityPageComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: complexity },
     });
 
-    dialogRef.afterClosed().subscribe((complexity: ProposalBuildComplexityDto) => {
-      if (complexity == null)
-        return;
-      if (dialogType == DialogType.Create) {
-        this.createComplexity(complexity);
-      } else {
-        this.updateComplexity(complexity);
-      }
-
-    });
+    dialogRef
+      .afterClosed().pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((complexity: ProposalBuildComplexityDto) => {
+        if (complexity == null) return;
+        if (dialogType == DialogType.Create) {
+          this.createComplexity(complexity);
+        } else {
+          this.updateComplexity(complexity);
+        }
+      });
   }
-  ngOnDestroy() { }
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

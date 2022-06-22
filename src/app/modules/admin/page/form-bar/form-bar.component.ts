@@ -1,60 +1,70 @@
-import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {ResumeDto} from 'src/app/models/resume/resume-dto';
-import {PositionDto} from 'src/app/models/position/position-dto';
-import {PositionService} from 'src/app/services/position.service';
-import {ResumeSkillDto} from 'src/app/models/resume/resume-skill-dto';
-import {DialogType} from 'src/app/models/enums';
-import {SkillDialog} from '../../component/modals/skill-dialog/skill-dialog.component';
-import {ResumeLanguageDto} from 'src/app/models/resume/resume-language-dto';
-import {LanguageDialog} from '../../component/modals/language-dialog/language-dialog.component';
-import {EducationDto} from 'src/app/models/resume/education-dto';
-import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
-import {ExperienceDto} from 'src/app/models/resume/experience-dto';
-import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
-import {ResumeTemplateDto} from "../../../../models/resume/resume-template-dto";
-
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ResumeService } from 'src/app/services/resume.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import { PositionDto } from 'src/app/models/position/position-dto';
+import { PositionService } from 'src/app/services/position.service';
+import { ResumeSkillDto } from 'src/app/models/resume/resume-skill-dto';
+import { DialogType } from 'src/app/models/enums';
+import { SkillDialog } from '../../component/modals/skill-dialog/skill-dialog.component';
+import { ResumeLanguageDto } from 'src/app/models/resume/resume-language-dto';
+import { LanguageDialog } from '../../component/modals/language-dialog/language-dialog.component';
+import { EducationDto } from 'src/app/models/resume/education-dto';
+import { EducationDialog } from '../../component/modals/education-dialog/education-dialog.component';
+import { ExperienceDto } from 'src/app/models/resume/experience-dto';
+import { ExperienceDialog } from '../../component/modals/experience-dialog/experience-dialog.component';
+import { ResumeTemplateDto } from '../../../../models/resume/resume-template-dto';
 
 @Component({
-	selector: 'cv-create-form-bar',
-	templateUrl: './form-bar.component.html',
-	styleUrls: ['./form-bar.component.scss'],
+  selector: 'cv-create-form-bar',
+  templateUrl: './form-bar.component.html',
+  styleUrls: ['./form-bar.component.scss'],
 })
-
-export class FormBarComponent implements OnInit,OnDestroy {
+export class FormBarComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
 
-  resumeTemplates!:ResumeTemplateDto[];
+  resumeTemplates!: ResumeTemplateDto[];
 
   file: File | null = null;
-  positions!:PositionDto[];
+  positions!: PositionDto[];
   userStatus = [
-    { status:'Available',value:1},
-    { status:'Busy',value:2},
-    { status:'Partial available',value:3},
-    { status:'Very careful available',value:4},
-  ]
+    { status: 'Available', value: 1 },
+    { status: 'Busy', value: 2 },
+    { status: 'Partial available', value: 3 },
+    { status: 'Very careful available', value: 4 },
+  ];
 
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
-    private positionService:PositionService
+    private positionService: PositionService
   ) {
-    positionService.getAllPositions().subscribe(positions => {
-      this.positions = positions
+    positionService.getAllPositions().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((positions) => {
+      this.positions = positions;
     });
-    this.resumeService.getAllTemplates().subscribe(templates=>this.resumeTemplates = templates);
+    this.resumeService
+      .getAllTemplates().pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((templates) => (this.resumeTemplates = templates));
   }
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService.addPhoto(this.resume.id,this.file!).subscribe(x=>{
-    });
+    this.resumeService
+      .addPhoto(this.resume.id, this.file!).pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((x) => {});
   }
 
   ngOnInit(): void {
@@ -64,35 +74,34 @@ export class FormBarComponent implements OnInit,OnDestroy {
     this.educationListChanged();
   }
 
-
-  comparePosition(position:any, position1:any){
-      return position?.positionId === position1?.positionId;
+  comparePosition(position: any, position1: any) {
+    return position?.positionId === position1?.positionId;
   }
 
-  compareTemplate(template:any,template1:any) {
+  compareTemplate(template: any, template1: any) {
     return template === template1;
   }
-
 
   removeSkill(skill: ResumeSkillDto): void {
     const index = this.resume.skills.indexOf(skill);
     if (index >= 0) {
       this.resume.skills.splice(index, 1);
-      this.listSkillsChanged()
+      this.listSkillsChanged();
     }
   }
 
   listSkillsChanged(): void {
-    (<FormArray>this.resumeForm.controls["skills"]).clear();
-    this.resume.skills?.forEach(skill => {
-      (<FormArray>this.resumeForm.controls["skills"])
-        .push(new FormGroup({
+    (<FormArray>this.resumeForm.controls['skills']).clear();
+    this.resume.skills?.forEach((skill) => {
+      (<FormArray>this.resumeForm.controls['skills']).push(
+        new FormGroup({
           id: new FormControl(skill.id),
           skillId: new FormControl(skill.skillId),
           skillName: new FormControl(skill.skillName),
-          level: new FormControl(skill.level)
-        }));
-    })
+          level: new FormControl(skill.level),
+        })
+      );
+    });
   }
 
   openSkillDialog(skill: ResumeSkillDto | null = null): void {
@@ -112,16 +121,17 @@ export class FormBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((skill: ResumeSkillDto) => {
-      if (skill == null)
-        return;
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((skill: ResumeSkillDto) => {
+      if (skill == null) return;
 
-      let skillDto = this.resume.skills.find(e => e.skillName == skill.skillName);
-      if (skillDto != null)
-        skillDto = skill;
-      else
-        this.resume.skills.push(skill);
-      this.listSkillsChanged()
+      let skillDto = this.resume.skills.find(
+        (e) => e.skillName == skill.skillName
+      );
+      if (skillDto != null) skillDto = skill;
+      else this.resume.skills.push(skill);
+      this.listSkillsChanged();
     });
   }
 
@@ -129,21 +139,22 @@ export class FormBarComponent implements OnInit,OnDestroy {
     const index = this.resume.languages.indexOf(language);
     if (index >= 0) {
       this.resume.languages.splice(index, 1);
-      this.listLanguageChanged()
+      this.listLanguageChanged();
     }
   }
 
   listLanguageChanged(): void {
-    (<FormArray>this.resumeForm.controls["languages"]).clear();
-    this.resume.languages?.forEach(languages => {
-      (<FormArray>this.resumeForm.controls["languages"])
-        .push(new FormGroup({
+    (<FormArray>this.resumeForm.controls['languages']).clear();
+    this.resume.languages?.forEach((languages) => {
+      (<FormArray>this.resumeForm.controls['languages']).push(
+        new FormGroup({
           id: new FormControl(languages.id),
           languageId: new FormControl(languages.languageId),
           languageName: new FormControl(languages.languageName),
-          level: new FormControl(languages.level)
-        }));
-    })
+          level: new FormControl(languages.level),
+        })
+      );
+    });
   }
 
   openLanguageDialog(language: ResumeLanguageDto | null = null) {
@@ -163,16 +174,17 @@ export class FormBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((language: ResumeLanguageDto) => {
-      if (language == null)
-        return;
-      let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);
-      if (languageDto != null)
-        languageDto = language;
-      else
-        this.resume.languages.push(language);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((language: ResumeLanguageDto) => {
+      if (language == null) return;
+      let languageDto = this.resume.languages.find(
+        (e) => e.languageName == language.languageName
+      );
+      if (languageDto != null) languageDto = language;
+      else this.resume.languages.push(language);
 
-      this.listLanguageChanged()
+      this.listLanguageChanged();
     });
   }
 
@@ -180,24 +192,30 @@ export class FormBarComponent implements OnInit,OnDestroy {
     const index = this.resume.educations.indexOf(education);
     if (index >= 0) {
       this.resume.educations.splice(index, 1);
-      this.educationListChanged()
+      this.educationListChanged();
     }
   }
 
   educationListChanged() {
-    (<FormArray>this.resumeForm.controls["educations"]).clear();
-    this.resume.educations?.sort((a: EducationDto, b: EducationDto) =>Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(education => {
-      (<FormArray>this.resumeForm.controls["educations"])
-        .push(new FormGroup({
-          id: new FormControl(0),
-          institutionName: new FormControl(education.institutionName),
-          specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description),
-          degree: new FormControl(education.degree),
-          startDate: new FormControl(education.startDate),
-          endDate: new FormControl(education.endDate),
-        }));
-    })
+    (<FormArray>this.resumeForm.controls['educations']).clear();
+    this.resume.educations
+      ?.sort(
+        (a: EducationDto, b: EducationDto) =>
+          Date.parse(b.endDate) - Date.parse(a.endDate)
+      )
+      .forEach((education) => {
+        (<FormArray>this.resumeForm.controls['educations']).push(
+          new FormGroup({
+            id: new FormControl(0),
+            institutionName: new FormControl(education.institutionName),
+            specialization: new FormControl(education.specialization),
+            description: new FormControl(education.description),
+            degree: new FormControl(education.degree),
+            startDate: new FormControl(education.startDate),
+            endDate: new FormControl(education.endDate),
+          })
+        );
+      });
   }
 
   openEducationDialog(education: EducationDto | null = null) {
@@ -217,17 +235,20 @@ export class FormBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((education: EducationDto) => {
-      if (education == null)
-        return;
-      let educationDto = this.resume.educations.find(e => e.id == education.id);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((education: EducationDto) => {
+      if (education == null) return;
+      let educationDto = this.resume.educations.find(
+        (e) => e.id == education.id
+      );
       if (educationDto != null) {
         this.removeEducation(educationDto);
       } else {
         education.id = this.resume.educations.length;
       }
       this.resume.educations.push(education);
-      this.educationListChanged()
+      this.educationListChanged();
     });
   }
 
@@ -235,23 +256,29 @@ export class FormBarComponent implements OnInit,OnDestroy {
     const index = this.resume.experiences.indexOf(experience);
     if (index >= 0) {
       this.resume.experiences.splice(index, 1);
-      this.experienceListChanged()
+      this.experienceListChanged();
     }
   }
 
   experienceListChanged() {
-    (<FormArray>this.resumeForm.controls["experiences"]).clear();
-    this.resume.experiences?.sort((a: ExperienceDto, b: ExperienceDto) =>  Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(experience => {
-      (<FormArray>this.resumeForm.controls["experiences"])
-        .push(new FormGroup({
-          id: new FormControl(0),
-          position: new FormControl(experience.position),
-          description: new FormControl(experience.description),
-          company: new FormControl(experience.company),
-          startDate: new FormControl(experience.startDate),
-          endDate: new FormControl(experience.endDate),
-        }));
-    })
+    (<FormArray>this.resumeForm.controls['experiences']).clear();
+    this.resume.experiences
+      ?.sort(
+        (a: ExperienceDto, b: ExperienceDto) =>
+          Date.parse(b.endDate) - Date.parse(a.endDate)
+      )
+      .forEach((experience) => {
+        (<FormArray>this.resumeForm.controls['experiences']).push(
+          new FormGroup({
+            id: new FormControl(0),
+            position: new FormControl(experience.position),
+            description: new FormControl(experience.description),
+            company: new FormControl(experience.company),
+            startDate: new FormControl(experience.startDate),
+            endDate: new FormControl(experience.endDate),
+          })
+        );
+      });
   }
 
   openExperienceDialog(experience: ExperienceDto | null = null) {
@@ -271,22 +298,26 @@ export class FormBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((experience: ExperienceDto) => {
-      if (experience == null)
-        return;
-      let experienceDto = this.resume.experiences.find(e => e.id == experience.id);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((experience: ExperienceDto) => {
+      if (experience == null) return;
+      let experienceDto = this.resume.experiences.find(
+        (e) => e.id == experience.id
+      );
       if (experienceDto != null) {
         this.removeExperience(experienceDto);
       } else {
         experience.id = this.resume.experiences.length;
       }
       this.resume.experiences.push(experience);
-      this.experienceListChanged()
+      this.experienceListChanged();
     });
   }
 
-  changeTeam(event:any){
-
+  changeTeam(event: any) {}
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
   }
-  ngOnDestroy() { }
 }

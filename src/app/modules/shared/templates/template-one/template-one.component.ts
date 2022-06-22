@@ -8,6 +8,7 @@ import {faAt, faGlobe, faMapMarkerAlt, faMobileAlt} from '@fortawesome/free-soli
   styleUrls: ['./template-one.component.scss']
 })
 export class TemplateOneComponent implements OnInit,OnDestroy {
+private destroy$ = new Subject<boolean>();
 
   @ViewChild('doc') doc!: ElementRef
   @Input() public resumeEditForm!: ResumeDto

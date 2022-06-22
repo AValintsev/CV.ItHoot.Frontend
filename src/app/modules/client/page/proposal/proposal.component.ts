@@ -38,7 +38,7 @@ import { Subject } from 'rxjs';
     ])],
 })
 export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
-  destroy$ = new Subject<boolean>();
+  private destroy$ = new Subject<boolean>();
   statusProposal = StatusProposal
   statusResume = StatusProposalResume
   status = 1;

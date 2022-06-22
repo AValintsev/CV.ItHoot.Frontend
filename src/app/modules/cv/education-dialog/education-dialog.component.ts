@@ -1,14 +1,21 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EducationDto} from "../../../models/resume/education-dto";
-import {DialogType} from "../../../models/enums";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import {MatDatepicker} from '@angular/material/datepicker';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EducationDto } from '../../../models/resume/education-dto';
+import { DialogType } from '../../../models/enums';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 import * as moment from 'moment';
-import {UserValidators} from '../../shared/validators/user.validators';
-
+import { UserValidators } from '../../shared/validators/user.validators';
+import { Subject } from 'rxjs';
 
 export const MY_FORMATS = {
   parse: {
@@ -33,15 +40,15 @@ export const MY_FORMATS = {
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ]
+  ],
 })
-export class EducationDialog implements OnInit,OnDestroy {
-
+export class EducationDialog implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   education: EducationDto = {} as EducationDto;
   typeDialog: DialogType;
   DialogType = DialogType;
   educationForm: FormGroup = {} as FormGroup;
-  maxDate = new Date(Date.now())
+  maxDate = new Date(Date.now());
   ngOnInit() {
     this.validateForm();
   }
@@ -50,22 +57,22 @@ export class EducationDialog implements OnInit,OnDestroy {
     this.educationForm = new FormGroup({
       id: new FormControl(this.education.id),
       institutionName: new FormControl(this.education.institutionName, [
-        Validators.required
+        Validators.required,
       ]),
       specialization: new FormControl(this.education.specialization, [
-        Validators.required
+        Validators.required,
       ]),
-      degree: new FormControl(this.education.degree, [
-        Validators.required
-      ]),
+      degree: new FormControl(this.education.degree, [Validators.required]),
       description: new FormControl(this.education.description, [
-        Validators.required
+        Validators.required,
       ]),
       startDate: new FormControl(this.education.startDate, [
-        Validators.required
+        Validators.required,
       ]),
       endDate: new FormControl(this.checkDataTypeFormControl(this.typeDialog), [
-        Validators.required, UserValidators.checkValidEndDateDialog(this)])
+        Validators.required,
+        UserValidators.checkValidEndDateDialog(this),
+      ]),
     });
   }
 
@@ -80,12 +87,19 @@ export class EducationDialog implements OnInit,OnDestroy {
     }
     return this.education.endDate;
   }
-  setMonthAndYear(normalizedMonthAndYear: any, datepicker: MatDatepicker<any>, point: string) {
+  setMonthAndYear(
+    normalizedMonthAndYear: any,
+    datepicker: MatDatepicker<any>,
+    point: string
+  ) {
     let ctrlValue = this.date.value!;
     ctrlValue.month(normalizedMonthAndYear.month());
     ctrlValue.year(normalizedMonthAndYear.year());
     this.educationForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
-  ngOnDestroy() { }
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

@@ -28,7 +28,7 @@ interface IcontrolPanel{
 
 })
 export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
-  destroy$ = new Subject<boolean>();
+  private destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
   Users = Users

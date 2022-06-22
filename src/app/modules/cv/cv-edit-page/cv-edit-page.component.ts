@@ -1,3 +1,4 @@
+import { takeUntil } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResumeService } from '../../../services/resume.service';
@@ -7,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { Users } from 'src/app/models/users-type';
 import { ResumeDto } from '../../../models/resume/resume-dto';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -14,6 +16,7 @@ import { ResumeDto } from '../../../models/resume/resume-dto';
   styleUrls: ['./cv-edit-page.component.scss'],
 })
 export class CvEditPageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   resumeEditDto: ResumeDto | null = null;
   templateForm!: ResumeDto;
   public resumeEditForm: FormGroup = {} as FormGroup;
@@ -29,7 +32,9 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.validateForm();
     this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).subscribe((resume) => {
+      this.resumeService.getResumeById(id).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
       });
@@ -38,7 +43,9 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     this.changeFormDate();
   }
   private changeFormDate() {
-    this.resumeEditForm.valueChanges.subscribe(
+    this.resumeEditForm.valueChanges.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(
       (resume) => (this.templateForm = resume)
     );
   }
@@ -162,7 +169,9 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
 
   submit(resume: ResumeDto) {
     if (this.resumeEditForm.valid) {
-      this.resumeService.updateResume(resume).subscribe({
+      this.resumeService.updateResume(resume).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe({
         next: () => {
           this.snackbarService.showSuccess('Edited');
           const role = this.accountService.getStoreRole();
@@ -184,5 +193,8 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       });
     }
   }
-  ngOnDestroy() {}
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

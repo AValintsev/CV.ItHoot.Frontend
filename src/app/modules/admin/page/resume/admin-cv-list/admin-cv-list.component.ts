@@ -22,7 +22,7 @@ import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
   templateUrl: './admin-cv-list.component.html',
   styleUrls: ['./admin-cv-list.component.scss']
 })
-export class AdminCvListComponent implements OnInit,OnDestroy, AfterViewInit, OnDestroy {
+export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'position', 'skills', 'loading', 'status', 'action'];
   resumes: SmallResumeDto[] = [];

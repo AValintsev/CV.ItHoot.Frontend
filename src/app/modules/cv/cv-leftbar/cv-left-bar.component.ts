@@ -1,49 +1,55 @@
-import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {SkillDialog} from "../skill-dialog/skill-dialog.component";
-import {LanguageDialog} from "../language-dialog/language-dialog.component";
-import {EducationDialog} from "../education-dialog/education-dialog.component";
-import {ExperienceDialog} from "../experience-dialog/experience-dialog.component";
-import {PositionService} from "../../../services/position.service";
-import {ResumeDto} from "../../../models/resume/resume-dto";
-import {PositionDto} from "../../../models/position/position-dto";
-import {ResumeSkillDto} from "../../../models/resume/resume-skill-dto";
-import {DialogType} from "../../../models/enums";
-import {ResumeLanguageDto} from "../../../models/resume/resume-language-dto";
-import {EducationDto} from "../../../models/resume/education-dto";
-import {ExperienceDto} from "../../../models/resume/experience-dto";
-
+import { takeUntil } from 'rxjs/operators';
+import { ResumeService } from 'src/app/services/resume.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { SkillDialog } from '../skill-dialog/skill-dialog.component';
+import { LanguageDialog } from '../language-dialog/language-dialog.component';
+import { EducationDialog } from '../education-dialog/education-dialog.component';
+import { ExperienceDialog } from '../experience-dialog/experience-dialog.component';
+import { PositionService } from '../../../services/position.service';
+import { ResumeDto } from '../../../models/resume/resume-dto';
+import { PositionDto } from '../../../models/position/position-dto';
+import { ResumeSkillDto } from '../../../models/resume/resume-skill-dto';
+import { DialogType } from '../../../models/enums';
+import { ResumeLanguageDto } from '../../../models/resume/resume-language-dto';
+import { EducationDto } from '../../../models/resume/education-dto';
+import { ExperienceDto } from '../../../models/resume/experience-dto';
+import { Subject } from 'rxjs';
 
 @Component({
-	selector: 'cv-cv-create-left-bar',
-	templateUrl: './cv-left-bar.component.html',
-	styleUrls: ['./cv-left-bar.component.scss'],
+  selector: 'cv-cv-create-left-bar',
+  templateUrl: './cv-left-bar.component.html',
+  styleUrls: ['./cv-left-bar.component.scss'],
 })
-
-export class CvLeftBarComponent implements OnInit,OnDestroy {
+export class CvLeftBarComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
   file: File | null = null;
-  positions!:PositionDto[];
-  maxDate = new Date(Date.now())
+  positions!: PositionDto[];
+  maxDate = new Date(Date.now());
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
-    private positionService:PositionService
+    private positionService: PositionService
   ) {
-    positionService.getAllPositions().subscribe(positions => {
-      this.positions = positions
+    positionService.getAllPositions().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((positions) => {
+      this.positions = positions;
     });
   }
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService.addPhoto(this.resume.id,this.file!).subscribe(x=>{
-    });
+    this.resumeService
+      .addPhoto(this.resume.id, this.file!).pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((x) => {});
   }
 
   ngOnInit(): void {
@@ -57,29 +63,30 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
     this.resumeForm.patchValue({ position: position });
   }
 
-  comparePosition(position:any, position1:any){
-      return position?.positionId === position1?.positionId;
+  comparePosition(position: any, position1: any) {
+    return position?.positionId === position1?.positionId;
   }
 
   removeSkill(skill: ResumeSkillDto): void {
     const index = this.resume.skills.indexOf(skill);
     if (index >= 0) {
       this.resume.skills.splice(index, 1);
-      this.listSkillsChanged()
+      this.listSkillsChanged();
     }
   }
 
   listSkillsChanged(): void {
-    (<FormArray>this.resumeForm.controls["skills"]).clear();
-    this.resume.skills?.forEach(skill => {
-      (<FormArray>this.resumeForm.controls["skills"])
-        .push(new FormGroup({
+    (<FormArray>this.resumeForm.controls['skills']).clear();
+    this.resume.skills?.forEach((skill) => {
+      (<FormArray>this.resumeForm.controls['skills']).push(
+        new FormGroup({
           id: new FormControl(skill.id),
           skillId: new FormControl(skill.skillId),
           skillName: new FormControl(skill.skillName),
-          level: new FormControl(skill.level)
-        }));
-    })
+          level: new FormControl(skill.level),
+        })
+      );
+    });
   }
 
   openSkillDialog(skill: ResumeSkillDto | null = null): void {
@@ -100,16 +107,17 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((skill: ResumeSkillDto) => {
-      if (skill == null)
-        return;
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((skill: ResumeSkillDto) => {
+      if (skill == null) return;
 
-      let skillDto = this.resume.skills.find(e => e.skillName == skill.skillName);
-      if (skillDto != null)
-        skillDto = skill;
-      else
-        this.resume.skills.push(skill);
-      this.listSkillsChanged()
+      let skillDto = this.resume.skills.find(
+        (e) => e.skillName == skill.skillName
+      );
+      if (skillDto != null) skillDto = skill;
+      else this.resume.skills.push(skill);
+      this.listSkillsChanged();
     });
   }
 
@@ -117,21 +125,22 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
     const index = this.resume.languages.indexOf(language);
     if (index >= 0) {
       this.resume.languages.splice(index, 1);
-      this.listLanguageChanged()
+      this.listLanguageChanged();
     }
   }
 
   listLanguageChanged(): void {
-    (<FormArray>this.resumeForm.controls["languages"]).clear();
-    this.resume.languages?.forEach(languages => {
-      (<FormArray>this.resumeForm.controls["languages"])
-        .push(new FormGroup({
+    (<FormArray>this.resumeForm.controls['languages']).clear();
+    this.resume.languages?.forEach((languages) => {
+      (<FormArray>this.resumeForm.controls['languages']).push(
+        new FormGroup({
           id: new FormControl(languages.id),
           languageId: new FormControl(languages.languageId),
           languageName: new FormControl(languages.languageName),
-          level: new FormControl(languages.level)
-        }));
-    })
+          level: new FormControl(languages.level),
+        })
+      );
+    });
   }
 
   openLanguageDialog(language: ResumeLanguageDto | null = null) {
@@ -152,16 +161,17 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((language: ResumeLanguageDto) => {
-      if (language == null)
-        return;
-      let languageDto = this.resume.languages.find(e => e.languageName == language.languageName);
-      if (languageDto != null)
-        languageDto = language;
-      else
-        this.resume.languages.push(language);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((language: ResumeLanguageDto) => {
+      if (language == null) return;
+      let languageDto = this.resume.languages.find(
+        (e) => e.languageName == language.languageName
+      );
+      if (languageDto != null) languageDto = language;
+      else this.resume.languages.push(language);
 
-      this.listLanguageChanged()
+      this.listLanguageChanged();
     });
   }
 
@@ -169,24 +179,30 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
     const index = this.resume.educations.indexOf(education);
     if (index >= 0) {
       this.resume.educations.splice(index, 1);
-      this.educationListChanged()
+      this.educationListChanged();
     }
   }
 
   educationListChanged() {
-    (<FormArray>this.resumeForm.controls["educations"]).clear();
-    this.resume.educations?.sort((a: EducationDto, b: EducationDto) =>Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(education => {
-      (<FormArray>this.resumeForm.controls["educations"])
-        .push(new FormGroup({
-          id: new FormControl(0),
-          institutionName: new FormControl(education.institutionName),
-          specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description),
-          degree: new FormControl(education.degree),
-          startDate: new FormControl(education.startDate),
-          endDate: new FormControl(education.endDate),
-        }));
-    })
+    (<FormArray>this.resumeForm.controls['educations']).clear();
+    this.resume.educations
+      ?.sort(
+        (a: EducationDto, b: EducationDto) =>
+          Date.parse(b.endDate) - Date.parse(a.endDate)
+      )
+      .forEach((education) => {
+        (<FormArray>this.resumeForm.controls['educations']).push(
+          new FormGroup({
+            id: new FormControl(0),
+            institutionName: new FormControl(education.institutionName),
+            specialization: new FormControl(education.specialization),
+            description: new FormControl(education.description),
+            degree: new FormControl(education.degree),
+            startDate: new FormControl(education.startDate),
+            endDate: new FormControl(education.endDate),
+          })
+        );
+      });
   }
 
   openEducationDialog(education: EducationDto | null = null) {
@@ -207,17 +223,20 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((education: EducationDto) => {
-      if (education == null)
-        return;
-      let educationDto = this.resume.educations.find(e => e.id == education.id);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((education: EducationDto) => {
+      if (education == null) return;
+      let educationDto = this.resume.educations.find(
+        (e) => e.id == education.id
+      );
       if (educationDto != null) {
         this.removeEducation(educationDto);
       } else {
         education.id = this.resume.educations.length;
       }
       this.resume.educations.push(education);
-      this.educationListChanged()
+      this.educationListChanged();
     });
   }
 
@@ -225,23 +244,29 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
     const index = this.resume.experiences.indexOf(experience);
     if (index >= 0) {
       this.resume.experiences.splice(index, 1);
-      this.experienceListChanged()
+      this.experienceListChanged();
     }
   }
 
   experienceListChanged() {
-    (<FormArray>this.resumeForm.controls["experiences"]).clear();
-    this.resume.experiences?.sort((a: ExperienceDto, b: ExperienceDto) =>  Date.parse(b.endDate) - Date.parse(a.endDate)).forEach(experience => {
-      (<FormArray>this.resumeForm.controls["experiences"])
-        .push(new FormGroup({
-          id: new FormControl(0),
-          position: new FormControl(experience.position),
-          description: new FormControl(experience.description),
-          company: new FormControl(experience.company),
-          startDate: new FormControl(experience.startDate),
-          endDate: new FormControl(experience.endDate),
-        }));
-    })
+    (<FormArray>this.resumeForm.controls['experiences']).clear();
+    this.resume.experiences
+      ?.sort(
+        (a: ExperienceDto, b: ExperienceDto) =>
+          Date.parse(b.endDate) - Date.parse(a.endDate)
+      )
+      .forEach((experience) => {
+        (<FormArray>this.resumeForm.controls['experiences']).push(
+          new FormGroup({
+            id: new FormControl(0),
+            position: new FormControl(experience.position),
+            description: new FormControl(experience.description),
+            company: new FormControl(experience.company),
+            startDate: new FormControl(experience.startDate),
+            endDate: new FormControl(experience.endDate),
+          })
+        );
+      });
   }
 
   openExperienceDialog(experience: ExperienceDto | null = null) {
@@ -262,18 +287,24 @@ export class CvLeftBarComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: data },
     });
 
-    dialogRef.afterClosed().subscribe((experience: ExperienceDto) => {
-      if (experience == null)
-        return;
-      let experienceDto = this.resume.experiences.find(e => e.id == experience.id);
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((experience: ExperienceDto) => {
+      if (experience == null) return;
+      let experienceDto = this.resume.experiences.find(
+        (e) => e.id == experience.id
+      );
       if (experienceDto != null) {
         this.removeExperience(experienceDto);
       } else {
         experience.id = this.resume.experiences.length;
       }
       this.resume.experiences.push(experience);
-      this.experienceListChanged()
+      this.experienceListChanged();
     });
   }
-  ngOnDestroy() { }
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

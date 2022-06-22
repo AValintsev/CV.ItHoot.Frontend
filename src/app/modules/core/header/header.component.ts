@@ -1,3 +1,4 @@
+import { takeUntil } from 'rxjs/operators';
 import {  untilDestroyed } from '@ngneat/until-destroy';
 import {Observable, of, Subject} from 'rxjs';
 import {ResumeService} from './../../../services/resume.service';
@@ -15,6 +16,7 @@ import {map} from 'rxjs/operators';
 
 })
 export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
+  private destroy$ = new Subject<boolean>();
   Users = Users
   userName$:Observable<string> = of('User')
   constructor(
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
 
   logout() {
     this.accountService.logout().pipe(
-      untilDestroyed(this)
+      takeUntil(this.destroy$)
     ).subscribe({
       next: () => this.router.navigate(['/account/login'])
     })

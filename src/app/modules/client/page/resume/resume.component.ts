@@ -16,7 +16,7 @@ export class ResumeComponent implements OnInit,OnDestroy, OnDestroy {
   showLogo!: boolean;
   resumeTemplateId = 1;
   resume!: ResumeDto;
-  destroy$ = new Subject<boolean>();
+  private destroy$ = new Subject<boolean>();
   constructor(
     private activatedRoute: ActivatedRoute,
     private proposalService: ProposalService,
@@ -33,7 +33,9 @@ export class ResumeComponent implements OnInit,OnDestroy, OnDestroy {
         tap((params) => {
           this.showLogo = params.showLogo;
           this.proposalService
-            .getProposalById(params.proposalId)
+            .getProposalById(params.proposalId).pipe(
+              takeUntil(this.destroy$)
+            )
             .subscribe((response) => {
               if (response) {
                 this.clientProposalService.numberCheckedResume$.next({
@@ -41,7 +43,9 @@ export class ResumeComponent implements OnInit,OnDestroy, OnDestroy {
                   resumeId: params.resumeId,
                 });
                 this.clientProposalService
-                  .getProposalById(params.proposalId)
+                  .getProposalById(params.proposalId).pipe(
+                    takeUntil(this.destroy$)
+                  )
                   .subscribe();
                 this.clientProposalService.headerTitle$.next(
                   response.proposalName

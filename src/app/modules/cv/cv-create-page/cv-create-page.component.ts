@@ -1,3 +1,4 @@
+import { takeUntil } from 'rxjs/operators';
 import {AccountService} from '../../../services/account.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -8,6 +9,7 @@ import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
 import {map} from 'rxjs/operators';
 import {  untilDestroyed } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'cv-cv-create-page',
@@ -15,7 +17,7 @@ import {  untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./cv-create-page.component.scss']
 })
 export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
-
+  private destroy$ = new Subject<boolean>();
   resumeCreateDto: ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
   templateForm!: ResumeDto
@@ -37,14 +39,14 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
   }
   private getFieldDate() {
     this.activatedRoute.queryParams.pipe(
-      untilDestroyed(this),
+      takeUntil(this.destroy$),
       map(params=>params.userId)).pipe(
-        untilDestroyed(this)
+        takeUntil(this.destroy$)
       ).subscribe({
       next:params=>{
         if(params){
            this.resumeService.getResumeById(params).pipe(
-            untilDestroyed(this)
+            takeUntil(this.destroy$)
           ).subscribe({
              next:response=>{
               this.patchForm(response)
@@ -58,7 +60,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
 
   private changeFormDate() {
     this.resumeCreateForm.valueChanges.pipe(
-      untilDestroyed(this)
+      takeUntil(this.destroy$)
     ).subscribe(resume => this.templateForm = resume)
   }
   private validateForm() {
@@ -177,7 +179,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
 
   public submit(resume: ResumeDto) {
     this.resumeService.createResume(resume).pipe(
-      untilDestroyed(this)
+      takeUntil(this.destroy$)
     ).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Created');
@@ -193,5 +195,8 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       }
     })
   }
-  ngOnDestroy() { }
+    ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

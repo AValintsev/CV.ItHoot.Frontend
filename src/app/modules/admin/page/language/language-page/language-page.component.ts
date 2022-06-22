@@ -1,60 +1,81 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {LanguageService} from 'src/app/services/language.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {LanguageDialogComponent} from "../language-dialog/language-dialog.component";
-import {LanguageDto} from "../../../../../models/language/language-dto";
-import {DialogType} from "../../../../../models/enums";
-
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LanguageService } from 'src/app/services/language.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { LanguageDialogComponent } from '../language-dialog/language-dialog.component';
+import { LanguageDto } from '../../../../../models/language/language-dto';
+import { DialogType } from '../../../../../models/enums';
 
 @Component({
   selector: 'app-language-page',
   templateUrl: './language-page.component.html',
-  styleUrls: ['./language-page.component.scss']
+  styleUrls: ['./language-page.component.scss'],
 })
-export class LanguagePageComponent implements OnInit,OnDestroy {
+export class LanguagePageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   // displayedColumns: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['name', 'action'];
   languages: LanguageDto[] = [];
 
-  constructor(private languageService: LanguageService,
+  constructor(
+    private languageService: LanguageService,
     private dialog: MatDialog,
-    private snackBar: SnackBarService) { }
+    private snackBar: SnackBarService
+  ) {}
 
   ngOnInit(): void {
-    this.languageService.getAllLanguage().subscribe(language => this.languages = language);
+    this.languageService
+      .getAllLanguage().pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((language) => (this.languages = language));
   }
 
   createLanguage(language: LanguageDto) {
-    this.languageService.createLanguage(language).subscribe({
+    this.languageService.createLanguage(language).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: () => {
         this.snackBar.showSuccess('Created');
-        this.languageService.getAllLanguage().subscribe(language => this.languages = language);
+        this.languageService
+          .getAllLanguage().pipe(
+            takeUntil(this.destroy$)
+          )
+          .subscribe((language) => (this.languages = language));
       },
-      error: () => this.snackBar.showDanger('Something went wrong')
-    })
+      error: () => this.snackBar.showDanger('Something went wrong'),
+    });
   }
 
   updateLanguage(language: LanguageDto) {
     this.languageService.updateLanguage(language).subscribe({
       next: () => {
         this.snackBar.showSuccess('Updated');
-        this.languageService.getAllLanguage().subscribe(language => this.languages = language);
+        this.languageService
+          .getAllLanguage().pipe(
+            takeUntil(this.destroy$)
+          )
+          .subscribe((language) => (this.languages = language));
       },
-      error: () => this.snackBar.showDanger('Something went wrong')
-    })
+      error: () => this.snackBar.showDanger('Something went wrong'),
+    });
   }
 
   deleteLanguage(skill: LanguageDto) {
     this.languageService.deleteLanguage(skill).subscribe({
       next: () => {
         this.snackBar.showSuccess('Deleted');
-        this.languageService.getAllLanguage().subscribe(language => this.languages = language);
+        this.languageService
+          .getAllLanguage().pipe(
+            takeUntil(this.destroy$)
+          )
+          .subscribe((language) => (this.languages = language));
       },
-      error: () => this.snackBar.showDanger('Something went wrong')
-    })
+      error: () => this.snackBar.showDanger('Something went wrong'),
+    });
   }
-
 
   openLanguageDialog(language: LanguageDto | null = null): void {
     let dialogType: DialogType = DialogType.Edit;
@@ -69,16 +90,19 @@ export class LanguagePageComponent implements OnInit,OnDestroy {
       data: { type: dialogType, data: language },
     });
 
-    dialogRef.afterClosed().subscribe((language: LanguageDto) => {
-      if (language == null)
-        return;
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((language: LanguageDto) => {
+      if (language == null) return;
       if (dialogType == DialogType.Create) {
         this.createLanguage(language);
       } else {
         this.updateLanguage(language);
       }
-
     });
   }
-  ngOnDestroy() { }
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

@@ -1,19 +1,22 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cv-side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+  styleUrls: ['./side-bar.component.scss'],
 })
-export class SideBarComponent implements OnInit,OnDestroy {
+export class SideBarComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   // settingOpened(): boolean {
   //   return this.router.url === '/home/skills' || this.router.url === '/home/languages';
   // }
-  ngOnDestroy() { }
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
 }

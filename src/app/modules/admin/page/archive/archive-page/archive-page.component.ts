@@ -1,25 +1,36 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProposalDto} from "../../../../../models/proposal/proposal-dto";
-import {ActivatedRoute} from "@angular/router";
-import {ProposalService} from "../../../../../services/proposal.service";
-import {map} from "rxjs/operators";
+import { takeUntil } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ProposalDto } from '../../../../../models/proposal/proposal-dto';
+import { ActivatedRoute } from '@angular/router';
+import { ProposalService } from '../../../../../services/proposal.service';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'archive-page',
   templateUrl: './archive-page.component.html',
-  styleUrls: ['./archive-page.component.scss']
+  styleUrls: ['./archive-page.component.scss'],
 })
-export class ArchivePageComponent implements OnInit,OnDestroy {
+export class ArchivePageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
+  proposal: ProposalDto = {} as ProposalDto;
 
-  proposal:ProposalDto = {} as ProposalDto
-
-  constructor(private route: ActivatedRoute, private proposalService:ProposalService) {
-    this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.proposalService.getProposalById(id).subscribe(proposal => this.proposal = proposal);
+  constructor(
+    private route: ActivatedRoute,
+    private proposalService: ProposalService
+  ) {
+    this.route.params.pipe(takeUntil(this.destroy$),map((params) => params['id'])).subscribe((id) => {
+      this.proposalService
+        .getProposalById(id).pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe((proposal) => (this.proposal = proposal));
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+   ngOnDestroy(){
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
   }
-  ngOnDestroy() { }
 }

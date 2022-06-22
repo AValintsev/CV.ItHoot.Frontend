@@ -19,7 +19,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./proposals.component.scss'],
 })
 export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
-  destroy$ = new Subject<boolean>();
+  private destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume;
   StatusProposal = StatusProposal;
   proposalName!: string;
