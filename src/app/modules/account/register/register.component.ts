@@ -27,17 +27,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required]),
     });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
       this.accountService
-        .register({
-          email: this.registerForm.value.email,
-          password: this.registerForm.value.password,
-        })
+        .register(this.registerForm.value)
         .pipe(
           takeUntil(this.destroy$)
         )
@@ -57,4 +53,4 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 }
 
-// user @example.co
+
