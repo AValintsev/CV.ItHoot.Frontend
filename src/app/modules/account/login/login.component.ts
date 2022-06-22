@@ -1,5 +1,4 @@
 import { takeUntil } from 'rxjs/operators';
-import {  UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,7 +6,6 @@ import { interval, Subject } from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 
-@UntilDestroy()
 @Component({
   selector: 'cv-login',
   templateUrl: './login.component.html',
@@ -31,7 +29,7 @@ private destroy$ = new Subject<boolean>();
       password: new FormControl('', [Validators.required,Validators.minLength(6)])
     })
   }
-  
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.accountService.login(this.loginForm.value).pipe(

@@ -8,7 +8,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
 import {map} from 'rxjs/operators';
-import {  untilDestroyed } from '@ngneat/until-destroy';
 import { Subject } from 'rxjs';
 
 @Component({

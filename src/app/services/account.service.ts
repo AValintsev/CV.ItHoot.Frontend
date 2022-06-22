@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {catchError, mapTo, tap} from 'rxjs/operators';
 import {userResponse} from '../models/responses/userResponse';
 import {environment} from "../../environments/environment";
+import {UserAuthData} from "../models/userAuthData";
 
 
 @Injectable({
@@ -51,16 +52,8 @@ export class AccountService {
       )
   }
 
-  loginByUrl(shortUrl:string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}identity/login/${shortUrl}`,null)
-      .pipe(
-        catchError(error => {
-          return of(error)
-        }),
-        tap<any>(tokens => this.doLoginUser(tokens)),
-        mapTo(true),
-
-      )
+  loginByUrl(shortUrl:string): Observable<UserAuthData> {
+    return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`,null);
   }
   storeRole(role: string) {
     localStorage.setItem(this.USER_ROLE, role)

@@ -55,9 +55,11 @@
 
         & > * {
           margin-right: 2rem;
-        } 
+        }
       }
     }
+
+
 
     table {
       width: 100%;
@@ -80,9 +82,33 @@
         font-weight: 400;
       }
 
+      .configuration{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        svg{
+          path{
+            fill: #E3E3E3;
+          }
+        }
+
+        svg.selected{
+          path{
+            fill: #04040B;
+          }
+        }
+      }
+
       .mat-cell {
         border: 0;
       }
+
+      ::ng-deep .mat-sort-header-container {
+        display:flex;
+        justify-content:center;
+      }
+
 
       .mat-header-row {
         height: 0;
