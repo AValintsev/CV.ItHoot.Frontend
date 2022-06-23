@@ -1,7 +1,7 @@
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ProposalService } from '../proposal.service';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap,share } from 'rxjs/operators';
 import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PagedResponse } from 'src/app/models/paginations/paged-response';
@@ -21,13 +21,16 @@ export class ClientProposalService implements OnInit, OnDestroy {
     resumeId: number;
   } | null>(null);
   // public headerUsersProposal$ = this.headerProposal.asObservable()
+  allProposals$:Observable<PagedResponse<SmallProposalDto[]>>
   private proposal$ = new BehaviorSubject<any>(
     this.proposalService
       .getAllProposals()
       .pipe(switchMap((cards) => this.getProposalById(cards.items[0].id)))
   );
   constructor(private proposalService: ProposalService) {}
-  ngOnInit() {}
+  ngOnInit() {
+	this.allProposals$ = this.proposalService.getAllProposals().pipe(share())
+  }
   changeProposal(value: number) {
     this.proposal$.next(this.getProposalById(value));
   }
@@ -35,7 +38,7 @@ export class ClientProposalService implements OnInit, OnDestroy {
     return this.proposal$;
   }
   getAllProposal(): Observable<PagedResponse<SmallProposalDto[]>> {
-    return this.proposalService.getAllProposals();
+    return this.proposalService.getAllProposals().pipe(share());
   }
   getProposalById(value: number) {
     return this.proposalService.getProposalById(value).pipe(

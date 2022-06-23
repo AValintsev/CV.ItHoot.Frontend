@@ -23,17 +23,11 @@ export class CvFullComponent implements OnInit,OnDestroy, AfterViewInit {
     private route: ActivatedRoute,
     private resumeService: ResumeService) {
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getResumeById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe(
-        {
-          next: resume => {
-            this.resume = resume
-
-          },
-          error: error => console.log(error)
-        }
-      );
+        this.resumeService.getResumeHtmlById(id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((resume) => {
+      this.doc.nativeElement.innerHTML = resume.html;
+    });
     });
   }
 

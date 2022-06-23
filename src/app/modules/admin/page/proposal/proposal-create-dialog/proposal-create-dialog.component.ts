@@ -47,7 +47,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
   clients: UserDto[] = [];
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -116,7 +116,10 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.resumes.push(event.option.value);
+    const person = event.option.value
+    if (!this.resumes.includes(event.option.value)) {
+      this.resumes.push(person);
+    }
     this.resumeInput.nativeElement.value = '';
     this.resumeCtrl.setValue(null);
   }
@@ -151,7 +154,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
         this.resumes = resumes;
       });
   }
-   ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

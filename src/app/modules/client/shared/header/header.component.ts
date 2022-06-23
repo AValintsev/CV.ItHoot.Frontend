@@ -5,7 +5,7 @@ import {NavigationStart, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
-import {map, tap} from 'rxjs/operators';
+import {map, tap,shareReplay} from 'rxjs/operators';
 import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
 import {ProposalResumeDto, StatusProposalResume} from 'src/app/models/proposal/proposal-dto';
 import {StatusProposal} from 'src/app/models/enums';
@@ -28,16 +28,18 @@ interface IcontrolPanel{
 
 })
 export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
+  headerTitle$!:Observable<string | null>
   private destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
   Users = Users
   showLogo$!:Observable<boolean>
-  proposals!: Observable<SmallProposalDto[]>
+  proposals$!: Observable<SmallProposalDto[]>
   showProposalName: boolean = true
   clientName$!: Observable<string>
   notShowLeftBtnColor: boolean = true
   notShowRightBtnColor: boolean = true
+  
   controlPanel: IcontrolPanel = {
     resumeId: 0,
     proposalId: 0,
@@ -95,12 +97,10 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.headerTitle$ = this.clientProposalService.headerTitle$.pipe(shareReplay())
     this.showLogo$ = this.clientProposalService.showLogo$
     this.checkUrlFromArrow(this.router)
-    this.clientProposalService.headerTitle$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(e => {})
-    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName))
+    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName),shareReplay({refCount: true}))
     this.getProposalList()
 
 
@@ -148,7 +148,7 @@ private  checkUrlFromArrow(response: any) {
   }
 
   private getProposalList() {
-    this.proposals = this.clientProposalService.getAllProposal().pipe(
+    this.proposals$ = this.clientProposalService.getAllProposal().pipe(
       map(data => {
         if (data === null) {
           return [];
