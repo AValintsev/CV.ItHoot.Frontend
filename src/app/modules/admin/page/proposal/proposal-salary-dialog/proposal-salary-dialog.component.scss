@@ -1,0 +1,33 @@
+.proposal-dialog{
+  display: grid;
+  min-width: 600px;
+  .mat-dialog-content{
+    overflow: auto;
+  }
+  .content{
+    display: grid;
+
+    .resume-section{
+      mat-form-field{
+        width: 100%;
+      }
+    }
+
+    .checkbox-section{
+      display: flex;
+      flex-direction: column;
+    }
+
+    mat-button-toggle-group{
+      justify-content: center;
+
+      mat-button-toggle{
+        width: 100%;
+      }
+
+    }
+  }
+  .actions{
+    justify-content: end;
+  }
+}
