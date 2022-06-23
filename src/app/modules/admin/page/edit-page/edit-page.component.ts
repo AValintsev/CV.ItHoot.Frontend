@@ -73,9 +73,10 @@ export class EditPageComponent implements OnInit, OnDestroy {
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
     this.resumeEditForm.patchValue({ position: resume.position });
-    this.resumeEditForm.patchValue({
-      resumeTemplateId: resume.resumeTemplateId,
-    });
+    this.resumeEditForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
+    this.resumeEditForm.patchValue({salaryRate: resume.salaryRate});
+    this.resumeEditForm.patchValue({availabilityStatus: resume.availabilityStatus});
+    this.resumeEditForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
 
     resume.skills?.forEach((skill) => {
       (<FormArray>this.resumeEditForm.controls['skills']).push(
@@ -169,6 +170,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
       ]),
       picture: new FormControl(this.resumeEditDto?.picture),
       resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
+      salaryRate: new FormControl(this.resumeEditDto?.salaryRate),
+      availabilityStatus: new FormControl(this.resumeEditDto?.availabilityStatus),
+      countDaysUnavailable: new FormControl(this.resumeEditDto?.countDaysUnavailable),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),

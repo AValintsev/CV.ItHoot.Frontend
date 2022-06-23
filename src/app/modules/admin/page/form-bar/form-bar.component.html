@@ -36,7 +36,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
-      <mat-select [(value)]="resume.resumeTemplateId"  formControlName="resumeTemplateId" [compareWith]="compareTemplate">
+      <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId"
+                  [compareWith]="compareTemplate">
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           {{template.templateName}}
         </mat-option>
@@ -155,7 +156,8 @@
       <mat-card-title>Language</mat-card-title>
       <mat-card-content>
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)" (click)="openLanguageDialog(language)">
+          <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)"
+                    (click)="openLanguageDialog(language)">
             {{language.languageName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -175,7 +177,8 @@
       <mat-card-title>Educations</mat-card-title>
       <mat-card-content>
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let education of resume.educations" (removed)="removeEducation(education)" (click)="openEducationDialog(education)">
+          <mat-chip *ngFor="let education of resume.educations" (removed)="removeEducation(education)"
+                    (click)="openEducationDialog(education)">
             {{education.institutionName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -195,7 +198,8 @@
       <mat-card-title>Experiences</mat-card-title>
       <mat-card-content>
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let experience of resume.experiences" (removed)="removeExperience(experience)" (click)="openExperienceDialog(experience)">
+          <mat-chip *ngFor="let experience of resume.experiences" (removed)="removeExperience(experience)"
+                    (click)="openExperienceDialog(experience)">
             {{experience.company}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -209,30 +213,29 @@
       </mat-card-actions>
     </mat-card>
   </div>
-<div class="price-section">
-      <mat-form-field appearance="fill">
-        <mat-label>Developer's price</mat-label>
-        <input type="number" min="0" matInput placeholder="100">
-        <!-- <mat-error *ngIf="resumeForm.controls['requiredPosition'].errors?.['required']">
-          Required Position is required
-        </mat-error> -->
-      </mat-form-field>
-</div>
-<div class="status-section">
+
+  <div class="price-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Developer's price</mat-label>
+      <input type="number" matInput placeholder="100" formControlName="salaryRate">
+    </mat-form-field>
+  </div>
+
+  <div class="status-section">
     <mat-form-field appearance="fill">
       <mat-label>Availability statuses</mat-label>
-      <mat-select (selectionChange)="changeTeam($event)">
-        <mat-option *ngFor="let status of userStatus; let i = index" [value]="status.value">
-          {{status.status}}
-        </mat-option>
+      <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus" disableOptionCentering>
+        <mat-option [value]="1">Available</mat-option>
+        <mat-option [value]="2">Busy</mat-option>
+        <mat-option [value]="3">Partial Available</mat-option>
+        <mat-option [value]="4">Very careful available</mat-option>
       </mat-select>
     </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Number of days unavailable</mat-label>
-        <input type="number" min="0" matInput placeholder="1">
-        <!-- <mat-error *ngIf="resumeForm.controls['requiredPosition'].errors?.['required']">
-          Required Position is required
-        </mat-error> -->
-      </mat-form-field>
-</div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Number of days unavailable</mat-label>
+      <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
+    </mat-form-field>
+  </div>
+
 </form>

@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { UserDto } from '../../../../../models/user-dto';
 import { UserService } from '../../../../../services/user.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -25,6 +25,7 @@ import {
 import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
 import { ProposalBuildDto } from '../../../../../models/proposal-build/proposal-build-dto';
 import { ProposalBuildService } from '../../../../../services/proposal-build.service';
+import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 
 @Component({
   selector: 'proposal-create-dialog',
@@ -50,6 +51,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<ProposalCreateDialogComponent>,
     private userService: UserService,
     private resumeService: ResumeService,
@@ -155,5 +157,20 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
+  }
+
+  openSalaryDialog(resume: SmallResumeDto) {
+    const dialogRef = this.dialog.open(ProposalSalaryDialogComponent, {
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style'],
+      data: resume
+    });
+
+    dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {
+      if (resume == null)
+        return;
+      console.log(resume)
+    });
+
   }
 }

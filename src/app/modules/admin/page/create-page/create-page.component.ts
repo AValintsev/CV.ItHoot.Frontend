@@ -100,6 +100,9 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       aboutMe: new FormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required,
       ]),
+      salaryRate: new FormControl(this.resumeCreateDto?.salaryRate),
+      availabilityStatus: new FormControl(this.resumeCreateDto?.availabilityStatus),
+      countDaysUnavailable: new FormControl(this.resumeCreateDto?.countDaysUnavailable),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -119,13 +122,16 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     this.resumeCreateForm.patchValue({ country: resume.country });
     this.resumeCreateForm.patchValue({ city: resume.city });
     this.resumeCreateForm.patchValue({ street: resume.street });
-    this.resumeCreateForm.patchValue({
-      requiredPosition: resume.requiredPosition,
-    });
+    this.resumeCreateForm.patchValue({requiredPosition: resume.requiredPosition,});
     this.resumeCreateForm.patchValue({ birthdate: resume.birthdate });
     this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeCreateForm.patchValue({ picture: resume.picture });
     this.resumeCreateForm.patchValue({ position: resume.position });
+    this.resumeCreateForm.patchValue({salaryRate: resume.salaryRate});
+    this.resumeCreateForm.patchValue({availabilityStatus: resume.availabilityStatus});
+    this.resumeCreateForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
+
+
     resume.skills?.forEach((skill) => {
       (<FormArray>this.resumeCreateForm.controls['skills']).push(
         new FormGroup({

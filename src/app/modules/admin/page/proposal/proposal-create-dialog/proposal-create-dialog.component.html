@@ -33,7 +33,7 @@
         <mat-chip-list #chipList aria-label="Resume selection">
           <mat-chip
             *ngFor="let resume of resumes"
-            (removed)="remove(resume)">
+            (removed)="remove(resume)" (click)="openSalaryDialog(resume)">
             {{resume.firstName}} {{resume.lastName}}
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
@@ -49,8 +49,10 @@
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume">
-            <span style="font-weight: bold">{{resume.positionName}} </span>{{resume.firstName}}  {{resume.lastName}}
+          <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume" >
+            <span style="font-weight: bold">{{resume.positionName}} </span>
+            {{resume.firstName}}  {{resume.lastName}}
+            <span *ngIf="resume.salaryRate">, {{resume.salaryRate}}$/h</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -67,7 +69,7 @@
     </mat-form-field>
 
     <div class="checkbox-section">
-      <mat-checkbox [(ngModel)]="proposal">Incognito</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.isIncognito">Incognito</mat-checkbox>
       <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
       <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
       <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>

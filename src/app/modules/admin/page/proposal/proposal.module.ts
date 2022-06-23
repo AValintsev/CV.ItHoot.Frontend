@@ -34,6 +34,7 @@ import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { ProposalSalaryDialogComponent } from './proposal-salary-dialog/proposal-salary-dialog.component';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     ProposalListPageComponent,
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
+    ProposalSalaryDialogComponent,
   ]
 })
 

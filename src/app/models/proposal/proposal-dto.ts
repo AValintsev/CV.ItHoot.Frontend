@@ -15,6 +15,7 @@ export interface ProposalDto {
   showLogo: boolean;
   showContacts: boolean;
   showCompanyNames:boolean;
+  isIncognito: boolean;
   resumeTemplateId:number;
   positionResumes?: Record<string, ProposalResumeDto[]>
 }
