@@ -24,12 +24,21 @@ export interface ResumeDto{
   requiredPosition: string;
   birthdate: string;
   aboutMe: string;
+  salaryRate:number;
+  availabilityStatus:AvailabilityStatus;
+  countDaysUnavailable:number;
   educations: EducationDto[];
   experiences: ExperienceDto[];
   skills: ResumeSkillDto[];
   languages: ResumeLanguageDto[];
 }
 
+export enum AvailabilityStatus {
+  Available = 1,
+  Busy,
+  PartialAvailable,
+  VeryCarefulAvailable,
+}
 
 
 

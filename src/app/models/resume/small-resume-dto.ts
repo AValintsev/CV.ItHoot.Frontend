@@ -8,6 +8,7 @@ export interface SmallResumeDto{
   firstName: string;
   lastName: string;
   picture: string;
+  salaryRate:number;
   deletedAt: string | null
   skills:SkillDto[];
 }

@@ -22,7 +22,7 @@ export class ResumeService {
   }
 
   public getAllResume(filters: ResumeListFilter | null = null): Observable<PagedResponse<SmallResumeDto[]>> {
-    
+
       if (filters == null) {
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix);
       } else {
@@ -33,14 +33,14 @@ export class ResumeService {
             requestUrl = `${requestUrl}&positions=${item}`
           });
         }
-        
+
         if(filters.skills) {
           filters.skills.forEach(item => {
             requestUrl = `${requestUrl}&skills=${item}`
           });
         }
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
-      }    
+      }
   }
 
   public getResumeById(id: number): Observable<ResumeDto> {
@@ -96,6 +96,10 @@ export class ResumeService {
 
   public updateTemplate(template:ResumeTemplateDto):Observable<ResumeTemplateDto>{
     return this.httpService.putRequest<ResumeTemplateDto>(this.routePrefix+`/templates/${template.templateId}/${template.templateName}`,template.html);
+  }
+
+  public changeSalaryRate(resumeId:number,salaryRate:number):Observable<ResumeDto>{
+    return this.httpService.putRequest(this.routePrefix+`/${resumeId}/salaryRate/${salaryRate}`,null);
   }
 
 }
