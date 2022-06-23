@@ -17,8 +17,8 @@
         </svg>
         <span>Previous CV</span>
       </button>
-        <div *ngIf="clientProposalService.headerTitle$|async;else cloneName" class="proposal__name">
-          {{clientProposalService.headerTitle$|async}}</div>
+        <div *ngIf="headerTitle$|async;else cloneName" class="proposal__name">
+          {{headerTitle$|async}}</div>
         <ng-template #cloneName>
           <div class="proposal__name">
             You proposal</div>
@@ -34,8 +34,8 @@
     </div>
     <div *ngIf="showProposalName" class="col">
       <div class="proposal">
-        <div *ngIf="clientProposalService.headerTitle$|async;else cloneName" class="proposal__name">
-          {{clientProposalService.headerTitle$|async}}</div>
+        <div *ngIf="headerTitle$|async;else cloneName" class="proposal__name">
+          {{headerTitle$|async}}</div>
         <ng-template #cloneName>
           <div class="proposal__name">
             You proposal</div>
@@ -75,7 +75,7 @@
             </svg>
             <mat-form-field appearance="fill">
               <mat-select (selectionChange)="changeProposal($event)">
-                <mat-option *ngFor="let proposal of proposals|async" [value]="proposal.id">
+                <mat-option *ngFor="let proposal of proposals$|async" [value]="proposal.id">
                   {{proposal.proposalName}}
                 </mat-option>
               </mat-select>
