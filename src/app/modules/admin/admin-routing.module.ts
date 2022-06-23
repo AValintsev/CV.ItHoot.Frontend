@@ -43,6 +43,10 @@ const routs: Routes = [
         path:'templates',
         loadChildren: () => import('./page/resume-template/resume-template.module').then(mod=>mod.ResumeTemplateModule)
       },
+      {
+        path:'clients',
+        loadChildren: () => import('./page/clients/clients.module').then(mod=>mod.ClientsModule)
+      },
          {
         path: '',
         redirectTo: 'resume',
