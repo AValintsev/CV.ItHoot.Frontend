@@ -7,6 +7,9 @@ import {MatSort} from '@angular/material/sort';
 import { SmallClientsDto } from 'src/app/models/clients/small-clients-dto';
 import { ClientsListFilter } from 'src/app/models/clients/clients-list-filter';
 import { ClientsService } from 'src/app/services/clients.service';
+import { ClientDto } from 'src/app/models/clients/client-dto';
+import { ClientCreateDialogComponent } from '../client-create-dialog/client-create-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'clients-list',
@@ -29,7 +32,8 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
   protected _onDestroy = new Subject();
 
   constructor(
-    public clientService: ClientsService
+    public clientService: ClientsService,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -80,6 +84,25 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
       order: this.sort.direction,
     };
     return clientsFilters;
+  }
+
+  createClientDialog(): void {
+    const client = {} as ClientDto;
+
+    const dialogRef = this.dialog.open(ClientCreateDialogComponent, {
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style'],
+      data: client
+    });
+
+    dialogRef.afterClosed().subscribe((client: ClientDto) => {
+      if (client == null)
+        return;
+      // this.clientService.createClient(client).subscribe(() => {
+      //   this.refreshProposals.emit(this.collectAllFilters());
+      // });
+    });
+
   }
 
   ngOnDestroy() {

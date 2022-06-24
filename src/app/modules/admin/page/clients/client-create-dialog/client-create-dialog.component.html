@@ -1,0 +1,45 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title>Create new client</h1>
+  <div mat-dialog-content class="content">
+
+    <mat-form-field appearance="fill">
+      <mat-label>First name</mat-label>
+      <input matInput placeholder="Bill" [(ngModel)]="client.firstName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last name</mat-label>
+      <input matInput placeholder="Gates" [(ngModel)]="client.lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="bill.gates@microsoft.com" [(ngModel)]="client.email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone number</mat-label>
+      <input matInput placeholder="+5 055 555 5555" [(ngModel)]="client.phoneNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Site</mat-label>
+      <input matInput placeholder="www.microsoft.com" [(ngModel)]="client.site">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Other contacts</mat-label>
+      <input matInput placeholder="skype: @b.gates" [(ngModel)]="client.contacts">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Company</mat-label>
+      <input matInput placeholder="Microsoft" [(ngModel)]="client.companyName">
+    </mat-form-field>    
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-button (click)="click()" cdkFocusInitial [disabled]="canCreate()">Create</button>
+  </div>
+
+</div>
