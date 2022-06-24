@@ -5,6 +5,6 @@ export interface SmallClientsDto{
   phoneNumber: string;
   site: string;
   proposals: string;
-  otherContacts: string;
+  contacts: string;
   companyName: string;
 }

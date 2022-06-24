@@ -15,7 +15,7 @@ import { ClientsService } from 'src/app/services/clients.service';
 })
 export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['fullName', 'email', 'phoneNumber', 'site', 'proposals', 'otherContacts', 'companyName', 'action'];
+  displayedColumns: string[] = ['fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName', 'action'];
   clients: SmallClientsDto[] = [];
   searchControl = new FormControl();
 

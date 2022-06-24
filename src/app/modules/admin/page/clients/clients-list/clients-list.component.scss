@@ -71,6 +71,11 @@
         .mat-cell {
           border: 0;
         }
+
+        ::ng-deep .mat-sort-header-container {
+          display:flex;
+          justify-content:center;
+        }
   
         .mat-header-row {
           height: 0;
