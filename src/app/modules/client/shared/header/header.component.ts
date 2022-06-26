@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
   Users = Users
   showLogo$!:Observable<boolean>
   proposals$!: Observable<SmallProposalDto[]>
-  showProposalName: boolean = true
+  showProposalName: boolean = false
   clientName$!: Observable<string>
   notShowLeftBtnColor: boolean = true
   notShowRightBtnColor: boolean = true

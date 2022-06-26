@@ -6,7 +6,7 @@ import {LoginByUrlComponent} from "./login-by-url/login-by-url.component";
 import {CanLoginingGuard} from 'src/app/guards/canLogining.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent,canActivate:[CanLoginingGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [CanLoginingGuard], runGuardsAndResolvers: 'always' },
    { path: 'registration', component: RegisterComponent },
   { path: ':shortUrl', component: LoginByUrlComponent},
   { path: ':shortUrl/:teamId', component: LoginByUrlComponent},
