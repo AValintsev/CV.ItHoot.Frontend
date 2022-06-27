@@ -1,4 +1,4 @@
-import { takeUntil } from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {
   Component,
   ElementRef,
@@ -8,23 +8,23 @@ import {
   ViewChild,
 } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { UserDto } from '../../../../../models/user-dto';
-import { UserService } from '../../../../../services/user.service';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
-import { Observable, of, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
-import { ResumeService } from '../../../../../services/resume.service';
+import {UserDto} from '../../../../../models/user-dto';
+import {UserService} from '../../../../../services/user.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {FormControl} from '@angular/forms';
+import {Observable, of, Subject} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
+import {ResumeService} from '../../../../../services/resume.service';
 import {
   ProposalDto,
   ProposalResumeDto,
 } from '../../../../../models/proposal/proposal-dto';
-import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
-import { ProposalBuildDto } from '../../../../../models/proposal-build/proposal-build-dto';
-import { ProposalBuildService } from '../../../../../services/proposal-build.service';
+import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
+import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
+import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 
 @Component({
@@ -47,7 +47,8 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
   clients: UserDto[] = [];
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -59,32 +60,17 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   ) {
     this.proposal = data;
     this.proposal.proposalBuild = {} as ProposalBuildDto;
-    this.userService.getUsersByRole('client').pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((clients) => {
+
+    this.userService.getUsersByRole('client').pipe(takeUntil(this.destroy$)).subscribe((clients) => {
       this.clients = clients;
     });
-    this.resumeService.getAllResume().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((resumes) => {
-      this.allResumes = resumes.items;
-      this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
-        takeUntil(this.destroy$),
-        startWith(null),
-        map((resumeName: string | null) =>
-          resumeName ? this._filterResume(resumeName) : this.allResumes.slice()
-        )
-      );
-    });
-    this.resumeService
-      .getAllTemplates().pipe(
-        takeUntil(this.destroy$)
-      )
+
+    this.getAllResumes();
+
+    this.resumeService.getAllTemplates().pipe(takeUntil(this.destroy$))
       .subscribe((templates) => (this.resumeTemplates = templates));
-    this.proposalBuildService
-      .getAllProposalBuilds().pipe(
-        takeUntil(this.destroy$)
-      )
+
+    this.proposalBuildService.getAllProposalBuilds().pipe(takeUntil(this.destroy$))
       .subscribe((proposalBuilds) => (this.proposalBuilds = proposalBuilds));
   }
 
@@ -140,7 +126,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     if (!this.proposal.resumes) this.proposal.resumes = [];
 
     this.resumes.forEach((resume) => {
-      this.proposal.resumes.push({ resumeId: resume.id } as ProposalResumeDto);
+      this.proposal.resumes.push({resumeId: resume.id} as ProposalResumeDto);
     });
     this.dialogRef.close(this.proposal);
   }
@@ -148,15 +134,31 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   proposalBuildSelected() {
     this.resumeService
       .getAllResumesByProposalBuild(this.proposal.proposalBuild.id).pipe(
-        takeUntil(this.destroy$)
-      )
+      takeUntil(this.destroy$)
+    )
       .subscribe((resumes) => {
         this.resumes = resumes;
       });
   }
+
   ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
+  }
+
+  getAllResumes() {
+    this.resumeService.getAllResume().pipe(takeUntil(this.destroy$)).subscribe(resumes => {
+      this.allResumes = resumes.items;
+
+      this.filteredResumes = this.resumeCtrl.valueChanges.pipe(
+        takeUntil(this.destroy$),
+        startWith(null),
+
+        map((resumeName: string | null) =>
+          resumeName ? this._filterResume(resumeName) : this.allResumes.slice()
+        )
+      );
+    });
   }
 
   openSalaryDialog(resume: SmallResumeDto) {
@@ -169,7 +171,10 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {
       if (resume == null)
         return;
-      console.log(resume)
+
+      this.resumeService.changeSalaryRate(resume.id, resume.salaryRate).subscribe(() => {
+       this.getAllResumes();
+      });
     });
 
   }
