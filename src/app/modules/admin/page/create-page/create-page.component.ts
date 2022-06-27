@@ -1,14 +1,14 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Users } from 'src/app/models/users-type';
-import { map } from 'rxjs/operators';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { AccountService } from 'src/app/services/account.service';
-import { Subject } from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Users} from 'src/app/models/users-type';
+import {map} from 'rxjs/operators';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {AccountService} from 'src/app/services/account.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-create-page',
@@ -20,13 +20,15 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   resumeCreateDto: ResumeDto = {} as ResumeDto;
   public resumeCreateForm: FormGroup = {} as FormGroup;
   templateForm!: ResumeDto;
+
   constructor(
     private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
     private accountService: AccountService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.validateForm();
@@ -37,9 +39,10 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     this.changeFormDate();
     this.getFieldDate();
   }
+
   private getFieldDate() {
     this.activatedRoute.queryParams
-      .pipe(takeUntil(this.destroy$),map((params) => params.userId))
+      .pipe(takeUntil(this.destroy$), map((params) => params.userId))
       .subscribe({
         next: (params) => {
           if (params) {
@@ -61,6 +64,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       (resume) => (this.templateForm = resume)
     );
   }
+
   private validateForm() {
     this.resumeCreateForm = new FormGroup({
       resumeName: new FormControl(this.resumeCreateDto.resumeName, [
@@ -111,22 +115,22 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   }
 
   patchForm(resume: ResumeDto) {
-    this.resumeCreateForm.patchValue({ id: resume.id });
-    this.resumeCreateForm.patchValue({ resumeName: resume.resumeName });
-    this.resumeCreateForm.patchValue({ firstName: resume.firstName });
-    this.resumeCreateForm.patchValue({ lastName: resume.lastName });
-    this.resumeCreateForm.patchValue({ email: resume.email });
-    this.resumeCreateForm.patchValue({ site: resume.site });
-    this.resumeCreateForm.patchValue({ phone: resume.phone });
-    this.resumeCreateForm.patchValue({ code: resume.code });
-    this.resumeCreateForm.patchValue({ country: resume.country });
-    this.resumeCreateForm.patchValue({ city: resume.city });
-    this.resumeCreateForm.patchValue({ street: resume.street });
+    this.resumeCreateForm.patchValue({id: resume.id});
+    this.resumeCreateForm.patchValue({resumeName: resume.resumeName});
+    this.resumeCreateForm.patchValue({firstName: resume.firstName});
+    this.resumeCreateForm.patchValue({lastName: resume.lastName});
+    this.resumeCreateForm.patchValue({email: resume.email});
+    this.resumeCreateForm.patchValue({site: resume.site});
+    this.resumeCreateForm.patchValue({phone: resume.phone});
+    this.resumeCreateForm.patchValue({code: resume.code});
+    this.resumeCreateForm.patchValue({country: resume.country});
+    this.resumeCreateForm.patchValue({city: resume.city});
+    this.resumeCreateForm.patchValue({street: resume.street});
     this.resumeCreateForm.patchValue({requiredPosition: resume.requiredPosition,});
-    this.resumeCreateForm.patchValue({ birthdate: resume.birthdate });
-    this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
-    this.resumeCreateForm.patchValue({ picture: resume.picture });
-    this.resumeCreateForm.patchValue({ position: resume.position });
+    this.resumeCreateForm.patchValue({birthdate: resume.birthdate});
+    this.resumeCreateForm.patchValue({aboutMe: resume.aboutMe});
+    this.resumeCreateForm.patchValue({picture: resume.picture});
+    this.resumeCreateForm.patchValue({position: resume.position});
     this.resumeCreateForm.patchValue({salaryRate: resume.salaryRate});
     this.resumeCreateForm.patchValue({availabilityStatus: resume.availabilityStatus});
     this.resumeCreateForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
@@ -185,21 +189,13 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   public submit(resume: ResumeDto) {
     this.resumeService.createResume(resume).pipe(
       takeUntil(this.destroy$)
-    ).subscribe({
-      next: () => {
-        this.snackbarService.showSuccess('Created');
-        if (this.accountService.getStoreRole() === Users[2]) {
-          this.router.navigate(['/home/cv/user-list']);
-        } else {
-          this.router.navigate(['/home/cv']);
-        }
-      },
-      error: () => {
-        this.snackbarService.showDanger('Something went wrong!');
-      },
-    });
+    ).subscribe(() => {
+      this.snackbarService.showSuccess('Created resume successfully')
+      this.router.navigate(['/admin/resume']);
+    })
   }
-   ngOnDestroy(){
+
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }
