@@ -27,6 +27,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     'resumeName',
     'fullName',
     'position',
+    'salaryRate',
     'skills',
     'isSelected',
     'action',
