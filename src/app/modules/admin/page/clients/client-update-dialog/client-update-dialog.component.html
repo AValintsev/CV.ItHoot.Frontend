@@ -1,7 +1,8 @@
 <div class="proposal-dialog">
-  <h1 mat-dialog-title>Create new client</h1>
+  <h1 mat-dialog-title>Update client</h1>
   <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
     <div mat-dialog-content class="content">
+      <input type="hidden" formControlName="id">
       <mat-form-field appearance="fill">
         <mat-label>First name</mat-label>
         <input matInput placeholder="Bill" formControlName="firstName">
@@ -47,7 +48,7 @@
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
     </div>
     <div mat-dialog-actions class="actions">
-      <button mat-button cdkFocusInitial [disabled]="clientForm.invalid">Create</button>
+      <button mat-button cdkFocusInitial [disabled]="clientForm.invalid">Update</button>
     </div>
   </form>
 </div>

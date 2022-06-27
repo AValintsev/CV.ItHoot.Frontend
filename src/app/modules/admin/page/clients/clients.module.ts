@@ -11,13 +11,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { ClientsListComponent } from './clients-list/clients-list.component';
 import { ClientCreateDialogComponent } from './client-create-dialog/client-create-dialog.component';
+import { ClientUpdateDialogComponent } from './client-update-dialog/client-update-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ClientsListComponent,
-    ClientCreateDialogComponent
+    ClientCreateDialogComponent,
+    ClientUpdateDialogComponent
   ],
   imports: [
     CommonModule,

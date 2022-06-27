@@ -11,16 +11,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
-  selector: 'client-create-dialog',
-  templateUrl: './client-create-dialog.component.html',
-  styleUrls: ['./client-create-dialog.component.scss'],
+  selector: 'client-update-dialog',
+  templateUrl: './client-update-dialog.component.html',
+  styleUrls: ['./client-update-dialog.component.scss'],
 })
-export class ClientCreateDialogComponent implements OnInit, OnDestroy {
+export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   client: ClientDto = {} as ClientDto;
 
   clientForm: FormGroup;
-
   isServerError: boolean = false;
   serverErrorMsg: string;
 
@@ -29,27 +28,30 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<ClientCreateDialogComponent>,
+    public dialogRef: MatDialogRef<ClientUpdateDialogComponent>,
     public clientService: ClientsService,
   ) {
     this.client = data;
     this.clientForm = new FormGroup({
-      "firstName": new FormControl("", Validators.required),
-      "lastName": new FormControl("", Validators.required),
-      "email": new FormControl("", [
+      "id": new FormControl(this.client.id, Validators.required),
+      "firstName": new FormControl(this.client.firstName, Validators.required),
+      "lastName": new FormControl(this.client.lastName, Validators.required),
+      "email": new FormControl({ value: this.client.email, disabled: true }, [
         Validators.required,
         Validators.email
       ]),
-      "phoneNumber": new FormControl("", [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
-      "site": new FormControl("", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
-      "contacts": new FormControl(),
-      "companyName": new FormControl(),
+      "phoneNumber": new FormControl(this.client.phoneNumber, [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
+      "site": new FormControl(this.client.site, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
+      "contacts": new FormControl(this.client.contacts),
+      "companyName": new FormControl(this.client.companyName),
     });
   }
 
   submit() {
+
     this.isServerError = false;
 
+    this.client.id = this.clientForm.controls["id"].value;
     this.client.firstName = this.clientForm.controls["firstName"].value;
     this.client.lastName = this.clientForm.controls["lastName"].value;
     this.client.email = this.clientForm.controls["email"].value;
@@ -58,7 +60,7 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
     this.client.contacts = this.clientForm.controls["contacts"].value;
     this.client.companyName = this.clientForm.controls["companyName"].value;
 
-    this.clientService.createClient(this.client).subscribe(
+    this.clientService.updateClient(this.client).subscribe(
       (data) => {
         this.dialogRef.close(data);
       },
