@@ -39,7 +39,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   resumeTemplates: ResumeTemplateDto[] = [];
   proposalBuilds: ProposalBuildDto[] = [];
 
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [ENTER];
   resumeCtrl = new FormControl();
   filteredResumes!: Observable<SmallResumeDto[]>;
   allResumes: SmallResumeDto[] = [];
