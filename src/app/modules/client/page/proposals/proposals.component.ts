@@ -67,7 +67,7 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
         next: response => {
           response.subscribe({
             next: (response: ProposalDto) => {
-              this.statusProposal = response.statusProposal
+              this.statusProposal = response.statusProposal  
               this.resume = this.filterResponseArray(response)
               this.proposalId = response.id;
               this.clientProposalService.headerTitle$.next(response.proposalName)

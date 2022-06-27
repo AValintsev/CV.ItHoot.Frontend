@@ -1,11 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { UsersGuard } from 'src/app/guards/users.guard';
+import { Users } from 'src/app/models/users-type';
 import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
 
 
 const routs: Routes = [
   {
-    path: '', component: AdminLayoutComponent, children: [
+    path: '', component: AdminLayoutComponent, 
+    canActivate: [UsersGuard],
+    data: { role: [Users[0], Users[1]] },
+    children: [
       {
         path: 'resume',
         loadChildren: () => import('./page/resume/admin-cv-list.module').then(mod => mod.AdminCvListModule)

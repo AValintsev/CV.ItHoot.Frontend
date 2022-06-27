@@ -24,7 +24,7 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   DialogType = DialogType;
   dialogType: DialogType = DialogType.Create;
-
+  matError: boolean = false
   proposalBuild: ProposalBuildDto = {} as ProposalBuildDto;
   complexities: ProposalBuildComplexityDto[] = [];
   positions: PositionDto[] = [];
@@ -51,7 +51,8 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
       .subscribe((positions) => (this.positions = positions));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   removePosition(position: ProposalBuildPositionDto) {
     const index = this.proposalBuild.positions.indexOf(position);
@@ -104,8 +105,17 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
   complexityChange() {
     this.proposalBuild.complexityId = this.proposalBuild.complexity.id;
   }
-   ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
+  }
+  checkEstimateValue(e: number) {
+    console.log(e === null)
+    console.log(e)
+    if (e === null) {
+      this.proposalBuild.estimation = 0
+    }else{
+      this.proposalBuild.estimation = Math.ceil(e)
+    }
   }
 }

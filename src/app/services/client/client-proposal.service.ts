@@ -32,9 +32,19 @@ export class ClientProposalService implements OnInit, OnDestroy {
 	this.allProposals$ = this.proposalService.getAllProposals().pipe(share())
   }
   changeProposal(value: number) {
-    this.proposal$.next(this.getProposalById(value));
+    localStorage.setItem('proposalNumber',value.toString())
+    const state = localStorage.getItem('proposalNumber')
+    if (state){
+      const number = parseInt(state)
+      this.proposal$.next(this.getProposalById(number));
+    }
   }
   getProposal() {
+    const state = localStorage.getItem('proposalNumber')
+    if (state) {
+      const number = parseInt(state)
+      this.proposal$.next(this.getProposalById(number));
+    }
     return this.proposal$;
   }
   getAllProposal(): Observable<PagedResponse<SmallProposalDto[]>> {

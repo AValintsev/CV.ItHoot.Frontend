@@ -25,22 +25,7 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
     private proposalService: ProposalService,
     private clientProposalService: ClientProposalService
   ) { }
-  // this.route.params
-  // .pipe(
-  //   map((params) => params['id'])
-  //   )
-  //   .subscribe((id) => {
-  //   this.resumeService.getResumeHtmlById(id).pipe(
-  //     takeUntil(this.destroy$)
-  //   ).subscribe((resume) => {
-  //     this.doc.nativeElement.innerHTML = resume.html;
-  //   });
-  //   const zoom = panzoom(document.getElementById('doc')!, {
-  //     minZoom: 0.3,
-  //     maxZoom: 3.5,
-  //     bounds: true,
-  //   });
-  // });
+
   ngOnInit(): void {
 
     this.getResume();
@@ -50,9 +35,7 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         tap((params) => {
-          console.log('params', params)
           this.showLogo = params.showLogo;
-
           this.proposalService
             .getProposalById(params.proposalId).pipe(
               takeUntil(this.destroy$)
@@ -61,9 +44,7 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
               this.proposalService.getProposalResumeHtml(params.proposalId, params.resumeId).pipe(
                 takeUntil(this.destroy$)
               ).subscribe((resume) => {
-                console.log('----', resume)
                 this.doc.nativeElement.innerHTML = resume.html;
-                this.contentCheckerOnExisting(this.doc)
               });
               const zoom = panzoom(document.getElementById('doc')!, {
                 minZoom: 0.3,
@@ -90,24 +71,14 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response) {
-
-            this.resume = response.resume;
-
-            // this.resume.showLogo = response?.showLogo;
+            this.resume = response.resume;;
             this.resumeTemplateId = response.resumeTemplateId;
           }
-
         },
         error: (error) => console.log(error),
       });
   }
-  contentCheckerOnExisting(htmlWrapper: ElementRef) {
-    const wrapper = htmlWrapper.nativeElement;
-    console.log(wrapper)
-    // console.log(getComputedStyle(wrapper))
-    const education = wrapper.querySelector('.education')
-    console.log(education)
-  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

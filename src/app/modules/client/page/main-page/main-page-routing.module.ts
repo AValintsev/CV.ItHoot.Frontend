@@ -17,11 +17,16 @@ import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ProposalComponent} from '../proposal/proposal.component';
+import { UsersGuard } from 'src/app/guards/users.guard';
+import { Users } from 'src/app/models/users-type';
 
 
 const routes: Routes = [
   {
-    path: '', component: MainPageComponent, children: [
+    path: '', component: MainPageComponent,
+    canActivate: [UsersGuard],
+    data: { role: [Users[3]] },
+    children: [
       {
         path: 'proposals', component: ProposalsComponent
       },

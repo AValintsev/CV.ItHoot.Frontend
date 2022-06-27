@@ -17,8 +17,6 @@ const routes: Routes = [
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
     canLoad: [UsersGuard],
-    canActivate: [UsersGuard],
-    
     data:{role:[Users[0],Users[1]]}
   },
   {
@@ -39,8 +37,7 @@ const routes: Routes = [
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
     canLoad: [UsersGuard],
-    canActivate: [UsersGuard],
-        data: { role: [Users[3]] }
+    data: { role: [Users[3]] }
   },
   {
     path: 'proposals/:proposalId/resume/:resumeId',
