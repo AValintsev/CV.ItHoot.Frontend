@@ -32,13 +32,17 @@ function checkerRole(accountService: AccountService, snackBarService: SnackBarSe
 export class UsersGuard implements CanLoad, CanActivate, CanActivateChild {
 	constructor(private activatedRoute:ActivatedRoute, private accountService: AccountService, private router: Router, private snackBarService: SnackBarService) { }
 	canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+		console.log('canLoad', route.data!.role)
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
 	}
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+		console.log('canActivate', route.data!.role)
+		console.log('canActivate-state', state.url)
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
 		
 	}
 	canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+		console.log('canActivateChild', route.data!.role)
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
 		
 	}

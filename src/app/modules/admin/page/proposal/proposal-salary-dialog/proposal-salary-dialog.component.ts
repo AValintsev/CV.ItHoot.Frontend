@@ -25,9 +25,8 @@ export class ProposalSalaryDialogComponent implements OnInit {
 
 
   submit() {
-    this.resumeService.changeSalaryRate(this.resume.id,this.resume.salaryRate).subscribe(() => {
-      this.dialogRef.close();
-    });
+
+    this.dialogRef.close(this.resume);
   }
 
   canUpdate() {

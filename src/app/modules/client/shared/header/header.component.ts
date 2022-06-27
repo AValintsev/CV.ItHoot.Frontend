@@ -1,24 +1,26 @@
 import { takeUntil } from 'rxjs/operators';
-import {SmallProposalDto} from '../../../../models/proposal/small-proposal-dto';
-import {Observable, Subject} from 'rxjs';
-import {NavigationStart, Router} from '@angular/router';
-import {AccountService} from 'src/app/services/account.service';
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Users} from 'src/app/models/users-type';
-import {map, tap,shareReplay} from 'rxjs/operators';
-import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
-import {ProposalResumeDto, StatusProposalResume} from 'src/app/models/proposal/proposal-dto';
-import {StatusProposal} from 'src/app/models/enums';
+import { SmallProposalDto } from '../../../../models/proposal/small-proposal-dto';
+import { Observable, Subject } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Users } from 'src/app/models/users-type';
+import { map, tap, shareReplay } from 'rxjs/operators';
+import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
+import { ProposalResumeDto, StatusProposalResume } from 'src/app/models/proposal/proposal-dto';
+import { StatusProposal } from 'src/app/models/enums';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
-interface IcontrolPanel{
+
+interface IcontrolPanel {
   resumeId: number,
   proposalId: number,
-  arr: ProposalResumeDto[]|[],
+  arr: ProposalResumeDto[] | [],
   component?: '',
-  index:(id:number)=>number,
-  prev: (component: HeaderComponent)=>void,
-  next: (component: HeaderComponent)=>void,
-  checkerColorArrow:(component:HeaderComponent,id:number)=>void
+  index: (id: number) => number,
+  prev: (component: HeaderComponent) => void,
+  next: (component: HeaderComponent) => void,
+  checkerColorArrow: (component: HeaderComponent, id: number) => void
 }
 
 @Component({
@@ -27,19 +29,19 @@ interface IcontrolPanel{
   styleUrls: ['./header.component.scss'],
 
 })
-export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
-  headerTitle$!:Observable<string | null>
+export class HeaderComponent implements OnInit, OnDestroy, OnDestroy, DoCheck {
+  headerTitle$!: Observable<string | null>
   private destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
   Users = Users
-  showLogo$!:Observable<boolean>
+  showLogo$!: Observable<boolean>
   proposals$!: Observable<SmallProposalDto[]>
-  showProposalName: boolean = true
+  showProposalName = false
   clientName$!: Observable<string>
   notShowLeftBtnColor: boolean = true
   notShowRightBtnColor: boolean = true
-  
+
   controlPanel: IcontrolPanel = {
     resumeId: 0,
     proposalId: 0,
@@ -53,10 +55,10 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
       return 0
     },
 
-    checkerColorArrow:function (component:HeaderComponent,id:number){
+    checkerColorArrow: function (component: HeaderComponent, id: number) {
       if (id && this.arr && this.arr.length) {
-        component.notShowLeftBtnColor = component.controlPanel.index(id)===0?false:true
-        component.notShowRightBtnColor = (component.controlPanel.index(id)+1) === this.arr.length?false:true
+        component.notShowLeftBtnColor = component.controlPanel.index(id) === 0 ? false : true
+        component.notShowRightBtnColor = (component.controlPanel.index(id) + 1) === this.arr.length ? false : true
       }
     },
 
@@ -65,10 +67,10 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
         component.notShowLeftBtnColor = true
         this.resumeId = this.resumeId - 1;
         component.router.navigate(['client/proposal', this.proposalId, 'resume', (this.arr[this.resumeId] as ProposalResumeDto)?.id])
-        if (~(this.resumeId - 1)){
+        if (~(this.resumeId - 1)) {
           component.notShowLeftBtnColor = true
 
-        } else{
+        } else {
           component.notShowLeftBtnColor = false
         }
         component.notShowRightBtnColor = true
@@ -81,9 +83,9 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
         component.router.navigate(['client/proposal', this.proposalId, 'resume', (this.arr[this.resumeId] as ProposalResumeDto)?.id])
         component.notShowRightBtnColor = true
         component.notShowLeftBtnColor = true
-        if (this.arr.length > this.resumeId + 1){
+        if (this.arr.length > this.resumeId + 1) {
           component.notShowRightBtnColor = true
-        }else{
+        } else {
           component.notShowRightBtnColor = false
         }
         component.notShowLeftBtnColor = true
@@ -97,13 +99,13 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(window.location.href)
+
     this.headerTitle$ = this.clientProposalService.headerTitle$.pipe(shareReplay())
     this.showLogo$ = this.clientProposalService.showLogo$
-    this.checkUrlFromArrow(this.router)
-    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName),shareReplay({refCount: true}))
+    this.checkUrlFromArrow(this.router.url)
+    this.clientName$ = this.clientProposalService.getAllProposal().pipe(map(array => array.items[0].clientUserName), shareReplay({ refCount: true }))
     this.getProposalList()
-
-
 
     this.clientProposalService.headerProposal.pipe(
       takeUntil(this.destroy$),
@@ -127,7 +129,7 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
       }),
     ).subscribe(
       {
-        next: response =>{
+        next: response => {
           this.clientProposalService.showLogo$.next(response?.showLogo)
         },
         error: error => console.log(error)
@@ -135,16 +137,19 @@ export class HeaderComponent implements OnInit,OnDestroy,OnDestroy {
     )
     this.checkVisibleHeaderItem()
   }
+  ngDoCheck() {
+    this.checkUrlFromArrow(window.location.href)
 
+  }
 
-private  checkUrlFromArrow(response: any) {
-      let regexp = new RegExp(`/client/proposals`, 'g')
-      const test = regexp.test(response.url);
-      if (test) {
-        this.showProposalName = true
-      } else {
-        this.showProposalName = false
-      }
+  private checkUrlFromArrow(response: any) {
+    let regexp = new RegExp(`/client/proposals`, 'g')
+    const test = regexp.test(response);
+    if (test) {
+      this.showProposalName = true
+    } else {
+      this.showProposalName = false
+    }
   }
 
   private getProposalList() {
@@ -158,33 +163,30 @@ private  checkUrlFromArrow(response: any) {
   }
 
   private filterResponseArray(resumes: any): ProposalResumeDto[] {
-      const arr: ProposalResumeDto[] = [];
-      resumes.positionResumes.map((value: any) => {
+    const arr: ProposalResumeDto[] = [];
+    resumes.positionResumes.map((value: any) => {
 
-        if (resumes.statusProposal === StatusProposal.Approved) {
-          value[1].filter((e: any) => {
-            if (e.statusResume == this.statusResume.Selected) {
-               arr.push(e)
-            }
-          })
-        }else{
-          value[1].filter((e: any) => arr.push(e))
-        }
+      if (resumes.statusProposal === StatusProposal.Approved) {
+        value[1].filter((e: any) => {
+          if (e.statusResume == this.statusResume.Selected) {
+            arr.push(e)
+          }
+        })
+      } else {
+        value[1].filter((e: any) => arr.push(e))
+      }
 
-      })
-      return arr
+    })
+    return arr
   }
 
-
-
-
- private checkVisibleHeaderItem() {
+  private checkVisibleHeaderItem() {
     this.router.events.pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: response => {
         if (response instanceof NavigationStart) {
-          this.checkUrlFromArrow(response)
+          this.checkUrlFromArrow(response.url)
         }
 
       },
@@ -211,7 +213,7 @@ private  checkUrlFromArrow(response: any) {
     this.controlPanel.next(this)
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

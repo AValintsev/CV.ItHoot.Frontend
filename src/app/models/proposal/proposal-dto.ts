@@ -32,6 +32,7 @@ export interface ProposalResumeDto {
   positionName:string;
   picture: string;
   shortUrl:string;
+  salaryRate:number;
   skills: SkillDto[];
 }
 

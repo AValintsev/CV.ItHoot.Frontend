@@ -78,7 +78,6 @@ export class AccountService {
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
   }
   logout(): Observable<boolean> {
-
     return this.http.post(`${this.baseUrl}identity/logout`, {
       'refreshToken': this.getRefreshToken()
     })
@@ -107,6 +106,7 @@ export class AccountService {
   doLogoutUser() {
     this.removeStoreUserRole()
     this.removeTokens()
+    localStorage.clear()
   }
   removeStoreUserRole(){
     localStorage.removeItem(this.USER_ROLE)

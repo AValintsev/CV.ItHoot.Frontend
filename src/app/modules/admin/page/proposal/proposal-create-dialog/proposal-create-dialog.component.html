@@ -32,9 +32,9 @@
         <mat-label>Resumes</mat-label>
         <mat-chip-list #chipList aria-label="Resume selection">
           <mat-chip
-            *ngFor="let resume of resumes"
+            *ngFor="let resume of selectedResumes"
             (removed)="remove(resume)" (click)="openSalaryDialog(resume)">
-            {{resume.firstName}} {{resume.lastName}}
+            {{resume.firstName}} {{resume.lastName}} {{resume.salaryRate}}$/h
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
             </button>
@@ -49,7 +49,7 @@
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let resume of filteredResumes | async" [value]="resume" >
+          <mat-option *ngFor="let resume of resumes" [value]="resume" >
             <span style="font-weight: bold">{{resume.positionName}} </span>
             {{resume.firstName}}  {{resume.lastName}}
             <span *ngIf="resume.salaryRate">, {{resume.salaryRate}}$/h</span>

@@ -82,13 +82,11 @@
 
   // .row__line-counter-part
 
-  &__line-counter-part {
-  }
+  &__line-counter-part {}
 
   // .row__line-counter-sum
 
-  &__line-counter-sum {
-  }
+  &__line-counter-sum {}
 
   // .row__cards
 
@@ -114,8 +112,7 @@
 
   // .row__card
 
-  &__card {
-  }
+  &__card {}
 }
 
 .btn-toggle {
@@ -178,16 +175,18 @@
   // .card__user-line
 
   &__user-line {
+    position: relative;
     border-bottom-right-radius: 3rem;
     border-top-right-radius: 3rem;
-    width: 80%;
-    height: 5rem;
-    flex: 0 0 5rem;
+    width: 42.4rem;
     display: flex;
-    align-items: center;
+    // flex: 0 0 80%;
+    overflow-x: hidden;
+    height: 5rem;
     padding-left: 2.5rem;
     color: #ffffff;
     font-size: 2.5rem;
+    padding-right: 3rem;
     line-height: 1.2;
     text-transform: uppercase;
     margin-top: -1rem;
@@ -196,6 +195,23 @@
     background-position: 1.2rem 0;
     position: relative;
     z-index: 1;
+
+    &-inner {
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      width: 36rem;
+      align-items: center;
+      display: flex;
+      white-space: nowrap;
+    }
+
+    .three-dots{
+      font-size: 3rem;
+      position: absolute;
+      right: 1rem;
+      bottom: .7rem;
+    }
   }
 
   // .card__user-name
@@ -216,15 +232,16 @@
 
   &__user-position {
     flex: 1 1 5.8rem;
-    overflow-y: auto;
+
     &-list {
+      height: 5.8rem;
       font-size: 16px;
       line-height: 1.2;
       color: #04040b;
       margin-left: 6rem;
-      // margin-bottom: 3rem;
+      overflow-y: auto;
       display: flex;
-
+      flex: 0 0 69%;
       width: 69%;
       flex-wrap: wrap;
 
@@ -240,6 +257,7 @@
       }
     }
   }
+
   // .card__user-btns
 
   &__user-btns {
@@ -253,12 +271,12 @@
       justify-content: center;
       align-items: flex-end;
     }
+
     padding-bottom: 1.5rem;
   }
 }
 
-.reset-btn {
-}
+.reset-btn {}
 
 .btn {
   display: flex;
@@ -318,6 +336,7 @@ button[disabled].deny {
   font-size: 1.6rem;
   font-family: "Inter";
 }
-.pointerevents{
+
+.pointerevents {
   pointer-events: none;
 }

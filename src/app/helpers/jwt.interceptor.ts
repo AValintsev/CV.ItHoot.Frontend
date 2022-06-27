@@ -24,9 +24,6 @@ export class JwtInterceptor implements HttpInterceptor {
           console.log('catchError')
           if (error instanceof HttpErrorResponse && error.status === 401) {
             return this.handle401Error(req, next)
-          }else if(error instanceof HttpErrorResponse && error.status === 404){
-            console.log(error)
-            return throwError(error)
           } else {
             // if (error instanceof HttpErrorResponse && error.status === 400 && this.accountService.getUserRole().value === 'User'){
             //   if (this.accountService.getUserRole().value === 'User') {

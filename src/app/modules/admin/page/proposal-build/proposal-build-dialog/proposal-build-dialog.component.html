@@ -10,7 +10,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Estimation days</mat-label>
-      <input matInput type="number" placeholder="Count days" [(ngModel)]="proposalBuild.estimation">
+      <input specialIsAlphaNumeric min="0" matInput type="number"  placeholder="Count days"  [(ngModel)]="proposalBuild.estimation">
+      
     </mat-form-field>
 
     <mat-form-field appearance="fill">

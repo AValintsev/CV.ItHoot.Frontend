@@ -14,7 +14,7 @@ import { PositionService } from '../../../../../services/position.service';
 import { PositionDto } from '../../../../../models/position/position-dto';
 import { ProposalBuildPositionDto } from '../../../../../models/proposal-build/proposal-build-position-dto';
 import { ProposalBuildPositionDialogComponent } from '../proposal-build-position-dialog/proposal-build-position-dialog.component';
-
+import {COMMA} from '@angular/cdk/keycodes'
 @Component({
   selector: 'proposal-build-dialog',
   templateUrl: './proposal-build-dialog.component.html',
@@ -24,7 +24,7 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   DialogType = DialogType;
   dialogType: DialogType = DialogType.Create;
-
+  matError: boolean = false
   proposalBuild: ProposalBuildDto = {} as ProposalBuildDto;
   complexities: ProposalBuildComplexityDto[] = [];
   positions: PositionDto[] = [];
@@ -51,7 +51,8 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
       .subscribe((positions) => (this.positions = positions));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   removePosition(position: ProposalBuildPositionDto) {
     const index = this.proposalBuild.positions.indexOf(position);
@@ -104,8 +105,9 @@ export class ProposalBuildDialogComponent implements OnInit, OnDestroy {
   complexityChange() {
     this.proposalBuild.complexityId = this.proposalBuild.complexity.id;
   }
-   ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }
+
 }
