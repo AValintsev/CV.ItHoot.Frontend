@@ -31,7 +31,6 @@ const routes: Routes = [
   {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
     canLoad: [UsersGuard],
-    canActivate: [UsersGuard],
     data: { role: [Users[2]] }
   },
   {
