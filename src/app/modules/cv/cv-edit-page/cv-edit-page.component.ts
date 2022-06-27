@@ -159,6 +159,7 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       aboutMe: new FormControl(this.resumeEditDto?.aboutMe, [
         Validators.required,
       ]),
+      resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
       picture: new FormControl(this.resumeEditDto?.picture),
       educations: new FormArray([]),
       experiences: new FormArray([]),

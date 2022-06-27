@@ -17,7 +17,7 @@ import {
 import {Observable} from 'rxjs';
 
 function checkerRole(accountService: AccountService, snackBarService: SnackBarService, router: Router, data: string[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree>{
-	if (data&&data.includes(accountService.getStoreRole() as string) && accountService.isLoggedIn()){
+	if (data&&data.includes(accountService.getStoreRole() as string)){
 		return true
 	}
 	accountService.logout().subscribe({
@@ -37,6 +37,7 @@ export class UsersGuard implements CanLoad, CanActivate, CanActivateChild {
 	}
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		console.log('canActivate', route.data!.role)
+		console.log('canActivate-state', state.url)
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
 		
 	}

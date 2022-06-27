@@ -16,6 +16,7 @@ import { ResumeLanguageDto } from '../../../models/resume/resume-language-dto';
 import { EducationDto } from '../../../models/resume/education-dto';
 import { ExperienceDto } from '../../../models/resume/experience-dto';
 import { Subject } from 'rxjs';
+import { ResumeTemplateDto } from 'src/app/models/resume/resume-template-dto';
 
 @Component({
   selector: 'cv-cv-create-left-bar',
@@ -28,9 +29,13 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
+
+  resumeTemplates!: ResumeTemplateDto[];
+
   file: File | null = null;
   positions!: PositionDto[];
-  maxDate = new Date(Date.now());
+
+
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
@@ -41,6 +46,11 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     ).subscribe((positions) => {
       this.positions = positions;
     });
+    this.resumeService
+      .getAllTemplates().pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((templates) => (this.resumeTemplates = templates));
   }
 
   onSelectFile(event: any) {
@@ -59,12 +69,12 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     this.educationListChanged();
   }
 
-  test(position: PositionDto) {
-    this.resumeForm.patchValue({ position: position });
-  }
-
   comparePosition(position: any, position1: any) {
     return position?.positionId === position1?.positionId;
+  }
+
+  compareTemplate(template: any, template1: any) {
+    return template === template1;
   }
 
   removeSkill(skill: ResumeSkillDto): void {
@@ -103,7 +113,6 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
-      panelClass: ['change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -157,7 +166,6 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
-      panelClass: ['change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -219,7 +227,6 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      panelClass: ['remove-style-scroll', 'change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -283,7 +290,6 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      panelClass: ['remove-style-scroll', 'change-material-style'],
       data: { type: dialogType, data: data },
     });
 
@@ -303,6 +309,8 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
       this.experienceListChanged();
     });
   }
+
+  changeTeam(event: any) {}
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
