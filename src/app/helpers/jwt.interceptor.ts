@@ -1,19 +1,25 @@
 import {Router} from '@angular/router';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import { catchError, filter, switchMap, take, finalize } from 'rxjs/operators';
 import {AccountService} from 'src/app/services/account.service';
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   isRefreshing = false
   refreshTokenSubject = new BehaviorSubject<any>(null)
+  private totalRequests = 0;
   constructor(
     private router:Router,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private loadingService: LoadingService,
+    ) { }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<any> {
+    this.totalRequests++;
+    this.loadingService.setLoading(true)
     if (this.accountService.getJwtToken()) {
       req = this.addToken(req, this.accountService.getJwtToken() as string)
 
@@ -25,20 +31,15 @@ export class JwtInterceptor implements HttpInterceptor {
           if (error instanceof HttpErrorResponse && error.status === 401) {
             return this.handle401Error(req, next)
           } else {
-            // if (error instanceof HttpErrorResponse && error.status === 400 && this.accountService.getUserRole().value === 'User'){
-            //   if (this.accountService.getUserRole().value === 'User') {
-            //     this.router.navigate([`/home/cv/create`])
-            //   }
-            // }
-            // this.accountService.logout().subscribe({
-            //   next:()=>{
-            //     this.router.navigate(['account/login']);
-            //
-            //   },
-            //   error: () => this.router.navigate(['account/login'])
-            // })
+            this.loadingService.setLoading(false)
               return throwError(error)
 
+          }
+        }),
+        finalize(() => {
+          this.totalRequests--;
+          if (this.totalRequests === 0) {
+            this.loadingService.setLoading(false);
           }
         })
       )
@@ -58,6 +59,7 @@ export class JwtInterceptor implements HttpInterceptor {
         switchMap((token: any) => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(token.token)
+          // this.loadingService.setLoading(false)
           return next.handle(this.addToken(req, token.token))
         }),
       )
@@ -66,6 +68,7 @@ export class JwtInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap((jwt: any) => {
+          // this.loadingService.setLoading(false)
           return next.handle(this.addToken(req, jwt))
         })
       )

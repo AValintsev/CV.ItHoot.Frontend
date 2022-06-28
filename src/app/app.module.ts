@@ -1,3 +1,4 @@
+import { LoaderModule } from './modules/shared/components/loader/loader.module';
 import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -22,7 +23,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     TestComponent,
-    Test2Component
+    Test2Component,
   ],
   imports: [
     MatNativeDateModule,
@@ -32,6 +33,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     MatSnackBarModule,
     RouterModule,
+    LoaderModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [
