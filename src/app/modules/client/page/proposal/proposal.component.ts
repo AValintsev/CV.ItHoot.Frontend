@@ -80,7 +80,6 @@ export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe({
       next: response => {
-
         if (response && (index == 0 || index == length || !this.toggleBtn)) {
           this.cardId = id
           this.resumeArray[1] = this.resumeArray[1].filter((resume: any) => resume.id !== id)

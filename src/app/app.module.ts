@@ -15,6 +15,7 @@ import {TestComponent} from "./modules/test/test.component";
 import {Test2Component} from "./modules/test2/test2.component";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 
+
 export let AppInjector: Injector;
 registerLocaleData(en);
 @NgModule({

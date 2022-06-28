@@ -10,6 +10,9 @@ export class SpecialCharacterDirective {
 
 
   @HostListener('keypress', ['$event']) onKeyPress(event:KeyboardEvent) {
+    if((/^(0){0,}/g).test(this.el.nativeElement.value)){
+      this.validateFields(event);
+    }
     return new RegExp(this.regexStr).test(event.key)
   }
 
@@ -19,9 +22,8 @@ export class SpecialCharacterDirective {
 
   validateFields(event:Event) {
     setTimeout(() => {
-      this.el.nativeElement.value = this.el.nativeElement.value.replace(/[\D]/g, '');
+      this.el.nativeElement.value = this.el.nativeElement.value.replace(/^(0){0,}/g, '').replace(/\D/g,'');
       event.preventDefault();
     }, 100)
   }
-
 }
