@@ -33,7 +33,6 @@ export class JwtInterceptor implements HttpInterceptor {
           } else {
             this.loadingService.setLoading(false)
               return throwError(error)
-
           }
         }),
         finalize(() => {
