@@ -9,10 +9,8 @@
 			[checkArrayAll]="checkArrayAll"
 			></cv-proposal>
 		</div>
-
-	<button *ngIf="statusProposal !== StatusProposal.Approved;else btnApproveClone" (click)="approveUsers()" mat-button class="btn-load reset-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal. Start work</button>
+	<button [disabled]="!checkArrayAll.length" *ngIf="statusProposal !== StatusProposal.Approved;else btnApproveClone" (click)="approveUsers()" mat-button class="btn-load reset-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal. Start work</button>
 	<ng-template #btnApproveClone>
 		<button [disabled]="statusProposal === StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn">You selected  CV. Approve proposal. Start work</button>
 	</ng-template>
-
 </div>
