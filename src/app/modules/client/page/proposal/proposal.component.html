@@ -20,7 +20,7 @@
 		<div class="row__cards">
 			<div class="row__cards-inner" [class.card-transform]="!toggleBtn">
 				<ng-container *ngFor="let resume of resumeArray[1]; let i = index">
-					<div [@hidden]="'start'" *ngIf="!(resume.id==cardId) && resume.statusResume!==statusResume.Denied" class="row__card card" (click)="showCard(i)"
+					<div [@hidden]="'start'" *ngIf="!(resume.id==cardId) && resume.statusResume!==statusResume.Denied" class="row__card card" (click)="toggleBtn&&showCard(i)"
 						[style.transform]="toggleBtn&&i>1?'translateX('+calcTransform(i-1,resumeArray[1].length)+'%)':'translateX(0)'"
 						[style.transition]="'all .3s ease'">
 						<div class="card__user-block">
