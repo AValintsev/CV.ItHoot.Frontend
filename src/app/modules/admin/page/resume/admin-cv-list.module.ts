@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -42,7 +43,8 @@ import {CvFullComponent} from '../cv-full/cv-full.component';
 		MatInputModule,
 		MatFormFieldModule,
 		MatAutocompleteModule,
-      MatCardModule
+      MatCardModule,
+		DirectivesModule,
 	],
 	declarations: [
 		EditPageComponent,

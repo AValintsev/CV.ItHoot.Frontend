@@ -10,8 +10,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Estimation days</mat-label>
-      <input min="0" matInput type="number"  #days="ngModel" (ngModelChange)="checkEstimateValue($event)" placeholder="Count days"  [ngModel]="proposalBuild.estimation||0">
-        <mat-error *ngIf="days.invalid&&days.pristine&&days.touched">Value cannot be negative</mat-error>
+      <input specialIsAlphaNumeric min="0" matInput type="number"  placeholder="Count days"  [(ngModel)]="proposalBuild.estimation">
+      
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -47,8 +47,8 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()||days.invalid" *ngIf="dialogType == DialogType.Create">Create</button>
-    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()||days.invalid" *ngIf="dialogType == DialogType.Edit">Edit</button>
+    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Create">Create</button>
+    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Edit">Edit</button>
   </div>
 
 </div>

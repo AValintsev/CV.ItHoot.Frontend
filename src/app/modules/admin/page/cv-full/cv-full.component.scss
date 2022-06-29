@@ -1,5 +1,9 @@
-#doc{
-  width: 210mm;
-  min-height: 297mm;
-  margin: 0 auto;
+.resume-wrapper{
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  #resume{
+    width: 210mm;
+    min-height: 297mm;
+  }
 }

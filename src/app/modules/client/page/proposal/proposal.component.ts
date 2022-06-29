@@ -80,7 +80,6 @@ export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe({
       next: response => {
-
         if (response && (index == 0 || index == length || !this.toggleBtn)) {
           this.cardId = id
           this.resumeArray[1] = this.resumeArray[1].filter((resume: any) => resume.id !== id)
@@ -174,6 +173,17 @@ export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
 
   chechVisibleCardLine(resumeArray: ProposalResumeDto[]){
     return resumeArray.filter(resume => resume.statusResume !== this.statusResume.Denied).length
+  }
+
+  sliceName(firstName:string,secondName:string){
+     const maxLength = 20
+    const fullNameLength = firstName.length+secondName.length;
+    console.log(fullNameLength)
+    if(fullNameLength>21){
+      console.log(fullNameLength)
+       return secondName.slice(0,maxLength-firstName.length)
+    }
+    return secondName
   }
 
   ngOnDestroy(){

@@ -1,10 +1,11 @@
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-register',
@@ -12,6 +13,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  public loading$!: Observable<boolean>
   private destroy$ = new Subject<boolean>();
   registerForm!: FormGroup;
   errors!: string[];
@@ -20,10 +22,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
+    this.loading$ = this.loadingService.isLoading$
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
