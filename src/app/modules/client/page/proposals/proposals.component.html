@@ -1,6 +1,7 @@
 <div class="wrapper">
 		<div *ngFor="let position of resume" class="row">
 			<cv-proposal
+			[isIncognito]="isIncognito"
 			(statusChang)="statusChang($event)"
 			[statusObject]="statusObject"
 			[resumeArray]="position"
