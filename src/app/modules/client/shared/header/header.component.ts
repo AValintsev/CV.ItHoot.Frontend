@@ -99,8 +99,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy, DoCheck {
   ) { }
 
   ngOnInit(): void {
-    console.log(window.location.href)
-
     this.headerTitle$ = this.clientProposalService.headerTitle$.pipe(shareReplay())
     this.showLogo$ = this.clientProposalService.showLogo$
     this.checkUrlFromArrow(this.router.url)
@@ -138,7 +136,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy, DoCheck {
     this.checkVisibleHeaderItem()
   }
   ngDoCheck() {
-    this.checkUrlFromArrow(window.location.href)
+    // this.checkUrlFromArrow(window.location.href)
 
   }
 
