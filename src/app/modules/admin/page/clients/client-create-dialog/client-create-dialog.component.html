@@ -1,0 +1,53 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title>Create new client</h1>
+  <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
+    <div mat-dialog-content class="content">
+      <mat-form-field appearance="fill">
+        <mat-label>First name</mat-label>
+        <input matInput placeholder="Bill" formControlName="firstName">
+        <mat-error *ngIf="clientForm.controls['firstName'].invalid && clientForm.controls['firstName'].touched">First name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last name</mat-label>
+        <input matInput placeholder="Gates" formControlName="lastName">
+        <mat-error *ngIf="clientForm.controls['lastName'].invalid && clientForm.controls['lastName'].touched">Last name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="bill.gates@microsoft.com" formControlName="email">
+        <mat-error *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">{{getEmailValidationError()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <input matInput placeholder="+5 055 555 5555" formControlName="phoneNumber">
+        <mat-error *ngIf="clientForm.controls['phoneNumber'].invalid && clientForm.controls['phoneNumber'].touched">Not a valid phone number</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Site</mat-label>
+        <input matInput placeholder="www.microsoft.com" formControlName="site" [(ngModel)]="client.site">
+        <mat-error *ngIf="clientForm.controls['site'].invalid && clientForm.controls['site'].touched">Not a valid site</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Other contacts</mat-label>
+        <input matInput placeholder="skype: @b.gates" formControlName="contacts" [(ngModel)]="client.contacts">
+        <mat-error *ngIf="clientForm.controls['contacts'].invalid && clientForm.controls['contacts'].touched"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <input matInput placeholder="Microsoft" formControlName="companyName" [(ngModel)]="client.companyName">
+        <mat-error *ngIf="clientForm.controls['companyName'].invalid && clientForm.controls['companyName'].touched"></mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
+    </div>
+    <div mat-dialog-actions class="actions">
+      <button mat-button cdkFocusInitial [disabled]="clientForm.invalid">Create</button>
+    </div>
+  </form>
+</div>

@@ -19,6 +19,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ProposalComponent} from '../proposal/proposal.component';
 import { UsersGuard } from 'src/app/guards/users.guard';
 import { Users } from 'src/app/models/users-type';
+import { LoaderModule } from 'src/app/modules/shared/components/loader/loader.module';
 
 
 const routes: Routes = [
@@ -64,6 +65,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatTooltipModule,
     ModalDeleteUserModule,
+    LoaderModule,
     RouterModule.forChild(routes),
   ],
   exports: [

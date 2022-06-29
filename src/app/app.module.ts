@@ -1,3 +1,4 @@
+import { LoaderModule } from './modules/shared/components/loader/loader.module';
 import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -15,13 +16,14 @@ import {TestComponent} from "./modules/test/test.component";
 import {Test2Component} from "./modules/test2/test2.component";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 
+
 export let AppInjector: Injector;
 registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    Test2Component
+    Test2Component,
   ],
   imports: [
     MatNativeDateModule,

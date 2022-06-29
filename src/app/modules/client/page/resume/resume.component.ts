@@ -1,5 +1,6 @@
+import { debounceTime } from 'rxjs/operators';
 import { ResumeService } from './../../../../services/resume.service';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, delay } from 'rxjs/operators';
 import { ClientProposalService } from '../../../../services/client/client-proposal.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { ProposalService } from '../../../../services/proposal.service';
@@ -15,9 +16,7 @@ import panzoom from 'panzoom';
   styleUrls: ['./resume.component.scss'],
 })
 export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
-  showLogo!: boolean;
-  resumeTemplateId = 1;
-  resume!: ResumeDto;
+
   @ViewChild('doc') doc!: ElementRef;
   private destroy$ = new Subject<boolean>();
   constructor(
@@ -33,24 +32,13 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
   getResume() {
     this.activatedRoute.params
       .pipe(
-        takeUntil(this.destroy$),
+        debounceTime(300),
         tap((params) => {
-          this.showLogo = params.showLogo;
           this.proposalService
             .getProposalById(params.proposalId).pipe(
               takeUntil(this.destroy$)
             )
             .subscribe((response) => {
-              this.proposalService.getProposalResumeHtml(params.proposalId, params.resumeId).pipe(
-                takeUntil(this.destroy$)
-              ).subscribe((resume) => {
-                this.doc.nativeElement.innerHTML = resume.html;
-              });
-              const zoom = panzoom(document.getElementById('doc')!, {
-                minZoom: 0.3,
-                maxZoom: 3.5,
-                bounds: true,
-              });
               if (response) {
                 this.clientProposalService.numberCheckedResume$.next({
                   proposalId: params.proposalId,
@@ -61,18 +49,18 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
               }
             });
         }),
-        switchMap((params) =>
-          this.proposalService.getProposalResume(
-            params.proposalId,
-            params.resumeId
-          )
-        )
+        
+        switchMap((params) => this.proposalService.getProposalResumeHtml(params.proposalId, params.resumeId))
       )
       .subscribe({
         next: (response) => {
           if (response) {
-            this.resume = response.resume;;
-            this.resumeTemplateId = response.resumeTemplateId;
+            this.doc.nativeElement.innerHTML = response.html;
+            const zoom = panzoom(document.getElementById('doc')!, {
+              minZoom: 0.3,
+              maxZoom: 3.5,
+              bounds: true,
+            });
           }
         },
         error: (error) => console.log(error),
