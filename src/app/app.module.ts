@@ -33,7 +33,6 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     MatSnackBarModule,
     RouterModule,
-    LoaderModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [

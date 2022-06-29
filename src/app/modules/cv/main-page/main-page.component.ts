@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable } from 'rxjs';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-main-page',
@@ -6,10 +8,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-
-  constructor() { }
-
+  public loading$!: Observable<boolean>
+  constructor(
+    private loadingService: LoadingService
+    ) { }
   ngOnInit(): void {
+    this.loading$ = this.loadingService.isLoading$
   }
 
 }

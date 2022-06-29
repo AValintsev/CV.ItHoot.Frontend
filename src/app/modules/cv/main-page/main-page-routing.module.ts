@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
 import {FooterModule} from '../../core/footer/footer.module';
 import { UsersGuard } from 'src/app/guards/users.guard';
+import { LoaderModule } from '../../shared/components/loader/loader.module';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild([
@@ -24,7 +25,8 @@ import { UsersGuard } from 'src/app/guards/users.guard';
   ]),
   MatButtonModule,
   FooterModule,
-  HeaderModule
+  HeaderModule,
+  LoaderModule
 ],
   exports: [RouterModule],
   declarations: [
