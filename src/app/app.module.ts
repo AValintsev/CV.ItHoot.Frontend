@@ -12,8 +12,6 @@ import {RouterModule} from '@angular/router';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
-import {TestComponent} from "./modules/test/test.component";
-import {Test2Component} from "./modules/test2/test2.component";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 
 
@@ -22,8 +20,6 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
-    Test2Component,
   ],
   imports: [
     MatNativeDateModule,
