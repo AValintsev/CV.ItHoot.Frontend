@@ -181,7 +181,6 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
       this.resumeService.changeSalaryRate(resume.id, resume.salaryRate).subscribe((resume) => {
         this.remove(resumeDto);
         this.selectedResumes.push(resume);
-        console.log(resumeDto,resume)
       });
     });
 
