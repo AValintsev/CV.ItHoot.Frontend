@@ -43,6 +43,8 @@ export class ResumePageComponent implements OnInit, OnDestroy {
             minZoom: 0.3,
             maxZoom: 3.5,
             bounds: true,
+            disableKeyboardInteraction: true,
+            boundsPadding: 0.2
           });
         });
     });

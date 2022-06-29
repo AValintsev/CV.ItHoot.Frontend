@@ -1,4 +1,12 @@
-#resume{
-  width: 210mm;
-  min-height: 297mm;
+.resume-wrapper {
+  display: flex;
+
+  #resume {
+    width: 210mm;
+    min-height: 297mm;
+  }
+
+  #resume:hover {
+    cursor: pointer;
+  }
 }

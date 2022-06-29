@@ -98,7 +98,7 @@ export class ResumeService {
     return this.httpService.putRequest<ResumeTemplateDto>(this.routePrefix+`/templates/${template.templateId}/${template.templateName}`,template.html);
   }
 
-  public changeSalaryRate(resumeId:number,salaryRate:number):Observable<ResumeDto>{
+  public changeSalaryRate(resumeId:number,salaryRate:number):Observable<SmallResumeDto>{
     return this.httpService.putRequest(this.routePrefix+`/${resumeId}/salaryRate/${salaryRate}`,null);
   }
 
