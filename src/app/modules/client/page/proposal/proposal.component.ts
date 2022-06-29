@@ -175,6 +175,17 @@ export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
     return resumeArray.filter(resume => resume.statusResume !== this.statusResume.Denied).length
   }
 
+  sliceName(firstName:string,secondName:string){
+     const maxLength = 20
+    const fullNameLength = firstName.length+secondName.length;
+    console.log(fullNameLength)
+    if(fullNameLength>21){
+      console.log(fullNameLength)
+       return secondName.slice(0,maxLength-firstName.length)
+    }
+    return secondName
+  }
+
   ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

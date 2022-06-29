@@ -88,7 +88,7 @@
 						<div class="card__user-line">
 							<div class="card__user-line-inner">
 								<div class="card__user-name">{{resume.firstName}}</div>
-							   <div class="card__user-last-name">{{resume.lastName}}</div>
+							   <div class="card__user-last-name">{{sliceName(resume.firstName,resume.lastName)}}</div>
 							</div>
 							<span class="three-dots" *ngIf="(resume.firstName.length+resume.lastName.length)>21">...</span>
 
