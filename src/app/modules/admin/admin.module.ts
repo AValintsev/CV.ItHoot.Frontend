@@ -23,9 +23,9 @@ import {FooterModule} from './component/footer/footer.module';
     MatExpansionModule,
     MatTableModule,
     FooterModule,
-    HeaderModule
+    HeaderModule,
 	],
-	declarations: [AdminLayoutComponent,SideBarComponent],
+	declarations: [AdminLayoutComponent,SideBarComponent,],
 	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
 })
 
