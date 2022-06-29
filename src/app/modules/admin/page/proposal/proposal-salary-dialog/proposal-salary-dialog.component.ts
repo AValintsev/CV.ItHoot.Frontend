@@ -16,7 +16,6 @@ export class ProposalSalaryDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<ProposalSalaryDialogComponent>,
               public resumeService: ResumeService) {
     this.resume = data;
-    console.log(this.resume)
   }
 
   ngOnInit(): void {

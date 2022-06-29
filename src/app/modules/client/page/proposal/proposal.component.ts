@@ -178,9 +178,7 @@ export class ProposalComponent implements OnInit,OnDestroy,OnDestroy {
   sliceName(firstName:string,secondName:string){
      const maxLength = 20
     const fullNameLength = firstName.length+secondName.length;
-    console.log(fullNameLength)
     if(fullNameLength>21){
-      console.log(fullNameLength)
        return secondName.slice(0,maxLength-firstName.length)
     }
     return secondName
