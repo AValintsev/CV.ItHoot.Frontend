@@ -25,7 +25,7 @@ import {FooterModule} from './component/footer/footer.module';
     FooterModule,
     HeaderModule,
 	],
-	declarations: [AdminLayoutComponent,SideBarComponent],
+	declarations: [AdminLayoutComponent,SideBarComponent,],
 	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
 })
 

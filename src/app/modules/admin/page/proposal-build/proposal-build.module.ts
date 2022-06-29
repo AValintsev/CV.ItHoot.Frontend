@@ -17,7 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProposalBuildPositionDialogComponent } from './proposal-build-position-dialog/proposal-build-position-dialog.component';
-import { SpecialCharacterDirective } from 'src/app/modules/shared/directives/special-character.directive';
+import { DirectivesModule } from 'src/app/modules/shared/directives/directives.module';
+
 
 @NgModule({
   imports: [
@@ -37,11 +38,12 @@ import { SpecialCharacterDirective } from 'src/app/modules/shared/directives/spe
     ReactiveFormsModule,
     MatCardModule,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule,
+    DirectivesModule
   ],
   exports: [],
   declarations: [
-    SpecialCharacterDirective,
+
     ProposalBuildsListComponent,
     ProposalBuildDialogComponent,
     ProposalBuildPositionDialogComponent,
