@@ -14,6 +14,7 @@ const routes: Routes = [
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
     canLoad: [UsersGuard],
+    canActivate: [UsersGuard],
     data:{role:[Users[0],Users[1]]}
   },
   {
@@ -28,11 +29,13 @@ const routes: Routes = [
   {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
     canLoad: [UsersGuard],
+    canActivate: [UsersGuard],
     data: { role: [Users[2]] }
   },
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
     canLoad: [UsersGuard],
+    canActivate: [UsersGuard],
     data: { role: [Users[3]] }
   },
   {
