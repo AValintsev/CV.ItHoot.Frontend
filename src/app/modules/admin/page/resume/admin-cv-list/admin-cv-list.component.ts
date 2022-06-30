@@ -31,6 +31,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() resumesCount: number;
   @Output() refreshResumes: EventEmitter<any> = new EventEmitter<any>();
   @Input() isShowAddButton: boolean = true;
+  @Input() tableHeader: string;
 
   searchControl = new FormControl();
 

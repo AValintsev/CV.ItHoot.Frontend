@@ -37,6 +37,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()proposalsCount: number;
   @Input()hideStatusFiter: boolean;
   @Input()isShowAddButton: boolean = true;
+  @Input()tableHeader: string;
   @Output() refreshProposals: EventEmitter<any> = new EventEmitter<any>();
 
   clients!:UserDto[];
