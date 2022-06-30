@@ -11,27 +11,31 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MonacoEditorModule} from "ngx-monaco-editor";
+import {ResumeTemplateCreatePageComponent} from './resume-template-create-page/resume-template-create-page.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
-  imports: [
-    RouterModule,
-    ResumeTemplateRoutingModule,
-    MatTableModule,
-    FormsModule,
-    CommonModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MonacoEditorModule,
-  ],
+    imports: [
+        RouterModule,
+        ResumeTemplateRoutingModule,
+        MatTableModule,
+        FormsModule,
+        CommonModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MonacoEditorModule,
+        MatIconModule,
+    ],
   exports: [
   ],
   declarations: [
     ResumeTemplateListPageComponent,
     ResumeTemplatePageComponent,
-    ResumeTemplateEditPageComponent
+    ResumeTemplateEditPageComponent,
+    ResumeTemplateCreatePageComponent
   ]
 })
 

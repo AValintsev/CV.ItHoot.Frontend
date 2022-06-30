@@ -1,4 +1,4 @@
-import { PaginationFilter } from "src/app/models/paginations/pagination-filter";
+import {PaginationFilter} from "src/app/models/paginations/pagination-filter";
 
 export interface ResumeListFilter extends PaginationFilter  {
   term: string;

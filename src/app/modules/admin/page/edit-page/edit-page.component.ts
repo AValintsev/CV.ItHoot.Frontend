@@ -1,14 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from 'src/app/models/users-type';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { Subject } from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-edit-page',
@@ -38,7 +37,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         this.resumeService.getResumeHtmlById(id).pipe(
           takeUntil(this.destroy$)
         ).subscribe((data) => {
-          document.getElementById('doc')!.innerHTML = data.html;
+          document.getElementById('resume')!.innerHTML = data.html;
         });
       });
     });

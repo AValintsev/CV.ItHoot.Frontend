@@ -1,20 +1,16 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  ProposalDto,
-  ProposalResumeDto,
-  StatusProposalResume,
-} from '../../../../../models/proposal/proposal-dto';
-import { ProposalService } from '../../../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from '../../../../../services/resume.service';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ProposalSettingDialogComponent } from '../proposal-setting-dialog/proposal-setting-dialog.component';
-import { ProposalAddResumeDialogComponent } from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
-import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
-import { StatusProposal } from '../../../../../models/enums';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ProposalDto, ProposalResumeDto, StatusProposalResume,} from '../../../../../models/proposal/proposal-dto';
+import {ProposalService} from '../../../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from '../../../../../services/resume.service';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ProposalSettingDialogComponent} from '../proposal-setting-dialog/proposal-setting-dialog.component';
+import {ProposalAddResumeDialogComponent} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
+import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
+import {StatusProposal} from '../../../../../models/enums';
 
 @Component({
   selector: 'proposal',

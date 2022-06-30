@@ -1,8 +1,8 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
-import { DialogType } from '../../../../../models/enums';
-import { PositionDto } from '../../../../../models/position/position-dto';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Subject} from 'rxjs';
+import {DialogType} from '../../../../../models/enums';
+import {PositionDto} from '../../../../../models/position/position-dto';
 
 @Component({
   selector: 'cv-position-dialog',

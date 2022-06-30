@@ -1,4 +1,4 @@
-import { LoaderModule } from './../shared/components/loader/loader.module';
+import {LoaderModule} from './../shared/components/loader/loader.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';

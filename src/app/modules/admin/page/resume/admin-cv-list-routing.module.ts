@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CreatePageComponent } from '../create-page/create-page.component';
-import { EditPageComponent } from '../edit-page/edit-page.component';
-import { CvFullComponent } from '../cv-full/cv-full.component';
-import { ResumeListPageComponent } from './page/resume-list-page/resume-list-page.component';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CreatePageComponent} from '../create-page/create-page.component';
+import {EditPageComponent} from '../edit-page/edit-page.component';
+import {CvFullComponent} from '../cv-full/cv-full.component';
+import {ResumeListPageComponent} from './page/resume-list-page/resume-list-page.component';
 
 
 const routes: Routes = [

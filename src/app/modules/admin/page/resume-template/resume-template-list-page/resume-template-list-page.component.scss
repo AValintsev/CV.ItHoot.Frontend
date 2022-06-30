@@ -15,38 +15,11 @@
     .title-section {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 60px;
 
-      .title {
-        h1 {
-          margin-bottom: 20px;
-        }
+      h1{
+        margin: 0;
 
-        span {
-          display: block;
-          color: #8A92A6;
-          font-size: 1.2em;
-        }
-
-        span.status {
-          color: #1AA053;
-          font-weight: 500;
-        }
-
-
-        .client-section {
-          display: flex;
-          gap: 10px;
-          margin-bottom: 60px;
-
-          mat-icon {
-            color: #8A92A6;
-          }
-
-          mat-icon:hover {
-            opacity: .8;
-            cursor: pointer;
-          }
-        }
       }
 
       .actions {

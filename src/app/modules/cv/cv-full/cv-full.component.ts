@@ -1,11 +1,10 @@
-import { takeUntil } from 'rxjs/operators';
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from 'src/app/services/resume.service';
-import { map } from 'rxjs/operators';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import {map, takeUntil} from 'rxjs/operators';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from 'src/app/services/resume.service';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
-import { Subject } from 'rxjs';
+import {Subject} from 'rxjs';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   private destroy$ = new Subject<boolean>();
   @Input() id: number = 0;
   resume!: ResumeDto;
-  @ViewChild('doc', { static: false }) doc!: ElementRef;
+  @ViewChild('resume') resumeHtml!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,18 +28,18 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
       this.resumeService.getResumeHtmlById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
-        this.doc.nativeElement.innerHTML = resume.html;
+        this.resumeHtml.nativeElement.innerHTML = resume.html;
       });
     });
   }
 
   ngAfterViewInit(): void {
-    const zoom = panzoom(this.doc.nativeElement, {
+    const zoom = panzoom(this.resumeHtml.nativeElement, {
       minZoom: 0.3,
       maxZoom: 1.3,
       bounds: true,
       disableKeyboardInteraction: true,
-      boundsPadding: 0.2
+      boundsPadding: 0.1
     });
   }
   ngOnDestroy() {

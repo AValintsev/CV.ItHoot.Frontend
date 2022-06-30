@@ -1,11 +1,10 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from '../../../../../services/resume.service';
-import { map } from 'rxjs/operators';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { Subject } from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from '../../../../../services/resume.service';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-resume-template-edit-page',

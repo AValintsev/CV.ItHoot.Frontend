@@ -16,7 +16,6 @@ import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-bu
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter";
-import {ResumeDto} from "../../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'proposal-create-dialog',

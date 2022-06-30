@@ -1,16 +1,16 @@
-import { Component, ViewChild, AfterViewInit, OnDestroy, OnInit, } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { debounceTime, map, startWith, switchMap, catchError, takeUntil } from "rxjs/operators";
-import { merge, of as observableOf, Subject } from "rxjs";
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { SmallClientsDto } from 'src/app/models/clients/small-clients-dto';
-import { ClientsListFilter } from 'src/app/models/clients/clients-list-filter';
-import { ClientsService } from 'src/app/services/clients.service';
-import { ClientDto } from 'src/app/models/clients/client-dto';
-import { ClientCreateDialogComponent } from '../client-create-dialog/client-create-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ClientUpdateDialogComponent } from '../client-update-dialog/client-update-dialog.component';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
+import {merge, of as observableOf, Subject} from "rxjs";
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {SmallClientsDto} from 'src/app/models/clients/small-clients-dto';
+import {ClientsListFilter} from 'src/app/models/clients/clients-list-filter';
+import {ClientsService} from 'src/app/services/clients.service';
+import {ClientDto} from 'src/app/models/clients/client-dto';
+import {ClientCreateDialogComponent} from '../client-create-dialog/client-create-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ClientUpdateDialogComponent} from '../client-update-dialog/client-update-dialog.component';
 
 @Component({
   selector: 'clients-list',

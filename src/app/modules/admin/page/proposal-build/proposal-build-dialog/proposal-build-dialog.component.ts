@@ -1,20 +1,18 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef,} from '@angular/material/dialog';
+import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
+import {DialogType} from '../../../../../models/enums';
+import {ComplexityService} from '../../../../../services/complexity.service';
+import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import {PositionService} from '../../../../../services/position.service';
+import {PositionDto} from '../../../../../models/position/position-dto';
+import {ProposalBuildPositionDto} from '../../../../../models/proposal-build/proposal-build-position-dto';
 import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { ProposalBuildDto } from '../../../../../models/proposal-build/proposal-build-dto';
-import { DialogType } from '../../../../../models/enums';
-import { ComplexityService } from '../../../../../services/complexity.service';
-import { ProposalBuildComplexityDto } from '../../../../../models/proposal-build/proposal-build-complexity-dto';
-import { PositionService } from '../../../../../services/position.service';
-import { PositionDto } from '../../../../../models/position/position-dto';
-import { ProposalBuildPositionDto } from '../../../../../models/proposal-build/proposal-build-position-dto';
-import { ProposalBuildPositionDialogComponent } from '../proposal-build-position-dialog/proposal-build-position-dialog.component';
-import {COMMA} from '@angular/cdk/keycodes'
+  ProposalBuildPositionDialogComponent
+} from '../proposal-build-position-dialog/proposal-build-position-dialog.component';
+
 @Component({
   selector: 'proposal-build-dialog',
   templateUrl: './proposal-build-dialog.component.html',

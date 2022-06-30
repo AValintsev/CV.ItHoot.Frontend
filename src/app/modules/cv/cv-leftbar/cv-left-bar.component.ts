@@ -1,22 +1,22 @@
-import { takeUntil } from 'rxjs/operators';
-import { ResumeService } from 'src/app/services/resume.service';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { SkillDialog } from '../skill-dialog/skill-dialog.component';
-import { LanguageDialog } from '../language-dialog/language-dialog.component';
-import { EducationDialog } from '../education-dialog/education-dialog.component';
-import { ExperienceDialog } from '../experience-dialog/experience-dialog.component';
-import { PositionService } from '../../../services/position.service';
-import { ResumeDto } from '../../../models/resume/resume-dto';
-import { PositionDto } from '../../../models/position/position-dto';
-import { ResumeSkillDto } from '../../../models/resume/resume-skill-dto';
-import { DialogType } from '../../../models/enums';
-import { ResumeLanguageDto } from '../../../models/resume/resume-language-dto';
-import { EducationDto } from '../../../models/resume/education-dto';
-import { ExperienceDto } from '../../../models/resume/experience-dto';
-import { Subject } from 'rxjs';
-import { ResumeTemplateDto } from 'src/app/models/resume/resume-template-dto';
+import {takeUntil} from 'rxjs/operators';
+import {ResumeService} from 'src/app/services/resume.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {SkillDialog} from '../skill-dialog/skill-dialog.component';
+import {LanguageDialog} from '../language-dialog/language-dialog.component';
+import {EducationDialog} from '../education-dialog/education-dialog.component';
+import {ExperienceDialog} from '../experience-dialog/experience-dialog.component';
+import {PositionService} from '../../../services/position.service';
+import {ResumeDto} from '../../../models/resume/resume-dto';
+import {PositionDto} from '../../../models/position/position-dto';
+import {ResumeSkillDto} from '../../../models/resume/resume-skill-dto';
+import {DialogType} from '../../../models/enums';
+import {ResumeLanguageDto} from '../../../models/resume/resume-language-dto';
+import {EducationDto} from '../../../models/resume/education-dto';
+import {ExperienceDto} from '../../../models/resume/experience-dto';
+import {Subject} from 'rxjs';
+import {ResumeTemplateDto} from 'src/app/models/resume/resume-template-dto';
 
 @Component({
   selector: 'cv-cv-create-left-bar',
