@@ -2,9 +2,9 @@
   <ol class="links">
     <li class="title-section"><span>Home</span></li>
     <li><a>
-      <mat-icon>dashboard</mat-icon>
-      <span>Dashboard</span>
-    </a></li>
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a></li>
     <mat-divider></mat-divider>
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
       <a routerLink="/admin/resume">
@@ -25,19 +25,31 @@
       </a>
     </li>
     <li><a>
-      <mat-icon>verified_user</mat-icon>
-      <span> Resource planning</span>
-    </a></li>
+        <mat-icon>verified_user</mat-icon>
+        <span> Resource planning</span>
+      </a></li>
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-      <a routerLink="/admin/archive">
-        <mat-icon>bookmark</mat-icon>
-        <span>Archive</span>
-      </a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>bookmark</mat-icon>
+            <span>Archive</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a routerLink="/admin/archive/proposals">
+          <mat-icon>sports_esports</mat-icon>
+          <span>Proposals</span>
+        </a>
+        <a routerLink="/admin/archive/resume">
+          <mat-icon>groups</mat-icon>
+          <span>Resume list</span>
+        </a>
+      </mat-expansion-panel>
     </li>
     <mat-divider></mat-divider>
     <li class="title-section"><span>Setting</span></li>
 
-    <li class="setting"  >
+    <li class="setting">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -90,9 +102,9 @@
       </a>
     </li>
     <li><a>
-      <mat-icon>military_tech</mat-icon>
-      <span>Roles</span>
-    </a></li>
+        <mat-icon>military_tech</mat-icon>
+        <span>Roles</span>
+      </a></li>
     <mat-divider></mat-divider>
   </ol>
 </div>

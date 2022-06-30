@@ -2,7 +2,7 @@
   <div class="table-page">
     <div class="title-section">
       <div class="left-block">
-        <h1>Proposal list</h1>
+        <h1>{{tableHeader}}</h1>
         <div class="filter-block">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Search...</mat-label>
@@ -33,7 +33,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button mat-raised-button (click)="openProposalDialog()">
+      <button *ngIf="isShowAddButton" mat-raised-button (click)="openProposalDialog()">
         <mat-icon>add</mat-icon>
       </button>
     </div>
