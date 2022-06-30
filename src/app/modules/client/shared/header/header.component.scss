@@ -7,6 +7,25 @@
   justify-content: space-between;
   align-items: center;
   font-family: Inter, sans-serif;
+  @media(max-width:700px){
+   height: 6rem;
+   }
+  @media(max-width:600px){
+  height: 5rem;
+   }
+}
+
+.small{
+  display: none;
+ @media(max-width:970px){
+  display: block;
+ }
+}
+.large{
+  display: block;
+ @media(max-width:970px){
+  display: none !important;
+ }
 }
 
 .col {
@@ -17,10 +36,19 @@
   height: 7rem;
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 
   img {
     width: 16rem;
     height: 4.5rem;
+    @media(max-width:700px){
+      width: 12rem;
+      height: 3.5rem;
+     }
+    @media(max-width:500px){
+      width: 8rem;
+      height: 2rem;
+     }
   }
 }
 
@@ -68,6 +96,7 @@ img {
   line-height: 1.2;
   color: #3C6F9E;
   text-transform: uppercase;
+
 }
 
 .cv-user-photo {}
@@ -101,6 +130,12 @@ img {
 
   li {
     padding: 0 1rem 0 1rem;
+    @media(max-width:600px){
+      padding: 0 .8rem 0 .8rem;
+     }
+    @media(max-width:500px){
+      padding: 0 .6rem 0 .6rem;
+     }
 
     &:nth-child(2) {
       position: relative;
@@ -170,6 +205,9 @@ img {
 }
 
 .proposal {
+  overflow-x: hidden;
+  display: flex;
+  align-items: flex-start;
   &__name {
     font-family: 'Inter';
     font-style: normal;
@@ -178,6 +216,13 @@ img {
     line-height: 1.2;
     color: #3C6F9E;
     text-transform: uppercase;
+    text-align: center;
+    @media(max-width:700px){
+      font-size: 2.6rem !important;  
+     }
+    @media(max-width:500px){
+      font-size: 1.6rem !important;
+     }
   }
 }
 
@@ -198,3 +243,4 @@ svg{
   font-size: 1.6rem;
   font-family: 'Inter';
 }
+

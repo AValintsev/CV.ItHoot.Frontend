@@ -32,7 +32,7 @@
   // .row__line
 
   &__line {
-    height: 3.5rem;
+    // height: 3.5rem;
     background: #d9d9d9;
     border: 1px solid #527ea6;
     box-shadow: 0px 4px 4px rgba(162, 164, 167, 0.6);
@@ -92,6 +92,9 @@
 
   &__cards {
     min-height: 37.5rem;
+    @media(max-width:610px){
+      overflow-x: auto;
+    }
   }
 
   // .row__cards-inner
@@ -104,6 +107,9 @@
     flex-wrap: nowrap;
     overflow-x: hidden;
     transition: all 0.3 ease;
+    @media(max-width:610px){
+      overflow-x: visible;
+    }
 
     &.card-transform {
       flex-wrap: wrap;
@@ -211,6 +217,9 @@
       right: 1.6rem;
       bottom: .7rem;
     }
+    @media(max-width:610px){
+      background-image: url("/assets/client/proposal/blue-line.svg");
+    }
   }
 
   // .card__user-name
@@ -274,6 +283,10 @@
     }
 
     padding-bottom: 1.5rem;
+  }
+  @media(max-width:610px){
+    // flex: 0 0 40rem;
+    // background-image: url("/assets/client/proposal/small/card.svg");
   }
 }
 
