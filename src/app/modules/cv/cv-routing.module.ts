@@ -1,13 +1,11 @@
-import { Users } from './../../models/users-type';
+import {Users} from './../../models/users-type';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CvFullComponent} from './cv-full/cv-full.component';
 import {CvCreatePageComponent} from "./cv-create-page/cv-create-page.component";
 import {CvEditPageComponent} from "./cv-edit-page/cv-edit-page.component";
-import { UserCvListComponent } from './user-cv-list/user-cv-list.component';
-import { DeleteComponent } from './delete/delete.component';
-import { UsersGuard } from 'src/app/guards/users.guard';
-
+import {UserCvListComponent} from './user-cv-list/user-cv-list.component';
+import {UsersGuard} from 'src/app/guards/users.guard';
 
 
 const routes: Routes = [
@@ -15,7 +13,7 @@ const routes: Routes = [
      {
     path: 'edit/:id',
     component: CvEditPageComponent,
-    
+
   },
 
   {
@@ -44,7 +42,7 @@ const routes: Routes = [
       role: [Users[2]]
     }
 }
- 
+
 ];
 
 @NgModule({

@@ -1,14 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ResumeService } from '../../../services/resume.service';
-import { SnackBarService } from '../../../services/snack-bar.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from 'src/app/models/users-type';
-import { ResumeDto } from '../../../models/resume/resume-dto';
-import { Subject } from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ResumeService} from '../../../services/resume.service';
+import {SnackBarService} from '../../../services/snack-bar.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
+import {ResumeDto} from '../../../models/resume/resume-dto';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-cv-edit-page',

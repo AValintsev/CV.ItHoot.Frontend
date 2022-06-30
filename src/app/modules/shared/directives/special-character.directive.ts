@@ -1,4 +1,5 @@
-import { Directive, HostListener, ElementRef, Input } from '@angular/core';
+import {Directive, ElementRef, HostListener} from '@angular/core';
+
 @Directive({
   selector: '[specialIsAlphaNumeric]'
 })

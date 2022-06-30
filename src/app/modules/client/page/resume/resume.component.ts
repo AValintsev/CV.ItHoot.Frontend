@@ -1,13 +1,9 @@
-import { debounceTime } from 'rxjs/operators';
-import { ResumeService } from './../../../../services/resume.service';
-import { map, takeUntil, delay } from 'rxjs/operators';
-import { ClientProposalService } from '../../../../services/client/client-proposal.service';
-import { switchMap, tap } from 'rxjs/operators';
-import { ProposalService } from '../../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { Subject } from 'rxjs';
+import {debounceTime, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {ClientProposalService} from '../../../../services/client/client-proposal.service';
+import {ProposalService} from '../../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Subject} from 'rxjs';
 import panzoom from 'panzoom';
 
 @Component({

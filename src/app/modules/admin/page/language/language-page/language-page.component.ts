@@ -1,12 +1,12 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LanguageService } from 'src/app/services/language.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { LanguageDialogComponent } from '../language-dialog/language-dialog.component';
-import { LanguageDto } from '../../../../../models/language/language-dto';
-import { DialogType } from '../../../../../models/enums';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {LanguageService} from 'src/app/services/language.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {LanguageDialogComponent} from '../language-dialog/language-dialog.component';
+import {LanguageDto} from '../../../../../models/language/language-dto';
+import {DialogType} from '../../../../../models/enums';
 
 @Component({
   selector: 'app-language-page',

@@ -1,20 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
-import { AccountService } from 'src/app/services/account.service';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { UserAuthData } from '../../../models/userAuthData';
-import { Users } from '../../../models/users-type';
-import { ResumeService } from 'src/app/services/resume.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalDeleteUserComponent } from '../../shared/modals/modal-delete-user/modal-delete-user.component';
+import {takeUntil} from 'rxjs/operators';
+import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output,} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {UserAuthData} from '../../../models/userAuthData';
+import {Users} from '../../../models/users-type';
+import {ResumeService} from 'src/app/services/resume.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ModalDeleteUserComponent} from '../../shared/modals/modal-delete-user/modal-delete-user.component';
 
 @Component({
   selector: 'cv-cv-small',

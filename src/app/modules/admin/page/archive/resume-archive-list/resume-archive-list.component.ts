@@ -1,9 +1,9 @@
-import { takeUntil, map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SmallResumeDto } from 'src/app/models/resume/small-resume-dto';
-import { ResumeService } from 'src/app/services/resume.service';
-import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
+import {map, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
+import {ResumeService} from 'src/app/services/resume.service';
+import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
 
 @Component({
   selector: 'resume-archive-list',

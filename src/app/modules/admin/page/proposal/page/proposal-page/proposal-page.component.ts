@@ -1,10 +1,9 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
-import { ProposalService } from '../../../../../../services/proposal.service';
-import { ProposalDto } from '../../../../../../models/proposal/proposal-dto';
-import { Subject } from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ProposalService} from '../../../../../../services/proposal.service';
+import {ProposalDto} from '../../../../../../models/proposal/proposal-dto';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'proposal-page',

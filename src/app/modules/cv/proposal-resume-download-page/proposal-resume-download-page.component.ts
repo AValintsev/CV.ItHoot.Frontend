@@ -1,9 +1,9 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProposalService } from '../../../services/proposal.service';
-import { saveAs } from 'file-saver';
-import { Subject } from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProposalService} from '../../../services/proposal.service';
+import {saveAs} from 'file-saver';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'proposal-resume-download-page',

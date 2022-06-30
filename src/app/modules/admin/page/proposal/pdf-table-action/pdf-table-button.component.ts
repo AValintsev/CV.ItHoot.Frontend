@@ -1,13 +1,10 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  ProposalDto,
-  ProposalResumeDto,
-} from '../../../../../models/proposal/proposal-dto';
-import { saveAs } from 'file-saver';
-import { ProposalService } from '../../../../../services/proposal.service';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ProposalDto, ProposalResumeDto,} from '../../../../../models/proposal/proposal-dto';
+import {saveAs} from 'file-saver';
+import {ProposalService} from '../../../../../services/proposal.service';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
 
 @Component({
   selector: 'pdf-table-button',

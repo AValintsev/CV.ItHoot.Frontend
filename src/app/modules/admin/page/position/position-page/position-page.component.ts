@@ -1,12 +1,12 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { PositionService } from '../../../../../services/position.service';
-import { PositionDialogComponent } from '../position-dialog/position-dialog.component';
-import { PositionDto } from '../../../../../models/position/position-dto';
-import { DialogType } from '../../../../../models/enums';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {PositionService} from '../../../../../services/position.service';
+import {PositionDialogComponent} from '../position-dialog/position-dialog.component';
+import {PositionDto} from '../../../../../models/position/position-dto';
+import {DialogType} from '../../../../../models/enums';
 
 @Component({
   selector: 'cv-position-page',

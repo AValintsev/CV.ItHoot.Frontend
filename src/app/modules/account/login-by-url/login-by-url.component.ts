@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import {Subject} from 'rxjs';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from "../../../services/account.service";
 import {ActivatedRoute, Router} from "@angular/router";

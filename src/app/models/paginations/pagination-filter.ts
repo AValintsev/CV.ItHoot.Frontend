@@ -1,4 +1,4 @@
-import { SortDirection } from "@angular/material/sort";
+import {SortDirection} from "@angular/material/sort";
 
 export interface PaginationFilter{
     page: number;

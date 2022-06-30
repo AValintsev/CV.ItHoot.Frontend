@@ -1,21 +1,14 @@
-import { Subject } from 'rxjs';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ExperienceDto } from '../../../models/resume/experience-dto';
-import { DialogType } from '../../../models/enums';
-import {
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import { MatDatepicker } from '@angular/material/datepicker';
+import {Subject} from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ExperienceDto} from '../../../models/resume/experience-dto';
+import {DialogType} from '../../../models/enums';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { UserValidators } from '../../shared/validators/user.validators';
+import {UserValidators} from '../../shared/validators/user.validators';
 
 export const MY_FORMATS = {
   parse: {

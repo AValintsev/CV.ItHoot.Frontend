@@ -7,7 +7,7 @@ import {ResumeDto} from "../models/resume/resume-dto";
 import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {PositionDto} from "../models/position/position-dto";
 import {PagedResponse} from "../models/paginations/paged-response";
-import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
+import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
 
 
 @Injectable({providedIn: 'root'})

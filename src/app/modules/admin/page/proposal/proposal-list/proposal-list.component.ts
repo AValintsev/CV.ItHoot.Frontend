@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, AfterViewInit, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ProposalService} from "src/app/services/proposal.service";
 import {SmallProposalDto} from "src/app/models/proposal/small-proposal-dto";
 import {ProposalCreateDialogComponent} from "../proposal-create-dialog/proposal-create-dialog.component";
@@ -7,12 +7,12 @@ import {ProposalDto} from "src/app/models/proposal/proposal-dto";
 import {StatusProposal} from "src/app/models/enums";
 import {FormControl} from "@angular/forms";
 import {merge, ReplaySubject, Subject} from "rxjs";
-import {debounceTime, map, startWith, takeUntil, take} from "rxjs/operators";
-import { ProposalListFilter } from 'src/app/models/proposal/proposal-list-filter';
+import {debounceTime, map, startWith, take, takeUntil} from "rxjs/operators";
+import {ProposalListFilter} from 'src/app/models/proposal/proposal-list-filter';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import { MatSelect } from '@angular/material/select';
-import { UserDto } from 'src/app/models/user-dto';
+import {MatSelect} from '@angular/material/select';
+import {UserDto} from 'src/app/models/user-dto';
 import {UserService} from "src/app/services/user.service";
 
 

@@ -1,13 +1,12 @@
-import { Users } from './models/users-type';
-import { UsersGuard } from './guards/users.guard';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RoleGuard } from './guards/role.guard';
+import {Users} from './models/users-type';
+import {UsersGuard} from './guards/users.guard';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {RoleGuard} from './guards/role.guard';
 import {
   ProposalResumeDownloadPageComponent
 } from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
-import { ResumeFullSwitcherComponent } from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
-
+import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
 
 
 const routes: Routes = [

@@ -1,10 +1,9 @@
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { ProposalService } from '../proposal.service';
-import { map, switchMap, tap,share } from 'rxjs/operators';
-import { SmallProposalDto } from 'src/app/models/proposal/small-proposal-dto';
-import { ObserversModule } from '@angular/cdk/observers';
-import { PagedResponse } from 'src/app/models/paginations/paged-response';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Injectable, OnDestroy, OnInit} from '@angular/core';
+import {ProposalService} from '../proposal.service';
+import {map, share, switchMap, tap} from 'rxjs/operators';
+import {SmallProposalDto} from 'src/app/models/proposal/small-proposal-dto';
+import {PagedResponse} from 'src/app/models/paginations/paged-response';
 
 @Injectable({
   providedIn: 'root'

@@ -1,21 +1,14 @@
-import { Subject } from 'rxjs';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import { MatDatepicker } from '@angular/material/datepicker';
+import {Subject} from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { ExperienceDto } from 'src/app/models/resume/experience-dto';
-import { DialogType } from 'src/app/models/enums';
-import { UserValidators } from 'src/app/modules/shared/validators/user.validators';
+import {ExperienceDto} from 'src/app/models/resume/experience-dto';
+import {DialogType} from 'src/app/models/enums';
+import {UserValidators} from 'src/app/modules/shared/validators/user.validators';
 
 export const MY_FORMATS = {
   parse: {
@@ -95,7 +88,7 @@ export class ExperienceDialog implements OnInit, OnDestroy {
     this.experienceForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
-   ngOnDestroy(){
+  ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

@@ -1,21 +1,14 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import { MatDatepicker } from '@angular/material/datepicker';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { EducationDto } from 'src/app/models/resume/education-dto';
-import { DialogType } from 'src/app/models/enums';
-import { UserValidators } from 'src/app/modules/shared/validators/user.validators';
-import { Subject } from 'rxjs';
+import {EducationDto} from 'src/app/models/resume/education-dto';
+import {DialogType} from 'src/app/models/enums';
+import {UserValidators} from 'src/app/modules/shared/validators/user.validators';
+import {Subject} from 'rxjs';
 
 export const MY_FORMATS = {
   parse: {

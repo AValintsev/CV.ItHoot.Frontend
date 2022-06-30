@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { Observable } from 'rxjs';
-import { LoadingService } from 'src/app/services/loading.service';
+import {Observable} from 'rxjs';
+import {LoadingService} from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-main-page',
