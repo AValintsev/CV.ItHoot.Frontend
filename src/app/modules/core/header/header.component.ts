@@ -1,11 +1,10 @@
-import { takeUntil } from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {Observable, of, Subject} from 'rxjs';
 import {ResumeService} from './../../../services/resume.service';
 import {Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Users} from 'src/app/models/users-type';
-import {map} from 'rxjs/operators';
 
 
 @Component({

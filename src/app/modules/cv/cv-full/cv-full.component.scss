@@ -1,13 +1,13 @@
-.resume-wrapper {
+.resume-wrapper{
   overflow: hidden;
   max-height: 100%;
   max-width: 100%;
-}
-.templates{
-  width: 210mm;
-  min-height: 297mm;
-  margin: 0 auto;
-}
-#doc:hover {
-  cursor: pointer;
+  #resume {
+    width: 210mm;
+    min-height: 297mm;
+  }
+  #resume:hover {
+    cursor: pointer;
+  }
+
 }

@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpInternalService } from "./http-internal.service";
-import { PagedResponse } from "../models/paginations/paged-response";
-import { ClientsListFilter } from 'src/app/models/clients/clients-list-filter';
-import { SmallClientsDto } from 'src/app/models/clients/small-clients-dto';
-import { ClientDto } from 'src/app/models/clients/client-dto';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpInternalService} from "./http-internal.service";
+import {PagedResponse} from "../models/paginations/paged-response";
+import {ClientsListFilter} from 'src/app/models/clients/clients-list-filter';
+import {SmallClientsDto} from 'src/app/models/clients/small-clients-dto';
+import {ClientDto} from 'src/app/models/clients/client-dto';
 
 
 @Injectable({ providedIn: 'root' })
@@ -37,5 +37,5 @@ export class ClientsService {
   public updateClient(client: ClientDto): Observable<ClientDto> {
     return this.httpService.putRequest<ClientDto>(this.routePrefix, client);
   }
-  
+
 }

@@ -1,9 +1,7 @@
-import {takeUntil} from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Users} from 'src/app/models/users-type';
-import {map} from 'rxjs/operators';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
@@ -98,10 +96,13 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       requiredPosition: new FormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required,
       ]),
-      birthdate: new FormControl(this.resumeCreateDto.requiredPosition, [
+      birthdate: new FormControl(this.resumeCreateDto.birthdate, [
         Validators.required,
       ]),
-      aboutMe: new FormControl(this.resumeCreateDto.requiredPosition, [
+      aboutMe: new FormControl(this.resumeCreateDto.aboutMe, [
+        Validators.required,
+      ]),
+      resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
         Validators.required,
       ]),
       salaryRate: new FormControl(this.resumeCreateDto?.salaryRate),
@@ -132,6 +133,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     this.resumeCreateForm.patchValue({picture: resume.picture});
     this.resumeCreateForm.patchValue({position: resume.position});
     this.resumeCreateForm.patchValue({salaryRate: resume.salaryRate});
+    this.resumeCreateForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
     this.resumeCreateForm.patchValue({availabilityStatus: resume.availabilityStatus});
     this.resumeCreateForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
 

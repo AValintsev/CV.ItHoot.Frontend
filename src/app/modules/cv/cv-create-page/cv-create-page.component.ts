@@ -1,4 +1,4 @@
-import { takeUntil } from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {AccountService} from '../../../services/account.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -7,8 +7,7 @@ import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
-import {map} from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-cv-create-page',
@@ -103,6 +102,9 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       aboutMe: new FormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required
       ]),
+      resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
+        Validators.required
+      ]),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -128,6 +130,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeCreateForm.patchValue({ picture: resume.picture });
     this.resumeCreateForm.patchValue({ position: resume.position });
+    this.resumeCreateForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeCreateForm.controls["skills"])
         .push(new FormGroup({

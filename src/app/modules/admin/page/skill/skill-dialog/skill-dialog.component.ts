@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogType } from '../../../../../models/enums';
-import { SkillDto } from '../../../../../models/skill/skill-dto';
+import {Subject} from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {DialogType} from '../../../../../models/enums';
+import {SkillDto} from '../../../../../models/skill/skill-dto';
 
 @Component({
   selector: 'app-language-dialog',

@@ -1,13 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-import { SkillService } from 'src/app/services/skill.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { SkillDialogComponent } from '../skill-dialog/skill-dialog.component';
-import { SkillDto } from '../../../../../models/skill/skill-dto';
-import { DialogType } from '../../../../../models/enums';
+import {MatDialog} from '@angular/material/dialog';
+import {SkillService} from 'src/app/services/skill.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {SkillDialogComponent} from '../skill-dialog/skill-dialog.component';
+import {SkillDto} from '../../../../../models/skill/skill-dto';
+import {DialogType} from '../../../../../models/enums';
 
 @Component({
   selector: 'app-language-page',

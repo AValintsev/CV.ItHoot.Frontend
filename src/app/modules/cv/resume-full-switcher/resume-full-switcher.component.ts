@@ -1,9 +1,9 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProposalService } from '../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from '../../../services/resume.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ProposalService} from '../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from '../../../services/resume.service';
 import panzoom from 'panzoom';
 
 @Component({

@@ -1,17 +1,14 @@
-import { takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import {
-  ProposalApprove,
-  StatusProposalResume,
-} from '../../../../models/proposal/proposal-dto';
-import { ProposalService } from '../../../../services/proposal.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ProposalDto } from 'src/app/models/proposal/proposal-dto';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { StatusProposal } from 'src/app/models/enums';
-import { Subject } from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {ProposalApprove, StatusProposalResume,} from '../../../../models/proposal/proposal-dto';
+import {ProposalService} from '../../../../services/proposal.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {ProposalDto} from 'src/app/models/proposal/proposal-dto';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
+import {StatusProposal} from 'src/app/models/enums';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-proposals',
@@ -70,7 +67,7 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
           response.subscribe({
             next: (response: ProposalDto) => {
               this.isIncognito = response.isIncognito
-              this.statusProposal = response.statusProposal  
+              this.statusProposal = response.statusProposal
               this.resume = this.filterResponseArray(response)
               this.proposalId = response.id;
               this.clientProposalService.headerTitle$.next(response.proposalName)

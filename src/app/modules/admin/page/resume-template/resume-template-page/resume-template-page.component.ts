@@ -1,10 +1,9 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
-import { ResumeService } from '../../../../../services/resume.service';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Subject} from 'rxjs';
+import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
+import {ResumeService} from '../../../../../services/resume.service';
 
 @Component({
   selector: 'cv-resume-template-page',

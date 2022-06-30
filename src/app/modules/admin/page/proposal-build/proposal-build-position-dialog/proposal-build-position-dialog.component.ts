@@ -1,11 +1,11 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DialogType } from '../../../../../models/enums';
-import { PositionDto } from '../../../../../models/position/position-dto';
-import { PositionService } from '../../../../../services/position.service';
-import { ProposalBuildPositionDto } from '../../../../../models/proposal-build/proposal-build-position-dto';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {DialogType} from '../../../../../models/enums';
+import {PositionDto} from '../../../../../models/position/position-dto';
+import {PositionService} from '../../../../../services/position.service';
+import {ProposalBuildPositionDto} from '../../../../../models/proposal-build/proposal-build-position-dto';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'proposal-build-position-dialog',

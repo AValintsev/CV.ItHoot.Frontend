@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
-import { ProposalArchiveListPageComponent } from './proposal-archive-list-page/proposal-archive-list-page.component';
-import { ResumeArchiveListComponent } from './resume-archive-list/resume-archive-list.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from "@angular/router";
+import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/proposal-archive-list-page.component';
+import {ResumeArchiveListComponent} from './resume-archive-list/resume-archive-list.component';
 
 
 const routes: Routes = [

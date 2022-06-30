@@ -1,4 +1,3 @@
-import { LoaderModule } from './modules/shared/components/loader/loader.module';
 import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -20,6 +19,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     MatNativeDateModule,
@@ -32,10 +32,12 @@ registerLocaleData(en);
     MonacoEditorModule.forRoot()
   ],
   providers: [
-    {provide:DatePipe},
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: DatePipe},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

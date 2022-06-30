@@ -1,8 +1,8 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
-import { ResumeService } from '../../../../../services/resume.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
+import {ResumeService} from '../../../../../services/resume.service';
 
 @Component({
   selector: 'cv-resume-template-list-page',

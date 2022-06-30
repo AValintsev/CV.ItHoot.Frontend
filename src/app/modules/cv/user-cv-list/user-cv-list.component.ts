@@ -1,8 +1,8 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'cv-user-resume',

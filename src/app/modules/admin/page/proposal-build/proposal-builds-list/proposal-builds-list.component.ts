@@ -1,14 +1,14 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProposalBuildDto } from '../../../../../models/proposal-build/proposal-build-dto';
-import { ProposalBuildService } from '../../../../../services/proposal-build.service';
-import { ProposalBuildPositionDto } from '../../../../../models/proposal-build/proposal-build-position-dto';
-import { DialogType } from '../../../../../models/enums';
-import { MatDialog } from '@angular/material/dialog';
-import { ProposalBuildDialogComponent } from '../proposal-build-dialog/proposal-build-dialog.component';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { ProposalBuildComplexityDto } from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
+import {ProposalBuildService} from '../../../../../services/proposal-build.service';
+import {ProposalBuildPositionDto} from '../../../../../models/proposal-build/proposal-build-position-dto';
+import {DialogType} from '../../../../../models/enums';
+import {MatDialog} from '@angular/material/dialog';
+import {ProposalBuildDialogComponent} from '../proposal-build-dialog/proposal-build-dialog.component';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
 
 @Component({
   selector: 'proposal-builds-list',

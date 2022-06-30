@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SpecialCharacterDirective } from './special-character.directive';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SpecialCharacterDirective} from './special-character.directive';
+import {NumericDirective} from "../../../helpers/numeric-directive";
 
 
 @NgModule({
-  declarations: [SpecialCharacterDirective],
+  declarations: [SpecialCharacterDirective,NumericDirective],
   imports: [
     CommonModule
   ],
-  exports: [SpecialCharacterDirective]
+  exports: [SpecialCharacterDirective,NumericDirective]
 })
 export class DirectivesModule { }

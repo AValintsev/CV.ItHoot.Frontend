@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { Observable } from 'rxjs';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
+import {Observable} from 'rxjs';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
 
 @Component({
   selector: 'cv-footer',

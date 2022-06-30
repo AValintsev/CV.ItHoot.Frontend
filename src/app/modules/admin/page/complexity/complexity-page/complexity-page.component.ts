@@ -1,12 +1,12 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { ComplexityService } from '../../../../../services/complexity.service';
-import { ProposalBuildComplexityDto } from '../../../../../models/proposal-build/proposal-build-complexity-dto';
-import { DialogType } from '../../../../../models/enums';
-import { ComplexityDialogComponent } from '../complexity-dialog/complexity-dialog.component';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {ComplexityService} from '../../../../../services/complexity.service';
+import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import {DialogType} from '../../../../../models/enums';
+import {ComplexityDialogComponent} from '../complexity-dialog/complexity-dialog.component';
 
 @Component({
   selector: 'cv-complexity-page',

@@ -1,9 +1,8 @@
 import {SnackBarService} from './../services/snack-bar.service';
-import {Users} from './../models/users-type';
 import {AccountService} from './../services/account.service';
 import {Injectable} from '@angular/core';
 import {
-	ActivatedRoute,
+  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
@@ -36,10 +35,10 @@ export class UsersGuard implements CanLoad, CanActivate, CanActivateChild {
 	}
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
-		
+
 	}
 	canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 		return checkerRole(this.accountService, this.snackBarService, this.router, route.data!.role)
-		
+
 	}
 }
