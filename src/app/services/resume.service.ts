@@ -21,12 +21,12 @@ export class ResumeService {
     return this.httpService.postRequest<ResumeDto>(this.routePrefix, resume);
   }
 
-  public getAllResume(filters: ResumeListFilter | null = null): Observable<PagedResponse<SmallResumeDto[]>> {
+  public getAllResume(filters: ResumeListFilter | null = null, isArchive: boolean = false): Observable<PagedResponse<SmallResumeDto[]>> {
 
       if (filters == null) {
-        return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix);
+        return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix + `?isArchive=${isArchive}`);
       } else {
-        let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
+        let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}&isArchive=${isArchive}`;
 
         if (filters.positions) {
           filters.positions.forEach(item => {

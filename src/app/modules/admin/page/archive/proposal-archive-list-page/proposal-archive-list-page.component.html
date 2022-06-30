@@ -5,6 +5,6 @@
             Database rate limit has been reached. It will be reset in one minute.
         </div>
     </div>
-    <proposal-list (refreshProposals)="refreshProposals($event)" [proposals]="proposals"
-        [proposalsCount]="proposalsCount" [tableHeader]="'Proposal list'"></proposal-list>
+    <proposal-list (refreshProposals)="getArchiveProposals($event)" [proposals]="proposals"
+        [proposalsCount]="proposalsCount" [hideStatusFiter]="true" [isShowAddButton]="false" [tableHeader]="'Proposal archive'"></proposal-list>
 </div>

@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 })
 export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
   private destroy$ = new Subject<boolean>();
+  isIncognito:boolean = false
   statusResume = StatusProposalResume;
   StatusProposal = StatusProposal;
   proposalName!: string;
@@ -55,6 +56,7 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
     const teamId = sessionStorage.getItem('teamId')
     if (teamId != null) {
       this.clientProposalService.getProposalById(parseInt(teamId)).subscribe((data) => {
+        this.isIncognito = data.isIncognito
         this.statusProposal = data.statusProposal
         this.resume = this.filterResponseArray(data)
         this.proposalId = data.id;
@@ -67,6 +69,7 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
         next: response => {
           response.subscribe({
             next: (response: ProposalDto) => {
+              this.isIncognito = response.isIncognito
               this.statusProposal = response.statusProposal  
               this.resume = this.filterResponseArray(response)
               this.proposalId = response.id;

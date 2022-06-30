@@ -1,10 +1,10 @@
-<div class="proposal-list">
+<div class="resume-list">
     <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
         <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
         <div class="rate-limit-reached" *ngIf="isRateLimitReached">
             Database rate limit has been reached. It will be reset in one minute.
         </div>
     </div>
-    <proposal-list (refreshProposals)="refreshProposals($event)" [proposals]="proposals"
-        [proposalsCount]="proposalsCount" [tableHeader]="'Proposal list'"></proposal-list>
+    <cv-admin-resume (refreshResumes)="refreshResumes($event)" [resumes]="resumes" [resumesCount]="resumesCount"
+        [isShowAddButton]="false" [tableHeader]="'CV archive'"></cv-admin-resume>
 </div>
