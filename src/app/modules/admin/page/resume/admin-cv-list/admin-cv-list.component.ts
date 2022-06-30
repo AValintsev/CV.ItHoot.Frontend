@@ -1,21 +1,22 @@
-import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
-import {Component, ViewChild, AfterViewInit, OnDestroy, OnInit,} from '@angular/core';
-import {ResumeService} from 'src/app/services/resume.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {saveAs} from 'file-saver';
+import { SmallResumeDto } from 'src/app/models/resume/small-resume-dto';
+import { Component, ViewChild, AfterViewInit, OnDestroy, OnInit, Output, Input, EventEmitter, } from '@angular/core';
+import { ResumeService } from 'src/app/services/resume.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { saveAs } from 'file-saver';
 import { Users } from 'src/app/models/users-type';
 import { AccountService } from 'src/app/services/account.service';
-import {FormControl} from "@angular/forms";
-import {debounceTime, map, startWith, switchMap, catchError, takeUntil, take} from "rxjs/operators";
-import {merge, of as observableOf, ReplaySubject, Subject} from "rxjs";
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {PositionDto} from "src/app/models/position/position-dto";
-import {PositionService} from "src/app/services/position.service";
-import {SkillDto} from "src/app/models/skill/skill-dto";
-import {SkillService} from "src/app/services/skill.service";
+import { FormControl } from "@angular/forms";
+import { debounceTime, map, startWith, takeUntil, take } from "rxjs/operators";
+import { merge, ReplaySubject, Subject } from "rxjs";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { PositionDto } from "src/app/models/position/position-dto";
+import { PositionService } from "src/app/services/position.service";
+import { SkillDto } from "src/app/models/skill/skill-dto";
+import { SkillService } from "src/app/services/skill.service";
 import { MatSelect } from '@angular/material/select';
 import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
+import { AvailabilityStatus, AvailabilityStatusLabel } from 'src/app/models/enums';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -25,22 +26,23 @@ import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
 export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'position', 'skills', 'loading', 'status', 'action'];
-  resumes: SmallResumeDto[] = [];
+
+  @Input() resumes: SmallResumeDto[];
+  @Input() resumesCount: number;
+  @Output() refreshResumes: EventEmitter<any> = new EventEmitter<any>();
+  @Input() isShowAddButton: boolean = true;
+
   searchControl = new FormControl();
 
-  positions!:PositionDto[];
+  positions!: PositionDto[];
   positionControl = new FormControl();
   positionFilterControl = new FormControl();
   filteredPositionsMulti: ReplaySubject<PositionDto[]> = new ReplaySubject(1);
 
-  skills!:SkillDto[];
+  skills!: SkillDto[];
   skillsControl = new FormControl();
   skillFilterControl = new FormControl();
   filteredSkillsMulti: ReplaySubject<SkillDto[]> = new ReplaySubject(1);
-
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,10 +55,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     public resumeService: ResumeService,
     private snackService: SnackBarService,
     private accountService: AccountService,
-    private positionService:PositionService,
+    private positionService: PositionService,
     private skillService: SkillService,
   ) {
-
     skillService.searchSkill('').subscribe(skills => {
       this.skills = skills
     });
@@ -69,10 +70,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filteredPositionsMulti.next(this.positions.slice());
 
       this.positionFilterControl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterMulti(this.positions, "positionName", this.positionFilterControl, this.filteredPositionsMulti);
-      });
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterMulti(this.positions, "positionName", this.positionFilterControl, this.filteredPositionsMulti);
+        });
     });
 
     this.skillService.searchSkill('').subscribe(skills => {
@@ -81,10 +82,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filteredSkillsMulti.next(this.skills.slice());
 
       this.skillFilterControl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterMulti(this.skills, "name", this.skillFilterControl, this.filteredSkillsMulti);
-      });
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterMulti(this.skills, "name", this.skillFilterControl, this.filteredSkillsMulti);
+        });
     });
   }
 
@@ -94,38 +95,21 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(this.sort.sortChange,
-          this.paginator.page,
-          this.searchControl.valueChanges,
-          this.skillsControl.valueChanges,
-          this.positionControl.valueChanges)
+      this.paginator.page,
+      this.searchControl.valueChanges,
+      this.skillsControl.valueChanges,
+      this.positionControl.valueChanges)
       .pipe(
         startWith({}),
         debounceTime(400),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.resumeService!.getAllResume(this.collectAllFilters())
-          .pipe(catchError(() => observableOf(null)));
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = data === null;
-
-          if (data === null) {
-            return [];
-          }
-
-          // Only refresh the result length if there is new data. In case of rate
-          // limit errors, we do not want to reset the paginator to zero, as that
-          // would prevent users from re-triggering requests.
-          this.resultsLength = data.totalRecords;
-          return data.items;
+        map(() => {
+          this.refreshResumes.emit(this.collectAllFilters());
         }),
       )
-      .subscribe(data => (this.resumes = data));
+      .subscribe();
 
-      this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
-      this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
+    this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
+    this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
   }
 
   deleteResume(resume: SmallResumeDto): void {
@@ -133,7 +117,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         next: () => {
           const role = this.accountService.getStoreRole();
-          if(role === Users[0]) {
+          if (role === Users[0]) {
             const delResume = this.resumes.find(i => i.id == resume.id);
             if (delResume != null) {
               const currentDate = new Date();
@@ -143,7 +127,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           else {
             this.resumes = this.resumes.filter(i => i.id !== resume.id);
           }
-          this.snackService.showSuccess('Success');
+          this.refreshResumes.emit(this.collectAllFilters());
         },
         error: () => {
           this.snackService.showDanger('Something went wrong');
@@ -165,7 +149,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           if (recoverResume != null) {
             recoverResume.deletedAt = null;
           }
-          this.snackService.showSuccess('Success');
+          this.refreshResumes.emit(this.collectAllFilters());
         },
         error: () => {
           this.snackService.showDanger('Something went wrong');
@@ -178,7 +162,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
         if (multiSelect)
-        multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
+          multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
       });
   }
 
@@ -200,7 +184,11 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private collectAllFilters() : ResumeListFilter {
+  getAvailabilityStatusLabel(status: AvailabilityStatus): string | undefined {
+    return AvailabilityStatusLabel.get(status);
+  }
+
+  private collectAllFilters(): ResumeListFilter {
     let resumeFilters: ResumeListFilter = {
       term: this.searchControl.value,
       page: this.paginator.pageIndex,

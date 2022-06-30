@@ -32,13 +32,11 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
 
   searchControl = new FormControl();
-  // proposals: SmallProposalDto[] = [];
-
-  resultsLength = 0;
 
   @Input()proposals: SmallProposalDto[];
   @Input()proposalsCount: number;
   @Input()hideStatusFiter: boolean;
+  @Input()isShowAddButton: boolean = true;
   @Output() refreshProposals: EventEmitter<any> = new EventEmitter<any>();
 
   clients!:UserDto[];

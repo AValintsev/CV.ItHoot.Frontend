@@ -35,6 +35,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ProposalSalaryDialogComponent } from './proposal-salary-dialog/proposal-salary-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ProposalSalaryDialogComponent } from './proposal-salary-dialog/proposal
     ReactiveFormsModule,
     MatPaginatorModule,
     MatSortModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ProposalListPageComponent,

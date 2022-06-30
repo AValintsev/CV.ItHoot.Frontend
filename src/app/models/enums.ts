@@ -7,7 +7,21 @@ export enum StatusProposal {
   InWorking
 }
 
-export enum DialogType{
+export enum DialogType {
   Create,
   Edit
 }
+
+export enum AvailabilityStatus {
+  Available = 1,
+  Busy,
+  PartialAAvailable,
+  VeryCarefulAvailable
+}
+
+export const AvailabilityStatusLabel = new Map<number, string>([
+  [AvailabilityStatus.Available, 'Available'],
+  [AvailabilityStatus.Busy, 'Busy'],
+  [AvailabilityStatus.PartialAAvailable, 'Partial Available'],
+  [AvailabilityStatus.VeryCarefulAvailable, 'Very careful available']
+]);

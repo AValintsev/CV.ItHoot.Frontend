@@ -33,7 +33,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button mat-raised-button (click)="openProposalDialog()">
+      <button *ngIf="isShowAddButton" mat-raised-button (click)="openProposalDialog()">
         <mat-icon>add</mat-icon>
       </button>
     </div>
