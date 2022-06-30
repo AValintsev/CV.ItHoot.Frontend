@@ -22,7 +22,7 @@ import { Subject } from 'rxjs';
 export class CvFullComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   @Input() id: number = 0;
-  @ViewChild('doc') doc!: ElementRef;
+  @ViewChild('resume') resumeId!: ElementRef;
   resume!: ResumeDto;
 
   constructor(
@@ -39,12 +39,14 @@ export class CvFullComponent implements OnInit, OnDestroy {
       this.resumeService.getResumeHtmlById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
-        this.doc.nativeElement.innerHTML = resume.html;
+        this.resumeId.nativeElement.innerHTML = resume.html;
       });
-      const zoom = panzoom(document.getElementById('doc')!, {
+      const zoom = panzoom(document.getElementById('resume')!, {
         minZoom: 0.3,
         maxZoom: 3.5,
         bounds: true,
+        disableKeyboardInteraction: true,
+        boundsPadding: 0.2
       });
     });
   }

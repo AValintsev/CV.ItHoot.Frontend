@@ -38,7 +38,9 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
     const zoom = panzoom(this.doc.nativeElement, {
       minZoom: 0.3,
       maxZoom: 1.3,
-      bounds: true
+      bounds: true,
+      disableKeyboardInteraction: true,
+      boundsPadding: 0.2
     });
   }
   ngOnDestroy() {

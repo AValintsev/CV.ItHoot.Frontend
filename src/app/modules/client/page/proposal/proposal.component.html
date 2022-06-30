@@ -20,7 +20,7 @@
 		<div class="row__cards">
 			<div class="row__cards-inner" [class.card-transform]="!toggleBtn">
 				<ng-container *ngFor="let resume of resumeArray[1]; let i = index">
-					<div [@hidden]="'start'" *ngIf="!(resume.id==cardId) && resume.statusResume!==statusResume.Denied" class="row__card card" (click)="showCard(i)"
+					<div [@hidden]="'start'" *ngIf="!(resume.id==cardId) && resume.statusResume!==statusResume.Denied" class="row__card card" (click)="toggleBtn&&showCard(i)"
 						[style.transform]="toggleBtn&&i>1?'translateX('+calcTransform(i-1,resumeArray[1].length)+'%)':'translateX(0)'"
 						[style.transition]="'all .3s ease'">
 						<div class="card__user-block">
@@ -88,10 +88,8 @@
 						<div class="card__user-line">
 							<div class="card__user-line-inner">
 								<div class="card__user-name">{{resume.firstName}}</div>
-							   <div class="card__user-last-name">{{resume.lastName}}</div>
+							   <div class="card__user-last-name">{{isIncognito?incognito(resume.lastName):sliceName(resume.firstName,resume.lastName)}}</div>
 							</div>
-							<span class="three-dots" *ngIf="(resume.firstName.length+resume.lastName.length)>21">...</span>
-
 						</div>
 						<div class="card__user-position">
 							<ul class="card__user-position-list">

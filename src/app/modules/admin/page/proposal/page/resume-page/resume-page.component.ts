@@ -37,12 +37,13 @@ export class ResumePageComponent implements OnInit, OnDestroy {
           takeUntil(this.destroy$)
         )
         .subscribe((data) => {
-          console.log(data);
           document.getElementById('doc')!.innerHTML = data.html;
           const zoom = panzoom(this.doc.nativeElement, {
             minZoom: 0.3,
             maxZoom: 3.5,
             bounds: true,
+            disableKeyboardInteraction: true,
+            boundsPadding: 0.2
           });
         });
     });

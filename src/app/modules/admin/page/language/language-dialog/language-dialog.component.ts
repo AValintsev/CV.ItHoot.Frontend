@@ -9,8 +9,7 @@ import { LanguageDto } from '../../../../../models/language/language-dto';
   templateUrl: './language-dialog.component.html',
   styleUrls: ['./language-dialog.component.scss'],
 })
-export class LanguageDialogComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+export class LanguageDialogComponent implements OnInit {
   typeDialog: DialogType = DialogType.Create;
   DialogType = DialogType;
   language: LanguageDto = {} as LanguageDto;
@@ -26,8 +25,5 @@ export class LanguageDialogComponent implements OnInit, OnDestroy {
     const name = this.language.name;
     return !(name == null || name.trim() === '');
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
-  }
+
 }

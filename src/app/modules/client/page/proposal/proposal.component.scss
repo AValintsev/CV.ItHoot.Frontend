@@ -199,8 +199,7 @@
     &-inner {
       height: 100%;
       width: 100%;
-      overflow-x: hidden;
-      width: 36rem;
+      // overflow-x: hidden;
       align-items: center;
       display: flex;
       white-space: nowrap;
@@ -209,7 +208,7 @@
     .three-dots{
       font-size: 3rem;
       position: absolute;
-      right: 1rem;
+      right: 1.6rem;
       bottom: .7rem;
     }
   }
@@ -219,6 +218,7 @@
   &__user-name {
     display: flex;
     align-items: center;
+    user-select: none;
   }
 
   // .card__user-last-name
@@ -226,6 +226,7 @@
   &__user-last-name {
     margin-left: 1rem;
     font-weight: 700;
+    user-select: none;
   }
 
   // .card__user-position

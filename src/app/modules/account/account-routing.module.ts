@@ -9,11 +9,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [CanLoginingGuard],
+    // canActivate: [CanLoginingGuard],
   },
   { path: 'registration',
    component: RegisterComponent,
-    canActivate: [CanLoginingGuard], 
+    // canActivate: [CanLoginingGuard], 
   },
   { path: ':shortUrl', component: LoginByUrlComponent },
   { path: ':shortUrl/:teamId', component: LoginByUrlComponent },

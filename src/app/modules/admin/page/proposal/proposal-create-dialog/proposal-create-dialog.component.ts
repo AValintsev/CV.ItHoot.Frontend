@@ -107,15 +107,16 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
     this.resumeService.getAllResume(filter).subscribe(resumes =>{
       this.resumes = resumes.items.filter(resume =>
-        resume.id !== this.selectedResumes.filter(resume => resume.id === resume.id)[0].id);
+       !this.selectedResumes.find((selectedResume) => selectedResume?.id === resume?.id)
+      )
     });
   }
 
   canCreate(): boolean {
-    return !this.proposal.proposalName || !this.proposal.clientId;
+    return !this.proposal.proposalName || !this.proposal.clientId || !this.proposal.resumeTemplateId;
   }
 
-  click() {
+  submit() {
     if (!this.proposal.resumes) this.proposal.resumes = [];
 
     this.selectedResumes.forEach((resume) => {
@@ -155,9 +156,8 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
         startWith(null),
         debounceTime(300),
         map((value: string | null) => {
-          if (value) {
+          value = value+'';
             this._filterResume(value);
-          }
         })
       ).subscribe();
     });
@@ -178,10 +178,9 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
         return;
 
 
-      this.resumeService.changeSalaryRate(resume.id, resume.salaryRate).subscribe(() => {
+      this.resumeService.changeSalaryRate(resume.id, resume.salaryRate).subscribe((resume) => {
         this.remove(resumeDto);
         this.selectedResumes.push(resume);
-        console.log(resumeDto,resume)
       });
     });
 

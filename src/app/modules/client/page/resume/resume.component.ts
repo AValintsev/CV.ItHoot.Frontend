@@ -49,7 +49,7 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
               }
             });
         }),
-        
+
         switchMap((params) => this.proposalService.getProposalResumeHtml(params.proposalId, params.resumeId))
       )
       .subscribe({
@@ -60,6 +60,8 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
               minZoom: 0.3,
               maxZoom: 3.5,
               bounds: true,
+              disableKeyboardInteraction: true,
+              boundsPadding: 0.2
             });
           }
         },
