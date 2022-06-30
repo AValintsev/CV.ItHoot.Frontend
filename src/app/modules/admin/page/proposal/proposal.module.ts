@@ -36,6 +36,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ProposalSalaryDialogComponent } from './proposal-salary-dialog/proposal-salary-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {DirectivesModule} from "../../../shared/directives/directives.module";
 
 
 @NgModule({
@@ -73,7 +74,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatPaginatorModule,
     MatSortModule,
     NgxMatSelectSearchModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
     NgxMatSelectSearchModule,
     DirectivesModule,
   ],
