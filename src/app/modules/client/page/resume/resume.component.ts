@@ -17,7 +17,7 @@ import panzoom from 'panzoom';
 })
 export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
 
-  @ViewChild('doc') doc!: ElementRef;
+  @ViewChild('resume') resume!: ElementRef;
   private destroy$ = new Subject<boolean>();
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -55,8 +55,8 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response) {
-            this.doc.nativeElement.innerHTML = response.html;
-            const zoom = panzoom(document.getElementById('doc')!, {
+            this.resume.nativeElement.innerHTML = response.html;
+            const zoom = panzoom(document.getElementById('resume')!, {
               minZoom: 0.3,
               maxZoom: 3.5,
               bounds: true,

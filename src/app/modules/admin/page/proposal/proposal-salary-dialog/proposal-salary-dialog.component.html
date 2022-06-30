@@ -4,7 +4,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Salary rate</mat-label>
-      <input matInput placeholder="20" [(ngModel)]="resume.salaryRate">
+      <input matInput numeric min="0" placeholder="20" [(ngModel)]="resume.salaryRate">
     </mat-form-field>
 
   </div>

@@ -17,7 +17,7 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   private destroy$ = new Subject<boolean>();
   @Input() id: number = 0;
   resume!: ResumeDto;
-  @ViewChild('doc', { static: false }) doc!: ElementRef;
+  @ViewChild('resume') resumeHtml!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,18 +29,18 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
       this.resumeService.getResumeHtmlById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
-        this.doc.nativeElement.innerHTML = resume.html;
+        this.resumeHtml.nativeElement.innerHTML = resume.html;
       });
     });
   }
 
   ngAfterViewInit(): void {
-    const zoom = panzoom(this.doc.nativeElement, {
+    const zoom = panzoom(this.resumeHtml.nativeElement, {
       minZoom: 0.3,
       maxZoom: 1.3,
       bounds: true,
       disableKeyboardInteraction: true,
-      boundsPadding: 0.2
+      boundsPadding: 0.1
     });
   }
   ngOnDestroy() {

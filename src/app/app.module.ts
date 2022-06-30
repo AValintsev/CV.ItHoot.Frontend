@@ -20,6 +20,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     MatNativeDateModule,
@@ -32,10 +33,12 @@ registerLocaleData(en);
     MonacoEditorModule.forRoot()
   ],
   providers: [
-    {provide:DatePipe},
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: DatePipe},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

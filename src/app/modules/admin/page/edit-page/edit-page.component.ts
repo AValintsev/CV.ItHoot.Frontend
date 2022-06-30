@@ -38,7 +38,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         this.resumeService.getResumeHtmlById(id).pipe(
           takeUntil(this.destroy$)
         ).subscribe((data) => {
-          document.getElementById('doc')!.innerHTML = data.html;
+          document.getElementById('resume')!.innerHTML = data.html;
         });
       });
     });

@@ -61,13 +61,12 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     this.resumeEditForm.patchValue({ country: resume.country });
     this.resumeEditForm.patchValue({ city: resume.city });
     this.resumeEditForm.patchValue({ street: resume.street });
-    this.resumeEditForm.patchValue({
-      requiredPosition: resume.requiredPosition,
-    });
+    this.resumeEditForm.patchValue({requiredPosition: resume.requiredPosition,});
     this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
     this.resumeEditForm.patchValue({ position: resume.position });
+    this.resumeEditForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
 
     resume.skills?.forEach((skill) => {
       (<FormArray>this.resumeEditForm.controls['skills']).push(

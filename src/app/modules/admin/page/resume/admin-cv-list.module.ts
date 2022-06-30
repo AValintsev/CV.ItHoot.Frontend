@@ -1,4 +1,4 @@
-import { DirectivesModule } from './../../../shared/directives/directives.module';
+import {DirectivesModule} from './../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -23,39 +23,54 @@ import {ExperienceDialog} from '../../component/modals/experience-dialog/experie
 import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
 import {LanguageDialog} from '../../component/modals/language-dialog/language-dialog.component';
 import {CvFullComponent} from '../cv-full/cv-full.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSortModule} from "@angular/material/sort";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {AdminCvListComponent} from "./admin-cv-list/admin-cv-list.component";
 
 
 @NgModule({
-	imports: [
-		AdminCvListRouterModule,
-		MatIconModule,
-		MatSelectModule,
-		CommonModule,
-		MatCardModule,
-		MatDividerModule,
-		MatChipsModule,
-		MatDatepickerModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatButtonModule,
-		MatButtonToggleModule,
-		MatInputModule,
-		MatFormFieldModule,
-		MatAutocompleteModule,
-      MatCardModule,
-		DirectivesModule,
-	],
-	declarations: [
-		EditPageComponent,
-		CreatePageComponent,
-		FormBarComponent,
-		SkillDialog,
-		LanguageDialog,
-		ExperienceDialog,
-		EducationDialog,
-		CvFullComponent,
-	]
+  imports: [
+    AdminCvListRouterModule,
+    MatIconModule,
+    MatSelectModule,
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    DirectivesModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule
+  ],
+  declarations: [
+    EditPageComponent,
+    CreatePageComponent,
+    FormBarComponent,
+    SkillDialog,
+    LanguageDialog,
+    ExperienceDialog,
+    EducationDialog,
+    CvFullComponent,
+    AdminCvListComponent,
+  ]
 })
 
-export class AdminCvListModule { }
+export class AdminCvListModule {
+}
