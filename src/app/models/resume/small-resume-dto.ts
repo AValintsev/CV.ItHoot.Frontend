@@ -1,3 +1,4 @@
+import { AvailabilityStatus } from "../enums";
 import {SkillDto} from "../skill/skill-dto";
 
 export interface SmallResumeDto{
@@ -9,6 +10,7 @@ export interface SmallResumeDto{
   lastName: string;
   picture: string;
   salaryRate:number;
-  deletedAt: string | null
+  availabilityStatus: AvailabilityStatus;
+  deletedAt: string | null;
   skills:SkillDto[];
 }

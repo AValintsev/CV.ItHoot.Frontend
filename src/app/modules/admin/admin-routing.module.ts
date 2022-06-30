@@ -8,8 +8,6 @@ import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
 const routs: Routes = [
   {
     path: '', component: AdminLayoutComponent, 
-    canActivate: [UsersGuard],
-    data: { role: [Users[0], Users[1]] },
     children: [
       {
         path: 'resume',
@@ -17,7 +15,8 @@ const routs: Routes = [
       },
       {
         path: 'languages',
-        loadChildren: () => import('./page/language/language.module').then(mod => mod.LanguageModule)
+        loadChildren: () => import('./page/language/language.module').then(mod => mod.LanguageModule),
+        
       },
       {
         path: 'skills',
