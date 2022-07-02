@@ -1,15 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { SmallProposalDto } from '../../../../models/proposal/small-proposal-dto';
-import { Observable, Subject } from 'rxjs';
-import { NavigationStart, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users-type';
-import { map, tap, shareReplay } from 'rxjs/operators';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { ProposalResumeDto, StatusProposalResume } from 'src/app/models/proposal/proposal-dto';
-import { StatusProposal } from 'src/app/models/enums';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {map, shareReplay, takeUntil, tap} from 'rxjs/operators';
+import {SmallProposalDto} from '../../../../models/proposal/small-proposal-dto';
+import {Observable, Subject} from 'rxjs';
+import {NavigationStart, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
+import {ProposalResumeDto, StatusProposalResume} from 'src/app/models/proposal/proposal-dto';
+import {StatusProposal} from 'src/app/models/enums';
 
 
 interface IcontrolPanel {

@@ -28,7 +28,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ProposalService } from 'src/app/services/proposal.service';
 import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
 import { ModalDeleteUserComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
-import { Subject } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 
 @Component({
   selector: 'cv-proposal',
@@ -54,6 +54,7 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   private destroy$ = new Subject<boolean>();
   statusProposal = StatusProposal;
   statusResume = StatusProposalResume;
+  screenWidth:number
   status = 1;
   statusUserCard: number[] = [];
   cardId!: number;
@@ -78,12 +79,45 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth
+    fromEvent(window,'resize').pipe(
+       takeUntil(this.destroy$)
+    ).subscribe(event=>this.screenWidth = window.innerWidth)
+  }
 
   checkSelectedResume(status: ProposalResumeDto[]) {
     return status.filter(
       (resume) => resume.statusResume === this.statusResume.Selected
     ).length;
+  }
+
+  deleteCardCondition(id:number){
+    this.cardId = id;
+    this.resumeArray[1] = this.resumeArray[1].filter(
+      (resume: any) => resume.id !== id
+    );
+    this.checkArray = this.checkArray.filter((e) => e != id);
+    this.checkArrayAll = this.checkArrayAll.filter((e) => e != id);
+    const checkExistElement = this.statusObject?.resumes?.filter(
+      (e) => e.id == id
+    );
+    if (checkExistElement.length) {
+      this.statusObject.resumes = this.statusObject.resumes?.map(
+        (e) => {
+          if (e.id == id) {
+            return { id, isSelected: false };
+          }
+          return e;
+        }
+      );
+    } else {
+      this.statusObject.resumes.push({
+        id,
+        isSelected: false,
+      });
+    }
+    this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
   }
 
   deleteCard(id: number, event: Event, index: number, length: number) {
@@ -96,33 +130,14 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          if (response && (index == 0 || index == length || !this.toggleBtn)) {
-            this.cardId = id;
-            this.resumeArray[1] = this.resumeArray[1].filter(
-              (resume: any) => resume.id !== id
-            );
-            this.checkArray = this.checkArray.filter((e) => e != id);
-            this.checkArrayAll = this.checkArrayAll.filter((e) => e != id);
-            const checkExistElement = this.statusObject?.resumes?.filter(
-              (e) => e.id == id
-            );
-            if (checkExistElement.length) {
-              this.statusObject.resumes = this.statusObject.resumes?.map(
-                (e) => {
-                  if (e.id == id) {
-                    return { id, isSelected: false };
-                  }
-                  return e;
-                }
-              );
-            } else {
-              this.statusObject.resumes.push({
-                id,
-                isSelected: false,
-              });
+          if(this.screenWidth>=970){
+            if (response && (index == 0 || index == length || !this.toggleBtn)) {
+              this.deleteCardCondition(id)
             }
-            this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
+          }else{
+            this.deleteCardCondition(id)
           }
+        
         },
         error: (error) =>
           this.snackBarService.showDanger('Something went wrong!'),
@@ -143,10 +158,13 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   }
 
   showCard(i: number) {
-    const card = this.resumeArray[1].splice(i, 1);
+    if(this.screenWidth>=970){
+          const card = this.resumeArray[1].splice(i, 1);
     if (card) {
       this.resumeArray[1].unshift(card[0]);
     }
+    }
+
   }
   savePdf(
     proposalId: number,
@@ -173,6 +191,18 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   checkSelect(id: number) {
     return this.checkArray.includes(id);
   }
+ 
+selectToggleCondition(id:number){
+  if (!this.statusObject.resumes.filter((e) => e.id == id).length) {
+    this.checkArray.push(id);
+    this.checkArrayAll.push(id);
+    this.statusObject.resumes.push({
+      id,
+      isSelected: true,
+    });
+    this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
+  }
+}
 
   selectToggle(
     id: number,
@@ -182,17 +212,13 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
     length: number
   ) {
     event.stopPropagation();
+    if(this.screenWidth>=970){
     if (select && (index == 0 || index == length || !this.toggleBtn)) {
-      if (!this.statusObject.resumes.filter((e) => e.id == id).length) {
-        this.checkArray.push(id);
-        this.checkArrayAll.push(id);
-        this.statusObject.resumes.push({
-          id,
-          isSelected: true,
-        });
-        this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
-      }
+      this.selectToggleCondition(id)
     }
+  }else{
+      this.selectToggleCondition(id)
+  }
   }
 
   navigateToResume(proposalId: number, resumeId: number) {
@@ -228,3 +254,6 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
     this.destroy$.unsubscribe();
   }
 }
+
+// document.documentElement.clientWidth
+// window.innerWidth

@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use '@angular/material'as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,10 @@ $CVBuilder-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$CVBuilder-theme: mat.define-light-theme((
-  color: (
-    primary: $CVBuilder-primary,
-    accent: $CVBuilder-accent,
-    warn: $CVBuilder-warn,
-  )
-));
+$CVBuilder-theme: mat.define-light-theme((color: (primary: $CVBuilder-primary,
+      accent: $CVBuilder-accent,
+      warn: $CVBuilder-warn,
+    )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -93,11 +89,23 @@ a:visited {
 
 .mat-select-panel {
   position: absolute;
-  top: 32px;
-  left: 4px;
+  top: 3.6rem;
+  left: .4rem;
   min-width: calc(100% + 22px) !important;
   border-radius: 0px !important;
   border-top-style: none;
+
+  @media(max-width:970px) {
+    left: -8.3rem;
+  }
+
+  @media(max-width:700px) {
+    top: 2.6rem;
+  }
+
+  @media(max-width:600px) {
+    top: 2.2rem;
+  }
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-start {
@@ -155,9 +163,8 @@ a:visited {
 
 }
 
-.change-material-style{
-  .mat-dialog-content{
+.change-material-style {
+  .mat-dialog-content {
     max-height: 85vh !important;
   }
 }
-

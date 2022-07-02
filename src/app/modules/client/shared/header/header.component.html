@@ -79,6 +79,7 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            
           </li>
         </ul>
         <div class="user-content large">
@@ -96,10 +97,10 @@
       </div>
       <button class="logout large" mat-flat-button color="warn" (click)="logout()">Logout</button>
     
-    <button class="small" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button [disableRipple]="true" class="small"  mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
-    <mat-menu  #menu="matMenu">
+    <mat-menu class="change-position" #menu="matMenu">
       <button mat-menu-item>
         <div class="user-content">
           <div class="user-picture img">
@@ -115,7 +116,7 @@
         </div>
       </button>
       <button mat-menu-item>
-        <button class="logout" mat-flat-button color="warn" (click)="logout()">Logout</button>
+        <button style="width: 100%;" class="logout" mat-flat-button color="warn" (click)="logout()">Logout</button>
       </button>
     </mat-menu>
   </div>

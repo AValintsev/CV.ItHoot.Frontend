@@ -92,9 +92,11 @@
 
   &__cards {
     min-height: 37.5rem;
-    @media(max-width:610px){
-      overflow-x: auto;
+
+    @media(max-width: 970px) {
+      min-height: 33rem;
     }
+
   }
 
   // .row__cards-inner
@@ -107,12 +109,13 @@
     flex-wrap: nowrap;
     overflow-x: hidden;
     transition: all 0.3 ease;
-    @media(max-width:610px){
-      overflow-x: visible;
-    }
 
     &.card-transform {
       flex-wrap: wrap;
+    }
+
+    @media(max-width: 970px) {
+      overflow-x: auto;
     }
   }
 
@@ -205,20 +208,18 @@
     &-inner {
       height: 100%;
       width: 100%;
-      // overflow-x: hidden;
+      overflow-x: hidden;
+      width: 36rem;
       align-items: center;
       display: flex;
       white-space: nowrap;
     }
 
-    .three-dots{
+    .three-dots {
       font-size: 3rem;
       position: absolute;
-      right: 1.6rem;
+      right: 1rem;
       bottom: .7rem;
-    }
-    @media(max-width:610px){
-      background-image: url("/assets/client/proposal/blue-line.svg");
     }
   }
 
@@ -227,7 +228,6 @@
   &__user-name {
     display: flex;
     align-items: center;
-    user-select: none;
   }
 
   // .card__user-last-name
@@ -235,7 +235,6 @@
   &__user-last-name {
     margin-left: 1rem;
     font-weight: 700;
-    user-select: none;
   }
 
   // .card__user-position
@@ -283,10 +282,6 @@
     }
 
     padding-bottom: 1.5rem;
-  }
-  @media(max-width:610px){
-    // flex: 0 0 40rem;
-    // background-image: url("/assets/client/proposal/small/card.svg");
   }
 }
 

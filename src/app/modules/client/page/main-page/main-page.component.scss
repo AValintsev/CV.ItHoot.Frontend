@@ -9,11 +9,19 @@
 
 .body {
   // padding: 3rem;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 16rem);
   overflow: auto;
   background: #E5E5E5;
+
+  @media (max-width: 700px) {
+    height: calc(100vh - 12rem);
+  }
+  @media (max-width: 600px) {
+    height: calc(100vh - 10rem);
+  }
+
 }
 
-.footer{
+.footer {
   height: 8rem;
 }
