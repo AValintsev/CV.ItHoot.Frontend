@@ -73,7 +73,7 @@
                 fill="#8A92A6" />
             </svg>
             <mat-form-field appearance="fill">
-              <mat-select (selectionChange)="changeProposal($event)">
+              <mat-select [disableOptionCentering]="true" (selectionChange)="changeProposal($event)">
                 <mat-option *ngFor="let proposal of proposals$|async" [value]="proposal.id">
                   {{proposal.proposalName}}
                 </mat-option>

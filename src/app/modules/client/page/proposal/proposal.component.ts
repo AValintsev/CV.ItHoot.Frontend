@@ -52,9 +52,10 @@ import { fromEvent, Subject } from 'rxjs';
 })
 export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   private destroy$ = new Subject<boolean>();
+  screenSizeMd = 970
   statusProposal = StatusProposal;
   statusResume = StatusProposalResume;
-  screenWidth:number
+  screenWidth: number
   status = 1;
   statusUserCard: number[] = [];
   cardId!: number;
@@ -77,13 +78,13 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
     private proposalService: ProposalService,
     private clientProposalService: ClientProposalService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth
-    fromEvent(window,'resize').pipe(
-       takeUntil(this.destroy$)
-    ).subscribe(event=>this.screenWidth = window.innerWidth)
+    fromEvent(window, 'resize').pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(event => this.screenWidth = window.innerWidth)
   }
 
   checkSelectedResume(status: ProposalResumeDto[]) {
@@ -92,7 +93,7 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
     ).length;
   }
 
-  deleteCardCondition(id:number){
+  deleteCardCondition(id: number) {
     this.cardId = id;
     this.resumeArray[1] = this.resumeArray[1].filter(
       (resume: any) => resume.id !== id
@@ -130,14 +131,17 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          if(this.screenWidth>=970){
+          if (this.screenWidth >= this.screenSizeMd) {
             if (response && (index == 0 || index == length || !this.toggleBtn)) {
               this.deleteCardCondition(id)
             }
-          }else{
-            this.deleteCardCondition(id)
+          } else {
+            if (response) {
+              this.deleteCardCondition(id)
+            }
+
           }
-        
+
         },
         error: (error) =>
           this.snackBarService.showDanger('Something went wrong!'),
@@ -158,11 +162,11 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   }
 
   showCard(i: number) {
-    if(this.screenWidth>=970){
-          const card = this.resumeArray[1].splice(i, 1);
-    if (card) {
-      this.resumeArray[1].unshift(card[0]);
-    }
+    if (this.screenWidth >= this.screenSizeMd) {
+      const card = this.resumeArray[1].splice(i, 1);
+      if (card) {
+        this.resumeArray[1].unshift(card[0]);
+      }
     }
 
   }
@@ -191,18 +195,18 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   checkSelect(id: number) {
     return this.checkArray.includes(id);
   }
- 
-selectToggleCondition(id:number){
-  if (!this.statusObject.resumes.filter((e) => e.id == id).length) {
-    this.checkArray.push(id);
-    this.checkArrayAll.push(id);
-    this.statusObject.resumes.push({
-      id,
-      isSelected: true,
-    });
-    this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
+
+  selectToggleCondition(id: number) {
+    if (!this.statusObject.resumes.filter((e) => e.id == id).length) {
+      this.checkArray.push(id);
+      this.checkArrayAll.push(id);
+      this.statusObject.resumes.push({
+        id,
+        isSelected: true,
+      });
+      this.approveUsers(this.statusObject.resumes, this.checkArrayAll);
+    }
   }
-}
 
   selectToggle(
     id: number,
@@ -212,13 +216,13 @@ selectToggleCondition(id:number){
     length: number
   ) {
     event.stopPropagation();
-    if(this.screenWidth>=970){
-    if (select && (index == 0 || index == length || !this.toggleBtn)) {
+    if (this.screenWidth >= this.screenSizeMd) {
+      if (select && (index == 0 || index == length || !this.toggleBtn)) {
+        this.selectToggleCondition(id)
+      }
+    } else {
       this.selectToggleCondition(id)
     }
-  }else{
-      this.selectToggleCondition(id)
-  }
   }
 
   navigateToResume(proposalId: number, resumeId: number) {
@@ -240,13 +244,13 @@ selectToggleCondition(id:number){
     const maxLength = 20;
     const fullNameLength = firstName.length + secondName.length;
     if (fullNameLength > 21) {
-      return secondName.slice(0, maxLength - firstName.length)+'...';
+      return secondName.slice(0, maxLength - firstName.length) + '...';
     }
     return secondName;
   }
 
-  incognito( secondName: string) {
-    return secondName.slice(0, 1)+'.'
+  incognito(secondName: string) {
+    return secondName.slice(0, 1) + '.'
   }
 
   ngOnDestroy() {

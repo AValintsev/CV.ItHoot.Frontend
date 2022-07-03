@@ -89,7 +89,7 @@ a:visited {
 
 .mat-select-panel {
   position: absolute;
-  top: 3.6rem;
+  top: 2.5rem;
   left: .4rem;
   min-width: calc(100% + 22px) !important;
   border-radius: 0px !important;
@@ -100,11 +100,11 @@ a:visited {
   }
 
   @media(max-width:700px) {
-    top: 2.6rem;
+    top: 1.5rem;
   }
 
   @media(max-width:600px) {
-    top: 2.2rem;
+    top: 1rem;
   }
 }
 
