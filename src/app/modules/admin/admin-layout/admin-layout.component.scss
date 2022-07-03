@@ -1,32 +1,104 @@
 .page {
   height: calc(100vh - 160px);
   background: #E5E5E5;
-  display: grid;
-  align-items: start;
-  grid-template-columns: minmax(22rem,35rem) auto;
+  // display: grid;
+  // align-items: start;
+  // grid-template-columns: minmax(22rem, 35rem) 2rem auto;
+  display: flex;
 
   .page-content {
     padding: 30px;
     height: calc(100vh - 160px);
     overflow-y: auto;
+    flex: 1 1 100%;
   }
 
   cv-side-bar {
     height: calc(100vh - 160px);
-    background-color: #fff;
   }
+}
 
-  // @media (max-width: 1450px) {
-  //   & {
-  //     grid-template-columns: 17% auto;
-  //   }
-  // }
+.btn-toggler {
+  font-size: 4rem;
+  // position: absolute;
+  top: 0;
+  // right: -2rem;
+}
 
-  // @media (max-width: 1290px) {
-  //   & {
-  //     grid-template-columns: 20% auto;
-  //   }
-  // }
+.btn-toggler {
+  font-size: 4rem;
+  display: flex;
+  align-items: flex-start;
+  top: 0;
+  right: -2rem;
+}
 
+.open-side-bar {
+  transition: all .3s ease;
+  transform: translateX(0%);
+  flex: 0 0 35rem;
+  overflow-x: visible;
+  visibility: visible;
+}
 
+.width-zero {
+  transition: all .3s ease;
+  transform: translateX(-100%);
+  width: 0;
+  flex: 0 0 0;
+  overflow-x: hidden;
+  visibility: hidden;
+}
+
+.menu-burger__side-bar {
+  background-color: #fff;
+  position: relative;
+  width: 50px;
+  height: 35px;
+  display: block;
+  // margin-left: 10px;
+}
+
+.menu-burger__side-bar span,
+.menu-burger__side-bar:after,
+.menu-burger__side-bar:before {
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  background: #0d259e;
+  margin: 0 auto;
+}
+
+.menu-burger__side-bar span {
+  top: 16px;
+}
+
+.menu-burger__side-bar:after,
+.menu-burger__side-bar:before {
+  content: '';
+}
+
+.menu-burger__side-bar:after {
+  bottom: 0px;
+}
+
+.menu-burger__side-bar:before {
+  top: 0px;
+}
+
+.menu-burger__side-bar.open-menu span {
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+.menu-burger__side-bar.open-menu:before {
+  transform: rotate(38deg);
+  top: 16px;
+  transition: all .3s ease;
+}
+
+.menu-burger__side-bar.open-menu:after {
+  transform: rotate(-38deg);
+  bottom: 14px;
+  transition: all .3s ease;
 }

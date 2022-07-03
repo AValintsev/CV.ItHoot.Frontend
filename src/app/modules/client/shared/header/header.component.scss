@@ -1,3 +1,40 @@
+:host {
+  &::ng-deep {
+    mat-form-field {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      width: 100%;
+    }
+
+    .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+      display: none !important;
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-underline {
+      display: none !important;
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      background-color: rgba(0, 0, 0, 0.0) !important;
+    }
+
+    .mat-select-min-line {
+      display: none;
+    }
+
+  }
+}
+
+button.mat-menu-item {
+  height: none;
+  line-height: 1.2;
+}
+
 .header-inner {
   padding: .5rem 2rem;
   display: flex;
@@ -7,24 +44,90 @@
   justify-content: space-between;
   align-items: center;
   font-family: Inter, sans-serif;
+
+  @media(max-width:700px) {
+    height: 6rem;
+  }
+
+  @media(max-width:600px) {
+    height: 5rem;
+  }
+
+  @media(max-width:500px) {
+    padding: .5rem .5rem;
+  }
+}
+
+.small {
+  display: none;
+
+  @media(max-width:970px) {
+    display: block;
+    width: 2rem;
+    height: 8rem;
+  }
+
+  @media(max-width:700px) {
+    height: 6rem;
+  }
+
+  @media(max-width:600px) {
+    height: 5rem;
+  }
+}
+
+.large {
+  display: block;
+
+  @media(max-width:970px) {
+    display: none !important;
+  }
 }
 
 .col {
   display: flex;
+  align-items: center;
+
+  &:first-child {
+    @media(max-width:400px) {
+      flex-shrink: 4 !important;
+    }
+  }
 }
 
 .label {
   height: 7rem;
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 
   img {
     width: 16rem;
     height: 4.5rem;
+
+    @media(max-width:700px) {
+      width: 12rem;
+      height: 3.5rem;
+    }
+
+    @media(max-width:500px) {
+      width: 8rem;
+      height: 2rem;
+    }
+
+    @media(max-width:400px) {
+      width: 6rem;
+      height: 2rem;
+    }
+  }
+
+  @media(max-width:400px) {
+    flex-shrink: 2 !important;
   }
 }
 
 .img {
+  display: flex;
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
@@ -32,6 +135,7 @@
 }
 
 img {
+  flex: 0 0 4.5rem;
   width: 100%;
   height: 100%;
   display: block;
@@ -45,6 +149,23 @@ img {
   span {
     padding-left: 2rem;
     padding-right: 2rem;
+
+    @media(max-width:970px) {
+      display: none;
+    }
+  }
+
+  @media(max-width:970px) {
+    svg {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+  }
+  @media(max-width:700px) {
+    svg {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
   }
 }
 
@@ -68,6 +189,7 @@ img {
   line-height: 1.2;
   color: #3C6F9E;
   text-transform: uppercase;
+
 }
 
 .cv-user-photo {}
@@ -102,6 +224,14 @@ img {
   li {
     padding: 0 1rem 0 1rem;
 
+    @media(max-width:600px) {
+      padding: 0 .8rem 0 .8rem;
+    }
+
+    @media(max-width:500px) {
+      padding: 0 .6rem 0 .6rem;
+    }
+
     &:nth-child(2) {
       position: relative;
     }
@@ -134,42 +264,11 @@ img {
   height: 5rem;
 }
 
-
-
-:host {
-
-  &::ng-deep {
-    mat-form-field {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      width: 100%;
-
-    }
-
-    .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
-      display: none !important;
-    }
-
-    .mat-form-field-appearance-fill .mat-form-field-underline {
-      display: none !important;
-    }
-
-    .mat-form-field-appearance-fill .mat-form-field-flex {
-      background-color: rgba(0, 0, 0, 0.0) !important;
-    }
-
-    .mat-select-min-line {
-      display: none;
-    }
-  }
-}
-
 .proposal {
+  overflow-x: hidden;
+  display: flex;
+  align-items: flex-start;
+
   &__name {
     font-family: 'Inter';
     font-style: normal;
@@ -178,10 +277,35 @@ img {
     line-height: 1.2;
     color: #3C6F9E;
     text-transform: uppercase;
+    text-align: center;
+
+    @media(max-width:970px) {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+    @media(max-width:700px) {
+      font-size: 2.6rem !important;
+    }
+
+    @media(max-width:600px) {
+      font-size: 2rem !important;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    @media(max-width:500px) {
+      font-size: 1.6rem !important;
+    }
+
+    @media(max-width:400px) {
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
   }
 }
 
-.arrow{
+.arrow {
   cursor: pointer;
 }
 
@@ -191,9 +315,11 @@ img {
   }
 
 }
-svg{
+
+svg {
   cursor: pointer;
 }
+
 ::ng-deep .mat-tooltip.tooltip {
   font-size: 1.6rem;
   font-family: 'Inter';

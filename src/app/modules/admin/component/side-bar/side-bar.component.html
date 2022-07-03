@@ -1,4 +1,4 @@
-<div class="side-bar">
+<div [style.padding]="'0px 12px 0px 12px'" class="side-bar">
   <ol class="links">
     <li class="title-section"><span>Home</span></li>
     <li><a>
@@ -89,7 +89,7 @@
             <span>Proposal setting</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a>
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
           <mat-icon>sports_esports</mat-icon>
           <span>Proposals</span>
         </a>
