@@ -1,15 +1,19 @@
 :host {
   height: 100%;
-  
+
 }
 
+.open-side-bar {}
+
 .side-bar {
+  // transform: translateX(-60%);
+  position: relative;
   height: 100%;
   background: white;
   font-size: 1.2em;
   color: #8A92A6;
   overflow-y: auto;
-  padding: 0 12px 0 12px;
+  // padding: 0 12px 0 12px;
 
   .links {
     padding: 24px 0;
@@ -24,7 +28,7 @@
       margin-left: 20px;
     }
 
-    & li.active > a {
+    & li.active>a {
       background: #3A57E8;
       color: white;
       cursor: pointer;
@@ -35,6 +39,7 @@
       border-radius: 4px;
       display: flex;
       align-items: center;
+
       span {
         margin: 0;
       }
@@ -56,18 +61,19 @@
       }
     }
 
-    li.active > .mat-expansion-panel {
+    li.active>.mat-expansion-panel {
       background: #3A57E8;
     }
 
-    li.active > .mat-expansion-panel .mat-expansion-panel-header-title{
+    li.active>.mat-expansion-panel .mat-expansion-panel-header-title {
       color: white;
     }
+
     // ::ng-deep .mat-expansion-indicator::after{
     //  color: white;
     //}
 
-    li.active > ::ng-deep .mat-expansion-indicator::after {
+    li.active> ::ng-deep .mat-expansion-indicator::after {
       color: white;
     }
 
@@ -105,8 +111,9 @@
     }
   }
 }
+
 .side-bar .links a.active {
-  background-color: #3A57E8 ;
+  background-color: #3A57E8;
   color: #fff;
 }
 

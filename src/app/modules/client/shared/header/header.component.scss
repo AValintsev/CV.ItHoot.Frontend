@@ -157,6 +157,12 @@ img {
 
   @media(max-width:970px) {
     svg {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+  }
+  @media(max-width:700px) {
+    svg {
       width: 2rem !important;
       height: 2rem !important;
     }
