@@ -57,7 +57,6 @@ export class EducationDialog implements OnInit, OnDestroy {
       ]),
       degree: new FormControl(this.education.degree, [Validators.required]),
       description: new FormControl(this.education.description, [
-        Validators.required,
       ]),
       startDate: new FormControl(this.education.startDate, [
         Validators.required,

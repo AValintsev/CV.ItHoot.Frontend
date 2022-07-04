@@ -1,11 +1,49 @@
-.button-group{
+.button-group {
   padding-top: 15px;
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: end;
-  grid-gap: 10px;
+  display: flex;
+
+  @media(max-width:400px) {
+    flex-wrap: wrap;
+  }
+
 }
-button{
-  padding-left: 1rem;
-  padding-right: 1rem;
+
+button {
+  flex: 1 1 25%;
+  padding-left: .5rem;
+  padding-right: .5rem;
+
+  &:not(:first-child) {
+    margin-left: 1rem;
+
+    @media(max-width:400px) {
+      margin-left: 0rem;
+    }
+  }
+
+  @media(max-width:400px) {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+mat-card-title,
+mat-card-subtitle {
+  line-height: 1.2;
+
+
+}
+
+mat-card-title {
+  @media(max-width:400px) {
+    font-size: 2rem;
+  }
+}
+
+mat-card-subtitle {
+  margin-bottom: 0;
+
+  @media(max-width:400px) {
+    font-size: 1.8rem;
+  }
 }

@@ -29,6 +29,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
+  @Input() isCreateForm: boolean = true;
 
   resumeTemplates!: ResumeTemplateDto[];
 
@@ -55,11 +56,19 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService
-      .addPhoto(this.resume.id, this.file!).pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe((x) => {});
+    if (!this.isCreateForm) {
+      this.resumeService
+        .addPhoto(this.resume.id, this.file!)
+        .subscribe();
+    } else {
+      this.resumeService
+        .createPhoto(this.file!)
+        .subscribe(image=> {
+          this.resumeForm.patchValue({imageId: image.id});
+          this.resume.imageId = image.id
+          console.log(this.resume);
+        });
+    }
   }
 
   ngOnInit(): void {

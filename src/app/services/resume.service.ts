@@ -8,6 +8,7 @@ import {ResumeTemplateDto} from "../models/resume/resume-template-dto";
 import {PositionDto} from "../models/position/position-dto";
 import {PagedResponse} from "../models/paginations/paged-response";
 import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
+import {ImageDto} from "../models/resume/ImageDto";
 
 
 @Injectable({providedIn: 'root'})
@@ -67,7 +68,12 @@ export class ResumeService {
     const data = new FormData();
     data.append('image', image);
     return this.httpService.postForm(this.routePrefix + `/${resumeId}/image`, data);
+  }
 
+  public createPhoto(image: Blob): Observable<ImageDto> {
+    const data = new FormData();
+    data.append('image', image);
+    return this.httpService.postForm(this.routePrefix + `/image`, data);
   }
 
   public getPdf(resumeId: number) {

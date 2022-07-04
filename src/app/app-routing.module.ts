@@ -52,7 +52,7 @@ const routes: Routes = [
   {
     path : 'proposals/resume/:shortUrl/pdf',
     component: ProposalResumeDownloadPageComponent
-  }
+  },
 ];
 
 @NgModule({
@@ -62,3 +62,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

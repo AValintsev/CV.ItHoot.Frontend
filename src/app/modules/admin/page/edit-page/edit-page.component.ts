@@ -151,7 +151,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeEditDto?.site),
       phone: new FormControl(this.resumeEditDto?.phone, [
-        Validators.pattern('[- +()0-9]+'),
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeEditDto?.code),
       country: new FormControl(this.resumeEditDto?.country, [

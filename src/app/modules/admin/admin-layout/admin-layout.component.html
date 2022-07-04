@@ -1,8 +1,13 @@
 <cv-header></cv-header>
-<div class="page">
-  <cv-side-bar></cv-side-bar>
+<div  class="page" >
+  <cv-side-bar [toggle]="toggle" [class.width-zero]="!toggle" [class.open-side-bar]="toggle" ></cv-side-bar>
+  <div [class.open-menu]="toggle" (click)="sideBarToggler()" class="menu-burger__side-bar">
+    <span></span>
+  </div>
   <div class="page-content">
+    <div class="page-content__inner">
       <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 <cv-footer></cv-footer>

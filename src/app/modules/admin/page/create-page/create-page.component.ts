@@ -83,7 +83,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeCreateDto.site),
       phone: new FormControl(this.resumeCreateDto.phone, [
-        Validators.pattern('[- +()0-9]+'),
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeCreateDto.code),
       country: new FormControl(this.resumeCreateDto.country, [
@@ -105,6 +105,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
         Validators.required,
       ]),
+      imageId:  new FormControl(this.resumeCreateDto.imageId),
       salaryRate: new FormControl(this.resumeCreateDto?.salaryRate),
       availabilityStatus: new FormControl(this.resumeCreateDto?.availabilityStatus),
       countDaysUnavailable: new FormControl(this.resumeCreateDto?.countDaysUnavailable),
@@ -166,7 +167,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
           id: new FormControl(education.id),
           institutionName: new FormControl(education.institutionName),
           specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description),
+          description: new FormControl(education.description,),
           degree: new FormControl(education.degree),
           startDate: new FormControl(education.startDate),
           endDate: new FormControl(education.endDate),

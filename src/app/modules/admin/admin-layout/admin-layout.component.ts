@@ -7,10 +7,14 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit{
+  toggle = true
   constructor() {
   }
 
   ngOnInit(): void {
 
+  }
+  sideBarToggler(){
+    this.toggle = !this.toggle
   }
 }
