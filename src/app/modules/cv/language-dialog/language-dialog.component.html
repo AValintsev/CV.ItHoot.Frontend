@@ -5,7 +5,7 @@
 
     <mat-form-field>
       <mat-label>Choose language</mat-label>
-      <input type="text" placeholder="Pick one" aria-label="Language" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <input type="text" placeholder="Pick one" aria-label="Language" matInput [formControl]="myControl" [matAutocomplete]="auto" #input>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option  *ngFor="let option of filteredOptions | async" [value]="option.name" (onSelectionChange)="skillSelected(option)">
           {{option.name}}

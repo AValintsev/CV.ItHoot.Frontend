@@ -14,12 +14,12 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 
 
+
 export let AppInjector: Injector;
 registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     MatNativeDateModule,

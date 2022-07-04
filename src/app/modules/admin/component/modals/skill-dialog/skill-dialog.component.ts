@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
@@ -21,7 +21,13 @@ export class SkillDialog implements OnInit, OnDestroy {
   myControl = new FormControl();
   filteredOptions: Observable<SkillDto[]>;
 
-  ngOnInit() {}
+  @ViewChild('input') input:any;
+
+  ngOnInit() {
+      setTimeout(()=>{ // this will make the execution after the above boolean has changed
+        this.input.nativeElement.focus();
+      },300);
+  }
 
   constructor(
     private skillService: SkillService,
@@ -50,6 +56,8 @@ export class SkillDialog implements OnInit, OnDestroy {
       })
     );
   }
+
+
 
   skillSelected(option: any) {
     this.skill.skillName = option.name;

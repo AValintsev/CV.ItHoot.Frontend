@@ -28,7 +28,7 @@
         <mat-icon>verified_user</mat-icon>
         <span> Resource planning</span>
       </a></li>
-    <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
+    <li >
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -36,11 +36,11 @@
             <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a routerLink="/admin/archive/proposals">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/archive/proposals">
           <mat-icon>sports_esports</mat-icon>
           <span>Proposals</span>
         </a>
-        <a routerLink="/admin/archive/resume">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/archive/resume">
           <mat-icon>groups</mat-icon>
           <span>Resume list</span>
         </a>

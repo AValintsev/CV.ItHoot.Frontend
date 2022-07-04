@@ -1,7 +1,7 @@
 <div class="container">
   <div class="create-page">
     <div class="left-bar">
-      <cv-create-form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></cv-create-form-bar>
+      <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></form-bar>
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
           (click)="submit(resumeCreateForm.value)">Create</button>
