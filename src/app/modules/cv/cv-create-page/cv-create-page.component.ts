@@ -105,6 +105,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
         Validators.required
       ]),
+      imageId:  new FormControl(this.resumeCreateDto.imageId),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),

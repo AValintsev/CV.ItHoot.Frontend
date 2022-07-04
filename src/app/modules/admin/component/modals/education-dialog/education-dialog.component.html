@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Institution Name</mat-label>
-      <input matInput placeholder="KHNU" formControlName="institutionName">
+      <input matInput placeholder="Oxford" formControlName="institutionName">
       <mat-error *ngIf="educationForm.controls['institutionName'].errors?.['required']">
         Institution Name is required
       </mat-error>
@@ -30,9 +30,6 @@
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
       <input matInput placeholder="Description" formControlName="description">
-      <mat-error *ngIf="educationForm.controls['description'].errors?.['required']">
-        Description is required
-      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">

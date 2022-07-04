@@ -6,6 +6,7 @@
   }
   .content{
     display: grid;
+    overflow: unset;
 
     .resume-section{
       mat-form-field{
