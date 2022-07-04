@@ -6,7 +6,7 @@ import {MatCardModule} from '@angular/material/card';
 import {CommonModule} from '@angular/common';
 import {CvSmallComponent} from './cv-small.component';
 import {NgModule} from '@angular/core';
-import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal-delete-user.module';
+import {ModalDeleteModule} from '../../shared/modals/modal-delete-user/modal-delete-user.module';
 
 @NgModule({
 	declarations: [CvSmallComponent],
@@ -17,7 +17,7 @@ import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal
 		FormsModule,
 		ReactiveFormsModule,
 		MatButtonModule,
-		ModalDeleteUserModule,
+		ModalDeleteModule,
 		MatDialogModule
 	],
 	exports: [CvSmallComponent],

@@ -14,7 +14,7 @@ import {
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ProposalService } from 'src/app/services/proposal.service';
 import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { ModalDeleteUserComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
+import { ModalDeleteComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
 import { fromEvent, Subject } from 'rxjs';
 
 @Component({
@@ -110,8 +110,11 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
 
   deleteCard(id: number, event: Event, index: number, length: number) {
     event.stopPropagation();
-    let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
+    let dialogRef = this.dialog.open(ModalDeleteComponent, {
       panelClass: 'delete-modal',
+      data:{
+        title:'Delete resume?'
+      }
     });
     dialogRef
       .afterClosed()

@@ -1,4 +1,4 @@
-import {ModalDeleteUserModule} from '../../../shared/modals/modal-delete-user/modal-delete-user.module';
+import {ModalDeleteModule} from '../../../shared/modals/modal-delete-user/modal-delete-user.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -64,7 +64,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatTooltipModule,
-    ModalDeleteUserModule,
+    ModalDeleteModule,
     LoaderModule,
     RouterModule.forChild(routes),
   ],

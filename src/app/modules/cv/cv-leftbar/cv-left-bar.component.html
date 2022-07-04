@@ -72,7 +72,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Phone</mat-label>
       <input matInput placeholder="+3809600001" formControlName="phone">
       <mat-error *ngIf="resumeForm.controls['phone'].errors?.['required']">
@@ -81,7 +81,27 @@
       <mat-error *ngIf="resumeForm.controls['phone'].errors?.['pattern']">
         Invalid phone number
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
+    <ngx-intl-tel-input
+    [cssClass]="'custom'"
+    [preferredCountries]="preferredCountries"
+    [enableAutoCountrySelect]="true"
+    [enablePlaceholder]="true"
+    [searchCountryFlag]="true"
+    [searchCountryField]="[
+      SearchCountryField.Iso2,
+      SearchCountryField.Name
+    ]"
+    [selectFirstCountry]="false"
+    [selectedCountryISO]="CountryISO.Ukraine"
+    [maxLength]="15"
+    [phoneValidation]="true"
+    [separateDialCode]="separateDialCode"
+    [numberFormat]="PhoneNumberFormat.National"
+    name="phone"
+    formControlName="phone"
+  >
+  </ngx-intl-tel-input>
 
     <mat-form-field appearance="fill">
       <mat-label>Site</mat-label>

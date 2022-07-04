@@ -17,6 +17,7 @@ import {EducationDto} from '../../../models/resume/education-dto';
 import {ExperienceDto} from '../../../models/resume/experience-dto';
 import {Subject} from 'rxjs';
 import {ResumeTemplateDto} from 'src/app/models/resume/resume-template-dto';
+import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'cv-cv-create-left-bar',
@@ -30,12 +31,15 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   @Input()
   public resume!: ResumeDto;
   @Input() isCreateForm: boolean = true;
-
   resumeTemplates!: ResumeTemplateDto[];
-
   file: File | null = null;
   positions!: PositionDto[];
 
+  separateDialCode = true;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
   constructor(
     public dialog: MatDialog,

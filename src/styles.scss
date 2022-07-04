@@ -140,3 +140,11 @@ a:link{
     max-height: 85vh !important;
   }
 }
+
+.mat-sort-header-content{
+  white-space: nowrap;
+} 
+
+td{
+  word-break: break-all;
+}

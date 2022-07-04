@@ -29,6 +29,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-switcher.component';
 import {DeleteComponent} from './delete/delete.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import {DeleteComponent} from './delete/delete.component';
   ],
   imports: [
     CommonModule,
-    // RouterModule,
+    NgxIntlTelInputModule,
     CvRoutingModule,
     FormsModule,
     ReactiveFormsModule,
