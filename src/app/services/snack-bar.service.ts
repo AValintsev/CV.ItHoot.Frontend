@@ -11,8 +11,8 @@ export class SnackBarService {
   showSuccess(message: string, action: string = "X") {
     this._snackBar.open(message, action, {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
       panelClass:["success-snackbar"]
     });
   }
@@ -20,8 +20,8 @@ export class SnackBarService {
   showDanger(message: string, action: string = "X") {
     this._snackBar.open(message, action, {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
       panelClass:["danger-snackbar"]
     });
   }
