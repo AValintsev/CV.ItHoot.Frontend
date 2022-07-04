@@ -3,7 +3,7 @@
     <input id="fileInput" type='file' (change)="onSelectFile($event)">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
-      <input matInput placeholder=".NET Junior Developer" formControlName="resumeName">
+      <input matInput placeholder=".NET Developer" formControlName="resumeName">
       <mat-error *ngIf="resumeForm.controls['resumeName'].errors?.['required']">
         Name resume is required
       </mat-error>
@@ -11,7 +11,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="Nikita" formControlName="firstName">
+      <input matInput  formControlName="firstName">
       <mat-error *ngIf="resumeForm.controls['firstName'].errors?.['required']">
         First Name is required
       </mat-error>
@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="Savchuk" formControlName="lastName">
+      <input matInput formControlName="lastName">
       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
         Last Name is required
       </mat-error>
@@ -71,6 +71,10 @@
       <input matInput placeholder="3809600001" formControlName="phone">
       <mat-error *ngIf="resumeForm.controls['phone'].errors?.['required']">
         Phone is required
+      </mat-error>
+      <input matInput placeholder="+3809600001" formControlName="phone">
+      <mat-error *ngIf="resumeForm.controls['phone'].errors?.['pattern']">
+        Invalid phone number
       </mat-error>
     </mat-form-field>
 

@@ -83,7 +83,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeCreateDto.site),
       phone: new FormControl(this.resumeCreateDto.phone, [
-        Validators.pattern('[- +()0-9]+'),
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeCreateDto.code),
       country: new FormControl(this.resumeCreateDto.country, [
