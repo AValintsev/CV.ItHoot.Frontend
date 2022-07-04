@@ -1,12 +1,9 @@
 .experience-dialog {
 
-  .mat-dialog-content {
-    overflow: auto;
-  }
-
   .content {
     display: grid;
     gap: 10px;
+    overflow: unset;
 
     .actions {
       display: flex;

@@ -14,6 +14,7 @@ export interface ResumeDto{
   firstName:string;
   lastName: string;
   position:PositionDto;
+  imageId:number;
   email: string;
   site: string;
   phone: string;

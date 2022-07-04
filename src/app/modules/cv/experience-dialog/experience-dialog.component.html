@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Position</mat-label>
-      <input matInput placeholder=".NET Junior Developer" formControlName="position">
+      <input matInput placeholder="Web Developer" formControlName="position">
       <mat-error *ngIf="experienceForm.controls['position'].errors?.['required']">
         Position is required
       </mat-error>
@@ -15,11 +15,11 @@
       <mat-label>Name of company</mat-label>
       <input matInput placeholder="ITHoot" formControlName="company">
       <mat-error *ngIf="experienceForm.controls['company'].errors?.['required']">
-        Institution Name is required
+        Company Name is required
       </mat-error>
     </mat-form-field>
 
-  
+
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
       <textarea class="textarea" matInput placeholder="Bachelor's" formControlName="description"></textarea>
@@ -36,7 +36,7 @@
     <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp, 'startDate')"
       panelClass="example-month-picker">
     </mat-datepicker>
-      <mat-error *ngIf="experienceForm.controls['endDate'].errors?.['required']">
+      <mat-error *ngIf="experienceForm.controls['startDate'].errors?.['required']">
         Enter date
       </mat-error>
   </mat-form-field>
