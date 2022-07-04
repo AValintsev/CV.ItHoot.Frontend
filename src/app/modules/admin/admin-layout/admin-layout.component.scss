@@ -11,6 +11,9 @@
     height: calc(100vh - 160px);
     overflow-y: auto;
     flex: 1 1 100%;
+    &__inner{
+      min-width: 120rem;
+    }
   }
 
   cv-side-bar {
