@@ -13,7 +13,7 @@
    grid-gap: 2rem 2rem;
    padding: 0 1.5rem;
 
-   @media(max-width:992px) {
+   @media(max-width:880px) {
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
    }
 }

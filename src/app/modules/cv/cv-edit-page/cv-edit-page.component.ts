@@ -32,19 +32,34 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.validateForm();
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+    this.setDataDependentToId()
+    this.changeFormDate();
+    this.setHeaderBtn(['back','create','menu-list'])
+  }
+ setDataDependentToId(){
+   this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
+        this.resumeService.getResumeById(id).pipe(
+          takeUntil(this.destroy$)
+        ).subscribe({
+          next: response => {
+            if (response) {
+              this.userHeaderBtnService.setUserData({
+                id: response.id,
+                firstName: response.firstName,
+                lastName: response.lastName
+              })
+            }
+          },
+          error: error => console.log(error)
+        })
       });
     });
-
-    this.changeFormDate();
-    this.setHeaderBtn(['back','create'])
-  }
-
+ }
   setHeaderBtn(params:string[]){
     this.userHeaderBtnService.setBTNs(params)
   }

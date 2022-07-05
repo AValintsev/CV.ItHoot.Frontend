@@ -1,10 +1,10 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ResumeService} from 'src/app/services/resume.service';
-import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import { map, takeUntil } from 'rxjs/operators';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ResumeService } from 'src/app/services/resume.service';
+import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 import { HttpResponseBase } from '@angular/common/http';
 
@@ -23,8 +23,8 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private resumeService: ResumeService,
-    private userHeaderBtnService:UserHeaderBtnService
-    ) {
+    private userHeaderBtnService: UserHeaderBtnService
+  ) {
 
   }
   ngOnInit(): void {
@@ -36,24 +36,23 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
         this.resumeService.getResumeById(id).pipe(
           takeUntil(this.destroy$)
         ).subscribe({
-          next:response=>{
-if(response){
-  console.log('response',response)
-  this.userHeaderBtnService.setUserData({
-    id:response.id,
-    firstName:response.firstName,
-    lastName:response.lastName
-  })
-}
+          next: response => {
+            if (response) {
+              this.userHeaderBtnService.setUserData({
+                id: response.id,
+                firstName: response.firstName,
+                lastName: response.lastName
+              })
+            }
           },
-          error:error=>console.log(error)
+          error: error => console.log(error)
         })
       });
     });
-    this.setHeaderBtn(['back','create'])
+    this.setHeaderBtn(['back', 'create', 'menu-list'])
   }
 
-  setHeaderBtn(params:string[]){
+  setHeaderBtn(params: string[]) {
     this.userHeaderBtnService.setBTNs(params)
   }
 

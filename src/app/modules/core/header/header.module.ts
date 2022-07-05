@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
@@ -8,7 +9,7 @@ import {RouterModule} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-	imports:[CommonModule,MatButtonModule,RouterModule,MatTooltipModule,MatMenuModule,MatIconModule],
+	imports:[CommonModule,MatButtonModule,RouterModule,MatTooltipModule,MatMenuModule,MatIconModule,MatDialogModule],
 	declarations: [HeaderComponent],
 	exports: [HeaderComponent]
 })

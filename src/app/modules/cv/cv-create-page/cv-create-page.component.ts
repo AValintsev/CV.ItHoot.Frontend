@@ -36,7 +36,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
     this.getFieldDate()
-    this.setHeaderBtn(['back'])
+    this.setHeaderBtn(['back','menu-list'])
   }
 
   setHeaderBtn(params:string[]){

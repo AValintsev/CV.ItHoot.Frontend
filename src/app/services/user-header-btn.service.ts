@@ -10,7 +10,7 @@ export type UserHeaderData = {
 export class UserHeaderBtnService implements OnDestroy{
     private getBtnSub$ = new BehaviorSubject<string[]>([''])
     public getBtn$:Observable<string[]>
-    private userDataSub$ = new BehaviorSubject<UserHeaderData|null>(null)
+    public userDataSub$ = new BehaviorSubject<UserHeaderData|null>(null)
     public userData$:Observable<UserHeaderData|null>
     constructor(){}
 
