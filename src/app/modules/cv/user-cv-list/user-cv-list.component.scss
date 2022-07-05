@@ -1,7 +1,9 @@
 .wrapper {
    margin-top: 2rem;
+   margin-bottom: 2rem;
    @media(max-width:400px) {
       margin-top: 1rem;
+      margin-bottom: 1rem;
    }
 }
 

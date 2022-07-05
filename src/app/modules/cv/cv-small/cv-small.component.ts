@@ -8,6 +8,7 @@ import {Users} from '../../../models/users-type';
 import {ResumeService} from 'src/app/services/resume.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalDeleteUserComponent} from '../../shared/modals/modal-delete-user/modal-delete-user.component';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'cv-cv-small',
@@ -27,7 +28,8 @@ export class CvSmallComponent implements OnInit, OnDestroy {
     // this.authData$ = this.authService.UserValue2();
   }
   @Output() refresh = new EventEmitter();
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   checkRole() {
     return this.accountService.getStoreRole();
@@ -55,6 +57,13 @@ export class CvSmallComponent implements OnInit, OnDestroy {
       error: (error) => {},
     });
   }
+
+  savePdf(resumeId: number, firstName: string='', lastName: string='') {
+    this.resumeService.getPdf(resumeId).subscribe(response => {
+      saveAs(response, `${firstName} ${lastName}.pdf`);
+    });
+  }
+
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

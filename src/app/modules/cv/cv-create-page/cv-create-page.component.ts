@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
 import {Subject} from 'rxjs';
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-create-page',
@@ -24,6 +25,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     private router: Router,
     private accountService: AccountService,
     private activatedRoute:ActivatedRoute,
+    private userHeaderBtnService:UserHeaderBtnService
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,13 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
     this.getFieldDate()
+    this.setHeaderBtn(['back'])
   }
+
+  setHeaderBtn(params:string[]){
+    this.userHeaderBtnService.setBTNs(params)
+  }
+
   private getFieldDate() {
     this.activatedRoute.queryParams.pipe(
       takeUntil(this.destroy$),

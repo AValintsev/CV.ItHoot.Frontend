@@ -8,6 +8,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {Subject} from 'rxjs';
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -25,7 +26,8 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private userHeaderBtnService:UserHeaderBtnService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,11 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     });
 
     this.changeFormDate();
+    this.setHeaderBtn(['back','create'])
+  }
+
+  setHeaderBtn(params:string[]){
+    this.userHeaderBtnService.setBTNs(params)
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.pipe(

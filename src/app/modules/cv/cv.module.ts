@@ -28,7 +28,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-switcher.component';
-import {DeleteComponent} from './delete/delete.component';
+
+
 
 
 @NgModule({
@@ -43,7 +44,6 @@ import {DeleteComponent} from './delete/delete.component';
     CvEditPageComponent,
     UserCvListComponent,
     ResumeFullSwitcherComponent,
-    DeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,8 @@ import {DeleteComponent} from './delete/delete.component';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSelectModule
-  ]
+  ],
+
 })
 export class CvModule {
 }

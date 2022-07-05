@@ -1,3 +1,5 @@
+
+
 .button-group {
   padding-top: 15px;
   display: flex;
@@ -6,10 +8,19 @@
     flex-wrap: wrap;
   }
 
+  mat-menu-item.docx{
+  display: flex !important;
+  align-items: center !important;
+  svg{
+    margin-top:1rem;
+  }
+  span{
+    padding-left: 2rem;
+  }
 }
 
 button {
-  flex: 1 1 25%;
+  flex: 1 1 50%;
   padding-left: .5rem;
   padding-right: .5rem;
 
@@ -26,14 +37,23 @@ button {
     margin-bottom: 1rem;
   }
 }
-
+}
 mat-card-title,
 mat-card-subtitle {
   line-height: 1.2;
-
-
 }
 
+mat-card{
+  position: relative;
+  .dots{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+.dots-btn{
+  min-width: 10rem;
+}
 mat-card-title {
   @media(max-width:400px) {
     font-size: 2rem;

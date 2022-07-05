@@ -1,15 +1,21 @@
 <header>
+  <pre>{{userHeaderBtnService.userData$|async|json}}</pre>
   <div class="header-inner">
     <div class="col">
       <div class="label">
         <img src="assets/label.jpg" alt="label">
       </div>
-
+    </div>
+    <div class="col">
+      <div class="col__btns">
+        <button *ngIf="btnSwitcher('create')|async" [routerLink]="['/home/cv/create']"mat-flat-button color="accent" class="create-resume">Create CV</button>
+      </div>
+      
     </div>
     <div class="col">
       <div class="user">
+        <button *ngIf="btnSwitcher('back')|async" style="color:rgb(138, 146, 166)" routerLink="/home/cv/user-list" mat-icon-button><mat-icon>arrow_back</mat-icon></button>
         <ul class="user-icons">
-
           <li *ngIf="accountService.getStoreRole()!==Users[2]"><svg xmlns="http://www.w3.org/2000/svg" width="17"
               height="16" viewBox="0 0 17 16" fill="none">
               <path
@@ -17,7 +23,7 @@
                 fill="#8A92A6" />
             </svg></li>
           <li *ngIf="accountService.getStoreRole()!==Users[2]">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M23.417 8.05119C23.4112 6.90293 22.4723 5.96875 21.324 5.96875C20.9538 5.96875 17.8286 5.96875 17.4664 5.96875C17.5401 6.23928 17.5807 6.52322 17.5822 6.81618L17.6174 13.8182C17.6212 14.5696 17.207 15.2272 16.5938 15.5709V22.9276C16.5938 23.5137 17.0689 23.9889 17.6551 23.9889C18.2412 23.9889 18.7164 23.5138 18.7164 22.9276V14.6736C18.7164 14.547 18.819 14.4445 18.9455 14.4445C19.0721 14.4445 19.1747 14.5471 19.1747 14.6736V22.9277C19.1747 23.5138 19.6498 23.989 20.236 23.989C20.8221 23.989 21.2973 23.5139 21.2973 22.9277C21.2973 8.89397 21.2785 16.9262 21.278 8.06512C21.278 7.96387 21.3594 7.88134 21.4607 7.87998C21.5619 7.87863 21.6454 7.95891 21.6482 8.06016L21.6809 14.5577C21.6833 15.0447 22.0788 15.4377 22.5652 15.4377C22.5666 15.4377 22.5682 15.4377 22.5697 15.4377C23.0581 15.4352 23.4521 15.0373 23.4497 14.5489L23.417 8.05119Z"
                 fill="#D0D3DB" />
@@ -36,7 +42,39 @@
               <path
                 d="M14.2824 4.58203C13.7519 4.58203 9.69731 4.58203 9.16564 4.58203C8.23752 4.58203 7.43642 5.14834 7.09119 5.95351C6.97298 6.2292 6.91169 6.52472 6.91017 6.82618L6.87501 13.8282V13.8282C6.87235 14.3546 7.29693 14.7834 7.82333 14.7861C7.82494 14.7861 7.82661 14.7861 7.82823 14.7861C8.35234 14.7861 8.77858 14.3625 8.78124 13.8378L8.8164 6.83573C8.8164 6.83547 8.8164 6.83516 8.8164 6.8349C8.81718 6.73354 8.89976 6.6519 9.00112 6.65226C9.10247 6.65263 9.18442 6.73495 9.18442 6.8363L9.18484 22.8576V22.8576C9.18484 23.4893 9.6969 24.0014 10.3286 24.0014C10.9602 24.0014 11.4723 23.4893 11.4723 22.8576V22.8576V13.9627C11.4723 13.8264 11.5828 13.7158 11.7192 13.7158C11.8555 13.7158 11.9661 13.8264 11.9661 13.9627V22.8576V22.8576C11.9661 23.4893 12.4781 24.0014 13.1098 24.0014C13.7415 24.0014 14.2535 23.4893 14.2535 22.8576V22.8576C14.2535 18.7674 14.2339 11.1189 14.2328 6.83693C14.2328 6.72712 14.3216 6.63792 14.4314 6.63745C14.5412 6.63698 14.6308 6.72535 14.6317 6.83521C14.6317 6.83542 14.6317 6.83557 14.6317 6.83578L14.6669 13.8378C14.6696 14.3626 15.0957 14.7861 15.6199 14.7861C15.6215 14.7861 15.6231 14.7861 15.6248 14.7861C16.1511 14.7835 16.5757 14.3547 16.5731 13.8283V13.8282L16.5379 6.82624C16.5316 5.58778 15.5188 4.58203 14.2824 4.58203Z"
                 fill="#8A92A6" />
-            </svg>
+            </svg> -->
+            <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+             <mat-icon style="font-size:2.8rem; color:rgb(138, 146, 166)">format_list_bulleted</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          [routerLink]="['/home/cv/create/']"
+          [queryParams]="{ userId: (userHeaderBtnService.userData$|async)?.id }"
+        >
+          <mat-icon>file_copy</mat-icon>
+          <span>Duplicate</span>
+        </button>
+        <button mat-menu-item (click)="userHeaderBtnService.userData$|async && deleteResume((userHeaderBtnService.userData$|async)?.id)">
+          <mat-icon>delete_forever</mat-icon>
+          <span>Delete</span>
+            
+        </button>
+        <button mat-menu-item
+        >
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span (click)="savePdf((userHeaderBtnService.userData$|async)?.id,(userHeaderBtnService.userData$|async)?.firstName,(userHeaderBtnService.userData$|async)?.lastName)">Save PDF</span>
+        </button>
+        <button mat-menu-item class="docx"
+        >
+      <mat-icon>description</mat-icon>
+          <span>Save DocX</span>
+        </button>
+      </mat-menu>
           </li>
           <li matTooltip="Go to the resume list" matTooltipClass="tooltip">
             <svg style="outline: none;" [routerLink]="['/home/cv/user-list']"
