@@ -5,7 +5,7 @@ import {ProposalCreateDialogComponent} from "../proposal-create-dialog/proposal-
 import {MatDialog} from "@angular/material/dialog";
 import {ProposalDto} from "src/app/models/proposal/proposal-dto";
 import {StatusProposal} from "src/app/models/enums";
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {merge, ReplaySubject, Subject} from "rxjs";
 import {debounceTime, map, startWith, take, takeUntil} from "rxjs/operators";
 import {ProposalListFilter} from 'src/app/models/proposal/proposal-list-filter';
@@ -31,7 +31,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
 
-  searchControl = new FormControl();
+  searchControl = new UntypedFormControl();
 
   @Input()proposals: SmallProposalDto[];
   @Input()proposalsCount: number;
@@ -41,13 +41,13 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() refreshProposals: EventEmitter<any> = new EventEmitter<any>();
 
   clients!:UserDto[];
-  clientsControl = new FormControl();
-  clientFilterControl = new FormControl();
+  clientsControl = new UntypedFormControl();
+  clientFilterControl = new UntypedFormControl();
   filteredClientsMulti: ReplaySubject<UserDto[]> = new ReplaySubject(1);
 
   statuses!:ProposalStatusItem[];
-  statusesControl = new FormControl();
-  statusesFilterControl = new FormControl();
+  statusesControl = new UntypedFormControl();
+  statusesFilterControl = new UntypedFormControl();
   filteredStatusesMulti: ReplaySubject<ProposalStatusItem[]> = new ReplaySubject(1);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -196,7 +196,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     return proposalFilters;
   }
 
-  protected filterMulti(list: any[], filterFieldName: string, filterControl: FormControl, filteredMulti: ReplaySubject<any>) {
+  protected filterMulti(list: any[], filterFieldName: string, filterControl: UntypedFormControl, filteredMulti: ReplaySubject<any>) {
     if (!list) {
       return;
     }

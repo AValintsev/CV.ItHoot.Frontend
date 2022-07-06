@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap,} from 'rxjs/operators';
 import {ResumeLanguageDto} from 'src/app/models/resume/resume-language-dto';
@@ -18,7 +18,7 @@ export class LanguageDialog implements OnInit, OnDestroy {
   language: ResumeLanguageDto = {} as ResumeLanguageDto;
   typeDialog: DialogType;
   DialogType = DialogType;
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   filteredOptions: Observable<LanguageDto[]>;
   @ViewChild('input') input:any;
 

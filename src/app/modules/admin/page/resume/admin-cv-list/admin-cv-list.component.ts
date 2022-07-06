@@ -5,7 +5,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
 import {Users} from 'src/app/models/users-type';
 import {AccountService} from 'src/app/services/account.service';
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {debounceTime, map, startWith, take, takeUntil} from "rxjs/operators";
 import {merge, ReplaySubject, Subject} from "rxjs";
 import {MatPaginator} from '@angular/material/paginator';
@@ -33,16 +33,16 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() isShowAddButton: boolean = true;
   @Input() tableHeader: string;
 
-  searchControl = new FormControl();
+  searchControl = new UntypedFormControl();
 
   positions!: PositionDto[];
-  positionControl = new FormControl();
-  positionFilterControl = new FormControl();
+  positionControl = new UntypedFormControl();
+  positionFilterControl = new UntypedFormControl();
   filteredPositionsMulti: ReplaySubject<PositionDto[]> = new ReplaySubject(1);
 
   skills!: SkillDto[];
-  skillsControl = new FormControl();
-  skillFilterControl = new FormControl();
+  skillsControl = new UntypedFormControl();
+  skillFilterControl = new UntypedFormControl();
   filteredSkillsMulti: ReplaySubject<SkillDto[]> = new ReplaySubject(1);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -167,7 +167,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  protected filterMulti(list: any[], filterFieldName: string, filterControl: FormControl, filteredMulti: ReplaySubject<any>) {
+  protected filterMulti(list: any[], filterFieldName: string, filterControl: UntypedFormControl, filteredMulti: ReplaySubject<any>) {
     if (!list) {
       return;
     }

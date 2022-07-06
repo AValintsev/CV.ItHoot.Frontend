@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {UserDto} from '../../../../../models/user-dto';
 import {UserService} from '../../../../../services/user.service';
 import {ENTER} from '@angular/cdk/keycodes';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
@@ -31,7 +31,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   resumes: SmallResumeDto[] = [];
 
   separatorKeysCodes: number[] = [ENTER];
-  resumeCtrl = new FormControl();
+  resumeCtrl = new UntypedFormControl();
   @ViewChild('resumeInput') resumeInput!: ElementRef<HTMLInputElement>;
 
   clients: UserDto[] = [];

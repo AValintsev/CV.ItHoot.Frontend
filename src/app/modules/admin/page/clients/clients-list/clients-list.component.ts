@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild,} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {merge, of as observableOf, Subject} from "rxjs";
 import {MatPaginator} from '@angular/material/paginator';
@@ -21,7 +21,7 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName', 'action'];
   clients: SmallClientsDto[] = [];
-  searchControl = new FormControl();
+  searchControl = new UntypedFormControl();
 
   resultsLength = 0;
   isLoadingResults = true;

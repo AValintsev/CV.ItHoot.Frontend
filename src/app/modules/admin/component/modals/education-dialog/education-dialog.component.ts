@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
 import {MatDatepicker} from '@angular/material/datepicker';
@@ -40,28 +40,28 @@ export class EducationDialog implements OnInit, OnDestroy {
   education: EducationDto = {} as EducationDto;
   typeDialog: DialogType;
   DialogType = DialogType;
-  educationForm: FormGroup = {} as FormGroup;
+  educationForm: UntypedFormGroup = {} as UntypedFormGroup;
   maxDate = new Date(Date.now());
   ngOnInit() {
     this.validateForm();
   }
 
   validateForm() {
-    this.educationForm = new FormGroup({
-      id: new FormControl(this.education.id),
-      institutionName: new FormControl(this.education.institutionName, [
+    this.educationForm = new UntypedFormGroup({
+      id: new UntypedFormControl(this.education.id),
+      institutionName: new UntypedFormControl(this.education.institutionName, [
         Validators.required,
       ]),
-      specialization: new FormControl(this.education.specialization, [
+      specialization: new UntypedFormControl(this.education.specialization, [
         Validators.required,
       ]),
-      degree: new FormControl(this.education.degree, [Validators.required]),
-      description: new FormControl(this.education.description, [
+      degree: new UntypedFormControl(this.education.degree, [Validators.required]),
+      description: new UntypedFormControl(this.education.description, [
       ]),
-      startDate: new FormControl(this.education.startDate, [
+      startDate: new UntypedFormControl(this.education.startDate, [
         Validators.required,
       ]),
-      endDate: new FormControl(this.checkDataTypeFormControl(this.typeDialog), [
+      endDate: new UntypedFormControl(this.checkDataTypeFormControl(this.typeDialog), [
         Validators.required,
         UserValidators.checkValidEndDateDialog(this),
       ]),
@@ -72,7 +72,7 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.typeDialog = data.type;
     this.education = data.data;
   }
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
   checkDataTypeFormControl(type: DialogType) {
     if (type === DialogType.Create) {
       return moment();

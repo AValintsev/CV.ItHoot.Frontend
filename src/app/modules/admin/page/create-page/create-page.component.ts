@@ -1,6 +1,6 @@
 import {map, takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
@@ -16,7 +16,7 @@ import {Subject} from 'rxjs';
 export class CreatePageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumeCreateDto: ResumeDto = {} as ResumeDto;
-  public resumeCreateForm: FormGroup = {} as FormGroup;
+  public resumeCreateForm: UntypedFormGroup = {} as UntypedFormGroup;
   templateForm!: ResumeDto;
 
   constructor(
@@ -64,55 +64,55 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   }
 
   private validateForm() {
-    this.resumeCreateForm = new FormGroup({
-      resumeName: new FormControl(this.resumeCreateDto.resumeName, [
+    this.resumeCreateForm = new UntypedFormGroup({
+      resumeName: new UntypedFormControl(this.resumeCreateDto.resumeName, [
         Validators.required,
       ]),
-      firstName: new FormControl(this.resumeCreateDto.firstName, [
+      firstName: new UntypedFormControl(this.resumeCreateDto.firstName, [
         Validators.required,
       ]),
-      lastName: new FormControl(this.resumeCreateDto.lastName, [
+      lastName: new UntypedFormControl(this.resumeCreateDto.lastName, [
         Validators.required,
       ]),
-      position: new FormControl(this.resumeCreateDto.position, [
+      position: new UntypedFormControl(this.resumeCreateDto.position, [
         Validators.required,
       ]),
-      email: new FormControl(this.resumeCreateDto.email, [
+      email: new UntypedFormControl(this.resumeCreateDto.email, [
         Validators.required,
         Validators.email,
       ]),
-      site: new FormControl(this.resumeCreateDto.site),
-      phone: new FormControl(this.resumeCreateDto.phone, [
+      site: new UntypedFormControl(this.resumeCreateDto.site),
+      phone: new UntypedFormControl(this.resumeCreateDto.phone, [
        Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
-      code: new FormControl(this.resumeCreateDto.code),
-      country: new FormControl(this.resumeCreateDto.country, [
+      code: new UntypedFormControl(this.resumeCreateDto.code),
+      country: new UntypedFormControl(this.resumeCreateDto.country, [
         Validators.required,
       ]),
-      city: new FormControl(this.resumeCreateDto.city, [Validators.required]),
-      street: new FormControl(this.resumeCreateDto.street, [
+      city: new UntypedFormControl(this.resumeCreateDto.city, [Validators.required]),
+      street: new UntypedFormControl(this.resumeCreateDto.street, [
         Validators.required,
       ]),
-      requiredPosition: new FormControl(this.resumeCreateDto.requiredPosition, [
+      requiredPosition: new UntypedFormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required,
       ]),
-      birthdate: new FormControl(this.resumeCreateDto.birthdate, [
+      birthdate: new UntypedFormControl(this.resumeCreateDto.birthdate, [
         Validators.required,
       ]),
-      aboutMe: new FormControl(this.resumeCreateDto.aboutMe, [
+      aboutMe: new UntypedFormControl(this.resumeCreateDto.aboutMe, [
         Validators.required,
       ]),
-      resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
+      resumeTemplateId: new UntypedFormControl(this.resumeCreateDto.resumeTemplateId, [
         Validators.required,
       ]),
-      imageId:  new FormControl(this.resumeCreateDto.imageId),
-      salaryRate: new FormControl(this.resumeCreateDto?.salaryRate),
-      availabilityStatus: new FormControl(this.resumeCreateDto?.availabilityStatus),
-      countDaysUnavailable: new FormControl(this.resumeCreateDto?.countDaysUnavailable),
-      educations: new FormArray([]),
-      experiences: new FormArray([]),
-      skills: new FormArray([]),
-      languages: new FormArray([]),
+      imageId:  new UntypedFormControl(this.resumeCreateDto.imageId),
+      salaryRate: new UntypedFormControl(this.resumeCreateDto?.salaryRate),
+      availabilityStatus: new UntypedFormControl(this.resumeCreateDto?.availabilityStatus),
+      countDaysUnavailable: new UntypedFormControl(this.resumeCreateDto?.countDaysUnavailable),
+      educations: new UntypedFormArray([]),
+      experiences: new UntypedFormArray([]),
+      skills: new UntypedFormArray([]),
+      languages: new UntypedFormArray([]),
     });
   }
 
@@ -140,50 +140,50 @@ export class CreatePageComponent implements OnInit, OnDestroy {
 
 
     resume.skills?.forEach((skill) => {
-      (<FormArray>this.resumeCreateForm.controls['skills']).push(
-        new FormGroup({
-          id: new FormControl(skill.id),
-          skillId: new FormControl(skill.skillId),
-          skillName: new FormControl(skill.skillName),
-          level: new FormControl(skill.level),
+      (<UntypedFormArray>this.resumeCreateForm.controls['skills']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(skill.id),
+          skillId: new UntypedFormControl(skill.skillId),
+          skillName: new UntypedFormControl(skill.skillName),
+          level: new UntypedFormControl(skill.level),
         })
       );
     });
 
     resume.languages?.forEach((languages) => {
-      (<FormArray>this.resumeCreateForm.controls['languages']).push(
-        new FormGroup({
-          id: new FormControl(languages.id),
-          languageId: new FormControl(languages.languageId),
-          languageName: new FormControl(languages.languageName),
-          level: new FormControl(languages.level),
+      (<UntypedFormArray>this.resumeCreateForm.controls['languages']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(languages.id),
+          languageId: new UntypedFormControl(languages.languageId),
+          languageName: new UntypedFormControl(languages.languageName),
+          level: new UntypedFormControl(languages.level),
         })
       );
     });
 
     resume.educations?.forEach((education) => {
-      (<FormArray>this.resumeCreateForm.controls['educations']).push(
-        new FormGroup({
-          id: new FormControl(education.id),
-          institutionName: new FormControl(education.institutionName),
-          specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description,),
-          degree: new FormControl(education.degree),
-          startDate: new FormControl(education.startDate),
-          endDate: new FormControl(education.endDate),
+      (<UntypedFormArray>this.resumeCreateForm.controls['educations']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(education.id),
+          institutionName: new UntypedFormControl(education.institutionName),
+          specialization: new UntypedFormControl(education.specialization),
+          description: new UntypedFormControl(education.description,),
+          degree: new UntypedFormControl(education.degree),
+          startDate: new UntypedFormControl(education.startDate),
+          endDate: new UntypedFormControl(education.endDate),
         })
       );
     });
 
     resume.experiences?.forEach((experience) => {
-      (<FormArray>this.resumeCreateForm.controls['experiences']).push(
-        new FormGroup({
-          id: new FormControl(experience.id),
-          position: new FormControl(experience.position),
-          description: new FormControl(experience.description),
-          company: new FormControl(experience.company),
-          startDate: new FormControl(experience.startDate),
-          endDate: new FormControl(experience.endDate),
+      (<UntypedFormArray>this.resumeCreateForm.controls['experiences']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(experience.id),
+          position: new UntypedFormControl(experience.position),
+          description: new UntypedFormControl(experience.description),
+          company: new UntypedFormControl(experience.company),
+          startDate: new UntypedFormControl(experience.startDate),
+          endDate: new UntypedFormControl(experience.endDate),
         })
       );
     });
