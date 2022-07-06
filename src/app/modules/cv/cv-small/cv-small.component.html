@@ -9,6 +9,18 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="savePdf(resume.id,resume?.firstName,resume?.lastName)"
+        >
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span >Save PDF</span>
+        </button>
+        <button mat-menu-item 
+        (click)="saveDocX()"
+        class="docx"
+        >
+      <mat-icon>description</mat-icon>
+          <span>Save DocX</span>
+        </button>
         <button
           mat-menu-item
           [routerLink]="['/home/cv/create/']"
@@ -21,16 +33,6 @@
           <mat-icon>delete_forever</mat-icon>
           <span>Delete</span>
             
-        </button>
-        <button mat-menu-item
-        >
-          <mat-icon>picture_as_pdf</mat-icon>
-          <span (click)="savePdf(resume.id,resume?.firstName,resume?.lastName)">Save PDF</span>
-        </button>
-        <button mat-menu-item class="docx"
-        >
-      <mat-icon>description</mat-icon>
-          <span>Save DocX</span>
         </button>
       </mat-menu>
     </div>
@@ -51,7 +53,8 @@
   <mat-divider inset></mat-divider>
   <mat-card-actions>
     <div class="button-group">
-      <button
+      <!-- 1 -->
+      <!-- <button
         mat-raised-button
         color="primary"
         [routerLink]="['/home/cv/', resume.id]"
@@ -64,7 +67,35 @@
         routerLink="/home/cv/edit/{{ resume.id }}"
       >
         Edit
-      </button>
+      </button> -->
+      <!-- 2 -->
+      <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/home/cv/', resume.id]"
+    >
+      Open
+    </button>
+    <button
+      mat-stroked-button
+      color="accent"
+      routerLink="/home/cv/edit/{{ resume.id }}"
+    >
+      Edit
+    </button>
     </div>
+        <!-- 3 -->
+        <!-- <button
+        mat-button
+        [routerLink]="['/home/cv/', resume.id]"
+      >
+        Open
+      </button>
+      <button
+        mat-button
+        routerLink="/home/cv/edit/{{ resume.id }}"
+      >
+        Edit
+      </button> -->
   </mat-card-actions>
 </mat-card>

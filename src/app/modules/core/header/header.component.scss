@@ -26,10 +26,6 @@
     .mat-select-min-line {
       display: none;
     }
-
-    .mat-icon-button {
-      width: 2rem;
-    }
   }
 }
 
@@ -69,18 +65,8 @@ button.mat-menu-item {
 .small {
   display: none;
 
-  @media(max-width:800px) {
+  @media(max-width:880px) {
     display: block;
-    // width: 2rem;
-    // height: 8rem;
-  }
-
-  @media(max-width:700px) {
-    // height: 6rem;
-  }
-
-  @media(max-width:600px) {
-    // height: 5rem;
   }
 }
 
@@ -96,10 +82,18 @@ button.mat-menu-item {
   display: flex;
   align-items: center;
 
-  &:first-child {
-    @media(max-width:400px) {
-      flex-shrink: 4 !important;
+  &:last-child{
+    flex: 0 0 16rem;
+    display: flex;
+    justify-content: flex-end;
+    @media(max-width:700px) {
+      flex: 0 0 12rem;
     }
+
+    @media(max-width:500px) {
+      flex: 0 0 10rem;
+    }
+
   }
 }
 
@@ -119,13 +113,8 @@ button.mat-menu-item {
     }
 
     @media(max-width:500px) {
-      width: 8rem;
-      height: 2rem;
-    }
-
-    @media(max-width:400px) {
-      width: 6rem;
-      height: 2rem;
+      width: 10rem;
+      height: 3.5rem;
     }
   }
 
@@ -140,11 +129,6 @@ button.mat-menu-item {
   height: 4.5rem;
   border-radius: 50%;
   overflow: hidden;
-
-  @media(max-width:600px) {
-    width: 3rem;
-    height: 3rem;
-  }
 }
 
 img {
@@ -160,7 +144,6 @@ img {
 }
 
 .btn {
-  // width: 15rem;
   display: flex;
   align-items: center;
 
@@ -195,8 +178,6 @@ img {
   text-transform: uppercase;
 
 }
-
-.cv-user-photo {}
 
 .cv-user-content {
   padding-left: 0.5rem;
@@ -268,6 +249,63 @@ img {
 
 svg {
   cursor: pointer;
+}
+
+.menu-list-home{
+  @media(min-width:880px){
+    display: none;
+  }
+  @media(max-width:880px){
+    display: block;
+  }
+ 
+}
+
+.logout-small{
+  background-color:#f44336;
+
+}
+
+.menu-btn-wrapper{
+  padding: 1rem 1.6rem 0;
+  button{
+    line-height: 4rem;
+    height: 4rem;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    &:hover{
+      background-color:#f44336;
+    }
+  }
+}
+
+.button-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
 ::ng-deep .mat-tooltip.tooltip {

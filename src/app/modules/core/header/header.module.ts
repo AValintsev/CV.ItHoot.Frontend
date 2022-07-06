@@ -7,11 +7,13 @@ import {HeaderComponent} from './header.component';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @NgModule({
 	imports:[CommonModule,MatButtonModule,RouterModule,MatTooltipModule,MatMenuModule,MatIconModule,MatDialogModule],
 	declarations: [HeaderComponent],
-	exports: [HeaderComponent]
+	exports: [HeaderComponent],
+	providers:[SnackBarService]
 })
 
 export class HeaderModule { }

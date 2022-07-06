@@ -19,7 +19,7 @@ export class UserCvListComponent implements OnInit, OnDestroy {
     ) {}
 
   ngOnInit(): void {
-    this.setHeaderBtn(['create'])
+    this.setHeaderBtn(['create','menu-list-home'])
     this.resumeService
       .getAllResume().pipe(
         takeUntil(this.destroy$)

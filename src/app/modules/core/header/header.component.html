@@ -2,47 +2,136 @@
   <div class="header-inner">
     <div class="col">
       <div class="label">
-        <img src="assets/label.jpg" alt="label">
+        <img src="assets/label.jpg" alt="label" />
       </div>
     </div>
     <div class="col">
       <div class="col__btns">
-        <button *ngIf="btnSwitcher('create')|async" [routerLink]="['/home/cv/create']" mat-flat-button color="accent"
-          class="create-resume">Create CV</button>
+        <button
+          *ngIf="btnSwitcher('create') | async"
+          [routerLink]="['/home/cv/create']"
+          mat-raised-button
+          color="primary"
+          class="create-resume"
+        >
+          Create CV
+        </button>
       </div>
-
     </div>
     <div class="col">
       <div class="user">
-        <button style="color:rgb(138, 146, 166)" *ngIf="btnSwitcher('back')|async"  routerLink="/home/cv/user-list"
-          mat-icon-button>
-          <mat-icon >arrow_circle_left</mat-icon>
+        <button
+          class="button-icon"
+          *ngIf="btnSwitcher('back') | async"
+          routerLink="/home/cv/user-list"
+          mat-fab
+          color="primary"
+          mat-icon-button
+        >
+          <mat-icon>home</mat-icon>
         </button>
         <ul class="user-icons">
-          <li *ngIf="btnSwitcher('menu-list')|async">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon style="font-size:2.8rem; color:rgb(138, 146, 166)">format_list_bulleted</mat-icon>
+          <li *ngIf="btnSwitcher('menu-list') | async">
+            <button
+              mat-icon-button
+              mat-fab
+              color="primary"
+              [matMenuTriggerFor]="menu"
+              class="button-icon"
+            >
+              <mat-icon>format_list_bulleted</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-
-              <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id}">
+              <button mat-menu-item>
+                <div class="user-content small">
+                  <div class="user-picture img">
+                    <img src="assets/face.jpg" alt="user picture" />
+                  </div>
+                  <ul class="user-atrr">
+                    <li class="user-name">{{ userName$ | async }}</li>
+                    <li class="user-role">
+                      {{
+                        accountService.getStoreRole()
+                          ? accountService.getStoreRole()
+                          : "User"
+                      }}
+                    </li>
+                  </ul>
+                </div>
+              </button>
+              <button mat-menu-item (click)="savePdf(id, firstName, lastName)">
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span>Save PDF</span>
+              </button>
+              <button mat-menu-item (click)="saveDocX()" class="docx">
+                <mat-icon>description</mat-icon>
+                <span>Save DocX</span>
+              </button>
+              <button
+                mat-menu-item
+                [routerLink]="['/home/cv/create/']"
+                [queryParams]="{ userId: id }"
+              >
                 <mat-icon>file_copy</mat-icon>
                 <span>Duplicate</span>
               </button>
               <button mat-menu-item (click)="deleteResume(id)">
                 <mat-icon>delete_forever</mat-icon>
                 <span>Delete</span>
-
               </button>
+              <div class="menu-btn-wrapper">
+                <button
+                  mat-menu-item
+                  class="logout-small small"
+                  color="warn"
+                  (click)="logout()"
+                >
+                  Logout
+                </button>
+              </div>
+            </mat-menu>
+          </li>
+          <li
+            *ngIf="btnSwitcher('menu-list-home') | async"
+            class="menu-list-home"
+          >
+            <button
+              mat-icon-button
+              mat-fab
+              color="primary"
+              [matMenuTriggerFor]="menu"
+              class="button-icon"
+            >
+              <mat-icon>format_list_bulleted</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <mat-icon>picture_as_pdf</mat-icon>
-                <span (click)="savePdf(id,firstName,lastName)">Save PDF</span>
+                <div class="user-content small">
+                  <div class="user-picture img">
+                    <img src="assets/face.jpg" alt="user picture" />
+                  </div>
+                  <ul class="user-atrr">
+                    <li class="user-name">{{ userName$ | async }}</li>
+                    <li class="user-role">
+                      {{
+                        accountService.getStoreRole()
+                          ? accountService.getStoreRole()
+                          : "User"
+                      }}
+                    </li>
+                  </ul>
+                </div>
               </button>
-              <button mat-menu-item class="docx">
-                <mat-icon>description</mat-icon>
-                <span>Save DocX</span>
-              </button>
-              <button class="logout small" mat-flat-button color="warn" (click)="logout()">Logout</button>
+              <div class="menu-btn-wrapper">
+                <button
+                  mat-menu-item
+                  class="logout-small small"
+                  color="warn"
+                  (click)="logout()"
+                >
+                  Logout
+                </button>
+              </div>
             </mat-menu>
           </li>
           <!-- <li matTooltip="Go to the resume list" matTooltipClass="tooltip">
@@ -55,17 +144,30 @@
             </svg>
           </li> -->
         </ul>
-        <div class="user-content ">
+        <div class="user-content large">
           <div class="user-picture img">
-            <img src="assets/face.jpg" alt="user picture">
+            <img src="assets/face.jpg" alt="user picture" />
           </div>
           <ul class="user-atrr">
-            <li class="user-name">{{userName$|async}}</li>
-            <li class="user-role">{{accountService.getStoreRole()?accountService.getStoreRole():'User'}}</li>
+            <li class="user-name">{{ userName$ | async }}</li>
+            <li class="user-role">
+              {{
+                accountService.getStoreRole()
+                  ? accountService.getStoreRole()
+                  : "User"
+              }}
+            </li>
           </ul>
         </div>
       </div>
-      <button  class="logout large" mat-flat-button color="warn" (click)="logout()">Logout</button>
+      <button
+        class="logout large"
+        mat-flat-button
+        color="warn"
+        (click)="logout()"
+      >
+        Logout
+      </button>
     </div>
   </div>
 </header>

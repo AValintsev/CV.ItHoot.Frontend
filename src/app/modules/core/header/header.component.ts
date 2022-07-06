@@ -8,19 +8,18 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild,
-  ElementRef,
-  AfterContentInit,
 } from '@angular/core';
 import { Users } from 'src/app/models/users-type';
 import { UserHeaderBtnService, UserHeaderData } from 'src/app/services/user-header-btn.service';
 import { ModalDeleteUserComponent } from '../../shared/modals/modal-delete-user/modal-delete-user.component';
 import * as saveAs from 'file-saver';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'cv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+ 
 })
 export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
   private destroy$ = new Subject<boolean>();
@@ -35,7 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
     public userHeaderBtnService: UserHeaderBtnService,
     public accountService: AccountService,
     private router: Router,
-    private resumeService: ResumeService
+    private resumeService: ResumeService,
+    private snackbarService:SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -84,7 +84,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
   }
 
   deleteResume(id: number) {
-    console.log(id)
     let dialog = this.dialog.open(ModalDeleteUserComponent, {
       panelClass: 'delete-modal',
     });
@@ -97,7 +96,8 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
             takeUntil(this.destroy$)
           ).subscribe({
             next: (response) => {
-              this.router.navigate(['/user/cv/user-list'])
+              this.router.navigate(['/home/cv/user-list']);
+              this.snackbarService.showSuccess('Resume success removed')
             },
             error: (error) => console.log(error),
           });
@@ -122,6 +122,10 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
       .subscribe({
         next: () => this.router.navigate(['/account/login']),
       });
+  }
+
+  saveDocX() {
+    this.snackbarService.showDanger('The service is currently not working');
   }
 
   ngOnDestroy() {
