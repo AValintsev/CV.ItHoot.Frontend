@@ -1,13 +1,33 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {
+  Compiler,
+  Component,
+  ComponentFactoryResolver, createNgModuleRef,
+  Injector, ModuleWithComponentFactories,
+  NgModule,
+  NgModuleRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import {FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {Subject} from 'rxjs';
+import {CommonModule} from "@angular/common";
+import {BrowserModule} from "@angular/platform-browser";
+import {AdminCvListModule} from "../resume/admin-cv-list.module";
+import {MatNativeDateModule} from "@angular/material/core";
+import {AppRoutingModule} from "../../../../app-routing.module";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {AdminModule} from "../../admin.module";
+import {Users} from "../../../../models/users-type";
+
 
 @Component({
   selector: 'cv-edit-page',
@@ -15,7 +35,8 @@ import {Subject} from 'rxjs';
   styleUrls: ['./edit-page.component.scss'],
 })
 export class EditPageComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+
+  @ViewChild('resume', {read: ViewContainerRef}) _container: ViewContainerRef;
 
   resumeEditDto: ResumeDto | null = null;
   templateForm!: ResumeDto;
@@ -26,18 +47,19 @@ export class EditPageComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    // private componentFactoryResolver: ComponentFactoryResolver,
+    private compiler: Compiler,
+    private _injector: Injector,
+    // private _m: NgModuleRef<any>
   ) {
     this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((resume) => {
+      this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
-        this.resumeService.getResumeHtmlById(id).pipe(
-          takeUntil(this.destroy$)
-        ).subscribe((data) => {
-          document.getElementById('resume')!.innerHTML = data.html;
+        this.resumeService.getResumeHtmlById(id).subscribe((data) => {
+          // document.getElementById('resume')!.innerHTML = data.html;
+          this.addComponent(data.html);
         });
       });
     });
@@ -45,33 +67,58 @@ export class EditPageComponent implements OnInit, OnDestroy {
     this.changeFormDate();
   }
 
-  ngOnInit(): void {}
+
+  private async addComponent(html: string) {
+
+    const resume = this.resumeEditDto;
+
+    const tmpCmp = Component({template: html,selector:'resume-templates', moduleId:'dynamic-module'})(class {
+      public resume: ResumeDto|null = resume;
+    });
+    const tmpModule = NgModule({imports: [CommonModule],id:'dynamic-module', declarations: [tmpCmp]})(class{});
+    // const moduleRef: NgModuleRef<any> = createNgModuleRef<any>(tmpModule, this._injector);
+    const componentModule = this.compiler.compileModuleAndAllComponentsSync(tmpModule);
+    const factory = componentModule.componentFactories.find(c => c.selector === 'resume-templates')!.componentType;
+    this._container.createComponent(factory,{injector: this._injector});
+    // this._container.createComponent(tmpCmp, {ngModuleRef: moduleRef});
+    // const factories = this.compiler.compileModuleAndAllComponentsSync(tmpModule);
+    // const module = factories.ngModuleFactory.create(this._injector);
+    // const f = factories.componentFactories[0];
+    // const cmpRef = f.create(this._injector, [], null,module);
+    // cmpRef.instance.name = 'dynamic';
+    // console.log(module.instance)
+    // console.log(cmpRef)
+    // this._container.insert(cmpRef.hostView);
+  }
+
+  ngOnInit(): void {
+  }
+
   private changeFormDate() {
-    this.resumeEditForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
+    this.resumeEditForm.valueChanges.subscribe(
       (resume) => (this.templateForm = resume)
     );
   }
+
   patchForm(resume: ResumeDto) {
-    this.resumeEditForm.patchValue({ id: resume.id });
-    this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
-    this.resumeEditForm.patchValue({ firstName: resume.firstName });
-    this.resumeEditForm.patchValue({ lastName: resume.lastName });
-    this.resumeEditForm.patchValue({ email: resume.email });
-    this.resumeEditForm.patchValue({ site: resume.site });
-    this.resumeEditForm.patchValue({ phone: resume.phone });
-    this.resumeEditForm.patchValue({ code: resume.code });
-    this.resumeEditForm.patchValue({ country: resume.country });
-    this.resumeEditForm.patchValue({ city: resume.city });
-    this.resumeEditForm.patchValue({ street: resume.street });
+    this.resumeEditForm.patchValue({id: resume.id});
+    this.resumeEditForm.patchValue({resumeName: resume.resumeName});
+    this.resumeEditForm.patchValue({firstName: resume.firstName});
+    this.resumeEditForm.patchValue({lastName: resume.lastName});
+    this.resumeEditForm.patchValue({email: resume.email});
+    this.resumeEditForm.patchValue({site: resume.site});
+    this.resumeEditForm.patchValue({phone: resume.phone});
+    this.resumeEditForm.patchValue({code: resume.code});
+    this.resumeEditForm.patchValue({country: resume.country});
+    this.resumeEditForm.patchValue({city: resume.city});
+    this.resumeEditForm.patchValue({street: resume.street});
     this.resumeEditForm.patchValue({
       requiredPosition: resume.requiredPosition,
     });
-    this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
-    this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
-    this.resumeEditForm.patchValue({ picture: resume.picture });
-    this.resumeEditForm.patchValue({ position: resume.position });
+    this.resumeEditForm.patchValue({birthdate: resume.birthdate});
+    this.resumeEditForm.patchValue({aboutMe: resume.aboutMe});
+    this.resumeEditForm.patchValue({picture: resume.picture});
+    this.resumeEditForm.patchValue({position: resume.position});
     this.resumeEditForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
     this.resumeEditForm.patchValue({salaryRate: resume.salaryRate});
     this.resumeEditForm.patchValue({availabilityStatus: resume.availabilityStatus});
@@ -151,7 +198,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeEditDto?.site),
       phone: new FormControl(this.resumeEditDto?.phone, [
-       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
+        Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeEditDto?.code),
       country: new FormControl(this.resumeEditDto?.country, [
@@ -180,31 +227,29 @@ export class EditPageComponent implements OnInit, OnDestroy {
   }
 
   submit(resume: ResumeDto) {
-    this.resumeService.updateResume(resume).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: () => {
-        this.snackbarService.showSuccess('Edited');
-        const role = this.accountService.getStoreRole();
-        if (role === Users[2]) {
-          this.router.navigate([
-            '/home/cv/user-list',
-            this.accountService.getUserId(),
-          ]);
-        }
-        if (role === Users[0] || role === Users[1])
-          this.router.navigate(['/admin/resume']);
-        else {
-          this.router.navigate(['/home/cv']);
-        }
-      },
-      error: () => {
-        this.snackbarService.showDanger('Something went wrong!');
-      },
-    });
+    // cmpRef.changeDetectorRef.detectChanges();
+    // this.resumeService.updateResume(resume).subscribe({
+    //   next: () => {
+    //     this.snackbarService.showSuccess('Edited');
+    //     const role = this.accountService.getStoreRole();
+    //     if (role === Users[2]) {
+    //       this.router.navigate([
+    //         '/home/cv/user-list',
+    //         this.accountService.getUserId(),
+    //       ]);
+    //     }
+    //     if (role === Users[0] || role === Users[1])
+    //       this.router.navigate(['/admin/resume']);
+    //     else {
+    //       this.router.navigate(['/home/cv']);
+    //     }
+    //   },
+    //   error: () => {
+    //     this.snackbarService.showDanger('Something went wrong!');
+    //   },
+    // });
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
+
+  ngOnDestroy() {
   }
 }

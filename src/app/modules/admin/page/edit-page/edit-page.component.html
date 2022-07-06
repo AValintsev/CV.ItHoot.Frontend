@@ -1,9 +1,9 @@
-<div class="container">
-  <div id="resume">
+<div class="container" *ngIf="resumeEditDto && resumeEditForm">
+  <div id="resume" #resume>
   </div>
   <div class="edit-page">
     <form class="left-bar">
-      <form-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false">
+      <form-bar [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false">
       </form-bar>
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Edit
