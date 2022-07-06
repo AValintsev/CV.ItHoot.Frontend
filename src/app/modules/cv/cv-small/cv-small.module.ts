@@ -9,6 +9,7 @@ import {CommonModule} from '@angular/common';
 import {CvSmallComponent} from './cv-small.component';
 import {NgModule} from '@angular/core';
 import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal-delete-user.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
 	declarations: [CvSmallComponent],
@@ -22,7 +23,8 @@ import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal
 		ModalDeleteUserModule,
 		MatDialogModule,
 		MatIconModule,
-		MatMenuModule
+		MatMenuModule,
+		MatDividerModule
 	],
 	exports: [CvSmallComponent],
 })
