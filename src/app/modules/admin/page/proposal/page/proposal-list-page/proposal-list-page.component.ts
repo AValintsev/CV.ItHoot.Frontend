@@ -14,7 +14,7 @@ export class ProposalListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;
-
+  url = '/admin/'
   isLoadingResults = true;
   isRateLimitReached = false;
 

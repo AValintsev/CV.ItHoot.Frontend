@@ -1,15 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 
 @Component({
   selector: 'cv-modal-delete-user',
   templateUrl: './modal-delete-user.component.html',
-  styleUrls: ['./modal-delete-user.component.scss']
+  styleUrls: ['./modal-delete-user.component.scss'],
+  providers:[
+    
+ 
+  ]
 })
-export class ModalDeleteUserComponent implements OnInit {
-
-  constructor() { }
+export class ModalDeleteComponent implements OnInit {
+qqq =''
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data:{title:string},
+  ) { }
 
   ngOnInit(): void {
+    this.qqq = this.data.title
   }
 
 }

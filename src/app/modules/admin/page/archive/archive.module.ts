@@ -10,6 +10,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AdminCvListModule} from '../resume/admin-cv-list.module';
 import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/proposal-archive-list-page.component';
 
+
 @NgModule({
   declarations: [
     ProposalArchiveListPageComponent,
@@ -26,6 +27,6 @@ import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/pro
     MatButtonModule,
     MatProgressSpinnerModule,
     AdminCvListModule
-  ]
+  ],
 })
 export class ArchiveModule { }

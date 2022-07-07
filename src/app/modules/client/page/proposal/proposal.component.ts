@@ -14,8 +14,9 @@ import {
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { ProposalService } from 'src/app/services/proposal.service';
 import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { ModalDeleteUserComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
+import { ModalDeleteComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
 import { fromEvent, Subject } from 'rxjs';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'cv-proposal',
@@ -60,7 +61,7 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
   }
   @Output() statusChang = new EventEmitter();
   constructor(
-    private dialog: MatDialog,
+    private deleteModalService: DeleteModalService,
     private snackBarService: SnackBarService,
     private proposalService: ProposalService,
     private clientProposalService: ClientProposalService,
@@ -110,12 +111,7 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
 
   deleteCard(id: number, event: Event, index: number, length: number) {
     event.stopPropagation();
-    let dialogRef = this.dialog.open(ModalDeleteUserComponent, {
-      panelClass: 'delete-modal',
-    });
-    dialogRef
-      .afterClosed()
-      .pipe(takeUntil(this.destroy$))
+    this.deleteModalService.matModal('Do you want to delete user card?')
       .subscribe({
         next: (response) => {
           if (this.screenWidth >= this.screenSizeMd) {

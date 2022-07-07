@@ -1,3 +1,4 @@
+import { DeleteModalService } from './../../../../services/delete-modal.service';
 import {ModalDeleteUserModule} from '../../../shared/modals/modal-delete-user/modal-delete-user.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -12,7 +13,7 @@ import {MainPageComponent} from './main-page.component';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
 import {FooterModule} from '../../shared/footer/footer.module';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -53,6 +54,7 @@ const routes: Routes = [
     CommonModule,
     MatIconModule,
     MatDialogModule,
+    MatDialogModule,
     MatCardModule,
     MatButtonModule,
     FooterModule,
@@ -72,8 +74,11 @@ const routes: Routes = [
     MainPageComponent,
     ProposalsComponent,
     ResumeComponent,
-    ProposalComponent
+    ProposalComponent,
   ],
+  providers:[
+ 
+    DeleteModalService]
 
 })
 
