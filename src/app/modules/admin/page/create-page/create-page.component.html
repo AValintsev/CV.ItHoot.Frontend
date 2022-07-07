@@ -4,7 +4,14 @@
       <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></form-bar>
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
-          (click)="submit(resumeCreateForm.value)">Create</button>
+          (click)="submit(resumeCreateForm.value)">Save</button>
+          <button
+          mat-raised-button
+          color="accent"
+          routerLink="/admin/resume"
+        >
+          Cancel
+        </button>
       </div>
     </div>
     <!-- <cv-cv-template [resumeEditForm]="templateForm"></cv-cv-template> -->

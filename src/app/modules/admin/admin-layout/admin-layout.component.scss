@@ -54,54 +54,75 @@
 }
 
 .menu-burger__side-bar {
-  background-color: #fff;
+  background-color: rgb(138, 146, 166);
   position: relative;
   width: 50px;
-  height: 35px;
+  height: 7rem;
   display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   // margin-left: 10px;
+  mat-icon{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 5rem;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    transition: all .3s ease;
+    color: #fff;
+    
+  }
+  &.open-menu{
+    mat-icon{
+      transform: rotate(0deg);
+      transition: all .3s ease;
+    }
+  }
 }
 
-.menu-burger__side-bar span,
-.menu-burger__side-bar:after,
-.menu-burger__side-bar:before {
-  height: 5px;
-  width: 100%;
-  position: absolute;
-  background: #0d259e;
-  margin: 0 auto;
-}
+// .menu-burger__side-bar span,
+// .menu-burger__side-bar:after,
+// .menu-burger__side-bar:before {
+//   height: 5px;
+//   width: 100%;
+//   position: absolute;
+//   background: #0d259e;
+//   margin: 0 auto;
+// }
 
-.menu-burger__side-bar span {
-  top: 16px;
-}
+// .menu-burger__side-bar span {
+//   top: 16px;
+// }
 
-.menu-burger__side-bar:after,
-.menu-burger__side-bar:before {
-  content: '';
-}
+// .menu-burger__side-bar:after,
+// .menu-burger__side-bar:before {
+//   content: '';
+// }
 
-.menu-burger__side-bar:after {
-  bottom: 0px;
-}
+// .menu-burger__side-bar:after {
+//   bottom: 0px;
+// }
 
-.menu-burger__side-bar:before {
-  top: 0px;
-}
+// .menu-burger__side-bar:before {
+//   top: 0px;
+// }
 
-.menu-burger__side-bar.open-menu span {
-  opacity: 0;
-  transition: all .3s ease;
-}
+// .menu-burger__side-bar.open-menu span {
+//   opacity: 0;
+//   transition: all .3s ease;
+// }
 
-.menu-burger__side-bar.open-menu:before {
-  transform: rotate(38deg);
-  top: 16px;
-  transition: all .3s ease;
-}
+// .menu-burger__side-bar.open-menu:before {
+//   transform: rotate(38deg);
+//   top: 16px;
+//   transition: all .3s ease;
+// }
 
-.menu-burger__side-bar.open-menu:after {
-  transform: rotate(-38deg);
-  bottom: 14px;
-  transition: all .3s ease;
-}
+// .menu-burger__side-bar.open-menu:after {
+//   transform: rotate(-38deg);
+//   bottom: 14px;
+//   transition: all .3s ease;
+// }

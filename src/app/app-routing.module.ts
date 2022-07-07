@@ -10,6 +10,7 @@ import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/res
 
 
 const routes: Routes = [
+  
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
     canLoad: [UsersGuard],
@@ -19,11 +20,6 @@ const routes: Routes = [
   {
     path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),
     // canLoad: [CanLoginingGuard]
-  },
-  {
-    path: '',
-    canActivate: [RoleGuard],
-    children: []
   },
   {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
@@ -36,6 +32,11 @@ const routes: Routes = [
     canLoad: [UsersGuard],
     canActivate: [UsersGuard],
     data: { role: [Users[3]] }
+  },
+  {
+    path: '',
+    canActivate: [RoleGuard],
+    children: []
   },
   {
     path: 'proposals/:proposalId/resume/:resumeId',
@@ -53,6 +54,7 @@ const routes: Routes = [
     path : 'proposals/resume/:shortUrl/pdf',
     component: ProposalResumeDownloadPageComponent
   },
+ 
 ];
 
 @NgModule({

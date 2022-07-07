@@ -1,7 +1,9 @@
 .wrapper {
    margin-top: 2rem;
+   margin-bottom: 2rem;
    @media(max-width:400px) {
       margin-top: 1rem;
+      margin-bottom: 1rem;
    }
 }
 
@@ -11,7 +13,7 @@
    grid-gap: 2rem 2rem;
    padding: 0 1.5rem;
 
-   @media(max-width:992px) {
+   @media(max-width:880px) {
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
    }
 }

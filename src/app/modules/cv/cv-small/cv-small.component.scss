@@ -6,32 +6,61 @@
     flex-wrap: wrap;
   }
 
-}
+  mat-menu-item.docx {
+    display: flex !important;
+    align-items: center !important;
 
-button {
-  flex: 1 1 25%;
-  padding-left: .5rem;
-  padding-right: .5rem;
+    svg {
+      margin-top: 1rem;
+    }
 
-  &:not(:first-child) {
-    margin-left: 1rem;
-
-    @media(max-width:400px) {
-      margin-left: 0rem;
+    span {
+      padding-left: 2rem;
     }
   }
 
-  @media(max-width:400px) {
-    flex: 1 1 100%;
-    margin-bottom: 1rem;
+  button {
+    flex: 1 1 50%;
+    padding-left: .5rem;
+    padding-right: .5rem;
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+      margin-right: 0;
+
+      @media(max-width:400px) {
+        margin-left: 0rem;
+      }
+    }
+
+    @media(max-width:400px) {
+      flex: 1 1 100%;
+      margin-bottom: 1rem;
+    }
   }
+}
+
+.mat-divider {
+  height: 0.2rem;
 }
 
 mat-card-title,
 mat-card-subtitle {
   line-height: 1.2;
+}
 
+mat-card {
+  position: relative;
 
+  .dots {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.dots-btn {
+  min-width: 10rem;
 }
 
 mat-card-title {
@@ -46,4 +75,18 @@ mat-card-subtitle {
   @media(max-width:400px) {
     font-size: 1.8rem;
   }
+}
+
+mat-card-content {
+  margin-top: 2rem;
+  height: 4rem;
+  overflow-y: hidden;
+}
+
+mat-card-actions {
+  padding: 0rem 1rem;
+}
+
+.mat-card>.mat-card-actions{
+  margin: 0 -1rem;
 }
