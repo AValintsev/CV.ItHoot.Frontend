@@ -9,6 +9,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -22,10 +24,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 		FormsModule,
 		ReactiveFormsModule,
 		MatMenuModule,
-		MatIconModule
+		MatIconModule,
+		MatDialogModule
 	],
 	declarations: [HeaderComponent],
-	exports: [HeaderComponent]
+	exports: [HeaderComponent],
+	
 })
 
 export class HeaderModule { }

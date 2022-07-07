@@ -12,6 +12,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
+import { DeleteModalService } from './services/delete-modal.service';
 
 
 
@@ -35,7 +36,7 @@ registerLocaleData(en);
     {provide: DatePipe},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-
+    DeleteModalService
   ],
   exports: [
   ],

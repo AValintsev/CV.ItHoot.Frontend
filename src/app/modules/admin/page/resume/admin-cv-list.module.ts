@@ -31,6 +31,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 		CvFullComponent,
 		AdminCvListComponent,
 		ResumeListPageComponent,
-	]
+	],
+	providers:[DeleteModalService]
 })
 
 export class AdminCvListModule {

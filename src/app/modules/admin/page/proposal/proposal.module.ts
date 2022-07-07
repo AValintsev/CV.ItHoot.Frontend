@@ -1,3 +1,4 @@
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
 import {ProposalCreateDialogComponent} from './proposal-create-dialog/proposal-create-dialog.component';
@@ -96,7 +97,8 @@ import {DirectivesModule} from "../../../shared/directives/directives.module";
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
-  ]
+  ],
+  providers:[DeleteModalService]
 })
 
 export class ProposalModule {
