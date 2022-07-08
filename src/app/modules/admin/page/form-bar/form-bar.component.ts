@@ -1,34 +1,36 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ResumeService } from 'src/app/services/resume.service';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { PositionDto } from 'src/app/models/position/position-dto';
-import { PositionService } from 'src/app/services/position.service';
-import { ResumeSkillDto } from 'src/app/models/resume/resume-skill-dto';
-import { DialogType } from 'src/app/models/enums';
-import { SkillDialog } from '../../component/modals/skill-dialog/skill-dialog.component';
-import { ResumeLanguageDto } from 'src/app/models/resume/resume-language-dto';
-import { LanguageDialog } from '../../component/modals/language-dialog/language-dialog.component';
-import { EducationDto } from 'src/app/models/resume/education-dto';
-import { EducationDialog } from '../../component/modals/education-dialog/education-dialog.component';
-import { ExperienceDto } from 'src/app/models/resume/experience-dto';
-import { ExperienceDialog } from '../../component/modals/experience-dialog/experience-dialog.component';
-import { ResumeTemplateDto } from '../../../../models/resume/resume-template-dto';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {ResumeService} from 'src/app/services/resume.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
+import {PositionDto} from 'src/app/models/position/position-dto';
+import {PositionService} from 'src/app/services/position.service';
+import {ResumeSkillDto} from 'src/app/models/resume/resume-skill-dto';
+import {DialogType} from 'src/app/models/enums';
+import {SkillDialog} from '../../component/modals/skill-dialog/skill-dialog.component';
+import {ResumeLanguageDto} from 'src/app/models/resume/resume-language-dto';
+import {LanguageDialog} from '../../component/modals/language-dialog/language-dialog.component';
+import {EducationDto} from 'src/app/models/resume/education-dto';
+import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
+import {ExperienceDto} from 'src/app/models/resume/experience-dto';
+import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
+import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 
 @Component({
-  selector: 'cv-create-form-bar',
+  selector: 'form-bar',
   templateUrl: './form-bar.component.html',
   styleUrls: ['./form-bar.component.scss'],
 })
-export class FormBarComponent implements OnInit, OnDestroy {
+export class FormBarComponent implements OnInit {
   private destroy$ = new Subject<boolean>();
   @Input()
   public resumeForm: FormGroup = {} as FormGroup;
   @Input()
   public resume!: ResumeDto;
+
+  @Input() isCreateForm: boolean = true;
 
   resumeTemplates!: ResumeTemplateDto[];
 
@@ -48,18 +50,26 @@ export class FormBarComponent implements OnInit, OnDestroy {
     });
     this.resumeService
       .getAllTemplates().pipe(
-        takeUntil(this.destroy$)
-      )
+      takeUntil(this.destroy$)
+    )
       .subscribe((templates) => (this.resumeTemplates = templates));
   }
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
-    this.resumeService
-      .addPhoto(this.resume.id, this.file!).pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe((x) => {});
+    if (!this.isCreateForm) {
+      this.resumeService
+        .addPhoto(this.resume.id, this.file!)
+        .subscribe();
+    } else {
+      this.resumeService
+        .createPhoto(this.file!)
+        .subscribe(image=> {
+          this.resumeForm.patchValue({imageId: image.id});
+          this.resume.imageId = image.id
+          console.log(this.resume);
+        });
+    }
   }
 
   ngOnInit(): void {
@@ -113,7 +123,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -166,7 +176,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -227,7 +237,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -290,7 +300,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -308,11 +318,5 @@ export class FormBarComponent implements OnInit, OnDestroy {
       this.resume.experiences.push(experience);
       this.experienceListChanged();
     });
-  }
-
-  changeTeam(event: any) {}
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
   }
 }

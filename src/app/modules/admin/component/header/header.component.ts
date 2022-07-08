@@ -1,11 +1,10 @@
-import { takeUntil } from 'rxjs/operators';
-import { Observable, of, Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users-type';
-import { map } from 'rxjs/operators';
-import { ResumeService } from 'src/app/services/resume.service';
+import {map} from 'rxjs/operators';
+import {Observable, of, Subject} from 'rxjs';
+import {Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {ResumeService} from 'src/app/services/resume.service';
 
 @Component({
   selector: 'cv-header',

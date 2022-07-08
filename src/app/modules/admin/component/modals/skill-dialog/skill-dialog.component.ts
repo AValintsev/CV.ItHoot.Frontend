@@ -1,18 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
-import { ResumeSkillDto } from 'src/app/models/resume/resume-skill-dto';
-import { DialogType } from 'src/app/models/enums';
-import { SkillDto } from 'src/app/models/skill/skill-dto';
-import { SkillService } from 'src/app/services/skill.service';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {FormControl} from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap,} from 'rxjs/operators';
+import {ResumeSkillDto} from 'src/app/models/resume/resume-skill-dto';
+import {DialogType} from 'src/app/models/enums';
+import {SkillDto} from 'src/app/models/skill/skill-dto';
+import {SkillService} from 'src/app/services/skill.service';
 
 @Component({
   selector: 'cv-skill-dialog',
@@ -27,7 +21,13 @@ export class SkillDialog implements OnInit, OnDestroy {
   myControl = new FormControl();
   filteredOptions: Observable<SkillDto[]>;
 
-  ngOnInit() {}
+  @ViewChild('input') input:any;
+
+  ngOnInit() {
+      setTimeout(()=>{ // this will make the execution after the above boolean has changed
+        this.input.nativeElement.focus();
+      },300);
+  }
 
   constructor(
     private skillService: SkillService,
@@ -56,6 +56,8 @@ export class SkillDialog implements OnInit, OnDestroy {
       })
     );
   }
+
+
 
   skillSelected(option: any) {
     this.skill.skillName = option.name;

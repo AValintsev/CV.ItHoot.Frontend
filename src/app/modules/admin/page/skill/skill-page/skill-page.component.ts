@@ -1,13 +1,14 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-import { SkillService } from 'src/app/services/skill.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { SkillDialogComponent } from '../skill-dialog/skill-dialog.component';
-import { SkillDto } from '../../../../../models/skill/skill-dto';
-import { DialogType } from '../../../../../models/enums';
+import {MatDialog} from '@angular/material/dialog';
+import {SkillService} from 'src/app/services/skill.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {SkillDialogComponent} from '../skill-dialog/skill-dialog.component';
+import {SkillDto} from '../../../../../models/skill/skill-dto';
+import {DialogType} from '../../../../../models/enums';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'app-language-page',
@@ -23,7 +24,8 @@ export class SkillPageComponent implements OnInit, OnDestroy {
   constructor(
     private skillService: SkillService,
     public dialog: MatDialog,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private deleteModalService: DeleteModalService
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +69,10 @@ export class SkillPageComponent implements OnInit, OnDestroy {
   }
 
   deleteSkill(skill: SkillDto) {
-    this.skillService.deleteSkill(skill).pipe(
+    this.deleteModalService.matModal('Do you want to delete your resume?').subscribe({
+      next: (response) => {
+        if (response) {
+      this.skillService.deleteSkill(skill).pipe(
 		takeUntil(this.destroy$)
 	  ).subscribe({
       next: () => {
@@ -80,6 +85,12 @@ export class SkillPageComponent implements OnInit, OnDestroy {
       },
       error: () => this.snackBar.showDanger('Something went wrong'),
     });
+        }
+        return false;
+      },
+      error: (error) => { },
+    });
+   
   }
 
   openSkillDialog(skill: SkillDto | null = null): void {

@@ -1,18 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
-import { LanguageService } from '../../../services/language.service';
-import { ResumeLanguageDto } from '../../../models/resume/resume-language-dto';
-import { DialogType } from '../../../models/enums';
-import { LanguageDto } from '../../../models/language/language-dto';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {FormControl} from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap,} from 'rxjs/operators';
+import {LanguageService} from '../../../services/language.service';
+import {ResumeLanguageDto} from '../../../models/resume/resume-language-dto';
+import {DialogType} from '../../../models/enums';
+import {LanguageDto} from '../../../models/language/language-dto';
 
 @Component({
   selector: 'cv-language-dialog',
@@ -27,7 +21,14 @@ export class LanguageDialog implements OnInit, OnDestroy {
   myControl = new FormControl();
   filteredOptions: Observable<LanguageDto[]>;
 
-  ngOnInit() {}
+  @ViewChild('input') input:any;
+
+
+  ngOnInit() {
+    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+      this.input.nativeElement.focus();
+    },300);
+  }
 
   constructor(
     private languageService: LanguageService,

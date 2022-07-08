@@ -1,13 +1,9 @@
-import { debounceTime } from 'rxjs/operators';
-import { ResumeService } from './../../../../services/resume.service';
-import { map, takeUntil, delay } from 'rxjs/operators';
-import { ClientProposalService } from '../../../../services/client/client-proposal.service';
-import { switchMap, tap } from 'rxjs/operators';
-import { ProposalService } from '../../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
-import { Subject } from 'rxjs';
+import {debounceTime, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {ClientProposalService} from '../../../../services/client/client-proposal.service';
+import {ProposalService} from '../../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Subject} from 'rxjs';
 import panzoom from 'panzoom';
 
 @Component({
@@ -17,7 +13,7 @@ import panzoom from 'panzoom';
 })
 export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
 
-  @ViewChild('doc') doc!: ElementRef;
+  @ViewChild('resume') resume!: ElementRef;
   private destroy$ = new Subject<boolean>();
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -55,8 +51,8 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
       .subscribe({
         next: (response) => {
           if (response) {
-            this.doc.nativeElement.innerHTML = response.html;
-            const zoom = panzoom(document.getElementById('doc')!, {
+            this.resume.nativeElement.innerHTML = response.html;
+            const zoom = panzoom(document.getElementById('resume')!, {
               minZoom: 0.3,
               maxZoom: 3.5,
               bounds: true,

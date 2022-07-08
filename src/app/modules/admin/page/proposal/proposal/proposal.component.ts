@@ -15,6 +15,7 @@ import { ProposalSettingDialogComponent } from '../proposal-setting-dialog/propo
 import { ProposalAddResumeDialogComponent } from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
 import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
 import { StatusProposal } from '../../../../../models/enums';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'proposal',
@@ -33,11 +34,13 @@ export class ProposalComponent implements OnInit, OnDestroy {
     'action',
   ];
   @Input() proposal!: ProposalDto;
+  @Input() url!: string;
   StatusResume = StatusProposalResume;
   loading: boolean = false;
 
   constructor(
     private proposalService: ProposalService,
+    private deleteModalService: DeleteModalService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
     private snackBarService: SnackBarService,
@@ -53,18 +56,20 @@ export class ProposalComponent implements OnInit, OnDestroy {
       data: this.proposal,
     });
 
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((proposal: ProposalDto) => {
-      if (proposal == null) return;
-      proposal.clientId = proposal.client.userId;
-      this.proposalService.updateProposal(proposal).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((proposal) => {
-        this.proposal = proposal;
-        this.snackBarService.showSuccess('Updated');
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((proposal: ProposalDto) => {
+        if (proposal == null) return;
+        proposal.clientId = proposal.client.userId;
+        this.proposalService
+          .updateProposal(proposal)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((proposal) => {
+            this.proposal = proposal;
+            this.snackBarService.showSuccess('Updated');
+          });
       });
-    });
   }
 
   openResumeDialog(): void {
@@ -73,34 +78,47 @@ export class ProposalComponent implements OnInit, OnDestroy {
       width: '500px',
     });
 
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((resume: SmallResumeDto) => {
-      if (resume == null) return;
-      this.proposal.resumes.push({ resumeId: resume.id } as ProposalResumeDto);
-      this.proposal.clientId = this.proposal.client.userId;
-      this.proposalService
-        .updateProposal(this.proposal).pipe(
-          takeUntil(this.destroy$)
-        )
-        .subscribe((proposal) => {
-          this.proposal = proposal;
-          this.snackBarService.showSuccess('Added');
-        });
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((resume: SmallResumeDto) => {
+        if (resume == null) return;
+        this.proposal.resumes.push({
+          resumeId: resume.id,
+        } as ProposalResumeDto);
+        this.proposal.clientId = this.proposal.client.userId;
+        this.proposalService
+          .updateProposal(this.proposal)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((proposal) => {
+            this.proposal = proposal;
+            this.snackBarService.showSuccess('Added');
+          });
+      });
   }
 
   deleteResume(resume: ProposalResumeDto) {
-    const id = this.proposal.resumes.indexOf(resume);
-    this.proposal.resumes = this.proposal.resumes.filter(
-      (item, index) => index !== id
-    );
-    this.proposal.clientId = this.proposal.client.userId;
-    this.proposalService.updateProposal(this.proposal).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.snackBarService.showSuccess('Removed');
-    });
+    this.deleteModalService
+      .matModal('Do you want to remove resume?')
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            const id = this.proposal.resumes.indexOf(resume);
+            this.proposal.resumes = this.proposal.resumes.filter(
+              (item, index) => index !== id
+            );
+            this.proposal.clientId = this.proposal.client.userId;
+            this.proposalService
+              .updateProposal(this.proposal)
+              .pipe(takeUntil(this.destroy$))
+              .subscribe(() => {
+                this.snackBarService.showSuccess('Removed');
+              });
+          }
+          return false;
+        },
+        error: (error) => {},
+      });
   }
 
   getStatusProposal(status: StatusProposal): string {
@@ -128,8 +146,9 @@ export class ProposalComponent implements OnInit, OnDestroy {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value =
-    selBox.value = window.location.origin+`/account/${this.proposal.client.shortAuthUrl}/${this.proposal.id}`;
+    selBox.value = selBox.value =
+      window.location.origin +
+      `/account/${this.proposal.client.shortAuthUrl}/${this.proposal.id}`;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
@@ -144,7 +163,8 @@ export class ProposalComponent implements OnInit, OnDestroy {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = window.location.origin + `/proposals/resume/${resume.shortUrl}`;
+    selBox.value =
+      window.location.origin + `/proposals/resume/${resume.shortUrl}`;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
@@ -152,8 +172,8 @@ export class ProposalComponent implements OnInit, OnDestroy {
     document.body.removeChild(selBox);
     this.snackBarService.showSuccess('Link copied');
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

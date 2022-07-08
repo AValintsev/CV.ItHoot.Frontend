@@ -3,8 +3,8 @@ import {Observable} from 'rxjs';
 import {HttpInternalService} from "./http-internal.service";
 import {SmallProposalDto} from "../models/proposal/small-proposal-dto";
 import {ProposalApprove, ProposalDto} from "../models/proposal/proposal-dto";
-import { ProposalListFilter } from 'src/app/models/proposal/proposal-list-filter';
-import { PagedResponse } from 'src/app/models/paginations/paged-response';
+import {ProposalListFilter} from 'src/app/models/proposal/proposal-list-filter';
+import {PagedResponse} from 'src/app/models/paginations/paged-response';
 
 
 @Injectable({providedIn: 'root'})
@@ -38,13 +38,13 @@ export class ProposalService {
 
       let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
                         `&order=${filters.order ?? ''}&page=${pageNumber}&pageSize=${filters.pageSize}`;
-      
+
       if (filters.clients) {
         filters.clients.forEach(item => {
           requestUrl = `${requestUrl}&clients=${item}`
         });
       }
-      
+
       if(filters.statuses) {
         filters.statuses.forEach(item => {
           requestUrl = `${requestUrl}&statuses=${item}`
@@ -69,13 +69,13 @@ export class ProposalService {
       }
       let requestUrl = `${this.routePrefix}/archive?term=${filters.term ?? ''}&sort=${filters.sort ?? ''}`+
                         `&order=${filters.order ?? ''}&page=${pageNumber}&pageSize=${filters.pageSize}`;
-      
+
       if (filters.clients) {
         filters.clients.forEach(item => {
           requestUrl = `${requestUrl}&clients=${item}`
         });
       }
-      
+
       if(filters.statuses) {
         filters.statuses.forEach(item => {
           requestUrl = `${requestUrl}&statuses=${item}`

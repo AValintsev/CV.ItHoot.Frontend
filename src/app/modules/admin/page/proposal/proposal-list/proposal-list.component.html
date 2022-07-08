@@ -11,7 +11,7 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Client filter</mat-label>
-            <mat-select [formControl]="clientsControl" multiple="true" #clientsMultiSelect>
+            <mat-select [formControl]="clientsControl" multiple="true" #clientsMultiSelect >
               <mat-option>
                 <ngx-mat-select-search [formControl]="clientFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
               </mat-option>
@@ -22,7 +22,7 @@
           </mat-form-field>
           <mat-form-field appearance="fill" *ngIf="!hideStatusFiter">
             <mat-label>Status filter</mat-label>
-            <mat-select [formControl]="statusesControl" multiple="true" #statusMultiSelect>
+            <mat-select [formControl]="statusesControl" multiple="true" #statusMultiSelect disableOptionCentering>
               <mat-option>
                 <ngx-mat-select-search [formControl]="statusesFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
               </mat-option>
@@ -129,7 +129,7 @@
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let proposal">
           <div class="action-wrapper">
-            <button class="edit" routerLink='/admin/proposals/{{proposal.id}}'>Open</button>
+            <button class="edit" routerLink='{{url}}/proposals/{{proposal.id}}'>Open</button>
           </div>
         </td>
       </ng-container>

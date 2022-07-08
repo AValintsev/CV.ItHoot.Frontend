@@ -19,7 +19,14 @@
             [disabled]="!resumeEditForm.valid"
             (click)="submit(resumeEditForm.value)"
           >
-            Edit
+            Save
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            routerLink="/home/cv/user-list"
+          >
+            Cancel
           </button>
         </div>
       </form>

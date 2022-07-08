@@ -1,9 +1,9 @@
-import { takeUntil, map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SmallProposalDto } from '../../../../../../models/proposal/small-proposal-dto';
-import { ProposalService } from '../../../../../../services/proposal.service';
-import { ProposalListFilter } from '../../../../../../models/proposal/proposal-list-filter';
+import {map, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {SmallProposalDto} from '../../../../../../models/proposal/small-proposal-dto';
+import {ProposalService} from '../../../../../../services/proposal.service';
+import {ProposalListFilter} from '../../../../../../models/proposal/proposal-list-filter';
 
 @Component({
   selector: 'proposal-list-page',
@@ -14,7 +14,7 @@ export class ProposalListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;
-
+  url = '/admin/'
   isLoadingResults = true;
   isRateLimitReached = false;
 

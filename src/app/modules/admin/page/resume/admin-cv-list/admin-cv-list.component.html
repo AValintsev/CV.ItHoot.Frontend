@@ -72,10 +72,10 @@
         <td mat-cell *matCellDef="let resume">
           <div class="action-wrapper">
             <button  [disabled]="resume.deletedAt !== null" class="pdf" (click)="getResumePdf(resume)">PDF</button>
-<!--            <button class="docx">DocX</button>-->
-            <button   class="open admin-btn" routerLink="/admin/resume/{{resume.id}}">Open</button>
-            <button  [disabled]="resume.deletedAt !== null" class="edit admin-btn" routerLink="/admin/resume/edit/{{resume.id}}">Edit</button>
-            <button *ngIf="resume.deletedAt == null; else recoverButton" class="delete admin-btn" (click)="deleteResume(resume)">Delete</button>
+            <!--            <button class="docx">DocX</button>-->
+                        <button   class="open admin-btn" routerLink="{{url}}/resume/{{resume.id}}">Open</button>
+                        <button  [disabled]="resume.deletedAt !== null" class="edit admin-btn" routerLink="{{url}}resume/edit/{{resume.id}}">Edit</button>
+                        <button *ngIf="resume.deletedAt == null; else recoverButton" class="delete admin-btn" (click)="deleteResume(resume)">Delete</button>
             <ng-template #recoverButton><button class="recover" (click)="recoverResume(resume)">Recover</button></ng-template>
           </div>
         </td>

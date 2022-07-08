@@ -1,12 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LanguageService } from 'src/app/services/language.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { LanguageDialogComponent } from '../language-dialog/language-dialog.component';
-import { LanguageDto } from '../../../../../models/language/language-dto';
-import { DialogType } from '../../../../../models/enums';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {LanguageService} from 'src/app/services/language.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {LanguageDialogComponent} from '../language-dialog/language-dialog.component';
+import {LanguageDto} from '../../../../../models/language/language-dto';
+import {DialogType} from '../../../../../models/enums';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'app-language-page',
@@ -22,7 +23,8 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
   constructor(
     private languageService: LanguageService,
     private dialog: MatDialog,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private deleteModalService: DeleteModalService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +66,10 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
   }
 
   deleteLanguage(skill: LanguageDto) {
-    this.languageService.deleteLanguage(skill).subscribe({
+    this.deleteModalService.matModal('Do you want to delete lenguage?').subscribe({
+      next: (response) => {
+        if (response) {
+       this.languageService.deleteLanguage(skill).subscribe({
       next: () => {
         this.snackBar.showSuccess('Deleted');
         this.languageService
@@ -75,6 +80,12 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
       },
       error: () => this.snackBar.showDanger('Something went wrong'),
     });
+        }
+        return false;
+      },
+      error: (error) => { },
+    });
+  
   }
 
   openLanguageDialog(language: LanguageDto | null = null): void {

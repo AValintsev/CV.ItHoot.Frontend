@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'cv-loader',

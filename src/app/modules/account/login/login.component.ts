@@ -1,11 +1,11 @@
-import { takeUntil } from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { interval, Observable, Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import {LoadingService} from 'src/app/services/loading.service';
 
 
 @Component({

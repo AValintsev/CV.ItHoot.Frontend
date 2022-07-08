@@ -1,18 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SkillService } from '../../../services/skill.service';
-import { FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
-import { ResumeSkillDto } from '../../../models/resume/resume-skill-dto';
-import { SkillDto } from '../../../models/skill/skill-dto';
-import { DialogType } from '../../../models/enums';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {SkillService} from '../../../services/skill.service';
+import {FormControl} from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap,} from 'rxjs/operators';
+import {ResumeSkillDto} from '../../../models/resume/resume-skill-dto';
+import {SkillDto} from '../../../models/skill/skill-dto';
+import {DialogType} from '../../../models/enums';
 
 @Component({
   selector: 'cv-skill-dialog',
@@ -26,8 +20,14 @@ export class SkillDialog implements OnInit, OnDestroy {
   DialogType = DialogType;
   myControl = new FormControl();
   filteredOptions: Observable<SkillDto[]>;
+  @ViewChild('input') input:any;
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+      this.input.nativeElement.focus();
+    },300);
+  }
 
   constructor(
     private skillService: SkillService,

@@ -1,11 +1,11 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { ResumeService } from '../../../../../services/resume.service';
-import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
-import { PositionDto } from '../../../../../models/position/position-dto';
-import { PositionService } from '../../../../../services/position.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {ResumeService} from '../../../../../services/resume.service';
+import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
+import {PositionDto} from '../../../../../models/position/position-dto';
+import {PositionService} from '../../../../../services/position.service';
 
 @Component({
   selector: 'proposal-add-resume-dialog',

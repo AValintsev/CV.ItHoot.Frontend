@@ -1,4 +1,4 @@
-import { takeUntil } from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {AccountService} from '../../../services/account.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -7,8 +7,8 @@ import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Users} from 'src/app/models/users-type';
-import {map} from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {Subject} from 'rxjs';
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-create-page',
@@ -25,6 +25,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     private router: Router,
     private accountService: AccountService,
     private activatedRoute:ActivatedRoute,
+    private userHeaderBtnService:UserHeaderBtnService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +36,13 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
     this.getFieldDate()
+    this.setHeaderBtn(['back','menu-list'])
   }
+
+  setHeaderBtn(params:string[]){
+    this.userHeaderBtnService.setBTNs(params)
+  }
+
   private getFieldDate() {
     this.activatedRoute.queryParams.pipe(
       takeUntil(this.destroy$),
@@ -82,7 +89,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       ]),
       site: new FormControl(this.resumeCreateDto.site),
       phone: new FormControl(this.resumeCreateDto.phone, [
-        Validators.pattern('[- +()0-9]+')
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10)
       ]),
       code: new FormControl(this.resumeCreateDto.code),
       country: new FormControl(this.resumeCreateDto.country, [
@@ -103,6 +110,10 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       aboutMe: new FormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required
       ]),
+      resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
+        Validators.required
+      ]),
+      imageId:  new FormControl(this.resumeCreateDto.imageId),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -128,6 +139,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.resumeCreateForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeCreateForm.patchValue({ picture: resume.picture });
     this.resumeCreateForm.patchValue({ position: resume.position });
+    this.resumeCreateForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
     resume.skills?.forEach(skill => {
       (<FormArray>this.resumeCreateForm.controls["skills"])
         .push(new FormGroup({

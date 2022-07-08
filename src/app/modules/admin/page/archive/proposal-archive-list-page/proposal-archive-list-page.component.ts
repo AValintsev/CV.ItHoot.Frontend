@@ -1,9 +1,9 @@
-import { takeUntil, map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProposalListFilter } from 'src/app/models/proposal/proposal-list-filter';
-import { SmallProposalDto } from '../../../../../models/proposal/small-proposal-dto';
-import { ProposalService } from '../../../../../services/proposal.service';
+import {map, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ProposalListFilter} from 'src/app/models/proposal/proposal-list-filter';
+import {SmallProposalDto} from '../../../../../models/proposal/small-proposal-dto';
+import {ProposalService} from '../../../../../services/proposal.service';
 
 @Component({
   selector: 'proposal-archive-list-page',
@@ -14,7 +14,7 @@ export class ProposalArchiveListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;
-
+  url = '/admin/archive/';
   isLoadingResults = true;
   isRateLimitReached = false;
 

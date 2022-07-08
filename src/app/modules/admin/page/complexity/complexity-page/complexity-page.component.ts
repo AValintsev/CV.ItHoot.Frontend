@@ -1,12 +1,13 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { ComplexityService } from '../../../../../services/complexity.service';
-import { ProposalBuildComplexityDto } from '../../../../../models/proposal-build/proposal-build-complexity-dto';
-import { DialogType } from '../../../../../models/enums';
-import { ComplexityDialogComponent } from '../complexity-dialog/complexity-dialog.component';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {ComplexityService} from '../../../../../services/complexity.service';
+import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import {DialogType} from '../../../../../models/enums';
+import {ComplexityDialogComponent} from '../complexity-dialog/complexity-dialog.component';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'cv-complexity-page',
@@ -22,7 +23,8 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
   constructor(
     private complexityService: ComplexityService,
     public dialog: MatDialog,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private deleteModalService: DeleteModalService
   ) {
     this.complexityService
       .getAllComplexities().pipe(
@@ -60,7 +62,10 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
   }
 
   deleteComplexity(complexity: ProposalBuildComplexityDto) {
-    this.complexityService.deleteComplexity(complexity).pipe(
+    this.deleteModalService.matModal('Do you want to delete your resume?').subscribe({
+      next: (response) => {
+        if (response) {
+        this.complexityService.deleteComplexity(complexity).pipe(
       takeUntil(this.destroy$)
     ).subscribe(() => {
       this.snackBar.showSuccess('Deleted');
@@ -70,6 +75,12 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
         )
         .subscribe((complexities) => (this.complexities = complexities));
     });
+        }
+        return false;
+      },
+      error: (error) => { },
+    });
+ 
   }
 
   openComplexityDialog(complexity: ProposalBuildComplexityDto | null = null) {

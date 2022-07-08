@@ -1,3 +1,4 @@
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
 import {ProposalCreateDialogComponent} from './proposal-create-dialog/proposal-create-dialog.component';
@@ -33,9 +34,10 @@ import {ResumePageComponent} from "./page/resume-page/resume-page.component";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { ProposalSalaryDialogComponent } from './proposal-salary-dialog/proposal-salary-dialog.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-salary-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {DirectivesModule} from "../../../shared/directives/directives.module";
 
 
 @NgModule({
@@ -73,12 +75,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatPaginatorModule,
     MatSortModule,
     NgxMatSelectSearchModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxMatSelectSearchModule,
+    DirectivesModule,
   ],
   exports: [
     ProposalListPageComponent,
     DateUtcPipe,
-    ProposalListComponent
+    ProposalListComponent,
+    ProposalComponent,
   ],
   declarations: [
     DateUtcPipe,
@@ -93,7 +98,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
-  ]
+  ],
+  providers:[DeleteModalService]
 })
 
 export class ProposalModule {

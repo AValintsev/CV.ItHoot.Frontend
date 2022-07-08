@@ -1,9 +1,7 @@
-import {takeUntil} from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Users} from 'src/app/models/users-type';
-import {map} from 'rxjs/operators';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
@@ -85,7 +83,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeCreateDto.site),
       phone: new FormControl(this.resumeCreateDto.phone, [
-        Validators.pattern('[- +()0-9]+'),
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeCreateDto.code),
       country: new FormControl(this.resumeCreateDto.country, [
@@ -98,12 +96,16 @@ export class CreatePageComponent implements OnInit, OnDestroy {
       requiredPosition: new FormControl(this.resumeCreateDto.requiredPosition, [
         Validators.required,
       ]),
-      birthdate: new FormControl(this.resumeCreateDto.requiredPosition, [
+      birthdate: new FormControl(this.resumeCreateDto.birthdate, [
         Validators.required,
       ]),
-      aboutMe: new FormControl(this.resumeCreateDto.requiredPosition, [
+      aboutMe: new FormControl(this.resumeCreateDto.aboutMe, [
         Validators.required,
       ]),
+      resumeTemplateId: new FormControl(this.resumeCreateDto.resumeTemplateId, [
+        Validators.required,
+      ]),
+      imageId:  new FormControl(this.resumeCreateDto.imageId),
       salaryRate: new FormControl(this.resumeCreateDto?.salaryRate),
       availabilityStatus: new FormControl(this.resumeCreateDto?.availabilityStatus),
       countDaysUnavailable: new FormControl(this.resumeCreateDto?.countDaysUnavailable),
@@ -132,6 +134,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     this.resumeCreateForm.patchValue({picture: resume.picture});
     this.resumeCreateForm.patchValue({position: resume.position});
     this.resumeCreateForm.patchValue({salaryRate: resume.salaryRate});
+    this.resumeCreateForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
     this.resumeCreateForm.patchValue({availabilityStatus: resume.availabilityStatus});
     this.resumeCreateForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
 
@@ -164,7 +167,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
           id: new FormControl(education.id),
           institutionName: new FormControl(education.institutionName),
           specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description),
+          description: new FormControl(education.description,),
           degree: new FormControl(education.degree),
           startDate: new FormControl(education.startDate),
           endDate: new FormControl(education.endDate),

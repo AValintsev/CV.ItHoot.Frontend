@@ -1,0 +1,27 @@
+.html-template{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 70vh;
+
+
+  mat-form-field{
+    padding: 10px;
+
+    mat-label{
+      font-size: 1.3em;
+    }
+    textarea{
+      min-width: 700px;
+      height: 50vh;
+    }
+  }
+
+  button{
+    align-self: flex-end;
+    background: #3C6F9E;
+    color: white;
+  }
+
+}

@@ -7,10 +7,16 @@
       <cv-cv-create-left-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></cv-cv-create-left-bar>
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
-          (click)="submit(resumeCreateForm.value)">Create</button>
+          (click)="submit(resumeCreateForm.value)">Save</button>
+          <button
+          mat-raised-button
+          color="accent"
+          routerLink="/home/cv/user-list"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>
-  <!-- <cv-cv-template [resumeEditForm]="templateForm"></cv-cv-template> -->
 </div>
 </div>

@@ -1,11 +1,11 @@
-import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import {takeUntil} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {LoadingService} from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-register',

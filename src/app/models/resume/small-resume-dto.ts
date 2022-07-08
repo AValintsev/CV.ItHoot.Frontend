@@ -1,4 +1,4 @@
-import { AvailabilityStatus } from "../enums";
+import {AvailabilityStatus} from "../enums";
 import {SkillDto} from "../skill/skill-dto";
 
 export interface SmallResumeDto{

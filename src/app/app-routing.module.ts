@@ -1,16 +1,16 @@
-import { Users } from './models/users-type';
-import { UsersGuard } from './guards/users.guard';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RoleGuard } from './guards/role.guard';
+import {Users} from './models/users-type';
+import {UsersGuard} from './guards/users.guard';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {RoleGuard} from './guards/role.guard';
 import {
   ProposalResumeDownloadPageComponent
 } from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
-import { ResumeFullSwitcherComponent } from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
-
+import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
 
 
 const routes: Routes = [
+  
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
     canLoad: [UsersGuard],
@@ -22,15 +22,15 @@ const routes: Routes = [
     // canLoad: [CanLoginingGuard]
   },
   {
-    path: '',
-    canActivate: [RoleGuard],
-    children: []
-  },
-  {
     path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
     canLoad: [UsersGuard],
     canActivate: [UsersGuard],
     data: { role: [Users[2]] }
+  },  
+  {
+    path: '',
+    canActivate: [RoleGuard],
+    children: []
   },
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
@@ -38,6 +38,7 @@ const routes: Routes = [
     canActivate: [UsersGuard],
     data: { role: [Users[3]] }
   },
+
   {
     path: 'proposals/:proposalId/resume/:resumeId',
     component: ResumeFullSwitcherComponent
@@ -53,7 +54,8 @@ const routes: Routes = [
   {
     path : 'proposals/resume/:shortUrl/pdf',
     component: ProposalResumeDownloadPageComponent
-  }
+  },
+ 
 ];
 
 @NgModule({
@@ -63,3 +65,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

@@ -1,19 +1,12 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../../../../../services/user.service';
-import { ResumeService } from '../../../../../services/resume.service';
-import { ProposalDto } from '../../../../../models/proposal/proposal-dto';
-import { UserDto } from '../../../../../models/user-dto';
-import { ResumeTemplateDto } from '../../../../../models/resume/resume-template-dto';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {UserService} from '../../../../../services/user.service';
+import {ResumeService} from '../../../../../services/resume.service';
+import {ProposalDto} from '../../../../../models/proposal/proposal-dto';
+import {UserDto} from '../../../../../models/user-dto';
+import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
 
 @Component({
   selector: 'proposal-setting-dialog',

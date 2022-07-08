@@ -1,10 +1,10 @@
 import {Router} from '@angular/router';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import { catchError, filter, switchMap, take, finalize } from 'rxjs/operators';
+import {catchError, filter, finalize, switchMap, take} from 'rxjs/operators';
 import {AccountService} from 'src/app/services/account.service';
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import { LoadingService } from '../services/loading.service';
+import {LoadingService} from '../services/loading.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

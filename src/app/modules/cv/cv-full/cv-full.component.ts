@@ -1,11 +1,12 @@
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResumeService } from 'src/app/services/resume.service';
-import { map } from 'rxjs/operators';
 import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
 import { Subject } from 'rxjs';
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
+import { HttpResponseBase } from '@angular/common/http';
 
 
 @Component({
@@ -17,11 +18,13 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   private destroy$ = new Subject<boolean>();
   @Input() id: number = 0;
   resume!: ResumeDto;
-  @ViewChild('doc', { static: false }) doc!: ElementRef;
+  @ViewChild('resume') resumeHtml!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
-    private resumeService: ResumeService) {
+    private resumeService: ResumeService,
+    private userHeaderBtnService: UserHeaderBtnService
+  ) {
 
   }
   ngOnInit(): void {
@@ -29,18 +32,37 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
       this.resumeService.getResumeHtmlById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
-        this.doc.nativeElement.innerHTML = resume.html;
+        this.resumeHtml.nativeElement.innerHTML = resume.html;
+        this.resumeService.getResumeById(id).pipe(
+          takeUntil(this.destroy$)
+        ).subscribe({
+          next: response => {
+            if (response) {
+              this.userHeaderBtnService.setUserData({
+                id: response.id,
+                firstName: response.firstName,
+                lastName: response.lastName
+              })
+            }
+          },
+          error: error => console.log(error)
+        })
       });
     });
+    this.setHeaderBtn(['back', 'create', 'menu-list'])
+  }
+
+  setHeaderBtn(params: string[]) {
+    this.userHeaderBtnService.setBTNs(params)
   }
 
   ngAfterViewInit(): void {
-    const zoom = panzoom(this.doc.nativeElement, {
+    const zoom = panzoom(this.resumeHtml.nativeElement, {
       minZoom: 0.3,
       maxZoom: 1.3,
       bounds: true,
       disableKeyboardInteraction: true,
-      boundsPadding: 0.2
+      boundsPadding: 0.1
     });
   }
   ngOnDestroy() {

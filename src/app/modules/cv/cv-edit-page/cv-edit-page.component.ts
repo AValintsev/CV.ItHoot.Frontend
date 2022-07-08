@@ -1,14 +1,14 @@
-import { takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ResumeService } from '../../../services/resume.service';
-import { SnackBarService } from '../../../services/snack-bar.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from 'src/app/models/users-type';
-import { ResumeDto } from '../../../models/resume/resume-dto';
-import { Subject } from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ResumeService} from '../../../services/resume.service';
+import {SnackBarService} from '../../../services/snack-bar.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
+import {ResumeDto} from '../../../models/resume/resume-dto';
+import {Subject} from 'rxjs';
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -26,21 +26,42 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private userHeaderBtnService:UserHeaderBtnService
   ) {}
 
   ngOnInit(): void {
     this.validateForm();
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+    this.setDataDependentToId()
+    this.changeFormDate();
+    this.setHeaderBtn(['back','create','menu-list'])
+  }
+ setDataDependentToId(){
+   this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).pipe(
         takeUntil(this.destroy$)
       ).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
+        this.resumeService.getResumeById(id).pipe(
+          takeUntil(this.destroy$)
+        ).subscribe({
+          next: response => {
+            if (response) {
+              this.userHeaderBtnService.setUserData({
+                id: response.id,
+                firstName: response.firstName,
+                lastName: response.lastName
+              })
+            }
+          },
+          error: error => console.log(error)
+        })
       });
     });
-
-    this.changeFormDate();
+ }
+  setHeaderBtn(params:string[]){
+    this.userHeaderBtnService.setBTNs(params)
   }
   private changeFormDate() {
     this.resumeEditForm.valueChanges.pipe(
@@ -61,13 +82,12 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     this.resumeEditForm.patchValue({ country: resume.country });
     this.resumeEditForm.patchValue({ city: resume.city });
     this.resumeEditForm.patchValue({ street: resume.street });
-    this.resumeEditForm.patchValue({
-      requiredPosition: resume.requiredPosition,
-    });
+    this.resumeEditForm.patchValue({requiredPosition: resume.requiredPosition,});
     this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
     this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
     this.resumeEditForm.patchValue({ picture: resume.picture });
     this.resumeEditForm.patchValue({ position: resume.position });
+    this.resumeEditForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
 
     resume.skills?.forEach((skill) => {
       (<FormArray>this.resumeEditForm.controls['skills']).push(
@@ -143,7 +163,7 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       ]),
       site: new FormControl(this.resumeEditDto?.site),
       phone: new FormControl(this.resumeEditDto?.phone, [
-        Validators.pattern('[- +()0-9]+'),
+       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeEditDto?.code),
       country: new FormControl(this.resumeEditDto?.country, [

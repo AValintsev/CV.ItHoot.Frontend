@@ -42,10 +42,9 @@
         </ng-template>
       </div>
     </div>
-    <div class="col">
+    <div  class="col">
       <div class="user">
         <ul class="user-icons">
-
           <li matTooltip="Choose proposal" matTooltipClass="tooltip"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="16"
               viewBox="0 0 17 16" fill="none">
               <path
@@ -74,15 +73,16 @@
                 fill="#8A92A6" />
             </svg>
             <mat-form-field appearance="fill">
-              <mat-select (selectionChange)="changeProposal($event)">
+              <mat-select [disableOptionCentering]="true" (selectionChange)="changeProposal($event)">
                 <mat-option *ngFor="let proposal of proposals$|async" [value]="proposal.id">
                   {{proposal.proposalName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            
           </li>
         </ul>
-        <div class="user-content">
+        <div class="user-content large">
           <div class="user-picture img">
             <img src="assets/face.jpg" alt="user picture">
           </div>
@@ -95,7 +95,30 @@
           </ul>
         </div>
       </div>
-      <button class="logout" mat-flat-button color="warn" (click)="logout()">Logout</button>
-    </div>
+      <button class="logout large" mat-flat-button color="warn" (click)="logout()">Logout</button>
+    
+    <button [disableRipple]="true" class="small"  mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu class="change-position" #menu="matMenu">
+      <button mat-menu-item>
+        <div class="user-content">
+          <div class="user-picture img">
+            <img src="assets/face.jpg" alt="user picture">
+          </div>
+          <ul class="user-atrr">
+            <li *ngIf="clientName$|async; else userName" class="user-name">{{clientName$|async}}</li>
+            <ng-template #userName>
+              <li class="user-name">Client</li>
+            </ng-template>
+            <li class="user-role">{{accountService.getStoreRole()?accountService.getStoreRole():'User'}}</li>
+          </ul>
+        </div>
+      </button>
+      <button mat-menu-item>
+        <button style="width: 100%;" class="logout" mat-flat-button color="warn" (click)="logout()">Logout</button>
+      </button>
+    </mat-menu>
   </div>
+</div>
 </header>
