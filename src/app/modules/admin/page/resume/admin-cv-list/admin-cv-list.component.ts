@@ -267,7 +267,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._onDestroy.next();
+    this._onDestroy.next('');
     this._onDestroy.complete();
   }
 }

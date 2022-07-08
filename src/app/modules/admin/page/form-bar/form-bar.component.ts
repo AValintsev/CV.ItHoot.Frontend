@@ -1,5 +1,5 @@
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {shareReplay, takeUntil} from 'rxjs/operators';
+import {defer, Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
@@ -37,6 +37,7 @@ export class FormBarComponent implements OnInit {
 
   file: File | null = null;
   positions!: PositionDto[];
+
 
 
   constructor(
