@@ -93,7 +93,7 @@ export class ProposalService {
     return this.httpService.getRequest<any>(this.routePrefix+`/${proposalId}/resume/${resumeId}/html`);
   }
 
-  public getProposalResumeHtmlByUrl(shortUrl:string):Observable<any>{
+  public getProposalResumeByUrl(shortUrl:string):Observable<any>{
     return this.httpService.getRequest<any>(this.routePrefix+`/resume/${shortUrl}`);
   }
 

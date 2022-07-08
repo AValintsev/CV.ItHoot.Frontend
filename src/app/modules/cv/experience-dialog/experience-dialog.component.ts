@@ -1,6 +1,6 @@
 import {Subject} from 'rxjs';
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ExperienceDto} from '../../../models/resume/experience-dto';
 import {DialogType} from '../../../models/enums';
@@ -40,26 +40,26 @@ export class ExperienceDialog implements OnInit, OnDestroy {
   experience: ExperienceDto = {} as ExperienceDto;
   typeDialog: DialogType;
   DialogType = DialogType;
-  experienceForm: FormGroup = {} as FormGroup;
+  experienceForm: UntypedFormGroup = {} as UntypedFormGroup;
   maxDate = new Date(Date.now());
   ngOnInit() {
     this.validateForm();
   }
 
   validateForm() {
-    this.experienceForm = new FormGroup({
-      id: new FormControl(this.experience.id),
-      company: new FormControl(this.experience.company, [Validators.required]),
-      position: new FormControl(this.experience.position, [
+    this.experienceForm = new UntypedFormGroup({
+      id: new UntypedFormControl(this.experience.id),
+      company: new UntypedFormControl(this.experience.company, [Validators.required]),
+      position: new UntypedFormControl(this.experience.position, [
         Validators.required,
       ]),
-      description: new FormControl(this.experience.description, [
+      description: new UntypedFormControl(this.experience.description, [
         Validators.required,
       ]),
-      startDate: new FormControl(this.experience.startDate, [
+      startDate: new UntypedFormControl(this.experience.startDate, [
         Validators.required,
       ]),
-      endDate: new FormControl(this.checkDataTypeFormControl(this.typeDialog), [
+      endDate: new UntypedFormControl(this.checkDataTypeFormControl(this.typeDialog), [
         Validators.required,
         UserValidators.checkValidEndDateExperience(this),
       ]),
@@ -70,7 +70,7 @@ export class ExperienceDialog implements OnInit, OnDestroy {
     this.typeDialog = data.type;
     this.experience = data.data;
   }
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
   checkDataTypeFormControl(type: DialogType) {
     if (type === DialogType.Create) {
       return moment();

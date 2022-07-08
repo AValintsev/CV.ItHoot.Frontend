@@ -1,4 +1,3 @@
-import { DeleteModalService } from './../../../../services/delete-modal.service';
 import {ModalDeleteUserModule} from '../../../shared/modals/modal-delete-user/modal-delete-user.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -16,11 +15,12 @@ import {FooterModule} from '../../shared/footer/footer.module';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ProposalComponent} from '../proposal/proposal.component';
 import {UsersGuard} from 'src/app/guards/users.guard';
 import {Users} from 'src/app/models/users-type';
 import {LoaderModule} from 'src/app/modules/shared/components/loader/loader.module';
-import { ProposalComponent } from '../proposal/proposal.component';
+import {DeleteModalService} from "../../../../services/delete-modal.service";
+import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 
 
 const routes: Routes = [
@@ -60,7 +60,6 @@ const routes: Routes = [
     FooterModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    FontAwesomeModule,
     HeaderModule,
     FormsModule,
     ReactiveFormsModule,
@@ -69,6 +68,7 @@ const routes: Routes = [
     ModalDeleteUserModule,
     LoaderModule,
     RouterModule.forChild(routes),
+    TemplateBuilderModule,
   ],
   exports: [
     MainPageComponent,
@@ -76,7 +76,7 @@ const routes: Routes = [
     ResumeComponent,
   ],
   providers:[
- 
+
     DeleteModalService]
 
 })

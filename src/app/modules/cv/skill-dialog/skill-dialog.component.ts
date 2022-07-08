@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SkillService} from '../../../services/skill.service';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap,} from 'rxjs/operators';
 import {ResumeSkillDto} from '../../../models/resume/resume-skill-dto';
@@ -18,7 +18,7 @@ export class SkillDialog implements OnInit, OnDestroy {
   skill: ResumeSkillDto = {} as ResumeSkillDto;
   typeDialog: DialogType;
   DialogType = DialogType;
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   filteredOptions: Observable<SkillDto[]>;
   @ViewChild('input') input:any;
 

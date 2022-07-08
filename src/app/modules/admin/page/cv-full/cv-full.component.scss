@@ -1,12 +1,9 @@
 .resume-wrapper{
   overflow: hidden;
-  max-height: 100%;
-  max-width: 100%;
-  #resume {
-    width: 210mm;
-    min-height: 297mm;
-  }
-  #resume:hover {
+  height: 100%;
+  width: 100%;
+
+  #resumeDiv:hover {
     cursor: pointer;
   }
 

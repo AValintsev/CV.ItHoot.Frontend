@@ -1,4 +1,5 @@
 <div class="resume-wrapper">
-  <div id="resume"></div>
-  <div *ngIf="resume" id="resume-loaded"></div>
+  <div id="doc">
+    <template-builder *ngIf="resume" [resume]="resume"></template-builder>
+  </div>
 </div>

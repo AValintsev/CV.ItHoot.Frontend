@@ -1,22 +1,20 @@
 <div class="wrapper">
-<div class="container">
-  <div class="template">
-  </div>
-  <div class="create-page">
-    <div class="left-bar">
-      <cv-cv-create-left-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"></cv-cv-create-left-bar>
-      <div class="action">
-        <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
-          (click)="submit(resumeCreateForm.value)">Save</button>
-          <button
-          mat-raised-button
-          color="accent"
-          routerLink="/home/cv/user-list"
-        >
-          Cancel
-        </button>
+  <div class="container">
+    <div class="template">
+      <template-builder *ngIf="resumeCreateDto" [resume]="resumeCreateDto" [resumeChanged]="resumeChanged"
+                        [templatedChanged]="templateChanged"></template-builder>
+    </div>
+    <div class="create-page">
+      <div class="left-bar">
+        <left-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value"
+                  (templateChange)="templateChange($event)"></left-bar>
+        <div class="action">
+          <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
+                  (click)="submit(resumeCreateForm.value)">Save
+          </button>
+          <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
 import {ClientDto} from 'src/app/models/clients/client-dto';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   client: ClientDto = {} as ClientDto;
 
-  clientForm: FormGroup;
+  clientForm: UntypedFormGroup;
 
   isServerError: boolean = false;
   serverErrorMsg: string;
@@ -28,17 +28,17 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
     public clientService: ClientsService,
   ) {
     this.client = data;
-    this.clientForm = new FormGroup({
-      "firstName": new FormControl("", Validators.required),
-      "lastName": new FormControl("", Validators.required),
-      "email": new FormControl("", [
+    this.clientForm = new UntypedFormGroup({
+      "firstName": new UntypedFormControl("", Validators.required),
+      "lastName": new UntypedFormControl("", Validators.required),
+      "email": new UntypedFormControl("", [
         Validators.required,
         Validators.email
       ]),
-      "phoneNumber": new FormControl("", [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
-      "site": new FormControl("", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
-      "contacts": new FormControl(),
-      "companyName": new FormControl(),
+      "phoneNumber": new UntypedFormControl("", [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
+      "site": new UntypedFormControl("", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
+      "contacts": new UntypedFormControl(),
+      "companyName": new UntypedFormControl(),
     });
   }
 

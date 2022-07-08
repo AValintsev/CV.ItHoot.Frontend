@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
 import {ClientDto} from 'src/app/models/clients/client-dto';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   client: ClientDto = {} as ClientDto;
 
-  clientForm: FormGroup;
+  clientForm: UntypedFormGroup;
   isServerError: boolean = false;
   serverErrorMsg: string;
 
@@ -27,18 +27,18 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
     public clientService: ClientsService,
   ) {
     this.client = data;
-    this.clientForm = new FormGroup({
-      "id": new FormControl(this.client.id, Validators.required),
-      "firstName": new FormControl(this.client.firstName, Validators.required),
-      "lastName": new FormControl(this.client.lastName, Validators.required),
-      "email": new FormControl({ value: this.client.email, disabled: true }, [
+    this.clientForm = new UntypedFormGroup({
+      "id": new UntypedFormControl(this.client.id, Validators.required),
+      "firstName": new UntypedFormControl(this.client.firstName, Validators.required),
+      "lastName": new UntypedFormControl(this.client.lastName, Validators.required),
+      "email": new UntypedFormControl({ value: this.client.email, disabled: true }, [
         Validators.required,
         Validators.email
       ]),
-      "phoneNumber": new FormControl(this.client.phoneNumber, [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
-      "site": new FormControl(this.client.site, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
-      "contacts": new FormControl(this.client.contacts),
-      "companyName": new FormControl(this.client.companyName),
+      "phoneNumber": new UntypedFormControl(this.client.phoneNumber, [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
+      "site": new UntypedFormControl(this.client.site, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
+      "contacts": new UntypedFormControl(this.client.contacts),
+      "companyName": new UntypedFormControl(this.client.companyName),
     });
   }
 

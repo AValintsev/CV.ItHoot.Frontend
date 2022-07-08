@@ -53,7 +53,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -67,7 +67,9 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "buildOptimizer": false,
+              "aot": false
             },
             "development": {
               "buildOptimizer": false,
@@ -75,7 +77,8 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "aot": false
             }
           },
           "defaultConfiguration": "production"
@@ -121,6 +124,5 @@
         }
       }
     }
-  },
-  "defaultProject": "CVBuilder"
+  }
 }

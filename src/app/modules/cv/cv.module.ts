@@ -22,12 +22,11 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatDialogModule} from "@angular/material/dialog";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
-import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-switcher.component';
+import {TemplateBuilderModule} from "../shared/template-builder/template-builder.module";
 
 
 
@@ -43,9 +42,29 @@ import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-sw
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
-    ResumeFullSwitcherComponent,
   ],
   imports: [
+    CommonModule,
+    CvRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatButtonToggleModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    CvSmallModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
     CommonModule,
     // RouterModule,
     CvRoutingModule,
@@ -61,16 +80,15 @@ import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-sw
     MatOptionModule,
     MatAutocompleteModule,
     MatDialogModule,
-    FontAwesomeModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     CvSmallModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSelectModule
-  ],
-
+    MatSelectModule,
+    TemplateBuilderModule
+  ]
 })
 export class CvModule {
 }

@@ -1,33 +1,15 @@
 <div class="wrapper">
   <div class="container">
-    <!-- <cv-cv-template id="cv-template" *ngIf="resumeEditDto" [resumeEditForm]="templateForm"></cv-cv-template> -->
     <div class="template">
-
+      <template-builder *ngIf="resumeEditDto" [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></template-builder>
     </div>
     <div class="edit-page">
       <form class="left-bar">
-        <cv-cv-create-left-bar
-          *ngIf="resumeEditDto"
-          [resumeForm]="resumeEditForm"
-          [resume]="resumeEditDto"
-        >
-        </cv-cv-create-left-bar>
+        <left-bar *ngIf="resumeEditDto" [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false" (templateChange)="templateChange($event)">
+        </left-bar>
         <div class="action">
-          <button
-            mat-raised-button
-            color="primary"
-            [disabled]="!resumeEditForm.valid"
-            (click)="submit(resumeEditForm.value)"
-          >
-            Save
-          </button>
-          <button
-            mat-raised-button
-            color="accent"
-            routerLink="/home/cv/user-list"
-          >
-            Cancel
-          </button>
+          <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Save</button>
+          <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
         </div>
       </form>
     </div>
