@@ -1,4 +1,4 @@
-import {DirectivesModule} from './../../../shared/directives/directives.module';
+import {DirectivesModule} from '../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -33,56 +33,53 @@ import {MatSortModule} from '@angular/material/sort';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
-import {QuillModule} from "ngx-quill";
-
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @NgModule({
-    imports: [
-        TemplateBuilderModule,
-        AdminCvListRouterModule,
-        MatIconModule,
-        MatSelectModule,
-        CommonModule,
-        MatCardModule,
-        MatDividerModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        DirectivesModule,
-        MatProgressSpinnerModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        NgxMatSelectSearchModule,
-        PdfFooterModule,
-        QuillModule,
-    ],
-	exports: [
-		AdminCvListComponent,
-	  ],
-	declarations: [
-		EditPageComponent,
-		CreatePageComponent,
-		FormBarComponent,
-		SkillDialog,
-		LanguageDialog,
-		ExperienceDialog,
-		EducationDialog,
-		CvFullComponent,
-		AdminCvListComponent,
-		ResumeListPageComponent,
-	],
-	providers:[DeleteModalService]
+  imports: [
+    TemplateBuilderModule,
+    AdminCvListRouterModule,
+    MatIconModule,
+    MatSelectModule,
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    DirectivesModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule,
+    PdfFooterModule,
+  ],
+  exports: [
+    AdminCvListComponent,
+  ],
+  declarations: [
+    EditPageComponent,
+    CreatePageComponent,
+    FormBarComponent,
+    SkillDialog,
+    LanguageDialog,
+    ExperienceDialog,
+    EducationDialog,
+    CvFullComponent,
+    AdminCvListComponent,
+    ResumeListPageComponent,
+  ],
+  providers: [DeleteModalService]
 })
 
 export class AdminCvListModule {

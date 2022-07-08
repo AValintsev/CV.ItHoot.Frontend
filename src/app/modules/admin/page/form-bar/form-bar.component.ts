@@ -18,7 +18,6 @@ import {ExperienceDto} from 'src/app/models/resume/experience-dto';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 
-
 @Component({
   selector: 'form-bar',
   templateUrl: './form-bar.component.html',

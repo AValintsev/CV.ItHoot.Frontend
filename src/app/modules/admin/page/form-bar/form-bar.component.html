@@ -27,13 +27,14 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Position</mat-label>
-      <mat-select [(value)]="resume.position" formControlName="position" [compareWith]="comparePosition" disableOptionCentering>
+      <mat-select [(value)]="resume.position" formControlName="position" [compareWith]="comparePosition"
+                  disableOptionCentering>
         <mat-option *ngFor="let position of positions" [value]="position">
           {{position.positionName}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
-       Position is required
+        Position is required
       </mat-error>
     </mat-form-field>
 
@@ -133,8 +134,9 @@
 
     <mat-form-field appearance="fill">
       <mat-label>About me</mat-label>
-<!--      <textarea matInput placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards" formControlName="aboutMe"></textarea>-->
-<!--     <quill-editor></quill-editor>'-->
+      <textarea matInput
+                placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards"
+                formControlName="aboutMe"></textarea>
       <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required']">
         About me is required
       </mat-error>
@@ -146,7 +148,8 @@
       <mat-card-title>Skills</mat-card-title>
       <mat-card-content>
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)" (click)="openSkillDialog(skill)">
+          <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)"
+                    (click)="openSkillDialog(skill)">
             {{skill.skillName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -247,5 +250,4 @@
       <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
     </mat-form-field>
   </div>
-
 </form>
