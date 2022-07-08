@@ -68,6 +68,7 @@
                 }
               ],
               "outputHashing": "all",
+              "buildOptimizer": false,
               "aot": false
             },
             "development": {
