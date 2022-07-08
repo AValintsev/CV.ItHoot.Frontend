@@ -1,3 +1,4 @@
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -13,7 +14,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 	imports:[CommonModule,MatButtonModule,RouterModule,MatTooltipModule,MatMenuModule,MatIconModule,MatDialogModule],
 	declarations: [HeaderComponent],
 	exports: [HeaderComponent],
-	providers:[SnackBarService]
+	providers:[SnackBarService,DeleteModalService]
 })
 
 export class HeaderModule { }

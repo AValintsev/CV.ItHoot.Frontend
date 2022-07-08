@@ -1,3 +1,4 @@
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { takeUntil } from 'rxjs/operators';
 import { SmallResumeDto } from '../../../models/resume/small-resume-dto';
@@ -15,7 +16,7 @@ import { UserAuthData } from '../../../models/userAuthData';
 import { Users } from '../../../models/users-type';
 import { ResumeService } from 'src/app/services/resume.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalDeleteUserComponent } from '../../shared/modals/modal-delete-user/modal-delete-user.component';
+import { ModalDeleteComponent } from '../../shared/modals/modal-delete-user/modal-delete-user.component';
 import * as saveAs from 'file-saver';
 
 @Component({
@@ -32,7 +33,8 @@ export class CvSmallComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private resumeService: ResumeService,
     private dialog: MatDialog,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private deleteModalService:DeleteModalService
   ) {
     // this.authData$ = this.authService.UserValue2();
   }
@@ -43,12 +45,7 @@ export class CvSmallComponent implements OnInit, OnDestroy {
     return this.accountService.getStoreRole();
   }
   deleteResume(id: number) {
-    let dialog = this.dialog.open(ModalDeleteUserComponent, {
-      panelClass: 'delete-modal',
-    });
-    dialog
-      .afterClosed()
-      .pipe(takeUntil(this.destroy$))
+    this.deleteModalService.matModal('Do you want to delete your resume?')
       .subscribe({
         next: (response) => {
           if (response) {

@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FooterModule} from '../../core/footer/footer.module';
 import {UsersGuard} from 'src/app/guards/users.guard';
 import {LoaderModule} from '../../shared/components/loader/loader.module';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild([
@@ -31,7 +32,8 @@ import {LoaderModule} from '../../shared/components/loader/loader.module';
   exports: [RouterModule],
   declarations: [
     MainPageComponent,
-  ]
+  ],
+  providers:[DeleteModalService]
 })
 
 export class MainPageRoutingModule {

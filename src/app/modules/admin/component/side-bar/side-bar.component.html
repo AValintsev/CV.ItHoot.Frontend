@@ -6,13 +6,13 @@
         <span>Dashboard</span>
       </a></li>
     <mat-divider></mat-divider>
-    <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
+    <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/resume">
         <mat-icon>groups</mat-icon>
         <span>Resume</span>
       </a>
     </li>
-    <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
+    <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/proposals">
         <mat-icon>sports_esports</mat-icon>
         <span>Proposals</span>
@@ -36,11 +36,11 @@
             <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/archive/proposals">
+        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/proposals">
           <mat-icon>sports_esports</mat-icon>
           <span>Proposals</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/archive/resume">
+        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/resume">
           <mat-icon>groups</mat-icon>
           <span>Resume</span>
         </a>

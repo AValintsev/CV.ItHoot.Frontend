@@ -26,6 +26,11 @@ const routes: Routes = [
     canLoad: [UsersGuard],
     canActivate: [UsersGuard],
     data: { role: [Users[2]] }
+  },  
+  {
+    path: '',
+    canActivate: [RoleGuard],
+    children: []
   },
   {
     path: 'client', loadChildren: () => import('./modules/client/client.module').then(mod => mod.ClientModule),
@@ -33,11 +38,7 @@ const routes: Routes = [
     canActivate: [UsersGuard],
     data: { role: [Users[3]] }
   },
-  {
-    path: '',
-    canActivate: [RoleGuard],
-    children: []
-  },
+
   {
     path: 'proposals/:proposalId/resume/:resumeId',
     component: ResumeFullSwitcherComponent
