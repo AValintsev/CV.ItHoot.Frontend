@@ -80,6 +80,10 @@ export class ResumeService {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
   }
 
+  public getDocx(resumeId: number) {
+    return this.httpService.getFile(this.routePrefix + `/docx/${resumeId}`);
+  }
+
   public getAllTemplates(): Observable<ResumeTemplateDto[]> {
     return this.httpService.getRequest(this.routePrefix + `/templates`);
   }

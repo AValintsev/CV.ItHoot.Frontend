@@ -187,6 +187,12 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  getResumeDocx(resume: SmallResumeDto) {
+    this.resumeService.getDocx(resume.id).subscribe((response) => {
+      saveAs(response, `${resume.firstName} ${resume.lastName}.docx`);
+    });
+  }
+
   recoverResume(resume: SmallResumeDto): void {
     this.deleteModalService
       .matModal('Do you want to recover resume?')
