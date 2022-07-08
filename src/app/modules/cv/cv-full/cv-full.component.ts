@@ -29,10 +29,7 @@ export class CvFullComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
-
         this.resume = resume;
-
-
         this.userHeaderBtnService.setUserData({
           id: resume.id,
           firstName: resume.firstName,

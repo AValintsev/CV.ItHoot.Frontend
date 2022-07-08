@@ -10,10 +10,10 @@ header {
     display: block;
   }
 }
-.body {
+main {
   // padding: 3rem;
   height: calc(100vh - 8rem);
-  overflow: auto;
+
   background: #e5e5e5;
 
   @media (max-width: 700px) {
@@ -27,25 +27,21 @@ header {
     display: flex;
   }
 }
-main{
-  display: flex;
+.body{
+  overflow: auto;
+  flex: 0 1 100%;
 }
-.menu {
+cv-cv-cide-bar {
   @media (min-width: 600px) {
     display: block;
     position: relative;
     flex: 0 0 20rem;
     background-color: #fff;
-    padding: 0rem 1.2rem;
-    height: 100vh;
+    height: 100%;
   }
   @media (max-width: 600px) {
     display: none;
   }
-}
-
-.menu-list {
-  min-height: 100%;
 }
 
 .footer {

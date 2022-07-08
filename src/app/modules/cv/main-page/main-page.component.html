@@ -4,33 +4,7 @@
     <cv-header></cv-header>
   </header>
   <main class="main">
-    <div class="menu">
-      <ul class="menu-list">
-        <li class="menu-list__item">
-          <div class="label">
-            <img src="assets/label.jpg" alt="label" />
-          </div>
-        </li>
-        <li class="menu-list__item">
-          <div class="user-content small">
-            <div class="user-picture img">
-              <img src="assets/face.jpg" alt="user picture" />
-            </div>
-            <ul class="user-atrr">
-              <li class="user-name">{{ accountService.getStoreName() }}</li>
-              <li class="user-role">
-                {{
-                  accountService.getStoreRole()
-                    ? accountService.getStoreRole()
-                    : "User"
-                }}
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="menu-list__item">1</li>
-      </ul>
-    </div>
+<cv-cv-cide-bar></cv-cv-cide-bar>
     <div class="body">
       <router-outlet></router-outlet>
     </div>
