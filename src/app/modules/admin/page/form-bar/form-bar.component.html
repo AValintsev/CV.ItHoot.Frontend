@@ -133,7 +133,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>About me</mat-label>
-      <textarea matInput placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards" formControlName="aboutMe"></textarea>
+<!--      <textarea matInput placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards" formControlName="aboutMe"></textarea>-->
+<!--     <quill-editor></quill-editor>'-->
       <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required']">
         About me is required
       </mat-error>

@@ -32,9 +32,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
-import {AppModule} from "../../../../app.module";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {QuillModule} from "ngx-quill";
 
 
 @NgModule({
@@ -65,6 +65,7 @@ import { DeleteModalService } from 'src/app/services/delete-modal.service';
         MatSortModule,
         NgxMatSelectSearchModule,
         PdfFooterModule,
+        QuillModule,
     ],
 	exports: [
 		AdminCvListComponent,

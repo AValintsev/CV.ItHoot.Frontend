@@ -1,5 +1,5 @@
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {shareReplay, takeUntil} from 'rxjs/operators';
+import {defer, Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
@@ -17,6 +17,7 @@ import {EducationDialog} from '../../component/modals/education-dialog/education
 import {ExperienceDto} from 'src/app/models/resume/experience-dto';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
+
 
 @Component({
   selector: 'form-bar',
@@ -37,6 +38,7 @@ export class FormBarComponent implements OnInit {
 
   file: File | null = null;
   positions!: PositionDto[];
+
 
 
   constructor(
