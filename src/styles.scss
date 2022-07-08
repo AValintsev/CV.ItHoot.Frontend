@@ -116,7 +116,7 @@ a:link{
 }
 
 .delete-modal {
-  height: 150px;
+  height: 200px;
   width: 300px;
 }
 
@@ -139,4 +139,20 @@ a:link{
   .mat-dialog-content {
     max-height: 85vh !important;
   }
+}
+
+
+th{
+  white-space: nowrap;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+td{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow-x: hidden;
+  // word-break: break-word;
+}
+.mat-sort-header-arrow{
+  margin: 0;
 }

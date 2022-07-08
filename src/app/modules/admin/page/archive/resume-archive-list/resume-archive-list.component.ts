@@ -14,7 +14,8 @@ export class ResumeArchiveListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumes: SmallResumeDto[] = [];
   resumesCount: number = 0;
-
+  resume!:any;
+  url = '/admin/archive/';
   isLoadingResults = true;
   isRateLimitReached = false;
 

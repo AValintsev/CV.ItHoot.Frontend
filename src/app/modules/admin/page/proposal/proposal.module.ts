@@ -1,3 +1,4 @@
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
 import {ProposalCreateDialogComponent} from './proposal-create-dialog/proposal-create-dialog.component';
@@ -83,7 +84,8 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
   exports: [
     ProposalListPageComponent,
     DateUtcPipe,
-    ProposalListComponent
+    ProposalListComponent,
+    ProposalComponent,
   ],
   declarations: [
     DateUtcPipe,
@@ -98,7 +100,8 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
-  ]
+  ],
+  providers:[DeleteModalService]
 })
 
 export class ProposalModule {

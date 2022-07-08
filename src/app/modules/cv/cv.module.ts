@@ -28,6 +28,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import {DeleteComponent} from './delete/delete.component';
 import {TemplateBuilderModule} from "../shared/template-builder/template-builder.module";
+import {ResumeFullSwitcherComponent} from './resume-full-switcher/resume-full-switcher.component';
+
+
 
 
 @NgModule({
@@ -41,6 +44,7 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
+    ResumeFullSwitcherComponent,
     DeleteComponent,
   ],
     imports: [
@@ -65,6 +69,28 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
         MatSelectModule,
         MatProgressSpinnerModule,
         MatSelectModule,
+      CommonModule,
+      // RouterModule,
+      CvRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatCardModule,
+      MatChipsModule,
+      MatIconModule,
+      MatDividerModule,
+      MatDatepickerModule,
+      MatButtonToggleModule,
+      MatOptionModule,
+      MatAutocompleteModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      CvSmallModule,
+      MatSelectModule,
+      MatProgressSpinnerModule,
+      MatSelectModule
     ]
 })
 export class CvModule {

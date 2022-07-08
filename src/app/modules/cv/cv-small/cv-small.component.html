@@ -1,22 +1,101 @@
 <mat-card>
   <mat-card-title-group>
-    <mat-card-title>{{resume?.firstName}} {{resume?.lastName}}</mat-card-title>
-    <mat-card-subtitle>{{resume?.resumeName}}</mat-card-subtitle>
+    <div class="dots">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="savePdf(resume.id,resume?.firstName,resume?.lastName)"
+        >
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span >Save PDF</span>
+        </button>
+        <button mat-menu-item 
+        (click)="saveDocX()"
+        class="docx"
+        >
+      <mat-icon>description</mat-icon>
+          <span>Save DocX</span>
+        </button>
+        <button
+          mat-menu-item
+          [routerLink]="['/home/cv/create/']"
+          [queryParams]="{ userId: resume.id }"
+        >
+          <mat-icon>file_copy</mat-icon>
+          <span>Duplicate</span>
+        </button>
+        <button mat-menu-item (click)="deleteResume(resume.id)">
+          <mat-icon>delete_forever</mat-icon>
+          <span>Delete</span>
+            
+        </button>
+      </mat-menu>
+    </div>
+    <mat-card-title
+      >{{ resume?.firstName }} {{ resume?.lastName }}</mat-card-title
+    >
+    <mat-card-subtitle>{{ resume?.resumeName }}</mat-card-subtitle>
     <!-- <img mat-card-lg-image *ngIf="resume.picture" else img src="{{resume.picture}}" alt="Resume image"> -->
   </mat-card-title-group>
-  <mat-card-content>
+  <mat-card-content>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti excepturi quod dolorum enim dolores. Sed, aspernatur placeat repudiandae labore aut illum sint necessitatibus tempore nobis voluptatibus minima, debitis praesentium! Unde?
+  Blanditiis illum maiores harum iure rem dignissimos, optio repellendus et repudiandae sequi ab, ipsa expedita id quo ullam aspernatur porro totam asperiores eius. Rerum dolorum cupiditate ipsum, esse quod fuga.
+  Ullam libero officiis pariatur error nihil excepturi impedit minima voluptatibus reiciendis modi sunt, ipsam eaque ad quos, ea natus rerum quas repudiandae dolorem accusantium? Vero sunt nisi sequi ullam error.
+  Sint voluptates necessitatibus natus iste excepturi est molestiae officiis. Eos ex rem sunt rerum magnam a illo ut. Delectus, sint. Amet autem eaque vel magnam, adipisci cupiditate vero quasi delectus.
+  Laboriosam quasi saepe aperiam nostrum nisi quidem quod voluptatibus beatae cumque dolores, nemo dignissimos adipisci fuga explicabo quia necessitatibus ad vitae aut voluptate totam qui accusantium repellendus. Voluptatum, quisquam id?
+  Nemo possimus sequi explicabo debitis cumque quos similique, fugiat fuga voluptatibus est ex illum, quia nesciunt natus porro? Aspernatur architecto labore molestiae repudiandae deserunt molestias doloribus alias veritatis omnis nostrum.
+  Asperiores atque fuga suscipit tenetur cupiditate possimus, qui ipsam perspiciatis quibusdam? Perferendis beatae repudiandae voluptatem quisquam quos, ipsum maiores? Totam quo non nemo at assumenda sit laudantium atque, minima quasi.
+  Omnis, laborum necessitatibus nihil natus dolorum beatae voluptate quos nulla ratione aut saepe, vero accusantium. Itaque officia ullam molestiae, quia eveniet sunt exercitationem cum facere quas numquam maiores? Tenetur, saepe?</mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
     <div class="button-group">
-      <button mat-raised-button color="primary" [routerLink]="['/home/cv/',resume.id]">Open</button>
-      <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
-        routerLink="/home/cv/edit/{{resume.id}}">Edit</button>
-      <button *ngIf="checkRole() !== Users[3]" mat-raised-button color="accent"
-        [routerLink]="['/home/cv/create/']" [queryParams]="{userId:resume.id}">Duplicate</button>
+      <!-- 1 -->
+      <!-- <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/home/cv/', resume.id]"
+      >
+        Open
+      </button>
       <button
-      *ngIf="checkRole() !== Users[3]"
-      mat-raised-button
-      color="warn"
-      (click)=" deleteResume(resume.id)"
-        >Delete</button>
+        mat-raised-button
+        color="accent"
+        routerLink="/home/cv/edit/{{ resume.id }}"
+      >
+        Edit
+      </button> -->
+      <!-- 2 -->
+      <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/home/cv/', resume.id]"
+    >
+      Open
+    </button>
+    <button
+      mat-stroked-button
+      color="accent"
+      routerLink="/home/cv/edit/{{ resume.id }}"
+    >
+      Edit
+    </button>
     </div>
-  </mat-card-content>
+        <!-- 3 -->
+        <!-- <button
+        mat-button
+        [routerLink]="['/home/cv/', resume.id]"
+      >
+        Open
+      </button>
+      <button
+        mat-button
+        routerLink="/home/cv/edit/{{ resume.id }}"
+      >
+        Edit
+      </button> -->
+  </mat-card-actions>
 </mat-card>

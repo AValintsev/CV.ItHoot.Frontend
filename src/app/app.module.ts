@@ -13,6 +13,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {ResumeFullSwitcherModule} from "./modules/cv/resume-full-switcher/resume-full-switcher.module";
+import { DeleteModalService } from './services/delete-modal.service';
+
 
 
 export let AppInjector: Injector;
@@ -34,12 +36,9 @@ registerLocaleData(en);
   ],
   providers: [
     {provide: DatePipe},
-    // {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
-    // {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
-    // {provide: Compiler, useFactory: createCompiler, deps: [CompilerFactory]},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-
+    DeleteModalService
   ],
   exports: [],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@ import {MainPageComponent} from './main-page.component';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
 import {FooterModule} from '../../shared/footer/footer.module';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {ProposalComponent} from '../proposal/proposal.component';
@@ -52,6 +52,7 @@ const routes: Routes = [
     CommonModule,
     MatIconModule,
     MatDialogModule,
+    MatDialogModule,
     MatCardModule,
     MatButtonModule,
     FooterModule,
@@ -70,8 +71,10 @@ const routes: Routes = [
     MainPageComponent,
     ProposalsComponent,
     ResumeComponent,
-    ProposalComponent
   ],
+  providers:[
+
+    DeleteModalService]
 
 })
 

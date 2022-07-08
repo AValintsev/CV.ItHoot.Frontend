@@ -34,6 +34,7 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
 import {AppModule} from "../../../../app.module";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
 		CvFullComponent,
 		AdminCvListComponent,
 		ResumeListPageComponent,
-	]
+	],
+	providers:[DeleteModalService]
 })
 
 export class AdminCvListModule {

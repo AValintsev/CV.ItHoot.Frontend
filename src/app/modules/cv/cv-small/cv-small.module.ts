@@ -1,3 +1,5 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -7,6 +9,7 @@ import {CommonModule} from '@angular/common';
 import {CvSmallComponent} from './cv-small.component';
 import {NgModule} from '@angular/core';
 import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal-delete-user.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
 	declarations: [CvSmallComponent],
@@ -18,7 +21,10 @@ import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal
 		ReactiveFormsModule,
 		MatButtonModule,
 		ModalDeleteUserModule,
-		MatDialogModule
+		MatDialogModule,
+		MatIconModule,
+		MatMenuModule,
+		MatDividerModule
 	],
 	exports: [CvSmallComponent],
 })
