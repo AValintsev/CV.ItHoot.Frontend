@@ -1,4 +1,4 @@
-import {Compiler, COMPILER_OPTIONS, CompilerFactory, Injector, NgModule} from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -12,11 +12,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
-import {JitCompilerFactory} from "@angular/platform-browser-dynamic";
-
-export function createCompiler(compilerFactory: CompilerFactory) {
-  return compilerFactory.createCompiler();
-}
+import {ResumeFullSwitcherModule} from "./modules/cv/resume-full-switcher/resume-full-switcher.module";
 
 
 export let AppInjector: Injector;
@@ -33,19 +29,19 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     MatSnackBarModule,
     RouterModule,
+    ResumeFullSwitcherModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [
     {provide: DatePipe},
-    {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
-    {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
-    {provide: Compiler, useFactory: createCompiler, deps: [CompilerFactory]},
+    // {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
+    // {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
+    // {provide: Compiler, useFactory: createCompiler, deps: [CompilerFactory]},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
   ],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

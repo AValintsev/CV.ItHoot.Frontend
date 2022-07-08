@@ -31,35 +31,40 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
+import {AppModule} from "../../../../app.module";
+import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 
 
 @NgModule({
-	imports: [
-		AdminCvListRouterModule,
-		MatIconModule,
-		MatSelectModule,
-		CommonModule,
-		MatCardModule,
-		MatDividerModule,
-		MatChipsModule,
-		MatDatepickerModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatButtonModule,
-		MatButtonToggleModule,
-		MatInputModule,
-		MatFormFieldModule,
-		MatAutocompleteModule,
-		MatCardModule,
-		DirectivesModule,
-		MatProgressSpinnerModule,
-		MatExpansionModule,
-		MatTableModule,
-		MatPaginatorModule,
-		MatSortModule,
-		NgxMatSelectSearchModule
-	],
+    imports: [
+        TemplateBuilderModule,
+        AdminCvListRouterModule,
+        MatIconModule,
+        MatSelectModule,
+        CommonModule,
+        MatCardModule,
+        MatDividerModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        DirectivesModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        NgxMatSelectSearchModule,
+        PdfFooterModule,
+    ],
 	exports: [
 		AdminCvListComponent,
 	  ],

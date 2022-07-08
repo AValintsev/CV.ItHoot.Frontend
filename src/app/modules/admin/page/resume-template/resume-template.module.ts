@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {ResumeTemplateCreatePageComponent} from './resume-template-create-page/resume-template-create-page.component';
 import {MatIconModule} from "@angular/material/icon";
+import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 
 
 @NgModule({
@@ -28,10 +29,12 @@ import {MatIconModule} from "@angular/material/icon";
         FormsModule,
         MonacoEditorModule,
         MatIconModule,
+        TemplateBuilderModule,
     ],
   exports: [
   ],
   declarations: [
+
     ResumeTemplateListPageComponent,
     ResumeTemplatePageComponent,
     ResumeTemplateEditPageComponent,

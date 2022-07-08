@@ -1,32 +1,43 @@
 import {map, takeUntil} from 'rxjs/operators';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {
+  Component,
+  createNgModuleRef, Injector,
+  NgModule,
+  NgModuleRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {AccountService} from 'src/app/services/account.service';
-import {Subject} from 'rxjs';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'cv-create-page',
   templateUrl: './create-page.component.html',
   styleUrls: ['./create-page.component.scss'],
 })
-export class CreatePageComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+export class CreatePageComponent implements OnInit {
+
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+  templateChanged: Subject<number> = new Subject<number>();
+
   resumeCreateDto: ResumeDto = {} as ResumeDto;
-  public resumeCreateForm: UntypedFormGroup = {} as UntypedFormGroup;
-  templateForm!: ResumeDto;
+  resumeCreateForm: UntypedFormGroup = {} as UntypedFormGroup;
 
   constructor(
     private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
     private accountService: AccountService,
-    private activatedRoute: ActivatedRoute
-  ) {
-  }
+    private activatedRoute: ActivatedRoute,
+    private _injector: Injector,
+  ) {}
 
   ngOnInit(): void {
     this.validateForm();
@@ -35,18 +46,18 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     this.resumeCreateDto.educations = [];
     this.resumeCreateDto.languages = [];
     this.changeFormDate();
-    this.getFieldDate();
+    this.resumeCreateForm.valueChanges.subscribe(resume=>{
+      this.resumeChanged.next(resume);
+    })
   }
 
   private getFieldDate() {
     this.activatedRoute.queryParams
-      .pipe(takeUntil(this.destroy$), map((params) => params.userId))
+      .pipe(map((params) => params.userId))
       .subscribe({
         next: (params) => {
           if (params) {
-            this.resumeService.getResumeById(params).pipe(
-              takeUntil(this.destroy$)
-            ).subscribe({
+            this.resumeService.getResumeById(params).subscribe({
               next: (response) => this.patchForm(response),
             });
           }
@@ -56,10 +67,8 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   }
 
   private changeFormDate() {
-    this.resumeCreateForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      (resume) => (this.templateForm = resume)
+    this.resumeCreateForm.valueChanges.subscribe(
+      (resume) => (this.resumeCreateDto = resume)
     );
   }
 
@@ -190,16 +199,15 @@ export class CreatePageComponent implements OnInit, OnDestroy {
   }
 
   public submit(resume: ResumeDto) {
-    this.resumeService.createResume(resume).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
+    this.resumeService.createResume(resume).subscribe(() => {
       this.snackbarService.showSuccess('Created resume successfully')
       this.router.navigate(['/admin/resume']);
     })
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
+  templateChange(templateId: number) {
+      this.templateChanged.next(templateId);
   }
+
+
 }

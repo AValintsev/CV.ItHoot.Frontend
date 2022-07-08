@@ -1,12 +1,9 @@
 .resume-wrapper {
-  display: flex;
+  //height: 100%;
+  //width: 100%;
+  //overflow: hidden;
 
-  #resume {
-    width: 210mm;
-    min-height: 297mm;
-  }
-
-  #resume:hover {
+  #doc:hover {
     cursor: pointer;
   }
 }

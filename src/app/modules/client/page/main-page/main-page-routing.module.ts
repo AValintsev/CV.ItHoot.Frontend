@@ -15,7 +15,6 @@ import {FooterModule} from '../../shared/footer/footer.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ProposalComponent} from '../proposal/proposal.component';
 import {UsersGuard} from 'src/app/guards/users.guard';
 import {Users} from 'src/app/models/users-type';
@@ -58,7 +57,6 @@ const routes: Routes = [
     FooterModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    FontAwesomeModule,
     HeaderModule,
     FormsModule,
     ReactiveFormsModule,

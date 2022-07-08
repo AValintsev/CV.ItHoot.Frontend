@@ -1,46 +1,32 @@
 import {map} from 'rxjs/operators';
 import {
-  Compiler,
-  Component,
-  ComponentFactoryResolver, createNgModuleRef,
-  Injector, ModuleWithComponentFactories,
-  NgModule,
-  NgModuleRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
+  Component, createNgModuleRef, EventEmitter,
+  Injector,
+  NgModule, NgModuleRef,
+  OnInit, ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {CommonModule} from "@angular/common";
-import {BrowserModule} from "@angular/platform-browser";
-import {AdminCvListModule} from "../resume/admin-cv-list.module";
-import {MatNativeDateModule} from "@angular/material/core";
-import {AppRoutingModule} from "../../../../app-routing.module";
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {AdminModule} from "../../admin.module";
-import {Users} from "../../../../models/users-type";
-
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'cv-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss'],
 })
-export class EditPageComponent implements OnInit, OnDestroy {
-
-  @ViewChild('resume', {read: ViewContainerRef}) _container: ViewContainerRef;
+export class EditPageComponent implements OnInit {
 
   resumeEditDto: ResumeDto | null = null;
   templateForm!: ResumeDto;
-  public resumeEditForm: UntypedFormGroup = {} as UntypedFormGroup;
+  resumeEditForm: FormGroup = {} as FormGroup;
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+  templateChanged: Subject<number> = new Subject<number>();
 
   constructor(
     private resumeService: ResumeService,
@@ -48,57 +34,24 @@ export class EditPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService,
-    // private componentFactoryResolver: ComponentFactoryResolver,
-    private compiler: Compiler,
-    private _injector: Injector,
-    // private _m: NgModuleRef<any>
   ) {
+
     this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
-        this.resumeService.getResumeHtmlById(id).subscribe((data) => {
-          // document.getElementById('resume')!.innerHTML = data.html;
-          this.addComponent(data.html);
-        });
       });
     });
     this.validateForm();
-    this.changeFormDate();
-  }
-
-
-  private async addComponent(html: string) {
-
-    const resume = this.resumeEditDto;
-
-    const tmpCmp = Component({template: html,selector:'resume-templates', moduleId:'dynamic-module'})(class {
-      public resume: ResumeDto|null = resume;
-    });
-    const tmpModule = NgModule({imports: [CommonModule],id:'dynamic-module', declarations: [tmpCmp]})(class{});
-    // const moduleRef: NgModuleRef<any> = createNgModuleRef<any>(tmpModule, this._injector);
-    const componentModule = this.compiler.compileModuleAndAllComponentsSync(tmpModule);
-    const factory = componentModule.componentFactories.find(c => c.selector === 'resume-templates')!.componentType;
-    this._container.createComponent(factory,{injector: this._injector});
-    // this._container.createComponent(tmpCmp, {ngModuleRef: moduleRef});
-    // const factories = this.compiler.compileModuleAndAllComponentsSync(tmpModule);
-    // const module = factories.ngModuleFactory.create(this._injector);
-    // const f = factories.componentFactories[0];
-    // const cmpRef = f.create(this._injector, [], null,module);
-    // cmpRef.instance.name = 'dynamic';
-    // console.log(module.instance)
-    // console.log(cmpRef)
-    // this._container.insert(cmpRef.hostView);
   }
 
   ngOnInit(): void {
+    this.resumeEditForm.valueChanges.subscribe(value => {
+      this.resumeEditDto = value;
+      this.resumeChanged.next(this.resumeEditDto!)
+    })
   }
 
-  private changeFormDate() {
-    this.resumeEditForm.valueChanges.subscribe(
-      (resume) => (this.templateForm = resume)
-    );
-  }
 
   patchForm(resume: ResumeDto) {
     this.resumeEditForm.patchValue({id: resume.id});
@@ -125,131 +78,132 @@ export class EditPageComponent implements OnInit, OnDestroy {
     this.resumeEditForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
 
     resume.skills?.forEach((skill) => {
-      (<UntypedFormArray>this.resumeEditForm.controls['skills']).push(
-        new UntypedFormGroup({
-          id: new UntypedFormControl(skill.id),
-          skillId: new UntypedFormControl(skill.skillId),
-          skillName: new UntypedFormControl(skill.skillName),
-          level: new UntypedFormControl(skill.level),
+      (<FormArray>this.resumeEditForm.controls['skills']).push(
+        new FormGroup({
+          id: new FormControl(skill.id),
+          skillId: new FormControl(skill.skillId),
+          skillName: new FormControl(skill.skillName),
+          level: new FormControl(skill.level),
         })
       );
     });
 
     resume.languages?.forEach((languages) => {
-      (<UntypedFormArray>this.resumeEditForm.controls['languages']).push(
-        new UntypedFormGroup({
-          id: new UntypedFormControl(languages.id),
-          languageId: new UntypedFormControl(languages.languageId),
-          languageName: new UntypedFormControl(languages.languageName),
-          level: new UntypedFormControl(languages.level),
+      (<FormArray>this.resumeEditForm.controls['languages']).push(
+        new FormGroup({
+          id: new FormControl(languages.id),
+          languageId: new FormControl(languages.languageId),
+          languageName: new FormControl(languages.languageName),
+          level: new FormControl(languages.level),
         })
       );
     });
 
     resume.educations?.forEach((education) => {
-      (<UntypedFormArray>this.resumeEditForm.controls['educations']).push(
-        new UntypedFormGroup({
-          id: new UntypedFormControl(education.id),
-          institutionName: new UntypedFormControl(education.institutionName),
-          specialization: new UntypedFormControl(education.specialization),
-          description: new UntypedFormControl(education.description),
-          degree: new UntypedFormControl(education.degree),
-          startDate: new UntypedFormControl(education.startDate),
-          endDate: new UntypedFormControl(education.endDate),
+      (<FormArray>this.resumeEditForm.controls['educations']).push(
+        new FormGroup({
+          id: new FormControl(education.id),
+          institutionName: new FormControl(education.institutionName),
+          specialization: new FormControl(education.specialization),
+          description: new FormControl(education.description),
+          degree: new FormControl(education.degree),
+          startDate: new FormControl(education.startDate),
+          endDate: new FormControl(education.endDate),
         })
       );
     });
 
     resume.experiences?.forEach((experience) => {
-      (<UntypedFormArray>this.resumeEditForm.controls['experiences']).push(
-        new UntypedFormGroup({
-          id: new UntypedFormControl(experience.id),
-          position: new UntypedFormControl(experience.position),
-          description: new UntypedFormControl(experience.description),
-          company: new UntypedFormControl(experience.company),
-          startDate: new UntypedFormControl(experience.startDate),
-          endDate: new UntypedFormControl(experience.endDate),
+      (<FormArray>this.resumeEditForm.controls['experiences']).push(
+        new FormGroup({
+          id: new FormControl(experience.id),
+          position: new FormControl(experience.position),
+          description: new FormControl(experience.description),
+          company: new FormControl(experience.company),
+          startDate: new FormControl(experience.startDate),
+          endDate: new FormControl(experience.endDate),
         })
       );
     });
   }
 
   validateForm() {
-    this.resumeEditForm = new UntypedFormGroup({
-      id: new UntypedFormControl(this.resumeEditDto?.id, [Validators.required]),
-      resumeName: new UntypedFormControl(this.resumeEditDto?.resumeName, [
+    this.resumeEditForm = new FormGroup({
+      id: new FormControl(this.resumeEditDto?.id, [Validators.required]),
+      resumeName: new FormControl(this.resumeEditDto?.resumeName, [
         Validators.required,
       ]),
-      firstName: new UntypedFormControl(this.resumeEditDto?.firstName, [
+      firstName: new FormControl(this.resumeEditDto?.firstName, [
         Validators.required,
       ]),
-      lastName: new UntypedFormControl(this.resumeEditDto?.lastName, [
+      lastName: new FormControl(this.resumeEditDto?.lastName, [
         Validators.required,
       ]),
-      position: new UntypedFormControl(this.resumeEditDto?.position, [
+      position: new FormControl(this.resumeEditDto?.position, [
         Validators.required,
       ]),
-      birthdate: new UntypedFormControl(this.resumeEditDto?.birthdate, [
+      birthdate: new FormControl(this.resumeEditDto?.birthdate, [
         Validators.required,
       ]),
-      email: new UntypedFormControl(this.resumeEditDto?.email, [
+      email: new FormControl(this.resumeEditDto?.email, [
         Validators.required,
         Validators.email,
       ]),
-      site: new UntypedFormControl(this.resumeEditDto?.site),
-      phone: new UntypedFormControl(this.resumeEditDto?.phone, [
+      site: new FormControl(this.resumeEditDto?.site),
+      phone: new FormControl(this.resumeEditDto?.phone, [
         Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
       ]),
-      code: new UntypedFormControl(this.resumeEditDto?.code),
-      country: new UntypedFormControl(this.resumeEditDto?.country, [
+      code: new FormControl(this.resumeEditDto?.code),
+      country: new FormControl(this.resumeEditDto?.country, [
         Validators.required,
       ]),
-      city: new UntypedFormControl(this.resumeEditDto?.city, [Validators.required]),
-      street: new UntypedFormControl(this.resumeEditDto?.street, [
+      city: new FormControl(this.resumeEditDto?.city, [Validators.required]),
+      street: new FormControl(this.resumeEditDto?.street, [
         Validators.required,
       ]),
-      requiredPosition: new UntypedFormControl(this.resumeEditDto?.requiredPosition, [
+      requiredPosition: new FormControl(this.resumeEditDto?.requiredPosition, [
         Validators.required,
       ]),
-      aboutMe: new UntypedFormControl(this.resumeEditDto?.aboutMe, [
+      aboutMe: new FormControl(this.resumeEditDto?.aboutMe, [
         Validators.required,
       ]),
-      picture: new UntypedFormControl(this.resumeEditDto?.picture),
-      resumeTemplateId: new UntypedFormControl(this.resumeEditDto?.resumeTemplateId),
-      salaryRate: new UntypedFormControl(this.resumeEditDto?.salaryRate),
-      availabilityStatus: new UntypedFormControl(this.resumeEditDto?.availabilityStatus),
-      countDaysUnavailable: new UntypedFormControl(this.resumeEditDto?.countDaysUnavailable),
-      educations: new UntypedFormArray([]),
-      experiences: new UntypedFormArray([]),
-      skills: new UntypedFormArray([]),
-      languages: new UntypedFormArray([]),
+      picture: new FormControl(this.resumeEditDto?.picture),
+      resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
+      salaryRate: new FormControl(this.resumeEditDto?.salaryRate),
+      availabilityStatus: new FormControl(this.resumeEditDto?.availabilityStatus),
+      countDaysUnavailable: new FormControl(this.resumeEditDto?.countDaysUnavailable),
+      educations: new FormArray([]),
+      experiences: new FormArray([]),
+      skills: new FormArray([]),
+      languages: new FormArray([]),
     });
   }
 
   submit(resume: ResumeDto) {
-    // cmpRef.changeDetectorRef.detectChanges();
-    // this.resumeService.updateResume(resume).subscribe({
-    //   next: () => {
-    //     this.snackbarService.showSuccess('Edited');
-    //     const role = this.accountService.getStoreRole();
-    //     if (role === Users[2]) {
-    //       this.router.navigate([
-    //         '/home/cv/user-list',
-    //         this.accountService.getUserId(),
-    //       ]);
-    //     }
-    //     if (role === Users[0] || role === Users[1])
-    //       this.router.navigate(['/admin/resume']);
-    //     else {
-    //       this.router.navigate(['/home/cv']);
-    //     }
-    //   },
-    //   error: () => {
-    //     this.snackbarService.showDanger('Something went wrong!');
-    //   },
-    // });
+    this.resumeService.updateResume(resume).subscribe({
+      next: () => {
+        this.snackbarService.showSuccess('Edited');
+        const role = this.accountService.getStoreRole();
+        if (role === Users[2]) {
+          this.router.navigate([
+            '/home/cv/user-list',
+            this.accountService.getUserId(),
+          ]);
+        }
+        if (role === Users[0] || role === Users[1])
+          this.router.navigate(['/admin/resume']);
+        else {
+          this.router.navigate(['/home/cv']);
+        }
+      },
+      error: () => {
+        this.snackbarService.showDanger('Something went wrong!');
+      },
+    });
   }
 
-  ngOnDestroy() {
+
+  templateChange(templateId: number) {
+    this.templateChanged.next(templateId);
   }
 }

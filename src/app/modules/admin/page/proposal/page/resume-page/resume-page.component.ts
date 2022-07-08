@@ -11,9 +11,7 @@ import panzoom from 'panzoom';
   templateUrl: './resume-page.component.html',
   styleUrls: ['./resume-page.component.scss'],
 })
-export class ResumePageComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
-  @ViewChild('doc', { static: false }) doc!: ElementRef;
+export class ResumePageComponent implements OnInit {
   resume: ResumeDto | null = null;
 
   constructor(
@@ -26,13 +24,11 @@ export class ResumePageComponent implements OnInit, OnDestroy {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
 
-      this.proposalService
-        .getProposalResumeHtml(proposalId, resumeId).pipe(
-          takeUntil(this.destroy$)
-        )
-        .subscribe((data) => {
-          document.getElementById('doc')!.innerHTML = data.html;
-          const zoom = panzoom(this.doc.nativeElement, {
+      this.proposalService.getProposalResume(proposalId, resumeId).subscribe(resume=> {
+        this.resume = resume.resume;
+        this.resume!.showLogo = resume.showLogo;
+        this.resume!.resumeTemplateId = resume.resumeTemplateId;
+          const zoom = panzoom(document.getElementById('doc')!, {
             minZoom: 0.3,
             maxZoom: 3.5,
             bounds: true,
@@ -42,8 +38,5 @@ export class ResumePageComponent implements OnInit, OnDestroy {
         });
     });
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
-  }
+
 }

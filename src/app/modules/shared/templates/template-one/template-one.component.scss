@@ -1,37 +1,3 @@
-:host {
-  height: 100%;
-  flex: 0 1 100%;
-}
-
-@media print {
-
-  @page {
-    size: A4;
-    margin-top: 15px;
-  }
-  @page :first {
-    margin: 0;
-  }
-
-  #contacts {
-    page-break-inside: avoid;
-  }
-
-  .about-me-content {
-    widows: 15;
-  }
-
-  #experience{
-    page-break-inside: avoid;
-  }
-
-  li {
-    page-break-inside: avoid;
-  }
-
-}
-
-
 .wrapper{
   display: flex;
   margin: 0 auto;
@@ -40,11 +6,6 @@
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
-@media print {
-  .wrapper{
-    box-shadow: none;
-  }
-}
 
 .left {
   flex: 1 1 30%;

@@ -1,7 +1,7 @@
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
@@ -32,6 +32,7 @@ export class FormBarComponent implements OnInit {
 
   @Input() isCreateForm: boolean = true;
 
+  @Output() templateChange: EventEmitter<any> = new EventEmitter<any>();
   resumeTemplates!: ResumeTemplateDto[];
 
   file: File | null = null;
@@ -318,5 +319,9 @@ export class FormBarComponent implements OnInit {
       this.resume.experiences.push(experience);
       this.experienceListChanged();
     });
+  }
+
+  changeTemplate(templateId: number) {
+    this.templateChange.emit(templateId);
   }
 }
