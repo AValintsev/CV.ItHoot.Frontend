@@ -1,12 +1,12 @@
-import { map, takeUntil } from 'rxjs/operators';
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from 'src/app/services/resume.service';
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import {map, takeUntil} from 'rxjs/operators';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from 'src/app/services/resume.service';
+import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
-import { Subject } from 'rxjs';
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
-import { HttpResponseBase } from '@angular/common/http';
+import {Subject} from 'rxjs';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
+import {HttpResponseBase} from '@angular/common/http';
 
 
 @Component({
@@ -14,11 +14,9 @@ import { HttpResponseBase } from '@angular/common/http';
   templateUrl: './cv-full.component.html',
   styleUrls: ['./cv-full.component.scss']
 })
-export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
-  private destroy$ = new Subject<boolean>();
+export class CvFullComponent implements OnInit, AfterViewInit {
   @Input() id: number = 0;
   resume!: ResumeDto;
-  @ViewChild('resume') resumeHtml!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,27 +25,20 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {
 
   }
+
   ngOnInit(): void {
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
-      this.resumeService.getResumeHtmlById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((resume) => {
-        this.resumeHtml.nativeElement.innerHTML = resume.html;
-        this.resumeService.getResumeById(id).pipe(
-          takeUntil(this.destroy$)
-        ).subscribe({
-          next: response => {
-            if (response) {
-              this.userHeaderBtnService.setUserData({
-                id: response.id,
-                firstName: response.firstName,
-                lastName: response.lastName
-              })
-            }
-          },
-          error: error => console.log(error)
+      this.resumeService.getResumeById(id).subscribe(resume => {
+
+        this.resume = resume;
+
+
+        this.userHeaderBtnService.setUserData({
+          id: resume.id,
+          firstName: resume.firstName,
+          lastName: resume.lastName
         })
-      });
+      })
     });
     this.setHeaderBtn(['back', 'create', 'menu-list'])
   }
@@ -57,16 +48,12 @@ export class CvFullComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const zoom = panzoom(this.resumeHtml.nativeElement, {
+    const zoom = panzoom(document.getElementById("zoom")!, {
       minZoom: 0.3,
       maxZoom: 1.3,
       bounds: true,
       disableKeyboardInteraction: true,
       boundsPadding: 0.1
     });
-  }
-  ngOnDestroy() {
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
   }
 }

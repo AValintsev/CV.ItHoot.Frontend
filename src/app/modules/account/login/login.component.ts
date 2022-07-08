@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit,OnDestroy {
 private destroy$ = new Subject<boolean>();
 public loading$!: Observable<boolean>
   errors!: string[];
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
 
   constructor(public accountService: AccountService,
               private router: Router,
@@ -28,9 +28,9 @@ public loading$!: Observable<boolean>
 
   ngOnInit(): void {
     this.loading$ = this.loadingService.isLoading$
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required,Validators.minLength(6)])
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      password: new UntypedFormControl('', [Validators.required,Validators.minLength(6)])
     })
   }
 

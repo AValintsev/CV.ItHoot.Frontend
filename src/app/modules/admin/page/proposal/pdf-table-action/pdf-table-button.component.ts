@@ -11,8 +11,7 @@ import {SnackBarService} from '../../../../../services/snack-bar.service';
   templateUrl: './pdf-table-button.component.html',
   styleUrls: ['./pdf-table-button.component.scss'],
 })
-export class PdfTableAction implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+export class PdfTableAction implements OnInit {
   @Input() resume!: ProposalResumeDto;
   @Input() proposal!: ProposalDto;
   constructor(
@@ -24,11 +23,7 @@ export class PdfTableAction implements OnInit, OnDestroy {
 
   getPdf() {
     this.loading = true;
-    this.proposalService
-      .getProposalResumePdf(this.proposal.id, this.resume.id).pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe((file) => {
+    this.proposalService.getProposalResumePdf(this.proposal.id, this.resume.id).subscribe((file) => {
         saveAs(file, `${this.resume.firstName} ${this.resume.lastName}.pdf`);
         this.loading = false;
       });
@@ -48,9 +43,5 @@ export class PdfTableAction implements OnInit, OnDestroy {
     document.execCommand('copy');
     document.body.removeChild(selBox);
     this.snackBarService.showSuccess('Link copied');
-  }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
   }
 }

@@ -3,18 +3,17 @@ import {ClientProposalService} from '../../../../services/client/client-proposal
 import {ProposalService} from '../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Subject} from 'rxjs';
 import panzoom from 'panzoom';
+import {ResumeDto} from "../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'cv-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
 })
-export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
+export class ResumeComponent implements OnInit {
 
-  @ViewChild('resume') resume!: ElementRef;
-  private destroy$ = new Subject<boolean>();
+  resume:ResumeDto|null = null;
   constructor(
     private activatedRoute: ActivatedRoute,
     private proposalService: ProposalService,
@@ -26,47 +25,38 @@ export class ResumeComponent implements OnInit, OnDestroy, OnDestroy {
     this.getResume();
   }
   getResume() {
-    this.activatedRoute.params
-      .pipe(
-        debounceTime(300),
-        tap((params) => {
-          this.proposalService
-            .getProposalById(params.proposalId).pipe(
-              takeUntil(this.destroy$)
-            )
-            .subscribe((response) => {
-              if (response) {
+    this.activatedRoute.params.pipe(
+      debounceTime(300),
+      tap((params) => {
+          this.proposalService.getProposalById(params.proposalId).subscribe(proposal => {
+              if (proposal) {
                 this.clientProposalService.numberCheckedResume$.next({
                   proposalId: params.proposalId,
                   resumeId: params.resumeId,
                 });
-                this.clientProposalService.getProposalById(params.proposalId).pipe(takeUntil(this.destroy$)).subscribe();
-                this.clientProposalService.headerTitle$.next(response.proposalName);
+                this.clientProposalService.getProposalById(params.proposalId).subscribe();
+                this.clientProposalService.headerTitle$.next(proposal.proposalName);
               }
             });
         }),
 
-        switchMap((params) => this.proposalService.getProposalResumeHtml(params.proposalId, params.resumeId))
-      )
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.resume.nativeElement.innerHTML = response.html;
-            const zoom = panzoom(document.getElementById('resume')!, {
-              minZoom: 0.3,
-              maxZoom: 3.5,
-              bounds: true,
-              disableKeyboardInteraction: true,
-              boundsPadding: 0.2
-            });
-          }
-        },
-        error: (error) => console.log(error),
-      });
+        switchMap((params) => this.proposalService.getProposalResume(params.proposalId, params.resumeId))
+      ).subscribe(data=>{
+      if (data) {
+        this.resume = data.resume;
+        this.resume!.showLogo = data.showLogo;
+        this.resume!.resumeTemplateId = data.resumeTemplateId;
+
+        const zoom = panzoom(document.getElementById('resume')!, {
+          minZoom: 0.3,
+          maxZoom: 3.5,
+          bounds: true,
+          disableKeyboardInteraction: true,
+          boundsPadding: 0.2
+        });
+      }
+    });
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
+
 }

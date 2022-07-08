@@ -11,29 +11,24 @@ import {Subject} from 'rxjs';
   templateUrl: './cv-full.component.html',
   styleUrls: ['./cv-full.component.scss'],
 })
-export class CvFullComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
-  @Input() id: number = 0;
-  @ViewChild('resume') resumeId!: ElementRef;
+export class CvFullComponent implements OnInit {
+  @ViewChild('resumeDiv') resumeId!: ElementRef;
   resume!: ResumeDto;
 
   constructor(
     private route: ActivatedRoute,
     private resumeService: ResumeService
-  ) {}
+  ) {
+
+
+
+  }
 
   ngOnInit(): void {
-    this.route.params
-    .pipe(
-      map((params) => params['id'])
-      )
-      .subscribe((id) => {
-      this.resumeService.getResumeHtmlById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((resume) => {
-        this.resumeId.nativeElement.innerHTML = resume.html;
-      });
-      const zoom = panzoom(document.getElementById('resume')!, {
+    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+      this.resumeService.getResumeById(id).subscribe(resume => this.resume = resume);
+
+      const zoom = panzoom(document.getElementById('resumeDiv')!, {
         minZoom: 0.3,
         maxZoom: 3.5,
         bounds: true,
@@ -42,8 +37,5 @@ export class CvFullComponent implements OnInit, OnDestroy {
       });
     });
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
-  }
+
 }

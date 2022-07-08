@@ -1,7 +1,7 @@
 import {takeUntil} from 'rxjs/operators';
 import {ResumeService} from 'src/app/services/resume.service';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {SkillDialog} from '../skill-dialog/skill-dialog.component';
 import {LanguageDialog} from '../language-dialog/language-dialog.component';
@@ -19,17 +19,18 @@ import {Subject} from 'rxjs';
 import {ResumeTemplateDto} from 'src/app/models/resume/resume-template-dto';
 
 @Component({
-  selector: 'cv-cv-create-left-bar',
+  selector: 'left-bar',
   templateUrl: './cv-left-bar.component.html',
   styleUrls: ['./cv-left-bar.component.scss'],
 })
 export class CvLeftBarComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   @Input()
-  public resumeForm: FormGroup = {} as FormGroup;
+  public resumeForm: UntypedFormGroup = {} as UntypedFormGroup;
   @Input()
   public resume!: ResumeDto;
   @Input() isCreateForm: boolean = true;
+  @Output() templateChange: EventEmitter<any> = new EventEmitter<any>();
 
   resumeTemplates!: ResumeTemplateDto[];
 
@@ -42,32 +43,31 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     private resumeService: ResumeService,
     private positionService: PositionService
   ) {
-    positionService.getAllPositions().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((positions) => {
+    positionService.getAllPositions().subscribe(positions => {
       this.positions = positions;
     });
-    this.resumeService
-      .getAllTemplates().pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe((templates) => (this.resumeTemplates = templates));
+
+    this.resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
+  }
+
+  changeTemplate(templateId: number) {
+    this.templateChange.emit(templateId);
   }
 
   onSelectFile(event: any) {
     this.file = event.target.files[0];
+
     if (!this.isCreateForm) {
-      this.resumeService
-        .addPhoto(this.resume.id, this.file!)
-        .subscribe();
+
+      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe();
+
     } else {
-      this.resumeService
-        .createPhoto(this.file!)
-        .subscribe(image=> {
-          this.resumeForm.patchValue({imageId: image.id});
-          this.resume.imageId = image.id
-          console.log(this.resume);
-        });
+
+      this.resumeService.createPhoto(this.file!).subscribe(image => {
+        this.resumeForm.patchValue({imageId: image.id});
+        this.resume.imageId = image.id
+      });
+
     }
   }
 
@@ -95,14 +95,14 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   }
 
   listSkillsChanged(): void {
-    (<FormArray>this.resumeForm.controls['skills']).clear();
+    (<UntypedFormArray>this.resumeForm.controls['skills']).clear();
     this.resume.skills?.forEach((skill) => {
-      (<FormArray>this.resumeForm.controls['skills']).push(
-        new FormGroup({
-          id: new FormControl(skill.id),
-          skillId: new FormControl(skill.skillId),
-          skillName: new FormControl(skill.skillName),
-          level: new FormControl(skill.level),
+      (<UntypedFormArray>this.resumeForm.controls['skills']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(skill.id),
+          skillId: new UntypedFormControl(skill.skillId),
+          skillName: new UntypedFormControl(skill.skillName),
+          level: new UntypedFormControl(skill.level),
         })
       );
     });
@@ -122,7 +122,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(SkillDialog, {
       width: '600px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -148,14 +148,14 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   }
 
   listLanguageChanged(): void {
-    (<FormArray>this.resumeForm.controls['languages']).clear();
+    (<UntypedFormArray>this.resumeForm.controls['languages']).clear();
     this.resume.languages?.forEach((languages) => {
-      (<FormArray>this.resumeForm.controls['languages']).push(
-        new FormGroup({
-          id: new FormControl(languages.id),
-          languageId: new FormControl(languages.languageId),
-          languageName: new FormControl(languages.languageName),
-          level: new FormControl(languages.level),
+      (<UntypedFormArray>this.resumeForm.controls['languages']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(languages.id),
+          languageId: new UntypedFormControl(languages.languageId),
+          languageName: new UntypedFormControl(languages.languageName),
+          level: new UntypedFormControl(languages.level),
         })
       );
     });
@@ -175,7 +175,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(LanguageDialog, {
       width: '600px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -201,22 +201,22 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   }
 
   educationListChanged() {
-    (<FormArray>this.resumeForm.controls['educations']).clear();
+    (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
     this.resume.educations
       ?.sort(
         (a: EducationDto, b: EducationDto) =>
           Date.parse(b.endDate) - Date.parse(a.endDate)
       )
       .forEach((education) => {
-        (<FormArray>this.resumeForm.controls['educations']).push(
-          new FormGroup({
-            id: new FormControl(0),
-            institutionName: new FormControl(education.institutionName),
-            specialization: new FormControl(education.specialization),
-            description: new FormControl(education.description),
-            degree: new FormControl(education.degree),
-            startDate: new FormControl(education.startDate),
-            endDate: new FormControl(education.endDate),
+        (<UntypedFormArray>this.resumeForm.controls['educations']).push(
+          new UntypedFormGroup({
+            id: new UntypedFormControl(0),
+            institutionName: new UntypedFormControl(education.institutionName),
+            specialization: new UntypedFormControl(education.specialization),
+            description: new UntypedFormControl(education.description),
+            degree: new UntypedFormControl(education.degree),
+            startDate: new UntypedFormControl(education.startDate),
+            endDate: new UntypedFormControl(education.endDate),
           })
         );
       });
@@ -236,7 +236,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '650px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -265,21 +265,21 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
   }
 
   experienceListChanged() {
-    (<FormArray>this.resumeForm.controls['experiences']).clear();
+    (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
     this.resume.experiences
       ?.sort(
         (a: ExperienceDto, b: ExperienceDto) =>
           Date.parse(b.endDate) - Date.parse(a.endDate)
       )
       .forEach((experience) => {
-        (<FormArray>this.resumeForm.controls['experiences']).push(
-          new FormGroup({
-            id: new FormControl(0),
-            position: new FormControl(experience.position),
-            description: new FormControl(experience.description),
-            company: new FormControl(experience.company),
-            startDate: new FormControl(experience.startDate),
-            endDate: new FormControl(experience.endDate),
+        (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
+          new UntypedFormGroup({
+            id: new UntypedFormControl(0),
+            position: new UntypedFormControl(experience.position),
+            description: new UntypedFormControl(experience.description),
+            company: new UntypedFormControl(experience.company),
+            startDate: new UntypedFormControl(experience.startDate),
+            endDate: new UntypedFormControl(experience.endDate),
           })
         );
       });
@@ -299,7 +299,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ExperienceDialog, {
       width: '700px',
       autoFocus: false,
-      data: { type: dialogType, data: data },
+      data: {type: dialogType, data: data},
     });
 
     dialogRef.afterClosed().pipe(
@@ -319,8 +319,7 @@ export class CvLeftBarComponent implements OnInit, OnDestroy {
     });
   }
 
-  changeTeam(event: any) {}
-   ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

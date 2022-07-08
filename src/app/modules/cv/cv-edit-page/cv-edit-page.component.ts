@@ -1,6 +1,6 @@
 import {map, takeUntil} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ResumeService} from '../../../services/resume.service';
 import {SnackBarService} from '../../../services/snack-bar.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,7 +8,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {Subject} from 'rxjs';
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -18,8 +18,9 @@ import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 export class CvEditPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumeEditDto: ResumeDto | null = null;
-  templateForm!: ResumeDto;
-  public resumeEditForm: FormGroup = {} as FormGroup;
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+  templateChanged: Subject<number> = new Subject<number>();
+  public resumeEditForm: UntypedFormGroup = {} as UntypedFormGroup;
 
   constructor(
     private resumeService: ResumeService,
@@ -27,164 +28,159 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private userHeaderBtnService:UserHeaderBtnService
-  ) {}
+    private userHeaderBtnService: UserHeaderBtnService
+  ) {
+  }
 
   ngOnInit(): void {
     this.validateForm();
     this.setDataDependentToId()
     this.changeFormDate();
-    this.setHeaderBtn(['back','create','menu-list'])
+    this.setHeaderBtn(['back', 'create', 'menu-list'])
   }
- setDataDependentToId(){
-   this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((resume) => {
+
+  setDataDependentToId() {
+    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+      this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
-        this.resumeService.getResumeById(id).pipe(
-          takeUntil(this.destroy$)
-        ).subscribe({
-          next: response => {
-            if (response) {
-              this.userHeaderBtnService.setUserData({
-                id: response.id,
-                firstName: response.firstName,
-                lastName: response.lastName
-              })
-            }
-          },
-          error: error => console.log(error)
+        this.resumeService.getResumeById(id).subscribe(resume => {
+          this.userHeaderBtnService.setUserData({
+            id: resume.id,
+            firstName: resume.firstName,
+            lastName: resume.lastName
+          })
         })
       });
     });
- }
-  setHeaderBtn(params:string[]){
+  }
+
+  setHeaderBtn(params: string[]) {
     this.userHeaderBtnService.setBTNs(params)
   }
+
   private changeFormDate() {
-    this.resumeEditForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      (resume) => (this.templateForm = resume)
-    );
+    this.resumeEditForm.valueChanges.subscribe(resume => {
+      this.resumeEditDto = resume;
+      this.resumeChanged.next(this.resumeEditDto!)
+    });
   }
+
   patchForm(resume: ResumeDto) {
-    this.resumeEditForm.patchValue({ id: resume.id });
-    this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
-    this.resumeEditForm.patchValue({ firstName: resume.firstName });
-    this.resumeEditForm.patchValue({ lastName: resume.lastName });
-    this.resumeEditForm.patchValue({ email: resume.email });
-    this.resumeEditForm.patchValue({ site: resume.site });
-    this.resumeEditForm.patchValue({ phone: resume.phone });
-    this.resumeEditForm.patchValue({ code: resume.code });
-    this.resumeEditForm.patchValue({ country: resume.country });
-    this.resumeEditForm.patchValue({ city: resume.city });
-    this.resumeEditForm.patchValue({ street: resume.street });
+    this.resumeEditForm.patchValue({id: resume.id});
+    this.resumeEditForm.patchValue({resumeName: resume.resumeName});
+    this.resumeEditForm.patchValue({firstName: resume.firstName});
+    this.resumeEditForm.patchValue({lastName: resume.lastName});
+    this.resumeEditForm.patchValue({email: resume.email});
+    this.resumeEditForm.patchValue({site: resume.site});
+    this.resumeEditForm.patchValue({phone: resume.phone});
+    this.resumeEditForm.patchValue({code: resume.code});
+    this.resumeEditForm.patchValue({country: resume.country});
+    this.resumeEditForm.patchValue({city: resume.city});
+    this.resumeEditForm.patchValue({street: resume.street});
     this.resumeEditForm.patchValue({requiredPosition: resume.requiredPosition,});
-    this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
-    this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
-    this.resumeEditForm.patchValue({ picture: resume.picture });
-    this.resumeEditForm.patchValue({ position: resume.position });
-    this.resumeEditForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
+    this.resumeEditForm.patchValue({birthdate: resume.birthdate});
+    this.resumeEditForm.patchValue({aboutMe: resume.aboutMe});
+    this.resumeEditForm.patchValue({picture: resume.picture});
+    this.resumeEditForm.patchValue({position: resume.position});
+    this.resumeEditForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
 
     resume.skills?.forEach((skill) => {
-      (<FormArray>this.resumeEditForm.controls['skills']).push(
-        new FormGroup({
-          id: new FormControl(skill.id),
-          skillId: new FormControl(skill.skillId),
-          skillName: new FormControl(skill.skillName),
-          level: new FormControl(skill.level),
+      (<UntypedFormArray>this.resumeEditForm.controls['skills']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(skill.id),
+          skillId: new UntypedFormControl(skill.skillId),
+          skillName: new UntypedFormControl(skill.skillName),
+          level: new UntypedFormControl(skill.level),
         })
       );
     });
 
     resume.languages?.forEach((languages) => {
-      (<FormArray>this.resumeEditForm.controls['languages']).push(
-        new FormGroup({
-          id: new FormControl(languages.id),
-          languageId: new FormControl(languages.languageId),
-          languageName: new FormControl(languages.languageName),
-          level: new FormControl(languages.level),
+      (<UntypedFormArray>this.resumeEditForm.controls['languages']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(languages.id),
+          languageId: new UntypedFormControl(languages.languageId),
+          languageName: new UntypedFormControl(languages.languageName),
+          level: new UntypedFormControl(languages.level),
         })
       );
     });
 
     resume.educations?.forEach((education) => {
-      (<FormArray>this.resumeEditForm.controls['educations']).push(
-        new FormGroup({
-          id: new FormControl(education.id),
-          institutionName: new FormControl(education.institutionName),
-          specialization: new FormControl(education.specialization),
-          description: new FormControl(education.description),
-          degree: new FormControl(education.degree),
-          startDate: new FormControl(education.startDate),
-          endDate: new FormControl(education.endDate),
+      (<UntypedFormArray>this.resumeEditForm.controls['educations']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(education.id),
+          institutionName: new UntypedFormControl(education.institutionName),
+          specialization: new UntypedFormControl(education.specialization),
+          description: new UntypedFormControl(education.description),
+          degree: new UntypedFormControl(education.degree),
+          startDate: new UntypedFormControl(education.startDate),
+          endDate: new UntypedFormControl(education.endDate),
         })
       );
     });
 
     resume.experiences?.forEach((experience) => {
-      (<FormArray>this.resumeEditForm.controls['experiences']).push(
-        new FormGroup({
-          id: new FormControl(experience.id),
-          position: new FormControl(experience.position),
-          description: new FormControl(experience.description),
-          company: new FormControl(experience.company),
-          startDate: new FormControl(experience.startDate),
-          endDate: new FormControl(experience.endDate),
+      (<UntypedFormArray>this.resumeEditForm.controls['experiences']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(experience.id),
+          position: new UntypedFormControl(experience.position),
+          description: new UntypedFormControl(experience.description),
+          company: new UntypedFormControl(experience.company),
+          startDate: new UntypedFormControl(experience.startDate),
+          endDate: new UntypedFormControl(experience.endDate),
         })
       );
     });
   }
 
   validateForm() {
-    this.resumeEditForm = new FormGroup({
-      id: new FormControl(this.resumeEditDto?.id, [Validators.required]),
-      resumeName: new FormControl(this.resumeEditDto?.resumeName, [
+    this.resumeEditForm = new UntypedFormGroup({
+      id: new UntypedFormControl(this.resumeEditDto?.id, [Validators.required]),
+      resumeName: new UntypedFormControl(this.resumeEditDto?.resumeName, [
         Validators.required,
       ]),
-      firstName: new FormControl(this.resumeEditDto?.firstName, [
+      firstName: new UntypedFormControl(this.resumeEditDto?.firstName, [
         Validators.required,
       ]),
-      lastName: new FormControl(this.resumeEditDto?.lastName, [
+      lastName: new UntypedFormControl(this.resumeEditDto?.lastName, [
         Validators.required,
       ]),
-      position: new FormControl(this.resumeEditDto?.position, [
+      position: new UntypedFormControl(this.resumeEditDto?.position, [
         Validators.required,
       ]),
-      birthdate: new FormControl(this.resumeEditDto?.birthdate, [
+      birthdate: new UntypedFormControl(this.resumeEditDto?.birthdate, [
         Validators.required,
       ]),
-      email: new FormControl(this.resumeEditDto?.email, [
+      email: new UntypedFormControl(this.resumeEditDto?.email, [
         Validators.required,
         Validators.email,
       ]),
-      site: new FormControl(this.resumeEditDto?.site),
-      phone: new FormControl(this.resumeEditDto?.phone, [
-       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
+      site: new UntypedFormControl(this.resumeEditDto?.site),
+      phone: new UntypedFormControl(this.resumeEditDto?.phone, [
+        Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
       ]),
-      code: new FormControl(this.resumeEditDto?.code),
-      country: new FormControl(this.resumeEditDto?.country, [
+      code: new UntypedFormControl(this.resumeEditDto?.code),
+      country: new UntypedFormControl(this.resumeEditDto?.country, [
         Validators.required,
       ]),
-      city: new FormControl(this.resumeEditDto?.city, [Validators.required]),
-      street: new FormControl(this.resumeEditDto?.street, [
+      city: new UntypedFormControl(this.resumeEditDto?.city, [Validators.required]),
+      street: new UntypedFormControl(this.resumeEditDto?.street, [
         Validators.required,
       ]),
-      requiredPosition: new FormControl(this.resumeEditDto?.requiredPosition, [
+      requiredPosition: new UntypedFormControl(this.resumeEditDto?.requiredPosition, [
         Validators.required,
       ]),
-      aboutMe: new FormControl(this.resumeEditDto?.aboutMe, [
+      aboutMe: new UntypedFormControl(this.resumeEditDto?.aboutMe, [
         Validators.required,
       ]),
-      resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
-      picture: new FormControl(this.resumeEditDto?.picture),
-      educations: new FormArray([]),
-      experiences: new FormArray([]),
-      skills: new FormArray([]),
-      languages: new FormArray([]),
+      resumeTemplateId: new UntypedFormControl(this.resumeEditDto?.resumeTemplateId),
+      picture: new UntypedFormControl(this.resumeEditDto?.picture),
+      educations: new UntypedFormArray([]),
+      experiences: new UntypedFormArray([]),
+      skills: new UntypedFormArray([]),
+      languages: new UntypedFormArray([]),
     });
   }
 
@@ -214,7 +210,12 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       });
     }
   }
-   ngOnDestroy(){
+
+  templateChange(templateId: number) {
+    this.templateChanged.next(templateId);
+  }
+
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }
