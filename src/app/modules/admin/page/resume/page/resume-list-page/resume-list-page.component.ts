@@ -14,7 +14,7 @@ export class ResumeListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumes: SmallResumeDto[] = [];
   resumesCount: number = 0;
-  url = '/admin/resume'
+  url = '/admin/'
   isLoadingResults = true;
   isRateLimitReached = false;
 

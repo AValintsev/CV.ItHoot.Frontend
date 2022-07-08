@@ -4,6 +4,7 @@ import { CvFullComponent } from '../cv-full/cv-full.component';
 import { EditPageComponent } from '../edit-page/edit-page.component';
 import { ProposalPageComponent } from '../proposal/page/proposal-page/proposal-page.component';
 import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/proposal-archive-list-page.component';
+import { ProposalArchivePageComponent } from './proposal-page/proposal-archive-page.component';
 import {ResumeArchiveListComponent} from './resume-archive-list/resume-archive-list.component';
 
 
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'proposals/:id',
-    component: ProposalPageComponent
+    component: ProposalArchivePageComponent
   },
   {
     path: 'resume',
@@ -22,6 +23,10 @@ const routes: Routes = [
   },
   {
     path: 'resume/:id',
+    component: CvFullComponent
+  },
+  {
+    path: 'proposals/:id/resume/:id',
     component: CvFullComponent
   },
   {

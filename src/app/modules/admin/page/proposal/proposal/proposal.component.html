@@ -78,7 +78,7 @@
               <div>
                 <button class="open" mat-raised-button [matMenuTriggerFor]="menu">Open</button>
                 <mat-menu #menu="matMenu" >
-                  <button mat-menu-item  routerLink="/admin/proposals/{{proposal.id}}/resume/{{resume.id}}">Open</button>
+                  <button mat-menu-item  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}"></button>
                   <button mat-menu-item  (click)="copyResumeLink(resume)">Copy link</button>
                 </mat-menu>
               </div>

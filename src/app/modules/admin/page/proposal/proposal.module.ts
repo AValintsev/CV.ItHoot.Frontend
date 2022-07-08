@@ -82,7 +82,8 @@ import {DirectivesModule} from "../../../shared/directives/directives.module";
   exports: [
     ProposalListPageComponent,
     DateUtcPipe,
-    ProposalListComponent
+    ProposalListComponent,
+    ProposalComponent,
   ],
   declarations: [
     DateUtcPipe,

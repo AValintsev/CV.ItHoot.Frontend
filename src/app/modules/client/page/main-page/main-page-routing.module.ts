@@ -17,10 +17,10 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {ProposalComponent} from '../proposal/proposal.component';
 import {UsersGuard} from 'src/app/guards/users.guard';
 import {Users} from 'src/app/models/users-type';
 import {LoaderModule} from 'src/app/modules/shared/components/loader/loader.module';
+import { ProposalComponent } from '../proposal/proposal.component';
 
 
 const routes: Routes = [
@@ -74,7 +74,6 @@ const routes: Routes = [
     MainPageComponent,
     ProposalsComponent,
     ResumeComponent,
-    ProposalComponent,
   ],
   providers:[
  

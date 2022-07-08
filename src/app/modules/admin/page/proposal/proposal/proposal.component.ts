@@ -34,6 +34,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     'action',
   ];
   @Input() proposal!: ProposalDto;
+  @Input() url!: string;
   StatusResume = StatusProposalResume;
   loading: boolean = false;
 
