@@ -3,15 +3,18 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-
-
 }
-
+header {
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+  }
+}
 .body {
   // padding: 3rem;
-  height: calc(100vh - 16rem);
+  height: calc(100vh - 8rem);
   overflow: auto;
-  background: #E5E5E5;
+  background: #e5e5e5;
 
   @media (max-width: 700px) {
     height: calc(100vh - 12rem);
@@ -20,7 +23,29 @@
   @media (max-width: 600px) {
     height: calc(100vh - 10rem);
   }
+  @media (min-width: 600px) {
+    display: flex;
+  }
+}
+main{
+  display: flex;
+}
+.menu {
+  @media (min-width: 600px) {
+    display: block;
+    position: relative;
+    flex: 0 0 20rem;
+    background-color: #fff;
+    padding: 0rem 1.2rem;
+    height: 100vh;
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
 
+.menu-list {
+  min-height: 100%;
 }
 
 .footer {
