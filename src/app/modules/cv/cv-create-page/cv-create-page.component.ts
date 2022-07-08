@@ -15,11 +15,13 @@ import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
   templateUrl: './cv-create-page.component.html',
   styleUrls: ['./cv-create-page.component.scss']
 })
-export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
-  private destroy$ = new Subject<boolean>();
+export class CvCreatePageComponent implements OnInit {
   resumeCreateDto: ResumeDto = {} as ResumeDto;
-  public resumeCreateForm: UntypedFormGroup = {} as UntypedFormGroup;
-  templateForm!: ResumeDto
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+  templateChanged: Subject<number> = new Subject<number>();
+  resumeCreateForm: UntypedFormGroup = {} as UntypedFormGroup;
+
+
   constructor(private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
@@ -43,31 +45,11 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     this.userHeaderBtnService.setBTNs(params)
   }
 
-  private getFieldDate() {
-    this.activatedRoute.queryParams.pipe(
-      takeUntil(this.destroy$),
-      map(params=>params.userId)).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe({
-      next:params=>{
-        if(params){
-           this.resumeService.getResumeById(params).pipe(
-            takeUntil(this.destroy$)
-          ).subscribe({
-             next:response=>{
-              this.patchForm(response)
-             },
-           })
-        }
-      },
-      error:error=>console.log(error)
-    })
-  }
-
   private changeFormDate() {
-    this.resumeCreateForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(resume => this.templateForm = resume)
+    this.resumeCreateForm.valueChanges.subscribe(resume =>{
+      this.resumeCreateDto = resume;
+      this.resumeChanged.next(resume);
+    })
   }
   private validateForm() {
     this.resumeCreateForm = new UntypedFormGroup({
@@ -121,6 +103,19 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
     });
   }
 
+  private getFieldDate() {
+    this.activatedRoute.queryParams.pipe(map(params=>params.userId)).subscribe({
+      next:params=>{
+        if(params){
+          this.resumeService.getResumeById(params).subscribe(resume=>{
+              this.patchForm(resume)
+                this.templateChanged.next(resume.resumeTemplateId);
+          })
+        }
+      },
+      error:error=>console.log(error)
+    })
+  }
 
   patchForm(resume: ResumeDto) {
     this.resumeCreateForm.patchValue({ id: resume.id });
@@ -189,9 +184,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
 
 
   public submit(resume: ResumeDto) {
-    this.resumeService.createResume(resume).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
+    this.resumeService.createResume(resume).subscribe({
       next: () => {
         this.snackbarService.showSuccess('Created');
         if (this.accountService.getStoreRole() === Users[2]) {
@@ -206,8 +199,7 @@ export class CvCreatePageComponent implements OnInit,OnDestroy,OnDestroy {
       }
     })
   }
-    ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
+  templateChange(templateId: number) {
+    this.templateChanged.next(templateId);
   }
 }

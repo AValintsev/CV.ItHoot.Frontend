@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
     this.userHeaderBtnService.userDataSub$
       .pipe(
         takeUntil(this.destroy$),
-        tap((e) => console.log('11111111111111'))
       )
       .subscribe({
         next: (response) => {

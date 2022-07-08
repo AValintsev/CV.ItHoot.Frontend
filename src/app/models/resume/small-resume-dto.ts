@@ -9,6 +9,7 @@ export interface SmallResumeDto{
   firstName: string;
   lastName: string;
   picture: string;
+  aboutMe:string;
   salaryRate:number;
   availabilityStatus: AvailabilityStatus;
   deletedAt: string | null;

@@ -8,7 +8,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {Subject} from 'rxjs';
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-cv-edit-page',
@@ -18,7 +18,8 @@ import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 export class CvEditPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumeEditDto: ResumeDto | null = null;
-  templateForm!: ResumeDto;
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+  templateChanged: Subject<number> = new Subject<number>();
   public resumeEditForm: UntypedFormGroup = {} as UntypedFormGroup;
 
   constructor(
@@ -27,67 +28,62 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private userHeaderBtnService:UserHeaderBtnService
-  ) {}
+    private userHeaderBtnService: UserHeaderBtnService
+  ) {
+  }
 
   ngOnInit(): void {
     this.validateForm();
     this.setDataDependentToId()
     this.changeFormDate();
-    this.setHeaderBtn(['back','create','menu-list'])
+    this.setHeaderBtn(['back', 'create', 'menu-list'])
   }
- setDataDependentToId(){
-   this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((resume) => {
+
+  setDataDependentToId() {
+    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+      this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
-        this.resumeService.getResumeById(id).pipe(
-          takeUntil(this.destroy$)
-        ).subscribe({
-          next: response => {
-            if (response) {
-              this.userHeaderBtnService.setUserData({
-                id: response.id,
-                firstName: response.firstName,
-                lastName: response.lastName
-              })
-            }
-          },
-          error: error => console.log(error)
+        this.resumeService.getResumeById(id).subscribe(resume => {
+          this.userHeaderBtnService.setUserData({
+            id: resume.id,
+            firstName: resume.firstName,
+            lastName: resume.lastName
+          })
         })
       });
     });
- }
-  setHeaderBtn(params:string[]){
+  }
+
+  setHeaderBtn(params: string[]) {
     this.userHeaderBtnService.setBTNs(params)
   }
+
   private changeFormDate() {
-    this.resumeEditForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      (resume) => (this.templateForm = resume)
-    );
+    this.resumeEditForm.valueChanges.subscribe(resume => {
+      this.resumeEditDto = resume;
+      this.resumeChanged.next(this.resumeEditDto!)
+    });
   }
+
   patchForm(resume: ResumeDto) {
-    this.resumeEditForm.patchValue({ id: resume.id });
-    this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
-    this.resumeEditForm.patchValue({ firstName: resume.firstName });
-    this.resumeEditForm.patchValue({ lastName: resume.lastName });
-    this.resumeEditForm.patchValue({ email: resume.email });
-    this.resumeEditForm.patchValue({ site: resume.site });
-    this.resumeEditForm.patchValue({ phone: resume.phone });
-    this.resumeEditForm.patchValue({ code: resume.code });
-    this.resumeEditForm.patchValue({ country: resume.country });
-    this.resumeEditForm.patchValue({ city: resume.city });
-    this.resumeEditForm.patchValue({ street: resume.street });
+    this.resumeEditForm.patchValue({id: resume.id});
+    this.resumeEditForm.patchValue({resumeName: resume.resumeName});
+    this.resumeEditForm.patchValue({firstName: resume.firstName});
+    this.resumeEditForm.patchValue({lastName: resume.lastName});
+    this.resumeEditForm.patchValue({email: resume.email});
+    this.resumeEditForm.patchValue({site: resume.site});
+    this.resumeEditForm.patchValue({phone: resume.phone});
+    this.resumeEditForm.patchValue({code: resume.code});
+    this.resumeEditForm.patchValue({country: resume.country});
+    this.resumeEditForm.patchValue({city: resume.city});
+    this.resumeEditForm.patchValue({street: resume.street});
     this.resumeEditForm.patchValue({requiredPosition: resume.requiredPosition,});
-    this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
-    this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
-    this.resumeEditForm.patchValue({ picture: resume.picture });
-    this.resumeEditForm.patchValue({ position: resume.position });
-    this.resumeEditForm.patchValue({ resumeTemplateId: resume.resumeTemplateId });
+    this.resumeEditForm.patchValue({birthdate: resume.birthdate});
+    this.resumeEditForm.patchValue({aboutMe: resume.aboutMe});
+    this.resumeEditForm.patchValue({picture: resume.picture});
+    this.resumeEditForm.patchValue({position: resume.position});
+    this.resumeEditForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
 
     resume.skills?.forEach((skill) => {
       (<UntypedFormArray>this.resumeEditForm.controls['skills']).push(
@@ -163,7 +159,7 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       ]),
       site: new UntypedFormControl(this.resumeEditDto?.site),
       phone: new UntypedFormControl(this.resumeEditDto?.phone, [
-       Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
+        Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
       ]),
       code: new UntypedFormControl(this.resumeEditDto?.code),
       country: new UntypedFormControl(this.resumeEditDto?.country, [
@@ -214,7 +210,12 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       });
     }
   }
-   ngOnDestroy(){
+
+  templateChange(templateId: number) {
+    this.templateChanged.next(templateId);
+  }
+
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }
