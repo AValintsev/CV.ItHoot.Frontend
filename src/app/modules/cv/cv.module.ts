@@ -31,6 +31,7 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
 
 
 
+
 @NgModule({
   declarations: [
     CvFullComponent,
@@ -41,7 +42,8 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
     EducationDialog,
     ExperienceDialog,
     CvEditPageComponent,
-    UserCvListComponent,
+    UserCvListComponent
+
   ],
   imports: [
     CommonModule,

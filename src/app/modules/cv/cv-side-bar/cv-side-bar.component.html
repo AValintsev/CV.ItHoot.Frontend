@@ -1,0 +1,66 @@
+<div class="menu">
+  <div class="menu-list">
+    <mat-list>
+      <div class="label">
+        <img src="assets/label.jpg" alt="label" />
+      </div>
+      <div class="user-content">
+        <div class="user-picture img">
+          <img src="assets/face.jpg" alt="user picture" />
+        </div>
+        <ul class="user-atrr">
+          <li class="user-name">{{accountService.getStoreName()}}</li>
+          <li class="user-role">
+            {{
+            accountService.getStoreRole()
+            ? accountService.getStoreRole()
+            : "User"
+            }}
+          </li>
+        </ul>
+      </div>
+      <mat-divider class="first-divider"></mat-divider>
+      <div class="btn-create" *ngIf="btnSwitcher('create') | async">
+        <button  [routerLink]="['/home/cv/create']" mat-raised-button
+          color="primary" class="create-resume">
+          Create CV
+        </button>
+      </div>
+      <div  *ngIf="btnSwitcher('home') | async"  mat-menu-item routerLink="/home/cv/user-list" mat-menu-item>
+      <mat-icon>home</mat-icon>
+            <span >
+              Home
+            </span>
+      </div>
+      <div  *ngIf="btnSwitcher('edit') | async"  mat-menu-item routerLink="/home/cv/edit/{{id}}" mat-menu-item>
+      <mat-icon>edit</mat-icon>
+            <span >
+              Edit CV
+            </span>
+      </div>
+      <div *ngIf="btnSwitcher('menu-list') | async" mat-menu-item (click)="savePdf(id, firstName, lastName)">
+        <mat-icon>picture_as_pdf</mat-icon>
+        <span>Save PDF</span>
+      </div>
+      <div *ngIf="btnSwitcher('menu-list') | async" mat-menu-item (click)="saveDocX()" class="docx">
+        <mat-icon>description</mat-icon>
+        <span>Save DocX</span>
+      </div>
+      <div *ngIf="btnSwitcher('menu-list') | async" mat-menu-item [routerLink]="['/home/cv/create/']"
+        [queryParams]="{ userId: id }">
+        <mat-icon>file_copy</mat-icon>
+        <span>Duplicate</span>
+      </div>
+      <div *ngIf="btnSwitcher('menu-list') | async" mat-menu-item (click)="deleteResume(id)">
+        <mat-icon>delete_forever</mat-icon>
+        <span>Delete</span>
+      </div>
+      <mat-divider class="last-divider"></mat-divider>
+      <div class="menu-btn-wrapper">
+        <button mat-menu-item class="logout" color="warn" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </mat-list>
+  </div>
+</div>

@@ -36,11 +36,11 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     this.validateForm();
     this.setDataDependentToId()
     this.changeFormDate();
-    this.setHeaderBtn(['back', 'create', 'menu-list'])
+    this.setHeaderBtn(['back', 'create', 'menu-list','create','home'])
   }
 
   setDataDependentToId() {
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+    this.route.params.pipe(map((params) =>params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);

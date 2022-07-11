@@ -20,7 +20,7 @@ export class UserHeaderBtnService implements OnDestroy{
     }
     setUserData(data:UserHeaderData|null = null){
       this.userDataSub$.next(data);
-      this.userData$ =  this.userDataSub$.asObservable()
+      // this.userData$ =  this.userDataSub$.asObservable()
     }
     ngOnDestroy(){
       this.getBtnSub$.complete();
