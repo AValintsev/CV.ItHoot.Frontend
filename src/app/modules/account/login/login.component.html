@@ -20,9 +20,8 @@
               a password of at least {{loginForm?.get('password')?.errors?.minlength?.requiredLength}} characters
             </mat-error>
           </mat-form-field>
-
           <div class="button">
-            <button [disabled]="!loginForm.valid&&!loginForm.pristine" type="submit" mat-raised-button>Login</button>
+            <button [disabled]="!loginForm.valid&&!loginForm.pristine" type="submit" mat-raised-button>Login</button>   
           </div>
           <div class="or">
             <span></span>

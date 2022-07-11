@@ -7,6 +7,7 @@ import {SnackBarService} from '../../../../../services/snack-bar.service';
 @Component({
   selector: 'pdf-table-button',
   templateUrl: './pdf-table-button.component.html',
+  outputs: ['bankNameChange'],
   styleUrls: ['./pdf-table-button.component.scss'],
 })
 export class PdfTableAction implements OnInit {

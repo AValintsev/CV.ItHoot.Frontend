@@ -30,6 +30,7 @@ import {ResumeTemplateBuilderModule} from "../shared/resume-template-builder/res
 import {QuillModule} from "ngx-quill";
 
 
+
 @NgModule({
   declarations: [
     CvFullComponent,
@@ -40,7 +41,8 @@ import {QuillModule} from "ngx-quill";
     EducationDialog,
     ExperienceDialog,
     CvEditPageComponent,
-    UserCvListComponent,
+    UserCvListComponent
+
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,17 @@
-<cv-loader *ngIf="loading$|async"></cv-loader>
+<cv-loader *ngIf="loading$ | async"></cv-loader>
 <div class="container">
   <header>
     <cv-header></cv-header>
   </header>
-  <div class="body">
-    <router-outlet></router-outlet>
-  </div>
-    <cv-footer></cv-footer>
+  <main class="main">
+    <cv-cv-side-bar  [class.width-zero]="!toggle" [class.open-side-bar]="toggle"></cv-cv-side-bar>
+      <div [class.open-menu]="toggle" (click)="sideBarToggler()" class="menu-burger__side-bar">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+      </div>
+    <div class="body">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <cv-footer></cv-footer>
 </div>

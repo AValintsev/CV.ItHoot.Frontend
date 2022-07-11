@@ -3,26 +3,133 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-
-
 }
 
-.body {
-  // padding: 3rem;
-  height: calc(100vh - 16rem);
-  overflow: auto;
-  background: #E5E5E5;
+header {
+  display: none;
+
+  @media (max-width: 600px) {
+    display: block;
+  }
+}
+
+main {
+  height: calc(100vh - 8rem);
+  background: #e5e5e5;
 
   @media (max-width: 700px) {
-    height: calc(100vh - 12rem);
+    height: calc(100vh - 8rem);
   }
 
   @media (max-width: 600px) {
     height: calc(100vh - 10rem);
+    overflow-y: auto;
   }
 
+  @media (min-width: 600px) {
+    display: flex;
+  }
+}
+
+.body {
+  overflow: auto;
+  flex: 0 1 100%;
+}
+
+cv-cv-cide-bar {
+  @media (min-width: 600px) {
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .footer {
   height: 8rem;
+}
+
+
+.btn-toggler {
+  font-size: 4rem;
+  top: 0;
+}
+
+.btn-toggler {
+  font-size: 4rem;
+  display: flex;
+  align-items: flex-start;
+  top: 0;
+  right: -2rem;
+}
+
+.open-side-bar {
+  transition: all .3s ease;
+  transform: translateX(0%);
+  flex: 0 0 30rem;
+  overflow-x: visible;
+  visibility: visible;
+
+  @media (max-width: 700px) {
+    flex: 0 0 10rem;
+  }
+}
+
+.width-zero {
+  transition: all .3s ease;
+  transform: translateX(-100%);
+  width: 0;
+  flex: 0 0 0;
+  overflow-x: hidden;
+  visibility: hidden;
+}
+
+.menu-burger__side-bar {
+  background-color: rgb(138, 146, 166);
+  position: relative;
+  width: 3rem;
+  height: 3.5rem;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // margin-left: 10px;
+  mat-icon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    transition: all .3s ease;
+    color: #fff;
+
+  }
+
+  &.open-menu {
+    mat-icon {
+      transform: rotate(0deg);
+      transition: all .3s ease;
+    }
+  }
+
+  @media (min-width: 600px) {
+    background-color: rgb(138, 146, 166);
+    position: relative;
+    width: 3rem;
+    height: 3.5rem;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+
+
 }
