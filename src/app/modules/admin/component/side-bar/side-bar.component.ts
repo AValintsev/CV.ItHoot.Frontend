@@ -1,6 +1,6 @@
-import { Subject } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Subject} from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'cv-side-bar',

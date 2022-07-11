@@ -1,14 +1,5 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {
-  Component,
-  createNgModuleRef, Injector,
-  NgModule,
-  NgModuleRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {Component, Injector, OnInit} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';

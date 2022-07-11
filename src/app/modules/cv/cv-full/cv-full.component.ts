@@ -1,12 +1,10 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
-import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
-import {HttpResponseBase} from '@angular/common/http';
 
 
 @Component({

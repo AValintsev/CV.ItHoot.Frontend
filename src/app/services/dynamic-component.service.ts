@@ -3,7 +3,8 @@ import {
   Component,
   ComponentFactory,
   Injectable,
-  NgModule, Type,
+  NgModule,
+  Type,
   ViewContainerRef,
   ViewEncapsulation
 } from "@angular/core";

@@ -1,6 +1,4 @@
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProposalDto, ProposalResumeDto,} from '../../../../../models/proposal/proposal-dto';
 import {saveAs} from 'file-saver';
 import {ProposalService} from '../../../../../services/proposal.service';

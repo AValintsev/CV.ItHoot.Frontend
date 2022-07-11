@@ -12,16 +12,19 @@
    mat-label{
      font-size: 1.3em;
    }
-   textarea{
-     min-width: 700px;
-     height: 50vh;
-   }
+
   }
 
-  button{
-    align-self: flex-end;
-    background: #3C6F9E;
-    color: white;
+  .actions{
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+
+    button{
+      align-self: flex-end;
+      background: #3C6F9E;
+      color: white;
+    }
   }
 
 }

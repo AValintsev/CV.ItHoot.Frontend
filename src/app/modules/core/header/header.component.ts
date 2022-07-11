@@ -1,19 +1,15 @@
-import { DeleteModalService } from './../../../services/delete-modal.service';
-import { MatDialog } from '@angular/material/dialog';
-import { map, takeUntil, tap } from 'rxjs/operators';
-import { Observable, of, Subject } from 'rxjs';
-import { ResumeService } from './../../../services/resume.service';
-import { Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users-type';
-import {
-  UserHeaderBtnService,
-  UserHeaderData,
-} from 'src/app/services/user-header-btn.service';
-import { ModalDeleteComponent } from '../../shared/modals/modal-delete-user/modal-delete-user.component';
+import {DeleteModalService} from './../../../services/delete-modal.service';
+import {MatDialog} from '@angular/material/dialog';
+import {map, takeUntil} from 'rxjs/operators';
+import {Observable, of, Subject} from 'rxjs';
+import {ResumeService} from './../../../services/resume.service';
+import {Router} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Users} from 'src/app/models/users-type';
+import {UserHeaderBtnService, UserHeaderData,} from 'src/app/services/user-header-btn.service';
 import * as saveAs from 'file-saver';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'cv-header',

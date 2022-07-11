@@ -12,7 +12,7 @@ import {MainPageComponent} from './main-page.component';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
 import {FooterModule} from '../../shared/footer/footer.module';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {ProposalComponent} from '../proposal/proposal.component';
@@ -20,7 +20,7 @@ import {UsersGuard} from 'src/app/guards/users.guard';
 import {Users} from 'src/app/models/users-type';
 import {LoaderModule} from 'src/app/modules/shared/components/loader/loader.module';
 import {DeleteModalService} from "../../../../services/delete-modal.service";
-import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 
 
 const routes: Routes = [
@@ -68,7 +68,7 @@ const routes: Routes = [
     ModalDeleteUserModule,
     LoaderModule,
     RouterModule.forChild(routes),
-    TemplateBuilderModule,
+    ResumeTemplateBuilderModule,
   ],
   exports: [
     MainPageComponent,

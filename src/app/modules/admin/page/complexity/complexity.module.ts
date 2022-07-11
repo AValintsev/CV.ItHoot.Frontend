@@ -10,7 +10,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {ComplexityRoutingModule} from "./complexity-routing.module";
-import { DeleteModalService } from "src/app/services/delete-modal.service";
+import {DeleteModalService} from "src/app/services/delete-modal.service";
 
 @NgModule({
   declarations: [

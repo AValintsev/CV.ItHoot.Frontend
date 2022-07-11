@@ -12,7 +12,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 const routes: Routes = [
 	{

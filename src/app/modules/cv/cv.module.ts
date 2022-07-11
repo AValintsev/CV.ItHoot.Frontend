@@ -6,7 +6,7 @@ import {CvFullComponent} from './cv-full/cv-full.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserCvListComponent} from './user-cv-list/user-cv-list.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
-import {CvLeftBarComponent} from './cv-leftbar/cv-left-bar.component';
+import {FormBarComponent} from './form-bar/form-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
 import {LanguageDialog} from "./language-dialog/language-dialog.component";
 import {EducationDialog} from './education-dialog/education-dialog.component';
@@ -26,9 +26,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
-import {TemplateBuilderModule} from "../shared/template-builder/template-builder.module";
-
-
+import {ResumeTemplateBuilderModule} from "../shared/resume-template-builder/resume-template-builder.module";
+import {QuillModule} from "ngx-quill";
 
 
 
@@ -36,7 +35,7 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
   declarations: [
     CvFullComponent,
     CvCreatePageComponent,
-    CvLeftBarComponent,
+    FormBarComponent,
     SkillDialog,
     LanguageDialog,
     EducationDialog,
@@ -89,7 +88,8 @@ import {TemplateBuilderModule} from "../shared/template-builder/template-builder
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    TemplateBuilderModule
+    ResumeTemplateBuilderModule,
+    QuillModule
   ]
 })
 export class CvModule {

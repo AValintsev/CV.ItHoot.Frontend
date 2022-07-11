@@ -10,6 +10,14 @@ import * as moment from 'moment';
 import {UserValidators} from '../../shared/validators/user.validators';
 import {Subject} from 'rxjs';
 
+const modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike', 'code-block', {'header': 1}, {'header': 2}, {'list': 'ordered'}, {'list': 'bullet'}, {'align': []}],        // toggled buttons
+    [{'size': ['small', false, 'large', 'huge']}, {'header': [1, 2, 3, 4, 5, 6, false]}, {'font': []}],
+  ]
+};
+
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -36,6 +44,10 @@ export const MY_FORMATS = {
   ],
 })
 export class EducationDialog implements OnInit, OnDestroy {
+
+  modules = modules;
+
+
   private destroy$ = new Subject<boolean>();
   education: EducationDto = {} as EducationDto;
   typeDialog: DialogType;
@@ -72,6 +84,7 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.typeDialog = data.type;
     this.education = data.data;
   }
+
   date = new UntypedFormControl(moment());
   checkDataTypeFormControl(type: DialogType) {
     if (type === DialogType.Create) {

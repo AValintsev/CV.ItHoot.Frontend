@@ -1,4 +1,4 @@
-import { UserHeaderBtnService } from './../../../services/user-header-btn.service';
+import {UserHeaderBtnService} from './../../../services/user-header-btn.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
