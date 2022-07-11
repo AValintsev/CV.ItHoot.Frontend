@@ -1,9 +1,7 @@
-
 .menu {
   @media (min-width: 600px) {
     display: block;
     position: relative;
-    flex: 0 0 20rem;
     background-color: #fff;
     padding: 0rem 1.2rem;
     height: 100%;
@@ -15,6 +13,17 @@
   }
 }
 
+.mat-menu-item {
+  @media(max-height:680px) {
+    line-height: 3.9rem;
+    height: 3.9rem;
+  }
+
+  @media(max-height:620px) {
+    line-height: 3.4rem;
+    height: 3.4rem;
+  }
+}
 
 .logout {
   padding-left: 1rem;
@@ -142,11 +151,21 @@ img {
 
 .user-atrr {
   padding: 0 1rem 0;
+  width: 22rem;
+
+
+
+  @media(max-width:700px) {
+    width: 16rem;
+  }
 }
 
 .user-name {
   font-size: 1.6rem;
   color: #232D42;
+    overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .user-role {
@@ -256,6 +275,7 @@ img {
   margin-top: 1rem !important;
   margin-bottom: 2rem !important;
 }
-.menu-list{
+
+.menu-list {
   padding-bottom: 2rem;
 }

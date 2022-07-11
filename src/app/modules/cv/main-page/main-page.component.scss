@@ -14,9 +14,7 @@ header {
 }
 
 main {
-  // padding: 3rem;
   height: calc(100vh - 8rem);
-
   background: #e5e5e5;
 
   @media (max-width: 700px) {
@@ -41,11 +39,6 @@ main {
 cv-cv-cide-bar {
   @media (min-width: 600px) {
     display: block;
-    // position: relative;
-    flex: 0 0 20rem;
-    background-color: #fff;
-    height: 100%;
-    overflow-y: auto;
   }
 
   @media (max-width: 600px) {
@@ -60,9 +53,7 @@ cv-cv-cide-bar {
 
 .btn-toggler {
   font-size: 4rem;
-  // position: absolute;
   top: 0;
-  // right: -2rem;
 }
 
 .btn-toggler {
@@ -79,6 +70,10 @@ cv-cv-cide-bar {
   flex: 0 0 30rem;
   overflow-x: visible;
   visibility: visible;
+
+  @media (max-width: 700px) {
+    flex: 0 0 10rem;
+  }
 }
 
 .width-zero {
