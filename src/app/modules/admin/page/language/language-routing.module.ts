@@ -13,7 +13,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 const routes:Routes = [
 	{ path: '', component: LanguagePageComponent}

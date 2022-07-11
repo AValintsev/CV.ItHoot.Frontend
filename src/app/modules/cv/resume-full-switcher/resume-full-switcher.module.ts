@@ -1,10 +1,11 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ResumeFullSwitcherComponent} from "./resume-full-switcher.component";
-import {TemplateBuilderModule} from "../../shared/template-builder/template-builder.module";
+import {ResumeTemplateBuilderModule} from "../../shared/resume-template-builder/resume-template-builder.module";
+
 @NgModule({
   declarations: [ResumeFullSwitcherComponent],
-  imports: [CommonModule,TemplateBuilderModule],
+  imports: [CommonModule,ResumeTemplateBuilderModule],
   exports: [ResumeFullSwitcherComponent],
 })
 export class ResumeFullSwitcherModule {}

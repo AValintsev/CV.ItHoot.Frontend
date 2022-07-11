@@ -3,8 +3,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subject} from 'rxjs';
-import { ProposalDto } from 'src/app/models/proposal/proposal-dto';
-import { ProposalService } from 'src/app/services/proposal.service';
+import {ProposalDto} from 'src/app/models/proposal/proposal-dto';
+import {ProposalService} from 'src/app/services/proposal.service';
 
 
 @Component({

@@ -2,11 +2,12 @@
 
   .mat-dialog-content {
     overflow: auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
   }
 
   .content {
-    display: grid;
-    gap: 10px;
 
     .actions {
       display: flex;

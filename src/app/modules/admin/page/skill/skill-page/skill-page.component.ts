@@ -8,7 +8,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {SkillDialogComponent} from '../skill-dialog/skill-dialog.component';
 import {SkillDto} from '../../../../../models/skill/skill-dto';
 import {DialogType} from '../../../../../models/enums';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'app-language-page',
@@ -90,7 +90,7 @@ export class SkillPageComponent implements OnInit, OnDestroy {
       },
       error: (error) => { },
     });
-   
+
   }
 
   openSkillDialog(skill: SkillDto | null = null): void {

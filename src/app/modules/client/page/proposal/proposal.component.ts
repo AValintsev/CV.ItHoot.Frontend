@@ -2,7 +2,6 @@ import {takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger,} from '@angular/animations';
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output,} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import * as saveAs from 'file-saver';
 import {StatusProposal} from 'src/app/models/enums';
 import {
@@ -11,12 +10,11 @@ import {
   ProposalResumeDto,
   StatusProposalResume,
 } from 'src/app/models/proposal/proposal-dto';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { ProposalService } from 'src/app/services/proposal.service';
-import { ClientProposalService } from 'src/app/services/client/client-proposal.service';
-import { ModalDeleteComponent } from 'src/app/modules/shared/modals/modal-delete-user/modal-delete-user.component';
-import { fromEvent, Subject } from 'rxjs';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {ProposalService} from 'src/app/services/proposal.service';
+import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
+import {fromEvent, Subject} from 'rxjs';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'cv-proposal',

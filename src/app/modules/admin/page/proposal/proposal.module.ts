@@ -1,4 +1,4 @@
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
 import {ProposalCreateDialogComponent} from './proposal-create-dialog/proposal-create-dialog.component';
@@ -38,7 +38,7 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-salary-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
-import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 
 
 @NgModule({
@@ -79,7 +79,7 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
         MatProgressSpinnerModule,
         NgxMatSelectSearchModule,
         DirectivesModule,
-        TemplateBuilderModule,
+        ResumeTemplateBuilderModule,
     ],
   exports: [
     ProposalListPageComponent,

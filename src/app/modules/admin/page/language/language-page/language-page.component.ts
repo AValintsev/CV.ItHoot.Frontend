@@ -7,7 +7,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LanguageDialogComponent} from '../language-dialog/language-dialog.component';
 import {LanguageDto} from '../../../../../models/language/language-dto';
 import {DialogType} from '../../../../../models/enums';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'app-language-page',
@@ -85,7 +85,7 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
       },
       error: (error) => { },
     });
-  
+
   }
 
   openLanguageDialog(language: LanguageDto | null = null): void {

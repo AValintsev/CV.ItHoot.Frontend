@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ProposalService} from '../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from '../../../services/resume.service';
-import panzoom from 'panzoom';
 import {ResumeDto} from "../../../models/resume/resume-dto";
 
 @Component({

@@ -1,18 +1,16 @@
-.experience-dialog {
+.experience-dialog{
 
-  .content {
+  .mat-dialog-content{
+    overflow: auto;
+  }
+
+  .content{
     display: grid;
     gap: 10px;
-    overflow: unset;
 
-    .actions {
+    .actions{
       display: flex;
       justify-content: flex-end;
     }
   }
-}
-
-.textarea {
-  resize: none;
-  height: 7rem;
 }

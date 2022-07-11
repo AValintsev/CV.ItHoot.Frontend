@@ -1,11 +1,5 @@
 import {map} from 'rxjs/operators';
-import {
-  Component, createNgModuleRef, EventEmitter,
-  Injector,
-  NgModule, NgModuleRef,
-  OnInit, ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';

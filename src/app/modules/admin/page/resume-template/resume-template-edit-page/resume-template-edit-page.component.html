@@ -7,8 +7,12 @@
 
   <div style="height: 50vh">
     <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="template.html" (onInit)="onInit($event)"></ngx-monaco-editor>
+<!--    <template-builder *ngIf="template.html"  [resume]="resume" [templateHtml]="template.html"></template-builder>-->
   </div>
 
 
-  <button mat-raised-button (click)="updateResume()">Update template</button>
+ <div class="actions">
+   <button mat-raised-button (click)="viewTemplate()">View template</button>
+   <button mat-raised-button (click)="updateResume()">Update template</button>
+ </div>
 </div>

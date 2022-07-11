@@ -18,12 +18,23 @@ import {ExperienceDto} from '../../../models/resume/experience-dto';
 import {Subject} from 'rxjs';
 import {ResumeTemplateDto} from 'src/app/models/resume/resume-template-dto';
 
+const modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike','code-block',{ 'header': 1 }, { 'header': 2 },{ 'list': 'ordered'}, { 'list': 'bullet' },{ 'align': [] }],        // toggled buttons
+    [{ 'size': ['small', false, 'large', 'huge'] },{ 'header': [1, 2, 3, 4, 5, 6, false] },{ 'font': [] }],
+  ]
+};
+
+
 @Component({
-  selector: 'left-bar',
-  templateUrl: './cv-left-bar.component.html',
-  styleUrls: ['./cv-left-bar.component.scss'],
+  selector: 'form-bar',
+  templateUrl: './form-bar.component.html',
+  styleUrls: ['./form-bar.component.scss'],
 })
-export class CvLeftBarComponent implements OnInit, OnDestroy {
+export class FormBarComponent implements OnInit, OnDestroy {
+
+  modules = modules;
+
   private destroy$ = new Subject<boolean>();
   @Input()
   public resumeForm: UntypedFormGroup = {} as UntypedFormGroup;

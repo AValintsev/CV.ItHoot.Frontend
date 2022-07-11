@@ -1,10 +1,9 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from 'panzoom';
-import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-cv-full',

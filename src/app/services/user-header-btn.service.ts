@@ -1,5 +1,6 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Injectable, OnDestroy } from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Injectable, OnDestroy} from '@angular/core';
+
 export type UserHeaderData = {
     id:number,
     firstName:string,
