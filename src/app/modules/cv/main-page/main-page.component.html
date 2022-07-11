@@ -4,7 +4,10 @@
     <cv-header></cv-header>
   </header>
   <main class="main">
-<cv-cv-cide-bar></cv-cv-cide-bar>
+    <cv-cv-side-bar  [class.width-zero]="!toggle" [class.open-side-bar]="toggle"></cv-cv-side-bar>
+      <div [class.open-menu]="toggle" (click)="sideBarToggler()" class="menu-burger__side-bar">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+      </div>
     <div class="body">
       <router-outlet></router-outlet>
     </div>

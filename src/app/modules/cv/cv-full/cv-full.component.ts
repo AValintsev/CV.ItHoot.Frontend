@@ -37,7 +37,7 @@ export class CvFullComponent implements OnInit, AfterViewInit {
         })
       })
     });
-    this.setHeaderBtn(['back', 'create', 'menu-list'])
+    this.setHeaderBtn(['back', 'create', 'menu-list', 'edit','home'])
   }
 
   setHeaderBtn(params: string[]) {

@@ -5,10 +5,10 @@ import {NumericDirective} from "../../../helpers/numeric-directive";
 
 
 @NgModule({
-  declarations: [SpecialCharacterDirective,NumericDirective],
+  declarations: [SpecialCharacterDirective, NumericDirective],
   imports: [
     CommonModule
   ],
-  exports: [SpecialCharacterDirective,NumericDirective]
+  exports: [SpecialCharacterDirective, NumericDirective]
 })
 export class DirectivesModule { }

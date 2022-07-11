@@ -10,12 +10,13 @@ import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { LoaderModule } from '../../shared/components/loader/loader.module';
-import { CvCideBarComponent } from '../cv-cide-bar/cv-cide-bar.component';
+import { CvSideBarComponent } from '../cv-side-bar/cv-side-bar.component';
 import { MainPageComponent } from './main-page.component';
 import {MatListModule} from '@angular/material/list';
+import { DirectivesModule } from '../../shared/directives/directives.module';
 
 @NgModule({
-  declarations: [MainPageComponent, CvCideBarComponent],
+  declarations: [MainPageComponent, CvSideBarComponent],
   imports: [
     CommonModule,
     MainPageRoutingModule,
@@ -27,6 +28,7 @@ import {MatListModule} from '@angular/material/list';
     MatMenuModule,
     MatListModule,
     MatDividerModule,
+    DirectivesModule
   ],
   exports: [],
   providers: [UserHeaderBtnService, DeleteModalService],

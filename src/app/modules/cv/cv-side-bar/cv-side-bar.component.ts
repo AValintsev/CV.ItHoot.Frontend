@@ -10,11 +10,11 @@ import * as saveAs from 'file-saver';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
-  selector: 'cv-cv-cide-bar',
-  templateUrl: './cv-cide-bar.component.html',
-  styleUrls: ['./cv-cide-bar.component.scss']
+  selector: 'cv-cv-side-bar',
+  templateUrl: './cv-side-bar.component.html',
+  styleUrls: ['./cv-side-bar.component.scss']
 })
-export class CvCideBarComponent implements OnInit,OnDestroy {
+export class CvSideBarComponent implements OnInit,OnDestroy {
   private destroy$ = new Subject<boolean>();
     id!: number;
   firstName!: string;
