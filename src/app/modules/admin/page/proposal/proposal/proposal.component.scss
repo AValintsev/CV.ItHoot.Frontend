@@ -112,55 +112,108 @@
       }
 
 
-      .action-wrapper {
+      // .action-wrapper {
 
-        display: grid;
-        grid-template-columns: repeat(4, minmax(8rem, 25%));
-        justify-content: space-between;
+      //   display: grid;
+      //   grid-template-columns: repeat(4, minmax(8rem, 25%));
+      //   justify-content: space-between;
 
-        .mat-menu-panel {
-          display: flex;
-        }
-
-
-        & button {
-          color: white;
-          border: 0;
-          border-radius: 4px;
-          font-size: 1em;
-          font-weight: normal;
-          text-align: center;
-
-          &:hover {
-            cursor: pointer;
-            opacity: .9;
-          }
+      //   .mat-menu-panel {
+      //     display: flex;
+      //   }
 
 
-          &.docx {
-            background: #FF5DCD;
+      //   & button {
+      //     color: white;
+      //     border: 0;
+      //     border-radius: 4px;
+      //     font-size: 1em;
+      //     font-weight: normal;
+      //     text-align: center;
 
-          }
+      //     &:hover {
+      //       cursor: pointer;
+      //       opacity: .9;
+      //     }
 
-          &.open {
-            background: #1AA053;
 
-          }
+      //     &.docx {
+      //       background: #FF5DCD;
 
-          &.edit {
-            background: #F16A1B;
+      //     }
 
-          }
+      //     &.open {
+      //       background: #1AA053;
 
-          &.delete {
-            background: #BA3020E5;
-          }
-        }
+      //     }
 
-      }
+      //     &.edit {
+      //       background: #F16A1B;
+
+      //     }
+
+      //     &.delete {
+      //       background: #BA3020E5;
+      //     }
+      //   }
+
+      // }
     }
   }
 
+}
+
+.btn-wrapper {
+  width: 22rem;
+  padding: .5rem 1rem;
+
+  & button {
+    height: 35px;
+    padding: .1rem .2rem;
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    transition: all .3s ease;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+
+
+    &.pdf,
+    &.download {
+      background: #3A57E8;
+    }
+
+    &.docx {
+      background: #FF5DCD;
+
+    }
+
+    &.open {
+      background: #1AA053;
+
+    }
+
+    &.edit,
+    &.copy-link-pdf {
+      background: #F16A1B;
+
+    }
+
+    &.delete {
+      background: #BA3020E5;
+    }
+
+    &.recover,
+    &.copy-link-resume {
+      background: #3ab4e8;
+    }
+  }
 }
 
 ::ng-deep .mat-tooltip.tooltip {

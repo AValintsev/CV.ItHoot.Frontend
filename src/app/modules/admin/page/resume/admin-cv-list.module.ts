@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {DirectivesModule} from '../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -63,6 +64,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
     MatSortModule,
     NgxMatSelectSearchModule,
     PdfFooterModule,
+    MatMenuModule,
   ],
   exports: [
     AdminCvListComponent,
