@@ -16,6 +16,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 import {PreviewDialogComponent} from './preview-dialog/preview-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatIconModule,
     TemplateBuilderModule,
     MatDialogModule,
+    ResumeTemplateBuilderModule,
   ],
   exports: [
   ],
