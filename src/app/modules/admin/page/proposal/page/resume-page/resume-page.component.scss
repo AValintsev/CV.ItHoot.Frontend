@@ -11,3 +11,9 @@
 #doc:hover{
   cursor: pointer;
 }
+.fixed-btn{
+  position: fixed;
+  z-index: 3;
+  right: 4rem;
+  top: 10rem;
+}

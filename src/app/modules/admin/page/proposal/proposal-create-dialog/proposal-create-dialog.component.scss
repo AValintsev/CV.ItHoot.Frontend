@@ -6,7 +6,7 @@
   }
   .content{
     display: grid;
-    overflow: unset;
+    // overflow: unset;
 
     .resume-section{
       mat-form-field{
@@ -30,5 +30,14 @@
   }
   .actions{
     justify-content: end;
+  }
+}
+.resume-section{
+  mat-form-field{
+max-height: 25rem;
+overflow-y: auto;
+@media(max-height:800px){
+  max-height: 15rem;
+}
   }
 }

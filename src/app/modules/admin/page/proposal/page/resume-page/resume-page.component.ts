@@ -3,7 +3,7 @@ import {ResumeDto} from '../../../../../../models/resume/resume-dto';
 import {ProposalService} from '../../../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
 import panzoom from 'panzoom';
-
+import { Location } from '@angular/common'
 @Component({
   selector: 'resume-page',
   templateUrl: './resume-page.component.html',
@@ -14,7 +14,8 @@ export class ResumePageComponent implements OnInit {
 
   constructor(
     private proposalService: ProposalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +37,7 @@ export class ResumePageComponent implements OnInit {
         });
     });
   }
-
+  back(){
+    this.location.back()
+  }
 }
