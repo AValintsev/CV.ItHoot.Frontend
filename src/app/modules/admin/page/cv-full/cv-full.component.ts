@@ -34,6 +34,7 @@ export class CvFullComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
+      const id = params['id'];
 
       if (proposalId && resumeId) {
 
@@ -46,6 +47,10 @@ export class CvFullComponent implements OnInit {
 
       } else if (proposalId == null && resumeId) {
         this.resumeService.getResumeById(resumeId).subscribe((resume) => {
+          this.resume = resume;
+        });
+      } else if (id) {
+        this.resumeService.getResumeById(id).subscribe((resume) => {
           this.resume = resume;
         });
       }
