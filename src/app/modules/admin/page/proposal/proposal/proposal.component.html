@@ -74,44 +74,6 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
           <td mat-cell *matCellDef="let resume">
-            <!-- <div class="action-wrapper" style="text-align: center">
-              <pdf-table-button [resume]="resume" [proposal]="proposal"></pdf-table-button>
-              <button mat-raised-button class="docx">DocX</button>
-              <div>
-                <button class="open" mat-raised-button [matMenuTriggerFor]="menu">Open</button>
-                <mat-menu #menu="matMenu" >
-                  <button mat-menu-item  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open</button>
-                  <button mat-menu-item  (click)="copyResumeLink(resume)">Copy link</button>
-                </mat-menu>
-              </div>
-              <button mat-raised-button class="delete" (click)="deleteResume(resume)">Remove</button>
-            </div> -->
-            <!--  -->
-            <!--  -->
-            <!--  -->
-            <!-- <button  mat-button [matMenuTriggerFor]="menuWrapper">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu  panelClass='menu-width' class="menu-list" #menuWrapper="matMenu">
-              <div class="btn-wrapper">
-                <button #menuTrigger="matMenuTrigger"  mat-menu-item  [matMenuTriggerFor]="menu">Pdf</button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="getPdf(resume)">Download</button>
-                  <button mat-menu-item (click)="getLinkPdf(resume)">Copy link</button>
-                </mat-menu>
-              </div>
-              <div class="btn-wrapper"><button mat-raised-button class="docx">DocX</button></div>
-              <div class="btn-wrapper">
-                <button  mat-menu-item [matMenuTriggerFor]="menu">Open</button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open</button>
-                  <button mat-menu-item (click)="copyResumeLink(resume)">Copy link</button>
-                </mat-menu>
-              </div>
-              <div class="btn-wrapper"><button mat-raised-button class="delete"
-                  (click)="deleteResume(resume)">Remove</button></div>
-
-            </mat-menu> -->
             <button mat-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>

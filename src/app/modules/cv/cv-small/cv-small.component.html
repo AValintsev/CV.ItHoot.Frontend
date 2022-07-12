@@ -42,7 +42,7 @@
     <mat-card-subtitle>{{ resume?.resumeName }}</mat-card-subtitle>
     <!-- <img mat-card-lg-image *ngIf="resume.picture" else img src="{{resume.picture}}" alt="Resume image"> -->
   </mat-card-title-group>
-  <mat-card-content>{{resume.aboutMe}}</mat-card-content>
+  <mat-card-content [innerHTML] = "resume.aboutMe"></mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
     <div class="button-group">
