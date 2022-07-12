@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { EditPageComponent } from './../edit-page/edit-page.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {ProposalPageComponent} from "./page/proposal-page/proposal-page.component";
@@ -14,6 +16,10 @@ const routes: Routes = [
     component:ProposalPageComponent
   },
   {
+    path: ':id/resume/edit/:id',
+    component:EditPageComponent
+  },
+  {
     path:':proposalId/resume/:resumeId',
     component:ResumePageComponent
   }
@@ -24,6 +30,7 @@ const routes: Routes = [
   declarations: [],
   imports:
     [
+      CommonModule,
       RouterModule.forChild(routes),
     ],
   exports: [RouterModule]

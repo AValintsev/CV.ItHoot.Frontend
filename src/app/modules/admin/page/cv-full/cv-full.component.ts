@@ -1,9 +1,11 @@
-import {map} from 'rxjs/operators';
+import {map,pluck} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from 'panzoom';
+import { Observable } from 'rxjs';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'cv-cv-full',
@@ -13,10 +15,12 @@ import panzoom from 'panzoom';
 export class CvFullComponent implements OnInit {
   @ViewChild('resumeDiv') resumeId!: ElementRef;
   resume!: ResumeDto;
-
+  url$!:Observable<string>
   constructor(
-    private route: ActivatedRoute,
-    private resumeService: ResumeService
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private resumeService: ResumeService,
+    private location:Location
   ) {
 
 
@@ -24,7 +28,8 @@ export class CvFullComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+ 
+      this.activatedRoute.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).subscribe(resume => this.resume = resume);
 
       const zoom = panzoom(document.getElementById('resumeDiv')!, {
@@ -36,5 +41,7 @@ export class CvFullComponent implements OnInit {
       });
     });
   }
-
+  back(){
+    this.location.back()
+  }
 }

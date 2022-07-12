@@ -1,4 +1,4 @@
-.resume-wrapper{
+.resume-wrapper {
   overflow: hidden;
   height: 100%;
   width: 100%;
@@ -7,4 +7,11 @@
     cursor: pointer;
   }
 
+}
+
+.fix-btn{
+  position: fixed;
+  z-index: 3;
+  right: 4rem;
+  top: 10rem;
 }

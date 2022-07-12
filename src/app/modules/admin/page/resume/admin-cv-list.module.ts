@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {DirectivesModule} from '../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,38 +36,43 @@ import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
+import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
 
 
 @NgModule({
-    imports: [
-        ResumeTemplateBuilderModule,
-        AdminCvListRouterModule,
-        MatIconModule,
-        MatSelectModule,
-        CommonModule,
-        MatCardModule,
-        MatDividerModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        DirectivesModule,
-        MatProgressSpinnerModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        NgxMatSelectSearchModule,
-        PdfFooterModule,
-        QuillModule.forRoot(),
-    ],
+
+  imports: [
+     ResumeTemplateBuilderModule,
+    TemplateBuilderModule,
+    AdminCvListRouterModule,
+    MatIconModule,
+    MatSelectModule,
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    DirectivesModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule,
+    PdfFooterModule,
+    MatMenuModule,
+    QuillModule.forRoot()
+  ],
+
   exports: [
     AdminCvListComponent,
   ],
