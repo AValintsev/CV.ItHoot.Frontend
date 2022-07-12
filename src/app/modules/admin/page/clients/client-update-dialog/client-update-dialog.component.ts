@@ -36,7 +36,7 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
         Validators.email
       ]),
       "phoneNumber": new UntypedFormControl(this.client.phoneNumber, [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
-      "site": new UntypedFormControl(this.client.site, Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
+      "site": new UntypedFormControl(this.client.site),
       "contacts": new UntypedFormControl(this.client.contacts),
       "companyName": new UntypedFormControl(this.client.companyName),
     });
