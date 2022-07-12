@@ -39,6 +39,7 @@ import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-s
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
+import {DocxTableAction} from "./docx-table-action/docx-table-button.component";
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
+    DocxTableAction,
   ],
   providers:[DeleteModalService]
 })

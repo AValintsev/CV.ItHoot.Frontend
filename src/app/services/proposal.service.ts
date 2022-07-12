@@ -104,4 +104,12 @@ export class ProposalService {
   public getProposalResumePdfByUrl(shortUrl:string){
     return this.httpService.getFile(this.routePrefix+`/resume/${shortUrl}/pdf`);
   }
+
+  public getProposalResumeDocx(proposalId:number, resumeId:number){
+    return this.httpService.getFile(this.routePrefix+`/${proposalId}/resume/${resumeId}/docx`);
+  }
+
+  public getProposalResumeDocxByUrl(shortUrl:string){
+    return this.httpService.getFile(this.routePrefix+`/resume/${shortUrl}/docx`);
+  }
 }

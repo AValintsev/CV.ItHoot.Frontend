@@ -5,7 +5,7 @@ import {ResumeTemplateListPageComponent} from "./resume-template-list-page/resum
 import {ResumeTemplatePageComponent} from "./resume-template-page/resume-template-page.component";
 import {ResumeTemplateEditPageComponent} from "./resume-template-edit-page/resume-template-edit-page.component";
 import {MatTableModule} from "@angular/material/table";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -30,6 +30,7 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
         MonacoEditorModule,
         MatIconModule,
         TemplateBuilderModule,
+        ReactiveFormsModule
     ],
   exports: [
   ],

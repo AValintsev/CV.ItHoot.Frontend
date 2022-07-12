@@ -1,0 +1,7 @@
+<div class="docx">
+  <button mat-raised-button color="accent" [matMenuTriggerFor]="menu" [mtBasicSpinner]="loading" [hideText]="loading">DocX</button>
+</div>
+<mat-menu #menu="matMenu" class="docx">
+  <button mat-menu-item   (click)="getDocx()">Download</button>
+  <button mat-menu-item  (click)="getLinkDocx()">Copy link</button>
+</mat-menu>

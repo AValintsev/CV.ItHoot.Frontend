@@ -74,7 +74,7 @@
           <td mat-cell *matCellDef="let resume">
             <div class="action-wrapper" style="text-align: center">
               <pdf-table-button [resume]="resume" [proposal]="proposal"></pdf-table-button>
-              <button mat-raised-button class="docx">DocX</button>
+              <docx-table-button [resume]="resume" [proposal]="proposal"></docx-table-button>
               <div>
                 <button class="open" mat-raised-button [matMenuTriggerFor]="menu">Open</button>
                 <mat-menu #menu="matMenu" >
