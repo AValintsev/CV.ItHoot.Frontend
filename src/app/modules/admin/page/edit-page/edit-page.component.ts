@@ -1,11 +1,5 @@
 import {map} from 'rxjs/operators';
-import {
-  Component, createNgModuleRef, EventEmitter,
-  Injector,
-  NgModule, NgModuleRef,
-  OnInit, ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
@@ -14,6 +8,7 @@ import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {Subject} from "rxjs";
+import {ProposalService} from "../../../../services/proposal.service";
 
 @Component({
   selector: 'cv-edit-page',
@@ -30,19 +25,43 @@ export class EditPageComponent implements OnInit {
 
   constructor(
     private resumeService: ResumeService,
+    private proposalService: ProposalService,
     private snackbarService: SnackBarService,
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService,
   ) {
 
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).subscribe((resume) => {
-        this.resumeEditDto = resume;
-        this.patchForm(this.resumeEditDto!);
-      });
+    this.route.params.subscribe((params) => {
+      const proposalId = params['proposalId'];
+      const resumeId = params['resumeId'];
+      const id = params['id'];
+
+      if (proposalId && resumeId) {
+
+        this.proposalService.getProposalResume(proposalId, resumeId).subscribe((data) => {
+          this.resumeEditDto = data.resume;
+          this.resumeEditDto!.showLogo = data.showLogo;
+          this.resumeEditDto!.resumeTemplateId = data.resumeTemplateId;
+          this.patchForm(this.resumeEditDto!);
+
+        });
+
+      } else if (proposalId == null && resumeId) {
+        this.resumeService.getResumeById(resumeId).subscribe((resume) => {
+          this.resumeEditDto = resume;
+          this.patchForm(this.resumeEditDto!);
+        });
+      }
+      else if(id){
+        this.resumeService.getResumeById(id).subscribe((resume) => {
+          this.resumeEditDto = resume;
+          this.patchForm(this.resumeEditDto!);
+        });
+      }
+
+      this.validateForm();
     });
-    this.validateForm();
   }
 
   ngOnInit(): void {
@@ -50,6 +69,7 @@ export class EditPageComponent implements OnInit {
       this.resumeEditDto = value;
       this.resumeChanged.next(this.resumeEditDto!)
     })
+
   }
 
 

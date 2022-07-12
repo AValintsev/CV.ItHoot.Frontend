@@ -29,6 +29,7 @@
     <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
 
     <div mat-dialog-actions class="actions">
+      <button mat-raised-button (click)="viewTemplate()">View template</button>
       <button mat-raised-button cdkFocusInitial [disabled]="templateForm.invalid">Create template</button>
     </div>
 

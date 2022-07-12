@@ -29,7 +29,7 @@ export class ProposalSalaryDialogComponent implements OnInit {
   }
 
   canUpdate() {
-    return this.resume.salaryRate == null;
+    return this.resume.salaryRate == null || this.resume.salaryRate.toString() == '';
   }
 }
 

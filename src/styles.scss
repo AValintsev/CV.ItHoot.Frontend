@@ -1,6 +1,5 @@
 @import './app/shared/styles/normalize.scss';
 @import url('https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900');
-
 html {
   box-sizing: border-box;
 }
@@ -9,6 +8,14 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  list-style: none;
 }
 
 body {
@@ -51,7 +58,7 @@ a:visited {
   color: inherit;
 }
 
-a:link{
+a:link {
   color: inherit;
 }
 
@@ -142,17 +149,25 @@ a:link{
 }
 
 
-th{
+th {
   white-space: nowrap;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-td{
+
+td {
   padding-left: 1rem;
   padding-right: 1rem;
   overflow-x: hidden;
   // word-break: break-word;
 }
-.mat-sort-header-arrow{
+
+.mat-sort-header-arrow {
   margin: 0;
 }
+
+// .menu-width {
+//   .mat-menu-content{
+//     padding-left: 2rem;
+//   } 
+// }

@@ -1,7 +1,7 @@
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
@@ -18,6 +18,13 @@ import {ExperienceDto} from 'src/app/models/resume/experience-dto';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 
+const modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike','code-block',{ 'header': 1 }, { 'header': 2 },{ 'list': 'ordered'}, { 'list': 'bullet' },{ 'align': [] }],        // toggled buttons
+    [{ 'size': ['small', false, 'large', 'huge'] },{ 'header': [1, 2, 3, 4, 5, 6, false] },{ 'font': [] }],
+  ]
+};
+
 @Component({
   selector: 'form-bar',
   templateUrl: './form-bar.component.html',
@@ -25,6 +32,7 @@ import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 })
 export class FormBarComponent implements OnInit {
   private destroy$ = new Subject<boolean>();
+  modules = modules;
   @Input()
   public resumeForm: UntypedFormGroup = {} as UntypedFormGroup;
   @Input()
@@ -37,6 +45,8 @@ export class FormBarComponent implements OnInit {
 
   file: File | null = null;
   positions!: PositionDto[];
+
+
 
 
   constructor(
@@ -236,7 +246,7 @@ export class FormBarComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(EducationDialog, {
-      width: '650px',
+      width: '700px',
       autoFocus: false,
       data: {type: dialogType, data: data},
     });

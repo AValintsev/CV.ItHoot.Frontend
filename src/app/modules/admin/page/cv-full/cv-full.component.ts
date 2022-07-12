@@ -1,10 +1,12 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild,} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {map, pluck} from 'rxjs/operators';
+import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from 'panzoom';
-import {Subject} from 'rxjs';
+import {Observable} from 'rxjs';
+import {Location} from '@angular/common'
+import {ProposalService} from "../../../../services/proposal.service";
 
 @Component({
   selector: 'cv-cv-full',
@@ -14,19 +16,44 @@ import {Subject} from 'rxjs';
 export class CvFullComponent implements OnInit {
   @ViewChild('resumeDiv') resumeId!: ElementRef;
   resume!: ResumeDto;
+  url$!: Observable<string>
 
   constructor(
-    private route: ActivatedRoute,
-    private resumeService: ResumeService
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private resumeService: ResumeService,
+    private proposalService: ProposalService,
+    private location: Location
   ) {
-
 
 
   }
 
   ngOnInit(): void {
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).subscribe(resume => this.resume = resume);
+
+    this.activatedRoute.params.subscribe((params) => {
+      const proposalId = params['proposalId'];
+      const resumeId = params['resumeId'];
+      const id = params['id'];
+
+      if (proposalId && resumeId) {
+
+        this.proposalService.getProposalResume(proposalId, resumeId).subscribe((data) => {
+          this.resume = data.resume;
+          this.resume!.showLogo = data.showLogo;
+          this.resume!.resumeTemplateId = data.resumeTemplateId;
+
+        });
+
+      } else if (proposalId == null && resumeId) {
+        this.resumeService.getResumeById(resumeId).subscribe((resume) => {
+          this.resume = resume;
+        });
+      } else if (id) {
+        this.resumeService.getResumeById(id).subscribe((resume) => {
+          this.resume = resume;
+        });
+      }
 
       const zoom = panzoom(document.getElementById('resumeDiv')!, {
         minZoom: 0.3,
@@ -35,7 +62,12 @@ export class CvFullComponent implements OnInit {
         disableKeyboardInteraction: true,
         boundsPadding: 0.2
       });
+
     });
+
   }
 
+  back() {
+    this.location.back()
+  }
 }

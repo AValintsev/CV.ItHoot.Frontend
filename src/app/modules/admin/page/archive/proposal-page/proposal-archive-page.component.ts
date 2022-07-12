@@ -3,8 +3,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Subject} from 'rxjs';
-import { ProposalDto } from 'src/app/models/proposal/proposal-dto';
-import { ProposalService } from 'src/app/services/proposal.service';
+import {ProposalDto} from 'src/app/models/proposal/proposal-dto';
+import {ProposalService} from 'src/app/services/proposal.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ProposalArchivePageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private proposalService: ProposalService
   ) {
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
+    this.route.params.pipe(map((params) => params['proposalId'])).subscribe((id) => {
       this.proposalService
         .getProposalById(id).pipe(
           takeUntil(this.destroy$)

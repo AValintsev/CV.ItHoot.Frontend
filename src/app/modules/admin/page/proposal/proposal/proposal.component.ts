@@ -1,6 +1,6 @@
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { fromEvent, Subject } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   ProposalDto,
   ProposalResumeDto,
@@ -16,6 +16,8 @@ import { ProposalAddResumeDialogComponent } from '../proposal-add-resume-dialog/
 import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
 import { StatusProposal } from '../../../../../models/enums';
 import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import * as saveAs from 'file-saver';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu'
 
 @Component({
   selector: 'proposal',
@@ -33,6 +35,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     'isSelected',
     'action',
   ];
+  @Input() showEditBtn = true;
   @Input() proposal!: ProposalDto;
   @Input() url!: string;
   StatusResume = StatusProposalResume;
@@ -172,6 +175,32 @@ export class ProposalComponent implements OnInit, OnDestroy {
     document.body.removeChild(selBox);
     this.snackBarService.showSuccess('Link copied');
   }
+
+  getLinkPdf(resume: ProposalResumeDto) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value =
+      window.location.origin + `/proposals/resume/${resume.shortUrl}/pdf`;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.snackBarService.showSuccess('Link copied');
+  }
+
+
+  getPdf(resume: ProposalResumeDto) {
+    this.loading = true;
+    this.proposalService.getProposalResumePdf(this.proposal.id, resume.id).subscribe((file) => {
+      saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
+      this.loading = false;
+    });
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

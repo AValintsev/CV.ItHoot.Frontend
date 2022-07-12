@@ -27,13 +27,14 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Position</mat-label>
-      <mat-select [(value)]="resume.position" formControlName="position" [compareWith]="comparePosition" disableOptionCentering>
+      <mat-select [(value)]="resume.position" formControlName="position" [compareWith]="comparePosition"
+                  disableOptionCentering>
         <mat-option *ngFor="let position of positions" [value]="position">
           {{position.positionName}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
-       Position is required
+        Position is required
       </mat-error>
     </mat-form-field>
 
@@ -131,21 +132,24 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>About me</mat-label>
-      <textarea matInput placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards" formControlName="aboutMe"></textarea>
-      <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required']">
-        About me is required
+    <div class="text-editor">
+      <quill-editor [modules]="modules" formControlName="aboutMe" [styles]="{height: '300px'}"
+                    placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards">
+      </quill-editor>
+      <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required'] && ( resumeForm.controls['aboutMe'].dirty || resumeForm.controls['aboutMe'].touched)">
+      About me is required
       </mat-error>
-    </mat-form-field>
+    </div>
+
   </div>
 
   <div class="skill-section">
     <mat-card>
       <mat-card-title>Skills</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
-          <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)" (click)="openSkillDialog(skill)">
+        <mat-chip-list>
+          <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)"
+                    (click)="openSkillDialog(skill)">
             {{skill.skillName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -153,9 +157,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openSkillDialog()">
+        <a mat-raised-button (click)="openSkillDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -164,7 +168,7 @@
     <mat-card>
       <mat-card-title>Language</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)"
                     (click)="openLanguageDialog(language)">
             {{language.languageName}}
@@ -174,9 +178,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openLanguageDialog()">
+        <a mat-raised-button (click)="openLanguageDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -185,7 +189,7 @@
     <mat-card>
       <mat-card-title>Educations</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let education of resume.educations" (removed)="removeEducation(education)"
                     (click)="openEducationDialog(education)">
             {{education.institutionName}}
@@ -195,9 +199,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openEducationDialog()">
+        <a mat-raised-button (click)="openEducationDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -206,7 +210,7 @@
     <mat-card>
       <mat-card-title>Experiences</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let experience of resume.experiences" (removed)="removeExperience(experience)"
                     (click)="openExperienceDialog(experience)">
             {{experience.company}}
@@ -216,9 +220,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openExperienceDialog()">
+        <a mat-raised-button (click)="openExperienceDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -246,5 +250,4 @@
       <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
     </mat-form-field>
   </div>
-
 </form>

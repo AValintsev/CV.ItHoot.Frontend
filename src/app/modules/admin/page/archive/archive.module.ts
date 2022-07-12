@@ -9,27 +9,29 @@ import {ResumeArchiveListComponent} from './resume-archive-list/resume-archive-l
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AdminCvListModule} from '../resume/admin-cv-list.module';
 import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/proposal-archive-list-page.component';
-import { ProposalArchivePageComponent } from './proposal-page/proposal-archive-page.component';
+import {ProposalArchivePageComponent} from './proposal-page/proposal-archive-page.component';
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 
 
 @NgModule({
   declarations: [
     ProposalArchiveListPageComponent,
     ResumeArchiveListComponent,
-    ProposalArchivePageComponent
+    ProposalArchivePageComponent,
   ],
   exports: [
   ],
-  imports: [
-    CommonModule,
-    ArchiveRoutingModule,
-    MatIconModule,
-    MatTableModule,
-    ProposalModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    AdminCvListModule,
-    ProposalModule
-  ],
+    imports: [
+        CommonModule,
+        ArchiveRoutingModule,
+        MatIconModule,
+        MatTableModule,
+        ProposalModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        AdminCvListModule,
+        ProposalModule,
+        ResumeTemplateBuilderModule
+    ],
 })
 export class ArchiveModule { }

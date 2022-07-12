@@ -7,7 +7,7 @@ import {ComplexityService} from '../../../../../services/complexity.service';
 import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
 import {DialogType} from '../../../../../models/enums';
 import {ComplexityDialogComponent} from '../complexity-dialog/complexity-dialog.component';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @Component({
   selector: 'cv-complexity-page',
@@ -80,7 +80,7 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
       },
       error: (error) => { },
     });
- 
+
   }
 
   openComplexityDialog(complexity: ProposalBuildComplexityDto | null = null) {

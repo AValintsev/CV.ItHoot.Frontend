@@ -16,6 +16,7 @@ export class AccountService {
   private JWT_TOKEN = 'JWT_TOKEN'
   private REFRESH_TOKEN = 'REFRESH_TOKEN'
   private USER_ROLE = 'USER_ROLE'
+  private USER_NAME = 'USER_NAME'
   private USER_ID = 'USER_ID'
   baseUrl = environment.apiUrl;
   private userId$ = new BehaviorSubject<number>(-1)
@@ -58,14 +59,21 @@ export class AccountService {
   storeRole(role: string) {
     localStorage.setItem(this.USER_ROLE, role)
   }
+  storeName(name: string) {
+    localStorage.setItem(this.USER_NAME, name)
+  }
   getStoreRole() {
    return localStorage.getItem(this.USER_ROLE)
+  }
+  getStoreName() {
+   return localStorage.getItem(this.USER_NAME)
   }
   doLoginUser(tokens: userResponse) {
     this.storeRole(tokens.roles[0])
     this.setUserRole(tokens.roles[0])
     this.setUserId(tokens.userId)
     this.storeTokens(tokens)
+    this.storeName(tokens.userEmail)
   }
   setUserRole(role: string) {
     this.userRole$.next(role)

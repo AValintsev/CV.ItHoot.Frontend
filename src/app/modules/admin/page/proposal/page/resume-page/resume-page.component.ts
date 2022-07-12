@@ -1,6 +1,4 @@
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {ResumeDto} from '../../../../../../models/resume/resume-dto';
 import {ProposalService} from '../../../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';

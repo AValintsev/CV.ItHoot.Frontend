@@ -1,4 +1,4 @@
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
 import {ProposalCreateDialogComponent} from './proposal-create-dialog/proposal-create-dialog.component';
@@ -30,7 +30,6 @@ import {
   ProposalResumeDownloadPageComponent
 } from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
-import {ResumePageComponent} from "./page/resume-page/resume-page.component";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -38,9 +37,11 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-salary-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
-import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
 import {DocxTableAction} from "./docx-table-action/docx-table-button.component";
-
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
+import { ResumePageComponent } from './page/resume-page/resume-page.component';
+import { ResumeEditPageComponent } from './page/resume-edite-page/resume-edit-page.component';
+import { FormBarModule } from '../form-bar/form-bar.module';
 
 @NgModule({
     imports: [
@@ -80,7 +81,9 @@ import {DocxTableAction} from "./docx-table-action/docx-table-button.component";
         MatProgressSpinnerModule,
         NgxMatSelectSearchModule,
         DirectivesModule,
-        TemplateBuilderModule,
+        FormBarModule,
+        ResumeTemplateBuilderModule,
+        
     ],
   exports: [
     ProposalListPageComponent,
@@ -91,6 +94,7 @@ import {DocxTableAction} from "./docx-table-action/docx-table-button.component";
   declarations: [
     DateUtcPipe,
     ResumePageComponent,
+    ResumeEditPageComponent,
     ProposalListComponent,
     ProposalCreateDialogComponent,
     ProposalPageComponent,

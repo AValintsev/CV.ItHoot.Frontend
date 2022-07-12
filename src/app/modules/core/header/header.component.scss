@@ -26,8 +26,17 @@
     .mat-select-min-line {
       display: none;
     }
+
   }
 }
+
+.mat-devider-wrapper-custom {
+  padding: 0 1.6rem;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+
 
 .logout {
   padding-left: 1rem;
@@ -65,7 +74,7 @@ button.mat-menu-item {
 .small {
   display: none;
 
-  @media(max-width:880px) {
+  @media(max-width:600px) {
     display: block;
   }
 }
@@ -73,7 +82,7 @@ button.mat-menu-item {
 .large {
   display: block;
 
-  @media(max-width:880px) {
+  @media(max-width:600px) {
     display: none !important;
   }
 }
@@ -82,10 +91,11 @@ button.mat-menu-item {
   display: flex;
   align-items: center;
 
-  &:last-child{
+  &:last-child {
     flex: 0 0 16rem;
     display: flex;
     justify-content: flex-end;
+
     @media(max-width:700px) {
       flex: 0 0 12rem;
     }
@@ -108,8 +118,8 @@ button.mat-menu-item {
     height: 4.5rem;
 
     @media(max-width:700px) {
-      width: 12rem;
-      height: 3.5rem;
+      // width: 12rem;
+      // height: 3.5rem;
     }
 
     @media(max-width:500px) {
@@ -251,24 +261,26 @@ svg {
   cursor: pointer;
 }
 
-.menu-list-home{
-  @media(min-width:880px){
+.menu-list-home {
+  @media(min-width:600px) {
     display: none;
   }
-  @media(max-width:880px){
+
+  @media(max-width:600px) {
     display: block;
   }
- 
-}
-
-.logout-small{
-  background-color:#f44336;
 
 }
 
-.menu-btn-wrapper{
+.logout-small {
+  background-color: #f44336;
+
+}
+
+.menu-btn-wrapper {
   padding: 1rem 1.6rem 0;
-  button{
+
+  button {
     line-height: 4rem;
     height: 4rem;
     text-align: center;
@@ -293,15 +305,16 @@ svg {
     border-radius: 4px;
     overflow: visible;
     transform: translate3d(0, 0, 0);
-    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-    &:hover{
-      background-color:#f44336;
+
+    &:hover {
+      background-color: #f44336;
     }
   }
 }
 
-.button-icon{
+.button-icon {
   display: flex;
   align-items: center;
   justify-content: center;

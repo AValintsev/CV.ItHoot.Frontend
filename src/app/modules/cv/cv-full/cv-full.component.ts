@@ -1,12 +1,10 @@
-import {map, takeUntil} from 'rxjs/operators';
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import panzoom from "panzoom";
-import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
-import {HttpResponseBase} from '@angular/common/http';
 
 
 @Component({
@@ -29,10 +27,7 @@ export class CvFullComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.route.params.pipe(map(params => params['id'])).subscribe(id => {
       this.resumeService.getResumeById(id).subscribe(resume => {
-
         this.resume = resume;
-
-
         this.userHeaderBtnService.setUserData({
           id: resume.id,
           firstName: resume.firstName,
@@ -40,7 +35,7 @@ export class CvFullComponent implements OnInit, AfterViewInit {
         })
       })
     });
-    this.setHeaderBtn(['back', 'create', 'menu-list'])
+    this.setHeaderBtn(['back', 'create', 'menu-list', 'edit','home'])
   }
 
   setHeaderBtn(params: string[]) {

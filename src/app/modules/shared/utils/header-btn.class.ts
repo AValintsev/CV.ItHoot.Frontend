@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
+import {Component} from '@angular/core';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 
 Component({
     providers:[UserHeaderBtnService]

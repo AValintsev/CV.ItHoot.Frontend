@@ -1,0 +1,6 @@
+<div id="resume">
+  <ng-container #resumeContainer></ng-container>
+  <h1 *ngIf="!templateHtml">No template selected</h1>
+  <resume-footer *ngIf="resume?.showLogo"></resume-footer>
+  <div id="resume-loaded" *ngIf="loaded"></div>
+</div>

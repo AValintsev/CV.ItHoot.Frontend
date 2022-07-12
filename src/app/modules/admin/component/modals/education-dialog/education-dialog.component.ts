@@ -22,6 +22,13 @@ export const MY_FORMATS = {
   },
 };
 
+const modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike', 'code-block', {'header': 1}, {'header': 2}, {'list': 'ordered'}, {'list': 'bullet'}, {'align': []}],        // toggled buttons
+    [{'size': ['small', false, 'large', 'huge']}, {'header': [1, 2, 3, 4, 5, 6, false]}, {'font': []}],
+  ]
+};
+
 @Component({
   selector: 'cv-education-dialog',
   templateUrl: './education-dialog.component.html',
@@ -32,16 +39,18 @@ export const MY_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
 export class EducationDialog implements OnInit, OnDestroy {
+  modules = modules;
   private destroy$ = new Subject<boolean>();
   education: EducationDto = {} as EducationDto;
   typeDialog: DialogType;
   DialogType = DialogType;
   educationForm: UntypedFormGroup = {} as UntypedFormGroup;
   maxDate = new Date(Date.now());
+
   ngOnInit() {
     this.validateForm();
   }
@@ -56,8 +65,7 @@ export class EducationDialog implements OnInit, OnDestroy {
         Validators.required,
       ]),
       degree: new UntypedFormControl(this.education.degree, [Validators.required]),
-      description: new UntypedFormControl(this.education.description, [
-      ]),
+      description: new UntypedFormControl(this.education.description, []),
       startDate: new UntypedFormControl(this.education.startDate, [
         Validators.required,
       ]),
@@ -72,13 +80,16 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.typeDialog = data.type;
     this.education = data.data;
   }
+
   date = new UntypedFormControl(moment());
+
   checkDataTypeFormControl(type: DialogType) {
     if (type === DialogType.Create) {
       return moment();
     }
     return this.education.endDate;
   }
+
   setMonthAndYear(
     normalizedMonthAndYear: any,
     datepicker: MatDatepicker<any>,
@@ -90,7 +101,8 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.educationForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
-   ngOnDestroy(){
+
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

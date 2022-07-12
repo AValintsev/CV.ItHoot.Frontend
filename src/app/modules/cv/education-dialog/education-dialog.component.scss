@@ -1,14 +1,12 @@
-::ng-deep .mat-dialog-container{
-  overflow: unset;
-}
 .education-dialog {
 
+  .mat-dialog-content {
+    overflow: auto;
+  }
 
   .content {
     display: grid;
     gap: 10px;
-    overflow: unset;
-
 
     .actions {
       display: flex;
@@ -23,9 +21,4 @@
 
 ::ng-deep .example-month-picker .mat-calendar-arrow {
   display: none;
-}
-
-.textarea{
-  resize: none;
-  height: 7rem;
 }

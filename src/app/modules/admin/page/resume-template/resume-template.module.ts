@@ -14,6 +14,9 @@ import {MonacoEditorModule} from "ngx-monaco-editor";
 import {ResumeTemplateCreatePageComponent} from './resume-template-create-page/resume-template-create-page.component';
 import {MatIconModule} from "@angular/material/icon";
 import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
+import {PreviewDialogComponent} from './preview-dialog/preview-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
         MonacoEditorModule,
         MatIconModule,
         TemplateBuilderModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule,
+    ResumeTemplateBuilderModule,
     ],
   exports: [
   ],
@@ -39,7 +44,8 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
     ResumeTemplateListPageComponent,
     ResumeTemplatePageComponent,
     ResumeTemplateEditPageComponent,
-    ResumeTemplateCreatePageComponent
+    ResumeTemplateCreatePageComponent,
+    PreviewDialogComponent
   ]
 })
 

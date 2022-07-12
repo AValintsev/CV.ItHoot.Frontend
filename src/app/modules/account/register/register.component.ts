@@ -46,11 +46,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.router.navigate(['']);
           },
           error: (error) => {
-            this.snackbarService.showDanger('User exists, log in please');
+            this.snackbarService.showDanger('This email is already taken');
           },
         });
     }
   }
+
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

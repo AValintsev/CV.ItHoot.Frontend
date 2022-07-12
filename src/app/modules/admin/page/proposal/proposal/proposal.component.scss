@@ -112,55 +112,103 @@
       }
 
 
-      .action-wrapper {
+      // .action-wrapper {
 
-        display: grid;
-        grid-template-columns: repeat(4, minmax(8rem, 25%));
-        justify-content: space-between;
+      //   display: grid;
+      //   grid-template-columns: repeat(4, minmax(8rem, 25%));
+      //   justify-content: space-between;
 
-        .mat-menu-panel {
-          display: flex;
-        }
-
-
-        & button {
-          color: white;
-          border: 0;
-          border-radius: 4px;
-          font-size: 1em;
-          font-weight: normal;
-          text-align: center;
-
-          &:hover {
-            cursor: pointer;
-            opacity: .9;
-          }
+      //   .mat-menu-panel {
+      //     display: flex;
+      //   }
 
 
-          &.docx {
-            background: #FF5DCD;
+      //   & button {
+      //     color: white;
+      //     border: 0;
+      //     border-radius: 4px;
+      //     font-size: 1em;
+      //     font-weight: normal;
+      //     text-align: center;
 
-          }
+      //     &:hover {
+      //       cursor: pointer;
+      //       opacity: .9;
+      //     }
 
-          &.open {
-            background: #1AA053;
 
-          }
+      //     &.docx {
+      //       background: #FF5DCD;
 
-          &.edit {
-            background: #F16A1B;
+      //     }
 
-          }
+      //     &.open {
+      //       background: #1AA053;
 
-          &.delete {
-            background: #BA3020E5;
-          }
-        }
+      //     }
 
-      }
+      //     &.edit {
+      //       background: #F16A1B;
+
+      //     }
+
+      //     &.delete {
+      //       background: #BA3020E5;
+      //     }
+      //   }
+
+      // }
     }
   }
 
+}
+
+.btn-wrapper {
+  width: 16rem;
+  padding: .5rem 1rem;
+
+  & button {
+width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+
+
+    &.pdf,
+    &.download {
+      color: #3A57E8;
+    }
+
+    &.docx {
+      color: #FF5DCD;
+
+    }
+
+    &.open {
+      color: #1AA053;
+
+    }
+
+    &.edit,
+    &.copy-link-pdf {
+      color: #F16A1B;
+
+    }
+
+    &.delete {
+      color: #BA3020E5;
+    }
+    &.edit-resume {
+      color: #baba20e5;
+    }
+
+    &.recover,
+    &.copy-link-resume {
+      color: #2c43d5;
+    }
+  }
 }
 
 ::ng-deep .mat-tooltip.tooltip {

@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
+import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
@@ -23,7 +23,8 @@ public loading$!: Observable<boolean>
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private snackbarService: SnackBarService,
-              private loadingService: LoadingService
+              private loadingService: LoadingService,
+              private el:ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ public loading$!: Observable<boolean>
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
       password: new UntypedFormControl('', [Validators.required,Validators.minLength(6)])
     })
+
   }
 
   onSubmit() {
@@ -48,6 +50,7 @@ public loading$!: Observable<boolean>
       })
     }
   }
+
     ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

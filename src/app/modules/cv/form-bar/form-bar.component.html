@@ -131,13 +131,14 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>About me</mat-label>
-      <textarea matInput placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards" formControlName="aboutMe"></textarea>
-      <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required']">
+    <div class="text-editor">
+      <quill-editor [modules]="modules" formControlName="aboutMe" [styles]="{height: '300px'}"
+                    placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards">
+      </quill-editor>
+      <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required'] && ( resumeForm.controls['aboutMe'].dirty || resumeForm.controls['aboutMe'].touched)">
         About me is required
       </mat-error>
-    </mat-form-field>
+    </div>
   </div>
 
   <div class="skill-section">
@@ -153,9 +154,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openSkillDialog()">
+        <a mat-raised-button (click)="openSkillDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -174,9 +175,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openLanguageDialog()">
+        <a mat-raised-button (click)="openLanguageDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -195,9 +196,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openEducationDialog()">
+        <a mat-raised-button (click)="openEducationDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -216,9 +217,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openExperienceDialog()">
+        <a mat-raised-button (click)="openExperienceDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>

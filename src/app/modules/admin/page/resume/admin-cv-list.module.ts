@@ -1,4 +1,5 @@
-import {DirectivesModule} from './../../../shared/directives/directives.module';
+import { MatMenuModule } from '@angular/material/menu';
+import {DirectivesModule} from '../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -17,7 +18,6 @@ import {AdminCvListRouterModule} from './admin-cv-list-routing.module';
 import {CommonModule} from "@angular/common";
 import {EditPageComponent} from '../edit-page/edit-page.component';
 import {CreatePageComponent} from '../create-page/create-page.component';
-import {FormBarComponent} from '../form-bar/form-bar.component';
 import {SkillDialog} from '../../component/modals/skill-dialog/skill-dialog.component';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
@@ -32,56 +32,64 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
-import {AppModule} from "../../../../app.module";
-import {TemplateBuilderModule} from "../../../shared/template-builder/template-builder.module";
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import {QuillModule} from "ngx-quill";
+import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
+import { FormBarModule } from '../form-bar/form-bar.module';
+
 
 
 @NgModule({
-    imports: [
-        TemplateBuilderModule,
-        AdminCvListRouterModule,
-        MatIconModule,
-        MatSelectModule,
-        CommonModule,
-        MatCardModule,
-        MatDividerModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        DirectivesModule,
-        MatProgressSpinnerModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        NgxMatSelectSearchModule,
-        PdfFooterModule,
-    ],
-	exports: [
-		AdminCvListComponent,
-	  ],
-	declarations: [
-		EditPageComponent,
-		CreatePageComponent,
-		FormBarComponent,
-		SkillDialog,
-		LanguageDialog,
-		ExperienceDialog,
-		EducationDialog,
-		CvFullComponent,
-		AdminCvListComponent,
-		ResumeListPageComponent,
-	],
-	providers:[DeleteModalService]
+
+  imports: [
+     ResumeTemplateBuilderModule,
+    TemplateBuilderModule,
+    AdminCvListRouterModule,
+    MatIconModule,
+    MatSelectModule,
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    DirectivesModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule,
+    PdfFooterModule,
+    MatMenuModule,
+    FormBarModule,
+    QuillModule.forRoot()
+  ],
+
+  exports: [
+    AdminCvListComponent,
+  ],
+  declarations: [
+    EditPageComponent,
+    CreatePageComponent,
+    SkillDialog,
+    LanguageDialog,
+    ExperienceDialog,
+    EducationDialog,
+    CvFullComponent,
+    AdminCvListComponent,
+    ResumeListPageComponent,
+  ],
+  providers: [DeleteModalService]
 })
 
 export class AdminCvListModule {
