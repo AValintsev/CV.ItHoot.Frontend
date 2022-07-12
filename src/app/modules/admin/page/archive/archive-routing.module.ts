@@ -14,15 +14,15 @@ const routes: Routes = [
     component: ProposalArchiveListPageComponent
   },
   {
-    path: 'proposals/:id',
+    path: 'proposals/:proposalId',
     component: ProposalArchivePageComponent
   },
     {
-    path: 'proposals/:id/resume/:id',
+    path: 'proposals/:proposalId/resume/:resumeId',
     component: CvFullComponent,
   },
     {
-    path: 'proposals/:id/resume/edit/:id',
+    path: 'proposals/:proposalId/resume/edit/:resumeId',
       component: EditPageComponent
   },
   {
@@ -30,12 +30,12 @@ const routes: Routes = [
     component: ResumeArchiveListComponent
   },
   {
-    path: 'resume/:id',
+    path: 'resume/:resumeId',
     component: CvFullComponent
   },
 
   {
-    path: 'resume/edit/:id',
+    path: 'resume/edit/:resumeId',
     component: EditPageComponent
   },
 ];

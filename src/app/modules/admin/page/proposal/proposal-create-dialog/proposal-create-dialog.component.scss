@@ -1,12 +1,8 @@
 .proposal-dialog{
-  display: grid;
-  min-width: 600px;
-  .mat-dialog-content{
-   overflow: auto;
-  }
   .content{
     display: grid;
-    overflow: unset;
+    min-height: 495px;
+    overflow-y: auto;
 
     .resume-section{
       mat-form-field{
