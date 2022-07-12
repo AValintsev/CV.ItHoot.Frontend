@@ -35,6 +35,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     'isSelected',
     'action',
   ];
+  @Input() showEditBtn = true;
   @Input() proposal!: ProposalDto;
   @Input() url!: string;
   StatusResume = StatusProposalResume;
