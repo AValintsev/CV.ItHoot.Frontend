@@ -121,7 +121,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const dialogRef = this.dialog.open(ProposalCreateDialogComponent, {
       autoFocus: false,
-      panelClass: ['remove-style-scroll', 'change-material-style'],
+      width: '700px',
       data: proposal
     });
 

@@ -147,7 +147,7 @@
     <mat-card>
       <mat-card-title>Skills</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)"
                     (click)="openSkillDialog(skill)">
             {{skill.skillName}}
@@ -157,9 +157,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openSkillDialog()">
+        <a mat-raised-button (click)="openSkillDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -168,7 +168,7 @@
     <mat-card>
       <mat-card-title>Language</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)"
                     (click)="openLanguageDialog(language)">
             {{language.languageName}}
@@ -178,9 +178,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openLanguageDialog()">
+        <a mat-raised-button (click)="openLanguageDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -189,7 +189,7 @@
     <mat-card>
       <mat-card-title>Educations</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let education of resume.educations" (removed)="removeEducation(education)"
                     (click)="openEducationDialog(education)">
             {{education.institutionName}}
@@ -199,9 +199,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openEducationDialog()">
+        <a mat-raised-button (click)="openEducationDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -210,7 +210,7 @@
     <mat-card>
       <mat-card-title>Experiences</mat-card-title>
       <mat-card-content>
-        <mat-chip-list #chipList>
+        <mat-chip-list>
           <mat-chip *ngFor="let experience of resume.experiences" (removed)="removeExperience(experience)"
                     (click)="openExperienceDialog(experience)">
             {{experience.company}}
@@ -220,9 +220,9 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <button mat-raised-button (click)="openExperienceDialog()">
+        <a mat-raised-button (click)="openExperienceDialog()">
           <mat-icon>add</mat-icon>
-        </button>
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -1,43 +1,37 @@
-.proposal-dialog{
-  display: grid;
-  min-width: 600px;
-  .mat-dialog-content{
-   overflow: auto;
-  }
-  .content{
+.proposal-dialog {
+  .content {
     display: grid;
-    // overflow: unset;
+    overflow-y: auto;
 
-    .resume-section{
-      mat-form-field{
+    .resume-section {
+      mat-form-field {
         width: 100%;
       }
     }
 
-    .checkbox-section{
+    .checkbox-section {
       display: flex;
       flex-direction: column;
     }
 
-    mat-button-toggle-group{
+    mat-button-toggle-group {
       justify-content: center;
 
-      mat-button-toggle{
+      mat-button-toggle {
         width: 100%;
       }
-
     }
   }
-  .actions{
+  .actions {
     justify-content: end;
   }
 }
-.resume-section{
-  mat-form-field{
-max-height: 25rem;
-overflow-y: auto;
-@media(max-height:800px){
-  max-height: 15rem;
-}
+.resume-section {
+  mat-form-field {
+    max-height: 25rem;
+    overflow-y: auto;
+    @media (max-height: 800px) {
+      max-height: 15rem;
+    }
   }
 }
