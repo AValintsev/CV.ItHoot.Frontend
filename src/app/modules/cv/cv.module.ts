@@ -1,3 +1,4 @@
+import { FormBarComponent } from './form-bar/form-bar.component';
 import {CvSmallModule} from './cv-small/cv-small.module';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -6,7 +7,6 @@ import {CvFullComponent} from './cv-full/cv-full.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserCvListComponent} from './user-cv-list/user-cv-list.component';
 import {CvCreatePageComponent} from './cv-create-page/cv-create-page.component';
-import {FormBarComponent} from './form-bar/form-bar.component';
 import {SkillDialog} from './skill-dialog/skill-dialog.component';
 import {LanguageDialog} from "./language-dialog/language-dialog.component";
 import {EducationDialog} from './education-dialog/education-dialog.component';
@@ -35,13 +35,13 @@ import {QuillModule} from "ngx-quill";
   declarations: [
     CvFullComponent,
     CvCreatePageComponent,
-    FormBarComponent,
     SkillDialog,
     LanguageDialog,
     EducationDialog,
     ExperienceDialog,
     CvEditPageComponent,
-    UserCvListComponent
+    UserCvListComponent,
+    FormBarComponent
 
   ],
   imports: [
@@ -67,7 +67,6 @@ import {QuillModule} from "ngx-quill";
     MatProgressSpinnerModule,
     MatSelectModule,
     CommonModule,
-    // RouterModule,
     CvRoutingModule,
     FormsModule,
     ReactiveFormsModule,

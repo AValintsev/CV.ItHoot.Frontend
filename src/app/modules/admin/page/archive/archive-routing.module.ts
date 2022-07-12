@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {CvFullComponent} from '../cv-full/cv-full.component';
@@ -16,6 +17,14 @@ const routes: Routes = [
     path: 'proposals/:id',
     component: ProposalArchivePageComponent
   },
+    {
+    path: 'proposals/:id/resume/:id',
+    component: CvFullComponent,
+  },
+    {
+    path: 'proposals/:id/resume/edit/:id',
+      component: EditPageComponent
+  },
   {
     path: 'resume',
     component: ResumeArchiveListComponent
@@ -24,10 +33,7 @@ const routes: Routes = [
     path: 'resume/:id',
     component: CvFullComponent
   },
-  {
-    path: 'proposals/:id/resume/:id',
-    component: CvFullComponent
-  },
+
   {
     path: 'resume/edit/:id',
     component: EditPageComponent
@@ -37,6 +43,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
+    CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

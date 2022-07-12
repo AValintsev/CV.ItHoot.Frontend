@@ -1,76 +1,88 @@
-import {map} from 'rxjs/operators';
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AccountService} from 'src/app/services/account.service';
-import {Users} from 'src/app/models/users-type';
-import {ResumeDto} from 'src/app/models/resume/resume-dto';
-import {ResumeService} from 'src/app/services/resume.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {Subject} from "rxjs";
+import { ResumeService } from 'src/app/services/resume.service';
+import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ResumeDto } from '../../../../../../models/resume/resume-dto';
+import { ProposalService } from '../../../../../../services/proposal.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import panzoom from 'panzoom';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { AccountService } from 'src/app/services/account.service';
+import { Users } from 'src/app/models/users-type';
 
 @Component({
-  selector: 'cv-edit-page',
-  templateUrl: './edit-page.component.html',
-  styleUrls: ['./edit-page.component.scss'],
+  selector: 'resume-page',
+  templateUrl: './resume-edit-page.component.html',
+  styleUrls: ['./resume-edit-page.component.scss'],
 })
-export class EditPageComponent implements OnInit {
-
+export class ResumeEditPageComponent implements OnInit {
+  resume: ResumeDto | {} = {};
   resumeEditDto: ResumeDto | null = null;
   templateForm!: ResumeDto;
   resumeEditForm: FormGroup = {} as FormGroup;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
-
   constructor(
+    private proposalService: ProposalService,
+    private route: ActivatedRoute,
     private resumeService: ResumeService,
     private snackbarService: SnackBarService,
     private router: Router,
-    private route: ActivatedRoute,
-    private accountService: AccountService,
-  ) {
 
-    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
-      this.resumeService.getResumeById(id).subscribe((resume) => {
-        this.resumeEditDto = resume;
-        this.patchForm(this.resumeEditDto!);
-      });
-    });
-    this.validateForm();
-  }
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
-    this.resumeEditForm.valueChanges.subscribe(value => {
+    this.route.params.subscribe((params) => {
+      const proposalId = params['proposalId'];
+      const resumeId = params['resumeId'];
+
+      this.proposalService
+        .getProposalResume(proposalId, resumeId)
+        .subscribe((resume) => {
+          console.log(resume.resume);
+          this.resumeEditDto = resume.resume;
+          this.resumeEditDto!.showLogo = resume.showLogo;
+          this.resumeEditDto!.resumeTemplateId = resume.resumeTemplateId;
+            this.patchForm(this.resumeEditDto as ResumeDto);
+        });
+    });
+    this.validateForm();
+    this.resumeEditForm.valueChanges.subscribe((value) => {
       this.resumeEditDto = value;
-      this.resumeChanged.next(this.resumeEditDto!)
-    })
-    
+      this.resumeChanged.next(this.resumeEditDto!);
+    });
   }
 
-
   patchForm(resume: ResumeDto) {
-    this.resumeEditForm.patchValue({id: resume.id});
-    this.resumeEditForm.patchValue({resumeName: resume.resumeName});
-    this.resumeEditForm.patchValue({firstName: resume.firstName});
-    this.resumeEditForm.patchValue({lastName: resume.lastName});
-    this.resumeEditForm.patchValue({email: resume.email});
-    this.resumeEditForm.patchValue({site: resume.site});
-    this.resumeEditForm.patchValue({phone: resume.phone});
-    this.resumeEditForm.patchValue({code: resume.code});
-    this.resumeEditForm.patchValue({country: resume.country});
-    this.resumeEditForm.patchValue({city: resume.city});
-    this.resumeEditForm.patchValue({street: resume.street});
+    this.resumeEditForm.patchValue({ id: resume.id });
+    this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
+    this.resumeEditForm.patchValue({ firstName: resume.firstName });
+    this.resumeEditForm.patchValue({ lastName: resume.lastName });
+    this.resumeEditForm.patchValue({ email: resume.email });
+    this.resumeEditForm.patchValue({ site: resume.site });
+    this.resumeEditForm.patchValue({ phone: resume.phone });
+    this.resumeEditForm.patchValue({ code: resume.code });
+    this.resumeEditForm.patchValue({ country: resume.country });
+    this.resumeEditForm.patchValue({ city: resume.city });
+    this.resumeEditForm.patchValue({ street: resume.street });
     this.resumeEditForm.patchValue({
       requiredPosition: resume.requiredPosition,
     });
-    this.resumeEditForm.patchValue({birthdate: resume.birthdate});
-    this.resumeEditForm.patchValue({aboutMe: resume.aboutMe});
-    this.resumeEditForm.patchValue({picture: resume.picture});
-    this.resumeEditForm.patchValue({position: resume.position});
-    this.resumeEditForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
-    this.resumeEditForm.patchValue({salaryRate: resume.salaryRate});
-    this.resumeEditForm.patchValue({availabilityStatus: resume.availabilityStatus});
-    this.resumeEditForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
+    this.resumeEditForm.patchValue({ birthdate: resume.birthdate });
+    this.resumeEditForm.patchValue({ aboutMe: resume.aboutMe });
+    this.resumeEditForm.patchValue({ picture: resume.picture });
+    this.resumeEditForm.patchValue({ position: resume.position });
+    this.resumeEditForm.patchValue({
+      resumeTemplateId: resume.resumeTemplateId,
+    });
+    this.resumeEditForm.patchValue({ salaryRate: resume.salaryRate });
+    this.resumeEditForm.patchValue({
+      availabilityStatus: resume.availabilityStatus,
+    });
+    this.resumeEditForm.patchValue({
+      countDaysUnavailable: resume.countDaysUnavailable,
+    });
 
     resume.skills?.forEach((skill) => {
       (<FormArray>this.resumeEditForm.controls['skills']).push(
@@ -146,7 +158,8 @@ export class EditPageComponent implements OnInit {
       ]),
       site: new FormControl(this.resumeEditDto?.site),
       phone: new FormControl(this.resumeEditDto?.phone, [
-        Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
+        Validators.pattern('[- +()0-9]+'),
+        Validators.minLength(10),
       ]),
       code: new FormControl(this.resumeEditDto?.code),
       country: new FormControl(this.resumeEditDto?.country, [
@@ -165,8 +178,12 @@ export class EditPageComponent implements OnInit {
       picture: new FormControl(this.resumeEditDto?.picture),
       resumeTemplateId: new FormControl(this.resumeEditDto?.resumeTemplateId),
       salaryRate: new FormControl(this.resumeEditDto?.salaryRate),
-      availabilityStatus: new FormControl(this.resumeEditDto?.availabilityStatus),
-      countDaysUnavailable: new FormControl(this.resumeEditDto?.countDaysUnavailable),
+      availabilityStatus: new FormControl(
+        this.resumeEditDto?.availabilityStatus
+      ),
+      countDaysUnavailable: new FormControl(
+        this.resumeEditDto?.countDaysUnavailable
+      ),
       educations: new FormArray([]),
       experiences: new FormArray([]),
       skills: new FormArray([]),
@@ -196,7 +213,6 @@ export class EditPageComponent implements OnInit {
       },
     });
   }
-
 
   templateChange(templateId: number) {
     this.templateChanged.next(templateId);
