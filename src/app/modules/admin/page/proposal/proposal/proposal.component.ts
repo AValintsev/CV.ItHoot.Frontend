@@ -50,9 +50,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {}
-foo(u:any){
-console.log(u)
-}
+
   openProposalDialog(): void {
     const dialogRef = this.dialog.open(ProposalSettingDialogComponent, {
       autoFocus: false,

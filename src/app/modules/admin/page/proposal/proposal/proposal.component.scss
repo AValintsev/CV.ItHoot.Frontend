@@ -164,19 +164,11 @@
 }
 
 .btn-wrapper {
-  width: 22rem;
+  width: 16rem;
   padding: .5rem 1rem;
 
   & button {
-    height: 35px;
-    padding: .1rem .2rem;
-    color: white;
-    border: 0;
-    border-radius: 4px;
-    font-size: 1em;
-    display: block;
-    width: 100%;
-    transition: all .3s ease;
+width: 100%;
 
     &:hover {
       cursor: pointer;
@@ -186,32 +178,35 @@
 
     &.pdf,
     &.download {
-      background: #3A57E8;
+      color: #3A57E8;
     }
 
     &.docx {
-      background: #FF5DCD;
+      color: #FF5DCD;
 
     }
 
     &.open {
-      background: #1AA053;
+      color: #1AA053;
 
     }
 
     &.edit,
     &.copy-link-pdf {
-      background: #F16A1B;
+      color: #F16A1B;
 
     }
 
     &.delete {
-      background: #BA3020E5;
+      color: #BA3020E5;
+    }
+    &.edit-resume {
+      color: #baba20e5;
     }
 
     &.recover,
     &.copy-link-resume {
-      background: #3ab4e8;
+      color: #2c43d5;
     }
   }
 }

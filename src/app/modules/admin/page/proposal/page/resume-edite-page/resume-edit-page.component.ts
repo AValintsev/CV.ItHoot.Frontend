@@ -55,7 +55,6 @@ export class ResumeEditPageComponent implements OnInit {
   }
 
   patchForm(resume: ResumeDto) {
-    console.log(resume);
     this.resumeEditForm.patchValue({ id: resume.id });
     this.resumeEditForm.patchValue({ resumeName: resume.resumeName });
     this.resumeEditForm.patchValue({ firstName: resume.firstName });

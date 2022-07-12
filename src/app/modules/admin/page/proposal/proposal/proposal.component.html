@@ -116,13 +116,13 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu  #menu="matMenu">
-              <div class="btn-wrapper"><button class="download"  mat-raised-button (click)="getPdf(resume)">Download PDF</button></div>
-              <div class="btn-wrapper"><button class="copy-link-pdf"  mat-raised-buttonm (click)="getLinkPdf(resume)">Copy link PDF </button></div>
-              <div class="btn-wrapper"><button class="docx"  mat-raised-button >DocX</button></div>
-              <div class="btn-wrapper"><button class="open"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open resume</button></div>
-              <div class="btn-wrapper"><button class="copy-link-resume"  mat-raised-button  (click)="copyResumeLink(resume)">Copy link resume</button></div>
-              <div class="btn-wrapper"><button class="copy-link-resume"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.id}}">Edit resume</button></div>
-              <div class="btn-wrapper"><button class="delete" mat-raised-button  (click)="deleteResume(resume)">Remove</button></div>
+              <div class="btn-wrapper"><button  class="download"  mat-stroked-button (click)="getPdf(resume)">Download PDF</button></div>
+              <div class="btn-wrapper"><button  class="copy-link-pdf" mat-stroked-button (click)="getLinkPdf(resume)">Copy link PDF </button></div>
+              <div class="btn-wrapper"><button  class="docx"  mat-stroked-button >DocX</button></div>
+              <div class="btn-wrapper"><button  class="open"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open resume</button></div>
+              <div class="btn-wrapper"><button  class="copy-link-resume"  mat-stroked-button  (click)="copyResumeLink(resume)">Copy link resume</button></div>
+              <div class="btn-wrapper"><button  class="edit-resume"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.id}}">Edit resume</button></div>
+              <div class="btn-wrapper"><button  class="delete" mat-stroked-button  (click)="deleteResume(resume)">Remove</button></div>
             </mat-menu>          
           </td>
         </ng-container>
