@@ -119,9 +119,9 @@
               <div class="btn-wrapper"><button class="download"  mat-raised-button (click)="getPdf(resume)">Download PDF</button></div>
               <div class="btn-wrapper"><button class="copy-link-pdf"  mat-raised-buttonm (click)="getLinkPdf(resume)">Copy link PDF </button></div>
               <div class="btn-wrapper"><button class="docx"  mat-raised-button >DocX</button></div>
-              <div class="btn-wrapper"><button class="open"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.resumeId}}">Open resume</button></div>
+              <div class="btn-wrapper"><button class="open"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open resume</button></div>
               <div class="btn-wrapper"><button class="copy-link-resume"  mat-raised-button  (click)="copyResumeLink(resume)">Copy link resume</button></div>
-              <div class="btn-wrapper"><button class="copy-link-resume"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.resumeId}}">Edit resume</button></div>
+              <div class="btn-wrapper"><button class="copy-link-resume"  mat-raised-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.id}}">Edit resume</button></div>
               <div class="btn-wrapper"><button class="delete" mat-raised-button  (click)="deleteResume(resume)">Remove</button></div>
             </mat-menu>          
           </td>

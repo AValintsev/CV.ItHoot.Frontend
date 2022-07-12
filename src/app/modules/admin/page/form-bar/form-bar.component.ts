@@ -84,6 +84,7 @@ export class FormBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('resumeForm',this.resumeForm)
     this.listSkillsChanged();
     this.listLanguageChanged();
     this.experienceListChanged();

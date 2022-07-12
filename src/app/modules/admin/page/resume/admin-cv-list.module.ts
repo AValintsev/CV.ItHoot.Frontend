@@ -18,7 +18,6 @@ import {AdminCvListRouterModule} from './admin-cv-list-routing.module';
 import {CommonModule} from "@angular/common";
 import {EditPageComponent} from '../edit-page/edit-page.component';
 import {CreatePageComponent} from '../create-page/create-page.component';
-import {FormBarComponent} from '../form-bar/form-bar.component';
 import {SkillDialog} from '../../component/modals/skill-dialog/skill-dialog.component';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {EducationDialog} from '../../component/modals/education-dialog/education-dialog.component';
@@ -37,6 +36,8 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
 import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
+import { FormBarModule } from '../form-bar/form-bar.module';
+
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/t
     NgxMatSelectSearchModule,
     PdfFooterModule,
     MatMenuModule,
+    FormBarModule,
     QuillModule.forRoot()
   ],
 
@@ -79,7 +81,6 @@ import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/t
   declarations: [
     EditPageComponent,
     CreatePageComponent,
-    FormBarComponent,
     SkillDialog,
     LanguageDialog,
     ExperienceDialog,

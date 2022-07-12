@@ -30,7 +30,6 @@ import {
   ProposalResumeDownloadPageComponent
 } from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
 import {DateUtcPipe} from "../../../../helpers/date.pipe";
-import {ResumePageComponent} from "./page/resume-page/resume-page.component";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -39,6 +38,10 @@ import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-s
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
+import { ResumePageComponent } from './page/resume-page/resume-page.component';
+import { ResumeEditPageComponent } from './page/resume-edite-page/resume-edit-page.component';
+import { FormBarModule } from '../form-bar/form-bar.module';
+
 
 
 @NgModule({
@@ -79,7 +82,9 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
         MatProgressSpinnerModule,
         NgxMatSelectSearchModule,
         DirectivesModule,
+        FormBarModule,
         ResumeTemplateBuilderModule,
+        
     ],
   exports: [
     ProposalListPageComponent,
@@ -90,6 +95,7 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
   declarations: [
     DateUtcPipe,
     ResumePageComponent,
+    ResumeEditPageComponent,
     ProposalListComponent,
     ProposalCreateDialogComponent,
     ProposalPageComponent,
