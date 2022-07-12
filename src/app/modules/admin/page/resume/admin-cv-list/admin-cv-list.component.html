@@ -80,13 +80,6 @@
             <div class="btn-wrapper"><button  mat-stroked-button *ngIf="resume.deletedAt == null; else recoverButton" class="btn-reset delete admin-btn" (click)="deleteResume(resume)">Delete</button></div>
             <ng-template #recoverButton><div ><button   mat-stroked-button class="btn-reset recover" (click)="recoverResume(resume)">Recover</button></div></ng-template>
           </mat-menu>
-          <!-- <div class="action-wrapper">
-            <button  [disabled]="resume.deletedAt !== null" class="pdf" (click)="getResumePdf(resume)">PDF</button>
-                        <button   class="open admin-btn" routerLink="{{url}}/resume/{{resume.id}}">Open</button>
-                        <button  [disabled]="resume.deletedAt !== null" class="edit admin-btn" routerLink="{{url}}resume/edit/{{resume.id}}">Edit</button>
-                        <button *ngIf="resume.deletedAt == null; else recoverButton" class="delete admin-btn" (click)="deleteResume(resume)">Delete</button>
-            <ng-template #recoverButton><button class="recover" (click)="recoverResume(resume)">Recover</button></ng-template>
-          </div> -->
         </td>
       </ng-container>
 
