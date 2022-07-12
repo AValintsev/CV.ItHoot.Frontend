@@ -35,7 +35,7 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.email
       ]),
-      "phoneNumber": new UntypedFormControl("", [Validators.pattern("^[0-9 ()+-]+"), Validators.minLength(7)]),
+      "phoneNumber": new UntypedFormControl("", ),
       "site": new UntypedFormControl("", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")),
       "contacts": new UntypedFormControl(),
       "companyName": new UntypedFormControl(),
