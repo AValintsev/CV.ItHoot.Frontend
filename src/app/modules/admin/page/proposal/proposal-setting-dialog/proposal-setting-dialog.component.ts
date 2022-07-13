@@ -45,6 +45,7 @@ export class ProposalSettingDialogComponent implements OnInit, OnDestroy {
   canUpdate() {
     return (
       !this.proposal ||
+      !this.proposal?.proposalName ||
       !this.proposal?.client?.userId ||
       !this.proposal.statusProposal
     );
