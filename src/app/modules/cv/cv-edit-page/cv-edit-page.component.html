@@ -5,8 +5,8 @@
       <form-bar [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false" (templateChange)="templateChange($event)">
       </form-bar>
       <div class="action">
-        <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Save</button>
+        <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
       </div>
     </form>
   </div>
