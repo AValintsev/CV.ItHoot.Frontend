@@ -173,7 +173,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {
-      if (resume == null)
+      if (!resume)
         return;
 
 

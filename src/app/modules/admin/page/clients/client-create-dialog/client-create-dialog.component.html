@@ -47,7 +47,9 @@
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
     </div>
     <div mat-dialog-actions class="actions">
-      <button mat-button cdkFocusInitial [disabled]="clientForm.invalid">Create</button>
+      <button  mat-raised-button color="primary" cdkFocusInitial [disabled]="clientForm.invalid">Save</button>
+      <button mat-raised-button color="accent" mat-dialog-close >Cancel</button>
     </div>
   </form>
 </div>
+

@@ -10,6 +10,7 @@
   </div>
 
   <div mat-dialog-actions class="actions">
-    <button mat-button (click)="submit()" cdkFocusInitial [disabled]="canUpdate()">Update</button>
+    <button  mat-raised-button color="primary" (click)="submit()" cdkFocusInitial [disabled]="canUpdate()">Save</button>
+    <button mat-raised-button color="accent" mat-dialog-close>Cancel</button>
   </div>
 </div>

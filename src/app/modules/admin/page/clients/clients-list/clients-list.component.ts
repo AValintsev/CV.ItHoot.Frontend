@@ -1,3 +1,4 @@
+import { SnackBarService } from './../../../../../services/snack-bar.service';
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {UntypedFormControl} from "@angular/forms";
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
@@ -35,6 +36,7 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public clientService: ClientsService,
     public dialog: MatDialog,
+    private snackBar:SnackBarService
   ) {
   }
 
@@ -97,11 +99,12 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((client: ClientDto) => {
-      if (client == null)
+      if (!client)
         return;
 
         this.searchControl.setValue("");
         this.paginator.pageIndex = 0;
+        this.snackBar.showSuccess('Saved')
         this.refreshTable();
     });
   }
@@ -135,9 +138,9 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe((updateClient: ClientDto) => {
-        if (updateClient == null)
+        if (!updateClient)
           return;
-
+          this.snackBar.showSuccess('Saved');
         this.refreshTable();
       });
     });

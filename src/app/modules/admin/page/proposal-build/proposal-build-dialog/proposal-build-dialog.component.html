@@ -42,13 +42,11 @@
         </mat-card-actions>
       </mat-card>
     </div>
-
-
-
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Create">Create</button>
-    <button mat-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()" *ngIf="dialogType == DialogType.Edit">Edit</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()">Create</button>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
   </div>
-
 </div>
+
+

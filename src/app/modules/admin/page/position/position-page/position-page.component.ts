@@ -106,7 +106,7 @@ export class PositionPageComponent implements OnInit, OnDestroy {
       .afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe((position: PositionDto) => {
-        if (position == null) return;
+        if (!position) return;
         if (dialogType == DialogType.Create) {
           this.createSkill(position);
         } else {

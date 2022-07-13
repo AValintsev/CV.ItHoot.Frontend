@@ -101,7 +101,7 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((complexity: ProposalBuildComplexityDto) => {
-        if (complexity == null) return;
+        if (!complexity) return;
         if (dialogType == DialogType.Create) {
           this.createComplexity(complexity);
         } else {
