@@ -109,7 +109,7 @@ export class CvCreatePageComponent implements OnInit {
         if(params){
           this.resumeService.getResumeById(params).subscribe(resume=>{
               this.patchForm(resume)
-                this.templateChanged.next(resume.resumeTemplateId);
+            this.templateChanged.next(resume.resumeTemplateId);
           })
         }
       },
@@ -138,20 +138,20 @@ export class CvCreatePageComponent implements OnInit {
     resume.skills?.forEach(skill => {
       (<UntypedFormArray>this.resumeCreateForm.controls["skills"])
         .push(new UntypedFormGroup({
-          id: new UntypedFormControl(skill.id),
+          // id: new UntypedFormControl(skill.id),
           skillId: new UntypedFormControl(skill.skillId),
           skillName: new UntypedFormControl(skill.skillName),
           level: new UntypedFormControl(skill.level)
         }));
     });
 
-    resume.languages?.forEach(languages => {
+    resume.languages?.forEach(language => {
       (<UntypedFormArray>this.resumeCreateForm.controls["languages"])
         .push(new UntypedFormGroup({
-          id: new UntypedFormControl(languages.id),
-          languageId: new UntypedFormControl(languages.languageId),
-          languageName: new UntypedFormControl(languages.languageName),
-          level: new UntypedFormControl(languages.level)
+          // id: new UntypedFormControl(language.id),
+          languageId: new UntypedFormControl(language.languageId),
+          languageName: new UntypedFormControl(language.languageName),
+          level: new UntypedFormControl(language.level)
         }));
     });
 
@@ -159,7 +159,7 @@ export class CvCreatePageComponent implements OnInit {
     resume.educations?.forEach(education => {
       (<UntypedFormArray>this.resumeCreateForm.controls["educations"])
         .push(new UntypedFormGroup({
-          id: new UntypedFormControl(education.id),
+          // id: new UntypedFormControl(education.id),
           institutionName: new UntypedFormControl(education.institutionName),
           specialization: new UntypedFormControl(education.specialization),
           description: new UntypedFormControl(education.description),
@@ -172,7 +172,7 @@ export class CvCreatePageComponent implements OnInit {
     resume.experiences?.forEach(experience => {
       (<UntypedFormArray>this.resumeCreateForm.controls["experiences"])
         .push(new UntypedFormGroup({
-          id: new UntypedFormControl(experience.id),
+          // id: new UntypedFormControl(experience.id),
           position: new UntypedFormControl(experience.position),
           description: new UntypedFormControl(experience.description),
           company: new UntypedFormControl(experience.company),

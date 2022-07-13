@@ -28,6 +28,9 @@ export class ResumeTemplateBuilderComponent implements OnInit {
   @Input() imports = [];
   @Input() resumeChanged: Observable<ResumeDto> | null;
   @Input() templatedChanged: Observable<number> | null;
+
+  @Input() isCreate:boolean = false;
+
   templateHtml: string;
   loaded: boolean = false;
 
