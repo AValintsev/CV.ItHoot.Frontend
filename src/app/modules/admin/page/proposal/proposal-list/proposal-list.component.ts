@@ -126,7 +126,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((proposal: ProposalDto) => {
-      if (proposal == null)
+      if (!proposal)
         return;
       this.proposalService.createProposal(proposal).subscribe(() => {
         this.refreshProposals.emit(this.collectAllFilters());

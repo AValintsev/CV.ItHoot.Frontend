@@ -22,9 +22,6 @@
       }
     }
   }
-  .actions {
-    justify-content: end;
-  }
 }
 .resume-section {
   mat-form-field {
@@ -35,3 +32,10 @@
     }
   }
 }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    button{
+      width: 10rem;
+    }
+  }

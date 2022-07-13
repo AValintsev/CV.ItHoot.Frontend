@@ -50,6 +50,7 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()">Update</button>
+    <button mat-raised-button color="primary" cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()">Save</button>
+    <button mat-raised-button color="accent" mat-dialog-close >Cancel</button>
   </div>
 </div>

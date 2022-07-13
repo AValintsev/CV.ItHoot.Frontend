@@ -1,6 +1,6 @@
 <div class="proposal-dialog">
   <h1 mat-dialog-title>Create new client</h1>
-  <form [formGroup]="clientForm" novalidate>
+  <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
     <div mat-dialog-content class="content">
       <mat-form-field appearance="fill">
         <mat-label>First name</mat-label>
@@ -52,3 +52,4 @@
     </div>
   </form>
 </div>
+

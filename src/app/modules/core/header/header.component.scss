@@ -103,6 +103,9 @@ button.mat-menu-item {
     @media(max-width:500px) {
       flex: 0 0 10rem;
     }
+    @media(max-width:400px) {
+      flex: 0 0 8rem;
+    }
 
   }
 }

@@ -80,11 +80,11 @@
             <mat-menu  #menu="matMenu">
               <div class="btn-wrapper"><button  class="download"  mat-stroked-button (click)="getPdf(resume)">Download PDF</button></div>
               <div class="btn-wrapper"><button  class="copy-link-pdf" mat-stroked-button (click)="getLinkPdf(resume)">Copy link PDF </button></div>
-              <div class="btn-wrapper"><button  class="docx"  mat-stroked-button >DocX</button></div>
-              <div class="btn-wrapper"><button  class="open"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open resume</button></div>
-              <div class="btn-wrapper"><button  class="copy-link-resume"  mat-stroked-button  (click)="copyResumeLink(resume)">Copy link resume</button></div>
-              <div *ngIf="showEditBtn" class="btn-wrapper"><button  class="edit-resume"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.id}}">Edit resume</button></div>
-              <div class="btn-wrapper"><button  class="delete" mat-stroked-button  (click)="deleteResume(resume)">Remove</button></div>
+              <div class="btn-wrapper"><button  class="docx"  mat-stroked-button >Open DocX</button></div>
+              <div class="btn-wrapper"><button  class="open"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/{{resume.id}}">Open CV</button></div>
+              <div class="btn-wrapper"><button  class="copy-link-resume"  mat-stroked-button  (click)="copyResumeLink(resume)">Copy link CV</button></div>
+              <div *ngIf="showEditBtn" class="btn-wrapper"><button  class="edit-resume"  mat-stroked-button  routerLink="{{url}}{{proposal.id}}/resume/edit/{{resume.id}}">Edit CV</button></div>
+              <div class="btn-wrapper"><button  class="delete" mat-stroked-button  (click)="deleteResume(resume)">Remove CV</button></div>
             </mat-menu>          
           </td>
         </ng-container>

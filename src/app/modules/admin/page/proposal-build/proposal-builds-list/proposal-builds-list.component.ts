@@ -74,7 +74,7 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((proposalBuild: ProposalBuildDto) => {
-      if (proposalBuild == null) return;
+      if (!proposalBuild) return;
 
       if (dialogType == DialogType.Create)
         this.proposalBuildService

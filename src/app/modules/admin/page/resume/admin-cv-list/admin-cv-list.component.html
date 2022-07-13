@@ -57,7 +57,7 @@
         <td mat-cell *matCellDef="let resume"><span *ngFor="let skill of resume.skills, let i=index">{{skill.name}}{{i === resume.skills.length - 1 ? '' : ', '}}  </span></td>
       </ng-container>
 
-      <ng-container matColumnDef="loading">
+      <ng-container  matColumnDef="loading">
         <th mat-header-cell *matHeaderCellDef>Loading, %</th>
         <td mat-cell *matCellDef="let resume">75%</td>
       </ng-container>
