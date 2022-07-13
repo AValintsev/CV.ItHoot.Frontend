@@ -77,6 +77,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         'name',
         'position',
         'skills',
+        'status',
         'action']
     }
     else{
