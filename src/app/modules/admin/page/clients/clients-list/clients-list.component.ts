@@ -102,6 +102,7 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!client)
         return;
 
+
         this.searchControl.setValue("");
         this.paginator.pageIndex = 0;
         this.snackBar.showSuccess('Saved')

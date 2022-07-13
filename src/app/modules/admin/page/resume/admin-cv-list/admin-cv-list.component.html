@@ -32,7 +32,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-      </div>            
+      </div>
       <button *ngIf="isShowAddButton" mat-raised-button routerLink="/admin/resume/create">
         <mat-icon>add</mat-icon>
       </button>
@@ -74,11 +74,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu  class="menu-list" #menu="matMenu">
-            <div  *ngIf="!(resume.deletedAt !== null)" class="btn-wrapper"><button  mat-stroked-button class="btn-reset pdf" (click)="getResumePdf(resume)">PDF</button></div>
+            <div class="btn-wrapper"><button  mat-stroked-button *ngIf="resume.deletedAt === null" class="btn-reset pdf" (click)="getResumePdf(resume)">PDF</button></div>
             <div class="btn-wrapper"><button  mat-stroked-button class="btn-reset open admin-btn" routerLink="{{url}}/resume/{{resume.id}}">Open</button></div>
-            <div *ngIf="!(resume.deletedAt !== null)" class="btn-wrapper"><button  mat-stroked-button  class="btn-reset edit admin-btn" routerLink="{{url}}resume/edit/{{resume.id}}">Edit</button></div>
-            <div class="btn-wrapper"><button  mat-stroked-button *ngIf="resume.deletedAt == null; else recoverButton" class="btn-reset delete admin-btn" (click)="deleteResume(resume)">Delete</button></div>
-            <ng-template #recoverButton><div ><button   mat-stroked-button class="btn-reset recover" (click)="recoverResume(resume)">Recover</button></div></ng-template>
+            <div class="btn-wrapper"><button  mat-stroked-button *ngIf="resume.deletedAt === null" class="btn-reset edit admin-btn" routerLink="{{url}}resume/edit/{{resume.id}}">Edit</button></div>
+            <div class="btn-wrapper"><button  mat-stroked-button *ngIf="resume.deletedAt === null; else recoverButton" class="btn-reset delete admin-btn" (click)="deleteResume(resume)">Delete</button></div>
+            <ng-template #recoverButton><div><button mat-stroked-button class="btn-reset recover" (click)="recoverResume(resume)">Recover</button></div></ng-template>
           </mat-menu>
         </td>
       </ng-container>

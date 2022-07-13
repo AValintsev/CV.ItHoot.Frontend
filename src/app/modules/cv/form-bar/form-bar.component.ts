@@ -83,8 +83,6 @@ export class FormBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('resume',this.resume)
-    console.log('resumeForm',this.resumeForm)
     this.listSkillsChanged();
     this.listLanguageChanged();
     this.experienceListChanged();

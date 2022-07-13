@@ -1,6 +1,8 @@
 .container {
   display: flex;
   gap: 2rem;
+  padding: 15px;
+  justify-content: center;
 
   .left-bar {
     overflow: hidden auto;

@@ -20,7 +20,10 @@ export class ClientsService {
     if (filters == null) {
       return this.httpService.getRequest<PagedResponse<SmallClientsDto[]>>(this.routePrefix);
     } else {
-      let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}`;
+      let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&pageSize=${filters.pageSize}`;
+
+      if(filters.page != null)
+        requestUrl += `&page=${filters.page + 1}`;
 
       return this.httpService.getRequest<PagedResponse<SmallClientsDto[]>>(requestUrl);
     }

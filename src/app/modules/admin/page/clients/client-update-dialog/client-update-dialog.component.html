@@ -1,6 +1,6 @@
 <div class="proposal-dialog">
-  <h1 mat-dialog-title>Update client</h1>
-  <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
+  <h1 mat-dialog-title>Edit client</h1>
+  <form [formGroup]="clientForm" novalidate>
     <div mat-dialog-content class="content">
       <input type="hidden" formControlName="id">
       <mat-form-field appearance="fill">
@@ -29,28 +29,27 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Site</mat-label>
-        <input matInput placeholder="www.microsoft.com" formControlName="site" [(ngModel)]="client.site">
+        <input matInput placeholder="www.microsoft.com" formControlName="site">
         <mat-error *ngIf="clientForm.controls['site'].invalid && clientForm.controls['site'].touched">Not a valid site</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Other contacts</mat-label>
-        <input matInput placeholder="skype: @b.gates" formControlName="contacts" [(ngModel)]="client.contacts">
+        <input matInput placeholder="skype: @b.gates" formControlName="contacts">
         <mat-error *ngIf="clientForm.controls['contacts'].invalid && clientForm.controls['contacts'].touched"></mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Company</mat-label>
-        <input matInput placeholder="Microsoft" formControlName="companyName" [(ngModel)]="client.companyName">
+        <input matInput placeholder="Microsoft" formControlName="companyName">
         <mat-error *ngIf="clientForm.controls['companyName'].invalid && clientForm.controls['companyName'].touched"></mat-error>
       </mat-form-field>
 
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
     </div>
     <div mat-dialog-actions class="actions">
-      <button mat-raised-button color="primary" cdkFocusInitial [disabled]="clientForm.invalid">Save</button>
-      <button mat-raised-button color="accent" mat-dialog-close >Cancel</button>
+      <button mat-button cdkFocusInitial (click)="onCancelClick()">Cancel</button>
+      <button mat-button cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid">Save</button>
     </div>
   </form>
 </div>
-

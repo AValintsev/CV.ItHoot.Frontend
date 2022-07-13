@@ -27,7 +27,13 @@ export class ResumeService {
       if (filters == null) {
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(this.routePrefix + `?isArchive=${isArchive}`);
       } else {
-        let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&page=${filters.page + 1}&pageSize=${filters.pageSize}&isArchive=${isArchive}`;
+        let requestUrl = `${this.routePrefix}?term=${filters.term ?? ''}&sort=${filters.sort}&order=${filters.order}&isArchive=${isArchive}`;
+
+        if(filters.page != null)
+          requestUrl += `&page=${filters.page+1}`;
+
+        if(filters.pageSize != null)
+          requestUrl += `&pageSize=${filters.pageSize}`;
 
         if (filters.positions) {
           filters.positions.forEach(item => {

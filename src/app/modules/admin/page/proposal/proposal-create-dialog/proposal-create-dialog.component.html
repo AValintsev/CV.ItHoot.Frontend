@@ -77,8 +77,8 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button  mat-raised-button color="primary" (click)="submit()" cdkFocusInitial [disabled]="canCreate()">Save</button>
-    <button mat-raised-button color="accent" mat-dialog-close >Cancel</button>
+    <button mat-button mat-dialog-close >Cancel</button>
+    <button mat-button  (click)="submit()" cdkFocusInitial [disabled]="canCreate()">Save</button>
   </div>
 
 </div>
