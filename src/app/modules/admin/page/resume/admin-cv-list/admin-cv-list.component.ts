@@ -35,6 +35,11 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   @Input() resumes: SmallResumeDto[];
+  @Input() set showLoading(showLoading:boolean){
+     if(!showLoading){
+      this.displayedColumns.splice(this.displayedColumns.indexOf('loading'),1)
+     }
+  };
   @Input() resumesCount: number;
   @Output() refreshResumes: EventEmitter<any> = new EventEmitter<any>();
   @Input() isShowAddButton: boolean = true;
@@ -71,10 +76,12 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     skillService.searchSkill('').subscribe((skills) => {
       this.skills = skills;
+      
     });
   }
 
   ngOnInit() {
+    
     this.positionService.getAllPositions().subscribe((positions) => {
       this.positions = positions;
       this.filteredPositionsMulti.next(this.positions.slice());
