@@ -1,5 +1,6 @@
 <div class="resume-wrapper">
   <div id="resume">
-    <resume-template-builder  *ngIf="resume" [resume]="resume"></resume-template-builder>
+    <resume-template-builder  *ngIf="resume" [resume]="resume" [resumeChanged]="resumeChanged"></resume-template-builder>
+  <pre>{{resume|json}}</pre>
   </div>
 </div>
