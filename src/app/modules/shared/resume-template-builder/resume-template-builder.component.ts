@@ -107,7 +107,6 @@ export class ResumeTemplateBuilderComponent implements OnInit {
           this.addComponent();
         });
     }
-    this.addComponent();
     this.templatedChanged?.subscribe((templateId) => {
       this.resumeService.getTemplateById(templateId).subscribe((data) => {
         this.templateHtml = data.html;
