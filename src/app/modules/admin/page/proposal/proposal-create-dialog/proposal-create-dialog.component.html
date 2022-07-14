@@ -62,9 +62,15 @@
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
       <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
-        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
-          {{template.templateName}}
+        <div class="custom-select-panel">
+          <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+            <!-- <mat-icon (click)="showPreview($event,template.templateId)">visibility</mat-icon> -->
+            <img  (click)="showPreview($event,template.templateId)" width="100px" height="100px" src="https://i.insider.com/61d1c0e2aa741500193b2d18?width=1136&format=jpeg" alt="">
+            {{template.templateName}}
         </mat-option>
+        
+      </div>
+  
       </mat-select>
     </mat-form-field>
 

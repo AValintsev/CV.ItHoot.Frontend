@@ -1,3 +1,5 @@
+import { ModalShowTemplateComponent } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
+import { PdfFooterModule } from './../../../shared/pdf-footer/pdf-footer.module';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
@@ -84,6 +86,7 @@ import { FormBarModule } from '../form-bar/form-bar.module';
         DirectivesModule,
         FormBarModule,
         ResumeTemplateBuilderModule,
+        PdfFooterModule,
         
     ],
   exports: [
@@ -93,6 +96,7 @@ import { FormBarModule } from '../form-bar/form-bar.module';
     ProposalComponent,
   ],
   declarations: [
+    ModalShowTemplateComponent,
     DateUtcPipe,
     ResumePageComponent,
     ResumeEditPageComponent,
