@@ -13,13 +13,12 @@ import {
 import { ResumeDto } from '../../../models/resume/resume-dto';
 import { ResumeService } from '../../../services/resume.service';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { isObservable, Observable } from 'rxjs';
 
 @Component({
   selector: 'resume-template-builder',
   templateUrl: './resume-template-builder.component.html',
   styleUrls: ['./resume-template-builder.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class ResumeTemplateBuilderComponent implements OnInit {
   @ViewChild('resumeContainer', { read: ViewContainerRef })
@@ -27,7 +26,7 @@ export class ResumeTemplateBuilderComponent implements OnInit {
   @Input() resume: ResumeDto;
   @Input() imports = [];
   @Input() resumeChanged: Observable<ResumeDto> | null;
-  @Input() templatedChanged: Observable<number> | null;
+  @Input() templatedChanged: Observable<number> | null | number;
 
   @Input() isCreate:boolean = false;
 
@@ -37,7 +36,8 @@ export class ResumeTemplateBuilderComponent implements OnInit {
   constructor(
     private resumeService: ResumeService,
     private injector: Injector
-  ) {}
+  ) {
+  }
 
   private addComponent() {
     this.containerRef.clear();
@@ -101,7 +101,7 @@ export class ResumeTemplateBuilderComponent implements OnInit {
     return 0;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     if (this.resume?.resumeTemplateId) {
       this.resumeService
         .getTemplateById(this.resume?.resumeTemplateId)
@@ -110,11 +110,20 @@ export class ResumeTemplateBuilderComponent implements OnInit {
           this.addComponent();
         });
     }
-    this.templatedChanged?.subscribe((templateId) => {
+    if(isObservable(this.templatedChanged)){
+       this.templatedChanged?.subscribe((templateId) => {
       this.resumeService.getTemplateById(templateId).subscribe((data) => {
         this.templateHtml = data.html;
         this.addComponent();
       });
     });
+    }else if(typeof this.templatedChanged=='number'){
+      this.resumeService.getTemplateById(this.templatedChanged).subscribe((data) => {
+        this.templateHtml = data.html;
+        console.log(data.html)
+        this.addComponent();
+      });
+    }
+
   }
 }

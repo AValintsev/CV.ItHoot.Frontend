@@ -32,10 +32,31 @@
     }
   }
 }
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    button{
-      width: 10rem;
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: 10rem;
+  }
+}
+
+.custom-select-panel {
+  .custom-select-item{
+    pointer-events: none;
+    height: 7em;
+  }
+  display: flex;
+  flex-wrap: wrap;
+  mat-option {
+    flex: 0 0 50%;
+    height: 8em;
+  }
+  ::ng-deep resume-template-builder {
+    @media screen and (max-width: 1650px) {
+      #resume {
+        zoom: 0.1;
+      }
     }
   }
+}
+

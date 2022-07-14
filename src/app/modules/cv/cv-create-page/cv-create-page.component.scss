@@ -13,12 +13,16 @@
     border-radius: 15px;
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 
-   .action {
-      display: flex;
-      justify-content: flex-end;
-      button{
-        width: 10rem;
+    .action {
+      margin: 1rem 0;
+        display: flex;
+        justify-content: flex-end;
+        button{
+          width: 10rem;
+          &:first-child{
+            margin-right: 1rem;
+          }
+        }
       }
-    }
   }
 }

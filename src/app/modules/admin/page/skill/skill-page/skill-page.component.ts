@@ -69,7 +69,7 @@ export class SkillPageComponent implements OnInit, OnDestroy {
   }
 
   deleteSkill(skill: SkillDto) {
-    this.deleteModalService.matModal('Do you want to delete your resume?').subscribe({
+    this.deleteModalService.matModal('Do you want to delete your skills?').subscribe({
       next: (response) => {
         if (response) {
       this.skillService.deleteSkill(skill).pipe(
