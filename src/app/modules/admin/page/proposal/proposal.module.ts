@@ -37,7 +37,6 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-salary-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
-import {DocxTableAction} from "./docx-table-action/docx-table-button.component";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 import { ResumePageComponent } from './page/resume-page/resume-page.component';
 import { ResumeEditPageComponent } from './page/resume-edite-page/resume-edit-page.component';
@@ -83,7 +82,6 @@ import { FormBarModule } from '../form-bar/form-bar.module';
         DirectivesModule,
         FormBarModule,
         ResumeTemplateBuilderModule,
-        
     ],
   exports: [
     ProposalListPageComponent,
@@ -105,7 +103,6 @@ import { FormBarModule } from '../form-bar/form-bar.module';
     PdfTableAction,
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
-    DocxTableAction,
   ],
   providers:[DeleteModalService]
 })
