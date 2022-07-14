@@ -86,6 +86,10 @@ export class ResumeService {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
   }
 
+  public getDocx(resumeId: number) {
+    return this.httpService.getFile(this.routePrefix + `/docx/${resumeId}`);
+  }
+
   public getAllTemplates(): Observable<ResumeTemplateDto[]> {
     return this.httpService.getRequest(this.routePrefix + `/templates`);
   }
@@ -118,5 +122,14 @@ export class ResumeService {
     return this.httpService.putRequest(this.routePrefix+`/${resumeId}/salaryRate/${salaryRate}`,null);
   }
 
+  public addDocxTemplate(templateId: number, docx: Blob): Observable<any> {
 
+    const data = new FormData();
+    data.append('docx', docx);
+    return this.httpService.putRequest(this.routePrefix + `/templates/docx/${templateId}`, data);
+  }
+
+  public getTemplateDocx(templateId: number) {
+    return this.httpService.getFile(this.routePrefix + `/templates/docx/${templateId}`);
+  }
 }

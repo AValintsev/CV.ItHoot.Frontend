@@ -165,6 +165,20 @@ export class ProposalComponent implements OnInit, OnDestroy, OnDestroy {
       });
   }
 
+  saveDocx(
+    proposalId: number,
+    resumeId: number,
+    firstName: string,
+    lastName: string
+  ) {
+    this.proposalService
+      .getProposalResumeDocx(proposalId, resumeId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        saveAs(response, `${firstName} ${lastName}.docx`);
+      });
+  }
+
   approveUsers(statusObject: ProposalApproveResume[], checkArrayAll: number[]) {
     const approveObject = {
       proposalId: this.proposalId,

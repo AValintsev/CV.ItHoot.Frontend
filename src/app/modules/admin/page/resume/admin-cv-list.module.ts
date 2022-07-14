@@ -37,7 +37,6 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
 import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
 import { FormBarModule } from '../form-bar/form-bar.module';
-import {NgxPanZoomModule} from "ngx-panzoom";
 
 
 
@@ -74,7 +73,6 @@ import {NgxPanZoomModule} from "ngx-panzoom";
         MatMenuModule,
         FormBarModule,
         QuillModule.forRoot(),
-        NgxPanZoomModule
     ],
 
   exports: [

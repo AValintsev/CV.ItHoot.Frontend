@@ -7,6 +7,8 @@ import {ResumeDto} from "../../../../../models/resume/resume-dto";
 import {PositionDto} from "../../../../../models/position/position-dto";
 import {PreviewDialogComponent} from "../preview-dialog/preview-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { requiredFileType } from 'src/app/modules/shared/validators/file.validators';
 
 @Component({
   selector: 'cv-resume-template-create-page',
@@ -55,7 +57,6 @@ export class ResumeTemplateCreatePageComponent implements OnInit {
     }, {languageName: 'Language name', level: 3}]
   } as ResumeDto;
 
-
   editorOptions = {
     theme: 'vs',
     language: 'html',
@@ -67,6 +68,12 @@ export class ResumeTemplateCreatePageComponent implements OnInit {
     },
   };
 
+  templateForm: UntypedFormGroup;
+  isServerError: boolean = false;
+  serverErrorMsg: string;
+
+  private docxFile: File | null = null;
+
   template!: ResumeTemplateDto;
 
   constructor(
@@ -76,24 +83,61 @@ export class ResumeTemplateCreatePageComponent implements OnInit {
     private snackbarService: SnackBarService
   ) {
     this.template = {} as ResumeTemplateDto;
-  }
 
-  ngOnInit() {
-
-  }
-
-  createResume() {
-    this.resumeService.createTemplate(this.template).subscribe(template => {
-      this.template = template;
-      this.snackbarService.showSuccess('Created');
-      this.router.navigate(['/admin/templates']);
+    this.templateForm = new UntypedFormGroup({
+      "name": new UntypedFormControl("", Validators.required),
+      "html": new UntypedFormControl("", Validators.required),
+      "docxFile": new UntypedFormControl("", [Validators.required, requiredFileType('docx')]),
     });
   }
 
+  ngOnInit() {
+  }
+
+  submit() {
+    this.isServerError = false;
+
+    this.template.html = this.templateForm.controls["html"].value;
+    this.template.templateName = this.templateForm.controls["name"].value;
+
+    this.resumeService.createTemplate(this.template).subscribe(
+      template => {
+        this.template = template;
+
+        this.resumeService.addDocxTemplate(this.template.templateId, this.docxFile!).subscribe(
+          (data) => {
+            this.snackbarService.showSuccess('Created');
+            this.router.navigate(['/admin/templates']);
+          },
+          err => {
+            this.serverError(err);
+          }
+        );
+      },
+      err => {
+        this.serverError(err);
+      }
+    );
+  }
+
   onInit(editor: any) {
+    console.log(editor);
     setTimeout(() => {
       editor.getAction('editor.action.formatDocument').run();
     }, 150);
+  }
+
+  serverError(err: any) {
+    this.isServerError = true;
+    this.serverErrorMsg = err.error.message;
+    console.warn(err);
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.docxFile = file;
+    }
   }
 
   viewTemplate() {

@@ -201,6 +201,30 @@ export class ProposalComponent implements OnInit, OnDestroy {
     });
   }
 
+  getDocx(resume: ProposalResumeDto) {
+    this.loading = true;
+    this.proposalService.getProposalResumeDocx(this.proposal.id, resume.id).subscribe((file) => {
+        saveAs(file, `${resume.firstName} ${resume.lastName}.docx`);
+        this.loading = false;
+      });
+  }
+
+  getLinkDocx(resume: ProposalResumeDto) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value =
+      window.location.origin + `/proposals/resume/${resume.shortUrl}/docx`;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.snackBarService.showSuccess('Link copied');
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

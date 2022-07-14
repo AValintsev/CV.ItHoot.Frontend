@@ -52,10 +52,9 @@ const routes: Routes = [
     component: ResumeFullSwitcherComponent
   },
   {
-    path : 'proposals/resume/:shortUrl/pdf',
+    path : 'proposals/resume/:shortUrl/:docType',
     component: ProposalResumeDownloadPageComponent
   },
-
 
 ];
 

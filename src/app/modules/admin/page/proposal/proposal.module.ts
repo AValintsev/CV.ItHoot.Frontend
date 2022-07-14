@@ -42,8 +42,6 @@ import { ResumePageComponent } from './page/resume-page/resume-page.component';
 import { ResumeEditPageComponent } from './page/resume-edite-page/resume-edit-page.component';
 import { FormBarModule } from '../form-bar/form-bar.module';
 
-
-
 @NgModule({
     imports: [
         ProposalRoutingModule,
@@ -84,7 +82,6 @@ import { FormBarModule } from '../form-bar/form-bar.module';
         DirectivesModule,
         FormBarModule,
         ResumeTemplateBuilderModule,
-        
     ],
   exports: [
     ProposalListPageComponent,
