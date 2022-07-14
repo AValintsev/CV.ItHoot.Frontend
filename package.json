@@ -30,9 +30,9 @@
     "ngx-loading-buttons": "^14.0.0",
     "ngx-mat-select-search": "^4.2.0",
     "ngx-monaco-editor": "^12.0.0",
+    "ngx-panzoom": "^13.0.0",
     "ngx-quill": "^18.0.0",
     "normalize.css": "^8.0.1",
-    "panzoom": "^9.4.3",
     "rxjs": "~7.5.5",
     "tslib": "^2.4.0",
     "zone.js": "~0.11.6"

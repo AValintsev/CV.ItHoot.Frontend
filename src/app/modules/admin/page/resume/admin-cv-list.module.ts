@@ -37,43 +37,45 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
 import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
 import { FormBarModule } from '../form-bar/form-bar.module';
+import {NgxPanZoomModule} from "ngx-panzoom";
 
 
 
 @NgModule({
 
-  imports: [
-     ResumeTemplateBuilderModule,
-    TemplateBuilderModule,
-    AdminCvListRouterModule,
-    MatIconModule,
-    MatSelectModule,
-    CommonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    DirectivesModule,
-    MatProgressSpinnerModule,
-    MatExpansionModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    NgxMatSelectSearchModule,
-    PdfFooterModule,
-    MatMenuModule,
-    FormBarModule,
-    QuillModule.forRoot()
-  ],
+    imports: [
+        ResumeTemplateBuilderModule,
+        TemplateBuilderModule,
+        AdminCvListRouterModule,
+        MatIconModule,
+        MatSelectModule,
+        CommonModule,
+        MatCardModule,
+        MatDividerModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        DirectivesModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        NgxMatSelectSearchModule,
+        PdfFooterModule,
+        MatMenuModule,
+        FormBarModule,
+        QuillModule.forRoot(),
+        NgxPanZoomModule
+    ],
 
   exports: [
     AdminCvListComponent,
