@@ -25,15 +25,9 @@ import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums
   styleUrls: ['./admin-cv-list.component.scss'],
 })
 export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
-  displayedColumns: string[] = [
-    'name',
-    'position',
-    'skills',
-    'loading',
-    'status',
-    'action',
-  ];
+  displayedColumns: string[];
 
+  @Input() isArchive:boolean = false;
   @Input() resumes: SmallResumeDto[];
   @Input() resumesCount: number;
   @Output() refreshResumes: EventEmitter<any> = new EventEmitter<any>();
@@ -69,12 +63,33 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private positionService: PositionService,
     private skillService: SkillService
   ) {
+
+
     skillService.searchSkill('').subscribe((skills) => {
       this.skills = skills;
     });
   }
 
   ngOnInit() {
+
+    if(this.isArchive){
+      this.displayedColumns = [
+        'name',
+        'position',
+        'skills',
+        'status',
+        'action']
+    }
+    else{
+      this.displayedColumns = [
+        'name',
+        'position',
+        'skills',
+        'loading',
+        'status',
+        'action']
+    }
+
     this.positionService.getAllPositions().subscribe((positions) => {
       this.positions = positions;
       this.filteredPositionsMulti.next(this.positions.slice());

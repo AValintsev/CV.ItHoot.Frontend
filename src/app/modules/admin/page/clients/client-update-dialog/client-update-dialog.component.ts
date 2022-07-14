@@ -78,4 +78,8 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
 
     return this.clientForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
+
+  onCancelClick(): void {
+    this.dialogRef.close(null);
+  }
 }

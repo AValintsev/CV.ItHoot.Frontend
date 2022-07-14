@@ -19,11 +19,11 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   isServerError: boolean = false;
   serverErrorMsg: string;
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialog,
     public dialogRef: MatDialogRef<ClientCreateDialogComponent>,
     public clientService: ClientsService,
   ) {
@@ -45,23 +45,18 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   submit() {
     this.isServerError = false;
 
-    this.client.firstName = this.clientForm.controls["firstName"].value;
-    this.client.lastName = this.clientForm.controls["lastName"].value;
-    this.client.email = this.clientForm.controls["email"].value;
-    this.client.phoneNumber = this.clientForm.controls["phoneNumber"].value;
-    this.client.site = this.clientForm.controls["site"].value;
-    this.client.contacts = this.clientForm.controls["contacts"].value;
-    this.client.companyName = this.clientForm.controls["companyName"].value;
+    this.client = this.clientForm.value;
+
 
     this.clientService.createClient(this.client).subscribe(
-      (data) => {
-        this.dialogRef.close(data);
-      },
-      err => {
+
+      (client) => this.dialogRef.close(client),
+      (error) => {
         this.isServerError = true;
-        this.serverErrorMsg = err.error.message;
-        console.warn(err);
+        this.serverErrorMsg = error.error.message;
+        console.warn(error);
       });
+
   }
 
   ngOnDestroy() {
@@ -74,6 +69,11 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
       return 'You must enter a value';
     }
 
+
     return this.clientForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  onCancelClick() {
+    this.dialogRef.close(null);
   }
 }

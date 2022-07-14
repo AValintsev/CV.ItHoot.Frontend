@@ -63,7 +63,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
       .afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe((proposal: ProposalDto) => {
-        if (proposal == null) return;
+        if (!proposal) return;
         proposal.clientId = proposal.client.userId;
         this.proposalService
           .updateProposal(proposal)
@@ -85,7 +85,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
       .afterClosed()
       .pipe(takeUntil(this.destroy$))
       .subscribe((resume: SmallResumeDto) => {
-        if (resume == null) return;
+        if (!resume) return;
         this.proposal.resumes.push({
           resumeId: resume.id,
         } as ProposalResumeDto);
@@ -95,7 +95,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this.destroy$))
           .subscribe((proposal) => {
             this.proposal = proposal;
-            this.snackBarService.showSuccess('Added');
+            this.snackBarService.showSuccess('Saved');
           });
       });
   }

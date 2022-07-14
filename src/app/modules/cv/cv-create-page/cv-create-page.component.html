@@ -1,12 +1,11 @@
 <div class="container" *ngIf="resumeCreateDto">
-  <resume-template-builder  [resume]="resumeCreateDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
+  <resume-template-builder [resume]="resumeCreateDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged" [isCreate]="true"></resume-template-builder>
   <div class="create-page">
     <div class="left-bar">
       <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value" (templateChange)="templateChange($event)"></form-bar>
       <div class="action">
-        <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid"
-                (click)="submit(resumeCreateForm.value)">Save</button>
-        <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!resumeCreateForm.valid" (click)="submit(resumeCreateForm.value)">Save</button>
+        <button mat-raised-button color="accent" routerLink="/admin/resume">Cancel</button>  
       </div>
     </div>
   </div>

@@ -1,15 +1,8 @@
 .container {
   display: flex;
   gap: 2rem;
-
-
-  #resume {
-    width: 210mm;
-    overflow: hidden;
-    min-height: 297mm;
-    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
-  }
-
+  padding: 15px;
+  justify-content: center;
 
   .left-bar {
     overflow: hidden auto;
@@ -21,12 +14,23 @@
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 
     .action {
-      margin: 15px 0;
       display: flex;
       justify-content: flex-end;
-      button:first-child{
-        margin-right: 2rem;
+      button{
+        width: 10rem;
       }
+    }
+    .action {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: flex-end;
+      button{
+        width: 10rem;
+        &:first-child{
+          margin-right: 1rem;
+        }
+      }
+      
     }
   }
 }

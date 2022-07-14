@@ -36,6 +36,16 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
   clients: UserDto[] = [];
 
+  resumeFilter: ResumeListFilter = {
+    term: '',
+    page: 0,
+    pageSize: 30,
+    positions: [],
+    skills: [],
+    sort: 'name',
+    order: 'asc'
+  };
+
   ngOnInit() {
   }
 
@@ -50,17 +60,20 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     this.proposal = data;
     this.proposal.proposalBuild = {} as ProposalBuildDto;
 
-    this.userService.getUsersByRole('client').pipe(takeUntil(this.destroy$)).subscribe((clients) => {
-      this.clients = clients;
-    });
+    this.userService.getUsersByRole('client').subscribe(clients => this.clients = clients);
 
-    this.getAllResumes();
+    this.resumeCtrl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      map((value: string | null) => {
+        value = value +'';
+        value = value.replace('null','');
+        this._filterResume(value);
+      })).subscribe();
 
-    this.resumeService.getAllTemplates().pipe(takeUntil(this.destroy$))
-      .subscribe((templates) => (this.resumeTemplates = templates));
+    this.resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
 
-    this.proposalBuildService.getAllProposalBuilds().pipe(takeUntil(this.destroy$))
-      .subscribe((proposalBuilds) => (this.proposalBuilds = proposalBuilds));
+    this.proposalBuildService.getAllProposalBuilds().subscribe(proposalBuilds => this.proposalBuilds = proposalBuilds);
   }
 
   add(event: MatChipInputEvent): void {
@@ -74,6 +87,8 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     if (index >= 0) {
       this.selectedResumes.splice(index, 1);
     }
+
+    this.resumes.unshift(resume);
 
   }
 
@@ -93,20 +108,11 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   }
 
   private _filterResume(value: string) {
-    const filterValue = value + '';
-    const filter: ResumeListFilter = {
-      term: filterValue,
-      page: 0,
-      pageSize: 30,
-      positions:[],
-      skills:[],
-      sort: 'name',
-      order: 'asc'
-    };
+    this.resumeFilter.term = value;
 
-    this.resumeService.getAllResume(filter).subscribe(resumes =>{
+    this.resumeService.getAllResume(this.resumeFilter).subscribe(resumes => {
       this.resumes = resumes.items.filter(resume =>
-       !this.selectedResumes.find((selectedResume) => selectedResume?.id === resume?.id)
+        !this.selectedResumes.find((selectedResume) => selectedResume?.id === resume?.id)
       )
     });
   }
@@ -139,31 +145,6 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe()
   }
 
-  getAllResumes() {
-    const filter: ResumeListFilter = {
-      term: '',
-      page: 0,
-      pageSize: 30,
-      positions:[],
-      skills:[],
-      sort: 'name',
-      order: 'asc'
-    };
-    this.resumeService.getAllResume(filter).subscribe(resumes => {
-      this.resumes = resumes.items;
-      this.resumeCtrl.valueChanges.pipe(
-        startWith(null),
-        debounceTime(300),
-        map((value: string | null) => {
-          value = value+'';
-            this._filterResume(value);
-        })
-      ).subscribe();
-    });
-  }
-
-
-
   openSalaryDialog(resumeDto: SmallResumeDto) {
     const resumeCopy = Object.assign({}, resumeDto);
     const dialogRef = this.dialog.open(ProposalSalaryDialogComponent, {
@@ -173,7 +154,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {
-      if (resume == null)
+      if (!resume)
         return;
 
 

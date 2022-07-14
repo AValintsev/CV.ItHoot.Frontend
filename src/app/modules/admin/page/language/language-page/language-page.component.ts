@@ -104,7 +104,7 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((language: LanguageDto) => {
-      if (language == null) return;
+      if (!language) return;
       if (dialogType == DialogType.Create) {
         this.createLanguage(language);
       } else {

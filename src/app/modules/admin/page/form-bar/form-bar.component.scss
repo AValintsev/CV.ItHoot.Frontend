@@ -1,22 +1,19 @@
 .input-group {
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto;
 
-  @media (max-width:1000px) {
-    &>* {
+  @media (max-width: 1430px) {
+    & > * {
       grid-column: 2 span;
     }
   }
 
-  &> :nth-child(2) {
+  & > :nth-child(2) {
     grid-column: span 2;
   }
 
-  //&>:nth-child(12){
-  //  grid-column: span 2;
-  //}
-  &> :last-child {
+  & > :last-child {
     grid-column: span 2;
   }
 }
@@ -49,10 +46,12 @@
 
   mat-form-field {
     flex: 1 1 50%;
-    &:first-child{
+
+    &:first-child {
       margin-right: .5rem;
     }
-    &:last-child{
+
+    &:last-child {
       margin-left: .5rem;
     }
   }

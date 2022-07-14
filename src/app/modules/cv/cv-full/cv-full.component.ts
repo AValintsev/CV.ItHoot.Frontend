@@ -3,7 +3,6 @@ import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
-import panzoom from "panzoom";
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 
 
@@ -43,12 +42,6 @@ export class CvFullComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const zoom = panzoom(document.getElementById("zoom")!, {
-      minZoom: 0.3,
-      maxZoom: 1.3,
-      bounds: true,
-      disableKeyboardInteraction: true,
-      boundsPadding: 0.1
-    });
+
   }
 }

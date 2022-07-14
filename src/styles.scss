@@ -144,30 +144,33 @@ a:link {
 
 .change-material-style {
   .mat-dialog-content {
-    max-height: 85vh !important;
+    overflow-y: visible;
+    max-height: 90vh !important;
+    @media(max-height:800px){
+      max-height: 65vh !important;
+      overflow-y: auto;
+    }
+    @media(max-height:500px){
+      max-height: 55vh !important;
+      overflow-y: auto;
+    }
   }
 }
 
 
 th {
   white-space: nowrap;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+
 }
 
 td {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
   overflow-x: hidden;
-  // word-break: break-word;
 }
 
 .mat-sort-header-arrow {
   margin: 0;
 }
-
-// .menu-width {
-//   .mat-menu-content{
-//     padding-left: 2rem;
-//   } 
-// }

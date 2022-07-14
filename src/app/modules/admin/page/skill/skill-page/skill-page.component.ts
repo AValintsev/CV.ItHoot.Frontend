@@ -109,7 +109,7 @@ export class SkillPageComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
 		takeUntil(this.destroy$)
 	  ).subscribe((skill: SkillDto) => {
-      if (skill == null) return;
+      if (!skill) return;
       if (dialogType == DialogType.Create) {
         this.createSkill(skill);
       } else {

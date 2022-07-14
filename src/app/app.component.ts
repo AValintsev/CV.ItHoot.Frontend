@@ -8,9 +8,7 @@ import {AccountService} from './services/account.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    private accountService: AccountService,
-    ) { }
+  constructor() { }
   ngOnInit(): void {
   }
 }

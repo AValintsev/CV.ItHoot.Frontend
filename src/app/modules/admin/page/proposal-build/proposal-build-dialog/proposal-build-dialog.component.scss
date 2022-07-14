@@ -13,7 +13,11 @@
 
 
   }
-  .actions{
-    justify-content: end;
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    button{
+      width: 10rem;
+    }
   }
 }

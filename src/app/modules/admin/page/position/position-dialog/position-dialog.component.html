@@ -11,8 +11,8 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="positionDto" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create">Create</button>
-    <button mat-button [mat-dialog-close]="positionDto" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="positionDto" cdkFocusInitial [disabled]="!canCreate()">Save</button>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
   </div>
-
 </div>
+

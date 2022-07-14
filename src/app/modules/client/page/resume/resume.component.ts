@@ -3,8 +3,8 @@ import {ClientProposalService} from '../../../../services/client/client-proposal
 import {ProposalService} from '../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import panzoom from 'panzoom';
 import {ResumeDto} from "../../../../models/resume/resume-dto";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'cv-resume',
@@ -12,6 +12,9 @@ import {ResumeDto} from "../../../../models/resume/resume-dto";
   styleUrls: ['./resume.component.scss'],
 })
 export class ResumeComponent implements OnInit {
+
+  resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
+
 
   resume:ResumeDto|null = null;
   constructor(
@@ -46,14 +49,8 @@ export class ResumeComponent implements OnInit {
         this.resume = data.resume;
         this.resume!.showLogo = data.showLogo;
         this.resume!.resumeTemplateId = data.resumeTemplateId;
+        this.resumeChanged.next(data.resume)
 
-        const zoom = panzoom(document.getElementById('resume')!, {
-          minZoom: 0.3,
-          maxZoom: 3.5,
-          bounds: true,
-          disableKeyboardInteraction: true,
-          boundsPadding: 0.2
-        });
       }
     });
   }

@@ -1,15 +1,18 @@
 .resume-wrapper {
-  overflow: hidden;
+  //overflow: hidden;
   height: 100%;
   width: 100%;
 
-  #resumeDiv:hover {
-    cursor: pointer;
+
+  .resumeDiv {
+    padding: 0 0 15px 0;
+    display: flex;
+    justify-content: center;
   }
 
 }
 
-.fix-btn{
+.fixed-btn{
   position: fixed;
   z-index: 3;
   right: 4rem;

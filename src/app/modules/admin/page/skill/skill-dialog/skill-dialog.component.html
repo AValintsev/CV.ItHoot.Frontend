@@ -1,6 +1,6 @@
 <div class="skill-dialog">
-  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Create new language</h1>
-  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit language</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog===DialogType.Create">Create new skill</h1>
+  <h1 mat-dialog-title *ngIf="typeDialog === DialogType.Edit">Edit skill</h1>
   <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
@@ -11,8 +11,7 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create">Create</button>
-    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()">Save</button>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
   </div>
-
 </div>

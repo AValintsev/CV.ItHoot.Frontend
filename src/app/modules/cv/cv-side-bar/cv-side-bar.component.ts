@@ -39,7 +39,6 @@ export class CvSideBarComponent implements OnInit,OnDestroy {
       )
       .subscribe({
         next: (response) => {
-          console.log(response)
           if (response) {
             this.id = response.id;
             this.firstName = response.firstName;

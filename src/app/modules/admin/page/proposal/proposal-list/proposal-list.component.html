@@ -56,7 +56,7 @@
       </ng-container>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+        <th mat-header-cell *matHeaderCellDef>Position</th>
         <td mat-cell *matCellDef="let proposal">
           <div *ngIf="proposal.positions.length > 0"><span
             *ngFor="let position of proposal.positions, let i=index">{{position.positionName}}{{i === proposal.positions.length - 1 ? '' : ', '}} </span>

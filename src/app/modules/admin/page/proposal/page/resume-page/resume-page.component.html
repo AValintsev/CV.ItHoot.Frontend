@@ -1,5 +1,8 @@
 <div class="resume-wrapper">
-  <div id="doc">
+  <button class="fixed-btn" mat-fab color="primary" (click)="back()" (touchstart)="back()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <div class="resumeDiv">
     <resume-template-builder *ngIf="resume" [resume]="resume"></resume-template-builder>
   </div>
 </div>
