@@ -40,23 +40,18 @@
   }
 }
 
-.custom-select-panel {
-  .custom-select-item{
-    pointer-events: none;
-    height: 7em;
-  }
+  mat-option { 
+    
+}
+.mat-option-list{
+display: flex;
+align-items: center;
+li:first-child{
   display: flex;
-  flex-wrap: wrap;
-  mat-option {
-    flex: 0 0 50%;
-    height: 8em;
-  }
-  ::ng-deep resume-template-builder {
-    @media screen and (max-width: 1650px) {
-      #resume {
-        zoom: 0.1;
-      }
-    }
-  }
+  align-items: center;
+  height: 100%;
+  width: 3rem;
+  margin-right: 2rem;
+}
 }
 
