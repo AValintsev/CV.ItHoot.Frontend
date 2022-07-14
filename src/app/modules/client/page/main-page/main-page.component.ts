@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {LoadingService} from 'src/app/services/loading.service';
 
@@ -7,13 +7,25 @@ import {LoadingService} from 'src/app/services/loading.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit{
+export class MainPageComponent implements OnInit, AfterContentChecked {
 
-  public loading$!: Observable<boolean>
+  loading$!: Observable<boolean>
+
+
   constructor(
-    private loadingService: LoadingService
-    ) { }
-  ngOnInit(): void {
-    this.loading$ = this.loadingService.isLoading$
+    private loadingService: LoadingService,
+    private cdref: ChangeDetectorRef
+  ) {
   }
+
+  ngOnInit(): void {
+  }
+
+  ngAfterContentChecked(): void {
+
+    this.loading$ = this.loadingService.isLoading$
+    this.cdref.detectChanges();
+  }
+
+
 }
