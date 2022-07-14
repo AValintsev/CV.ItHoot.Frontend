@@ -16,7 +16,6 @@ import {ProposalService} from "../../../../services/proposal.service";
 export class CvFullComponent implements OnInit {
   @ViewChild('resumeDiv') resumeId!: ElementRef;
   resume!: ResumeDto;
-  url$!: Observable<string>
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,14 +53,6 @@ export class CvFullComponent implements OnInit {
           this.resume = resume;
         });
       }
-
-      const zoom = panzoom(document.getElementById('resumeDiv')!, {
-        minZoom: 0.3,
-        maxZoom: 3.5,
-        bounds: true,
-        disableKeyboardInteraction: true,
-        boundsPadding: 0.2
-      });
 
     });
 

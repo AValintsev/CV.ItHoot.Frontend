@@ -1,9 +1,13 @@
 .resume-wrapper {
-  overflow: hidden;
+  //overflow: hidden;
   height: 100%;
   width: 100%;
 
-  #resumeDiv:hover {
+
+  .resumeDiv {
+    padding: 0 0 15px 0;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
   }
 
