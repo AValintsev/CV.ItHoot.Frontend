@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { ResumeDto } from '../../../../../../models/resume/resume-dto';
 import { ProposalService } from '../../../../../../services/proposal.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import panzoom from 'panzoom';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { AccountService } from 'src/app/services/account.service';
