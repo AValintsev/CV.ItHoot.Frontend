@@ -66,7 +66,7 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
   }
 
   deleteLanguage(skill: LanguageDto) {
-    this.deleteModalService.matModal('Do you want to delete lenguage?').subscribe({
+    this.deleteModalService.matModal('Do you want to delete language?').subscribe({
       next: (response) => {
         if (response) {
        this.languageService.deleteLanguage(skill).subscribe({
