@@ -21,6 +21,7 @@
             <div class="action-wrapper">
               <button class="open" routerLink='/admin/templates/{{template.templateId}}'>Open</button>
               <button class="edit" routerLink='/admin/templates/edit/{{template.templateId}}'>Edit</button>
+              <button class="docx" (click)="downloadDocxTemplate(template)">Open docx template</button>
             </div>
           </td>
         </ng-container>

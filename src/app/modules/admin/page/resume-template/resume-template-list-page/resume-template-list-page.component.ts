@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
 import {ResumeService} from '../../../../../services/resume.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'cv-resume-template-list-page',
@@ -27,5 +28,11 @@ export class ResumeTemplateListPageComponent implements OnInit, OnDestroy {
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
+  }
+
+  downloadDocxTemplate(template: ResumeTemplateDto) {
+    this.resumeService.getTemplateDocx(template.templateId).subscribe((response) => {
+      saveAs(response, `${template.templateName}.docx`);
+    });
   }
 }
