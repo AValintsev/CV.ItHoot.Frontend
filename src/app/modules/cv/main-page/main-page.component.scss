@@ -14,11 +14,11 @@ header {
 }
 
 main {
-  height: calc(100vh - 8rem);
+  height: calc(100vh);
   background: #e5e5e5;
 
   @media (max-width: 700px) {
-    height: calc(100vh - 8rem);
+    height: calc(100vh);
   }
 
   @media (max-width: 600px) {

@@ -1,4 +1,15 @@
+.mat-menu-item-inner{
+  padding-left: 1rem;
+}
+
 .menu {
+  .menu-list{
+    span{
+      font-family: 'Inter', sans-serif !important;
+    }
+    
+  }
+  
   @media (min-width: 600px) {
     display: block;
     position: relative;
@@ -175,7 +186,7 @@ img {
 }
 
 .logout {
-  background-color: #f44336;
+  background-color: rgba(0, 0, 0, 0.54);
 
 }
 
@@ -259,7 +270,7 @@ img {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(244, 67, 54, .7);
+      background-color:   rgba(0, 0, 0, 0.87);;
     }
   }
 }
