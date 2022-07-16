@@ -5,8 +5,6 @@
 }
 
 .resume-list {
-  // min-width: 100rem;
-  //padding: 30px;
   position: relative;
 
   .mat-row:hover {
@@ -20,7 +18,6 @@
   .table-wrapper {
     padding: 24px;
     box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
-    border-radius: 8px;
     background: white;
 
     table {
@@ -126,6 +123,10 @@
         width: 5%;
       }
 
+      .mat-column-clients{
+        width: 12%;
+      }
+
 
 
       .mat-column-loading {
@@ -136,58 +137,6 @@
         // text-align: left;
       }
 
-      // .action-wrapper {
-      //   display: grid;
-      //   grid-template-columns: repeat(4, minmax(8rem, 25%));
-      //   justify-content: space-between;
-
-      //   button {
-      //     height: 35px;
-      //     padding: .1rem .2rem;
-      //     color: white;
-      //     border: 0;
-      //     border-radius: 4px;
-      //     font-size: 1em;
-
-      //     &:not(:first-child) {
-      //       margin-left: 0.4rem;
-      //     }
-
-      //     &:hover {
-      //       cursor: pointer;
-      //       opacity: .9;
-      //     }
-
-
-      //     &.pdf {
-      //       background: #3A57E8;
-      //     }
-
-      //     &.docx {
-      //       background: #FF5DCD;
-
-      //     }
-
-      //     &.open {
-      //       background: #1AA053;
-
-      //     }
-
-      //     &.edit {
-      //       background: #F16A1B;
-
-      //     }
-
-      //     &.delete {
-      //       background: #BA3020E5;
-      //     }
-
-      //     &.recover {
-      //       background: #3A57E8;
-      //     }
-      //   }
-
-      // }
     }
   }
 
@@ -202,55 +151,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
 
     .rate-limit-reached {
       max-width: 360px;
       text-align: center;
     }
   }
-}
-
-.btn-wrapper {
-  width: 22rem;
-  padding: .5rem 1rem;
-
-  & button {
-    width: 100%;
-    &.pdf {
-      color: #3A57E8;
-    }
-
-    &.docx {
-      color: #FF5DCD;
-
-    }
-
-    &.open {
-      color: #1AA053;
-
-    }
-
-    &.edit {
-      color: #F16A1B;
-
-    }
-
-    &.delete {
-      color: #BA3020E5;
-    }
-
-    &.recover {
-      color: #3A57E8;
-    }
-  }
-}
-
-button[disabled] {
-  background: #a8aeb4 !important;
-  color: #fff !important;
-  pointer-events: none;
-}
-.btn-wrapper:has(button[disabled]){
-  cursor: not-allowed;
 }

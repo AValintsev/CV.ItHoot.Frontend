@@ -1,7 +1,6 @@
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import panzoom from 'panzoom';
 
 
 @Component({
@@ -13,7 +12,7 @@ export class ModalShowTemplateComponent implements OnInit,AfterViewInit,OnDestro
   private destroy$ = new Subject<boolean>();
   resumeEditDto = {
     "id": 0,
-   
+
     showLogo:true,
     "resumeName": "Fullstack",
     "isDraft": false,
@@ -148,7 +147,7 @@ export class ModalShowTemplateComponent implements OnInit,AfterViewInit,OnDestro
   ) { }
 
   ngOnInit(): void {
-    
+
   }
   ngOnDestroy(){
     this.destroy$.next(true)

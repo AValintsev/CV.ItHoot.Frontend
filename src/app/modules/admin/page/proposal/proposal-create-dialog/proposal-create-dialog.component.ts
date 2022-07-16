@@ -16,7 +16,6 @@ import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-bu
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter";
-import { ResumeDto } from 'src/app/models/resume/resume-dto';
 import { ModalShowTemplateComponent } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
 
 @Component({
@@ -46,6 +45,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     pageSize: 30,
     positions: [],
     skills: [],
+    clients:[],
     sort: 'name',
     order: 'asc'
   };
@@ -170,7 +170,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
       });
     });
   }
-  
+
   showPreview(e:Event,id:number){
     e.stopPropagation()
     const dialogRef = this.dialog.open(ModalShowTemplateComponent, {

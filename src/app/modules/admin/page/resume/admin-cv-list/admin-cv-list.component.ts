@@ -18,6 +18,9 @@ import {SkillService} from 'src/app/services/skill.service';
 import {MatSelect} from '@angular/material/select';
 import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
 import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums';
+import {ClientDto} from "../../../../../models/clients/client-dto";
+import {ClientsService} from "../../../../../services/clients.service";
+import {SmallClientsDto} from "../../../../../models/clients/small-clients-dto";
 
 @Component({
   selector: 'cv-admin-resume',
@@ -27,7 +30,7 @@ import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums
 export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[];
 
-  @Input() isArchive:boolean = false;
+  @Input() isArchive: boolean = false;
   @Input() resumes: SmallResumeDto[];
   @Input() resumesCount: number;
   @Output() refreshResumes: EventEmitter<any> = new EventEmitter<any>();
@@ -47,11 +50,17 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   skillFilterControl = new FormControl();
   filteredSkillsMulti: ReplaySubject<SkillDto[]> = new ReplaySubject(1);
 
+
+  clients!: SmallClientsDto[];
+  clientsControl = new FormControl;
+  clientFilterControl = new FormControl;
+  filteredClientsMulti: ReplaySubject<SmallClientsDto[]> = new ReplaySubject(1);
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('positionMultiSelect', { static: true })
-  positionMultiSelect: MatSelect;
-  @ViewChild('skillMultiSelect', { static: true }) skillMultiSelect: MatSelect;
+  @ViewChild('positionMultiSelect', {static: true}) positionMultiSelect: MatSelect;
+  @ViewChild('skillMultiSelect', {static: true}) skillMultiSelect: MatSelect;
+  @ViewChild('clientMultiSelect', {static: true}) clientMultiSelect: MatSelect;
 
   protected _onDestroy = new Subject();
 
@@ -61,7 +70,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private snackService: SnackBarService,
     private accountService: AccountService,
     private positionService: PositionService,
-    private skillService: SkillService
+    private skillService: SkillService,
+    private clientService: ClientsService
   ) {
 
 
@@ -72,22 +82,24 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
 
-    if(this.isArchive){
+    if (this.isArchive) {
       this.displayedColumns = [
+        'action',
         'name',
         'position',
         'skills',
         'status',
-        'action']
-    }
-    else{
+      ]
+    } else {
       this.displayedColumns = [
+        'action',
         'name',
         'position',
         'skills',
+        'clients',
+        'salaryRate',
         'loading',
-        'status',
-        'action']
+        'status']
     }
 
     this.positionService.getAllPositions().subscribe((positions) => {
@@ -122,6 +134,15 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           );
         });
     });
+
+    this.clientService.getAllClients().subscribe(clients => {
+      this.clients = clients.items;
+      this.filteredClientsMulti.next(this.clients.slice())
+
+      this.clientFilterControl.valueChanges.subscribe(() => {
+        this.filterMulti(this.clients, 'firstName', this.clientFilterControl, this.filteredClientsMulti)
+      })
+    })
   }
 
   ngAfterViewInit() {
@@ -130,7 +151,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.sort.sortChange,
       this.searchControl.valueChanges,
       this.skillsControl.valueChanges,
-      this.positionControl.valueChanges
+      this.positionControl.valueChanges,
+      this.clientsControl.valueChanges
     ).subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(
@@ -138,7 +160,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.paginator.page,
       this.searchControl.valueChanges,
       this.skillsControl.valueChanges,
-      this.positionControl.valueChanges
+      this.positionControl.valueChanges,
+      this.clientsControl.valueChanges
     )
       .pipe(
         startWith({}),
@@ -151,6 +174,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
     this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
+    this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
   }
 
   deleteResume(resume: SmallResumeDto): void {
@@ -180,7 +204,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {},
+        error: (error) => {
+        },
       });
   }
 
@@ -219,7 +244,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {},
+        error: (error) => {
+        },
       });
   }
 
@@ -271,6 +297,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       order: this.sort.direction,
       positions: this.positionControl.value,
       skills: this.skillsControl.value,
+      clients: this.clientsControl.value
     };
     return resumeFilters;
   }

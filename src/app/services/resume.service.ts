@@ -46,6 +46,12 @@ export class ResumeService {
             requestUrl = `${requestUrl}&skills=${item}`
           });
         }
+
+        if(filters.clients) {
+          filters.clients.forEach(item => {
+            requestUrl = `${requestUrl}&clients=${item}`
+          });
+        }
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
       }
   }
