@@ -42,6 +42,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     pageSize: 30,
     positions: [],
     skills: [],
+    clients:[],
     sort: 'name',
     order: 'asc'
   };

@@ -1,14 +1,6 @@
-@import './app/shared/styles/normalize.scss';
+//@import './app/shared/styles/normalize.scss';
+@import "~normalize.css";
 @import url('https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900');
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 
 ul{
   list-style-type: none;
@@ -21,17 +13,18 @@ li{
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  //overflow-y: hidden;
-  //overflow-x: hidden;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 html,
 body {
-  //max-height: 100vh;
+  max-height: 100vh;
   font-size: 10px
 }
 
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .success-snackbar {
   background: green;
   color: white;
@@ -104,13 +97,18 @@ a:link {
 // style scrollbar
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 6px;
   /* ширина всей полосы прокрутки */
 }
 
 ::-webkit-scrollbar-track {
   background: none;
   /* цвет зоны отслеживания */
+}
+
+
+::-webkit-scrollbar-thumb:horizontal{
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {

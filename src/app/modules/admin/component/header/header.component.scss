@@ -116,6 +116,15 @@ img {
   height: 5rem;
 }
 
+.user-bar{
+  display: flex;
+  align-items: center;
+}
+
+.logout{
+  max-height: 60px;
+}
+
 svg {
   cursor: pointer;
 }

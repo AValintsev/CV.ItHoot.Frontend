@@ -11,12 +11,15 @@ import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
 import {SideBarComponent} from "./component/side-bar/side-bar.component";
 import {HeaderModule} from './component/header/header.module';
 import {FooterModule} from './component/footer/footer.module';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
-	imports:[
-		AdminRouterModule,
+  imports: [
+    AdminRouterModule,
     CvModule,
-		RouterModule,
+    RouterModule,
     CommonModule,
     MatIconModule,
     MatDividerModule,
@@ -24,7 +27,10 @@ import {FooterModule} from './component/footer/footer.module';
     MatTableModule,
     FooterModule,
     HeaderModule,
-	],
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+  ],
 	declarations: [AdminLayoutComponent,SideBarComponent,],
 	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
 })
