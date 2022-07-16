@@ -1,4 +1,4 @@
-import {debounceTime, map, startWith, takeUntil} from 'rxjs/operators';
+import { debounceTime, map, startWith, takeUntil, tap } from 'rxjs/operators';
 import {Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {UserDto} from '../../../../../models/user-dto';
@@ -16,6 +16,8 @@ import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-bu
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter";
+import { ResumeDto } from 'src/app/models/resume/resume-dto';
+import { ModalShowTemplateComponent } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
 
 @Component({
   selector: 'proposal-create-dialog',
@@ -23,6 +25,8 @@ import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter"
   styleUrls: ['./proposal-create-dialog.component.scss'],
 })
 export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
+
+  templateChanged: Subject<number> = new Subject<number>();
   private destroy$ = new Subject<boolean>();
   proposal: ProposalDto = {} as ProposalDto;
   selectedResumes: SmallResumeDto[] = [];
@@ -72,9 +76,13 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
         this._filterResume(value);
       })).subscribe();
 
-    this.resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
+    this.resumeService.getAllTemplates().pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(templates => this.resumeTemplates = templates);
 
-    this.proposalBuildService.getAllProposalBuilds().subscribe(proposalBuilds => this.proposalBuilds = proposalBuilds);
+    this.proposalBuildService.getAllProposalBuilds().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(proposalBuilds => this.proposalBuilds = proposalBuilds);
   }
 
   add(event: MatChipInputEvent): void {
@@ -111,7 +119,9 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   private _filterResume(value: string) {
     this.resumeFilter.term = value;
 
-    this.resumeService.getAllResume(this.resumeFilter).subscribe(resumes => {
+    this.resumeService.getAllResume(this.resumeFilter).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(resumes => {
       this.resumes = resumes.items.filter(resume =>
         !this.selectedResumes.find((selectedResume) => selectedResume?.id === resume?.id)
       )
@@ -141,10 +151,6 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
-  }
 
   openSalaryDialog(resumeDto: SmallResumeDto) {
     const resumeCopy = Object.assign({}, resumeDto);
@@ -164,6 +170,23 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
         this.selectedResumes.push(resume);
       });
     });
+  }
+  
+  showPreview(e:Event,id:number){
+    e.stopPropagation()
+    const dialogRef = this.dialog.open(ModalShowTemplateComponent, {
+      height: '800px',
+      width: '600px',
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
+      data: id
+    });
 
+    dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {})
+  }
+
+   ngOnDestroy() {
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
   }
 }

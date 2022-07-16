@@ -62,7 +62,7 @@ export class ComplexityPageComponent implements OnInit, OnDestroy {
   }
 
   deleteComplexity(complexity: ProposalBuildComplexityDto) {
-    this.deleteModalService.matModal('Do you want to delete your resume?').subscribe({
+    this.deleteModalService.matModal('Do you want to delete your complexities?').subscribe({
       next: (response) => {
         if (response) {
         this.complexityService.deleteComplexity(complexity).pipe(

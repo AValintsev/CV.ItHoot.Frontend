@@ -32,10 +32,26 @@
     }
   }
 }
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    button{
-      width: 10rem;
-    }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: 10rem;
   }
+}
+
+  mat-option { 
+    
+}
+.mat-option-list{
+display: flex;
+align-items: center;
+li:first-child{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 3rem;
+  margin-right: 2rem;
+}
+}
+
