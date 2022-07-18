@@ -26,7 +26,6 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
         ArchiveRoutingModule,
         MatIconModule,
         MatTableModule,
-        ProposalModule,
         MatButtonModule,
         MatProgressSpinnerModule,
         AdminCvListModule,

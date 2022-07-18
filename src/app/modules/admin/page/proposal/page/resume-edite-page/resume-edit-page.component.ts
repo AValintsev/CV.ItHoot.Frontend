@@ -21,6 +21,7 @@ export class ResumeEditPageComponent implements OnInit {
   resumeEditForm: FormGroup = {} as FormGroup;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
+  proposalId:number;
   constructor(
     private proposalService: ProposalService,
     private route: ActivatedRoute,
@@ -33,11 +34,11 @@ export class ResumeEditPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const proposalId = params['proposalId'];
+      this.proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
 
       this.proposalService
-        .getProposalResume(proposalId, resumeId)
+        .getProposalResume(this.proposalId, resumeId)
         .subscribe((resume) => {
           console.log(resume.resume);
           this.resumeEditDto = resume.resume;
@@ -202,7 +203,7 @@ export class ResumeEditPageComponent implements OnInit {
           ]);
         }
         if (role === Users[0] || role === Users[1])
-          this.router.navigate(['/admin/resume']);
+          this.router.navigate([`/admin/proposals/${this.proposalId}`]);
         else {
           this.router.navigate(['/home/cv']);
         }

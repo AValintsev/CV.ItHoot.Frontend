@@ -21,7 +21,7 @@ import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 const modules = {
   toolbar: [
     ['bold', 'italic', 'underline', 'strike','code-block',{ 'header': 1 }, { 'header': 2 },{ 'list': 'ordered'}, { 'list': 'bullet' },{ 'align': [] }],        // toggled buttons
-    [{ 'size': ['small', false, 'large', 'huge'] },{ 'header': [1, 2, 3, 4, 5, 6, false] },{ 'font': [] }],
+    [{ 'size': ['small', false, 'large', 'huge'] },{ 'header': [1, 2, 3, 4, 5, 6, false] }],
   ]
 };
 
@@ -222,7 +222,7 @@ export class FormBarComponent implements OnInit {
       .forEach((education) => {
         (<UntypedFormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(0),
+            id: new UntypedFormControl(education?.id ?? 0),
             institutionName: new UntypedFormControl(education.institutionName),
             specialization: new UntypedFormControl(education.specialization),
             description: new UntypedFormControl(education.description),
@@ -244,20 +244,16 @@ export class FormBarComponent implements OnInit {
       data = education;
       dialogType = DialogType.Edit;
     }
-
     const dialogRef = this.dialog.open(EducationDialog, {
       width: '700px',
       autoFocus: false,
       data: {type: dialogType, data: data},
     });
 
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((education: EducationDto) => {
+    dialogRef.afterClosed().subscribe((education: EducationDto) => {
+
       if (education == null) return;
-      let educationDto = this.resume.educations.find(
-        (e) => e.id == education.id
-      );
+      let educationDto = this.resume.educations.find((e) => e.id == education.id);
       if (educationDto != null) {
         this.removeEducation(educationDto);
       } else {
@@ -286,7 +282,7 @@ export class FormBarComponent implements OnInit {
       .forEach((experience) => {
         (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(0),
+            id: new UntypedFormControl(experience?.id ?? 0),
             position: new UntypedFormControl(experience.position),
             description: new UntypedFormControl(experience.description),
             company: new UntypedFormControl(experience.company),

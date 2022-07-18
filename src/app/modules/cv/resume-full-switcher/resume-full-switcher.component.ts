@@ -49,12 +49,5 @@ export class ResumeFullSwitcherComponent implements OnInit {
 
       }
     });
-    // const zoom = panzoom(document.getElementById('doc')!, {
-    //   minZoom: 0.3,
-    //   maxZoom: 3.5,
-    //   bounds: true,
-    //   disableKeyboardInteraction: true,
-    //   boundsPadding: 0.2
-    // });
   }
 }
