@@ -38,7 +38,7 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
     this.getFieldDate()
-    this.setHeaderBtn(['back', 'menu-list', 'home'])
+    this.setHeaderBtn(['back', 'home'])
   }
 
   setHeaderBtn(params:string[]){
@@ -190,7 +190,7 @@ export class CvCreatePageComponent implements OnInit {
         if (this.accountService.getStoreRole() === Users[2]) {
           this.router.navigate(['/home/cv/user-list'])
         } else {
-          this.router.navigate(['/home/cv'])
+          this.router.navigate(['/home/cv/user-list'])
         }
 
       },

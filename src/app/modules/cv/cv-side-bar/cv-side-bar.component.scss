@@ -1,4 +1,17 @@
+.mat-menu-item-inner {
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
 .menu {
+  .menu-list {
+    span {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+  }
+
   @media (min-width: 600px) {
     display: block;
     position: relative;
@@ -163,7 +176,7 @@ img {
 .user-name {
   font-size: 1.6rem;
   color: #232D42;
-    overflow-x: hidden;
+  overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -175,7 +188,7 @@ img {
 }
 
 .logout {
-  background-color: #f44336;
+  background-color: rgba(0, 0, 0, 0.54);
 
 }
 
@@ -259,7 +272,8 @@ img {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(244, 67, 54, .7);
+      background-color: rgba(0, 0, 0, 0.87);
+      ;
     }
   }
 }
@@ -267,7 +281,7 @@ img {
 .first-divider {
   display: block;
   margin-top: 1rem !important;
-  margin-bottom: 2rem !important;
+  // margin-bottom: 2rem !important;
 }
 
 .last-divider {
@@ -278,4 +292,8 @@ img {
 
 .menu-list {
   padding-bottom: 2rem;
+}
+
+.bold{
+  font-weight: 900;
 }

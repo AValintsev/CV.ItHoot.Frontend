@@ -52,6 +52,17 @@
                   Edit CV
                 </span>
               </button>
+                <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
+                  <mat-icon>file_copy</mat-icon>
+                  <span>Copy and edit</span>
+                </button>
+                <button mat-menu-item (click)="deleteResume(id)">
+                  <mat-icon>delete_forever</mat-icon>
+                  <span>Delete CV</span>
+                </button>
+                    <div class="mat-devider-wrapper-custom">
+                      <mat-divider></mat-divider>
+                    </div>
               <button mat-menu-item (click)="savePdf(id, firstName, lastName)">
                 <mat-icon>picture_as_pdf</mat-icon>
                 <span>Save PDF</span>
@@ -59,14 +70,6 @@
               <button mat-menu-item (click)="saveDocX()" class="docx">
                 <mat-icon>description</mat-icon>
                 <span>Save DocX</span>
-              </button>
-              <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
-                <mat-icon>file_copy</mat-icon>
-                <span>Duplicate</span>
-              </button>
-              <button mat-menu-item (click)="deleteResume(id)">
-                <mat-icon>delete_forever</mat-icon>
-                <span>Delete</span>
               </button>
                 <div class="mat-devider-wrapper-custom">
                   <mat-divider></mat-divider>
@@ -133,7 +136,7 @@
           </ul>
         </div>
       </div>
-      <button class="logout large" mat-flat-button color="warn" (click)="logout()">
+      <button class="logout large" mat-flat-button  (click)="logout()">
         Logout
       </button>
     </div>
