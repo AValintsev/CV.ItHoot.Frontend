@@ -27,7 +27,7 @@
       >
         <div class="mat-menu-item-inner">
           <mat-icon>post_add</mat-icon>
-          <span>Create a CV </span>
+          <span class="bold">Create a CV </span>
         </div>
       </div>
       <div
@@ -36,12 +36,12 @@
         routerLink="/home/cv/user-list"
       >
         <div class="mat-menu-item-inner">
-          <mat-icon>home</mat-icon>
-          <span>Show all CVs</span>
+          <mat-icon>list_alt</mat-icon>
+          <span class="bold">Show all CVs</span>
         </div>
       </div>
       <mat-divider
-        *ngIf="btnSwitcher('edit') | async"
+        *ngIf="(btnSwitcher('menu-list') | async) "
         class="second-divider"
       ></mat-divider>
       <div
@@ -73,7 +73,7 @@
       >
       <div class="mat-menu-item-inner">
          <mat-icon>delete_forever</mat-icon>
-        <span>Delete</span>
+        <span>Delete CV</span>
       </div>
       </div>
       <mat-divider
