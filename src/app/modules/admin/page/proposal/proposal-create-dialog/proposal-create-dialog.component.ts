@@ -175,7 +175,6 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
     e.stopPropagation()
     const dialogRef = this.dialog.open(ModalShowTemplateComponent, {
       height: '800px',
-      width: '600px',
       autoFocus: false,
       panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
       data: id
