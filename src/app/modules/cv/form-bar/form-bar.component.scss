@@ -4,9 +4,9 @@
   grid-template-columns: auto auto;
 
   @media (max-width: 1430px) {
-    &>*{
-      grid-column: 2 span;
-    }
+    // &>*{
+    //   grid-column: 2 span;
+    // }
   }
 
   &> :nth-child(2){

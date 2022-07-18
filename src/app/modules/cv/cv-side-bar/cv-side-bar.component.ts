@@ -1,6 +1,12 @@
 import { Router } from '@angular/router';
 import { map, takeUntil } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 import { Observable, Subject } from 'rxjs';
@@ -12,31 +18,33 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 @Component({
   selector: 'cv-cv-side-bar',
   templateUrl: './cv-side-bar.component.html',
-  styleUrls: ['./cv-side-bar.component.scss']
+  styleUrls: ['./cv-side-bar.component.scss'],
 })
-export class CvSideBarComponent implements OnInit,OnDestroy {
+export class CvSideBarComponent implements OnInit, OnDestroy {
+  @Output() refreshTemplate = new EventEmitter<null>();
   private destroy$ = new Subject<boolean>();
-    id!: number;
+  id!: number;
   firstName!: string;
   lastName!: string;
+
   constructor(
-    public accountService:AccountService,
-    public userHeaderBtnService:UserHeaderBtnService,
-    public deleteModalService:DeleteModalService,
-    private resumeService:ResumeService,
-    private router:Router,
-    private snackbarService:SnackBarService,
-    
-  ) { }
+    public accountService: AccountService,
+    public userHeaderBtnService: UserHeaderBtnService,
+    public deleteModalService: DeleteModalService,
+    private resumeService: ResumeService,
+    private router: Router,
+    private snackbarService: SnackBarService
+  ) {}
 
   ngOnInit(): void {
-    this.setUserData()
+    this.setUserData();
+  }
+  refresh(): void {
+    this.refreshTemplate.emit();
   }
   setUserData() {
     this.userHeaderBtnService.userDataSub$
-      .pipe(
-        takeUntil(this.destroy$),
-      )
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
           if (response) {

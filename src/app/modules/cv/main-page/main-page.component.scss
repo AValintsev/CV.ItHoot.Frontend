@@ -22,7 +22,7 @@ main {
   }
 
   @media (max-width: 600px) {
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 5rem);
     overflow-y: auto;
   }
 
@@ -68,7 +68,7 @@ cv-cv-cide-bar {
   
   transform: translateX(0%);
   // flex: 0 0 30rem;
-  width: 30rem;
+  width: 25rem;
   overflow-x: visible;
   visibility: visible;
 transition: all .2s ease;

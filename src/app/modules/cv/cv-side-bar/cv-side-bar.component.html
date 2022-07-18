@@ -101,6 +101,17 @@
         <span>Save DocX</span>
       </div>
       </div>
+      <div
+        *ngIf="btnSwitcher('menu-list') | async"
+        mat-menu-item
+        (click)="refresh()"
+        class="docx"
+      >
+      <div class="mat-menu-item-inner">
+        <mat-icon>refresh</mat-icon>
+      <span>Change postion</span>
+    </div>
+      </div>
 
       <mat-divider class="last-divider"></mat-divider>
       <div class="menu-btn-wrapper">

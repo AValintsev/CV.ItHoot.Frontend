@@ -64,8 +64,8 @@
       <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
   
           <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
-            <ul (click)="showPreview($event,template.templateId)" class="mat-option-list">
-                   <li><img   width="20px" height="20px" src="assets/eye.png" alt="eye logo"></li>
+            <ul  class="mat-option-list">
+                   <li (click)="showPreview($event,template.templateId)"><img   width="20px" height="20px" src="assets/eye.png" alt="eye logo"></li>
             <li>{{template.templateName}}</li>
             </ul>
             <!-- <mat-icon (click)="showPreview($event,template.templateId)">visibility</mat-icon> -->

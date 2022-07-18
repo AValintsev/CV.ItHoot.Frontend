@@ -9,6 +9,7 @@ import {LoadingService} from 'src/app/services/loading.service';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit,AfterViewInit {
+  refreshTemplate = true
   toggle = true
   public loading$!: Observable<boolean>
   constructor(
