@@ -1,4 +1,4 @@
-<div class="container" *ngIf="resumeEditDto">
+<div class="container" *ngIf="resumeEditDto && resumeEditForm">
     <resume-template-builder [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
   <div class="edit-page">
     <form class="left-bar">

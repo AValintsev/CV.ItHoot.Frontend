@@ -62,10 +62,8 @@
     </mat-form-field>
 
     <div mat-dialog-actions class="actions">
-      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid"
-        *ngIf="typeDialog===DialogType.Create">Create</button>
-      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid"
-        *ngIf="typeDialog===DialogType.Edit">Edit</button>
+      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Create">Create</button>
+      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Edit">Edit</button>
     </div>
   </div>
 </div>

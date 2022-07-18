@@ -22,46 +22,48 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { QuillModule } from 'ngx-quill';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {DirectivesModule} from "../../../shared/directives/directives.module";
 
 
 
 
 @NgModule({
   declarations: [FormBarComponent],
-  imports: [
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatDialogModule,
-    FormsModule,
-    CommonModule,
-    MatButtonModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatCardModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatTableModule,
-    MatCheckboxModule,
-    NgxLoadingButtonsModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    CommonModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    QuillModule.forRoot()
-  ],
+    imports: [
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatDialogModule,
+        FormsModule,
+        CommonModule,
+        MatButtonModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatCardModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatTableModule,
+        MatCheckboxModule,
+        NgxLoadingButtonsModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatDialogModule,
+        CommonModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        QuillModule.forRoot(),
+        DirectivesModule
+    ],
   exports:[FormBarComponent]
 })
 export class FormBarModule { }

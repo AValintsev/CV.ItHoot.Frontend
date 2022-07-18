@@ -1,5 +1,7 @@
-import { ModalShowTemplateComponent } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
-import { PdfFooterModule } from './../../../shared/pdf-footer/pdf-footer.module';
+import {
+  ModalShowTemplateComponent
+} from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
+import {PdfFooterModule} from './../../../shared/pdf-footer/pdf-footer.module';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
@@ -40,60 +42,60 @@ import {ProposalSalaryDialogComponent} from './proposal-salary-dialog/proposal-s
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DirectivesModule} from "../../../shared/directives/directives.module";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
-import { ResumePageComponent } from './page/resume-page/resume-page.component';
-import { ResumeEditPageComponent } from './page/resume-edite-page/resume-edit-page.component';
-import { FormBarModule } from '../form-bar/form-bar.module';
+import {ResumePageComponent} from './page/resume-page/resume-page.component';
+import {ResumeEditPageComponent} from './page/resume-edite-page/resume-edit-page.component';
+import {FormBarModule} from '../form-bar/form-bar.module';
+import {PipesModule} from "../../../shared/directives/pipes.module";
 
 @NgModule({
-    imports: [
-        ProposalRoutingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        FormsModule,
-        CommonModule,
-        MatButtonModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatCardModule,
-        MatChipsModule,
-        MatDividerModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatTableModule,
-        MatCheckboxModule,
-        NgxLoadingButtonsModule,
-        MatTooltipModule,
-        MatMenuModule,
-        MatTableModule,
-        MatIconModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatDialogModule,
-        CommonModule,
-        MatInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatPaginatorModule,
-        MatSortModule,
-        NgxMatSelectSearchModule,
-        MatProgressSpinnerModule,
-        NgxMatSelectSearchModule,
-        DirectivesModule,
-        FormBarModule,
-        ResumeTemplateBuilderModule,
-    ],
+  imports: [
+    ProposalRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    FormsModule,
+    CommonModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatTableModule,
+    MatCheckboxModule,
+    NgxLoadingButtonsModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    CommonModule,
+    MatInputModule,
+    PipesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxMatSelectSearchModule,
+    MatProgressSpinnerModule,
+    NgxMatSelectSearchModule,
+    DirectivesModule,
+    FormBarModule,
+    ResumeTemplateBuilderModule,
+  ],
   exports: [
     ProposalListPageComponent,
-    DateUtcPipe,
     ProposalListComponent,
     ProposalComponent,
   ],
   declarations: [
     ModalShowTemplateComponent,
-    DateUtcPipe,
     ResumePageComponent,
     ResumeEditPageComponent,
     ProposalListComponent,
@@ -107,8 +109,7 @@ import { FormBarModule } from '../form-bar/form-bar.module';
     ProposalResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
   ],
-  providers:[DeleteModalService]
+  providers: [DeleteModalService]
 })
 
-export class ProposalModule {
-}
+export class ProposalModule {}

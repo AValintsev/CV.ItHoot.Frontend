@@ -19,15 +19,6 @@
       </mat-error>
     </mat-form-field>
 
-
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>Description</mat-label>-->
-<!--      <input matInput placeholder="Description" formControlName="description">-->
-<!--      <mat-error *ngIf="experienceForm.controls['description'].errors?.['required']">-->
-<!--        Description is required-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-
     <div class="text-editor">
       <quill-editor [modules]="modules" formControlName="description" [styles]="{height: '200px'}" placeholder="Description">
       </quill-editor>

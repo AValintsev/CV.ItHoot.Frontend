@@ -7,6 +7,6 @@ export class DateUtcPipe implements PipeTransform {
   transform(date: Date): any {
     const dateUTC = new Date(`${date}`)
 
-    return dateUTC.toLocaleString().replace(/.\d+Z$/g, "Z");
+    return dateUTC.toLocaleDateString().replace(/.\d+Z$/g, "Z");
   }
 }

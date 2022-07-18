@@ -49,6 +49,11 @@ const routs: Routes = [
         path:'clients',
         loadChildren: () => import('./page/clients/clients.module').then(mod=>mod.ClientsModule)
       },
+      {
+        path:'users',
+        loadChildren: () => import('./page/users/users.module').then(mod=>mod.UserModule)
+      },
+
          {
         path: '',
         redirectTo: 'resume',

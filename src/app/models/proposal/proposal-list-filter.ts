@@ -5,3 +5,7 @@ export interface ProposalListFilter extends PaginationFilter  {
   clients: number[];
   statuses: number[];
 }
+
+export interface UserListFilter extends PaginationFilter{
+  term: string;
+}

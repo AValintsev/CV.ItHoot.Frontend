@@ -36,6 +36,7 @@ export class EditPageComponent implements OnInit {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const id = params['id'];
+      this.validateForm();
 
       if (proposalId && resumeId) {
 
@@ -52,15 +53,14 @@ export class EditPageComponent implements OnInit {
           this.resumeEditDto = resume;
           this.patchForm(this.resumeEditDto!);
         });
-      }
-      else if(id){
+      } else if (id) {
         this.resumeService.getResumeById(id).subscribe((resume) => {
           this.resumeEditDto = resume;
           this.patchForm(this.resumeEditDto!);
+
         });
       }
 
-      this.validateForm();
     });
   }
 
@@ -132,6 +132,7 @@ export class EditPageComponent implements OnInit {
         })
       );
     });
+
 
     resume.experiences?.forEach((experience) => {
       (<FormArray>this.resumeEditForm.controls['experiences']).push(

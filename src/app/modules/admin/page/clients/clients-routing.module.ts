@@ -7,19 +7,6 @@ const routes: Routes = [
 		path: '',
 		component: ClientsListComponent,
 	},
-  // {
-  //   path: 'edit/:id',
-	//   component: EditPageComponent,
-  // },
-  // {
-  //   path: 'create',
-	//   component: CreatePageComponent
-  // },
-  // {
-  //   path:':id',
-  //   component:CvFullComponent
-  // },
-
 ];
 
 @NgModule({
