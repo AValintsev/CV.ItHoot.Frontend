@@ -38,7 +38,7 @@ export class CvCreatePageComponent implements OnInit {
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
     this.getFieldDate()
-    this.setHeaderBtn(['back', 'home'])
+    this.setHeaderBtn(['back', 'home', 'change-position'])
   }
 
   setHeaderBtn(params:string[]){

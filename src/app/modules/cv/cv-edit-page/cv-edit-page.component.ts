@@ -36,7 +36,7 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
     this.validateForm();
     this.setDataDependentToId()
     this.changeFormDate();
-    this.setHeaderBtn(['back', 'create', 'menu-list','create','home'])
+    this.setHeaderBtn(['back', 'create', 'menu-list', 'create', 'home', 'change-position'])
   }
 
   setDataDependentToId() {

@@ -1,5 +1,7 @@
 <div class="container" *ngIf="resumeCreateDto">
-  <resume-template-builder [resume]="resumeCreateDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged" [isCreate]="true"></resume-template-builder>
+  <div class="template-wrapper">
+    <resume-template-builder [resume]="resumeCreateDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged" [isCreate]="true"></resume-template-builder>
+  </div>
   <div class="create-page">
     <div class="left-bar">
       <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value" (templateChange)="templateChange($event)"></form-bar>

@@ -1,13 +1,15 @@
 <div class="container" *ngIf="resumeEditDto">
-  <resume-template-builder  [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
+  <div class="template-wrapper">
+    <resume-template-builder  [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
+  </div>
   <div class="edit-page">
-    <form class="left-bar">
+    <div class="left-bar">
       <form-bar [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false" (templateChange)="templateChange($event)">
       </form-bar>
       <div class="action">
         <button mat-raised-button color="primary" [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Save</button>
         <button mat-raised-button color="accent" routerLink="/home/cv/user-list">Cancel</button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
