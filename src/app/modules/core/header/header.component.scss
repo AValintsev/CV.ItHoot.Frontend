@@ -30,6 +30,10 @@
   }
 }
 
+ul {
+  padding: 0;
+}
+
 .mat-devider-wrapper-custom {
   padding: 0 1.6rem;
   margin-top: 1rem !important;
@@ -67,7 +71,7 @@ button.mat-menu-item {
   }
 
   @media(max-width:500px) {
-    padding: .5rem .5rem;
+    // padding: .5rem .5rem;
   }
 }
 
@@ -144,8 +148,9 @@ button.mat-menu-item {
   // height: 4.5rem;
   border-radius: 50%;
   overflow: hidden;
-  
+
   @media(max-width:600px) {
+    flex: 0 0 3rem;
     width: 3rem;
     height: 3rem;
   }
@@ -219,6 +224,7 @@ img {
 .user-icons {
   display: flex;
   align-items: center;
+
   li {
     padding: 0 1rem 0 1rem;
 
@@ -234,6 +240,7 @@ img {
       position: relative;
     }
   }
+
   @media(max-width:500px) {
     padding: 0 .6rem 0 .6rem;
     padding: 0;

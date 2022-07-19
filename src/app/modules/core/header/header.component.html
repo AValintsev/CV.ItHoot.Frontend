@@ -19,8 +19,8 @@
           color="primary" mat-icon-button>
           <mat-icon>home</mat-icon>
         </button>
-        <ul class="user-icons">
-          <li *ngIf="btnSwitcher('menu-list') | async" class="small">
+        <ul *ngIf="btnSwitcher('menu-list') | async" class="user-icons">
+          <li  class="small">
             <button mat-icon-button mat-fab color="primary" [matMenuTriggerFor]="menu" class="button-icon small">
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
