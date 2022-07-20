@@ -13,7 +13,8 @@
               email</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="password" matInput placeholder="Password" formControlName="password">
+            <input matInput [type]="type" matInput placeholder="Password" formControlName="password">
+            <mat-icon class="eye" (click)="changeVisiblePassword($event)">visibility</mat-icon>
             <mat-error *ngIf="loginForm?.get('password')?.errors?.required&&loginForm?.get('password')?.touched">Enter
               password</mat-error>
             <mat-error *ngIf="loginForm?.get('password')?.errors?.minlength&&loginForm?.get('password')?.touched">Enter

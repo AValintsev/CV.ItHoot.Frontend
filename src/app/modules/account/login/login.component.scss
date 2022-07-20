@@ -5,11 +5,10 @@
    font-family: 'Inter', sans-serif;
    color: #eee;
    font-size: 1.6rem;
-   background: #9b59b6;
-   background: radial-gradient(circle at center, #3498db, #9b59b6);
    display: flex;
    justify-content: center;
    overflow-y: auto;
+   background-color: #fff;
 }
 
 .main-block {
@@ -115,4 +114,20 @@ button {
          opacity: .5;
       }
    }
+}
+.eye{
+   position: absolute;
+   right: 0;
+   z-index: 1;
+   top: 0;
+   color: rgb(160, 146, 146);
+   font-size: 2.6rem;
+   // display: block;
+   // background-color: #fff;
+}
+:host::ng-deep .mat-form-field-infix{
+   padding-right: 3rem;
+}
+input{
+   background-color: #fff !important;
 }
