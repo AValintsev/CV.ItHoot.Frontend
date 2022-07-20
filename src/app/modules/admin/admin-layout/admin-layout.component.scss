@@ -1,44 +1,82 @@
 .page {
+  display: flex;
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
-  background: #E5E5E5;
-
-
-  mat-toolbar {
-    background: white;
-    padding: 0;
-    height: 90px;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.12);
-
-
-    .header {
-      width: 100%;
-      height: 100%;
-    }
+}
+cv-side-bar {
+  flex: 0 0 0rem;
+  transform: translateX(-100%);
+  width: 0;
+  opacity: 0;
+  overflow-x: hidden;
+  visibility: hidden;
+  font-size: 0;
+  transition: transform .2s ease, font-size .1s ease, width .2s ease, flex .2s ease,visibility .1s ease, opacity .1s ease;
+  &.open {
+    opacity: 1;
+    transform: translateX(0%);
+     flex: 0 0 30rem;
+     width: 30rem;
+     overflow-x: hidden;
+     visibility: visible;
+     transition: transform .2s ease, font-size .2s ease, width .2s ease, flex .2s ease,visibility .4s ease, opacity .4s ease;
+    //  transition: font-size 0.22s linear;
+     font-size: 14px;
   }
+}
+.btn-toggler {
+  font-size: 4rem;
+  top: 0;
+}
 
-  mat-sidenav-container {
-    height: calc(100vh - 90px);
-    background: white;
+.btn-toggler {
+  font-size: 4rem;
+  display: flex;
+  align-items: flex-start;
+  top: 0;
+  right: -2rem;
+}
 
-    mat-sidenav {
-      width: 300px;
-      transition: none;
-    }
-
-    .content {
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-    }
-  }
-
+.open-side-bar {
+  // flex: 0 0 30rem;
+  width: 25rem;
+  overflow-x: visible;
+  visibility: visible;
+  transition: all 0.2s ease;
 }
 
 
 
+.menu-burger__side-bar {
+  background-color: rgb(138, 146, 166);
+  // transform: translateX(-100%);
+  position: relative;
+  width: 3rem;
+  height: 3.5rem;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  // margin-left: 10px;
+  mat-icon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    transition: all 0.4s ease;
+    color: #fff;
+  }
 
+  &.open-menu {
+    transition: all 0.4s ease;
 
-
-
+    mat-icon {
+      transform: rotate(0deg);
+      transition: all 0.4s ease;
+    }
+  }
+}
