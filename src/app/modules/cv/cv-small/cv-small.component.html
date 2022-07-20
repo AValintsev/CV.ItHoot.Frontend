@@ -48,14 +48,12 @@
     <div class="button-group">
       <button
       mat-stroked-button
-      color="primary"
       [routerLink]="['/home/cv/', resume.id]"
     >
       Open
     </button>
     <button
-      mat-stroked-button
-      color="accent"
+    mat-stroked-button
       routerLink="/home/cv/edit/{{ resume.id }}"
     >
       Edit

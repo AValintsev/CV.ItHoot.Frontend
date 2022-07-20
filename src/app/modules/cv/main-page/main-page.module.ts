@@ -30,7 +30,7 @@ import { DirectivesModule } from '../../shared/directives/directives.module';
     MatDividerModule,
     DirectivesModule
   ],
-  exports: [],
+  exports: [CvSideBarComponent],
   providers: [UserHeaderBtnService, DeleteModalService],
 })
 export class MainPageModule {}

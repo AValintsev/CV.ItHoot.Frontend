@@ -10,8 +10,8 @@
   </div>
 
   <div mat-dialog-actions class="actions">
-    <button  mat-raised-button color="primary" (click)="submit()" cdkFocusInitial [disabled]="canUpdate()">Save</button>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
+    <button  mat-stroked-button (click)="submit()" cdkFocusInitial [disabled]="canUpdate()">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
   </div>
 
     <resume-template-builder></resume-template-builder>

@@ -30,7 +30,7 @@
 
 
     <div class="text-editor">
-      <quill-editor [modules]="modules" formControlName="description" [styles]="{height: '200px',width:'597px'}"
+      <quill-editor [modules]="modules" formControlName="description" [styles]="{height: '200px',width:'596px'}"
         placeholder="Description">
       </quill-editor>
     </div>
@@ -63,9 +63,9 @@
       </mat-error>
     </mat-form-field>
     <div mat-dialog-actions class="actions">
-      <button mat-raised-button color="primary" [mat-dialog-close]="experienceForm.value" cdkFocusInitial
+      <button mat-stroked-button [mat-dialog-close]="experienceForm.value" cdkFocusInitial
         [disabled]="!experienceForm.valid">Save</button>
-      <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
+      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
     </div>
   </div>
 </div>

@@ -23,7 +23,7 @@
     flex: 1 1 50%;
     padding-left: .5rem;
     padding-right: .5rem;
-
+  
     &:not(:first-child) {
       margin-left: 1rem;
       margin-right: 0;
@@ -53,9 +53,9 @@ mat-card {
   position: relative;
 
   .dots {
-    // position: absolute;
-    // top: 0;
-    // right: -1rem;
+    position: absolute;
+    top: 1rem;
+    right: 0rem;
   }
 }
 
