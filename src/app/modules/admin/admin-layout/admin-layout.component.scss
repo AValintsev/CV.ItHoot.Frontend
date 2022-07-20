@@ -4,8 +4,9 @@
   height: 100vh;
   overflow: hidden;
 }
-.page-content{
+.page-content {
   flex: 2 1 100%;
+  overflow-y: auto;
 }
 cv-side-bar {
   flex: 0 0 0rem;
@@ -15,65 +16,42 @@ cv-side-bar {
   overflow-x: hidden;
   visibility: hidden;
   font-size: 0;
-  transition: transform .2s ease, font-size .1s ease, width .2s ease, flex .2s ease,visibility .1s ease, opacity .1s ease;
+  transition: transform 0.2s ease, font-size 0.1s ease, width 0.2s ease,
+    flex 0.2s ease, visibility 0.1s ease, opacity 0.1s ease;
   &.open {
     opacity: 1;
     transform: translateX(0%);
-     flex: 0 0 33rem;
-     width: 33rem;
-     overflow-x: hidden;
-     visibility: visible;
-     transition: transform .2s ease, font-size .3s ease, width .2s ease, flex .2s ease,visibility .4s ease, opacity .4s ease;
+    flex: 0 0 30rem;
+    width: 30rem;
+    overflow-x: hidden;
+    visibility: visible;
+    transition: transform 0.2s ease, font-size 0.3s ease, width 0.2s ease,
+      flex 0.2s ease, visibility 0.4s ease, opacity 0.4s ease;
     //  transition: font-size 0.22s linear;
-     font-size: 14px;
+    font-size: 14px;
   }
 }
-.btn-toggler {
-  font-size: 4rem;
-  top: 0;
-}
-
-.btn-toggler {
-  font-size: 4rem;
-  display: flex;
-  align-items: flex-start;
-  top: 0;
-  right: -2rem;
-}
-
-.open-side-bar {
-  // flex: 0 0 30rem;
-  width: 25rem;
-  overflow-x: visible;
-  visibility: visible;
-  transition: all 0.2s ease;
-}
-
-
 
 .menu-burger__side-bar {
-  background-color: rgb(138, 146, 166);
-  // transform: translateX(-100%);
-  position: relative;
-  width: 3rem;
-  height: 3.5rem;
-  display: block;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: rgb(191, 197, 212);
   transition: all 0.4s ease;
-  // margin-left: 10px;
+
   mat-icon {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-size: 3rem;
-    vertical-align: middle;
     transform: rotate(180deg);
     transition: all 0.4s ease;
     color: #fff;
-  }
+    }
+    &--inner {
+      background-color: rgb(138, 146, 166);
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      font-size: 3rem;
+    }
+  
 
   &.open-menu {
     transition: all 0.4s ease;

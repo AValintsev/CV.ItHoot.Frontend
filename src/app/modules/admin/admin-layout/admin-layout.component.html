@@ -1,13 +1,15 @@
 <div class="page">
   <cv-side-bar
-    [class.open]="!toggle"
+    [class.open]="toggle"
   ></cv-side-bar>
   <div
     [class.open-menu]="toggle"
     (click)="sideBarToggler()"
     class="menu-burger__side-bar"
-  >
+  ><div class="menu-burger__side-bar--inner">
     <mat-icon>arrow_back_ios_new</mat-icon>
+  </div>
+    
   </div>
   <div class="page-content">
     <div class="page-content__inner">
