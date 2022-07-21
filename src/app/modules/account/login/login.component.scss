@@ -1,133 +1,163 @@
-:host {
-   display: block;
-   height: 100vh;
-   width: 100%;
+:host::ng-deep {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  color: #eee;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  background-color: #fff;
+  button{
    font-family: 'Inter', sans-serif;
-   color: #eee;
-   font-size: 1.6rem;
+  }
+  .google-btn {
    display: flex;
+   align-items: center;
    justify-content: center;
-   overflow-y: auto;
-   background-color: #fff;
-}
-
-.main-block {
-
-   width: 400px;
-   padding-top: 10rem;
-   // padding-bottom: 20rem;
-   margin-bottom: 10rem;
-
-   @media(max-width:600px) {
-      width: 280px;
+   span.mat-button-wrapper {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     
+     div{
+      color: #000;
+     }
+     div:first-child{
+       margin-right: 1rem;
+       height: 2.5rem;
+     }
    }
+ }
+}
+.google-btn__wrapper{
+   margin-top: 2rem;
+   display: flex;
+   flex: 1 1 100%;
+}
+.main-block {
+  width: 400px;
+  padding-top: 10rem;
+  // padding-bottom: 20rem;
+  margin-bottom: 10rem;
 
+  @media (max-width: 600px) {
+    width: 280px;
+  }
 }
 
 .inner {
-   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+   padding-top: .5rem;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
 .mat-form-field {
-   
-   width: 100%;
+  width: 100%;
 }
 
 form {
-   flex: 1 1 100%;
+  flex: 1 1 100%;
 }
 
 .mat-card-content {
-   width: 100%;
+  width: 100%;
 }
 
 mat-card-title {
-   flex: 1 1 100%;
-   display: flex;
-   justify-content: center;
-   text-align: center;
-   user-select: none;
-   margin-bottom: 1rem;
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 1rem;
 }
 
 mat-card-title,
 mat-card-content {
-   width: 100%;
-   display: flex;
-   flex: 1 1 100%;
+  width: 100%;
+  display: flex;
+  flex: 1 1 100%;
 }
 
 mat-form-field {
-   // margin-bottom: 1rem;
+  // margin-bottom: 1rem;
 }
 
- .button {
-   margin-top: 2rem;
-   display: flex;
-   justify-content: center;
+.btn-login {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 button {
-   flex: 1 1 100%;
-   background-color: #3f51b5;
-   color: #fff;
+  flex: 1 1 100%;
+}
+.submit-btn {
+  background-color: #3f51b5;
+  color: #fff;
 }
 
 .or {
-   display: flex;
-   flex: 1 1 100%;
-   align-items: center;
-   margin: 2rem 0 1rem;
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+  margin: 2rem 0 1rem;
 
-   span {
-      &:first-child {
-         flex: 1 1 100%;
-         height: 0.1rem;
-         background-color: #eee;
-      }
+  span {
+    &:first-child {
+      flex: 1 1 100%;
+      height: 0.1rem;
+      background-color: #eee;
+    }
 
-      &:nth-child(2) {
-         padding: 0rem 1rem;
-      }
+    &:nth-child(2) {
+      padding: 0rem 1rem;
+    }
 
-      &:last-child {
-         flex: 1 1 100%;
-         height: 0.2rem;
-         background-color: #eee;
-      }
-   }
-
+    &:last-child {
+      flex: 1 1 100%;
+      height: 0.2rem;
+      background-color: #eee;
+    }
+  }
 }
 
 .link {
-   display: inline-block;
-   margin-top: 1rem;
-   transition: .3s ease;
-   user-select: none;
+   font-weight: 500;
+   font-family: "Inter", sans-serif;
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  transition: 0.3s ease;
+  user-select: none;
 
-   &-wrapper {
-      text-align: center;
-   }
+  &-wrapper {
+    text-align: center;
+  }
 
-   @media(min-width:992px) {
-      &:hover {
-         opacity: .5;
-      }
-   }
+  @media (min-width: 992px) {
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 }
-.eye{
-   position: absolute;
-   right: 0;
-   z-index: 1;
-   top: 0;
-   color: rgb(160, 146, 146);
-   font-size: 2.6rem;
-   // display: block;
-   // background-color: #fff;
+.eye {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  top: 0;
+  color: rgb(160, 146, 146);
+  font-size: 2.3rem;
+  // display: block;
+  // background-color: #fff;
 }
-:host::ng-deep .mat-form-field-infix{
-   padding-right: 3rem;
+:host::ng-deep .mat-form-field-infix {
+//   padding-right: 3rem;
 }
-input{
-   background-color: #fff !important;
+input {
+  background-color: #fff !important;
+}
+
+.google-navigate {
 }

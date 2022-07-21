@@ -33,7 +33,7 @@ cv-side-bar {
 }
 
 .menu-burger__side-bar {
-  background-color: rgb(191, 197, 212);
+  // background-color: rgb(191, 197, 212);
   transition: all 0.4s ease;
 
   mat-icon {
@@ -46,7 +46,8 @@ cv-side-bar {
       align-items: center;
       justify-content: center;
       width: 3rem;
-      height: 3.5rem;
+      height: 4rem;
+      border-radius: .5rem;
       display: flex;
       align-items: center;
       font-size: 3rem;
