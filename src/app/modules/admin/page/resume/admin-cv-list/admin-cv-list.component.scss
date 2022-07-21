@@ -25,8 +25,8 @@
     }
 
     .title-section {
-      display: flex;
-      justify-content: space-between;
+      // display: flex;
+      // justify-content: space-between;
 
       button {
         max-height: 5.2rem;
@@ -36,18 +36,18 @@
     h1 {
       font-weight: 700;
       line-height: 130%;
-      color: #04040B;
-      margin-bottom: 60px;
+      color: #04040b;
+      // margin-bottom: 60px;
       margin-right: 3rem;
     }
 
     .left-block {
-      display: flex;
+      // display: flex;
 
       .filter-block {
         display: flex;
-
-        &>* {
+        flex: 1 1 100%;
+        & > * {
           margin-right: 2rem;
         }
       }
@@ -60,7 +60,7 @@
       th {
         text-align: center;
         vertical-align: middle;
-        border-bottom: 1px #C4C4C4 solid;
+        border-bottom: 1px #c4c4c4 solid;
         font-weight: 400;
       }
 
@@ -69,7 +69,7 @@
         vertical-align: middle;
         font-size: 1em;
         line-height: 28px;
-        color: #04040B;
+        color: #04040b;
         font-weight: 400;
       }
 
@@ -84,7 +84,7 @@
       .mat-header-cell {
         font-size: 1em;
         line-height: 28px;
-        color: #04040B;
+        color: #04040b;
       }
 
       .mat-column-name {
@@ -123,11 +123,9 @@
         width: 5%;
       }
 
-      .mat-column-clients{
+      .mat-column-clients {
         width: 12%;
       }
-
-
 
       .mat-column-loading {
         text-align: center;
@@ -136,7 +134,6 @@
       .mat-column-status {
         // text-align: left;
       }
-
     }
   }
 
@@ -161,44 +158,77 @@
 
 .btn-wrapper {
   width: 22rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 
   & button {
     width: 100%;
     &.pdf {
-      color: #3A57E8;
+      color: #3a57e8;
     }
 
     &.docx {
-      color: #FF5DCD;
-
+      color: #ff5dcd;
     }
 
     &.open {
-      color: #1AA053;
-
+      color: #1aa053;
     }
 
     &.edit {
-      color: #F16A1B;
-
+      color: #f16a1b;
     }
 
     &.delete {
-      color: #BA3020E5;
+      color: #ba3020e5;
     }
 
     &.recover {
-      color: #3A57E8;
+      color: #3a57e8;
     }
   }
 }
 
-button[disabled] {
-  background: #a8aeb4 !important;
-  color: #fff !important;
-  pointer-events: none;
+.example-full-width {
+  flex: 2 1 100%;
 }
-.btn-wrapper:has(button[disabled]){
-  cursor: not-allowed;
+
+
+:host::ng-deep{
+  .mat-sort-header-content{
+    flex-direction: column;
+  }
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    // background-color: rgba(0, 0, 0, 0.04);
+    background: transparent;
+}
+.mat-form-field-infix {
+  // padding: 0.5em 0;
+  // border-top: 0.84375em solid transparent;
+  // width: 180px;
+  width: 9rem;
+  padding: 0;
+  border-top: 0 solid transparent;
+}
+.mat-form-field-wrapper {
+  // padding-bottom: 1.34375em;
+  padding-bottom: 0.5em;
+}
+ .mat-form-field-wrapper {
+  /* padding-bottom: 0.5em; */
+   padding-bottom: 0;
+}
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  height: 0px;
+  width: 100%;
+}
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+  background-color: rgba(0, 0, 0, 0.42);
+}
+.mat-form-field-flex:hover{
+  // display: none;
+}
 }

@@ -1,15 +1,15 @@
-<div [style.padding]="'0px 12px 0px 12px'" class="side-bar">
+<div [style.padding]="'20px 12px 0px 12px'" class="side-bar">
   <ol class="links">
-    <!-- <li class="title-section"><span>Home</span></li>
-    <li><a>
+    <li class="title-section"><span>Home</span></li> 
+   <!-- <li><a>
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
-      </a></li>
-    <mat-divider></mat-divider> -->
+      </a></li>-->
+    <mat-divider></mat-divider> 
     <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/resume">
         <mat-icon>groups</mat-icon>
-        <span>Resume</span>
+        <span>CV list</span>
       </a>
     </li>
     <li  [routerLinkActive]="['active']">
@@ -28,7 +28,7 @@
         <mat-icon>verified_user</mat-icon>
         <span> Resource planning</span>
       </a></li>
-    <li >
+    <li class="archive">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -37,11 +37,9 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <a  [routerLinkActive]="['active']" routerLink="/admin/archive/proposals">
-          <mat-icon>sports_esports</mat-icon>
           <span>Proposals</span>
         </a>
         <a  [routerLinkActive]="['active']" routerLink="/admin/archive/resume">
-          <mat-icon>groups</mat-icon>
           <span>Resume</span>
         </a>
       </mat-expansion-panel>
@@ -59,42 +57,26 @@
         </mat-expansion-panel-header>
 
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/languages">
-          <mat-icon>language</mat-icon>
           <span>Languages</span>
         </a>
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/skills">
-          <mat-icon>settings_accessibility</mat-icon>
           <span>Skills</span>
         </a>
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/positions">
-          <mat-icon>settings_accessibility</mat-icon>
           <span>Positions</span>
         </a>
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/complexities">
-          <mat-icon>settings_accessibility</mat-icon>
           <span>Complexities</span>
         </a>
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/templates">
-          <mat-icon>settings_accessibility</mat-icon>
           <span>Resume templates</span>
         </a>
-      </mat-expansion-panel>
-    </li>
-
-    <li>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>wallet</mat-icon>
-            <span>Proposal settings</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-          <mat-icon>sports_esports</mat-icon>
           <span>Proposals</span>
         </a>
       </mat-expansion-panel>
     </li>
+
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
       <a routerLink="/admin/builds">
         <mat-icon>wallet</mat-icon>

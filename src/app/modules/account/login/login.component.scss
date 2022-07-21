@@ -143,14 +143,8 @@ button {
   }
 }
 .eye {
-  position: absolute;
-  right: 0;
-  z-index: 1;
-  top: 0;
   color: rgb(160, 146, 146);
   font-size: 2.3rem;
-  // display: block;
-  // background-color: #fff;
 }
 :host::ng-deep .mat-form-field-infix {
 //   padding-right: 3rem;
