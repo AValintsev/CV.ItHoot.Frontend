@@ -2,162 +2,260 @@
   <div class="table-wrapper">
     <div class="title-section">
       <div class="left-block">
-        <h1>{{tableHeader}}</h1>
-        <div class="filter-block">
-          <button *ngIf="isShowAddButton" mat-raised-button routerLink="/admin/resume/create">
+        <h1>{{ tableHeader }}</h1>
+        <div class="search-block">
+          <button
+            *ngIf="isShowAddButton"
+            mat-raised-button
+            routerLink="/admin/resume/create"
+          >
             <mat-icon>add</mat-icon>
           </button>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Search...</mat-label>
-            <input type="tel" matInput placeholder="" [formControl]="searchControl">
+            <input
+              type="tel"
+              matInput
+              placeholder=""
+              [formControl]="searchControl"
+            />
             <mat-icon class="zoom-icon" matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
+        <div class="filter-block">
           <mat-form-field appearance="fill">
             <mat-label>Position filter</mat-label>
-            <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
+            <mat-select
+              [formControl]="positionControl"
+              multiple="true"
+              #positionMultiSelect
+            >
               <mat-option>
-                <ngx-mat-select-search [formControl]="positionFilterControl" placeholderLabel="Search..."
-                                       noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
+                <ngx-mat-select-search
+                  [formControl]="positionFilterControl"
+                  placeholderLabel="Search..."
+                  noEntriesFoundLabel="no matching found"
+                ></ngx-mat-select-search>
               </mat-option>
-              <mat-option *ngFor="let position of filteredPositionsMulti | async" [value]="position.positionId">
-                {{position.positionName}}
+              <mat-option
+                *ngFor="let position of filteredPositionsMulti | async"
+                [value]="position.positionId"
+              >
+                {{ position.positionName }}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Skills filter</mat-label>
-            <mat-select [formControl]="skillsControl" multiple="true" #skillMultiSelect>
+            <mat-select
+              [formControl]="skillsControl"
+              multiple="true"
+              #skillMultiSelect
+            >
               <mat-option>
-                <ngx-mat-select-search [formControl]="skillFilterControl" placeholderLabel="Search..."
-                                       noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
+                <ngx-mat-select-search
+                  [formControl]="skillFilterControl"
+                  placeholderLabel="Search..."
+                  noEntriesFoundLabel="no matching found"
+                ></ngx-mat-select-search>
               </mat-option>
-              <mat-option *ngFor="let skill of filteredSkillsMulti | async" [value]="skill.id">
-                {{skill.name}}
+              <mat-option
+                *ngFor="let skill of filteredSkillsMulti | async"
+                [value]="skill.id"
+              >
+                {{ skill.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-
           <mat-form-field appearance="fill">
             <mat-label>Clients filter</mat-label>
-            <mat-select [formControl]="clientsControl" multiple="true" #clientMultiSelect>
+            <mat-select
+              [formControl]="clientsControl"
+              multiple="true"
+              #clientMultiSelect
+            >
               <mat-option>
-                <ngx-mat-select-search [formControl]="clientFilterControl" placeholderLabel="Search..."
-                                       noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
+                <ngx-mat-select-search
+                  [formControl]="clientFilterControl"
+                  placeholderLabel="Search..."
+                  noEntriesFoundLabel="no matching found"
+                ></ngx-mat-select-search>
               </mat-option>
-              <mat-option *ngFor="let client of filteredClientsMulti | async" [value]="client.id">
-                {{client.fullName}}
+              <mat-option
+                *ngFor="let client of filteredClientsMulti | async"
+                [value]="client.id"
+              >
+                {{ client.fullName }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        
+        </div>
       </div>
     </div>
-    <table mat-table [dataSource]="resumes" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
-        <td mat-cell *matCellDef="let resume">
-          <button mat-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu class="menu-list" #menu="matMenu">
-            <a mat-menu-item routerLink="{{url}}/resume/{{resume.id}}">
-              <mat-icon>visibility</mat-icon>
-              <span>View</span>
-            </a>
-            <a mat-menu-item *ngIf="resume.deletedAt === null" routerLink="{{url}}resume/edit/{{resume.id}}">
-              <mat-icon>edit</mat-icon>
-              <span>Edit</span>
-            </a>
-            <button class="custom-menu-item" mat-menu-item *ngIf="resume.deletedAt === null"
-                    (click)="getResumePdf(resume)">
-              <mat-icon>picture_as_pdf</mat-icon>
-              <span>PDF</span>
+    <div>
+      Sticky Columns:
+      <mat-button-toggle-group
+        multiple
+        [value]="['action']"
+        #stickyColumns="matButtonToggleGroup"
+        class="example-sticky-toggle-group"
+      >
+        <mat-button-toggle
+          *ngFor="let item of displayedColumns"
+          [hidden]="item === 'action'"
+          [value]="item"
+          >{{ item }}</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+    <section class="section-table">
+      <table
+        mat-table
+        [dataSource]="resumes"
+        class="mat-elevation-z8"
+        matSort
+        matSortActive=""
+        matSortDirection=""
+      >
+        <ng-container
+          matColumnDef="action"
+          [sticky]="isSticky(stickyColumns, 'action')"
+        >
+          <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
+          <td mat-cell *matCellDef="let resume">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
             </button>
-            <button mat-menu-item *ngIf="resume.deletedAt === null" (click)="getResumeDocx(resume)">
-              <mat-icon>description</mat-icon>
-              <span>DocX</span>
-            </button>
-            <button mat-menu-item *ngIf="resume.deletedAt === null; else recoverButton" (click)="deleteResume(resume)">
-              <mat-icon>delete</mat-icon>
-              <span>Delete</span>
-            </button>
-            <ng-template #recoverButton>
-              <button mat-menu-item (click)="recoverResume(resume)">
-                <mat-icon>refresh</mat-icon>
-                <span>Recover</span>
+            <mat-menu class="menu-list" #menu="matMenu">
+              <a mat-menu-item routerLink="{{ url }}/resume/{{ resume.id }}">
+                <mat-icon>visibility</mat-icon>
+                <span>View</span>
+              </a>
+              <a
+                mat-menu-item
+                *ngIf="resume.deletedAt === null"
+                routerLink="{{ url }}resume/edit/{{ resume.id }}"
+              >
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </a>
+              <button
+                class="custom-menu-item"
+                mat-menu-item
+                *ngIf="resume.deletedAt === null"
+                (click)="getResumePdf(resume)"
+              >
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span>PDF</span>
               </button>
-            </ng-template>
-          </mat-menu> 
-        </td>
-      </ng-container>
+              <button
+                mat-menu-item
+                *ngIf="resume.deletedAt === null"
+                (click)="getResumeDocx(resume)"
+              >
+                <mat-icon>description</mat-icon>
+                <span>DocX</span>
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="resume.deletedAt === null; else recoverButton"
+                (click)="deleteResume(resume)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+              <ng-template #recoverButton>
+                <button mat-menu-item (click)="recoverResume(resume)">
+                  <mat-icon>refresh</mat-icon>
+                  <span>Recover</span>
+                </button>
+              </ng-template>
+            </mat-menu>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cv Name&Surname</th>
+        <ng-container
+          matColumnDef="name"
+          [sticky]="isSticky(stickyColumns, 'name')"
+        >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let resume">
+            {{ resume.firstName }} {{ resume.lastName }}
+          </td>
+        </ng-container>
 
-        <td mat-cell *matCellDef="let resume">
-          {{resume.firstName}} {{resume.lastName}}
-        </td>
-      </ng-container>
+        <ng-container
+          matColumnDef="position"
+          [sticky]="isSticky(stickyColumns, 'position')"
+        >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+          <td mat-cell *matCellDef="let resume">
+            {{ resume.positionName ?? "None" }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          <div>Position</div>
-          <mat-form-field appearance="fill">
-            <mat-label>Position filter</mat-label>
-            <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
-              <mat-option>
-                <ngx-mat-select-search [formControl]="positionFilterControl" placeholderLabel="Search..."
-                                       noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
-              </mat-option>
-              <mat-option *ngFor="let position of filteredPositionsMulti | async" [value]="position.positionId">
-                {{position.positionName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let resume">{{resume.positionName ?? 'None'}}</td>
-      </ng-container>
+        <ng-container
+          matColumnDef="skills"
+          [sticky]="isSticky(stickyColumns, 'skills')"
+        >
+          <th mat-header-cell *matHeaderCellDef>Skills</th>
+          <td mat-cell *matCellDef="let resume">
+            <span *ngFor="let skill of resume.skills; let i = index"
+              >{{ skill.name }}{{ i === resume.skills.length - 1 ? "" : ", " }}
+            </span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="skills">
-        <th mat-header-cell *matHeaderCellDef>Skills</th>
-        <td mat-cell *matCellDef="let resume"><span
-          *ngFor="let skill of resume.skills, let i=index">{{skill.name}}{{i === resume.skills.length - 1 ? '' : ', '}}  </span>
-        </td>
-      </ng-container>
+        <ng-container
+          matColumnDef="clients"
+          [sticky]="isSticky(stickyColumns, 'clients')"
+        >
+          <th mat-header-cell *matHeaderCellDef>Clients</th>
+          <td mat-cell *matCellDef="let resume">
+            <span *ngFor="let client of resume.clients; let i = index">
+              <span>{{ client.firstName }} {{ client.lastName }}</span>
+              {{ i === resume.clients.length - 1 ? "" : ", " }}
+            </span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="clients">
-        <th mat-header-cell *matHeaderCellDef>Clients</th>
-        <td mat-cell *matCellDef="let resume">
-          <span *ngFor="let client of resume.clients, let i=index">
-            <span>{{client.firstName}} {{client.lastName}}</span>
-            {{i === resume.clients.length - 1 ? '' : ', '}}
-          </span>
-        </td>
-      </ng-container>
+        <ng-container
+          matColumnDef="salaryRate"
+          [sticky]="isSticky(stickyColumns, 'salaryRate')"
+        >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary Rate</th>
+          <td mat-cell *matCellDef="let resume">
+            {{ resume.salaryRate ?? "None" }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="salaryRate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary Rate</th>
-        <td mat-cell *matCellDef="let resume">{{resume.salaryRate ?? 'None'}}</td>
-      </ng-container>
+        <ng-container
+          matColumnDef="loading"
+          [sticky]="isSticky(stickyColumns, 'loading')"
+        >
+          <th mat-header-cell *matHeaderCellDef>Loading, %</th>
+          <td mat-cell *matCellDef="let resume">75%</td>
+        </ng-container>
 
-      <ng-container matColumnDef="loading">
-        <th mat-header-cell *matHeaderCellDef>Loading, %</th>
-        <td mat-cell *matCellDef="let resume">75%</td>
-      </ng-container>
+        <ng-container
+          matColumnDef="status"
+          [sticky]="isSticky(stickyColumns, 'status')"
+        >
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let resume">
+            {{ getAvailabilityStatusLabel(resume.availabilityStatus) }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let resume">{{getAvailabilityStatusLabel(resume.availabilityStatus)}}</td>
-      </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </section>
 
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator [length]="resumesCount" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
+    <mat-paginator
+      [length]="resumesCount"
+      [pageSize]="30"
+      aria-label="Select page of table"
+    ></mat-paginator>
   </div>
-
 </div>

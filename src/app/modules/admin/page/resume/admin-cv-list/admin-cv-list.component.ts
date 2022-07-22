@@ -21,6 +21,7 @@ import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums
 import {ClientDto} from "../../../../../models/clients/client-dto";
 import {ClientsService} from "../../../../../services/clients.service";
 import {SmallClientsDto} from "../../../../../models/clients/small-clients-dto";
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -143,6 +144,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.filterMulti(this.clients, 'firstName', this.clientFilterControl, this.filteredClientsMulti)
       })
     })
+  }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   ngAfterViewInit() {
