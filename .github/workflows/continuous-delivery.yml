@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build_backend:
+  build_frontend:
     runs-on: ubuntu-latest
     steps:
       -
