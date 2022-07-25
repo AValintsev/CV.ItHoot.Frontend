@@ -4,12 +4,14 @@
   height: calc(100vh - 8rem);
   overflow: hidden;
 }
+
 .page-content {
   flex: 2 1 100%;
-  padding-top: 3rem;
-  background-color:#e5e5e5;
+  // padding-top: 3rem;
+  // background-color:#e5e5e5;
   overflow-y: auto;
 }
+
 cv-side-bar {
   flex: 0 0 0rem;
   transform: translateX(-100%);
@@ -20,6 +22,7 @@ cv-side-bar {
   font-size: 0;
   transition: transform 0.2s ease, font-size 0.1s ease, width 0.2s ease,
     flex 0.2s ease, visibility 0.1s ease, opacity 0.1s ease;
+
   &.open {
     opacity: 1;
     transform: translateX(0%);
@@ -35,31 +38,34 @@ cv-side-bar {
 }
 
 .menu-burger__side-bar {
-  background-color:#e5e5e5;
+  // background-color:#e5e5e5;
   transition: all 0.4s ease;
+  padding-left: .5rem;
+
   mat-icon {
     transform: rotate(180deg);
     transition: all 0.4s ease;
     color: #fff;
+  }
+
+  &--inner {
+    background-color: rgb(138, 146, 166);
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: .5rem;
+    display: flex;
+    font-size: 3rem;
+
+    .material-icons {
+      line-height: normal;
     }
-    &--inner {
-      background-color: rgb(138, 146, 166);
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      border-radius: .5rem;
-      display: flex;
-      font-size: 3rem;
-      .material-icons{
-        line-height: normal;
-      }
-    }
-  
+  }
+
 
   &.open-menu {
     transition: all 0.4s ease;
-
     mat-icon {
       transform: rotate(0deg);
       transition: all 0.4s ease;

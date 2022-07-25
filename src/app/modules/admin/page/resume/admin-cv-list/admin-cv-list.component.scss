@@ -17,7 +17,7 @@
   }
   }
   .filter-block{
-    padding-left: 9rem;
+    // padding-left: 9rem;
     display: flex;
     justify-content: space-between;
     mat-form-field{
@@ -37,6 +37,7 @@
 
   .table-wrapper {
     padding: 24px;
+    padding-top: 0;
     box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
 
@@ -165,7 +166,9 @@
   border-right: 2px solid midnightblue;
 }
 .section-table{
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: none;
   min-width: 100%;
   overflow: auto;
@@ -179,6 +182,7 @@ table{
   background-color: #fff;
   &.mat-table-sticky-border-elem-left{
     border-right: 1px solid  rgba(0, 0, 0, 0.12);
+    border-left: 1px solid  rgba(0, 0, 0, 0.12);
   }
 }
 mat-button-toggle:first-child{
