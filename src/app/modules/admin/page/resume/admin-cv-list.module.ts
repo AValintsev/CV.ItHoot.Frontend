@@ -37,6 +37,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
 import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
 import { FormBarModule } from '../form-bar/form-bar.module';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -73,6 +74,7 @@ import { FormBarModule } from '../form-bar/form-bar.module';
         MatMenuModule,
         FormBarModule,
         QuillModule.forRoot(),
+        MatTooltipModule,
     ],
 
   exports: [

@@ -17,6 +17,7 @@ import {TemplateBuilderModule} from "../../../shared/template-builder/template-b
 import {PreviewDialogComponent} from './preview-dialog/preview-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
         TemplateBuilderModule,
         ReactiveFormsModule,
         MatDialogModule,
-    ResumeTemplateBuilderModule,
+        ResumeTemplateBuilderModule,
+        MatTooltipModule,
     ],
   exports: [
   ],

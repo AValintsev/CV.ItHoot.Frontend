@@ -1,63 +1,48 @@
 <mat-card>
   <mat-card-title-group>
     <div class="dots">
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu"
-      >
+      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="savePdf(resume.id,resume?.firstName,resume?.lastName)"
-        >
+                matTooltip="Download resume PDF" matTooltipPosition="before">
           <mat-icon>picture_as_pdf</mat-icon>
-          <span >Save PDF</span>
+          <span>Save PDF</span>
         </button>
-        <button mat-menu-item
-        (click)="saveDocX()"
-        class="docx"
-        >
-      <mat-icon>description</mat-icon>
+        <button mat-menu-item (click)="saveDocX()" matTooltip="Download resume DOCX" matTooltipPosition="before">
+          <mat-icon>description</mat-icon>
           <span>Save DocX</span>
         </button>
-        <button
-          mat-menu-item
-          [routerLink]="['/home/cv/create/']"
-          [queryParams]="{ userId: resume.id }"
-        >
+        <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: resume.id }"
+                matTooltip="Duplicate" matTooltipPosition="before">
           <mat-icon>file_copy</mat-icon>
-          <span>Copy and edit</span>
+          <span>Duplicate</span>
         </button>
-        <button mat-menu-item (click)="deleteResume(resume.id)">
+        <button mat-menu-item (click)="deleteResume(resume.id)"
+                matTooltip="Delete" matTooltipPosition="before">
           <mat-icon>delete_forever</mat-icon>
           <span>Delete</span>
 
         </button>
       </mat-menu>
     </div>
-    <mat-card-title
-      >{{ resume?.firstName }} {{ resume?.lastName }}</mat-card-title
-    >
+    <mat-card-title>{{ resume?.firstName }} {{ resume?.lastName }}</mat-card-title>
     <mat-card-subtitle>{{ resume?.resumeName }}</mat-card-subtitle>
     <!-- <img mat-card-lg-image *ngIf="resume.picture" else img src="{{resume.picture}}" alt="Resume image"> -->
   </mat-card-title-group>
-  <mat-card-content [innerHTML] = "resume.aboutMe"></mat-card-content>
-  <mat-divider inset></mat-divider>
+  <mat-card-content [innerHTML]="resume.aboutMe"></mat-card-content>
+  <mat-divider></mat-divider>
   <mat-card-actions>
     <div class="button-group">
-      <button
-      mat-stroked-button
-      [routerLink]="['/home/cv/', resume.id]"
-    >
-      Open
-    </button>
-    <button
-    mat-stroked-button
-      routerLink="/home/cv/edit/{{ resume.id }}"
-    >
-      Edit
-    </button>
+      <button mat-stroked-button [routerLink]="['/home/cv/', resume.id]"
+              matTooltip="Open resume" matTooltipPosition="above">
+        Open
+      </button>
+      <button mat-stroked-button routerLink="/home/cv/edit/{{ resume.id }}"
+              matTooltip="Edit resume" matTooltipPosition="above">
+        Edit
+      </button>
     </div>
   </mat-card-actions>
 </mat-card>

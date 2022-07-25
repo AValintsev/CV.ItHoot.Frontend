@@ -14,23 +14,25 @@ import {FooterModule} from './component/footer/footer.module';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
-  imports: [
-    AdminRouterModule,
-    CvModule,
-    RouterModule,
-    CommonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatTableModule,
-    FooterModule,
-    HeaderModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-  ],
+    imports: [
+        AdminRouterModule,
+        CvModule,
+        RouterModule,
+        CommonModule,
+        MatIconModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatTableModule,
+        FooterModule,
+        HeaderModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatTooltipModule,
+    ],
 	declarations: [AdminLayoutComponent,SideBarComponent,],
 	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
 })

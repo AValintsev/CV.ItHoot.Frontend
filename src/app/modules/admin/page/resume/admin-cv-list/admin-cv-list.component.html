@@ -4,32 +4,20 @@
       <div class="left-block">
         <h1>{{ tableHeader }}</h1>
         <div class="search-block">
-          <button
-            *ngIf="isShowAddButton"
-            mat-raised-button
-            routerLink="/admin/resume/create"
-          >
+          <button *ngIf="isShowAddButton" mat-raised-button routerLink="/admin/resume/create"
+                  matTooltip="Create a new resume" matTooltipPosition="before">
             <mat-icon>add</mat-icon>
           </button>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Search...</mat-label>
-            <input
-              type="tel"
-              matInput
-              placeholder=""
-              [formControl]="searchControl"
-            />
+            <input type="tel" matInput placeholder="" [formControl]="searchControl"/>
             <mat-icon class="zoom-icon" matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
         <div class="filter-block">
           <mat-form-field appearance="fill">
             <mat-label>Position filter</mat-label>
-            <mat-select
-              [formControl]="positionControl"
-              multiple="true"
-              #positionMultiSelect
-            >
+            <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
               <mat-option>
                 <ngx-mat-select-search
                   [formControl]="positionFilterControl"
@@ -39,8 +27,7 @@
               </mat-option>
               <mat-option
                 *ngFor="let position of filteredPositionsMulti | async"
-                [value]="position.positionId"
-              >
+                [value]="position.positionId">
                 {{ position.positionName }}
               </mat-option>
             </mat-select>
@@ -104,7 +91,7 @@
           *ngFor="let item of displayedColumns"
           [hidden]="item === 'action'"
           [value]="item"
-          >{{ item }}</mat-button-toggle
+        >{{ item }}</mat-button-toggle
         >
       </mat-button-toggle-group>
     </div>
@@ -115,57 +102,44 @@
         class="mat-elevation-z8"
         matSort
         matSortActive=""
-        matSortDirection=""
-      >
+        matSortDirection="">
         <ng-container
           matColumnDef="action"
-          [sticky]="isSticky(stickyColumns, 'action')"
-        >
+          [sticky]="isSticky(stickyColumns, 'action')">
           <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
           <td mat-cell *matCellDef="let resume">
-            <button mat-button [matMenuTriggerFor]="menu">
+            <button mat-button [matMenuTriggerFor]="menu"  matTooltip="Actions" matTooltipPosition="before">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu class="menu-list" #menu="matMenu">
-              <a mat-menu-item routerLink="{{ url }}/resume/{{ resume.id }}">
+              <a mat-menu-item routerLink="{{ url }}/resume/{{ resume.id }}"
+                 matTooltip="View resume" matTooltipPosition="before">
                 <mat-icon>visibility</mat-icon>
                 <span>View</span>
               </a>
-              <a
-                mat-menu-item
-                *ngIf="resume.deletedAt === null"
-                routerLink="{{ url }}resume/edit/{{ resume.id }}"
-              >
+              <a mat-menu-item *ngIf="resume.deletedAt === null" routerLink="{{ url }}resume/edit/{{ resume.id }}"
+                 matTooltip="Edit resume" matTooltipPosition="before">
                 <mat-icon>edit</mat-icon>
                 <span>Edit</span>
               </a>
-              <button
-                class="custom-menu-item"
-                mat-menu-item
-                *ngIf="resume.deletedAt === null"
-                (click)="getResumePdf(resume)"
-              >
+              <button class="custom-menu-item" mat-menu-item *ngIf="resume.deletedAt === null" (click)="getResumePdf(resume)"
+                 matTooltip="Download resume pdf" matTooltipPosition="before">
                 <mat-icon>picture_as_pdf</mat-icon>
                 <span>PDF</span>
               </button>
-              <button
-                mat-menu-item
-                *ngIf="resume.deletedAt === null"
-                (click)="getResumeDocx(resume)"
-              >
+              <button mat-menu-item *ngIf="resume.deletedAt === null" (click)="getResumeDocx(resume)"
+                      matTooltip="Download resume Docx" matTooltipPosition="before">
                 <mat-icon>description</mat-icon>
                 <span>DocX</span>
               </button>
-              <button
-                mat-menu-item
-                *ngIf="resume.deletedAt === null; else recoverButton"
-                (click)="deleteResume(resume)"
-              >
+              <button mat-menu-item *ngIf="resume.deletedAt === null; else recoverButton" (click)="deleteResume(resume)"
+                      matTooltip="Delete resume" matTooltipPosition="before">
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
               </button>
               <ng-template #recoverButton>
-                <button mat-menu-item (click)="recoverResume(resume)">
+                <button mat-menu-item (click)="recoverResume(resume)"
+                        matTooltip="Recover resume" matTooltipPosition="before">
                   <mat-icon>refresh</mat-icon>
                   <span>Recover</span>
                 </button>
@@ -176,9 +150,9 @@
 
         <ng-container
           matColumnDef="name"
-          [sticky]="isSticky(stickyColumns, 'name')"
-        >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          [sticky]="isSticky(stickyColumns, 'name')">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header
+              matTooltip="Sort by full name" matTooltipPosition="above">Name</th>
           <td mat-cell *matCellDef="let resume">
             {{ resume.firstName }} {{ resume.lastName }}
           </td>
@@ -186,30 +160,24 @@
 
         <ng-container
           matColumnDef="position"
-          [sticky]="isSticky(stickyColumns, 'position')"
-        >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+          [sticky]="isSticky(stickyColumns, 'position')">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header
+              matTooltip="Sort by position" matTooltipPosition="above">Position</th>
           <td mat-cell *matCellDef="let resume">
             {{ resume.positionName ?? "None" }}
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="skills"
-          [sticky]="isSticky(stickyColumns, 'skills')"
-        >
+        <ng-container matColumnDef="skills" [sticky]="isSticky(stickyColumns, 'skills')">
           <th mat-header-cell *matHeaderCellDef>Skills</th>
           <td mat-cell *matCellDef="let resume">
-            <span *ngFor="let skill of resume.skills; let i = index"
-              >{{ skill.name }}{{ i === resume.skills.length - 1 ? "" : ", " }}
+            <span *ngFor="let skill of resume.skills; let i = index">
+              {{ skill.name }}{{ i === resume.skills.length - 1 ? "" : ", " }}
             </span>
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="clients"
-          [sticky]="isSticky(stickyColumns, 'clients')"
-        >
+        <ng-container matColumnDef="clients" [sticky]="isSticky(stickyColumns, 'clients')">
           <th mat-header-cell *matHeaderCellDef>Clients</th>
           <td mat-cell *matCellDef="let resume">
             <span *ngFor="let client of resume.clients; let i = index">
@@ -223,24 +191,19 @@
           matColumnDef="salaryRate"
           [sticky]="isSticky(stickyColumns, 'salaryRate')"
         >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary Rate</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header
+              matTooltip="Sort by salary rate" matTooltipPosition="above">Salary Rate</th>
           <td mat-cell *matCellDef="let resume">
             {{ resume.salaryRate ?? "None" }}
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="loading"
-          [sticky]="isSticky(stickyColumns, 'loading')"
-        >
+        <ng-container matColumnDef="loading" [sticky]="isSticky(stickyColumns, 'loading')">
           <th mat-header-cell *matHeaderCellDef>Loading, %</th>
           <td mat-cell *matCellDef="let resume">75%</td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="status"
-          [sticky]="isSticky(stickyColumns, 'status')"
-        >
+        <ng-container matColumnDef="status" [sticky]="isSticky(stickyColumns, 'status')">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let resume">
             {{ getAvailabilityStatusLabel(resume.availabilityStatus) }}
@@ -252,10 +215,6 @@
       </table>
     </section>
 
-    <mat-paginator
-      [length]="resumesCount"
-      [pageSize]="30"
-      aria-label="Select page of table"
-    ></mat-paginator>
+    <mat-paginator [length]="resumesCount" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
   </div>
 </div>

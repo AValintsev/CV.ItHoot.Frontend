@@ -13,6 +13,7 @@ import {ClientsListComponent} from './clients-list/clients-list.component';
 import {ClientCreateDialogComponent} from './client-create-dialog/client-create-dialog.component';
 import {ClientUpdateDialogComponent} from './client-update-dialog/client-update-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -20,19 +21,20 @@ import {MatDialogModule} from "@angular/material/dialog";
     ClientCreateDialogComponent,
     ClientUpdateDialogComponent
   ],
-  imports: [
-    CommonModule,
-    ClientsRoutingModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDialogModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        ClientsRoutingModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatSortModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDialogModule,
+        FormsModule,
+        MatTooltipModule
+    ]
 })
 export class ClientsModule { }

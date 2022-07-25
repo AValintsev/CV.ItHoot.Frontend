@@ -42,15 +42,33 @@
     </mat-form-field>
 
     <div class="checkbox-section">
-      <mat-checkbox [(ngModel)]="proposal.isIncognito">Is Incognito</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.isIncognito">
+        <span matTooltip="Hiding last name in resume for client" matTooltipPosition="after">
+          Incognito
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showLogo">
+         <span matTooltip="Show footer in resume for client" matTooltipPosition="after">
+          Show Logo
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showContacts">
+       <span matTooltip="Show resume contacts for client" matTooltipPosition="after">
+          Show Contacts
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">
+        <span matTooltip="Show company names in resume for client" matTooltipPosition="after">
+          Show company names
+        </span>
+      </mat-checkbox>
     </div>
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()">Save</button>
-    <button mat-stroked-button [mat-dialog-close]="false" >Cancel</button>
+    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()"
+            matTooltip="Save" matTooltipPosition="above">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false"
+            matTooltip="Cancel" matTooltipPosition="above">Cancel</button>
   </div>
 </div>

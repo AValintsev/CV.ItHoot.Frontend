@@ -6,8 +6,10 @@
     <div class="left-bar">
       <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value" (templateChange)="templateChange($event)"></form-bar>
       <div class="action">
-        <button mat-stroked-button [disabled]="!resumeCreateForm.valid" (click)="submit(resumeCreateForm.value)">Save</button>
-        <button mat-stroked-button routerLink="/home/cv/user-list">Cancel</button>  
+        <button mat-stroked-button [disabled]="!resumeCreateForm.valid" (click)="submit(resumeCreateForm.value)"
+        matTooltip="Save" matTooltipPosition="above">Save</button>
+        <button mat-stroked-button routerLink="/home/cv/user-list"
+                matTooltip="Cancel" matTooltipPosition="above">Cancel</button>
       </div>
     </div>
   </div>

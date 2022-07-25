@@ -2,120 +2,85 @@
   <div class="menu-list">
     <mat-list>
       <div class="label">
-        <img src="assets/label.jpg" alt="label" />
+        <img src="assets/label.jpg" alt="label"/>
       </div>
       <div class="user-content">
         <div class="user-picture img">
-          <img src="assets/face.jpg" alt="user picture" />
+          <img src="assets/face.jpg" alt="user picture"/>
         </div>
         <ul class="user-atrr">
           <li class="user-name">{{ accountService.getStoreName() }}</li>
           <li class="user-role">
-            {{
-              accountService.getStoreRole()
-                ? accountService.getStoreRole()
-                : "User"
-            }}
+            {{accountService.getStoreRole()}}
           </li>
         </ul>
       </div>
       <mat-divider class="first-divider"></mat-divider>
-      <div
-        mat-menu-item
-        *ngIf="btnSwitcher('create') | async"
-        [routerLink]="['/home/cv/create']"
-      >
-        <div class="mat-menu-item-inner">
+      <div mat-menu-item
+           *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/cv/create']">
+        <div class="mat-menu-item-inner" matTooltip="Create a new resume" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
-          <span >Create new CV </span>
+          <span>Create new CV </span>
         </div>
       </div>
-      <div
-        *ngIf="btnSwitcher('home') | async"
-        mat-menu-item
-        routerLink="/home/cv/user-list"
-      >
-        <div class="mat-menu-item-inner">
+      <div mat-menu-item
+           *ngIf="btnSwitcher('home') | async" routerLink="/home/cv/user-list">
+        <div class="mat-menu-item-inner" matTooltip="Go to resume list" matTooltipPosition="before">
           <mat-icon>list</mat-icon>
-          <span >CVs list</span>
+          <span>CVs list</span>
         </div>
       </div>
-      <mat-divider
-        *ngIf="(btnSwitcher('menu-list') | async) "
-        class="second-divider"
-      ></mat-divider>
-      <div
-        *ngIf="btnSwitcher('edit') | async"
-        mat-menu-item
-        routerLink="/home/cv/edit/{{ id }}"
-      >
-      <div class="mat-menu-item-inner">
-        <mat-icon>edit</mat-icon>
-        <span>Edit CV</span>
+      <mat-divider *ngIf="(btnSwitcher('menu-list') | async)" class="second-divider"></mat-divider>
+      <div mat-menu-item
+           *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{ id }}">
+        <div class="mat-menu-item-inner" matTooltip="Edit resume" matTooltipPosition="before">
+          <mat-icon>edit</mat-icon>
+          <span>Edit CV</span>
+        </div>
+
       </div>
-        
-      </div>
-      <div
-        *ngIf="btnSwitcher('menu-list') | async"
-        mat-menu-item
-        [routerLink]="['/home/cv/create/']"
-        [queryParams]="{ userId: id }"
-      >
-      <div class="mat-menu-item-inner">
+      <div mat-menu-item
+           *ngIf="btnSwitcher('menu-list') | async"
+           [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
+        <div class="mat-menu-item-inner" matTooltip="Duplicate" matTooltipPosition="before">
           <mat-icon>file_copy</mat-icon>
-        <span>Copy and edit</span>
+          <span>Duplicate</span>
+        </div>
       </div>
+      <div mat-menu-item
+           *ngIf="btnSwitcher('menu-list') | async" (click)="deleteResume(id)">
+        <div class="mat-menu-item-inner" matTooltip="Delete CV" matTooltipPosition="before">
+          <mat-icon>delete_forever</mat-icon>
+          <span>Delete CV</span>
+        </div>
       </div>
-      <div
-        *ngIf="btnSwitcher('menu-list') | async"
-        mat-menu-item
-        (click)="deleteResume(id)"
-      >
-      <div class="mat-menu-item-inner">
-         <mat-icon>delete_forever</mat-icon>
-        <span>Delete CV</span>
-      </div>
-      </div>
-      <mat-divider
-        *ngIf="btnSwitcher('edit') | async"
-        class="three-divider"
-      ></mat-divider>
-      <div
-        *ngIf="btnSwitcher('menu-list') | async"
-        mat-menu-item
-        (click)="savePdf(id, firstName, lastName)"
-      >
-      <div class="mat-menu-item-inner">
+      <mat-divider class="three-divider" *ngIf="btnSwitcher('edit') | async"></mat-divider>
+      <div mat-menu-item
+           *ngIf="btnSwitcher('menu-list') | async" (click)="savePdf(id, firstName, lastName)">
+        <div class="mat-menu-item-inner" matTooltip="Download resume PDF" matTooltipPosition="before">
           <mat-icon>picture_as_pdf</mat-icon>
-        <span>Save PDF</span>
+          <span>Save PDF</span>
+        </div>
       </div>
-      </div>
-      <div
-        *ngIf="btnSwitcher('menu-list') | async"
-        mat-menu-item
-        (click)="saveDocX()"
-        class="docx"
-      >
-      <div class="mat-menu-item-inner">
+      <div mat-menu-item class="docx"
+           *ngIf="btnSwitcher('menu-list') | async" (click)="saveDocX()">
+        <div class="mat-menu-item-inner" matTooltip="Download resume DOCX" matTooltipPosition="before">
           <mat-icon>description</mat-icon>
-        <span>Save DocX</span>
+          <span>Save DocX</span>
+        </div>
       </div>
-      </div>
-      <div
-        *ngIf="btnSwitcher('change-position') | async"
-        mat-menu-item
-        (click)="refresh()"
-        class="docx"
-      >
-      <div class="mat-menu-item-inner">
-        <mat-icon>refresh</mat-icon>
-      <span>Change postion</span>
-    </div>
+      <div mat-menu-item
+           *ngIf="btnSwitcher('change-position') | async" (click)="refresh()">
+        <div class="mat-menu-item-inner">
+          <mat-icon>flip</mat-icon>
+          <span>Flip position</span>
+        </div>
       </div>
 
       <mat-divider class="last-divider"></mat-divider>
       <div class="menu-btn-wrapper">
-        <button mat-menu-item class="logout" color="warn" (click)="logout()">
+        <button mat-menu-item class="logout" (click)="logout()"
+                matTooltip="Logout" matTooltipPosition="before">
           Logout
         </button>
       </div>

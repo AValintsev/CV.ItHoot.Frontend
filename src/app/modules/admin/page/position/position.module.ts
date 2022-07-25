@@ -11,6 +11,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {DeleteModalService} from "src/app/services/delete-modal.service";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -18,17 +19,18 @@ import {DeleteModalService} from "src/app/services/delete-modal.service";
     PositionPageComponent,
        PositionDialogComponent
   ],
-  imports: [
-    PositionRoutingModule,
-    MatDialogModule,
-    FormsModule,
-    MatFormFieldModule,
-    CommonModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatTableModule,
-  ],
+    imports: [
+        PositionRoutingModule,
+        MatDialogModule,
+        FormsModule,
+        MatFormFieldModule,
+        CommonModule,
+        MatButtonModule,
+        MatInputModule,
+        MatIconModule,
+        MatTableModule,
+        MatTooltipModule,
+    ],
   providers:[DeleteModalService]
 })
 export class PositionModule {

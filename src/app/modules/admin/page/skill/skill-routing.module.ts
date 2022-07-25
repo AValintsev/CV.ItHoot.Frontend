@@ -13,6 +13,7 @@ import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const routes: Routes = [
 	{
@@ -24,21 +25,22 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SkillPageComponent, SkillDialogComponent],
-  imports:
-    [
-      MatTableModule,
-      MatIconModule,
-      MatButtonModule,
-      MatFormFieldModule,
-      MatAutocompleteModule,
-      MatDialogModule,
-      CommonModule,
-      MatInputModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatButtonToggleModule,
-      RouterModule.forChild(routes),
-    ],
+    imports:
+        [
+            MatTableModule,
+            MatIconModule,
+            MatButtonModule,
+            MatFormFieldModule,
+            MatAutocompleteModule,
+            MatDialogModule,
+            CommonModule,
+            MatInputModule,
+            FormsModule,
+            ReactiveFormsModule,
+            MatButtonToggleModule,
+            RouterModule.forChild(routes),
+            MatTooltipModule,
+        ],
   exports: [RouterModule],
   providers:[DeleteModalService]
 })

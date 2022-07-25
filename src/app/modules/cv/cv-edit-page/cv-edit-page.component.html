@@ -7,8 +7,10 @@
       <form-bar [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false" (templateChange)="templateChange($event)">
       </form-bar>
       <div class="action">
-        <button   mat-stroked-button [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)">Save</button>
-        <button   mat-stroked-button routerLink="/home/cv/user-list">Cancel</button>
+        <button   mat-stroked-button [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)"
+          matTooltip="Save" matTooltipPosition="before">Save</button>
+        <button mat-stroked-button routerLink="/home/cv/user-list"
+          matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
       </div>
     </div>
   </div>

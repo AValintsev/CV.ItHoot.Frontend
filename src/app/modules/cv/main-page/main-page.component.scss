@@ -65,7 +65,7 @@ cv-cv-cide-bar {
 }
 
 .open-side-bar {
-  
+
   transform: translateX(0%);
   // flex: 0 0 30rem;
   width: 25rem;
@@ -96,8 +96,12 @@ transition: all .2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-transition: all .3 ease;
+  transition: all .3s ease;
   // margin-left: 10px;
+  &:hover{
+    cursor: pointer;
+  }
+
   mat-icon {
     display: flex;
     align-items: center;
@@ -137,3 +141,5 @@ transition: all .3 ease;
 
 
 }
+
+:host{}

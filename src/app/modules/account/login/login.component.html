@@ -3,9 +3,9 @@
   <div class="inner">
     <mat-card>
       <mat-card-title>Login</mat-card-title>
-      <div  class="google-btn__wrapper">
-        <button class="google-btn" type="button" mat-stroked-button>
-          <div >
+      <div class="google-btn__wrapper">
+        <button class="google-btn" type="button" mat-stroked-button matTooltip="Login via google">
+          <div>
             <svg
               class="svg"
               width="18"
@@ -60,7 +60,6 @@
             <input
               matInput
               type="text"
-              matInput
               placeholder="Email"
               formControlName="email"
             />
@@ -69,63 +68,55 @@
                 loginForm?.get('email')?.errors?.required &&
                 loginForm?.get('email')?.touched
               "
-              >Enter email
+            >Enter email
             </mat-error>
             <mat-error
               *ngIf="
                 loginForm?.get('email')?.errors?.email &&
                 loginForm?.get('email')?.touched
               "
-              >Enter correct email</mat-error
+            >Enter correct email
+            </mat-error
             >
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
               [type]="type"
-              matInput
               placeholder="Password"
               formControlName="password"
             />
             <mat-icon matSuffix class="eye" (click)="changeVisiblePassword($event)"
-              >visibility</mat-icon
+            >visibility
+            </mat-icon
             >
             <mat-error
               *ngIf="
                 loginForm?.get('password')?.errors?.required &&
                 loginForm?.get('password')?.touched
               "
-              >Enter password</mat-error
+            >Enter password
+            </mat-error
             >
             <mat-error
               *ngIf="
                 loginForm?.get('password')?.errors?.minlength &&
                 loginForm?.get('password')?.touched
               "
-              >Enter a password of at least
+            >Enter a password of at least
               {{
-                loginForm?.get("password")?.errors?.minlength?.requiredLength
+              loginForm?.get("password")?.errors?.minlength?.requiredLength
               }}
               characters
             </mat-error>
           </mat-form-field>
           <div class="btn-login">
-            <button
-              class="submit-btn"
-              [disabled]="loginForm.invalid"
-              type="submit"
-              mat-raised-button
-            >
+            <button class="submit-btn" [disabled]="loginForm.invalid" type="submit" mat-raised-button matTooltip="Login">
               Login
             </button>
           </div>
           <div class="link-wrapper">
-            <a
-              class="link"
-              routerLink="/account/registration"
-              routerLinkActive="active"
-              >Create account</a
-            >
+            <a class="link" routerLink="/account/registration" routerLinkActive="active" matTooltip="Create account">Create account</a>
           </div>
         </form>
       </mat-card-content>

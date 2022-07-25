@@ -14,22 +14,24 @@ import { CvSideBarComponent } from '../cv-side-bar/cv-side-bar.component';
 import { MainPageComponent } from './main-page.component';
 import {MatListModule} from '@angular/material/list';
 import { DirectivesModule } from '../../shared/directives/directives.module';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [MainPageComponent, CvSideBarComponent],
-  imports: [
-    CommonModule,
-    MainPageRoutingModule,
-    MatButtonModule,
-    FooterModule,
-    HeaderModule,
-    LoaderModule,
-    MatIconModule,
-    MatMenuModule,
-    MatListModule,
-    MatDividerModule,
-    DirectivesModule
-  ],
+    imports: [
+        CommonModule,
+        MainPageRoutingModule,
+        MatButtonModule,
+        FooterModule,
+        HeaderModule,
+        LoaderModule,
+        MatIconModule,
+        MatMenuModule,
+        MatListModule,
+        MatDividerModule,
+        DirectivesModule,
+        MatTooltipModule
+    ],
   exports: [CvSideBarComponent],
   providers: [UserHeaderBtnService, DeleteModalService],
 })

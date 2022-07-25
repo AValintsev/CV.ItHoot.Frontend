@@ -14,7 +14,7 @@
       <input type="file" formControlName="docxFile"
         accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         (change)="onFileChange($event)" />
-      <a mat-stroked-button (click)="downloadDocxTemplate(template)">Download docx template</a>
+      <a mat-stroked-button color="primary" (click)="downloadDocxTemplate(template)">Download docx template</a>
       <mat-error *ngIf="templateForm.controls['docxFile'].invalid && templateForm.controls['docxFile'].touched">Docx
         file is required or file type is wrong</mat-error>
     </div>
@@ -34,8 +34,10 @@
     <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
 
     <div mat-dialog-actions class="actions">
-      <a mat-raised-button (click)="viewTemplate()">View template</a>
-      <button mat-raised-button cdkFocusInitial [disabled]="templateForm.invalid">Update template</button>
+      <a mat-raised-button (click)="viewTemplate()"
+         matTooltip="View template" matTooltipPosition="above">View template</a>
+      <button mat-raised-button cdkFocusInitial [disabled]="templateForm.invalid"
+              matTooltip="Update template" matTooltipPosition="above">Update template</button>
     </div>
 
   </form>

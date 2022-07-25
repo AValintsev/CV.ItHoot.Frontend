@@ -1,25 +1,25 @@
 <div [style.padding]="'20px 12px 0px 12px'" class="side-bar">
   <ol class="links">
-    <li class="title-section"><span>Home</span></li> 
+    <li class="title-section"><span>Home</span></li>
    <!-- <li><a>
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </a></li>-->
-    <mat-divider></mat-divider> 
+    <mat-divider></mat-divider>
     <li  [routerLinkActive]="['active']">
-      <a routerLink="/admin/resume">
+      <a routerLink="/admin/resume" matTooltip="Go to CV list page" matTooltipPosition="before">
         <mat-icon>groups</mat-icon>
         <span>CV list</span>
       </a>
     </li>
     <li  [routerLinkActive]="['active']">
-      <a routerLink="/admin/proposals">
+      <a routerLink="/admin/proposals" matTooltip="Go to Proposal list page" matTooltipPosition="before">
         <mat-icon>sports_esports</mat-icon>
         <span>Proposals</span>
       </a>
     </li>
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-      <a routerLink="/admin/clients">
+      <a routerLink="/admin/clients" matTooltip="Go to Client list page" matTooltipPosition="before">
         <mat-icon>supervisor_account</mat-icon>
         <span>Clients</span>
       </a>
@@ -30,16 +30,16 @@
       </a></li>
     <li class="archive">
       <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header matTooltip="Archive" matTooltipPosition="before">
           <mat-panel-title>
             <mat-icon>bookmark</mat-icon>
             <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/proposals">
+        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/proposals"  matTooltip="Proposal archive" matTooltipPosition="before">
           <span>Proposals</span>
         </a>
-        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/resume">
+        <a  [routerLinkActive]="['active']" routerLink="/admin/archive/resume" matTooltip="Resume archive" matTooltipPosition="before">
           <span>Resume</span>
         </a>
       </mat-expansion-panel>
@@ -49,41 +49,38 @@
 
     <li class="setting">
       <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header matTooltip="Settings" matTooltipPosition="before">
           <mat-panel-title>
             <mat-icon>settings</mat-icon>
             <span>Settings</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/languages">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/languages" matTooltip="List of languages" matTooltipPosition="before">
           <span>Languages</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/skills">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/skills" matTooltip="List of skills" matTooltipPosition="before">
           <span>Skills</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/positions">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/positions" matTooltip="List of positions" matTooltipPosition="before">
           <span>Positions</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/complexities">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/complexities" matTooltip="List of complexities" matTooltipPosition="before">
           <span>Complexities</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/templates">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/templates" matTooltip="List of templates" matTooltipPosition="before">
           <span>Resume templates</span>
-        </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-          <span>Proposals</span>
         </a>
       </mat-expansion-panel>
     </li>
 
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-      <a routerLink="/admin/builds">
+      <a routerLink="/admin/builds"  matTooltip="Go to proposal builder page" matTooltipPosition="before">
         <mat-icon>wallet</mat-icon>
         <span>Proposal builder</span>
       </a>
     </li>
-    <li><a routerLink="/admin/users">
+    <li><a routerLink="/admin/users"  matTooltip="List of users" matTooltipPosition="before">
         <mat-icon>military_tech</mat-icon>
         <span>Users</span>
       </a></li>

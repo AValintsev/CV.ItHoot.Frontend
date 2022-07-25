@@ -37,6 +37,10 @@ cv-side-bar {
 .menu-burger__side-bar {
   background-color:#e5e5e5;
   transition: all 0.4s ease;
+
+  &:hover{
+    cursor: pointer;
+  }
   mat-icon {
     transform: rotate(180deg);
     transition: all 0.4s ease;
@@ -55,7 +59,7 @@ cv-side-bar {
         line-height: normal;
       }
     }
-  
+
 
   &.open-menu {
     transition: all 0.4s ease;

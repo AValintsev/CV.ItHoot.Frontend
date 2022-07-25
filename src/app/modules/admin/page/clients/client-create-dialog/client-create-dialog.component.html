@@ -46,10 +46,10 @@
 
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
     </div>
-    
+
     <div mat-dialog-actions class="actions">
-      <button mat-stroked-button  cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid" (click)="onCancelClick()">Save</button>
-      <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false" >Cancel</button>
+      <button mat-stroked-button  cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid" matTooltip="Save" matTooltipPosition="before">Save</button>
+      <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false"  (click)="onCancelClick()" matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
     </div>
   </form>
 </div>

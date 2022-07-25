@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const routes:Routes = [
 	{ path: '', component: LanguagePageComponent}
@@ -21,20 +22,21 @@ const routes:Routes = [
 
 @NgModule({
 	declarations: [LanguagePageComponent, LanguageDialogComponent],
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    CommonModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    MatButtonToggleModule
-  ],
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatDialogModule,
+        CommonModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(routes),
+        MatButtonToggleModule,
+        MatTooltipModule
+    ],
 	exports: [RouterModule],
   providers:[DeleteModalService]
 })

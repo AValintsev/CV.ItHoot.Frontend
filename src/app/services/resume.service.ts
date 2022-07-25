@@ -100,7 +100,6 @@ export class ResumeService {
     return this.httpService.getRequest(this.routePrefix + `/templates`);
   }
 
-  //todo !!
   public getAllResumesByPositions(positions: PositionDto[]): Observable<SmallResumeDto[]> {
     let position = ''
     positions.forEach(x => position += x.positionName + ',');

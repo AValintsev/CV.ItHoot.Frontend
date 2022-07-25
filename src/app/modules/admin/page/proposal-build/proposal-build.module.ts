@@ -20,29 +20,31 @@ import {
   ProposalBuildPositionDialogComponent
 } from './proposal-build-position-dialog/proposal-build-position-dialog.component';
 import {DirectivesModule} from 'src/app/modules/shared/directives/directives.module';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
-  imports: [
-    ProposalBuildRoutingModule,
-    MatButtonModule,
-    MatTableModule,
-    MatIconModule,
-    CommonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatDividerModule,
-    MatChipsModule,
-    DirectivesModule
-  ],
+    imports: [
+        ProposalBuildRoutingModule,
+        MatButtonModule,
+        MatTableModule,
+        MatIconModule,
+        CommonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatDividerModule,
+        MatChipsModule,
+        DirectivesModule,
+        MatTooltipModule
+    ],
   exports: [],
   declarations: [
 

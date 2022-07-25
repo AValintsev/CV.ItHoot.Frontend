@@ -11,7 +11,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Estimation days</mat-label>
       <input specialIsAlphaNumeric min="0" matInput type="number"  placeholder="Count days"  [(ngModel)]="proposalBuild.estimation">
-      
+
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -28,7 +28,10 @@
         <mat-card-title>Positions</mat-card-title>
         <mat-card-content>
           <mat-chip-list #chipList>
-            <mat-chip *ngFor="let position of proposalBuild.positions" (removed)="removePosition(position)" (click)="openPositionDialog(position)">
+            <mat-chip *ngFor="let position of proposalBuild.positions" (removed)="removePosition(position)"
+                      (click)="openPositionDialog(position)"
+                      matTooltip="Edit position" matTooltipPosition="before"
+            >
               {{position.positionName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
@@ -36,7 +39,7 @@
         </mat-card-content>
         <mat-divider inset></mat-divider>
         <mat-card-actions>
-          <button mat-raised-button (click)="openPositionDialog()">
+          <button mat-raised-button (click)="openPositionDialog()" matTooltip="Add a new position" matTooltipPosition="before">
             <mat-icon>add</mat-icon>
           </button>
         </mat-card-actions>
@@ -44,8 +47,10 @@
     </div>
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-stroked-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()">Create</button>
-    <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="proposalBuild" cdkFocusInitial [disabled]="!canCreate()"
+            matTooltip="Create" matTooltipPosition="before">Create</button>
+    <button mat-stroked-button [mat-dialog-close]="false"
+            matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
   </div>
 </div>
 

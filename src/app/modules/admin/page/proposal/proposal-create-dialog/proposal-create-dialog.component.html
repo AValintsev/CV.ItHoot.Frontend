@@ -8,14 +8,14 @@
     </mat-form-field>
 
 
-      <mat-form-field appearance="fill">
-        <mat-label>Select Client</mat-label>
-        <mat-select [(value)]="proposal.clientId" disableOptionCentering>
-          <mat-option *ngFor="let client of clients" [value]="client.userId" >
-            {{client.firstName}} {{client.lastName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Client</mat-label>
+      <mat-select [(value)]="proposal.clientId" disableOptionCentering>
+        <mat-option *ngFor="let client of clients" [value]="client.userId">
+          {{client.firstName}} {{client.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Select Proposal build</mat-label>
@@ -33,7 +33,8 @@
         <mat-chip-list #chipList aria-label="Resume selection">
           <mat-chip
             *ngFor="let resume of selectedResumes"
-            (removed)="remove(resume)" (click)="openSalaryDialog(resume)">
+            (removed)="remove(resume)" (click)="openSalaryDialog(resume)"
+            matTooltip="Change salary rate" matTooltipPosition="above">
             {{resume.firstName}} {{resume.lastName}} {{resume.salaryRate}}$/h
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
@@ -49,7 +50,7 @@
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let resume of resumes" [value]="resume" >
+          <mat-option *ngFor="let resume of resumes" [value]="resume">
             <span style="font-weight: bold">{{resume.positionName}} </span>
             {{resume.firstName}}  {{resume.lastName}}
             <span *ngIf="resume.salaryRate">, {{resume.salaryRate}}$/h</span>
@@ -63,26 +64,49 @@
       <mat-label>Select Template</mat-label>
       <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
 
-          <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
-            <ul class="mat-option-list">
-                   <li (click)="showPreview($event,template.templateId)" ><img   width="20px" height="20px" src="assets/eye.png" alt="eye logo"></li>
-            <li >{{template.templateName}}</li> user-second
-            </ul>
+        <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+          <ul class="mat-option-list">
+            <li (click)="showPreview($event,template.templateId)" matTooltip="View template" matTooltipPosition="before">
+              <img width="20px" height="20px" src="assets/eye.png" alt="eye logo">
+            </li>
+            <li>{{template.templateName}}</li>
+            user-second
+          </ul>
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <div class="checkbox-section">
-      <mat-checkbox [(ngModel)]="proposal.isIncognito">Incognito</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.isIncognito">
+        <span matTooltip="Hiding last name in resume for client" matTooltipPosition="after">
+          Incognito
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showLogo">
+         <span matTooltip="Show footer in resume for client" matTooltipPosition="after">
+          Show Logo
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showContacts">
+       <span matTooltip="Show resume contacts for client" matTooltipPosition="after">
+          Show Contacts
+        </span>
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">
+        <span matTooltip="Show company names in resume for client" matTooltipPosition="after">
+          Show company names
+        </span>
+      </mat-checkbox>
     </div>
 
   </div>
   <div mat-dialog-actions class="actions">
-   <button  mat-stroked-button  (click)="submit()" cdkFocusInitial [disabled]="canCreate()">Save</button>
-    <button  mat-stroked-button [mat-dialog-close]="false" >Cancel</button>
+    <button mat-stroked-button (click)="submit()" cdkFocusInitial [disabled]="canCreate()"
+            matTooltip="Save" matTooltipPosition="above">Save
+    </button>
+    <button mat-stroked-button [mat-dialog-close]="false"
+            matTooltip="Cancel" matTooltipPosition="above">Cancel
+    </button>
   </div>
 
 </div>

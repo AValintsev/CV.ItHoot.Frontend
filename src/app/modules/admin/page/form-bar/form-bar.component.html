@@ -149,7 +149,7 @@
       <mat-card-content>
         <mat-chip-list>
           <mat-chip *ngFor="let skill of resume.skills" (removed)="removeSkill(skill)"
-                    (click)="openSkillDialog(skill)">
+                    (click)="openSkillDialog(skill)"  matTooltip="Edit skill" matTooltipPosition="before">
             {{skill.skillName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -157,7 +157,7 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <a mat-raised-button (click)="openSkillDialog()">
+        <a mat-raised-button (click)="openSkillDialog()" matTooltip="Create a new Skill" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </a>
       </mat-card-actions>
@@ -170,7 +170,8 @@
       <mat-card-content>
         <mat-chip-list>
           <mat-chip *ngFor="let language of resume.languages" (removed)="removeLanguage(language)"
-                    (click)="openLanguageDialog(language)">
+                    (click)="openLanguageDialog(language)"
+                    matTooltip="Edit language" matTooltipPosition="before">
             {{language.languageName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -178,7 +179,7 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <a mat-raised-button (click)="openLanguageDialog()">
+        <a mat-raised-button (click)="openLanguageDialog()"  matTooltip="Create a new language" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </a>
       </mat-card-actions>
@@ -191,7 +192,8 @@
       <mat-card-content>
         <mat-chip-list>
           <mat-chip *ngFor="let education of resume.educations" (removed)="removeEducation(education)"
-                    (click)="openEducationDialog(education)">
+                    (click)="openEducationDialog(education)"
+                    matTooltip="Edit education" matTooltipPosition="before">
             {{education.institutionName}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -199,7 +201,7 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <a mat-raised-button (click)="openEducationDialog()">
+        <a mat-raised-button (click)="openEducationDialog()"  matTooltip="Create a new education" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </a>
       </mat-card-actions>
@@ -212,7 +214,8 @@
       <mat-card-content>
         <mat-chip-list>
           <mat-chip *ngFor="let experience of resume.experiences" (removed)="removeExperience(experience)"
-                    (click)="openExperienceDialog(experience)">
+                    (click)="openExperienceDialog(experience)"
+                    matTooltip="Edit experience" matTooltipPosition="before">
             {{experience.company}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -220,7 +223,7 @@
       </mat-card-content>
       <mat-divider inset></mat-divider>
       <mat-card-actions>
-        <a mat-raised-button (click)="openExperienceDialog()">
+        <a mat-raised-button (click)="openExperienceDialog()"  matTooltip="Create a new experience" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </a>
       </mat-card-actions>

@@ -9,15 +9,14 @@
             <span>
               {{proposal.client?.firstName}} {{proposal.client?.lastName}}
             </span>
-            <mat-icon matTooltip="Copy client login link" matTooltipCLass="tooltip" (click)="copyClientLink()">
-              content_copy</mat-icon>
+            <mat-icon matTooltip="Copy client login link"  (click)="copyClientLink()">content_copy</mat-icon>
           </div>
         </div>
         <div class="actions">
-          <button mat-raised-button (click)="openProposalDialog()">
+          <button mat-raised-button (click)="openProposalDialog()"  matTooltip="Proposal setting" matTooltipPosition="before">
             <mat-icon>settings</mat-icon>
           </button>
-          <button mat-raised-button (click)="openResumeDialog()">
+          <button mat-raised-button  matTooltip="Add new resume to proposal" matTooltipPosition="before" (click)="openResumeDialog()">
             <mat-icon>add</mat-icon>
           </button>
         </div>
