@@ -89,17 +89,25 @@
         justify-content: center;
         gap: 10px;
 
-        svg{
-          path{
-            fill: #E3E3E3;
-          }
+        mat-icon{
+          color: #E3E3E3;
         }
 
-        svg.selected{
-          path{
-            fill: #04040B;
-          }
+        mat-icon.selected{
+          color: #04040B;
         }
+
+        //svg{
+        //  path{
+        //    fill: #E3E3E3;
+        //  }
+        //}
+        //
+        //svg.selected{
+        //  path{
+        //    fill: #04040B;
+        //  }
+        //}
       }
 
       .mat-cell {
