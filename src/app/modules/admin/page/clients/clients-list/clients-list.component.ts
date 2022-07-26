@@ -12,6 +12,7 @@ import {ClientDto} from 'src/app/models/clients/client-dto';
 import {ClientCreateDialogComponent} from '../client-create-dialog/client-create-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ClientUpdateDialogComponent} from '../client-update-dialog/client-update-dialog.component';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'clients-list',
@@ -20,7 +21,7 @@ import {ClientUpdateDialogComponent} from '../client-update-dialog/client-update
 })
 export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName', 'action'];
+  displayedColumns: string[] = ['action','fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName', ];
   clients: SmallClientsDto[] = [];
   searchControl = new UntypedFormControl();
 
@@ -145,6 +146,11 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.refreshTable();
       });
     });
+  }
+
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   ngOnDestroy() {

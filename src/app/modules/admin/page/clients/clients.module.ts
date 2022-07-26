@@ -1,3 +1,5 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ClientsRoutingModule} from './clients-routing.module';
@@ -21,20 +23,22 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ClientCreateDialogComponent,
     ClientUpdateDialogComponent
   ],
-    imports: [
-        CommonModule,
-        ClientsRoutingModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatSortModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDialogModule,
-        FormsModule,
-        MatTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    ClientsRoutingModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDialogModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatMenuModule,
+    MatTooltipModule
+  ]
 })
 export class ClientsModule { }

@@ -1,11 +1,10 @@
-<div [style.padding]="'20px 12px 0px 12px'" class="side-bar">
+<div [style.padding]="'0px 12px 0px 12px'" class="side-bar">
   <ol class="links">
     <li class="title-section"><span>Home</span></li>
    <!-- <li><a>
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </a></li>-->
-    <mat-divider></mat-divider>
     <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/resume" matTooltip="Go to CV list page" matTooltipPosition="before">
         <mat-icon>groups</mat-icon>
@@ -14,7 +13,7 @@
     </li>
     <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/proposals" matTooltip="Go to Proposal list page" matTooltipPosition="before">
-        <mat-icon>sports_esports</mat-icon>
+        <mat-icon>inventory</mat-icon>
         <span>Proposals</span>
       </a>
     </li>
@@ -32,7 +31,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header matTooltip="Archive" matTooltipPosition="before">
           <mat-panel-title>
-            <mat-icon>bookmark</mat-icon>
+            <mat-icon>archive</mat-icon>
             <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -68,7 +67,7 @@
         <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/complexities" matTooltip="List of complexities" matTooltipPosition="before">
           <span>Complexities</span>
         </a>
-        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/templates" matTooltip="List of templates" matTooltipPosition="before">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" routerLink="/admin/templates">
           <span>Resume templates</span>
         </a>
       </mat-expansion-panel>
@@ -76,12 +75,12 @@
 
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
       <a routerLink="/admin/builds"  matTooltip="Go to proposal builder page" matTooltipPosition="before">
-        <mat-icon>wallet</mat-icon>
+        <mat-icon>construction</mat-icon>
         <span>Proposal builder</span>
       </a>
     </li>
     <li><a routerLink="/admin/users"  matTooltip="List of users" matTooltipPosition="before">
-        <mat-icon>military_tech</mat-icon>
+        <mat-icon>manage_accounts</mat-icon>
         <span>Users</span>
       </a></li>
     <mat-divider></mat-divider>

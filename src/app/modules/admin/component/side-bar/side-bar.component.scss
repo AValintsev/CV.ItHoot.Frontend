@@ -1,3 +1,7 @@
+:host{
+  // padding-top: 2.7rem;
+
+}
 .side-bar {
   background: white;
   font-size: 1.2em;
@@ -5,9 +9,11 @@
   overflow: auto;
   overflow-x: hidden;
   height: 100%;
+    // border-top: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
 
   .links {
-    padding:0 0 24px 0;
+    padding: 0 0 24px 0;
     display: grid;
     gap: 8px;
     margin: 0;
@@ -108,8 +114,10 @@
   background-color: #3A57E8;
   color: #fff;
 }
-.setting,.archive{
-  a{
+
+.setting,
+.archive {
+  a {
     padding-left: 6.5rem !important;
   }
 }
