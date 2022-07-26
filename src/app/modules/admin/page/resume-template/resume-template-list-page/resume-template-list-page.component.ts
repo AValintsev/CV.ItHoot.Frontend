@@ -13,7 +13,7 @@ import { saveAs } from 'file-saver';
 export class ResumeTemplateListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   // displayedColumns: string[] = ['id', 'templateName', 'action'];
-  displayedColumns: string[] = [ 'templateName', 'action'];
+  displayedColumns: string[] = [ 'action','templateName'];
   templates!: ResumeTemplateDto[];
 
   constructor(private resumeService: ResumeService) {

@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {ResumeTemplateRoutingModule} from "./resume-template-routing.module";
 import {RouterModule} from "@angular/router";
@@ -38,18 +39,17 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatDialogModule,
         ResumeTemplateBuilderModule,
         MatTooltipModule,
+        MatMenuModule
     ],
   exports: [
   ],
-  declarations: [
 
+  declarations: [
     ResumeTemplateListPageComponent,
     ResumeTemplatePageComponent,
     ResumeTemplateEditPageComponent,
     ResumeTemplateCreatePageComponent,
-    PreviewDialogComponent
-  ]
+    PreviewDialogComponent,
+  ],
 })
-
-export class ResumeTemplateModule {
-}
+export class ResumeTemplateModule {}

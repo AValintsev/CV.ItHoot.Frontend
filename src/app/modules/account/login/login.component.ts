@@ -1,5 +1,5 @@
 import {takeUntil} from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ElementRef, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
@@ -13,7 +13,7 @@ import {LoadingService} from 'src/app/services/loading.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit,OnDestroy,AfterContentChecked {
 private destroy$ = new Subject<boolean>();
 public loading$!: Observable<boolean>
   errors!: string[];
@@ -26,7 +26,8 @@ public loading$!: Observable<boolean>
               private activatedRoute: ActivatedRoute,
               private snackbarService: SnackBarService,
               private loadingService: LoadingService,
-              private el:ElementRef
+              private el:ElementRef,
+              private cdr:ChangeDetectorRef
   ) {}
   changeVisiblePassword(event:Event){
     event.stopPropagation()
@@ -55,6 +56,11 @@ public loading$!: Observable<boolean>
         }
       })
     }
+  }
+
+  ngAfterContentChecked() {
+    this.loading$ = this.loadingService.isLoading$;
+    this.cdr.detectChanges();
   }
 
     ngOnDestroy(){
