@@ -8,13 +8,13 @@
     <!-- <mat-divider></mat-divider>  -->
     <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/resume">
-        <mat-icon>groups</mat-icon>
-        <span>CV list</span>
+        <mat-icon>list</mat-icon>
+        <span>CVs list</span>
       </a>
     </li>
     <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/proposals">
-        <mat-icon>sports_esports</mat-icon>
+        <mat-icon>inventory</mat-icon>
         <span>Proposals</span>
       </a>
     </li>
@@ -32,7 +32,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon>bookmark</mat-icon>
+            <mat-icon>archive</mat-icon>
             <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -79,12 +79,12 @@
 
     <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
       <a routerLink="/admin/builds">
-        <mat-icon>wallet</mat-icon>
+        <mat-icon>construction</mat-icon>
         <span>Proposal builder</span>
       </a>
     </li>
     <li><a routerLink="/admin/users">
-        <mat-icon>military_tech</mat-icon>
+        <mat-icon>manage_accounts</mat-icon>
         <span>Users</span>
       </a></li>
     <mat-divider></mat-divider>
