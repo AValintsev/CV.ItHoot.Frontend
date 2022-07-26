@@ -14,6 +14,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSelect} from '@angular/material/select';
 import {UserDto} from 'src/app/models/user-dto';
 import {UserService} from "src/app/services/user.service";
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 
 interface ProposalStatusItem  {
@@ -29,7 +30,7 @@ interface ProposalStatusItem  {
 
 export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
+  displayedColumns: string[] = ['action','id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', ];
 
   searchControl = new UntypedFormControl();
 
@@ -213,6 +214,10 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );
+  }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   ngOnDestroy() {

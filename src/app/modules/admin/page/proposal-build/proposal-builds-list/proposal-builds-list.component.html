@@ -1,65 +1,79 @@
 <div class="proposal-build-list">
   <div class="table-page">
+    <div class="table-wrapper">
     <div class="title-section">
       <h1>Proposal builder</h1>
       <button mat-raised-button (click)="openProposalBuildDialog()">
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <table mat-table [dataSource]="proposalBuilds" class="mat-elevation-z8">
+    <div>
+      <!-- Sticky Columns: -->
+      <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup"
+        class="example-sticky-toggle-group">
+        <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="true" [value]="item"></mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <section class="section-table">
+      <table mat-table [dataSource]="proposalBuilds" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="projectType">
-        <th mat-header-cell *matHeaderCellDef>Project type</th>
-        <td mat-cell *matCellDef="let proposalBuild">{{proposalBuild?.projectTypeName}}</td>
-      </ng-container>
+        <ng-container [sticky]="isSticky(stickyColumns, 'action')" matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let proposalBuild">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu class="menu-list" #menu="matMenu">
+              <a mat-menu-item (click)="openProposalBuildDialog(proposalBuild)">
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </a>
+            </mat-menu>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="complexity">
-        <th mat-header-cell *matHeaderCellDef>Complexity</th>
-        <td mat-cell *matCellDef="let proposalBuild"> {{proposalBuild?.complexity?.complexityName}} </td>
-      </ng-container>
+        <ng-container matColumnDef="projectType">
+          <th mat-header-cell *matHeaderCellDef>Project type</th>
+          <td mat-cell *matCellDef="let proposalBuild">{{proposalBuild?.projectTypeName}}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="positions">
-        <th mat-header-cell *matHeaderCellDef>Positions</th>
-        <td mat-cell *matCellDef="let proposalBuild">
-          <span *ngFor="let position of proposalBuild?.positions">
-            {{position?.positionName}}
-          </span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="complexity">
+          <th mat-header-cell *matHeaderCellDef>Complexity</th>
+          <td mat-cell *matCellDef="let proposalBuild"> {{proposalBuild?.complexity?.complexityName}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="proposalSize">
-        <th mat-header-cell *matHeaderCellDef>Proposal Size</th>
-        <td mat-cell *matCellDef="let proposalBuild"> {{getProposalSize(proposalBuild?.positions)}} </td>
-      </ng-container>
+        <ng-container matColumnDef="positions">
+          <th mat-header-cell *matHeaderCellDef>Positions</th>
+          <td mat-cell *matCellDef="let proposalBuild">
+            <span *ngFor="let position of proposalBuild?.positions">
+              {{position?.positionName}}
+            </span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="estimation">
-        <th mat-header-cell *matHeaderCellDef>Estimation</th>
-        <td mat-cell *matCellDef="let proposalBuild">
-          <span *ngIf="proposalBuild.estimation == 1">{{proposalBuild.estimation}} day</span>
-          <span *ngIf="proposalBuild.estimation > 1">{{proposalBuild.estimation}} days</span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="proposalSize">
+          <th mat-header-cell *matHeaderCellDef>Proposal Size</th>
+          <td mat-cell *matCellDef="let proposalBuild"> {{getProposalSize(proposalBuild?.positions)}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let proposalBuild">
-          Empty
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="estimation">
+          <th mat-header-cell *matHeaderCellDef>Estimation</th>
+          <td mat-cell *matCellDef="let proposalBuild">
+            <span *ngIf="proposalBuild.estimation == 1">{{proposalBuild.estimation}} day</span>
+            <span *ngIf="proposalBuild.estimation > 1">{{proposalBuild.estimation}} days</span>
+          </td>
+        </ng-container>
 
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let proposalBuild">
-          <div class="action-wrapper">
-            <button class="edit" (click)="openProposalBuildDialog(proposalBuild)">Edit</button>
-          </div>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let proposalBuild">
+            Empty
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </section>
+  </div>
   </div>
 </div>

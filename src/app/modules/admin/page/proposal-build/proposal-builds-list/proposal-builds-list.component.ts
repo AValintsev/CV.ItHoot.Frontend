@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ProposalBuildDialogComponent} from '../proposal-build-dialog/proposal-build-dialog.component';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'proposal-builds-list',
@@ -18,13 +19,13 @@ import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/p
 export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   displayedColumns: string[] = [
+    'action',
     'projectType',
     'complexity',
     'positions',
     'proposalSize',
     'estimation',
     'status',
-    'action',
   ];
 
   proposalBuilds: ProposalBuildDto[] = [];
@@ -109,6 +110,11 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
           });
     });
   }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
+  }
+
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

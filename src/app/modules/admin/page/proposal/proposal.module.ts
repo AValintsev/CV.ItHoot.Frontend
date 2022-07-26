@@ -1,3 +1,4 @@
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
   ModalShowTemplateComponent
 } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
@@ -71,7 +72,6 @@ import {PipesModule} from "../../../shared/directives/pipes.module";
     MatMenuModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     MatDialogModule,
@@ -88,6 +88,8 @@ import {PipesModule} from "../../../shared/directives/pipes.module";
     DirectivesModule,
     FormBarModule,
     ResumeTemplateBuilderModule,
+    MatButtonToggleModule,
+    MatButtonModule,
   ],
   exports: [
     ProposalListPageComponent,

@@ -1,3 +1,5 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ClientsRoutingModule} from './clients-routing.module';
@@ -32,7 +34,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule,
+    MatMenuModule
   ]
 })
 export class ClientsModule { }
