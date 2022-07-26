@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from '@angular/core';
 import {ProposalBuildRoutingModule} from './proposal-build-routing.module';
 import {ProposalBuildsListComponent} from './proposal-builds-list/proposal-builds-list.component';
@@ -20,6 +21,8 @@ import {
   ProposalBuildPositionDialogComponent
 } from './proposal-build-position-dialog/proposal-build-position-dialog.component';
 import {DirectivesModule} from 'src/app/modules/shared/directives/directives.module';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import {DirectivesModule} from 'src/app/modules/shared/directives/directives.mod
     MatCardModule,
     MatDividerModule,
     MatChipsModule,
-    DirectivesModule
+    DirectivesModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatMenuModule
   ],
   exports: [],
   declarations: [

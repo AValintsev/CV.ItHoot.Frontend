@@ -14,13 +14,14 @@
       <input type="file" formControlName="docxFile"
         accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         (change)="onFileChange($event)" />
-      <mat-error *ngIf="templateForm.controls['docxFile'].invalid && templateForm.controls['docxFile'].touched">Docx
-        file is required or file type is wrong</mat-error>
+      <mat-error *ngIf="templateForm.controls['docxFile'].invalid && templateForm.controls['docxFile'].touched">
+        Docx file is required or file type is wrong</mat-error>
     </div>
-    <a href="/assets/files/docx_template_instructions.pdf" target="_blank" download="File.pdf" download="docx_template_instructions.pdf">Download instruction to create docx
-      template</a>
 
-    <div style="height: 50vh">
+    <a href="/assets/files/docx_template_instructions.pdf" target="_blank" download="docx_template_instructions.pdf">
+      Download instruction to create docx template</a>
+
+    <div style="height: 55vh; overflow: hidden">
       <mat-label>HTML template</mat-label>
       <ngx-monaco-editor style="height: 100%" [options]="editorOptions" formControlName="html"
         (onInit)="onInit($event)"></ngx-monaco-editor>
@@ -31,8 +32,10 @@
     <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
 
     <div mat-dialog-actions class="actions">
-      <a mat-raised-button (click)="viewTemplate()">View template</a>
-      <button mat-raised-button cdkFocusInitial [disabled]="templateForm.invalid">Create template</button>
+      <a mat-flat-button color="primary" (click)="viewTemplate()" matTooltip="View template" matTooltipPosition="above">
+        View template</a>
+      <button mat-flat-button color="primary" cdkFocusInitial [disabled]="templateForm.invalid"
+              matTooltip="Create template" matTooltipPosition="above">Create template</button>
     </div>
 
   </form>

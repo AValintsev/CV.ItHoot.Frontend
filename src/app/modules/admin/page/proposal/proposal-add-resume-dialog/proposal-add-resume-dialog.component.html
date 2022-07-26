@@ -22,7 +22,7 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-raised-button color="primary" cdkFocusInitial (click)="click()" [disabled]="canAdd()">Save</button>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false" >Cancel</button>
+    <button mat-stroked-button cdkFocusInitial (click)="click()" [disabled]="canAdd()" matTooltip="Save" matTooltipPosition="above">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false" matTooltip="Cancel" matTooltipPosition="above">Cancel</button>
   </div>
 </div>

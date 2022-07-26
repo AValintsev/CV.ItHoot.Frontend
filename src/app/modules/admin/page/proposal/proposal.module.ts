@@ -1,7 +1,7 @@
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
   ModalShowTemplateComponent
 } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
-import {PdfFooterModule} from './../../../shared/pdf-footer/pdf-footer.module';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {NgModule} from '@angular/core';
 import {ProposalRoutingModule} from "./proposal-routing.module";
@@ -33,7 +33,6 @@ import {MatMenuModule} from "@angular/material/menu";
 import {
   ProposalResumeDownloadPageComponent
 } from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
-import {DateUtcPipe} from "../../../../helpers/date.pipe";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -46,6 +45,7 @@ import {ResumePageComponent} from './page/resume-page/resume-page.component';
 import {ResumeEditPageComponent} from './page/resume-edite-page/resume-edit-page.component';
 import {FormBarModule} from '../form-bar/form-bar.module';
 import {PipesModule} from "../../../shared/directives/pipes.module";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   imports: [
@@ -88,6 +88,9 @@ import {PipesModule} from "../../../shared/directives/pipes.module";
     DirectivesModule,
     FormBarModule,
     ResumeTemplateBuilderModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatButtonModule,
   ],
   exports: [
     ProposalListPageComponent,

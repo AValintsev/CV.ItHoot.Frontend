@@ -3,7 +3,7 @@
     <div class="table-page">
       <div class="title-section">
         <h1>Templates</h1>
-        <a mat-raised-button routerLink="/admin/templates/create">
+        <a mat-raised-button routerLink="/admin/templates/create" matTooltip="Create a new template" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
         </a>
       </div>
@@ -19,9 +19,12 @@
           <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
           <td mat-cell *matCellDef="let template">
             <div class="action-wrapper">
-              <button class="open" routerLink='/admin/templates/{{template.templateId}}'>Open</button>
-              <button class="edit" routerLink='/admin/templates/edit/{{template.templateId}}'>Edit</button>
-              <button class="docx" (click)="downloadDocxTemplate(template)">Open docx template</button>
+              <button class="open" routerLink='/admin/templates/{{template.templateId}}'
+                      matTooltip="View template" matTooltipPosition="before">Open</button>
+              <button class="edit" routerLink='/admin/templates/edit/{{template.templateId}}'
+                      matTooltip="Edit template" matTooltipPosition="before">Edit</button>
+              <button class="docx" (click)="downloadDocxTemplate(template)"
+                      matTooltip="Get docx template" matTooltipPosition="before">Open docx template</button>
             </div>
           </td>
         </ng-container>

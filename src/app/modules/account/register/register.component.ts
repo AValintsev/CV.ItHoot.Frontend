@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.loading$ = this.loadingService.isLoading$
     this.registerForm = new UntypedFormGroup({
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
-      password: new UntypedFormControl('', [Validators.required]),
+      password: new UntypedFormControl('', [Validators.required,Validators.minLength(6)]),
     });
   }
 

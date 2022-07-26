@@ -1,8 +1,37 @@
+:host-context(.change-mode) .container {
+  transition: all 0.3s ease;
+
+  .template-wrapper {
+    order: 2;
+  }
+
+  .create-page {
+    order: 1;
+  }
+}
+
+.template-wrapper {
+  @media (max-width: 1430px) {
+    max-width: 57rem;
+    width: 100%;
+  }
+}
+
 .container {
   display: flex;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif !important;
   gap: 2rem;
   padding: 15px;
   justify-content: center;
+
+  .template-wrapper {
+    order: 1;
+  }
+
+  .create-page {
+    order: 2;
+  }
 
   .left-bar {
     overflow: hidden auto;
@@ -15,14 +44,250 @@
 
     .action {
       margin: 1rem 0;
-        display: flex;
-        justify-content: flex-end;
-        button{
-          width: 10rem;
-          &:first-child{
-            margin-right: 1rem;
-          }
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        width: 10rem;
+
+        &:first-child {
+          margin-right: 1rem;
         }
       }
+    }
+  }
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+:host::ng-deep {
+  .template-wrapper {
+
+    #resume {
+      @media screen and (max-width: 1151px) {
+        max-width: 100%;
+        zoom: normal;
+      }
+
+      @media screen and (max-width: 754px) {
+        max-width: 100%;
+        zoom: .95;
+
+        .first-name {
+          font-size: 2.8rem;
+        }
+
+        .last-name {
+          font-size: 2.8rem;
+        }
+      }
+
+      // @media screen and (max-width: 700px) {
+      //   max-width: 100%;
+      //   zoom: .9;
+      // }
+
+      // @media screen and (max-width: 650px) {
+      //   max-width: 100%;
+      //   zoom: .8;
+      // }
+
+      // @media screen and (max-width: 600px) {
+      //   max-width: 100%;
+      //   zoom: 0.82;
+      // }
+
+      // @media screen and (max-width: 575px) {
+      //   max-width: 100%;
+      //   zoom: 0.78;
+      // }
+
+      // @media screen and (max-width: 550px) {
+      //   max-width: 100%;
+      //   zoom: 0.74;
+      // }
+
+      // @media screen and (max-width: 520px) {
+      //   max-width: 100%;
+      //   zoom: 0.70;
+      // }
+
+      // @media screen and (max-width: 500px) {
+      //   max-width: 100%;
+      //   zoom: 0.65;
+      // }
+
+      // @media screen and (max-width: 450px) {
+      //   max-width: 100%;
+      //   zoom: 0.55;
+      // }
+    }
+  }
+
+
+  .input-group {
+    @media (max-width: 530px) {
+      &>* {
+        grid-column: 2 span;
+      }
+    }
+
+    &> :nth-child(2) {
+      grid-column: span 2;
+    }
+
+    &> :last-child {
+      grid-column: span 2;
+    }
+  }
+}
+
+:host-context(.open-side-bar--content) .container {
+  @media (max-width: 1430px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+:host-context(.open-side-bar--content) :host::ng-deep {
+  #resume {
+    @media screen and (max-width: 1430px) {
+      width: 100%;
+      zoom: normal;
+    }
+
+    @media screen and (max-width: 1000px) {
+      max-width: 100%;
+      zoom: 0.99;
+    }
+
+    @media screen and (max-width: 990px) {
+      max-width: 100%;
+      zoom: 0.98;
+    }
+
+    @media screen and (max-width: 980px) {
+      max-width: 100%;
+      zoom: 0.97;
+    }
+
+    @media screen and (max-width: 970px) {
+      max-width: 100%;
+      zoom: 0.95;
+    }
+
+    @media screen and (max-width: 950px) {
+      max-width: 100%;
+      zoom: 0.9;
+    }
+
+    @media screen and (max-width: 935px) {
+      max-width: 100%;
+      zoom: 0.88;
+    }
+
+    @media screen and (max-width: 915px) {
+      max-width: 100%;
+      zoom: 0.86;
+    }
+
+    @media screen and (max-width: 900px) {
+      max-width: 100%;
+      zoom: 0.85;
+    }
+
+    @media screen and (max-width: 850px) {
+      max-width: 100%;
+      zoom: 0.8;
+    }
+
+    @media screen and (max-width: 825px) {
+      max-width: 100%;
+      zoom: 0.75;
+    }
+
+    @media screen and (max-width: 800px) {
+      max-width: 100%;
+      zoom: 0.7;
+    }
+
+    @media screen and (max-width: 750px) {
+      max-width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 730px) {
+      max-width: 100%;
+      zoom: 0.62;
+    }
+
+    @media screen and (max-width: 700px) {
+      max-width: 100%;
+      zoom: 0.58;
+    }
+
+    @media screen and (max-width: 680px) {
+      max-width: 100%;
+      zoom: 0.53;
+    }
+
+    @media screen and (max-width: 660px) {
+      max-width: 100%;
+      zoom: 0.51;
+    }
+
+    @media screen and (max-width: 630px) {
+      max-width: 100%;
+      zoom: 0.48;
+    }
+
+    @media screen and (max-width: 600px) {
+      max-width: 100%;
+      zoom: 0.82;
+    }
+
+    @media screen and (max-width: 575px) {
+      max-width: 100%;
+      zoom: 0.78;
+    }
+
+    @media screen and (max-width: 550px) {
+      max-width: 100%;
+      zoom: 0.74;
+    }
+
+    @media screen and (max-width: 520px) {
+      max-width: 100%;
+      zoom: 0.70;
+    }
+
+    @media screen and (max-width: 500px) {
+      max-width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 450px) {
+      max-width: 100%;
+      zoom: 0.55;
+    }
+  }
+
+  .input-group {
+    @media (max-width: 800px) {
+      &>* {
+        grid-column: 2 span;
+      }
+    }
+
+    &> :nth-child(2) {
+      grid-column: span 2;
+    }
+
+    &> :last-child {
+      grid-column: span 2;
+    }
   }
 }

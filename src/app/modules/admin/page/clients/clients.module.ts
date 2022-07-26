@@ -1,3 +1,5 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ClientsRoutingModule} from './clients-routing.module';
@@ -13,6 +15,7 @@ import {ClientsListComponent} from './clients-list/clients-list.component';
 import {ClientCreateDialogComponent} from './client-create-dialog/client-create-dialog.component';
 import {ClientUpdateDialogComponent} from './client-update-dialog/client-update-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule,
+    MatMenuModule,
+    MatTooltipModule
   ]
 })
 export class ClientsModule { }

@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit,OnDestroy {
 private destroy$ = new Subject<boolean>();
 public loading$!: Observable<boolean>
   errors!: string[];
+  type="password"
+  swithPasswordVisible = true
   loginForm!: UntypedFormGroup;
 
   constructor(public accountService: AccountService,
@@ -26,7 +28,11 @@ public loading$!: Observable<boolean>
               private loadingService: LoadingService,
               private el:ElementRef
   ) {}
-
+  changeVisiblePassword(event:Event){
+    event.stopPropagation()
+    this.swithPasswordVisible=!this.swithPasswordVisible
+    this.type = this.swithPasswordVisible?"password":"text"
+  }
   ngOnInit(): void {
     this.loading$ = this.loadingService.isLoading$
     this.loginForm = new UntypedFormGroup({

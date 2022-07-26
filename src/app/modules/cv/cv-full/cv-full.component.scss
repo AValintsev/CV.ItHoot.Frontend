@@ -12,9 +12,211 @@
 
 }
 
-.fixed-btn{
+.fixed-btn {
   position: fixed;
   z-index: 3;
   right: 4rem;
   top: 10rem;
+}
+
+:host::ng-deep {
+  #resume {
+    @media screen and (max-width: 1151px) {
+      max-width: 68.5rem;
+      zoom: normal;
+    }
+
+    @media screen and (max-width: 754px) {
+      width: 100%;
+      zoom: .95;
+
+      .first-name {
+        font-size: 2.8rem;
+      }
+
+      .last-name {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      zoom: .9;
+    }
+
+    @media screen and (max-width: 650px) {
+      width: 100%;
+      zoom: .85;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      zoom: .8;
+    }
+
+    @media screen and (max-width: 550px) {
+      width: 100%;
+      zoom: .75;
+    }
+
+    @media screen and (max-width: 520px) {
+      width: 100%;
+      zoom: .72;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      zoom: .69;
+    }
+
+    @media screen and (max-width: 470px) {
+      width: 100%;
+      zoom: .67;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      zoom: .62;
+    }
+
+    @media screen and (max-width: 425px) {
+      width: 100%;
+      zoom: .6;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
+      zoom: .55;
+    }
+
+    @media screen and (max-width: 380px) {
+      width: 100%;
+      zoom: .5;
+    }
+
+  }
+}
+
+:host-context(.open-side-bar--content) :host::ng-deep {
+  #resume {
+    @media screen and (max-width: 1430px) {
+      width: 100%;
+      zoom: normal;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      zoom: 0.99;
+    }
+
+    @media screen and (max-width: 990px) {
+      width: 100%;
+      zoom: 0.98;
+    }
+
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      zoom: 0.97;
+    }
+
+    @media screen and (max-width: 970px) {
+      width: 100%;
+      zoom: 0.95;
+    }
+
+    @media screen and (max-width: 950px) {
+      width: 100%;
+      zoom: 0.9;
+    }
+
+    @media screen and (max-width: 935px) {
+      width: 100%;
+      zoom: 0.88;
+    }
+
+    @media screen and (max-width: 915px) {
+      width: 100%;
+      zoom: 0.86;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      zoom: 0.85;
+    }
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+      zoom: 0.8;
+    }
+
+    @media screen and (max-width: 825px) {
+      width: 100%;
+      zoom: 0.75;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 100%;
+      zoom: 0.7;
+    }
+
+    @media screen and (max-width: 750px) {
+      width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 730px) {
+      width: 100%;
+      zoom: 0.62;
+    }
+
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      zoom: 0.58;
+    }
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      zoom: 0.53;
+    }
+
+    @media screen and (max-width: 660px) {
+      width: 100%;
+      zoom: 0.51;
+    }
+
+    @media screen and (max-width: 630px) {
+      width: 100%;
+      zoom: 0.48;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      zoom: 0.82;
+    }
+
+    @media screen and (max-width: 575px) {
+      width: 100%;
+      zoom: 0.78;
+    }
+
+    @media screen and (max-width: 550px) {
+      width: 100%;
+      zoom: 0.74;
+    }
+
+    @media screen and (max-width: 520px) {
+      width: 100%;
+      zoom: 0.70;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      zoom: 0.55;
+    }
+  }
 }

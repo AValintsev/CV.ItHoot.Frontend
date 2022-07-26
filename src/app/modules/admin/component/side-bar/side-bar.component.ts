@@ -1,25 +1,14 @@
-import {Subject} from 'rxjs';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'cv-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
 })
-export class SideBarComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+export class SideBarComponent implements OnInit {
  @Input() toggle = true
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
-  // settingOpened(): boolean {
-  //   return this.router.url === '/home/skills' || this.router.url === '/home/languages';
-  // }
 
-
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
-  }
 }

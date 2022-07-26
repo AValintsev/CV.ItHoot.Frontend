@@ -42,15 +42,50 @@
     </mat-form-field>
 
     <div class="checkbox-section">
-      <mat-checkbox [(ngModel)]="proposal.isIncognito">Is Incognito</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showLogo">Show Logo</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showContacts">Show Contacts</mat-checkbox>
-      <mat-checkbox [(ngModel)]="proposal.showCompanyNames">Show company names inside resume</mat-checkbox>
+      <div>
+        <mat-icon *ngIf="proposal.showLogo">image</mat-icon>
+        <mat-icon *ngIf="!proposal.showLogo">hide_image</mat-icon>
+        <mat-slide-toggle [(ngModel)]="proposal.showLogo">
+         <span matTooltip="Show footer in resume for client" matTooltipPosition="after">
+          Show Logo
+        </span>
+        </mat-slide-toggle>
+      </div>
+      <div>
+        <mat-icon *ngIf="proposal.showContacts">face</mat-icon>
+        <mat-icon *ngIf="!proposal.showContacts">face_retouching_off</mat-icon>
+        <mat-slide-toggle [(ngModel)]="proposal.showContacts">
+       <span matTooltip="Show resume contacts for client" matTooltipPosition="after">
+          Show Contacts
+        </span>
+        </mat-slide-toggle>
+      </div>
+      <div>
+        <mat-icon *ngIf="proposal.showCompanyNames">account_circle</mat-icon>
+        <mat-icon *ngIf="!proposal.showCompanyNames">no_accounts</mat-icon>
+        <mat-slide-toggle [(ngModel)]="proposal.showCompanyNames">
+        <span matTooltip="Show company names in resume for client" matTooltipPosition="after">
+          Show company names
+        </span>
+        </mat-slide-toggle>
+      </div>
+
+      <div>
+        <mat-icon *ngIf="!proposal.isIncognito">visibility</mat-icon>
+        <mat-icon *ngIf="proposal.isIncognito">visibility_off</mat-icon>
+        <mat-slide-toggle [(ngModel)]="proposal.isIncognito">
+        <span matTooltip="Hiding last name in resume for client" matTooltipPosition="after">
+          Incognito
+        </span>
+        </mat-slide-toggle>
+      </div>
     </div>
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-raised-button color="primary" cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()">Save</button>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false" >Cancel</button>
+    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="proposal" [disabled]="canUpdate()"
+            matTooltip="Save" matTooltipPosition="above">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false"
+            matTooltip="Cancel" matTooltipPosition="above">Cancel</button>
   </div>
 </div>

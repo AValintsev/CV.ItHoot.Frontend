@@ -28,7 +28,8 @@
     </mat-form-field>
 
     <div class="text-editor">
-      <quill-editor [modules]="modules" formControlName="description" [styles]="{height: '200px'}" placeholder="Description">
+      <quill-editor [modules]="modules" formControlName="description" [styles]="{height: '200px',width:'596px'}"
+        placeholder="Description">
       </quill-editor>
     </div>
 
@@ -41,9 +42,9 @@
       <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp, 'startDate')"
         panelClass="example-month-picker">
       </mat-datepicker>
-          <mat-error *ngIf="educationForm.controls['startDate'].errors?.['required']">
-            Enter date
-          </mat-error>
+      <mat-error *ngIf="educationForm.controls['startDate'].errors?.['required']">
+        Enter date
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter end of education</mat-label>
@@ -53,17 +54,17 @@
       <mat-datepicker #dp1 startView="multi-year" (monthSelected)="setMonthAndYear($event, dp1,'endDate')"
         panelClass="example-month-picker">
       </mat-datepicker>
-          <mat-error *ngIf="educationForm.controls['endDate'].errors?.['incorrectDate']">
-            Incorrect date
-          </mat-error>
-          <mat-error *ngIf="educationForm.controls['endDate'].errors?.['required']">
-            Enter date
-          </mat-error>
+      <mat-error *ngIf="educationForm.controls['endDate'].errors?.['incorrectDate']">
+        Incorrect date
+      </mat-error>
+      <mat-error *ngIf="educationForm.controls['endDate'].errors?.['required']">
+        Enter date
+      </mat-error>
     </mat-form-field>
 
     <div mat-dialog-actions class="actions">
-      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Create">Create</button>
-      <button mat-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+          <button mat-stroked-button [mat-dialog-close]="educationForm.value" [disabled]="!educationForm.valid" matTooltip="Save">Save</button>
+          <button mat-stroked-button [mat-dialog-close]="false" matTooltip="Cancel">Cancel</button>
     </div>
   </div>
 </div>

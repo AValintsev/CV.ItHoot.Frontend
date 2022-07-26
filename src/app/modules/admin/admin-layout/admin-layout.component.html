@@ -1,19 +1,14 @@
+<cv-header></cv-header>
 <div class="page">
-  <mat-toolbar>
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened"> menu</mat-icon>
-      <mat-icon *ngIf="sidenav.opened"> close</mat-icon>
-    </button>
-    <cv-header class="header"></cv-header>
-  </mat-toolbar>
-  <mat-sidenav-container [@.disabled]="true">
-    <mat-sidenav #sidenav="matSidenav">
-      <cv-side-bar class="side-bar"></cv-side-bar>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <cv-side-bar [class.open]="toggle"></cv-side-bar>
+  <div [class.open-menu]="toggle" (click)="sideBarToggler()" class="menu-burger__side-bar">
+    <div class="menu-burger__side-bar--inner"  matTooltip="{{toggle ? 'Hide menu' : 'Show menu'}}">
+      <mat-icon>arrow_back_ios_new</mat-icon>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="page-content__inner">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

@@ -31,14 +31,14 @@ export class CvCreatePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setHeaderBtn(['back', 'home', 'change-position'])
     this.validateForm();
     this.resumeCreateDto.experiences = [];
     this.resumeCreateDto.skills = [];
     this.resumeCreateDto.educations = [];
     this.resumeCreateDto.languages = [];
     this.changeFormDate()
-    this.getFieldDate()
-    this.setHeaderBtn(['back', 'home'])
+    this.getFieldDate()  
   }
 
   setHeaderBtn(params:string[]){

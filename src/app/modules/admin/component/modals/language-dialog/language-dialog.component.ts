@@ -23,7 +23,7 @@ export class LanguageDialog implements OnInit, OnDestroy {
   @ViewChild('input') input:any;
 
   ngOnInit() {
-    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+    setTimeout(()=>{
       this.input.nativeElement.focus();
     },300);
   }

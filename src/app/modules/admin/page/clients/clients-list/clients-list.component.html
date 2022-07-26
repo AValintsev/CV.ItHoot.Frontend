@@ -1,81 +1,102 @@
-<div class="resume-list">
-    <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="rate-limit-reached" *ngIf="isRateLimitReached">
-        Database rate limit has been reached. It will be reset in one minute.
-      </div>
-    </div>
-    <div class="table-wrapper">
-      <div class="title-section">
-        <div class="left-block">
-          <h1>Clients</h1>
-          <div class="filter-block">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Search...</mat-label>
-              <input type="tel" matInput placeholder="" [formControl]="searchControl">
-              <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-          </div>
-        </div>            
-        <button mat-raised-button (click)="createClientDialog()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <table mat-table [dataSource]="clients" class="mat-elevation-z8"
-             matSort matSortActive="" matSortDirection="">
-  
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
-          <td mat-cell *matCellDef="let client">
-            {{client.fullName}}
-          </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let client">{{client.email}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="phoneNumber">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-          <td mat-cell *matCellDef="let client">{{client.phoneNumber}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="site">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
-          <td mat-cell *matCellDef="let client">{{client.site}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="proposals">
-          <th mat-header-cell *matHeaderCellDef>Proposals</th>
-          <td mat-cell *matCellDef="let client">{{client.proposals}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="contacts">
-            <th mat-header-cell *matHeaderCellDef>Other contacts</th>
-            <td mat-cell *matCellDef="let client">{{client.contacts}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="companyName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Company name</th>
-            <td mat-cell *matCellDef="let client">{{client.companyName}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
-          <td mat-cell *matCellDef="let client">
-            <div class="action-wrapper">
-              <button class="edit admin-btn" (click)="updateClientDialog(client.id)">Edit</button>
-            </div>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-  
-      <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
-    </div>
-  
+<div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+    Database rate limit has been reached. It will be reset in one minute.
   </div>
-  
+</div>
+<div class="table-wrapper">
+  <div class="title-section">
+    <div class="left-block">
+      <h1>Clients</h1>
+      <div class="filter-block">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Search...</mat-label>
+          <input type="tel" matInput placeholder="" [formControl]="searchControl">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client" matTooltipPosition="below">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div>
+  <!-- Sticky Columns: -->
+  <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup"
+                           class="example-sticky-toggle-group">
+    <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="true" [value]="item"></mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<section class="section-table">
+  <table mat-table [dataSource]="clients" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Sort by full name" matTooltipPosition="above">
+        Client
+      </th>
+      <td mat-cell *matCellDef="let client">
+        {{client.fullName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Sort by email" matTooltipPosition="above">
+        Email
+      </th>
+      <td mat-cell *matCellDef="let client">{{client.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Sort by phone" matTooltipPosition="above">
+        Phone
+      </th>
+      <td mat-cell *matCellDef="let client">{{client.phoneNumber}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="site">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Sort by site" matTooltipPosition="above">Site
+      </th>
+      <td mat-cell *matCellDef="let client">{{client.site}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="proposals">
+      <th mat-header-cell *matHeaderCellDef>Proposals</th>
+      <td mat-cell *matCellDef="let client">{{client.proposals}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="contacts">
+      <th mat-header-cell *matHeaderCellDef>Other contacts</th>
+      <td mat-cell *matCellDef="let client">{{client.contacts}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Sort by company" matTooltipPosition="above">
+        Company name
+      </th>
+      <td mat-cell *matCellDef="let client">{{client.companyName}}</td>
+    </ng-container>
+
+    <ng-container [sticky]="isSticky(stickyColumns, 'action')" matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="th-action"></th>
+      <td mat-cell *matCellDef="let client">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu class="menu-list" #menu="matMenu">
+          <a mat-menu-item (click)="updateClientDialog(client.id)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </a>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
+
+
+</section>

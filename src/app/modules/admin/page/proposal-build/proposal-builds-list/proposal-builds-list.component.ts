@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalBuildPositionDto} from '../../../../../models/proposal-build/proposal-build-position-dto';
@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ProposalBuildDialogComponent} from '../proposal-build-dialog/proposal-build-dialog.component';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'proposal-builds-list',
@@ -18,13 +19,13 @@ import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/p
 export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   displayedColumns: string[] = [
+    'action',
     'projectType',
     'complexity',
     'positions',
     'proposalSize',
     'estimation',
     'status',
-    'action',
   ];
 
   proposalBuilds: ProposalBuildDto[] = [];
@@ -32,7 +33,8 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   constructor(
     private proposalBuildService: ProposalBuildService,
     public dialog: MatDialog,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private cdr: ChangeDetectorRef
   ) {
     proposalBuildService.getAllProposalBuilds().pipe(
       takeUntil(this.destroy$)
@@ -42,6 +44,9 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {}
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 
   getProposalSize(positions: ProposalBuildPositionDto[]): number {
     let size = 0;
@@ -109,6 +114,11 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
           });
     });
   }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
+  }
+
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

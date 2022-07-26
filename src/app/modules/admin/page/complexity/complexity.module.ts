@@ -11,24 +11,26 @@ import {CommonModule} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {ComplexityRoutingModule} from "./complexity-routing.module";
 import {DeleteModalService} from "src/app/services/delete-modal.service";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
     ComplexityDialogComponent,
     ComplexityPageComponent
   ],
-  imports: [
+    imports: [
 
-    ComplexityRoutingModule,
-    MatIconModule,
-    MatTableModule,
-    MatButtonModule,
-    MatDialogModule,
-    FormsModule,
-    MatFormFieldModule,
-    CommonModule,
-    MatInputModule,
-  ],
+        ComplexityRoutingModule,
+        MatIconModule,
+        MatTableModule,
+        MatButtonModule,
+        MatDialogModule,
+        FormsModule,
+        MatFormFieldModule,
+        CommonModule,
+        MatInputModule,
+        MatTooltipModule,
+    ],
   providers:[DeleteModalService]
 })
 export class ComplexityModule {

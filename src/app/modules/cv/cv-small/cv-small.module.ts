@@ -10,22 +10,24 @@ import {CvSmallComponent} from './cv-small.component';
 import {NgModule} from '@angular/core';
 import {ModalDeleteUserModule} from '../../shared/modals/modal-delete-user/modal-delete-user.module';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
 	declarations: [CvSmallComponent],
-	imports: [
-		CommonModule,
-		MatCardModule,
-		RouterModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatButtonModule,
-		ModalDeleteUserModule,
-		MatDialogModule,
-		MatIconModule,
-		MatMenuModule,
-		MatDividerModule
-	],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        ModalDeleteUserModule,
+        MatDialogModule,
+        MatIconModule,
+        MatMenuModule,
+        MatDividerModule,
+        MatTooltipModule
+    ],
 	exports: [CvSmallComponent],
 })
 

@@ -28,6 +28,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
 import {ResumeTemplateBuilderModule} from "../shared/resume-template-builder/resume-template-builder.module";
 import {QuillModule} from "ngx-quill";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -44,52 +45,31 @@ import {QuillModule} from "ngx-quill";
     FormBarComponent
 
   ],
-  imports: [
-    CommonModule,
-    CvRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatChipsModule,
-    MatIconModule,
-    MatDividerModule,
-    MatDatepickerModule,
-    MatButtonToggleModule,
-    MatOptionModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    CvSmallModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    CommonModule,
-    CvRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatChipsModule,
-    MatIconModule,
-    MatDividerModule,
-    MatDatepickerModule,
-    MatButtonToggleModule,
-    MatOptionModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    CvSmallModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    ResumeTemplateBuilderModule,
-    QuillModule
-  ]
+    imports: [
+        CommonModule,
+        CvRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatChipsModule,
+        MatIconModule,
+        MatDividerModule,
+        MatDatepickerModule,
+        MatButtonToggleModule,
+        MatOptionModule,
+        MatAutocompleteModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        CvSmallModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        ResumeTemplateBuilderModule,
+        QuillModule,
+        MatTooltipModule
+    ]
 })
 export class CvModule {
 }

@@ -308,7 +308,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(ExperienceDialog, {
-      width: '700px',
+      width: '650px',
       autoFocus: false,
       data: {type: dialogType, data: data},
     });
@@ -316,7 +316,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((experience: ExperienceDto) => {
-      if (experience == null) return;
+      if (!experience) return;
       let experienceDto = this.resume.experiences.find(
         (e) => e.id == experience.id
       );

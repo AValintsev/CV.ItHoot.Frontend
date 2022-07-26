@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ProposalService} from "src/app/services/proposal.service";
 import {SmallProposalDto} from "src/app/models/proposal/small-proposal-dto";
 import {ProposalCreateDialogComponent} from "../proposal-create-dialog/proposal-create-dialog.component";
@@ -14,6 +24,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSelect} from '@angular/material/select';
 import {UserDto} from 'src/app/models/user-dto';
 import {UserService} from "src/app/services/user.service";
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 
 interface ProposalStatusItem  {
@@ -29,7 +40,7 @@ interface ProposalStatusItem  {
 
 export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', 'action'];
+  displayedColumns: string[] = ['action','id', 'proposalName', 'clientUserName', 'position', 'proposalSize', 'configuration', 'lastUpdated', 'createdUserName', 'statusProposal', ];
 
   searchControl = new UntypedFormControl();
 
@@ -62,8 +73,8 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private proposalService: ProposalService,
               public dialog: MatDialog,
-              private userService: UserService,) {
-  }
+              private userService: UserService,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.userService.getUsersByRole('client')
@@ -114,6 +125,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
       this.setInitialValue(this.filteredStatusesMulti, this.statusMultiSelect);
+     this.cdr.detectChanges();
   }
 
   openProposalDialog(): void {
@@ -213,6 +225,10 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
     filteredMulti.next(
       list.filter(item => item[filterFieldName].toLowerCase().indexOf(search) > -1)
     );
+  }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   ngOnDestroy() {

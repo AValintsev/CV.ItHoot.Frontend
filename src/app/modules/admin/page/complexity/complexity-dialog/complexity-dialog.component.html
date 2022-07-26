@@ -10,8 +10,8 @@
 
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-raised-button color="primary" [mat-dialog-close]="complexity" cdkFocusInitial [disabled]="!canCreate()" >Save</button>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false">Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="complexity" cdkFocusInitial [disabled]="!canCreate()" matTooltip="Save" matTooltipPosition="before">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false" matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
   </div>
 </div>
 

@@ -1,6 +1,16 @@
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild,} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
@@ -21,6 +31,7 @@ import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums
 import {ClientDto} from "../../../../../models/clients/client-dto";
 import {ClientsService} from "../../../../../services/clients.service";
 import {SmallClientsDto} from "../../../../../models/clients/small-clients-dto";
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -71,7 +82,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private accountService: AccountService,
     private positionService: PositionService,
     private skillService: SkillService,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    private cdr: ChangeDetectorRef
   ) {
 
 
@@ -145,6 +157,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
+  }
+
   ngAfterViewInit() {
     // If the user changes the sort order, search or filters, reset back to the first page.
     merge(
@@ -175,6 +191,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
     this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
     this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
+
+    this.cdr.detectChanges();
   }
 
   deleteResume(resume: SmallResumeDto): void {
@@ -285,6 +303,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAvailabilityStatusLabel(status: AvailabilityStatus): string | undefined {
+    if(status as number === 0){
+      return 'None';
+    }
     return AvailabilityStatusLabel.get(status);
   }
 
