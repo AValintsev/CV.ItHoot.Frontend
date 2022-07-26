@@ -35,6 +35,14 @@
   .configuration {
    display: flex;
    align-items: center;
+
+    mat-icon{
+      color: #E3E3E3;
+    }
+
+    mat-icon.selected{
+      color: #04040B;
+    }
   }
 
   .mat-sort-header-container {
