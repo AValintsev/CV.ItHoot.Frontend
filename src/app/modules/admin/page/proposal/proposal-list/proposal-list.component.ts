@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ProposalService} from "src/app/services/proposal.service";
 import {SmallProposalDto} from "src/app/models/proposal/small-proposal-dto";
 import {ProposalCreateDialogComponent} from "../proposal-create-dialog/proposal-create-dialog.component";
@@ -63,8 +73,8 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private proposalService: ProposalService,
               public dialog: MatDialog,
-              private userService: UserService,) {
-  }
+              private userService: UserService,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.userService.getUsersByRole('client')
@@ -115,6 +125,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
       this.setInitialValue(this.filteredStatusesMulti, this.statusMultiSelect);
+     this.cdr.detectChanges();
   }
 
   openProposalDialog(): void {

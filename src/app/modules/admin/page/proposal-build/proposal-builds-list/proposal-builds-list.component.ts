@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalBuildPositionDto} from '../../../../../models/proposal-build/proposal-build-position-dto';
@@ -33,7 +33,8 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   constructor(
     private proposalBuildService: ProposalBuildService,
     public dialog: MatDialog,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private cdr: ChangeDetectorRef
   ) {
     proposalBuildService.getAllProposalBuilds().pipe(
       takeUntil(this.destroy$)
@@ -43,6 +44,9 @@ export class ProposalBuildsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {}
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 
   getProposalSize(positions: ProposalBuildPositionDto[]): number {
     let size = 0;

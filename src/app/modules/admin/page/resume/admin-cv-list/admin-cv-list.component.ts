@@ -1,6 +1,16 @@
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild,} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
@@ -72,7 +82,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private accountService: AccountService,
     private positionService: PositionService,
     private skillService: SkillService,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    private cdr: ChangeDetectorRef
   ) {
 
 
@@ -180,6 +191,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
     this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
     this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
+
+    this.cdr.detectChanges();
   }
 
   deleteResume(resume: SmallResumeDto): void {

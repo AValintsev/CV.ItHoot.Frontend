@@ -1,6 +1,6 @@
 import { takeUntil } from 'rxjs/operators';
 import { fromEvent, Subject } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {
   ProposalDto,
   ProposalResumeDto,
@@ -27,13 +27,13 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu'
 export class ProposalComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   displayedColumns: string[] = [
+    'action',
     'resumeName',
     'fullName',
     'position',
     'salaryRate',
     'skills',
     'isSelected',
-    'action',
   ];
   @Input() showEditBtn = true;
   @Input() proposal!: ProposalDto;
@@ -47,7 +47,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private resumeService: ResumeService,
     private snackBarService: SnackBarService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {}

@@ -1,5 +1,5 @@
-import { SnackBarService } from './../../../../../services/snack-bar.service';
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {SnackBarService} from './../../../../../services/snack-bar.service';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {UntypedFormControl} from "@angular/forms";
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {merge, of as observableOf, Subject} from "rxjs";
@@ -12,7 +12,7 @@ import {ClientDto} from 'src/app/models/clients/client-dto';
 import {ClientCreateDialogComponent} from '../client-create-dialog/client-create-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ClientUpdateDialogComponent} from '../client-update-dialog/client-update-dialog.component';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'clients-list',
@@ -21,7 +21,7 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 })
 export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['action','fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName', ];
+  displayedColumns: string[] = ['action', 'fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName',];
   clients: SmallClientsDto[] = [];
   searchControl = new UntypedFormControl();
 
@@ -37,7 +37,8 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public clientService: ClientsService,
     public dialog: MatDialog,
-    private snackBar:SnackBarService
+    private snackBar: SnackBarService,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
@@ -77,6 +78,7 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
         }),
       )
       .subscribe(data => (this.clients = data));
+    this.cdr.detectChanges();
   }
 
   private collectAllFilters(): ClientsListFilter {
@@ -104,10 +106,10 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
 
 
-        this.searchControl.setValue("");
-        this.paginator.pageIndex = 0;
-        this.snackBar.showSuccess('Saved')
-        this.refreshTable();
+      this.searchControl.setValue("");
+      this.paginator.pageIndex = 0;
+      this.snackBar.showSuccess('Saved')
+      this.refreshTable();
     });
   }
 
@@ -142,7 +144,7 @@ export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
       dialogRef.afterClosed().subscribe((updateClient: ClientDto) => {
         if (!updateClient)
           return;
-          this.snackBar.showSuccess('Saved');
+        this.snackBar.showSuccess('Saved');
         this.refreshTable();
       });
     });

@@ -31,54 +31,6 @@
   }
 }
 
-.resume-list {
-
-  .mat-sort-header-container {
-    justify-content: center;
-  }
-
-  .table-wrapper {
-    padding: 24px;
-    padding-right: 1.5rem;
-    padding-top: 0;
-    box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
-    background: white;
-
-
-
-    .title-section {
-      button {
-        max-height: 5.2rem;
-      }
-    }
-
-    h1 {
-      font-weight: 700;
-      line-height: 130%;
-      color: #04040b;
-      // margin-bottom: 60px;
-      margin-right: 3rem;
-    }
-  }
-
-  .loading-shade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .rate-limit-reached {
-      max-width: 360px;
-      text-align: center;
-    }
-  }
-}
 
 // //////////////////////////////////////
 .example-container {
