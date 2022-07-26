@@ -19,6 +19,12 @@
           </li>
         </ul>
       </div>
+      <div class="menu-btn-wrapper">
+        <button mat-stroked-button class="logout"  (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
       <mat-divider class="first-divider"></mat-divider>
       <div
         mat-menu-item
@@ -114,12 +120,6 @@
       </div>
 
       <mat-divider class="last-divider"></mat-divider>
-      <div class="menu-btn-wrapper">
-        <button mat-menu-item class="logout" color="warn" (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          Logout
-        </button>
-      </div>
     </mat-list>
   </div>
 </div>

@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {ComplexityPageComponent} from './complexity-page/complexity-page.component';
 import {MatIconModule} from "@angular/material/icon";
@@ -28,6 +29,7 @@ import {DeleteModalService} from "src/app/services/delete-modal.service";
     MatFormFieldModule,
     CommonModule,
     MatInputModule,
+    MatMenuModule
   ],
   providers:[DeleteModalService]
 })

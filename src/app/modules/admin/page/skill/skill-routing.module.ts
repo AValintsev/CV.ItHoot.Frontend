@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SkillDialogComponent} from './skill-dialog/skill-dialog.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
       FormsModule,
       ReactiveFormsModule,
       MatButtonToggleModule,
+      MatMenuModule,
       RouterModule.forChild(routes),
     ],
   exports: [RouterModule],

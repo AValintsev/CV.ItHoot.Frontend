@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 
+
 @Component({
   selector: 'cv-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -8,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit{
   toggle = true
-  constructor() {
+  constructor(  ) {
   }
 
   ngOnInit(): void {
@@ -17,4 +18,5 @@ export class AdminLayoutComponent implements OnInit{
   sideBarToggler(){
     this.toggle = !this.toggle
   }
+
 }

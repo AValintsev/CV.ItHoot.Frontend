@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {PositionRoutingModule} from "./position-routing.module";
 import {PositionPageComponent} from './position-page/position-page.component';
@@ -28,6 +29,7 @@ import {DeleteModalService} from "src/app/services/delete-modal.service";
     MatInputModule,
     MatIconModule,
     MatTableModule,
+    MatMenuModule
   ],
   providers:[DeleteModalService]
 })

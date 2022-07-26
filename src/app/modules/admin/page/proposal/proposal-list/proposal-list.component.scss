@@ -45,7 +45,7 @@
     padding: 24px;
     padding-right: 1.5rem;
     padding-top: 0;
-    box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
+    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
 
 
@@ -170,5 +170,7 @@ mat-button-toggle:first-child {
   border-left: solid 1px transparent;
 
 }
-
+td:first-child{
+  width: 6rem;
+}
 // ///////////////////////////////////////

@@ -1,6 +1,7 @@
 import {Subject} from 'rxjs';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-side-bar',
@@ -10,14 +11,18 @@ import {Router} from '@angular/router';
 export class SideBarComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
  @Input() toggle = true
-  constructor(private router: Router) {}
+  constructor(private router: Router,public accountService:AccountService) {}
 
   ngOnInit(): void {}
   // settingOpened(): boolean {
   //   return this.router.url === '/home/skills' || this.router.url === '/home/languages';
   // }
 
-
+  logout() {
+    this.accountService.logout().subscribe({
+      next: () => this.router.navigate(['/account/login']),
+    });
+  }
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
