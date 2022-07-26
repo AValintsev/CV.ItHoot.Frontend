@@ -230,17 +230,11 @@
     </mat-card>
   </div>
 
-  <div class="price-section">
-    <mat-form-field appearance="fill">
-      <mat-label>Developer's price</mat-label>
-      <input matInput numeric placeholder="100" formControlName="salaryRate">
-    </mat-form-field>
-  </div>
 
   <div class="status-section">
     <mat-form-field appearance="fill">
       <mat-label>Availability statuses</mat-label>
-      <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus" disableOptionCentering>
+      <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus" >
         <mat-option [value]="1">Available</mat-option>
         <mat-option [value]="2">Busy</mat-option>
         <mat-option [value]="3">Partial Available</mat-option>
@@ -251,6 +245,13 @@
     <mat-form-field appearance="fill">
       <mat-label>Number of days unavailable</mat-label>
       <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
+    </mat-form-field>
+  </div>
+
+  <div class="price-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Salary rate</mat-label>
+      <input matInput numeric placeholder="100" formControlName="salaryRate">
     </mat-form-field>
   </div>
 </form>

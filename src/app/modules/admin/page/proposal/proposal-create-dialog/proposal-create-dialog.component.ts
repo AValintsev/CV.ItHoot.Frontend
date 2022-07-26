@@ -42,7 +42,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   resumeFilter: ResumeListFilter = {
     term: '',
     page: 0,
-    pageSize: 30,
+    pageSize: null,
     positions: [],
     skills: [],
     clients:[],

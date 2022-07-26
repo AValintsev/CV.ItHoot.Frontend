@@ -290,6 +290,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAvailabilityStatusLabel(status: AvailabilityStatus): string | undefined {
+    if(status as number === 0){
+      return 'None';
+    }
     return AvailabilityStatusLabel.get(status);
   }
 

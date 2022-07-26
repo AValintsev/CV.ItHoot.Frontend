@@ -19,14 +19,10 @@
             <mat-label>Position filter</mat-label>
             <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
               <mat-option>
-                <ngx-mat-select-search
-                  [formControl]="positionFilterControl"
-                  placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="positionFilterControl"
+                     placeholderLabel="Search..." noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let position of filteredPositionsMulti | async"
+              <mat-option *ngFor="let position of filteredPositionsMulti | async"
                 [value]="position.positionId">
                 {{ position.positionName }}
               </mat-option>
@@ -34,44 +30,26 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Skills filter</mat-label>
-            <mat-select
-              [formControl]="skillsControl"
-              multiple="true"
-              #skillMultiSelect
-            >
+            <mat-select [formControl]="skillsControl" multiple="true" #skillMultiSelect>
               <mat-option>
                 <ngx-mat-select-search
                   [formControl]="skillFilterControl"
                   placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                  noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let skill of filteredSkillsMulti | async"
-                [value]="skill.id"
-              >
+              <mat-option *ngFor="let skill of filteredSkillsMulti | async" [value]="skill.id">
                 {{ skill.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Clients filter</mat-label>
-            <mat-select
-              [formControl]="clientsControl"
-              multiple="true"
-              #clientMultiSelect
-            >
+            <mat-select [formControl]="clientsControl" multiple="true" #clientMultiSelect>
               <mat-option>
-                <ngx-mat-select-search
-                  [formControl]="clientFilterControl"
-                  placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="clientFilterControl" placeholderLabel="Search..."
+                                       noEntriesFoundLabel="no matching found"></ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let client of filteredClientsMulti | async"
-                [value]="client.id"
-              >
+              <mat-option *ngFor="let client of filteredClientsMulti | async" [value]="client.id">
                 {{ client.fullName }}
               </mat-option>
             </mat-select>
@@ -81,31 +59,13 @@
     </div>
     <div>
       Sticky Columns:
-      <mat-button-toggle-group
-        multiple
-        [value]="['action']"
-        #stickyColumns="matButtonToggleGroup"
-        class="example-sticky-toggle-group"
-      >
-        <mat-button-toggle
-          *ngFor="let item of displayedColumns"
-          [hidden]="item === 'action'"
-          [value]="item"
-        >{{ item }}</mat-button-toggle
-        >
+      <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup" class="example-sticky-toggle-group">
+        <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="item === 'action'" [value]="item">{{ item }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <section class="section-table">
-      <table
-        mat-table
-        [dataSource]="resumes"
-        class="mat-elevation-z8"
-        matSort
-        matSortActive=""
-        matSortDirection="">
-        <ng-container
-          matColumnDef="action"
-          [sticky]="isSticky(stickyColumns, 'action')">
+      <table mat-table [dataSource]="resumes" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
+        <ng-container matColumnDef="action" [sticky]="isSticky(stickyColumns, 'action')">
           <th mat-header-cell *matHeaderCellDef class="th-action">Action</th>
           <td mat-cell *matCellDef="let resume">
             <button mat-button [matMenuTriggerFor]="menu"  matTooltip="Actions" matTooltipPosition="before">
@@ -148,9 +108,7 @@
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="name"
-          [sticky]="isSticky(stickyColumns, 'name')">
+        <ng-container matColumnDef="name" [sticky]="isSticky(stickyColumns, 'name')">
           <th mat-header-cell *matHeaderCellDef mat-sort-header
               matTooltip="Sort by full name" matTooltipPosition="above">Name</th>
           <td mat-cell *matCellDef="let resume">
@@ -158,9 +116,7 @@
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="position"
-          [sticky]="isSticky(stickyColumns, 'position')">
+        <ng-container matColumnDef="position" [sticky]="isSticky(stickyColumns, 'position')">
           <th mat-header-cell *matHeaderCellDef mat-sort-header
               matTooltip="Sort by position" matTooltipPosition="above">Position</th>
           <td mat-cell *matCellDef="let resume">
@@ -187,10 +143,7 @@
           </td>
         </ng-container>
 
-        <ng-container
-          matColumnDef="salaryRate"
-          [sticky]="isSticky(stickyColumns, 'salaryRate')"
-        >
+        <ng-container matColumnDef="salaryRate" [sticky]="isSticky(stickyColumns, 'salaryRate')">
           <th mat-header-cell *matHeaderCellDef mat-sort-header
               matTooltip="Sort by salary rate" matTooltipPosition="above">Salary Rate</th>
           <td mat-cell *matCellDef="let resume">

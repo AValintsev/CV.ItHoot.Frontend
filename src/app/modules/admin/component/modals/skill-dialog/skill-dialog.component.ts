@@ -24,9 +24,9 @@ export class SkillDialog implements OnInit, OnDestroy {
   @ViewChild('input') input:any;
 
   ngOnInit() {
-      // setTimeout(()=>{ // this will make the execution after the above boolean has changed
-      //   this.input.nativeElement.focus();
-      // },300);
+      setTimeout(()=>{ // this will make the execution after the above boolean has changed
+        this.input.nativeElement.focus();
+      },300);
   }
 
   constructor(
