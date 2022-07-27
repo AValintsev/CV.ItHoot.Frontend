@@ -4,24 +4,24 @@
     Database rate limit has been reached. It will be reset in one minute.
   </div>
 </div>
+<div class="clients-list">
 <div class="table-wrapper">
   <div class="title-section">
-    <div class="left-block">
       <h1>Clients</h1>
       <div class="filter-block">
+         <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client" matTooltipPosition="below">
+      <mat-icon>add</mat-icon>
+    </button>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Search...</mat-label>
           <input type="tel" matInput placeholder="" [formControl]="searchControl">
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </div>
-    </div>
-    <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client" matTooltipPosition="below">
-      <mat-icon>add</mat-icon>
-    </button>
+
+   
   </div>
-</div>
-<div>
+<div class="hidden-mat-btn-group">
   <!-- Sticky Columns: -->
   <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
@@ -95,8 +95,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-  <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
-
-
 </section>
+  <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
+</div>
+</div>
+
