@@ -38,23 +38,27 @@ const routs: Routes = [
         loadChildren: () => import('./page/proposal-build/proposal-build.module').then(mod => mod.ProposalBuildModule)
       },
       {
-        path:'complexities',
-        loadChildren: () => import('./page/complexity/complexity.module').then(mod=>mod.ComplexityModule)
+        path: 'complexities',
+        loadChildren: () => import('./page/complexity/complexity.module').then(mod => mod.ComplexityModule)
       },
       {
-        path:'templates',
-        loadChildren: () => import('./page/resume-template/resume-template.module').then(mod=>mod.ResumeTemplateModule)
+        path: 'templates',
+        loadChildren: () => import('./page/resume-template/resume-template.module').then(mod => mod.ResumeTemplateModule)
       },
       {
-        path:'clients',
-        loadChildren: () => import('./page/clients/clients.module').then(mod=>mod.ClientsModule)
+        path: 'clients',
+        loadChildren: () => import('./page/clients/clients.module').then(mod => mod.ClientsModule)
       },
       {
-        path:'users',
-        loadChildren: () => import('./page/users/users.module').then(mod=>mod.UserModule)
+        path: 'users',
+        loadChildren: () => import('./page/users/users.module').then(mod => mod.UserModule)
+      },
+      {
+        'path': 'profile',
+        loadChildren: () => import('./page/user-settings/user-settings.module').then(mod => mod.UserSettingslModule)
       },
 
-         {
+      {
         path: '',
         redirectTo: 'resume',
         pathMatch: 'full'

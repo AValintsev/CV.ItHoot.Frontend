@@ -1,3 +1,60 @@
+.title-section {
+  // display: flex;
+  // flex: 1 1 100%;
+  // justify-content: space-between;
+
+  .title {
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    span {
+      display: block;
+      color: #8A92A6;
+      font-size: 1.2em;
+    }
+
+    span.status {
+      color: #1AA053;
+      font-weight: 500;
+    }
+
+
+    .client-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.8rem;
+
+      mat-icon {
+        color: #8A92A6;
+      }
+
+      mat-icon:hover {
+        opacity: .8;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+        width: 6.4rem;
+        height: 5.2rem;
+    }
+  }
+
+}
+
+::ng-deep .mat-tooltip.tooltip {
+  font-size: 1.6rem;
+  font-family: 'Inter';
+}
+// /////////////////////////////@at-root
+
 :host::ng-deep {
   table {
     th {
@@ -23,6 +80,7 @@
   .filter-block {
     column-gap: 2rem;
     display: flex;
+    flex: 1 1 100%;
     justify-content: space-between;
 
     mat-form-field {
@@ -31,6 +89,58 @@
   }
 }
 
+.clients-list {
+  .configuration {
+   display: flex;
+   align-items: center;
+  }
+
+  .mat-sort-header-container {
+    justify-content: center;
+  }
+
+  .table-wrapper {
+    padding: 24px;
+    padding-right: 1.5rem;
+    padding-top: 0;
+    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
+    background: white;
+
+
+
+    .title-section {
+      button {
+        max-height: 5.2rem;
+      }
+    }
+
+    h1 {
+      font-weight: 700;
+      line-height: 130%;
+      color: #04040b;
+      // margin-bottom: 60px;
+      margin-right: 3rem;
+    }
+  }
+
+  .loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .rate-limit-reached {
+      max-width: 360px;
+      text-align: center;
+    }
+  }
+}
 
 // //////////////////////////////////////
 .example-container {
@@ -84,14 +194,20 @@
 }
 
 .section-table {
-  // border-top: 1px solid rgba(0, 0, 0, 0.12);
-  // border-right: 1px solid rgba(0, 0, 0, 0.12);
-  // border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  // border-bottom: none;
-  min-width: 100%;
-  overflow: auto;
-}
+  height:80vh;
+  @media(max-height:880px){
+    height:65vh;
+  }
+  @media(max-height:730px){
+    height:55vh;
+  }
+  @media(max-height:580px){
+    height:50vh;
+  }
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    min-width: 100%;
+    overflow: auto;
+  }
 
 table {
   max-width: 100%;
@@ -119,6 +235,24 @@ mat-button-toggle:first-child {
 
 }
 
+// ///////////////////////////////////////
+.btn-wrapper {
+  width: 16rem;
+  padding: .5rem 1rem;
+
+  & button {
+width: 100%;
+
+  }
+}
+
+::ng-deep .mat-tooltip.tooltip {
+  font-size: 1.6rem;
+  font-family: 'Inter';
+}
+.example-full-width{
+  flex: 1 1 100%;
+}
 td:first-child{
   width: 6rem;
 }

@@ -1,0 +1,29 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .user-profile {
+    padding: 15px;
+    border-radius: 25%;
+
+    .user-card {
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+
+      mat-card-content{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      mat-card-actions{
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+}

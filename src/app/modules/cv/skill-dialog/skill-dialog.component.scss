@@ -28,3 +28,15 @@
   font-weight: 700;
   font-family: 'Inter';
 }
+.actions {
+  // margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+  button{
+    width: 10rem;
+    &:first-child{
+      margin-right: 1rem;
+    }
+  }
+  
+}

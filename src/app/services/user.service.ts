@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpInternalService} from "./http-internal.service";
-import {UserDto} from "../models/user-dto";
+import {UserDto, UserProfileDto} from "../models/user-dto";
 import {Observable} from "rxjs";
 import {SmallUserDto} from "../models/users/small-user.dto";
 import {PagedResponse} from "../models/paginations/paged-response";
@@ -41,4 +41,11 @@ export class UserService {
 
   }
 
+  public getCurrentUser():Observable<UserProfileDto>{
+    return this.httpService.getRequest(this.routePrefix + '/current');
+  }
+
+  public updateUserProfile(userProfile:UserProfileDto):Observable<UserProfileDto> {
+  return this.httpService.postRequest(this.routePrefix , userProfile);
+  }
 }
