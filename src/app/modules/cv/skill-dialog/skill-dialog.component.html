@@ -25,8 +25,8 @@
     </mat-button-toggle-group>
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create">Create</button>
-    <button mat-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit">Edit</button>
+    <button mat-stroked-button [mat-dialog-close]="skill" cdkFocusInitial [disabled]="!canCreate()">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false" routerLink="/home/cv/user-list">Cancel</button>
   </div>
 
 </div>
