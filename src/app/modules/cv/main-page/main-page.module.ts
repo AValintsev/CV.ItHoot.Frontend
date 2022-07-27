@@ -15,6 +15,7 @@ import { MainPageComponent } from './main-page.component';
 import {MatListModule} from '@angular/material/list';
 import { DirectivesModule } from '../../shared/directives/directives.module';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { BurgerBtnModule } from '../../shared/buttons/burger-btn/burger-btn.module';
 
 @NgModule({
   declarations: [MainPageComponent, CvSideBarComponent],
@@ -30,7 +31,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatListModule,
         MatDividerModule,
         DirectivesModule,
-        MatTooltipModule
+        MatTooltipModule,
+        BurgerBtnModule
     ],
   exports: [CvSideBarComponent],
   providers: [UserHeaderBtnService, DeleteModalService],

@@ -9,11 +9,8 @@
   flex: 2 1 100%;
   // padding-top: 3rem;
   // background-color:#e5e5e5;
+  // overflow-y: hidden;
   overflow-y: auto;
-
-  .page-content__inner{
-    height: 100%;
-  }
 }
 cv-side-bar {
   flex: 0 0 0rem;
@@ -39,43 +36,4 @@ cv-side-bar {
   }
 }
 
-.menu-burger__side-bar {
-  // background-color:#e5e5e5;
-  transition: all 0.4s ease;
-  padding-left: .5rem;
 
-
-  &:hover{
-    cursor: pointer;
-  }
-  mat-icon {
-    transform: rotate(180deg);
-    transition: all 0.4s ease;
-    color: #fff;
-  }
-
-  &--inner {
-    background-color: rgb(138, 146, 166);
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: .5rem;
-    display: flex;
-    font-size: 3rem;
-
-    .material-icons {
-      line-height: normal;
-    }
-  }
-
-
-  &.open-menu {
-    transition: all 0.4s ease;
-
-    mat-icon {
-      transform: rotate(0deg);
-      transition: all 0.4s ease;
-    }
-  }
-}

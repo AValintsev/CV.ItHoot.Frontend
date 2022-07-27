@@ -81,7 +81,7 @@
               </div>
             </mat-menu>
           </li>
-          <li *ngIf="btnSwitcher('menu-list-home') | async" class="menu-list-home" #btnSwitcher>
+          <!-- <li *ngIf="btnSwitcher('menu-list-home') | async" class="menu-list-home" #btnSwitcher>
             <button mat-icon-button mat-fab color="primary" [matMenuTriggerFor]="menu" class="button-icon">
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
@@ -109,15 +109,6 @@
                 </button>
               </div>
             </mat-menu>
-          </li>
-          <!-- <li matTooltip="Go to the resume list" matTooltipClass="tooltip">
-            <svg style="outline: none;" [routerLink]="['/home/cv/user-list']"
-              *ngIf="accountService.getStoreRole()===Users[2]" version="1.1" xmlns="http://www.w3.org/2000/svg"
-              width="30" height="30" viewBox="0 -90 768 768">
-              <path fill="rgb(138, 146, 166)"
-                d="M223.5 160.5h448.5v63h-448.5v-63zM223.5 415.5v-63h448.5v63h-448.5zM223.5 607.5v-63h448.5v63h-448.5zM127.5 528q19.5 0 33.75 14.25t14.25 33.75-14.25 33.75-33.75 14.25-33.75-14.25-14.25-33.75 14.25-33.75 33.75-14.25zM127.5 144q19.5 0 33.75 13.5t14.25 34.5-14.25 34.5-33.75 13.5-33.75-13.5-14.25-34.5 14.25-34.5 33.75-13.5zM127.5 336q19.5 0 33.75 13.5t14.25 34.5-14.25 34.5-33.75 13.5-33.75-13.5-14.25-34.5 14.25-34.5 33.75-13.5z">
-              </path>
-            </svg>
           </li> -->
         </ul>
         <div class="user-content large">
