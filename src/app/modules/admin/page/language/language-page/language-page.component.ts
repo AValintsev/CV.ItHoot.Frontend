@@ -8,6 +8,7 @@ import {LanguageDialogComponent} from '../language-dialog/language-dialog.compon
 import {LanguageDto} from '../../../../../models/language/language-dto';
 import {DialogType} from '../../../../../models/enums';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-language-page',
@@ -17,7 +18,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 export class LanguagePageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   // displayedColumns: string[] = ['id', 'name', 'action'];
-  displayedColumns: string[] = ['name', 'action'];
+  displayedColumns: string[] = ['action','name'];
   languages: LanguageDto[] = [];
 
   constructor(
@@ -112,6 +113,8 @@ export class LanguagePageComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+
    ngOnDestroy(){
     this.destroy$.next(true)
     this.destroy$.unsubscribe()

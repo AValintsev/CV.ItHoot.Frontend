@@ -152,7 +152,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filteredClientsMulti.next(this.clients.slice())
 
       this.clientFilterControl.valueChanges.subscribe(() => {
-        this.filterMulti(this.clients, 'firstName', this.clientFilterControl, this.filteredClientsMulti)
+        this.filterMulti(this.clients, 'fullName', this.clientFilterControl, this.filteredClientsMulti)
       })
     })
   }
@@ -180,7 +180,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.clientsControl.valueChanges
     )
       .pipe(
-        startWith({}),
+        startWith(''),
         debounceTime(400),
         map(() => {
           this.refreshResumes.emit(this.collectAllFilters());
@@ -294,10 +294,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-
     filteredMulti.next(
       list.filter(
-        (item) => item[filterFieldName].toLowerCase().indexOf(search) > -1
+        (item) => item[filterFieldName]?.toLowerCase()?.indexOf(search) > -1
       )
     );
   }

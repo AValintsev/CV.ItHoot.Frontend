@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private snackbarService: SnackBarService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private cdr:ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +51,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  ngAfterContentChecked() {
+    this.loading$ = this.loadingService.isLoading$;
+    this.cdr.detectChanges();
   }
 
    ngOnDestroy(){

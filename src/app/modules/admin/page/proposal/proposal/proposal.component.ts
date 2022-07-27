@@ -18,6 +18,7 @@ import { StatusProposal } from '../../../../../models/enums';
 import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu'
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'proposal',
@@ -223,6 +224,10 @@ export class ProposalComponent implements OnInit, OnDestroy {
     document.execCommand('copy');
     document.body.removeChild(selBox);
     this.snackBarService.showSuccess('Link copied');
+  }
+
+  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
+    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   ngOnDestroy() {

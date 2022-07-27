@@ -5,33 +5,27 @@
   align-items: start;
   grid-template-columns: 100%;
 
+
+.section-table{
+  border: 1px solid #e5e5e5;
+}
   .table-page {
     padding: 24px;
-    box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
+    padding-top: 0;
+    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     border-radius: 8px;
     background: white;
 
-
     .title-section {
       display: flex;
+      margin-bottom: 2rem;
       justify-content: space-between;
-      margin-bottom: 60px;
+      // flex-direction: column;
 
-      h1{
-        margin: 0;
-
+      button {
+        height: 5.2rem;
+        width: 6.4rem;
       }
-
-      .actions {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        button {
-          max-height: 40px;
-        }
-      }
-
     }
 
     .mat-row:hover {
@@ -42,7 +36,7 @@
       font-weight: 700;
       line-height: 130%;
       color: #04040B;
-      margin-bottom: 60px;
+      // margin-bottom: 60px;
     }
 
     table {
@@ -51,19 +45,19 @@
       font-size: 1.1em;
 
       th {
-        text-align: start;
         vertical-align: middle;
         border-bottom: 1px #C4C4C4 solid;
         font-weight: 400;
+        height: 5rem;
       }
 
       td {
-        text-align: start;
         vertical-align: middle;
         font-size: 1em;
         line-height: 28px;
         color: #04040B;
         font-weight: 400;
+
       }
 
       .mat-cell {
@@ -80,15 +74,11 @@
         color: #04040B;
       }
 
-      .mat-column-skills {
-        width: 15%;
-      }
-
 
       .action-wrapper {
-        display: flex;
-        justify-content: flex-start;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(5,  minmax(6rem,15%));
+        justify-content: space-between;
 
         button {
           height: 35px;
@@ -96,30 +86,27 @@
           color: white;
           border: 0;
           border-radius: 4px;
-          min-width: 70px;
+          &:not(:first-child){
+            margin-left: 0.4rem;
+          }
 
           &:hover {
             cursor: pointer;
             opacity: .9;
           }
 
-          &.open {
-            background: #3A57E8;
-          }
-
           &.edit {
             background: #F16A1B;
           }
 
-          &.docx {
-            background: #f11b9f;
+          &.delete {
+            background: #BA3020E5;
           }
-
         }
 
       }
-
     }
   }
 
 }
+

@@ -1,14 +1,37 @@
 <div [style.padding]="'0px 12px 0px 12px'" class="side-bar">
   <ol class="links">
-    <li class="title-section"><span>Home</span></li>
-    <!-- <li><a>
-         <mat-icon>dashboard</mat-icon>
-         <span>Dashboard</span>
-       </a></li>-->
-    <li [routerLinkActive]="['active']">
+    <!-- <li class="title-section"><span>Home</span></li>  -->
+   <!-- <li><a>
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a></li>-->
+    <!-- <mat-divider></mat-divider>  -->
+    <li>
+      <div class="user-content">
+        <div class="user-picture img">
+          <img src="assets/face.jpg" alt="user picture" />
+        </div>
+        <ul class="user-atrr">
+          <li class="user-name">{{ accountService.getStoreName() }}</li>
+          <li class="user-role">
+            {{
+              accountService.getStoreRole()
+                ? accountService.getStoreRole()
+                : "User"
+            }}
+          </li>
+        </ul>
+      </div>
+      <button mat-stroked-button class="logout"  (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+      <mat-divider class="first-divider"></mat-divider>
+    </li>
+    <li  [routerLinkActive]="['active']">
       <a routerLink="/admin/resume" matTooltip="Go to CV list page" matTooltipPosition="before">
-        <mat-icon>groups</mat-icon>
-        <span>CV list</span>
+        <mat-icon>list</mat-icon>
+        <span>CVs list</span>
       </a>
     </li>
     <li [routerLinkActive]="['active']">
