@@ -16,13 +16,13 @@
           </div>
         </div>
         <div class="actions">
+             <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
+                  (click)="openResumeDialog()">
+            <mat-icon>add</mat-icon>
+          </button>
           <button mat-raised-button (click)="openProposalDialog()" matTooltip="Proposal setting"
                   matTooltipPosition="before">
             <mat-icon>settings</mat-icon>
-          </button>
-          <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
-                  (click)="openResumeDialog()">
-            <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>

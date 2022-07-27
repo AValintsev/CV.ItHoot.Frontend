@@ -1,3 +1,9 @@
+<!-- 
+  <div class="template-list">
+    <div class="table-wrapper">
+      <div class="table-page">
+        <div class="title-section"> -->
+ <div class="user-page"> 
 <div class="user-list">
   <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -6,6 +12,7 @@
     </div>
   </div>
   <div class="table-wrapper">
+    <div class="table-page">
     <div class="title-section">
       <div class="left-block">
         <h1>Users</h1>
@@ -16,6 +23,7 @@
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
+    <section class="section-table">
     <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
 
       <ng-container matColumnDef="fullName">
@@ -54,8 +62,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    </section>
     <mat-paginator [length]="userCount" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
-
   </div>
-
+</div>
+</div>
 </div>

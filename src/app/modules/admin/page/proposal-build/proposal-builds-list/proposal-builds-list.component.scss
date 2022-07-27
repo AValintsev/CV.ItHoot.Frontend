@@ -48,7 +48,7 @@
 
     .title-section {
       button {
-        max-height: 5.2rem;
+        max-height: 5.1rem;
       }
     }
 
@@ -62,22 +62,24 @@
   }
 
   .loading-shade {
-    position: absolute;
+   position: fixed;
+   height: 100vh;
+   width: 100vw;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.15);
-    z-index: 100;
+    z-index: 99;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .rate-limit-reached {
-      max-width: 360px;
-      text-align: center;
+        max-width: 360px;
+        text-align: center;
     }
-  }
+}
 }
 
 // //////////////////////////////////////
@@ -132,16 +134,16 @@
 }
 
 .section-table {
-height:80vh;
-@media(max-height:880px){
-  height:65vh;
-}
-@media(max-height:730px){
-  height:55vh;
-}
-@media(max-height:580px){
-  height:50vh;
-}
+// height:70vh;
+// @media(max-height:880px){
+//   height:65vh;
+// }
+// @media(max-height:730px){
+//   height:55vh;
+// }
+// @media(max-height:580px){
+//   height:50vh;
+// }
   // border-top: 1px solid rgba(0, 0, 0, 0.12);
   // border-right: 1px solid rgba(0, 0, 0, 0.12);
   // border-bottom: 1px solid rgba(0, 0, 0, 0.12);
