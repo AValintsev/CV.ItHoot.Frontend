@@ -121,3 +121,33 @@
     padding-left: 6.5rem !important;
   }
 }
+
+.user-content {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.7rem;
+}
+
+.user-atrr {
+  padding: 0 1rem 0;
+  width: 23rem;
+
+}
+
+.user-name {
+  font-size: 1.6rem;
+  color: #232d42;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-role {
+  color: #8a92a6;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+.logout{
+  margin-bottom: 2rem;
+  width: 100%;
+}

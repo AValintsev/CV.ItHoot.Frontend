@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {RouterModule, Routes} from '@angular/router';
@@ -35,7 +36,8 @@ const routes:Routes = [
         ReactiveFormsModule,
         RouterModule.forChild(routes),
         MatButtonToggleModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatMenuModule
     ],
 	exports: [RouterModule],
   providers:[DeleteModalService]

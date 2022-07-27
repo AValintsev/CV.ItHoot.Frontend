@@ -1,3 +1,4 @@
+import { MatMenuModule } from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {PositionRoutingModule} from "./position-routing.module";
 import {PositionPageComponent} from './position-page/position-page.component';
@@ -30,6 +31,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatIconModule,
         MatTableModule,
         MatTooltipModule,
+        MatMenuModule,
     ],
   providers:[DeleteModalService]
 })

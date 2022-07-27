@@ -17,7 +17,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 export class PositionPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   // displayedColumns: string[] = ['id', 'name', 'action'];
-  displayedColumns: string[] = ['name', 'action'];
+  displayedColumns: string[] = ['action','name'];
   positions: PositionDto[] = [];
 
   constructor(
