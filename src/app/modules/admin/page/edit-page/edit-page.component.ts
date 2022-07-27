@@ -18,7 +18,6 @@ import {ProposalService} from "../../../../services/proposal.service";
 export class EditPageComponent implements OnInit {
 
   resumeEditDto: ResumeDto | null = null;
-  templateForm!: ResumeDto;
   resumeEditForm: FormGroup = {} as FormGroup;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();

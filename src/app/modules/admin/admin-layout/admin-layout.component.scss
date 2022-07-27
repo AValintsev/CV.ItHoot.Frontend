@@ -10,6 +10,10 @@
   // padding-top: 3rem;
   // background-color:#e5e5e5;
   overflow-y: auto;
+
+  .page-content__inner{
+    height: 100%;
+  }
 }
 cv-side-bar {
   flex: 0 0 0rem;

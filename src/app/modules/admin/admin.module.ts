@@ -33,7 +33,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatButtonModule,
         MatTooltipModule,
     ],
-	declarations: [AdminLayoutComponent,SideBarComponent,],
+	declarations: [AdminLayoutComponent,SideBarComponent],
 	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
 })
 
