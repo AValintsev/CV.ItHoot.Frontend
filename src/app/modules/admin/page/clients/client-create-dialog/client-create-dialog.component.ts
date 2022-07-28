@@ -5,6 +5,10 @@ import {ClientDto} from 'src/app/models/clients/client-dto';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
 
+export interface ClientDtoExtendName extends ClientDto {
+  name?:string
+} 
+
 @Component({
   selector: 'client-create-dialog',
   templateUrl: './client-create-dialog.component.html',
@@ -12,7 +16,7 @@ import {ClientsService} from 'src/app/services/clients.service';
 })
 export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
-  client: ClientDto = {} as ClientDto;
+  client:ClientDtoExtendName = {} as ClientDtoExtendName;
 
   clientForm: UntypedFormGroup;
 
@@ -29,8 +33,7 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
   ) {
     this.client = data;
     this.clientForm = new UntypedFormGroup({
-      "firstName": new UntypedFormControl("", Validators.required),
-      "lastName": new UntypedFormControl("", Validators.required),
+      "name": new UntypedFormControl("", Validators.required),
       "email": new UntypedFormControl("", [
         Validators.required,
         Validators.email
@@ -44,10 +47,12 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
 
   submit() {
     this.isServerError = false;
+     const [firstName,lastName='']=this.clientForm.controls['name'].value.split(' ')
 
-    this.client = this.clientForm.value;
+    this.client = ({...this.clientForm.value,firstName,lastName});
 
-
+    delete this.client.name;
+    
     this.clientService.createClient(this.client).subscribe(
 
       (client) => this.dialogRef.close(client),
