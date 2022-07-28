@@ -8,6 +8,7 @@ import {Location} from '@angular/common'
 import {ProposalService} from "../../../../services/proposal.service";
 import {saveAs} from "file-saver";
 import {SmallResumeDto} from "../../../../models/resume/small-resume-dto";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'cv-cv-full',
@@ -23,7 +24,8 @@ export class CvFullComponent implements OnInit {
     private router: Router,
     private resumeService: ResumeService,
     private proposalService: ProposalService,
-    private location: Location
+    private location: Location,
+    private spinnerService:NgxSpinnerService
   ) {
 
 
@@ -64,14 +66,18 @@ export class CvFullComponent implements OnInit {
   }
 
   getPdf() {
+    this.spinnerService.show()
     this.resumeService.getResumePdfById(this.resume.id).subscribe((response) => {
       saveAs(response, `${this.resume.firstName} ${this.resume.lastName}.pdf`);
+      this.spinnerService.hide()
     });
   }
 
   getDocx() {
+    this.spinnerService.show()
     this.resumeService.getResumeDocxById(this.resume.id).subscribe((response) => {
       saveAs(response, `${this.resume.firstName} ${this.resume.lastName}.docx`);
+      this.spinnerService.hide()
     });
   }
 }
