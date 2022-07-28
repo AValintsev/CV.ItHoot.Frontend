@@ -15,6 +15,8 @@ import {LoadingService} from 'src/app/services/loading.service';
 export class RegisterComponent implements OnInit, OnDestroy {
   public loading$!: Observable<boolean>
   private destroy$ = new Subject<boolean>();
+  type="password"
+  swithPasswordVisible = true
   registerForm!: UntypedFormGroup;
   errors!: string[];
 
@@ -51,6 +53,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  changeVisiblePassword(event:Event){
+    event.stopPropagation()
+    this.swithPasswordVisible=!this.swithPasswordVisible
+    this.type = this.swithPasswordVisible?"password":"text"
   }
 
   ngAfterContentChecked() {

@@ -43,53 +43,44 @@
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="getPdf(resume)">
-                      Download PDF
-                    </button>
+                  <div class="btn-wrapper" mat-menu-item (click)="getPdf(resume)">
+                    <span class="menu-item-name">Download PDF
+                    </span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="getLinkPdf(resume)">
-                      Copy link PDF
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div class="btn-wrapper" mat-menu-item (click)="getLinkPdf(resume)">
+                    <span class="menu-item-name">Copy link PDF
+                    </span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="getDocx(resume)">
-                      Download DocX
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div class="btn-wrapper" mat-menu-item (click)="getDocx(resume)">
+                    <span class="menu-item-name">Open DocX
+                    </span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="getLinkDocx(resume)">
-                      Copy link DocX
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div class="btn-wrapper" mat-menu-item (click)="getLinkDocx(resume)">
+                    <span class="menu-item-name">Copy link DocX
+                    </span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button
-                      mat-stroked-button
-                      routerLink="{{ url }}{{ proposal.id }}/resume/{{ resume.id }}"
-                    >
-                      Open CV
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div class="btn-wrapper" mat-menu-item  routerLink="{{ url }}{{ proposal.id }}/resume/{{ resume.id }}">
+                    <span class="menu-item-name">Open CV
+                    </span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="copyResumeLink(resume)">
-                      Copy link CV
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div class="btn-wrapper" mat-menu-item (click)="copyResumeLink(resume)">
+                    <span class="menu-item-name">Copy link CV
+                    </span>
                   </div>
-                  <div *ngIf="showEditBtn" class="btn-wrapper">
-                    <button
-                      mat-stroked-button
-                      routerLink="{{ url }}{{ proposal.id }}/resume/edit/{{
-                    resume.id
-                  }}"
-                    >
-                      Edit CV
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div *ngIf="showEditBtn" class="btn-wrapper" mat-menu-item  routerLink="{{ url }}{{ proposal.id }}/resume/edit/{{
+                        resume.id
+                      }}">
+                    <span class="menu-item-name">Edit CV</span>
                   </div>
-                  <div class="btn-wrapper">
-                    <button mat-stroked-button (click)="deleteResume(resume)">
-                      Remove CV
-                    </button>
+                  <mat-divider></mat-divider>
+                  <div (click)="deleteResume(resume)" class="btn-wrapper" mat-menu-item>
+                    <span class="menu-item-name">Remove CV</span> 
                   </div>
                 </mat-menu>
               </td>
@@ -147,6 +138,7 @@
               </td>
             </ng-container>
 
+            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>

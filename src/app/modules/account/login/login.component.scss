@@ -9,7 +9,9 @@
   justify-content: center;
   overflow-y: auto;
   background-color: #fff;
-
+  .mat-form-field-flex{
+    align-items: flex-end;
+  }
   button {
     font-family: 'Inter', sans-serif;
   }
@@ -156,15 +158,15 @@ button {
 
 .eye {
   color: rgb(160, 146, 146);
-  font-size: 2.3rem;
+  font-size: 2.5rem;
+  cursor: pointer;
 }
 
-:host::ng-deep .mat-form-field-infix {
-  //   padding-right: 3rem;
-}
+
 
 input {
   background-color: #fff !important;
 }
 
 .google-navigate {}
+
