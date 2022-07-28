@@ -1,0 +1,33 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title>Create new user</h1>
+  <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
+    <div mat-dialog-content class="content">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Bill Gates" formControlName="name">
+        <mat-error *ngIf="clientForm.controls['name'].invalid && clientForm.controls['name'].touched">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="bill.gates@microsoft.com" formControlName="email">
+        <mat-error *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">{{getEmailValidationError()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="clientForm.controls['password'].invalid && clientForm.controls['password'].touched">{{getEmailValidationError()}}</mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>
+    </div>
+
+    <div mat-dialog-actions class="actions">
+      <button mat-stroked-button  cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid" matTooltip="Save" matTooltipPosition="before">Save</button>
+      <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false"  (click)="onCancelClick()" matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
+    </div>
+  </form>
+</div>
+

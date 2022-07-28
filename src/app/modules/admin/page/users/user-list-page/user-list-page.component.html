@@ -17,11 +17,16 @@
       <div class="left-block">
         <h1>Users</h1>
       </div>
+      <div class="filter-block">
+      <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client" matTooltipPosition="below">
+        <mat-icon>add</mat-icon>
+      </button>
       <mat-form-field appearance="fill">
         <mat-label>Search...</mat-label>
         <input type="text" matInput placeholder="Type text" [formControl]="searchControl">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+      </div>
     </div>
     <section class="section-table">
     <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">

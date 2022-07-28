@@ -146,16 +146,22 @@
 }
 
 .section-table {
-height:70vh;
-@media(max-height:880px){
-  height:65vh;
-}
-@media(max-height:730px){
-  height:55vh;
-}
-@media(max-height:580px){
-  height:50vh;
-}
+  height:70vh;
+    @media(max-height:880px){
+      height:63vh;
+    }
+    @media(max-height:730px){
+      height:58vh;
+    }
+    @media(max-height:650px){
+      height:54vh;
+    }
+    @media(max-height:580px){
+      height:50vh;
+    }
+    @media(max-height:540px){
+      height:45vh;
+    }
   // border-top: 1px solid rgba(0, 0, 0, 0.12);
   // border-right: 1px solid rgba(0, 0, 0, 0.12);
   // border-bottom: 1px solid rgba(0, 0, 0, 0.12);
