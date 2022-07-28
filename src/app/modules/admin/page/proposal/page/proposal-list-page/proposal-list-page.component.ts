@@ -1,6 +1,6 @@
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {SmallProposalDto} from '../../../../../../models/proposal/small-proposal-dto';
 import {ProposalService} from '../../../../../../services/proposal.service';
 import {ProposalListFilter} from '../../../../../../models/proposal/proposal-list-filter';
@@ -18,10 +18,14 @@ export class ProposalListPageComponent implements OnInit, OnDestroy {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  constructor(private proposalService: ProposalService) {
+  constructor(private proposalService: ProposalService,
+              private cdRef: ChangeDetectorRef  ) {
   }
 
   ngOnInit(): void { }
+  ngAfterViewInit(): void {
+    this.cdRef.detectChanges();
+  }
 
   refreshProposals(filters: ProposalListFilter) {
     this.isLoadingResults = true;

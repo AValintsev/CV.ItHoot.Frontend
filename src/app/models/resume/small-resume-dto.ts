@@ -21,4 +21,7 @@ export interface SmallResumeDto{
   deletedAt: string | null;
   skills:SkillDto[];
   clients: ResumeClientDto[];
+  shortUrlFullResume:string;
+  shortUrlIncognito:string;
+  shortUrlIncognitoWithoutLogo:string;
 }

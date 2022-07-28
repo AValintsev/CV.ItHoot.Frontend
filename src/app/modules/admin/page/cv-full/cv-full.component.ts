@@ -6,6 +6,8 @@ import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {Observable} from 'rxjs';
 import {Location} from '@angular/common'
 import {ProposalService} from "../../../../services/proposal.service";
+import {saveAs} from "file-saver";
+import {SmallResumeDto} from "../../../../models/resume/small-resume-dto";
 
 @Component({
   selector: 'cv-cv-full',
@@ -59,5 +61,17 @@ export class CvFullComponent implements OnInit {
 
   back() {
     this.location.back()
+  }
+
+  getPdf() {
+    this.resumeService.getResumePdfById(this.resume.id).subscribe((response) => {
+      saveAs(response, `${this.resume.firstName} ${this.resume.lastName}.pdf`);
+    });
+  }
+
+  getDocx() {
+    this.resumeService.getResumeDocxById(this.resume.id).subscribe((response) => {
+      saveAs(response, `${this.resume.firstName} ${this.resume.lastName}.docx`);
+    });
   }
 }

@@ -12,7 +12,10 @@
 
 }
 
-.fixed-btn{
+.actions-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
   position: fixed;
   z-index: 3;
   right: 4rem;

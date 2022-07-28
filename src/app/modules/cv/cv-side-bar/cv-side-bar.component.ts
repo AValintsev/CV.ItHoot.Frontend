@@ -93,7 +93,7 @@ export class CvSideBarComponent implements OnInit, OnDestroy {
 
   savePdf(resumeId: number, firstName: string = '', lastName: string = '') {
     console.log(resumeId, firstName, lastName);
-    this.resumeService.getPdf(resumeId).subscribe((response) => {
+    this.resumeService.getResumePdfById(resumeId).subscribe((response) => {
       saveAs(response, `${firstName} ${lastName}.pdf`);
     });
   }

@@ -31,6 +31,7 @@
     "ngx-mat-select-search": "^4.2.0",
     "ngx-monaco-editor": "^12.0.0",
     "ngx-quill": "^18.0.0",
+    "ngx-spinner": "^14.0.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.5",
     "tslib": "^2.4.0",

@@ -28,10 +28,10 @@ import {SkillService} from 'src/app/services/skill.service';
 import {MatSelect} from '@angular/material/select';
 import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
 import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums';
-import {ClientDto} from "../../../../../models/clients/client-dto";
 import {ClientsService} from "../../../../../services/clients.service";
 import {SmallClientsDto} from "../../../../../models/clients/small-clients-dto";
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'cv-admin-resume',
@@ -83,7 +83,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private positionService: PositionService,
     private skillService: SkillService,
     private clientService: ClientsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private spinnerService: NgxSpinnerService
   ) {
 
 
@@ -228,14 +229,18 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getResumePdf(resume: SmallResumeDto) {
-    this.resumeService.getPdf(resume.id).subscribe((response) => {
+    this.spinnerService.show();
+    this.resumeService.getResumePdfById(resume.id).subscribe((response) => {
       saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`);
+      this.spinnerService.hide();
     });
   }
 
   getResumeDocx(resume: SmallResumeDto) {
-    this.resumeService.getDocx(resume.id).subscribe((response) => {
+    this.spinnerService.show();
+    this.resumeService.getResumeDocxById(resume.id).subscribe((response) => {
       saveAs(response, `${resume.firstName} ${resume.lastName}.docx`);
+      this.spinnerService.hide();
     });
   }
 
@@ -265,6 +270,21 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         error: (error) => {
         },
       });
+  }
+
+  copyResumeLink(url: string) {
+    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}`);
+    this.snackService.showSuccess('Link copied');
+  }
+
+  copyResumePdfLink(url: string) {
+    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}/pdf`);
+    this.snackService.showSuccess('Link copied');
+  }
+
+  copyResumeDocxLink(url: string) {
+    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}/docx`);
+    this.snackService.showSuccess('Link copied');
   }
 
   protected setInitialValue(
@@ -302,7 +322,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAvailabilityStatusLabel(status: AvailabilityStatus): string | undefined {
-    if(status as number === 0){
+    if (status as number === 0) {
       return 'None';
     }
     return AvailabilityStatusLabel.get(status);

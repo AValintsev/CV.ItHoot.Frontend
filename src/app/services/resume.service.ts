@@ -88,11 +88,11 @@ export class ResumeService {
     return this.httpService.postForm(this.routePrefix + `/image`, data);
   }
 
-  public getPdf(resumeId: number) {
+  public getResumePdfById(resumeId: number) {
     return this.httpService.getFile(this.routePrefix + `/pdf/${resumeId}`);
   }
 
-  public getDocx(resumeId: number) {
+  public getResumeDocxById(resumeId: number) {
     return this.httpService.getFile(this.routePrefix + `/docx/${resumeId}`);
   }
 
@@ -137,4 +137,18 @@ export class ResumeService {
   public getTemplateDocx(templateId: number) {
     return this.httpService.getFile(this.routePrefix + `/templates/docx/${templateId}`);
   }
+
+  public getResumeByUrl(url:string):Observable<any>{
+    return this.httpService.getRequest<any>(this.routePrefix+`/url/${url}`);
+  }
+
+  public getResumePdfByUrl(url:string):Observable<any>{
+    return this.httpService.getFile(this.routePrefix+`/url/${url}/pdf`);
+  }
+
+  public getResumeDocxByUrl(url:string):Observable<any>{
+    return this.httpService.getFile(this.routePrefix+`/url/${url}/docx`);
+
+  }
+
 }

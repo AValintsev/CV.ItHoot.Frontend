@@ -11,7 +11,7 @@ import {ResumeDto} from "../../../models/resume/resume-dto";
 })
 export class ResumeFullSwitcherComponent implements OnInit {
 
-  resume: ResumeDto|null = null;
+  resume: ResumeDto | null = null;
 
   constructor(
     private proposalService: ProposalService,
@@ -20,11 +20,13 @@ export class ResumeFullSwitcherComponent implements OnInit {
   ) {
 
   }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const shortUrl = params['shortUrl'];
+      const resumeUrl = params['resumeUrl'];
       if (shortUrl != null) {
 
         this.proposalService.getProposalResumeByUrl(shortUrl).subscribe((data) => {
@@ -47,6 +49,11 @@ export class ResumeFullSwitcherComponent implements OnInit {
           this.resume.showLogo = false;
         });
 
+      } else if (resumeUrl != null) {
+        this.resumeService.getResumeByUrl(resumeUrl).subscribe(data => {
+          this.resume = data.resume;
+          this.resume!.showLogo = data.showLogo;
+        });
       }
     });
   }
