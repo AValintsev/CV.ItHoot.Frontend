@@ -1,5 +1,5 @@
 <div class="proposal-dialog">
-  <h1 mat-dialog-title>Create new client</h1>
+  <h1 mat-dialog-title>Create new user</h1>
   <form [formGroup]="clientForm" novalidate (ngSubmit)="submit()">
     <div mat-dialog-content class="content">
 
@@ -16,27 +16,9 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Company</mat-label>
-        <input matInput placeholder="Microsoft" formControlName="companyName">
-        <mat-error *ngIf="clientForm.controls['companyName'].invalid && clientForm.controls['companyName'].touched"></mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Phone number</mat-label>
-        <input matInput placeholder="+5 055 555 5555" formControlName="phoneNumber">
-        <mat-error *ngIf="clientForm.controls['phoneNumber'].invalid && clientForm.controls['phoneNumber'].touched">Not a valid phone number</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Site</mat-label>
-        <input matInput placeholder="www.microsoft.com" formControlName="site">
-        <mat-error *ngIf="clientForm.controls['site'].invalid && clientForm.controls['site'].touched">Not a valid site</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Other contacts</mat-label>
-        <input matInput placeholder="skype: @b.gates" formControlName="contacts">
-        <mat-error *ngIf="clientForm.controls['contacts'].invalid && clientForm.controls['contacts'].touched"></mat-error>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="clientForm.controls['password'].invalid && clientForm.controls['password'].touched">{{getEmailValidationError()}}</mat-error>
       </mat-form-field>
 
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>

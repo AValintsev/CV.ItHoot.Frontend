@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UsersRoutingModule} from "./users-routing.module";
@@ -13,10 +14,11 @@ import {PipesModule} from "../../../shared/directives/pipes.module";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 
 @NgModule({
   declarations: [
-
+    CreateUserDialogComponent,
     UserListPageComponent
   ],
     imports: [
@@ -32,7 +34,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         PipesModule,
         MatSelectModule,
         ReactiveFormsModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatDialogModule
     ]
 })
 export class UserModule { }

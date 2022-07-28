@@ -21,7 +21,7 @@ import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 })
 export class ClientsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  displayedColumns: string[] = ['action', 'fullName', 'email', 'phoneNumber', 'site', 'proposals', 'contacts', 'companyName',];
+  displayedColumns: string[] = ['action', 'fullName', 'email', 'companyName','phoneNumber', 'site', 'proposals', 'contacts', ];
   clients: SmallClientsDto[] = [];
   searchControl = new UntypedFormControl();
 

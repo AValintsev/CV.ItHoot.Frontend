@@ -1,14 +1,14 @@
 <div class="proposal-page" *ngIf="proposal">
   <div class="proposal-list">
     <div class="table-wrapper">
-    <div class="table-page">
-      <div class="title-section">
-        <div class="title">
-          <h1>Proposal {{ proposal.proposalName }}</h1>
-          <span class="status"
+      <div class="table-page">
+        <div class="title-section">
+          <div class="title">
+            <h1>Proposal {{ proposal.proposalName }}</h1>
+            <span class="status"
             >Status: {{ getStatusProposal(proposal.statusProposal) }}</span
-          >
-          <div class="client-section">
+            >
+            <div class="client-section">
             <span>
               {{ proposal.client?.firstName }} {{ proposal.client?.lastName }}
             </span>
@@ -16,139 +16,142 @@
           </div>
         </div>
         <div class="actions">
+             <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
+                  (click)="openResumeDialog()">
+            <mat-icon>add</mat-icon>
+          </button>
           <button mat-raised-button (click)="openProposalDialog()" matTooltip="Proposal setting"
                   matTooltipPosition="before">
             <mat-icon>settings</mat-icon>
-          </button>
-          <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
-                  (click)="openResumeDialog()">
-            <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
       <div class="hidden-mat-btn-group">
           <!-- Sticky Columns: -->
           <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup"
-            class="example-sticky-toggle-group">
+                                   class="example-sticky-toggle-group">
             <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="true" [value]="item"></mat-button-toggle>
           </mat-button-toggle-group>
         </div>
-      <section class="section-table">
-      <table mat-table [dataSource]="proposal.resumes" class="mat-elevation-z8">
+        <section class="section-table">
+          <table mat-table [dataSource]="proposal.resumes" class="mat-elevation-z8">
 
-        <ng-container [sticky]="isSticky(stickyColumns, 'action')" matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef class="th-action"></th>
-          <td mat-cell *matCellDef="let resume">
-            <button mat-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="getPdf(resume)">
-                  Download PDF
+            <ng-container [sticky]="isSticky(stickyColumns, 'action')" matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef class="th-action"></th>
+              <td mat-cell *matCellDef="let resume">
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
                 </button>
-              </div>
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="getLinkPdf(resume)">
-                  Copy link PDF
-                </button>
-              </div>
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="getDocx(resume)">
-                  Open DocX
-                </button>
-              </div>
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="getLinkDocx(resume)">
-                  Copy link DocX
-                </button>
-              </div>
-              <div class="btn-wrapper">
-                <button
-                  mat-stroked-button
-                  routerLink="{{ url }}{{ proposal.id }}/resume/{{ resume.id }}"
-                >
-                  Open CV
-                </button>
-              </div>
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="copyResumeLink(resume)">
-                  Copy link CV
-                </button>
-              </div>
-              <div *ngIf="showEditBtn" class="btn-wrapper">
-                <button
-                  mat-stroked-button
-                  routerLink="{{ url }}{{ proposal.id }}/resume/edit/{{
+                <mat-menu #menu="matMenu">
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="getPdf(resume)">
+                      Download PDF
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="getLinkPdf(resume)">
+                      Copy link PDF
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="getDocx(resume)">
+                      Download DocX
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="getLinkDocx(resume)">
+                      Copy link DocX
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button
+                      mat-stroked-button
+                      routerLink="{{ url }}{{ proposal.id }}/resume/{{ resume.id }}"
+                    >
+                      Open CV
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="copyResumeLink(resume)">
+                      Copy link CV
+                    </button>
+                  </div>
+                  <div *ngIf="showEditBtn" class="btn-wrapper">
+                    <button
+                      mat-stroked-button
+                      routerLink="{{ url }}{{ proposal.id }}/resume/edit/{{
                     resume.id
                   }}"
+                    >
+                      Edit CV
+                    </button>
+                  </div>
+                  <div class="btn-wrapper">
+                    <button mat-stroked-button (click)="deleteResume(resume)">
+                      Remove CV
+                    </button>
+                  </div>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="resumeName">
+              <th mat-header-cell *matHeaderCellDef>Resume Name</th>
+              <td mat-cell *matCellDef="let resume">{{ resume.resumeName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef>Full name</th>
+              <td mat-cell *matCellDef="let resume">
+                {{ resume.firstName }} {{ resume.lastName }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="skills">
+              <th mat-header-cell *matHeaderCellDef>Skills</th>
+              <td mat-cell *matCellDef="let resume">
+                <div *ngIf="resume.skills.length > 0"><span
+                  *ngFor="let skill of resume.skills, let i=index">{{skill.name}}{{i === resume.skills.length - 1 ? '' :
+                  ', '}} </span>
+                </div>
+                <div *ngIf="resume.skills.length <= 0"><span>None</span></div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef>Position</th>
+              <td mat-cell *matCellDef="let resume">
+                {{ resume.positionName }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="salaryRate">
+              <th mat-header-cell *matHeaderCellDef>Salary rate</th>
+              <td mat-cell *matCellDef="let resume">{{ resume.salaryRate }}$/h</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isSelected">
+              <th mat-header-cell *matHeaderCellDef>Is Selected</th>
+              <td mat-cell *matCellDef="let resume">
+                <mat-icon *ngIf="resume.statusResume == StatusResume.Selected"
+                >check
+                </mat-icon
                 >
-                  Edit CV
-                </button>
-              </div>
-              <div class="btn-wrapper">
-                <button mat-stroked-button (click)="deleteResume(resume)">
-                  Remove CV
-                </button>
-              </div>
-            </mat-menu>
-          </td>
-        </ng-container>
+                <mat-icon *ngIf="resume.statusResume == StatusResume.NotSelected"
+                >close
+                </mat-icon
+                >
+                <span *ngIf="resume.statusResume == StatusResume.Denied"
+                >Denied</span
+                >
+              </td>
+            </ng-container>
 
-        <ng-container matColumnDef="resumeName">
-          <th mat-header-cell *matHeaderCellDef>Resume Name</th>
-          <td mat-cell *matCellDef="let resume">{{ resume.resumeName }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef>Full name</th>
-          <td mat-cell *matCellDef="let resume">
-            {{ resume.firstName }} {{ resume.lastName }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="skills">
-          <th mat-header-cell *matHeaderCellDef>Skills</th>
-          <td mat-cell *matCellDef="let resume">
-            <div *ngIf="resume.skills.length > 0"><span
-              *ngFor="let skill of resume.skills, let i=index">{{skill.name}}{{i === resume.skills.length - 1 ? '' :
-              ', '}} </span>
-            </div>
-            <div *ngIf="resume.skills.length <= 0"><span>None</span></div>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef>Position</th>
-          <td mat-cell *matCellDef="let resume">
-            {{ resume.positionName }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="salaryRate">
-          <th mat-header-cell *matHeaderCellDef>Salary rate</th>
-          <td mat-cell *matCellDef="let resume">{{ resume.salaryRate }}$/h</td>
-        </ng-container>
-
-        <ng-container matColumnDef="isSelected">
-          <th mat-header-cell *matHeaderCellDef>Is Selected</th>
-          <td mat-cell *matCellDef="let resume">
-            <mat-icon *ngIf="resume.statusResume == StatusResume.Selected"
-              >check</mat-icon
-            >
-            <mat-icon *ngIf="resume.statusResume == StatusResume.NotSelected"
-              >close</mat-icon
-            >
-            <span *ngIf="resume.statusResume == StatusResume.Denied"
-              >Denied</span
-            >
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      </section>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </section>
+      </div>
     </div>
   </div>
 </div>

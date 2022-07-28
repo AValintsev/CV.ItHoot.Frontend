@@ -4,8 +4,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RoleGuard} from './guards/role.guard';
 import {
-  ProposalResumeDownloadPageComponent
-} from "./modules/cv/proposal-resume-download-page/proposal-resume-download-page.component";
+  ResumeDownloadPageComponent
+} from "./modules/cv/proposal-resume-download-page/resume-download-page.component";
 import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
 
 
@@ -52,8 +52,16 @@ const routes: Routes = [
     component: ResumeFullSwitcherComponent
   },
   {
+    path: 'resume/url/:resumeUrl',
+    component: ResumeFullSwitcherComponent
+  },
+  {
     path : 'proposals/resume/:shortUrl/:docType',
-    component: ProposalResumeDownloadPageComponent
+    component: ResumeDownloadPageComponent
+  },
+  {
+    path : 'resume/url/:resumeShortUrl/:docType',
+    component: ResumeDownloadPageComponent
   },
 
 ];

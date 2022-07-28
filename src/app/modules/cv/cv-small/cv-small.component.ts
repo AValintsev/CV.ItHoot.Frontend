@@ -58,7 +58,7 @@ export class CvSmallComponent implements OnInit, OnDestroy {
   }
 
   savePdf(resumeId: number, firstName: string = '', lastName: string = '') {
-    this.resumeService.getPdf(resumeId).subscribe((response) => {
+    this.resumeService.getResumePdfById(resumeId).subscribe((response) => {
       saveAs(response, `${firstName} ${lastName}.pdf`);
     });
   }

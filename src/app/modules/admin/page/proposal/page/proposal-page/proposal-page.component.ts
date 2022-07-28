@@ -1,5 +1,5 @@
 import {map, takeUntil} from 'rxjs/operators';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProposalService} from '../../../../../../services/proposal.service';
 import {ProposalDto} from '../../../../../../models/proposal/proposal-dto';
@@ -17,7 +17,8 @@ export class ProposalPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private proposalService: ProposalService
+    private proposalService: ProposalService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.proposalService
@@ -27,6 +28,10 @@ export class ProposalPageComponent implements OnInit, OnDestroy {
         .subscribe((proposal) => (this.proposal = proposal));
     });
   }
+  ngAfterViewInit(): void {
+    this.cdRef.detectChanges();
+  }
+
 
   ngOnInit(): void {}
    ngOnDestroy(){

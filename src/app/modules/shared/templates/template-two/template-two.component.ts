@@ -56,7 +56,7 @@ export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewIn
   }
 
   savePdf(resumeId: number, firstName: string='', lastName: string='') {
-    this.resumeService.getPdf(resumeId).subscribe(response => {
+    this.resumeService.getResumePdfById(resumeId).subscribe(response => {
       saveAs(response, `${firstName} ${lastName}.pdf`);
     });
   }

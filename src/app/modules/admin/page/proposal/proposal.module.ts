@@ -31,8 +31,8 @@ import {PdfTableAction} from "./pdf-table-action/pdf-table-button.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatMenuModule} from "@angular/material/menu";
 import {
-  ProposalResumeDownloadPageComponent
-} from '../../../cv/proposal-resume-download-page/proposal-resume-download-page.component';
+  ResumeDownloadPageComponent
+} from '../../../cv/proposal-resume-download-page/resume-download-page.component';
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -46,6 +46,7 @@ import {ResumeEditPageComponent} from './page/resume-edite-page/resume-edit-page
 import {FormBarModule} from '../form-bar/form-bar.module';
 import {PipesModule} from "../../../shared/directives/pipes.module";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   imports: [
@@ -91,6 +92,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatButtonModule,
+    NgxSpinnerModule,
   ],
   exports: [
     ProposalListPageComponent,
@@ -109,7 +111,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     ProposalComponent,
     ProposalListPageComponent,
     PdfTableAction,
-    ProposalResumeDownloadPageComponent,
+    ResumeDownloadPageComponent,
     ProposalSalaryDialogComponent,
   ],
   providers: [DeleteModalService]

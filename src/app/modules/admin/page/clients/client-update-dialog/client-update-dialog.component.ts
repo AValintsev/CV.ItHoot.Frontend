@@ -4,6 +4,7 @@ import {Subject} from 'rxjs';
 import {ClientDto} from 'src/app/models/clients/client-dto';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
+import { ClientDtoExtendName } from '../client-create-dialog/client-create-dialog.component';
 
 @Component({
   selector: 'client-update-dialog',
@@ -12,7 +13,7 @@ import {ClientsService} from 'src/app/services/clients.service';
 })
 export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
-  client: ClientDto = {} as ClientDto;
+  client: ClientDtoExtendName = {} as ClientDtoExtendName;
 
   clientForm: UntypedFormGroup;
   isServerError: boolean = false;
@@ -29,8 +30,7 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
     this.client = data;
     this.clientForm = new UntypedFormGroup({
       "id": new UntypedFormControl(this.client.id, Validators.required),
-      "firstName": new UntypedFormControl(this.client.firstName, Validators.required),
-      "lastName": new UntypedFormControl(this.client.lastName, Validators.required),
+      "name": new UntypedFormControl(this.client.firstName + ' ' + this.client.lastName, Validators.required),
       "email": new UntypedFormControl({ value: this.client.email, disabled: true }, [
         Validators.required,
         Validators.email
@@ -46,14 +46,11 @@ export class ClientUpdateDialogComponent implements OnInit, OnDestroy {
 
     this.isServerError = false;
 
-    this.client.id = this.clientForm.controls["id"].value;
-    this.client.firstName = this.clientForm.controls["firstName"].value;
-    this.client.lastName = this.clientForm.controls["lastName"].value;
-    this.client.email = this.clientForm.controls["email"].value;
-    this.client.phoneNumber = this.clientForm.controls["phoneNumber"].value;
-    this.client.site = this.clientForm.controls["site"].value;
-    this.client.contacts = this.clientForm.controls["contacts"].value;
-    this.client.companyName = this.clientForm.controls["companyName"].value;
+    const [firstName,lastName='']=this.clientForm.controls['name'].value.split(' ')
+
+    this.client = ({...this.clientForm.value,firstName,lastName});
+
+    delete this.client.name;
 
     this.clientService.updateClient(this.client).subscribe(
       (data) => {

@@ -19,6 +19,7 @@ import { DeleteModalService } from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu'
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'proposal',
@@ -49,6 +50,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     private resumeService: ResumeService,
     private snackBarService: SnackBarService,
     public dialog: MatDialog,
+    private spinnerService:NgxSpinnerService
   ) {}
 
   ngOnInit(): void {}
@@ -145,84 +147,39 @@ export class ProposalComponent implements OnInit, OnDestroy {
   }
 
   copyClientLink() {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = selBox.value =
-      window.location.origin +
-      `/account/${this.proposal.client.shortAuthUrl}/${this.proposal.id}`;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    navigator.clipboard.writeText( window.location.origin + `/account/${this.proposal.client.shortAuthUrl}/${this.proposal.id}`);
     this.snackBarService.showSuccess('Link copied');
   }
 
   copyResumeLink(resume: ProposalResumeDto) {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value =
-      window.location.origin + `/proposals/resume/${resume.shortUrl}`;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    navigator.clipboard.writeText( window.location.origin + `/proposals/resume/${resume.shortUrl}`);
     this.snackBarService.showSuccess('Link copied');
   }
 
   getLinkPdf(resume: ProposalResumeDto) {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value =
-      window.location.origin + `/proposals/resume/${resume.shortUrl}/pdf`;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    navigator.clipboard.writeText(window.location.origin + `/proposals/resume/${resume.shortUrl}/pdf`);
     this.snackBarService.showSuccess('Link copied');
   }
 
-
   getPdf(resume: ProposalResumeDto) {
-    this.loading = true;
+    this.spinnerService.show()
     this.proposalService.getProposalResumePdf(this.proposal.id, resume.id).subscribe((file) => {
       saveAs(file, `${resume.firstName} ${resume.lastName}.pdf`);
-      this.loading = false;
+      this.spinnerService.hide()
     });
   }
 
   getDocx(resume: ProposalResumeDto) {
-    this.loading = true;
+    this.spinnerService.show()
     this.proposalService.getProposalResumeDocx(this.proposal.id, resume.id).subscribe((file) => {
         saveAs(file, `${resume.firstName} ${resume.lastName}.docx`);
-        this.loading = false;
-      });
+      this.spinnerService.hide()
+
+    });
   }
 
   getLinkDocx(resume: ProposalResumeDto) {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value =
-      window.location.origin + `/proposals/resume/${resume.shortUrl}/docx`;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    navigator.clipboard.writeText(   window.location.origin + `/proposals/resume/${resume.shortUrl}/docx`);
     this.snackBarService.showSuccess('Link copied');
   }
 

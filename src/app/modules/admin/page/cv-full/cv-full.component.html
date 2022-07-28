@@ -1,7 +1,22 @@
-<div class="resume-wrapper">
-  <button class="fixed-btn" mat-fab color="primary" (click)="back()" (touchstart)="back()"  matTooltip="Back" matTooltipPosition="before">
-    <mat-icon>home</mat-icon>
-  </button>
+<div class="resume-wrapper" *ngIf="resume">
+  <div class="actions-wrapper">
+    <button class="home-button" mat-fab color="primary" (click)="back()" (touchstart)="back()"  matTooltip="Back" matTooltipPosition="before">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <a class="pdf-button" mat-fab color="primary" routerLink="/admin/resume/edit/{{resume.id}}" matTooltip="Edit resume" matTooltipPosition="before">
+      <mat-icon>edit</mat-icon>
+    </a>
+
+    <button class="edit-button" mat-fab color="primary" (click)="getPdf()" matTooltip="Download resume pdf" matTooltipPosition="before">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+
+    <button class="pdf-button" mat-fab color="primary" (click)="getDocx()" matTooltip="Download resume docx" matTooltipPosition="before">
+      <mat-icon>description</mat-icon>
+    </button>
+  </div>
+
 
   <div class="resumeDiv">
     <resume-template-builder *ngIf="resume" [resume]="resume"></resume-template-builder>
