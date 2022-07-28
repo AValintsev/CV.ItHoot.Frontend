@@ -46,6 +46,10 @@ export class UserService {
   }
 
   public updateUserProfile(userProfile:UserProfileDto):Observable<UserProfileDto> {
-  return this.httpService.postRequest(this.routePrefix , userProfile);
+  return this.httpService.putRequest(this.routePrefix , userProfile);
+  }
+
+  public createUser(user:UserProfileDto):Observable<UserDto> {
+    return this.httpService.postRequest(this.routePrefix,user);
   }
 }

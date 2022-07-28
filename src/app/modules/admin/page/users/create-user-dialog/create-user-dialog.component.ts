@@ -5,11 +5,13 @@ import {ClientDto} from 'src/app/models/clients/client-dto';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
 import { ClientsListFilter } from 'src/app/models/clients/clients-list-filter';
+import {UserService} from "../../../../../services/user.service";
+import {UserDto, UserProfileDto} from "../../../../../models/user-dto";
 
 
-export interface ClientDtoExtendName extends ClientDto {
+export interface ClientDtoExtendName extends UserProfileDto {
   name?:string
-} 
+}
 
 @Component({
   selector: 'create-user-dialog',
@@ -18,7 +20,7 @@ export interface ClientDtoExtendName extends ClientDto {
 })
 export class CreateUserDialogComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
-  user:ClientDtoExtendName = {} as ClientDtoExtendName;
+  user:UserProfileDto = {} as UserProfileDto;
 
   clientForm: UntypedFormGroup;
   resultsLength = 0;
@@ -33,7 +35,7 @@ export class CreateUserDialogComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<CreateUserDialogComponent>,
-    public clientService: ClientsService,
+    public userService: UserService,
   ) {
     this.user = data;
     this.clientForm = new UntypedFormGroup({
@@ -49,14 +51,16 @@ export class CreateUserDialogComponent implements OnInit, OnDestroy {
   submit() {
     this.isServerError = false;
     this.user = this.clientForm.value
-    // this.clientService.createClient(this.user).subscribe(
+    this.user.firstName = this.clientForm.value?.name?.split(' ')[0];
+    this.user.lastName = this.clientForm.value?.name?.split(' ')[1];
+    this.userService.createUser(this.user).subscribe(
 
-    //   (client) => this.dialogRef.close(client),
-    //   (error) => {
-    //     this.isServerError = true;
-    //     this.serverErrorMsg = error.error.message;
-    //     console.warn(error);
-    //   });
+      (client) => this.dialogRef.close(client),
+      (error) => {
+        this.isServerError = true;
+        this.serverErrorMsg = error.error.message;
+        console.warn(error);
+      });
 
   }
 

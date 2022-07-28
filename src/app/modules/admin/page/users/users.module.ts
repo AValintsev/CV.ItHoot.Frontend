@@ -15,6 +15,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CreateUserDialogComponent } from './create-user-dialog/create-user-dial
         MatSelectModule,
         ReactiveFormsModule,
         MatPaginatorModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTooltipModule
     ]
 })
 export class UserModule { }
