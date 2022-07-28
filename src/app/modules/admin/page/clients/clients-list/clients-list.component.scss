@@ -196,16 +196,16 @@
 }
 
 .section-table {
-  // height:70vh;
-  // @media(max-height:880px){
-  //   height:65vh;
-  // }
-  // @media(max-height:730px){
-  //   height:55vh;
-  // }
-  // @media(max-height:580px){
-  //   height:50vh;
-  // }
+  height:70vh;
+  @media(max-height:880px){
+    height:calc(65vh + 70px);
+  }
+  @media(max-height:730px){
+    height:55vh;
+  }
+  @media(max-height:580px){
+    height:50vh;
+  }
     border: 1px solid rgba(0, 0, 0, 0.12);
     min-width: 100%;
     overflow: auto;

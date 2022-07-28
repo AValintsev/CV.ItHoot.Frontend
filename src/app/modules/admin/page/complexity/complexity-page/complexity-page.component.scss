@@ -7,6 +7,16 @@
   
   
   .section-table{   
+    height:70vh;
+    @media(max-height:880px){
+      height:65vh;
+    }
+    @media(max-height:730px){
+      height:55vh;
+    }
+    @media(max-height:580px){
+      height:50vh;
+    }
    overflow-y: auto;
       // height: 65vh;
     border: 1px solid #e5e5e5;
@@ -121,6 +131,22 @@
         }
       }
     }
-  
   }
   
+
+  .section-table{
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+  .table-page {
+    .td-line{
+      border-left:1px solid rgba(0, 0, 0, 0.12) !important;
+    }
+    th:last-child{
+      border-right:1px solid rgba(0, 0, 0, 0.12) !important;
+    }
+    td:last-child{
+      border-right:1px solid rgba(0, 0, 0, 0.12) !important;
+    }
+  }
