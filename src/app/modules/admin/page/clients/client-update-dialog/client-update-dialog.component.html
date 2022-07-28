@@ -4,21 +4,21 @@
     <div mat-dialog-content class="content">
       <input type="hidden" formControlName="id">
       <mat-form-field appearance="fill">
-        <mat-label>First name</mat-label>
-        <input matInput placeholder="Bill" formControlName="firstName">
-        <mat-error *ngIf="clientForm.controls['firstName'].invalid && clientForm.controls['firstName'].touched">First name is required</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Last name</mat-label>
-        <input matInput placeholder="Gates" formControlName="lastName">
-        <mat-error *ngIf="clientForm.controls['lastName'].invalid && clientForm.controls['lastName'].touched">Last name is required</mat-error>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Bill Gates" formControlName="name">
+        <mat-error *ngIf="clientForm.controls['name'].invalid && clientForm.controls['name'].touched">Name is required</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput placeholder="bill.gates@microsoft.com" formControlName="email">
         <mat-error *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">{{getEmailValidationError()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <input matInput placeholder="Microsoft" formControlName="companyName">
+        <mat-error *ngIf="clientForm.controls['companyName'].invalid && clientForm.controls['companyName'].touched"></mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -37,12 +37,6 @@
         <mat-label>Other contacts</mat-label>
         <input matInput placeholder="skype: @b.gates" formControlName="contacts">
         <mat-error *ngIf="clientForm.controls['contacts'].invalid && clientForm.controls['contacts'].touched"></mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Company</mat-label>
-        <input matInput placeholder="Microsoft" formControlName="companyName">
-        <mat-error *ngIf="clientForm.controls['companyName'].invalid && clientForm.controls['companyName'].touched"></mat-error>
       </mat-form-field>
 
       <mat-error *ngIf="isServerError">{{serverErrorMsg}}</mat-error>

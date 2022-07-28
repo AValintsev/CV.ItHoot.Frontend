@@ -1,14 +1,18 @@
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { MatDialog } from '@angular/material/dialog';
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {RoleDto, SmallUserDto} from "../../../../../models/users/small-user.dto";
 import {UserService} from "../../../../../services/user.service";
 import {RoleService} from "../../../../../services/role.service";
-import {SnackBarService} from "../../../../../services/snack-bar.service";
 import {UntypedFormControl} from "@angular/forms";
 import {merge} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {debounceTime, map, startWith} from "rxjs/operators";
 import {UserListFilter} from "../../../../../models/proposal/proposal-list-filter";
+import { ClientDto } from 'src/app/models/clients/client-dto';
+import { ClientCreateDialogComponent } from '../../clients/client-create-dialog/client-create-dialog.component';
+import { CreateUserDialogComponent } from '../create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'cv-user-list-page',
@@ -30,6 +34,8 @@ export class UserListPageComponent implements OnInit {
 
   constructor(private userService:UserService,
               private roleService:RoleService,
+              private dialog:MatDialog,
+              private snackBar:SnackBarService,
               private snackBarService:SnackBarService) {
     userService.getAllUsers().subscribe(users => {
       this.users = users.items;
@@ -84,4 +90,26 @@ export class UserListPageComponent implements OnInit {
   announceSortChange($event: Sort) {
 
   }
+
+  createClientDialog(): void {
+    const client = {} as ClientDto;
+
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style'],
+      data: client
+    });
+
+    dialogRef.afterClosed().subscribe((client: ClientDto) => {
+      if (!client)
+        return;
+
+
+      this.searchControl.setValue("");
+      this.paginator.pageIndex = 0;
+      this.snackBar.showSuccess('Saved')
+      // this.refreshTable();
+    });
+  }
+
 }

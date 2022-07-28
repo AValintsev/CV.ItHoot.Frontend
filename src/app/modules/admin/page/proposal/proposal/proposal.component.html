@@ -12,21 +12,21 @@
             <span>
               {{ proposal.client?.firstName }} {{ proposal.client?.lastName }}
             </span>
-              <mat-icon matTooltip="Copy client login link" (click)="copyClientLink()">content_copy</mat-icon>
-            </div>
-          </div>
-          <div class="actions">
-            <button mat-raised-button (click)="openProposalDialog()" matTooltip="Proposal setting"
-                    matTooltipPosition="before">
-              <mat-icon>settings</mat-icon>
-            </button>
-            <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
-                    (click)="openResumeDialog()">
-              <mat-icon>add</mat-icon>
-            </button>
+            <mat-icon matTooltip="Copy client login link" (click)="copyClientLink()">content_copy</mat-icon>
           </div>
         </div>
-        <div class="hidden-mat-btn-group">
+        <div class="actions">
+             <button mat-raised-button matTooltip="Add new resume to proposal" matTooltipPosition="before"
+                  (click)="openResumeDialog()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-raised-button (click)="openProposalDialog()" matTooltip="Proposal setting"
+                  matTooltipPosition="before">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="hidden-mat-btn-group">
           <!-- Sticky Columns: -->
           <mat-button-toggle-group multiple [value]="['action']" #stickyColumns="matButtonToggleGroup"
                                    class="example-sticky-toggle-group">
