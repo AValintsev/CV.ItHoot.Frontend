@@ -57,13 +57,8 @@ export class CreateUserDialogComponent implements OnInit, OnDestroy {
     //     this.serverErrorMsg = error.error.message;
     //     console.warn(error);
     //   });
-console.log(this.user)
+
   }
-
-
-
-
-
 
   ngOnDestroy() {
     this.destroy$.next(true)
