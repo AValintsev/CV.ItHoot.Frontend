@@ -15,7 +15,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { BurgerBtnModule } from '../shared/buttons/burger-btn/burger-btn.module';
+import {BurgerBtnModule} from '../shared/buttons/burger-btn/burger-btn.module';
 
 @NgModule({
     imports: [

@@ -1,4 +1,4 @@
-import { debounceTime, map, startWith, takeUntil, tap } from 'rxjs/operators';
+import {debounceTime, map, startWith, takeUntil} from 'rxjs/operators';
 import {Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {UserDto} from '../../../../../models/user-dto';
@@ -16,7 +16,9 @@ import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-bu
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
 import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter";
-import { ModalShowTemplateComponent } from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
+import {
+  ModalShowTemplateComponent
+} from 'src/app/modules/shared/modals/modal-show-template/modal-show-template.component';
 
 @Component({
   selector: 'proposal-create-dialog',

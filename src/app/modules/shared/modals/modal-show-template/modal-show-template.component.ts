@@ -1,6 +1,6 @@
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class ModalShowTemplateComponent implements OnInit,AfterViewInit,OnDestroy {
   private destroy$ = new Subject<boolean>();
-  resumeEditDto = {
+  resume = {
     "id": 0,
 
     showLogo:true,

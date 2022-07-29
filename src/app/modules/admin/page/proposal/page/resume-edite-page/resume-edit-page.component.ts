@@ -1,13 +1,13 @@
-import { ResumeService } from 'src/app/services/resume.service';
-import { Subject } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { ResumeDto } from '../../../../../../models/resume/resume-dto';
-import { ProposalService } from '../../../../../../services/proposal.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { AccountService } from 'src/app/services/account.service';
-import { Users } from 'src/app/models/users-type';
+import {ResumeService} from 'src/app/services/resume.service';
+import {Subject} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {ResumeDto} from '../../../../../../models/resume/resume-dto';
+import {ProposalService} from '../../../../../../services/proposal.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {AccountService} from 'src/app/services/account.service';
+import {Users} from 'src/app/models/users-type';
 
 @Component({
   selector: 'resume-page',

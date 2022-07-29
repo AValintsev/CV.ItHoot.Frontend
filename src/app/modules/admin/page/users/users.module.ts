@@ -1,8 +1,8 @@
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UsersRoutingModule} from "./users-routing.module";
-import { UserListPageComponent } from './user-list-page/user-list-page.component';
+import {UserListPageComponent} from './user-list-page/user-list-page.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -14,7 +14,7 @@ import {PipesModule} from "../../../shared/directives/pipes.module";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import {CreateUserDialogComponent} from './create-user-dialog/create-user-dialog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({

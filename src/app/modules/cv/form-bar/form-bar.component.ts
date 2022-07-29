@@ -17,6 +17,8 @@ import {EducationDto} from '../../../models/resume/education-dto';
 import {ExperienceDto} from '../../../models/resume/experience-dto';
 import {Subject} from 'rxjs';
 import {ResumeTemplateDto} from 'src/app/models/resume/resume-template-dto';
+import {SmallResumeDto} from "../../../models/resume/small-resume-dto";
+import {TemplatePreviewDialogComponent} from "../template-preview-dialog/template-preview-dialog.component";
 
 const modules = {
   toolbar: [
@@ -63,6 +65,18 @@ export class FormBarComponent implements OnInit, OnDestroy {
 
   changeTemplate(templateId: number) {
     this.templateChange.emit(templateId);
+  }
+
+  showPreview(e:Event,id:number){
+    e.stopPropagation()
+    const dialogRef = this.dialog.open(TemplatePreviewDialogComponent, {
+      height: '800px',
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
+      data: id
+    });
+
+    dialogRef.afterClosed().subscribe((resume: SmallResumeDto) => {})
   }
 
   onSelectFile(event: any) {

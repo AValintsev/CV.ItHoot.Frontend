@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
-import {UserDto, UserProfileDto} from "../../../../../models/user-dto";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserProfileDto} from "../../../../../models/user-dto";
 import {UserService} from "../../../../../services/user.service";
 import {SnackBarService} from "../../../../../services/snack-bar.service";
 

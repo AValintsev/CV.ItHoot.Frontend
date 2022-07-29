@@ -1,4 +1,4 @@
-import { MatMenuModule } from '@angular/material/menu';
+import {MatMenuModule} from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {ComplexityPageComponent} from './complexity-page/complexity-page.component';
 import {MatIconModule} from "@angular/material/icon";

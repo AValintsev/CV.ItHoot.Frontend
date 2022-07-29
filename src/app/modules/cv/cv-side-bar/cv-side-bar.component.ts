@@ -1,19 +1,13 @@
-import { Router } from '@angular/router';
-import { map, takeUntil } from 'rxjs/operators';
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
-import { Observable, Subject } from 'rxjs';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
-import { ResumeService } from 'src/app/services/resume.service';
+import {Router} from '@angular/router';
+import {map, takeUntil} from 'rxjs/operators';
+import {Component, EventEmitter, OnDestroy, OnInit, Output,} from '@angular/core';
+import {AccountService} from 'src/app/services/account.service';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
+import {Observable, Subject} from 'rxjs';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import {ResumeService} from 'src/app/services/resume.service';
 import * as saveAs from 'file-saver';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'cv-cv-side-bar',

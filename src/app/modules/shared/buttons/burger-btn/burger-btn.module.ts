@@ -1,8 +1,7 @@
-import { MatIconModule } from '@angular/material/icon';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BurgerBtnComponent } from './burger-btn.component';
-
+import {MatIconModule} from '@angular/material/icon';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BurgerBtnComponent} from './burger-btn.component';
 
 
 @NgModule({

@@ -14,7 +14,7 @@
           <mat-icon>description</mat-icon>
           <span>Save DocX</span>
         </button>
-        <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: resume.id }"
+        <button mat-menu-item (click)="duplicate(resume)"
                 matTooltip="Duplicate" matTooltipPosition="before">
           <mat-icon>file_copy</mat-icon>
           <span>Duplicate</span>

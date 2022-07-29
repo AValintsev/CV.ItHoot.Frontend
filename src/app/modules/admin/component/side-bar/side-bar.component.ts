@@ -1,7 +1,7 @@
 import {Subject} from 'rxjs';
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
+import {AccountService} from 'src/app/services/account.service';
 
 @Component({
   selector: 'cv-side-bar',

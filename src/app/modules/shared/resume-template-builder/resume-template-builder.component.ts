@@ -8,12 +8,11 @@ import {
   OnInit,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
 } from '@angular/core';
-import { ResumeDto } from '../../../models/resume/resume-dto';
-import { ResumeService } from '../../../services/resume.service';
-import { CommonModule } from '@angular/common';
-import { isObservable, Observable } from 'rxjs';
+import {ResumeDto} from '../../../models/resume/resume-dto';
+import {ResumeService} from '../../../services/resume.service';
+import {CommonModule} from '@angular/common';
+import {isObservable, Observable} from 'rxjs';
 
 @Component({
   selector: 'resume-template-builder',

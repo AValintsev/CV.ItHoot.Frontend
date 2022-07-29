@@ -1,6 +1,6 @@
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { MatDialog } from '@angular/material/dialog';
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {MatDialog} from '@angular/material/dialog';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {RoleDto, SmallUserDto} from "../../../../../models/users/small-user.dto";
 import {UserService} from "../../../../../services/user.service";
 import {RoleService} from "../../../../../services/role.service";
@@ -10,9 +10,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {debounceTime, map, startWith} from "rxjs/operators";
 import {UserListFilter} from "../../../../../models/proposal/proposal-list-filter";
-import { ClientDto } from 'src/app/models/clients/client-dto';
-import { ClientCreateDialogComponent } from '../../clients/client-create-dialog/client-create-dialog.component';
-import { CreateUserDialogComponent } from '../create-user-dialog/create-user-dialog.component';
+import {ClientDto} from 'src/app/models/clients/client-dto';
+import {CreateUserDialogComponent} from '../create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'cv-user-list-page',

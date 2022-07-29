@@ -9,7 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ProposalBuildDialogComponent} from '../proposal-build-dialog/proposal-build-dialog.component';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {ProposalBuildComplexityDto} from '../../../../../models/proposal-build/proposal-build-complexity-dto';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'proposal-builds-list',

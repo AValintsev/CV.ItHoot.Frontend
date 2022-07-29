@@ -45,8 +45,7 @@
         </div>
 
       </div>
-      <div mat-menu-item
-           *ngIf="btnSwitcher('menu-list') | async"
+      <div mat-menu-item *ngIf="btnSwitcher('menu-list') | async"
            [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
         <div class="mat-menu-item-inner" matTooltip="Duplicate" matTooltipPosition="before">
           <mat-icon>file_copy</mat-icon>

@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
 import {ResumeService} from '../../../../../services/resume.service';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'cv-resume-template-list-page',

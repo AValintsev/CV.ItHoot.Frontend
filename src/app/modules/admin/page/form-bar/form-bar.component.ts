@@ -17,6 +17,9 @@ import {EducationDialog} from '../../component/modals/education-dialog/education
 import {ExperienceDto} from 'src/app/models/resume/experience-dto';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
+import {
+  TemplatePreviewDialogAdminComponent
+} from "../resume/template-preview-dialog/template-preview-dialog-admin.component";
 
 const modules = {
   toolbar: [
@@ -327,5 +330,15 @@ export class FormBarComponent implements OnInit {
 
   changeTemplate(templateId: number) {
     this.templateChange.emit(templateId);
+  }
+
+  showPreview(e:Event,id:number){
+    e.stopPropagation()
+    const dialogRef = this.dialog.open(TemplatePreviewDialogAdminComponent, {
+      height: '800px',
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
+      data: id
+    });
   }
 }

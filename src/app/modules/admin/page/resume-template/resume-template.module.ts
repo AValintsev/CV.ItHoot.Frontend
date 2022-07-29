@@ -1,4 +1,4 @@
-import { MatMenuModule } from '@angular/material/menu';
+import {MatMenuModule} from '@angular/material/menu';
 import {NgModule} from "@angular/core";
 import {ResumeTemplateRoutingModule} from "./resume-template-routing.module";
 import {RouterModule} from "@angular/router";

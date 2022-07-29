@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 export function requiredFileType(type: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

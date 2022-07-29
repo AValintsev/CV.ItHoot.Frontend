@@ -1,9 +1,7 @@
-import {takeUntil} from 'rxjs/operators';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProposalService} from '../../../services/proposal.service';
 import {saveAs} from 'file-saver';
-import {Subject} from 'rxjs';
 import {ResumeService} from "../../../services/resume.service";
 
 @Component({

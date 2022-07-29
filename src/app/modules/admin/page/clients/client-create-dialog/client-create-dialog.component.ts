@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
 import {ClientDto} from 'src/app/models/clients/client-dto';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
@@ -7,7 +7,7 @@ import {ClientsService} from 'src/app/services/clients.service';
 
 export interface ClientDtoExtendName extends ClientDto {
   name?:string
-} 
+}
 
 @Component({
   selector: 'client-create-dialog',
@@ -52,7 +52,7 @@ export class ClientCreateDialogComponent implements OnInit, OnDestroy {
     this.client = ({...this.clientForm.value,firstName,lastName});
 
     delete this.client.name;
-    
+
     this.clientService.createClient(this.client).subscribe(
 
       (client) => this.dialogRef.close(client),

@@ -42,7 +42,10 @@
       <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId"
                   [compareWith]="compareTemplate" (selectionChange)="changeTemplate($event.value)" disableOptionCentering>
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
-          {{template.templateName}}
+          <div class="select-template-item">
+            <span>{{template.templateName}}</span>
+            <img width="20px" height="20px" src="assets/eye.png" alt="eye logo" (click)="showPreview($event,template.templateId)">
+          </div>
         </mat-option>
       </mat-select>
       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">

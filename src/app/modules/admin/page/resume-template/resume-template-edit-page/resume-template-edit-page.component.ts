@@ -9,9 +9,9 @@ import {ResumeDto} from "../../../../../models/resume/resume-dto";
 import {PositionDto} from "../../../../../models/position/position-dto";
 import {PreviewDialogComponent} from "../preview-dialog/preview-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { requiredFileType } from 'src/app/modules/shared/validators/file.validators';
-import { saveAs } from 'file-saver';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {requiredFileType} from 'src/app/modules/shared/validators/file.validators';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'cv-resume-template-edit-page',

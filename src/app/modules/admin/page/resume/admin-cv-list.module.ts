@@ -1,4 +1,4 @@
-import { MatMenuModule } from '@angular/material/menu';
+import {MatMenuModule} from '@angular/material/menu';
 import {DirectivesModule} from '../../../shared/directives/directives.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,11 +35,11 @@ import {PdfFooterModule} from "../../../shared/pdf-footer/pdf-footer.module";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {QuillModule} from "ngx-quill";
-import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/template-builder.module';
-import { FormBarModule } from '../form-bar/form-bar.module';
+import {TemplateBuilderModule} from 'src/app/modules/shared/template-builder/template-builder.module';
+import {FormBarModule} from '../form-bar/form-bar.module';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgxSpinnerModule} from "ngx-spinner";
-
+import {TemplatePreviewDialogAdminComponent} from './template-preview-dialog/template-preview-dialog-admin.component';
 
 
 @NgModule({
@@ -92,6 +92,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     CvFullComponent,
     AdminCvListComponent,
     ResumeListPageComponent,
+    TemplatePreviewDialogAdminComponent,
   ],
   providers: [DeleteModalService]
 })

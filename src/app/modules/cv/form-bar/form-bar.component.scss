@@ -37,3 +37,12 @@
   resize: none;
 
 }
+.select-template-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img:hover{
+    opacity: .5;
+  }
+}

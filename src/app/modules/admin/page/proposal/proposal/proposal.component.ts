@@ -1,24 +1,19 @@
-import { takeUntil } from 'rxjs/operators';
-import { fromEvent, Subject } from 'rxjs';
-import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {
-  ProposalDto,
-  ProposalResumeDto,
-  StatusProposalResume,
-} from '../../../../../models/proposal/proposal-dto';
-import { ProposalService } from '../../../../../services/proposal.service';
-import { ActivatedRoute } from '@angular/router';
-import { ResumeService } from '../../../../../services/resume.service';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ProposalSettingDialogComponent } from '../proposal-setting-dialog/proposal-setting-dialog.component';
-import { ProposalAddResumeDialogComponent } from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
-import { SmallResumeDto } from '../../../../../models/resume/small-resume-dto';
-import { StatusProposal } from '../../../../../models/enums';
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ProposalDto, ProposalResumeDto, StatusProposalResume,} from '../../../../../models/proposal/proposal-dto';
+import {ProposalService} from '../../../../../services/proposal.service';
+import {ActivatedRoute} from '@angular/router';
+import {ResumeService} from '../../../../../services/resume.service';
+import {SnackBarService} from '../../../../../services/snack-bar.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ProposalSettingDialogComponent} from '../proposal-setting-dialog/proposal-setting-dialog.component';
+import {ProposalAddResumeDialogComponent} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
+import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
+import {StatusProposal} from '../../../../../models/enums';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
-import { MatMenu, MatMenuTrigger } from '@angular/material/menu'
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnInit,} from '@angular/core';
 import {ResumeDto} from '../../../../../../models/resume/resume-dto';
 import {ProposalService} from '../../../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
-import { Location } from '@angular/common'
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'resume-page',
