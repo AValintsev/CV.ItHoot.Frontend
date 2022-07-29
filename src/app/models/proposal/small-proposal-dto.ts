@@ -6,7 +6,6 @@ export interface SmallProposalDto {
   proposalName:string;
   clientUserName:string;
   showLogo:boolean;
-  showContacts:boolean;
   showCompanyNames:boolean;
   proposalSize:number;
   lastUpdated:Date;

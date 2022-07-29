@@ -87,14 +87,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private spinnerService: NgxSpinnerService
   ) {
 
-
-    skillService.searchSkill('').subscribe((skills) => {
-      this.skills = skills;
-    });
   }
 
   ngOnInit() {
-
     if (this.isArchive) {
       this.displayedColumns = [
         'action',
@@ -153,7 +148,12 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filteredClientsMulti.next(this.clients.slice())
 
       this.clientFilterControl.valueChanges.subscribe(() => {
-        this.filterMulti(this.clients, 'fullName', this.clientFilterControl, this.filteredClientsMulti)
+        this.filterMulti(
+          this.clients,
+          'fullName',
+          this.clientFilterControl,
+          this.filteredClientsMulti
+        );
       })
     })
   }

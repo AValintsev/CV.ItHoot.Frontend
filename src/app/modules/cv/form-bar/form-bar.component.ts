@@ -66,19 +66,19 @@ export class FormBarComponent implements OnInit, OnDestroy {
   }
 
   onSelectFile(event: any) {
-    this.file = event.target.files[0];
+    const files = event.target.files;
+    if(!files && files.length !> 0)
+      return;
+
+    this.file = files[0];
 
     if (!this.isCreateForm) {
-
       this.resumeService.addPhoto(this.resume.id, this.file!).subscribe();
-
     } else {
-
       this.resumeService.createPhoto(this.file!).subscribe(image => {
         this.resumeForm.patchValue({imageId: image.id});
         this.resume.imageId = image.id
       });
-
     }
   }
 
@@ -221,7 +221,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
       .forEach((education) => {
         (<UntypedFormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(0),
+            id: new UntypedFormControl(education.id ?? 0),
             institutionName: new UntypedFormControl(education.institutionName),
             specialization: new UntypedFormControl(education.specialization),
             description: new UntypedFormControl(education.description),
@@ -278,14 +278,13 @@ export class FormBarComponent implements OnInit, OnDestroy {
   experienceListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
     this.resume.experiences
-      ?.sort(
-        (a: ExperienceDto, b: ExperienceDto) =>
+      ?.sort((a: ExperienceDto, b: ExperienceDto) =>
           Date.parse(b.endDate) - Date.parse(a.endDate)
       )
       .forEach((experience) => {
         (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(0),
+            id: new UntypedFormControl(experience.id ?? 0),
             position: new UntypedFormControl(experience.position),
             description: new UntypedFormControl(experience.description),
             company: new UntypedFormControl(experience.company),

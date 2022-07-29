@@ -67,7 +67,14 @@ export class TemplateBuilderComponent implements OnInit {
   }
 
   howOld(birthDay: string) {
-    return Math.floor(new Date(Date.now()).getFullYear() - new Date(birthDay!).getFullYear())
+    const today = new Date();
+    const birthDate = new Date(birthDay);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 
   getYear(startDate: string, endDate: string) {

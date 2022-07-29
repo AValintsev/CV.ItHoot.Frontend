@@ -13,7 +13,6 @@ export interface ProposalDto {
   proposalName: string;
   resumes: ProposalResumeDto[];
   showLogo: boolean;
-  showContacts: boolean;
   showCompanyNames:boolean;
   isIncognito: boolean;
   resumeTemplateId:number;
