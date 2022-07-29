@@ -3,6 +3,8 @@
   gap: 2rem;
   padding: 15px;
   justify-content: center;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
 
   .left-bar {
     overflow: hidden auto;

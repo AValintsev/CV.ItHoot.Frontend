@@ -44,31 +44,37 @@
                 </button>
                 <mat-menu #menu="matMenu">
                   <div class="btn-wrapper" mat-menu-item (click)="getPdf(resume)">
+                    <mat-icon>picture_as_pdf</mat-icon>
                     <span class="menu-item-name">Download PDF
                     </span>
                   </div>
                   <mat-divider></mat-divider>
                   <div class="btn-wrapper" mat-menu-item (click)="getLinkPdf(resume)">
+                    <mat-icon>picture_as_pdf</mat-icon>
                     <span class="menu-item-name">Copy link PDF
                     </span>
                   </div>
                   <mat-divider></mat-divider>
                   <div class="btn-wrapper" mat-menu-item (click)="getDocx(resume)">
+                    <mat-icon>description</mat-icon>
                     <span class="menu-item-name">Open DocX
                     </span>
                   </div>
                   <mat-divider></mat-divider>
                   <div class="btn-wrapper" mat-menu-item (click)="getLinkDocx(resume)">
+                    <mat-icon>description</mat-icon>
                     <span class="menu-item-name">Copy link DocX
                     </span>
                   </div>
                   <mat-divider></mat-divider>
                   <div class="btn-wrapper" mat-menu-item  routerLink="{{ url }}{{ proposal.id }}/resume/{{ resume.id }}">
+                    <mat-icon>visibility</mat-icon>
                     <span class="menu-item-name">Open CV
                     </span>
                   </div>
                   <mat-divider></mat-divider>
                   <div class="btn-wrapper" mat-menu-item (click)="copyResumeLink(resume)">
+                    <mat-icon>content_copy</mat-icon>
                     <span class="menu-item-name">Copy link CV
                     </span>
                   </div>
@@ -76,10 +82,12 @@
                   <div *ngIf="showEditBtn" class="btn-wrapper" mat-menu-item  routerLink="{{ url }}{{ proposal.id }}/resume/edit/{{
                         resume.id
                       }}">
+                      <mat-icon>edit</mat-icon>
                     <span class="menu-item-name">Edit CV</span>
                   </div>
                   <mat-divider></mat-divider>
                   <div (click)="deleteResume(resume)" class="btn-wrapper" mat-menu-item>
+                    <mat-icon>delete</mat-icon>
                     <span class="menu-item-name">Remove CV</span> 
                   </div>
                 </mat-menu>
@@ -138,7 +146,6 @@
               </td>
             </ng-container>
 
-            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
@@ -147,3 +154,5 @@
     </div>
   </div>
 </div>
+
+
