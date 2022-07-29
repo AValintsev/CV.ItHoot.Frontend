@@ -96,7 +96,8 @@ a:link {
 // style scrollbar
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
+  height: 10px;
   /* ширина всей полосы прокрутки */
 }
 
@@ -181,4 +182,8 @@ td {
 }
 .hidden-mat-btn-group{
   display: none;
+}
+
+.mat-select-panel-height{
+  max-height:180px !important;
 }

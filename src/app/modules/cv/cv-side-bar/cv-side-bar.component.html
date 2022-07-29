@@ -69,7 +69,7 @@
         </div>
       </div>
       <div mat-menu-item class="docx"
-           *ngIf="btnSwitcher('menu-list') | async" (click)="saveDocX()">
+           *ngIf="btnSwitcher('menu-list') | async" (click)="saveDocX(id, firstName, lastName)">
         <div class="mat-menu-item-inner" matTooltip="Download resume DOCX" matTooltipPosition="before">
           <mat-icon>description</mat-icon>
           <span>Save DocX</span>
