@@ -263,3 +263,18 @@ td:first-child{
   // padding-left: 2rem;
   text-align: center;
 }
+
+.step-to-proposal{
+  font-size: 1.6rem;
+  width: 20rem;
+  position: absolute;
+  right: 15px;
+  /* left: 117px; */
+  top: 13.2rem;
+  display: flex;
+  align-items: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
