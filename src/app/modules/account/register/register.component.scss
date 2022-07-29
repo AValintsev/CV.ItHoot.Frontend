@@ -1,4 +1,4 @@
-:host {
+:host::ng-deep{
    display: block;
    height: 100vh;
    width: 100%;
@@ -11,6 +11,9 @@
    display: flex;
    justify-content: center;
    overflow-y: auto;
+   .mat-form-field-flex{
+      align-items: flex-end;
+    }
    button{
       font-family: 'Inter', sans-serif;
      }
@@ -121,3 +124,12 @@ button {
       }
    }
 }
+
+.eye {
+   color: rgb(160, 146, 146);
+   font-size: 2.5rem;
+   cursor: pointer;
+   // top: -28px;
+   // right: 1px;
+   // position: absolute;
+ }

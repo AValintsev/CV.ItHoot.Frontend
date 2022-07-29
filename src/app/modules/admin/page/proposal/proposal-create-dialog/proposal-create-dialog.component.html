@@ -10,7 +10,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Client</mat-label>
-      <mat-select [(value)]="proposal.clientId" disableOptionCentering>
+      <mat-select [(value)]="proposal.clientId" disableOptionCentering panelClass="mat-select-panel-height">
         <mat-option *ngFor="let client of clients" [value]="client.userId">
           {{client.firstName}} {{client.lastName}}
         </mat-option>
@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Proposal build</mat-label>
-      <mat-select [(value)]="proposal.proposalBuild" (selectionChange)="proposalBuildSelected()" disableOptionCentering>
+      <mat-select [(value)]="proposal.proposalBuild" (selectionChange)="proposalBuildSelected()" disableOptionCentering  panelClass="mat-select-panel-height">
         <mat-option *ngFor="let proposalBuild of proposalBuilds" [value]="proposalBuild">
           {{proposalBuild.projectTypeName}}
         </mat-option>
@@ -62,7 +62,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
-      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering>
+      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering  panelClass="mat-select-panel-height">
 
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           <ul class="mat-option-list">
