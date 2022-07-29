@@ -148,7 +148,9 @@ export class ResumeService {
 
   public getResumeDocxByUrl(url:string):Observable<any>{
     return this.httpService.getFile(this.routePrefix+`/url/${url}/docx`);
-
   }
 
+  public duplicateResume(resumeId:number):Observable<ResumeDto>{
+    return this.httpService.postRequest<ResumeDto>(this.routePrefix+`/duplicate/${resumeId}`,{});
+  }
 }

@@ -67,8 +67,7 @@
 
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           <ul class="mat-option-list">
-            <li (click)="showPreview($event,template.templateId)" matTooltip="View template"
-                matTooltipPosition="before">
+            <li (click)="showPreview($event,template.templateId)" matTooltip="View template" matTooltipPosition="before">
               <img width="20px" height="20px" src="assets/eye.png" alt="eye logo">
             </li>
             <li>{{template.templateName}}</li>

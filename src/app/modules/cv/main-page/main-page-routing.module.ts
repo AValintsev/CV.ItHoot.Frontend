@@ -1,11 +1,9 @@
-import {Users} from './../../../models/users-type';
+import {Users} from '../../../models/users-type';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {MainPageComponent} from './main-page.component';
 import {CommonModule} from '@angular/common';
 import {UsersGuard} from 'src/app/guards/users.guard';
-import {LoaderModule} from '../../shared/components/loader/loader.module';
-import {DeleteModalService} from 'src/app/services/delete-modal.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild([
@@ -25,7 +23,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 ],
   exports: [RouterModule],
   declarations: [
-    
+
   ],
 
 })

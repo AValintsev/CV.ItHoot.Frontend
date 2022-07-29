@@ -29,6 +29,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ResumeTemplateBuilderModule} from "../shared/resume-template-builder/resume-template-builder.module";
 import {QuillModule} from "ngx-quill";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { TemplatePreviewDialogComponent } from './template-preview-dialog/template-preview-dialog.component';
 
 
 
@@ -42,7 +43,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ExperienceDialog,
     CvEditPageComponent,
     UserCvListComponent,
-    FormBarComponent
+    FormBarComponent,
+    TemplatePreviewDialogComponent
 
   ],
     imports: [

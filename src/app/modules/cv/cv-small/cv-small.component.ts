@@ -33,9 +33,6 @@ export class CvSmallComponent implements OnInit, OnDestroy {
   @Output() refresh = new EventEmitter();
   ngOnInit(): void {}
 
-  checkRole() {
-    return this.accountService.getStoreRole();
-  }
   deleteResume(id: number) {
     this.deleteModalService.matModal('Do you want to delete your resume?')
       .subscribe({
@@ -72,5 +69,11 @@ export class CvSmallComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  duplicate(resume: SmallResumeDto) {
+    this.resumeService.duplicateResume(resume.id).subscribe(()=>{
+      this.refresh.emit();
+    })
   }
 }

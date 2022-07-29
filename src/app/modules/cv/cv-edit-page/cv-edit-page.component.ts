@@ -44,12 +44,10 @@ export class CvEditPageComponent implements OnInit, OnDestroy {
       this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resumeEditDto = resume;
         this.patchForm(this.resumeEditDto!);
-        this.resumeService.getResumeById(id).subscribe(resume => {
-          this.userHeaderBtnService.setUserData({
-            id: resume.id,
-            firstName: resume.firstName,
-            lastName: resume.lastName
-          })
+        this.userHeaderBtnService.setUserData({
+          id: resume.id,
+          firstName: resume.firstName,
+          lastName: resume.lastName
         })
       });
     });

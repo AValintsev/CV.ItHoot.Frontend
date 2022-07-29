@@ -39,6 +39,7 @@ import { TemplateBuilderModule } from 'src/app/modules/shared/template-builder/t
 import { FormBarModule } from '../form-bar/form-bar.module';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgxSpinnerModule} from "ngx-spinner";
+import { TemplatePreviewDialogAdminComponent } from './template-preview-dialog/template-preview-dialog-admin.component';
 
 
 
@@ -92,6 +93,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     CvFullComponent,
     AdminCvListComponent,
     ResumeListPageComponent,
+    TemplatePreviewDialogAdminComponent,
   ],
   providers: [DeleteModalService]
 })
