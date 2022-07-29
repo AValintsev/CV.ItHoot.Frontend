@@ -1,6 +1,6 @@
 <form [formGroup]="resumeForm">
   <div class="input-group">
-    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+    <input id="fileInput" type='file' (change)="onSelectFile($event)" accept="image/*">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
       <input matInput placeholder="Web Developer" formControlName="resumeName">

@@ -19,7 +19,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Proposal build</mat-label>
-      <mat-select [(value)]="proposal.proposalBuild" (selectionChange)="proposalBuildSelected()" disableOptionCentering  panelClass="mat-select-panel-height">
+      <mat-select [(value)]="proposal.proposalBuild" (selectionChange)="proposalBuildSelected()" disableOptionCentering
+                  panelClass="mat-select-panel-height">
         <mat-option *ngFor="let proposalBuild of proposalBuilds" [value]="proposalBuild">
           {{proposalBuild.projectTypeName}}
         </mat-option>
@@ -62,11 +63,12 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
-      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering  panelClass="mat-select-panel-height">
+      <mat-select [(value)]="proposal.resumeTemplateId" disableOptionCentering panelClass="mat-select-panel-height">
 
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           <ul class="mat-option-list">
-            <li (click)="showPreview($event,template.templateId)" matTooltip="View template" matTooltipPosition="before">
+            <li (click)="showPreview($event,template.templateId)" matTooltip="View template"
+                matTooltipPosition="before">
               <img width="20px" height="20px" src="assets/eye.png" alt="eye logo">
             </li>
             <li>{{template.templateName}}</li>
@@ -78,6 +80,16 @@
 
     <div class="checkbox-section">
       <div>
+        <mat-icon *ngIf="!proposal.isIncognito">visibility</mat-icon>
+        <mat-icon *ngIf="proposal.isIncognito">visibility_off</mat-icon>
+        <mat-slide-toggle [(ngModel)]="proposal.isIncognito">
+        <span matTooltip="Hiding contacts and last name in resume for client" matTooltipPosition="after">
+          Anonim
+        </span>
+        </mat-slide-toggle>
+      </div>
+
+      <div>
         <mat-icon *ngIf="proposal.showLogo">image</mat-icon>
         <mat-icon *ngIf="!proposal.showLogo">hide_image</mat-icon>
         <mat-slide-toggle [(ngModel)]="proposal.showLogo">
@@ -86,15 +98,7 @@
         </span>
         </mat-slide-toggle>
       </div>
-      <div>
-        <mat-icon *ngIf="proposal.showContacts">face</mat-icon>
-        <mat-icon *ngIf="!proposal.showContacts">face_retouching_off</mat-icon>
-        <mat-slide-toggle [(ngModel)]="proposal.showContacts">
-       <span matTooltip="Show resume contacts for client" matTooltipPosition="after">
-          Show Contacts
-        </span>
-        </mat-slide-toggle>
-      </div>
+
       <div>
         <mat-icon *ngIf="proposal.showCompanyNames">account_circle</mat-icon>
         <mat-icon *ngIf="!proposal.showCompanyNames">no_accounts</mat-icon>
@@ -104,27 +108,16 @@
         </span>
         </mat-slide-toggle>
       </div>
-
-     <div>
-       <mat-icon *ngIf="!proposal.isIncognito">visibility</mat-icon>
-       <mat-icon *ngIf="proposal.isIncognito">visibility_off</mat-icon>
-       <mat-slide-toggle [(ngModel)]="proposal.isIncognito">
-        <span matTooltip="Hiding last name in resume for client" matTooltipPosition="after">
-          Incognito
-        </span>
-       </mat-slide-toggle>
-     </div>
+    </div>
+    <div mat-dialog-actions class="actions">
+      <button mat-stroked-button (click)="submit()" cdkFocusInitial [disabled]="canCreate()"
+              matTooltip="Save" matTooltipPosition="above">Save
+      </button>
+      <button mat-stroked-button [mat-dialog-close]="false"
+              matTooltip="Cancel" matTooltipPosition="above">Cancel
+      </button>
     </div>
 
   </div>
-  <div mat-dialog-actions class="actions">
-    <button mat-stroked-button (click)="submit()" cdkFocusInitial [disabled]="canCreate()"
-            matTooltip="Save" matTooltipPosition="above">Save
-    </button>
-    <button mat-stroked-button [mat-dialog-close]="false"
-            matTooltip="Cancel" matTooltipPosition="above">Cancel
-    </button>
-  </div>
 
 </div>
-

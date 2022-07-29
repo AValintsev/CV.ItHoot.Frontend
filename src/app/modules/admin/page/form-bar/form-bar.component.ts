@@ -20,8 +20,8 @@ import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
 
 const modules = {
   toolbar: [
-    ['bold', 'italic', 'underline', 'strike','code-block',{ 'header': 1 }, { 'header': 2 },{ 'list': 'ordered'}, { 'list': 'bullet' },{ 'align': [] }],        // toggled buttons
-    [{ 'size': ['small', false, 'large', 'huge'] },{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'code-block', {'header': 1}, {'header': 2}, {'list': 'ordered'}, {'list': 'bullet'}, {'align': []}],        // toggled buttons
+    [{'size': ['small', false, 'large', 'huge']}, {'header': [1, 2, 3, 4, 5, 6, false]}],
   ]
 };
 
@@ -47,8 +47,6 @@ export class FormBarComponent implements OnInit {
   positions!: PositionDto[];
 
 
-
-
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
@@ -67,19 +65,19 @@ export class FormBarComponent implements OnInit {
   }
 
   onSelectFile(event: any) {
-    this.file = event.target.files[0];
+    const files = event.target.files;
+    if(!files && files.length !> 0)
+      return;
+
+    this.file = files[0];
+
     if (!this.isCreateForm) {
-      this.resumeService
-        .addPhoto(this.resume.id, this.file!)
-        .subscribe();
+      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe();
     } else {
-      this.resumeService
-        .createPhoto(this.file!)
-        .subscribe(image=> {
-          this.resumeForm.patchValue({imageId: image.id});
-          this.resume.imageId = image.id
-          console.log(this.resume);
-        });
+      this.resumeService.createPhoto(this.file!).subscribe(image => {
+        this.resumeForm.patchValue({imageId: image.id});
+        this.resume.imageId = image.id
+      });
     }
   }
 

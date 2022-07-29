@@ -111,12 +111,10 @@
           <div class="configuration">
             <mat-icon [ngClass]="{'selected':proposal.showlogo}"
                       matTooltip="Show footer in resume for client" matTooltipPosition="above">image</mat-icon>
-            <mat-icon [ngClass]="{'selected':proposal.showContacts}"
-                      matTooltip="Show resume contacts for client" matTooltipPosition="above">face</mat-icon>
             <mat-icon [ngClass]="{'selected':proposal.showCompanyNames}"
                       matTooltip="Show company names in resume for client" matTooltipPosition="above">account_circle</mat-icon>
             <mat-icon [ngClass]="{'selected':proposal.isIncognito}"
-                      matTooltip="Hiding last name in resume for client" matTooltipPosition="above">visibility</mat-icon>
+                      matTooltip="Hiding contacts and last name in resume for client" matTooltipPosition="above">visibility</mat-icon>
           </div>
         </td>
       </ng-container>
