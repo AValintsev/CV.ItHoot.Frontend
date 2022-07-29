@@ -8,7 +8,6 @@ import {LanguageDialogComponent} from '../language-dialog/language-dialog.compon
 import {LanguageDto} from '../../../../../models/language/language-dto';
 import {DialogType} from '../../../../../models/enums';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-language-page',

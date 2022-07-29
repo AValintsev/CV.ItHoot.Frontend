@@ -24,7 +24,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSelect} from '@angular/material/select';
 import {UserDto} from 'src/app/models/user-dto';
 import {UserService} from "src/app/services/user.service";
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 
 interface ProposalStatusItem  {

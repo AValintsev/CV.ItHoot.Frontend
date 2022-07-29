@@ -4,7 +4,7 @@ import {ProposalService} from '../../../../services/proposal.service';
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {ResumeDto} from "../../../../models/resume/resume-dto";
-import { Subject } from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'cv-resume',

@@ -1,6 +1,6 @@
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
 
 
 @Component({

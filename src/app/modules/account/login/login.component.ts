@@ -1,6 +1,6 @@
 import {takeUntil} from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ElementRef, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
-import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';

@@ -17,8 +17,6 @@ import {EducationDialog} from '../../component/modals/education-dialog/education
 import {ExperienceDto} from 'src/app/models/resume/experience-dto';
 import {ExperienceDialog} from '../../component/modals/experience-dialog/experience-dialog.component';
 import {ResumeTemplateDto} from '../../../../models/resume/resume-template-dto';
-import {TemplatePreviewDialogComponent} from "../../../cv/template-preview-dialog/template-preview-dialog.component";
-import {SmallResumeDto} from "../../../../models/resume/small-resume-dto";
 import {
   TemplatePreviewDialogAdminComponent
 } from "../resume/template-preview-dialog/template-preview-dialog-admin.component";

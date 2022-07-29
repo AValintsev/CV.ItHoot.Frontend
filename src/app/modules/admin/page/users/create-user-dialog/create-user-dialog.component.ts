@@ -1,12 +1,9 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {catchError, map, of, Subject} from 'rxjs';
-import {ClientDto} from 'src/app/models/clients/client-dto';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Subject} from 'rxjs';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {ClientsService} from 'src/app/services/clients.service';
-import { ClientsListFilter } from 'src/app/models/clients/clients-list-filter';
 import {UserService} from "../../../../../services/user.service";
-import {UserDto, UserProfileDto} from "../../../../../models/user-dto";
+import {UserProfileDto} from "../../../../../models/user-dto";
 
 
 export interface ClientDtoExtendName extends UserProfileDto {

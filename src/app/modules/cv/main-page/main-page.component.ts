@@ -1,14 +1,7 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
-import { Observable } from 'rxjs';
-import { AccountService } from 'src/app/services/account.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import {AfterContentChecked, ChangeDetectorRef, Component, OnInit,} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AccountService} from 'src/app/services/account.service';
+import {LoadingService} from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-main-page',

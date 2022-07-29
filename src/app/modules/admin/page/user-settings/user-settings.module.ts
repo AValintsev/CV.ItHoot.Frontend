@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {UserSettingRoutingModule} from "./user-settings-routing.module";
-import { UserSettingsComponent } from './user-settings/user-settings.component';
+import {UserSettingsComponent} from './user-settings/user-settings.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";

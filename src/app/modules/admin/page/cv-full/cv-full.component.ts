@@ -1,13 +1,10 @@
-import {map, pluck} from 'rxjs/operators';
 import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from 'src/app/services/resume.service';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
-import {Observable} from 'rxjs';
 import {Location} from '@angular/common'
 import {ProposalService} from "../../../../services/proposal.service";
 import {saveAs} from "file-saver";
-import {SmallResumeDto} from "../../../../models/resume/small-resume-dto";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({

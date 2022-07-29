@@ -1,10 +1,9 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Subject} from 'rxjs';
-import {ClientDto} from 'src/app/models/clients/client-dto';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ClientsService} from 'src/app/services/clients.service';
-import { ClientDtoExtendName } from '../client-create-dialog/client-create-dialog.component';
+import {ClientDtoExtendName} from '../client-create-dialog/client-create-dialog.component';
 
 @Component({
   selector: 'client-update-dialog',

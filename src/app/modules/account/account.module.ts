@@ -1,4 +1,4 @@
-import { MatIconModule } from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {LoaderModule} from './../shared/components/loader/loader.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';

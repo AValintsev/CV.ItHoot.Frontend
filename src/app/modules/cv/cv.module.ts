@@ -1,4 +1,4 @@
-import { FormBarComponent } from './form-bar/form-bar.component';
+import {FormBarComponent} from './form-bar/form-bar.component';
 import {CvSmallModule} from './cv-small/cv-small.module';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -29,8 +29,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ResumeTemplateBuilderModule} from "../shared/resume-template-builder/resume-template-builder.module";
 import {QuillModule} from "ngx-quill";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { TemplatePreviewDialogComponent } from './template-preview-dialog/template-preview-dialog.component';
-
+import {TemplatePreviewDialogComponent} from './template-preview-dialog/template-preview-dialog.component';
 
 
 @NgModule({
