@@ -45,7 +45,7 @@
               <div class="mat-devider-wrapper-custom">
                 <mat-divider></mat-divider>
               </div>
-              
+
               <button mat-menu-item *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{id}}">
                 <mat-icon>edit</mat-icon>
                 <span>
@@ -67,7 +67,7 @@
                 <mat-icon>picture_as_pdf</mat-icon>
                 <span>Save PDF</span>
               </button>
-              <button mat-menu-item (click)="saveDocX()" class="docx">
+              <button mat-menu-item (click)="saveDocX(id,firstName,lastName)" class="docx">
                 <mat-icon>description</mat-icon>
                 <span>Save DocX</span>
               </button>

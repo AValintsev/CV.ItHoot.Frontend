@@ -107,8 +107,10 @@ export class CvSideBarComponent implements OnInit, OnDestroy {
       });
   }
 
-  saveDocX() {
-    this.snackbarService.showDanger('The service is currently not working');
+  saveDocX(resumeId: number, firstName: string = '', lastName: string = '') {
+    this.resumeService.getResumeDocxById(resumeId).subscribe((response) => {
+      saveAs(response, `${firstName} ${lastName}.docx`);
+    });
   }
   ngOnDestroy() {
     this.destroy$.next(true);

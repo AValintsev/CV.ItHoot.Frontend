@@ -63,8 +63,10 @@ export class CvSmallComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveDocX() {
-    this.snackBarService.showDanger('The service is currently not working');
+  saveDocX(resumeId: number, firstName: string = '', lastName: string = '') {
+    this.resumeService.getResumeDocxById(resumeId).subscribe((response) => {
+      saveAs(response, `${firstName} ${lastName}.docx`);
+    });
   }
 
   ngOnDestroy() {

@@ -102,7 +102,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
   }
 
   savePdf(resumeId: number, firstName: string = '', lastName: string = '') {
-    console.log(resumeId, firstName, lastName);
     this.resumeService.getResumePdfById(resumeId).subscribe((response) => {
       saveAs(response, `${firstName} ${lastName}.pdf`);
     });
@@ -117,8 +116,10 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
       });
   }
 
-  saveDocX() {
-    this.snackbarService.showDanger('The service is currently not working');
+  saveDocX(resumeId: number, firstName: string = '', lastName: string = '') {
+    this.resumeService.getResumeDocxById(resumeId).subscribe((response) => {
+      saveAs(response, `${firstName} ${lastName}.docx`);
+    });
   }
 
   ngOnDestroy() {
