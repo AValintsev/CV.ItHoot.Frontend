@@ -1,10 +1,27 @@
+:host-context(.open-side-bar){
+  .container-inner {
+
+    @media(max-width:1420px){
+      flex-direction: column;
+    }
+  }
+}
 .container {
+  height: 100vh;
+   overflow-y: auto;
+  &-inner{
+    margin-top: -2rem;
+    height: calc(2950px);
+    padding-bottom: 3rem;
   display: flex;
   gap: 2rem;
   padding: 15px;
   justify-content: center;
-  height: calc(100vh - 4rem);
-  overflow-y: auto;
+
+  }
+
+  // height: calc(100vh - 4rem);
+ 
 
   .left-bar {
     overflow: hidden auto;
@@ -29,3 +46,15 @@
     }
   }
 }
+resume-template-builder{
+  display: block;
+  // overflow-y: auto;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+
+
+}  
+:host::ng-deep #resume{
+  box-shadow: none !important;
+
+    // padding-bottom: 2rem;
+  }

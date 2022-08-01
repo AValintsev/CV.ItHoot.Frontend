@@ -1,5 +1,5 @@
-import {DeleteModalService} from 'src/app/services/delete-modal.service';
-import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
+import { DeleteModalService } from 'src/app/services/delete-modal.service';
+import { SmallResumeDto } from 'src/app/models/resume/small-resume-dto';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -11,27 +11,31 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {ResumeService} from 'src/app/services/resume.service';
-import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {saveAs} from 'file-saver';
-import {Users} from 'src/app/models/users-type';
-import {AccountService} from 'src/app/services/account.service';
-import {FormControl} from '@angular/forms';
-import {debounceTime, map, startWith, take, takeUntil} from 'rxjs/operators';
-import {merge, ReplaySubject, Subject} from 'rxjs';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {PositionDto} from 'src/app/models/position/position-dto';
-import {PositionService} from 'src/app/services/position.service';
-import {SkillDto} from 'src/app/models/skill/skill-dto';
-import {SkillService} from 'src/app/services/skill.service';
-import {MatSelect} from '@angular/material/select';
-import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
-import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums';
-import {ClientsService} from "../../../../../services/clients.service";
-import {SmallClientsDto} from "../../../../../models/clients/small-clients-dto";
-import {MatButtonToggleGroup} from '@angular/material/button-toggle';
-import {NgxSpinnerService} from "ngx-spinner";
+import { ResumeService } from 'src/app/services/resume.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { saveAs } from 'file-saver';
+import { Users } from 'src/app/models/users-type';
+import { AccountService } from 'src/app/services/account.service';
+import { FormControl } from '@angular/forms';
+import { debounceTime, map, startWith, take, takeUntil } from 'rxjs/operators';
+import { merge, Observable, ReplaySubject, Subject } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { PositionDto } from 'src/app/models/position/position-dto';
+import { PositionService } from 'src/app/services/position.service';
+import { SkillDto } from 'src/app/models/skill/skill-dto';
+import { SkillService } from 'src/app/services/skill.service';
+import { MatSelect } from '@angular/material/select';
+import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
+import {
+  AvailabilityStatus,
+  AvailabilityStatusLabel,
+} from 'src/app/models/enums';
+import { ClientsService } from '../../../../../services/clients.service';
+import { SmallClientsDto } from '../../../../../models/clients/small-clients-dto';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -50,7 +54,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() url!: string;
 
   searchControl = new FormControl();
-
+   isLoading = false
   positions!: PositionDto[];
   positionControl = new FormControl();
   positionFilterControl = new FormControl();
@@ -61,21 +65,23 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   skillFilterControl = new FormControl();
   filteredSkillsMulti: ReplaySubject<SkillDto[]> = new ReplaySubject(1);
 
-
   clients!: SmallClientsDto[];
-  clientsControl = new FormControl;
-  clientFilterControl = new FormControl;
+  clientsControl = new FormControl();
+  clientFilterControl = new FormControl();
   filteredClientsMulti: ReplaySubject<SmallClientsDto[]> = new ReplaySubject(1);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('positionMultiSelect', {static: true}) positionMultiSelect: MatSelect;
-  @ViewChild('skillMultiSelect', {static: true}) skillMultiSelect: MatSelect;
-  @ViewChild('clientMultiSelect', {static: true}) clientMultiSelect: MatSelect;
-
+  @ViewChild('positionMultiSelect', { static: true })
+  positionMultiSelect: MatSelect;
+  @ViewChild('skillMultiSelect', { static: true }) skillMultiSelect: MatSelect;
+  @ViewChild('clientMultiSelect', { static: true })
+  clientMultiSelect: MatSelect;
+  public loading$!: Observable<boolean>;
   protected _onDestroy = new Subject();
 
   constructor(
+    public loadingService: LoadingService,
     public resumeService: ResumeService,
     public deleteModalService: DeleteModalService,
     private snackService: SnackBarService,
@@ -85,9 +91,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private clientService: ClientsService,
     private cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     if (this.isArchive) {
@@ -97,7 +101,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         'position',
         'skills',
         'status',
-      ]
+      ];
     } else {
       this.displayedColumns = [
         'action',
@@ -107,7 +111,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         'clients',
         'salaryRate',
         'loading',
-        'status']
+        'status',
+      ];
     }
 
     this.positionService.getAllPositions().subscribe((positions) => {
@@ -143,9 +148,9 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         });
     });
 
-    this.clientService.getAllClients().subscribe(clients => {
+    this.clientService.getAllClients().subscribe((clients) => {
       this.clients = clients.items;
-      this.filteredClientsMulti.next(this.clients.slice())
+      this.filteredClientsMulti.next(this.clients.slice());
 
       this.clientFilterControl.valueChanges.subscribe(() => {
         this.filterMulti(
@@ -154,8 +159,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           this.clientFilterControl,
           this.filteredClientsMulti
         );
-      })
-    })
+      });
+    });
   }
 
   isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
@@ -223,26 +228,26 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {
-        },
+        error: (error) => {},
       });
   }
 
   getResumePdf(resume: SmallResumeDto) {
-    this.spinnerService.show();
+    this.isLoading = true
     this.resumeService.getResumePdfById(resume.id).subscribe((response) => {
       saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`);
-      this.spinnerService.hide();
+      this.isLoading = false
     });
   }
 
   getResumeDocx(resume: SmallResumeDto) {
-    this.spinnerService.show();
+    this.isLoading = true
     this.resumeService.getResumeDocxById(resume.id).subscribe((response) => {
       saveAs(response, `${resume.firstName} ${resume.lastName}.docx`);
-      this.spinnerService.hide();
+      this.isLoading = false
     });
   }
+
 
   recoverResume(resume: SmallResumeDto): void {
     this.deleteModalService
@@ -267,23 +272,28 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {
-        },
+        error: (error) => {},
       });
   }
 
   copyResumeLink(url: string) {
-    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}`);
+    navigator.clipboard.writeText(
+      window.location.origin + `/resume/url/${url}`
+    );
     this.snackService.showSuccess('Link copied');
   }
 
   copyResumePdfLink(url: string) {
-    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}/pdf`);
+    navigator.clipboard.writeText(
+      window.location.origin + `/resume/url/${url}/pdf`
+    );
     this.snackService.showSuccess('Link copied');
   }
 
   copyResumeDocxLink(url: string) {
-    navigator.clipboard.writeText(window.location.origin + `/resume/url/${url}/docx`);
+    navigator.clipboard.writeText(
+      window.location.origin + `/resume/url/${url}/docx`
+    );
     this.snackService.showSuccess('Link copied');
   }
 
@@ -322,7 +332,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getAvailabilityStatusLabel(status: AvailabilityStatus): string | undefined {
-    if (status as number === 0) {
+    if ((status as number) === 0) {
       return 'None';
     }
     return AvailabilityStatusLabel.get(status);
@@ -337,11 +347,14 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       order: this.sort.direction,
       positions: this.positionControl.value,
       skills: this.skillsControl.value,
-      clients: this.clientsControl.value
+      clients: this.clientsControl.value,
     };
     return resumeFilters;
   }
-
+  ngAfterContentChecked() {
+    this.loading$ = this.loadingService.isLoading$;
+    this.cdr.detectChanges();
+  }
   ngOnDestroy() {
     this._onDestroy.next('');
     this._onDestroy.complete();

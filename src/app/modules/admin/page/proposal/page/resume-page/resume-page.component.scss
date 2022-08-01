@@ -3,12 +3,17 @@
   height: 100%;
   width: 100%;
 
-
   .resumeDiv {
-    padding: 0 0 15px 0;
     display: flex;
     justify-content: center;
   }
+
+.resume-content-block{
+  overflow-y: auto;
+  margin-bottom: 2rem;
+  padding: 0 0 15px 0;
+
+}
 
 }
 
@@ -18,3 +23,35 @@
   right: 4rem;
   top: 10rem;
 }
+.back-btn__wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: 2rem;
+}
+.back-btn{
+  font-size: 1.6rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+resume-template-builder{
+  display: block;
+  height:90vh;
+  overflow-y: auto;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+  @media(max-width:800px){
+    height:50vh;
+  }
+
+}  
+:host::ng-deep #resume{
+  box-shadow: none !important;
+
+    // padding-bottom: 2rem;
+  }
