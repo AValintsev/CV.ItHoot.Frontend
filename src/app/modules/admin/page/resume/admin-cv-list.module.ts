@@ -40,6 +40,7 @@ import {FormBarModule} from '../form-bar/form-bar.module';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {TemplatePreviewDialogAdminComponent} from './template-preview-dialog/template-preview-dialog-admin.component';
+import { LoaderModule } from 'src/app/modules/shared/components/loader/loader.module';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import {TemplatePreviewDialogAdminComponent} from './template-preview-dialog/tem
     QuillModule.forRoot(),
     MatTooltipModule,
     NgxSpinnerModule,
+    LoaderModule,
   ],
 
   exports: [

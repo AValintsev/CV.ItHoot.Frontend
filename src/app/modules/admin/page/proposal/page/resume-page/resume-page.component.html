@@ -1,7 +1,16 @@
 <div class="resume-wrapper">
-  <button class="fixed-btn" mat-fab color="primary" (click)="back()" (touchstart)="back()"  matTooltip="Back" matTooltipPosition="before">
-    <mat-icon>home</mat-icon>
-  </button>
+  <div class="back-btn__wrapper">
+    <button
+      mat-raised-button
+      class="back-btn"
+      routerLink="/admin/proposals"
+      matTooltip="Navigating to Proposal page"
+      matTooltipPosition="before"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+      Back to Proposals
+    </button>
+  </div>
   <div class="resumeDiv">
     <resume-template-builder *ngIf="resume" [resume]="resume"></resume-template-builder>
   </div>

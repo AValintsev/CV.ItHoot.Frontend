@@ -1,8 +1,22 @@
 <div class="resume-wrapper" *ngIf="resume">
-  <div class="actions-wrapper">
-    <button class="home-button" mat-fab color="primary" (click)="back()" (touchstart)="back()"  matTooltip="Back" matTooltipPosition="before">
-      <mat-icon>home</mat-icon>
+  <div class="back-btn__wrapper">
+    <button
+      mat-raised-button
+      class="back-btn"
+      routerLink="../"
+      matTooltip="Navigating to Proposal page"
+      matTooltipPosition="before"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+      Back to Resume List
     </button>
+  </div>
+  <div class="resume-inner">
+
+      <div class="actions-wrapper">
+    <!-- <button class="home-button" mat-fab color="primary" (click)="back()" (touchstart)="back()"  matTooltip="Back" matTooltipPosition="before">
+      <mat-icon>home</mat-icon>
+    </button> -->
 
     <a class="pdf-button" mat-fab color="primary" routerLink="/admin/resume/edit/{{resume.id}}" matTooltip="Edit resume" matTooltipPosition="before">
       <mat-icon>edit</mat-icon>
@@ -21,6 +35,8 @@
   <div class="resumeDiv">
     <resume-template-builder *ngIf="resume" [resume]="resume"></resume-template-builder>
   </div>
+  </div>
+
 
 </div>
 <ngx-spinner size="medium" type="ball-circus" [fullScreen]="true"></ngx-spinner>

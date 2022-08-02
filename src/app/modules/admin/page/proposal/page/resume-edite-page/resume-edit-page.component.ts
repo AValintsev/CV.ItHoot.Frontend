@@ -10,7 +10,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {Users} from 'src/app/models/users-type';
 
 @Component({
-  selector: 'resume-page',
+  selector: 'resume-edit-page',
   templateUrl: './resume-edit-page.component.html',
   styleUrls: ['./resume-edit-page.component.scss'],
 })

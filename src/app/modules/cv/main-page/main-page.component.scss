@@ -1,3 +1,17 @@
+:host::ng-deep{
+   cv-burger-btn{
+  @media (max-width: 600px) {
+  display: none;
+  mat-icon{
+    display: none;
+  }
+  }
+}
+.menu-burger__side-bar{
+  display: none;
+}
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -12,6 +26,7 @@ header {
     display: block;
   }
 }
+
 
 main {
   height: calc(100vh);
@@ -36,7 +51,7 @@ main {
   flex: 0 1 100%;
 }
 
-cv-cv-cide-bar {
+cv-cv-cide-bar,cv-burger-btn {
   @media (min-width: 600px) {
     display: block;
   }
@@ -65,7 +80,7 @@ cv-cv-cide-bar {
 
 .open-side-bar {
   transform: translateX(0%);
-  width: 30rem;
+  width: 25rem;
   overflow-x: visible;
   visibility: visible;
   transition: all 0.2s ease;

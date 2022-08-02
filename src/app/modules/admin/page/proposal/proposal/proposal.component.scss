@@ -263,16 +263,22 @@ td:first-child{
   // padding-left: 2rem;
   text-align: center;
 }
-
-.step-to-proposal{
+.back-btn__wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: 2rem;
+}
+.back-btn{
   font-size: 1.6rem;
   width: 20rem;
-  position: absolute;
-  right: 15px;
+  // position: absolute;
+  // right: 15px;
   /* left: 117px; */
-  top: 13.2rem;
+  // top: 13.2rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   mat-icon{
     font-size: 2rem;
     line-height: 1.2;

@@ -81,8 +81,17 @@ button.mat-menu-item {
   @media(max-width:600px) {
     display: block;
   }
+  &mat-menu{
+    button:first-child{
+    background-color: red;
+    display: flex;
+    align-items: center;
+  }
+  }
+  
 }
-
+  
+  
 .large {
   display: block;
 
@@ -346,3 +355,4 @@ svg {
   font-size: 1.6rem;
   font-family: 'Inter';
 }
+

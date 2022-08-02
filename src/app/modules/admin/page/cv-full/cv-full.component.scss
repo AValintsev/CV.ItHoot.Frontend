@@ -4,8 +4,8 @@
   width: 100%;
 
   .resumeDiv {
-    height: 96vh;
-    overflow-y: auto;
+    height: 100vh;
+    // overflow-y: auto;
     padding: 0 0 15px 0;
     display: flex;
     justify-content: center;
@@ -21,3 +21,53 @@
   right: 2rem;
   top: 2rem;
 }
+
+.back-btn__wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: .5rem;
+}
+.back-btn{
+  font-size: 1.6rem;
+  width: 20rem;
+  // position: absolute;
+  // right: 15px;
+  /* left: 117px; */
+  // top: 13.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+
+.resume-wrapper {
+
+}
+.resume-inner{
+    height: 100vh;
+   overflow-y: auto;
+    // margin-top: -2rem;
+    // height: calc(2950px);
+    // padding-bottom: 3rem;
+  display: flex;
+  gap: 2rem;
+  padding: 15px;
+  justify-content: center;
+  }
+  
+  resume-template-builder{
+    display: block;
+    // overflow-y: auto;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+  
+  
+  }  
+  :host::ng-deep #resume{
+    box-shadow: none !important;
+  
+      // padding-bottom: 2rem;
+    }
