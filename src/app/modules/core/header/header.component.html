@@ -19,8 +19,8 @@
           color="primary" mat-icon-button>
           <mat-icon>home</mat-icon>
         </button>
-        <ul *ngIf="btnSwitcher('menu-list') | async" class="user-icons">
-          <li  class="small">
+        <ul  class="user-icons">
+          <li *ngIf="btnSwitcher('menu-list') | async" class="small">
             <button mat-icon-button mat-fab color="primary" [matMenuTriggerFor]="menu" class="button-icon small">
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
@@ -81,7 +81,8 @@
               </div>
             </mat-menu>
           </li>
-          <!-- <li *ngIf="btnSwitcher('menu-list-home') | async" class="menu-list-home" #btnSwitcher>
+          <li *ngIf="btnSwitcher('user-cv-list') | async" class="menu-list-home">
+            
             <button mat-icon-button mat-fab color="primary" [matMenuTriggerFor]="menu" class="button-icon">
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
@@ -109,9 +110,9 @@
                 </button>
               </div>
             </mat-menu>
-          </li> -->
+          </li>
         </ul>
-        <div class="user-content large">
+        <!-- <div class="user-content large">
           <div class="user-picture img">
             <img src="assets/face.jpg" alt="user picture" />
           </div>
@@ -125,7 +126,7 @@
               }}
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <button class="logout large" mat-flat-button  (click)="logout()">
         Logout
