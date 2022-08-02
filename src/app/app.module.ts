@@ -18,6 +18,7 @@ import {DeleteModalService} from './services/delete-modal.service';
 
 export let AppInjector: Injector;
 registerLocaleData(en);
+
 @NgModule({
   declarations: [
     AppComponent,

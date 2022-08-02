@@ -1,5 +1,5 @@
 import {MatIconModule} from '@angular/material/icon';
-import {LoaderModule} from './../shared/components/loader/loader.module';
+import {LoaderModule} from '../shared/components/loader/loader.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,18 +21,19 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     RegisterComponent,
     LoginByUrlComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        AccountRoutingModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        LoaderModule,
-        MatTooltipModule,
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    AccountRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    LoaderModule,
+    MatTooltipModule,
+  ],
 })
-export class AccountModule { }
+export class AccountModule {
+}

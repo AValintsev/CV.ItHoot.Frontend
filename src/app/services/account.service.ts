@@ -23,12 +23,14 @@ export class AccountService {
   private userRole$ = new BehaviorSubject<string>('')
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) {
+  }
 
 
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'identity/emailexists?email=' + email);
   }
+
   // ///////////////////////////////////////////////////////
 
   register(value: { email: string, password: string }): Observable<userResponse> {
@@ -41,33 +43,50 @@ export class AccountService {
   isLoggedIn(): boolean {
     return !!this.getJwtToken()
   }
+
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
       .pipe(
-          catchError(error => {
+        catchError(error => {
           return of(error)
         }),
         tap<any>(tokens => this.doLoginUser(tokens)),
         mapTo(true),
-
       )
   }
 
-  loginByUrl(shortUrl:string): Observable<UserAuthData> {
-    return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`,null);
+  loginViaGoogle(token: string): Observable<boolean> {
+    return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/google`, {idToken: token}).pipe(
+      catchError(error => {
+        return of(error)
+      }),
+      tap<any>(tokens => this.doLoginUser(tokens)),
+      mapTo(true),
+    )
   }
+
+
+
+  loginByUrl(shortUrl: string): Observable<UserAuthData> {
+    return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`, null);
+  }
+
   storeRole(role: string) {
     localStorage.setItem(this.USER_ROLE, role)
   }
+
   storeName(name: string) {
     localStorage.setItem(this.USER_NAME, name)
   }
+
   getStoreRole() {
-   return localStorage.getItem(this.USER_ROLE)
+    return localStorage.getItem(this.USER_ROLE)
   }
+
   getStoreName() {
-   return localStorage.getItem(this.USER_NAME)
+    return localStorage.getItem(this.USER_NAME)
   }
+
   doLoginUser(tokens: userResponse) {
     this.storeRole(tokens.roles[0])
     this.setUserRole(tokens.roles[0])
@@ -75,55 +94,65 @@ export class AccountService {
     this.storeTokens(tokens)
     this.storeName(tokens.userEmail)
   }
+
   setUserRole(role: string) {
     this.userRole$.next(role)
   }
+
   getUserRole() {
     return this.userRole$
   }
+
   storeTokens(tokens: any) {
     localStorage.setItem(this.JWT_TOKEN, tokens.token)
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
   }
+
   logout(): Observable<boolean> {
-    return this.http.post(`${this.baseUrl}identity/logout`, {
-      'refreshToken': this.getRefreshToken()
-    })
-      .pipe(
-        tap(() => this.doLogoutUser()),
+    return this.http.post(`${this.baseUrl}identity/logout`, {refreshToken: this.getRefreshToken()})
+      .pipe(tap(() => {this.doLogoutUser()}),
         mapTo(true),
-        catchError(error => {
+        catchError(error=> {
           console.log(error)
           return of(error)
         })
       )
   }
+
   setUserId(id: number) {
-    localStorage.setItem(this.USER_ID,id.toString());
+    localStorage.setItem(this.USER_ID, id.toString());
     this.userId$.next(id)
   }
+
   getUserId() {
     return localStorage.getItem(this.USER_ID);
   }
+
   getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN)
   }
+
   getJwtToken() {
     return localStorage.getItem(this.JWT_TOKEN)
   }
+
   doLogoutUser() {
+    console.log('test')
     this.removeStoreUserRole()
     this.removeTokens()
     localStorage.clear()
   }
-  removeStoreUserRole(){
+
+  removeStoreUserRole() {
     localStorage.removeItem(this.USER_ROLE)
   }
+
   removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
     localStorage.removeItem(this.USER_ID);
   }
+
   refreshToken() {
     return this.http.post<boolean>(`${this.baseUrl}identity/refresh`, {
       "refreshToken": this.getRefreshToken(),
@@ -132,9 +161,9 @@ export class AccountService {
         tap((tokens: any) => {
           this.storeJwtToken(tokens)
         })
-
       )
   }
+
   storeJwtToken(tokens: any) {
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken)
     localStorage.setItem(this.JWT_TOKEN, tokens.token)

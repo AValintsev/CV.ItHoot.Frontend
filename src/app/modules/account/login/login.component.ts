@@ -1,23 +1,33 @@
-import {takeUntil} from 'rxjs/operators';
-import {AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {take, takeUntil} from 'rxjs/operators';
+import {
+  AfterContentChecked, AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef, NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
-
+import {CredentialResponse} from "google-one-tap";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'cv-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit,OnDestroy,AfterContentChecked {
-private destroy$ = new Subject<boolean>();
-public loading$!: Observable<boolean>
+export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, AfterViewInit {
+
+  private destroy$ = new Subject<boolean>();
+  public loading$!: Observable<boolean>
   errors!: string[];
-  type="password"
+  type = "password"
   swithPasswordVisible = true
   loginForm!: UntypedFormGroup;
 
@@ -26,35 +36,86 @@ public loading$!: Observable<boolean>
               private activatedRoute: ActivatedRoute,
               private snackbarService: SnackBarService,
               private loadingService: LoadingService,
-              private el:ElementRef,
-              private cdr:ChangeDetectorRef
+              private _ngZone: NgZone,
+              private el: ElementRef,
+              private cdr: ChangeDetectorRef
   ) {}
-  changeVisiblePassword(event:Event){
+
+  changeVisiblePassword(event: Event) {
     event.stopPropagation()
-    this.swithPasswordVisible=!this.swithPasswordVisible
-    this.type = this.swithPasswordVisible?"password":"text"
+    this.swithPasswordVisible = !this.swithPasswordVisible
+    this.type = this.swithPasswordVisible ? "password" : "text"
   }
+
+
+  ngAfterViewInit() {
+
+  }
+
   ngOnInit(): void {
     this.loading$ = this.loadingService.isLoading$
     this.loginForm = new UntypedFormGroup({
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
-      password: new UntypedFormControl('', [Validators.required,Validators.minLength(6)])
+      password: new UntypedFormControl('', [Validators.required, Validators.minLength(6)])
     })
+
+    this.loadGoogleAuthScript();
+    this.addGoogleAuthButton();
 
   }
 
+  loadGoogleAuthScript() {
+    const s = document.createElement("script");
+    s.src = "https://accounts.google.com/gsi/client";
+    s.defer = true;
+    s.async = true;
+    this.el.nativeElement.appendChild(s);
+  }
+
+  addGoogleAuthButton() {
+    // @ts-ignore
+    window.onGoogleLibraryLoad = () => {
+      console.log('Google\'s One-tap sign in script loaded!');
+
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id: environment.googleClientId,
+        callback: this.handleCredentialResponse.bind(this)
+      });
+      // @ts-ignore
+
+      google.accounts.id.renderButton(document.getElementById("buttonDiv"),
+        {
+          theme: "outline",
+          size: "medium",
+          text: "continue_with",
+          shape: "rectangular",
+          width: 400
+        }  // customization attributes
+      );
+      // @ts-ignore
+      google.accounts.id.prompt(); // also display the One Tap dialog
+    };
+  }
+
+  handleCredentialResponse(response: CredentialResponse) {
+
+    this.accountService.loginViaGoogle(response.credential).subscribe(
+      () => this._ngZone.run(() => this.router.navigate(['']))
+    );
+
+  }
+
+
+
   onSubmit() {
     if (this.loginForm.valid) {
-      this.accountService.login(this.loginForm.value).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe({
-        next: next => {
-          this.router.navigate([''])
-        },
-        error: error => {
-          this.snackbarService.showDanger('Email or password wrong')
-        }
-      })
+
+      this.accountService.login(this.loginForm.value).subscribe(
+        () => this.router.navigate(['']),
+        () => this.snackbarService.showDanger('Email or password wrong')
+      );
+
     }
   }
 
@@ -63,8 +124,10 @@ public loading$!: Observable<boolean>
     this.cdr.detectChanges();
   }
 
-    ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }
+
+
 }
