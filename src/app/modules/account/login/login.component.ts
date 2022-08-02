@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
   addGoogleAuthButton() {
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
-      console.log('Google\'s One-tap sign in script loaded!');
 
       // @ts-ignore
       google.accounts.id.initialize({

@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   addGoogleAuthButton() {
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
-      console.log('Google\'s One-tap sign in script loaded!');
 
       // @ts-ignore
       google.accounts.id.initialize({

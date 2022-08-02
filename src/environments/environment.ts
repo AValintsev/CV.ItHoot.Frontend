@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://localhost:5001/api/v1/',
   googleClientId: '181654787190-aifstajp7qaubv6c5hkn8thq53i8o1te.apps.googleusercontent.com'
   // apiUrl: 'https://cvbuilder-it.azurewebsites.net/api/v1/'
