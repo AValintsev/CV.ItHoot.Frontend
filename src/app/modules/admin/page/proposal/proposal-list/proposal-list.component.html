@@ -13,7 +13,7 @@
             <mat-icon class="zoom-icon" matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
-        <div class="filter-block">
+        <div class="filter-block two-filter">
 
           <mat-form-field appearance="fill">
             <mat-label>Client filter</mat-label>
@@ -49,7 +49,7 @@
         <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="true" [value]="item"></mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <section class="section-table">
+    <section class="section-table two-filter">
       <table mat-table [dataSource]="proposals" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
 
         <ng-container [sticky]="isSticky(stickyColumns, 'action')" matColumnDef="action">

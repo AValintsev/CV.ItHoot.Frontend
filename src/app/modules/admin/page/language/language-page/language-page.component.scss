@@ -7,22 +7,8 @@
 
 
 .section-table{   
-  height:70vh;
-    @media(max-height:880px){
-      height:63vh;
-    }
-    @media(max-height:730px){
-      height:58vh;
-    }
-    @media(max-height:650px){
-      height:54vh;
-    }
-    @media(max-height:580px){
-      height:50vh;
-    }
-    @media(max-height:540px){
-      height:45vh;
-    }
+height: 100vh;
+
  overflow-y: auto;
     // height: 65vh;
   border: 1px solid #e5e5e5;

@@ -24,123 +24,14 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    @media (max-width: 768px) {
+    @media (max-width: 1050px) {
       flex-wrap: wrap;
     }
   }
   mat-form-field {
     flex: 1 1 100%;
   }
-  .section-table {
-    height: 70vh;
-    @media (min-width: 1050px) {
-      height: 54vh;
-
-      @media (max-height: 880px) {
-        height: 50vh;
-      }
-      @media (max-height: 820px) {
-        height: 46vh;
-      }
-      @media (max-height: 740px) {
-        height: 40vh;
-      }
-      @media (max-height: 670px) {
-        height: 33vh;
-      }
-      @media (max-height: 600px) {
-        height: 28vh;
-      }
-      @media (max-height: 560px) {
-        height: 25vh;
-      }
-    }
-    @media (max-width: 1050px) {
-      height: 54vh;
-
-      @media (max-height: 880px) {
-        height: 50vh;
-      }
-      @media (max-height: 820px) {
-        height: 46vh;
-      }
-      @media (max-height: 740px) {
-        height: 40vh;
-      }
-      @media (max-height: 670px) {
-        height: 33vh;
-      }
-      @media (max-height: 600px) {
-        height: 28vh;
-      }
-      @media (max-height: 560px) {
-        height: 25vh;
-      }
-    }
-  }
-}
-
-:host-context(.open-side-bar) {
-  .filter-block {
-    column-gap: 2rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    @media (max-width: 1050px) {
-      flex-wrap: wrap;
-    }
-    mat-form-field {
-      flex: 1 1 100%;
-    }
-  }
-  .section-table {
-    @media (max-width: 1050px) {
-      height: 54vh;
-
-      @media (max-height: 880px) {
-        height: 50vh;
-      }
-      @media (max-height: 820px) {
-        height: 46vh;
-      }
-      @media (max-height: 740px) {
-        height: 40vh;
-      }
-      @media (max-height: 670px) {
-        height: 36vh;
-      }
-      @media (max-height: 600px) {
-        height: 28vh;
-      }
-      @media (max-height: 560px) {
-        height: 25vh;
-      }
-    }
-
-    @media (min-width: 1050px) {
-      @media (max-height: 880px) {
-        height: 67vh;
-      }
-      @media (max-height: 820px) {
-        height: 63vh;
-      }
-      @media (max-height: 740px) {
-        height: 59vh;
-      }
-      @media (max-height: 670px) {
-        height: 54vh;
-      }
-      @media (max-height: 600px) {
-        height: 50vh;
-      }
-      @media (max-height: 560px) {
-        height: 45vh;
-      }
-      @media (max-height: 480px) {
-        height: 41vh;
-      }
-    }
-  }
+ 
 }
 
 .resume-list {
@@ -154,6 +45,9 @@
     padding-top: 0;
     // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 
     .title-section {
       button {
@@ -275,3 +169,7 @@ mat-button-toggle:first-child {
 td:first-child {
   width: 6rem;
 }
+// /////////////////////////////////////////////////////
+@import "../../../../../shared/styles/admin-adaptiv.scss";
+
+

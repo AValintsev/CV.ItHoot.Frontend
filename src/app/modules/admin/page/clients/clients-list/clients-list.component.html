@@ -8,7 +8,7 @@
   <div class="table-wrapper">
     <div class="title-section">
       <h1>Clients</h1>
-      <div class="filter-block">
+      <div class="filter-block without-filter">
         <button
           mat-raised-button
           (click)="createClientDialog()"
@@ -44,7 +44,7 @@
         ></mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <section class="section-table">
+    <section class="section-table without-filter">
       <table
         mat-table
         [dataSource]="clients"
