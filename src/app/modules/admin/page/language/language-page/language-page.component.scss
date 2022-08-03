@@ -5,9 +5,8 @@
   align-items: start;
   grid-template-columns: 100%;
 
-
 .section-table{   
-height: 100vh;
+padding-bottom: 24px;
 
  overflow-y: auto;
     // height: 65vh;
@@ -15,9 +14,12 @@ height: 100vh;
   border-bottom:none;
 }
   .table-page {
+    height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
     padding: 24px;
     padding-top: 0;
-    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     border-radius: 8px;
     background: white;
     .td-line{
