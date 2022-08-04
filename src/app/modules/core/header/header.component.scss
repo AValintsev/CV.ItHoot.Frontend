@@ -294,7 +294,7 @@ svg {
   }
 
   @media(max-width:600px) {
-    display: block;
+    display: block !important;
   }
 
 }

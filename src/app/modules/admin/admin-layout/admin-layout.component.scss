@@ -11,6 +11,9 @@
   // background-color:#e5e5e5;
   overflow-y: hidden;
   // overflow-y: auto;
+  @media(max-height:640px){
+    // overflow-y: scroll;
+  }
 }
 cv-side-bar {
   flex: 0 0 0rem;

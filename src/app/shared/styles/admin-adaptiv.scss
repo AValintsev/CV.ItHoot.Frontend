@@ -1,0 +1,695 @@
+// :host-context(.open-side-bar) {
+//   .filter-block.three-filter {
+//     column-gap: 2rem;
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: nowrap;
+//     @media (max-width: 1050px) {
+//       flex-wrap: wrap;
+//     }
+//     mat-form-field {
+//       flex: 1 1 100%;
+//     }
+//   }
+//   .section-table.three-filter {
+//     @media (max-width: 1050px) {
+//       height: 60vh;
+//       @media (min-height: 1070px) {
+//         height: 60vh;
+//       }
+//       @media (max-height: 1070px) {
+//         height: 62vh;
+//       }
+
+//       @media (max-height: 980px) {
+//         height: 56vh;
+//       }
+//       @media (max-height: 880px) {
+//         height: 50vh;
+//       }
+//       @media (max-height: 820px) {
+//         height: 46vh;
+//       }
+//       @media (max-height: 740px) {
+//         height: 40vh;
+//       }
+//       @media (max-height: 670px) {
+//         height: 35vh;
+//       }
+//       @media (max-height: 600px) {
+//         height: 30vh;
+//       }
+//       @media (max-height: 560px) {
+//         height: 26vh;
+//       }
+//     }
+
+//     @media (min-width: 1050px) {
+//       height: 73vh;
+//       @media (max-height: 980px) {
+//         height: 71vh;
+//       }
+//       @media (max-height: 880px) {
+//         height: 68vh;
+//       }
+//       @media (max-height: 820px) {
+//         height: 63vh;
+//       }
+//       @media (max-height: 740px) {
+//         height: 59vh;
+//       }
+//       @media (max-height: 670px) {
+//         height: 54vh;
+//       }
+//       @media (max-height: 600px) {
+//         height: 50vh;
+//       }
+//       @media (max-height: 560px) {
+//         height: 45vh;
+//       }
+//     }
+//   }
+// }
+
+// // /////////////////////////////////////////////////////////
+
+// :host {
+//   .section-table.three-filter {
+//     @media (max-width: 1050px) {
+//       height: 73vh;
+//       @media (min-height: 980px) {
+//         height: 73vh;
+//       }
+//       @media (max-height: 980px) {
+//         height: 71vh;
+//       }
+//       @media (max-height: 880px) {
+//         height: 68vh;
+//       }
+//       @media (max-height: 820px) {
+//         height: 66vh;
+//       }
+//       @media (max-height: 740px) {
+//         height: 61vh;
+//       }
+//       @media (max-height: 670px) {
+//         height: 57vh;
+//       }
+//       @media (max-height: 630px) {
+//         height: 53vh;
+//       }
+//       @media (max-height: 600px) {
+//         height: 49vh;
+//       }
+//       @media (max-height: 560px) {
+//         height: 45vh;
+//       }
+//     }
+//     @media (max-width: 769px) {
+//       height: 58vh;
+//       @media (min-height: 980px) {
+//         height: 58vh;
+//       }
+
+//       @media (max-height: 980px) {
+//         height: 58vh;
+//       }
+//       @media (max-height: 930px) {
+//         height: 55vh;
+//       }
+//       @media (max-height: 880px) {
+//         height: 52vh;
+//       }
+//       @media (max-height: 820px) {
+//         height: 48vh;
+//       }
+//       @media (max-height: 740px) {
+//         height: 42vh;
+//       }
+//       @media (max-height: 670px) {
+//         height: 38vh;
+//       }
+//       @media (max-height: 630px) {
+//         height: 35vh;
+//       }
+//       @media (max-height: 600px) {
+//         height: 32vh;
+//       }
+//       @media (max-height: 560px) {
+//         height: 28vh;
+//       }
+//     }
+//     @media (min-width: 1050px) {
+//       height: 73vh;
+//       @media (min-height: 980px) {
+//         height: 73vh;
+//       }
+//       @media (max-height: 980px) {
+//         height: 71vh;
+//       }
+
+//       @media (max-height: 880px) {
+//         height: 66vh;
+//       }
+//       @media (max-height: 820px) {
+//         height: 66vh;
+//       }
+//       @media (max-height: 740px) {
+//         height: 59vh;
+//       }
+//       @media (max-height: 670px) {
+//         height: 54vh;
+//       }
+//       @media (max-height: 600px) {
+//         height: 50vh;
+//       }
+//       @media (max-height: 560px) {
+//         height: 45vh;
+//       }
+//     }
+//   }
+// }
+
+// //   ///////////////////////////////////////////////////////////////////////////////////////////////// TWO-FILTER
+
+// // :host-context(.open-side-bar) {
+// //   .filter-block.two-filter {
+// //     column-gap: 2rem;
+// //     display: flex;
+// //     justify-content: space-between;
+// //     flex-wrap: nowrap;
+// //     @media (max-width: 1050px) {
+// //       flex-wrap: wrap;
+// //     }
+// //     mat-form-field {
+// //       flex: 1 1 100%;
+// //     }
+// //   }
+// //   .section-table.two-filter {
+
+
+// //     @media (min-width: 1050px) {
+// //         height:calc(73vh + 142px);
+// //         @media (max-height: 980px) {
+// //           height:calc(73vh + 142px);
+// //         }
+// //         @media (max-height: 880px) {
+// //           height:calc(68vh + 142px);
+// //         }
+// //         @media (max-height: 820px) {
+// //           height:calc(63vh + 142px);
+// //         }
+// //         @media (max-height: 740px) {
+// //           height:calc(59vh + 142px);
+// //         }
+// //         @media (max-height: 670px) {
+// //           height:calc(54vh + 142px);
+// //         }
+// //         @media (max-height: 600px) {
+// //           height:calc(50vh + 142px);
+// //         }
+// //         @media (max-height: 560px) {
+// //           height:calc(45vh + 142px);
+// //         }
+// //       }
+
+// //     @media (max-width: 1050px) {
+// //       height:calc(60vh + 71px)}
+// //        @media (min-height: 1070px) {
+// //         height:calc(60vh + 71px)    
+// //     }
+// //       @media (max-height: 1070px) {
+// //         height:calc(60vh + 71px)  
+// //     }
+
+// //       @media (max-height: 980px) {
+// //         height:calc(56vh + 71px)
+// //     }
+// //       @media (max-height: 880px) {
+// //         height:calc(50vh + 71px)  
+// //     }
+// //       @media (max-height: 820px) {
+// //         height:calc(46vh + 71px) 
+// //     }
+// //       @media (max-height: 740px) {
+// //         height:calc(40vh + 71px)
+// //      }
+// //       @media (max-height: 670px) {
+// //         height:calc(35vh + 71px)  
+// //     }
+// //       @media (max-height: 600px) {
+// //         height:calc(30vh + 71px)
+// //     }
+// //       @media (max-height: 560px) {
+// //         height:calc(26vh + 71px)    
+// //     }
+// //     }
+
+
+// //   }
+
+
+// // // /////////////////////////////////////////////////////////
+
+// // :host {
+// //   .section-table.two-filter {
+// //     @media (max-width: 1050px) {
+// //       height: 73vh;
+// //       @media (min-height: 980px) {
+// //         height: 71vh;
+// //       }
+// //       @media (max-height: 880px) {
+// //         height: 68vh;
+// //       }
+// //       @media (max-height: 820px) {
+// //         height: 66vh;
+// //       }
+// //       @media (max-height: 740px) {
+// //         height: 61vh;
+// //       }
+// //       @media (max-height: 670px) {
+// //         height: 57vh;
+// //       }
+// //       @media (max-height: 630px) {
+// //         height: 53vh;
+// //       }
+// //       @media (max-height: 600px) {
+// //         height: 49vh;
+// //       }
+// //       @media (max-height: 560px) {
+// //         height: 45vh;
+// //       }
+// //     }
+// //     @media (max-width: 769px) {
+// //       height:calc(58vh + 71px);
+// //       @media (min-height: 980px) {
+// //         height:calc(58vh + 71px);
+// //       }
+
+// //       @media (max-height: 980px) {
+// //         height:calc(58vh + 71px);
+// //       }
+// //       @media (max-height: 930px) {
+// //         height:calc(55vh + 71px);
+// //       }
+// //       @media (max-height: 880px) {
+// //         height:calc(52vh + 71px);
+// //       }
+// //       @media (max-height: 820px) {
+// //         height:calc(48vh + 71px);
+// //       }
+// //       @media (max-height: 740px) {
+// //         height:calc(42vh + 71px);
+// //       }
+// //       @media (max-height: 670px) {
+// //         height:calc(38vh + 71px);
+// //       }
+// //       @media (max-height: 630px) {
+// //         height:calc(35vh + 71px);
+// //       }
+// //       @media (max-height: 600px) {
+// //         height:calc(32vh + 71px);
+// //       }
+// //       @media (max-height: 560px) {
+// //         height:calc(28vh + 71px);
+// //       }
+// //     }
+// //     @media (min-width: 1050px) {
+// //       height: 73vh;
+// //       @media (min-height: 980px) {
+// //         height: 73vh;
+// //       }
+// //       @media (max-height: 980px) {
+// //         height: 71vh;
+// //       }
+
+// //       @media (max-height: 880px) {
+// //         height: 66vh;
+// //       }
+// //       @media (max-height: 820px) {
+// //         height: 66vh;
+// //       }
+// //       @media (max-height: 740px) {
+// //         height: 59vh;
+// //       }
+// //       @media (max-height: 670px) {
+// //         height: 54vh;
+// //       }
+// //       @media (max-height: 600px) {
+// //         height: 50vh;
+// //       }
+// //       @media (max-height: 560px) {
+// //         height: 45vh;
+// //       }
+// //     }
+// //   }
+// // }
+
+
+// :host-context(.open-side-bar) {
+//     .filter-block.two-filter {
+//       column-gap: 2rem;
+//       display: flex;
+//       justify-content: space-between;
+//       flex-wrap: nowrap;
+//       @media (max-width: 1050px) {
+//         flex-wrap: wrap;
+//       }
+//       mat-form-field {
+//         flex: 1 1 100%;
+//       }
+//     }
+//     .section-table.two-filter {
+//       @media (max-width: 1050px) {
+//         height:calc(62vh + 71px);
+//         @media (min-height: 1070px) {
+//           height:calc(60vh + 71px);
+//         }
+//         @media (max-height: 1070px) {
+//           height:calc(60vh + 71px);
+//         }
+  
+//         @media (max-height: 980px) {
+//           height:calc(56vh + 71px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(50vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(46vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(40vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(35vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(30vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(26vh + 71px);
+//         }
+//       }
+  
+//       @media (min-width: 1050px) {
+//         height: 73vh;
+//         @media (max-height: 980px) {
+//           height: 71vh;
+//         }
+//         @media (max-height: 880px) {
+//           height: 68vh;
+//         }
+//         @media (max-height: 820px) {
+//           height: 63vh;
+//         }
+//         @media (max-height: 740px) {
+//           height: 59vh;
+//         }
+//         @media (max-height: 670px) {
+//           height: 54vh;
+//         }
+//         @media (max-height: 600px) {
+//           height: 50vh;
+//         }
+//         @media (max-height: 560px) {
+//           height: 45vh;
+//         }
+//       }
+//     }
+//   }
+  
+//   // /////////////////////////////////////////////////////////
+  
+//   :host {
+//     .section-table.two-filter {
+//       @media (max-width: 1050px) {
+//         height: 73vh;
+//         @media (min-height: 980px) {
+//           height: 73vh;
+//         }
+//         @media (max-height: 980px) {
+//           height: 71vh;
+//         }
+//         @media (max-height: 880px) {
+//           height: 68vh;
+//         }
+//         @media (max-height: 820px) {
+//           height: 66vh;
+//         }
+//         @media (max-height: 740px) {
+//           height: 61vh;
+//         }
+//         @media (max-height: 670px) {
+//           height: 57vh;
+//         }
+//         @media (max-height: 630px) {
+//           height: 53vh;
+//         }
+//         @media (max-height: 600px) {
+//           height: 49vh;
+//         }
+//         @media (max-height: 560px) {
+//           height: 45vh;
+//         }
+//       }
+//       @media (max-width: 769px) {
+//         height:calc(58vh + 71px);
+//         @media (min-height: 980px) {
+//           height:calc(58vh + 71px);
+//         }
+  
+//         @media (max-height: 980px) {
+//           height:calc(58vh + 71px);
+//         }
+//         @media (max-height: 930px) {
+//           height:calc(55vh + 71px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(52vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(48vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(42vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(38vh + 71px);
+//         }
+//         @media (max-height: 630px) {
+//           height:calc(35vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(32vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(28vh + 71px);
+//         }
+//       }
+//       @media (min-width: 1050px) {
+//         height: 73vh;
+//         @media (min-height: 980px) {
+//           height: 73vh;
+//         }
+//         @media (max-height: 980px) {
+//           height: 71vh;
+//         }
+  
+//         @media (max-height: 880px) {
+//           height: 66vh;
+//         }
+//         @media (max-height: 820px) {
+//           height: 66vh;
+//         }
+//         @media (max-height: 740px) {
+//           height: 59vh;
+//         }
+//         @media (max-height: 670px) {
+//           height: 54vh;
+//         }
+//         @media (max-height: 600px) {
+//           height: 50vh;
+//         }
+//         @media (max-height: 560px) {
+//           height: 45vh;
+//         }
+//       }
+//     }
+//   }
+
+// //   /////////////////////////////////////////////////////////////////////////////WITHOUT_FILTER
+
+// :host-context(.open-side-bar) {
+//     .filter-block.without-filter {
+//       column-gap: 2rem;
+//       display: flex;
+//       justify-content: space-between;
+//       flex-wrap: nowrap;
+//       @media (max-width: 1050px) {
+//         flex-wrap: nowrap;
+//       }
+//       mat-form-field {
+//         flex: 1 1 100%;
+//       }
+//     }
+//     .section-table.without-filter {
+
+        
+//               @media (min-width: 1050px) {
+//         height:calc(73vh + 71px);
+//         @media (max-height: 980px) {
+//           height:calc(71vh + 71px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(68vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(63vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(59vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(54vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(50vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(45vh + 71px);
+//         }
+//       } 
+//       @media (max-width: 1050px) {
+//         height:calc(62vh + 213px);
+//         @media (min-height: 1070px) {
+//           height:calc(60vh + 213px);
+//         }
+//         @media (max-height: 1070px) {
+//           height:calc(60vh + 213px);
+//         }
+  
+//         @media (max-height: 980px) {
+//           height:calc(56vh + 213px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(50vh + 213px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(46vh + 213px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(40vh + 213px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(35vh + 213px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(30vh + 213px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(26vh + 213px);
+//         }
+//       }
+  
+//     }
+//   }
+  
+//   // /////////////////////////////////////////////////////////
+  
+//   :host {
+//     .section-table.without-filter {
+//       @media (max-width: 1050px) {
+//         height:calc(73vh + 71px);
+//         @media (min-height: 980px) {
+//           height:calc(73vh + 71px);
+//         }
+//         @media (max-height: 980px) {
+//           height:calc(71vh + 71px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(68vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(66vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(61vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(57vh + 71px);
+//         }
+//         @media (max-height: 630px) {
+//           height:calc(53vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(49vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(45vh + 71px);
+//         }
+//       }
+//       @media (max-width: 769px) {
+//         height:calc(58vh + 71px);
+//         @media (min-height: 980px) {
+//           height:calc(58vh + 71px);
+//         }
+  
+//         @media (max-height: 980px) {
+//           height:calc(58vh + 71px);
+//         }
+//         @media (max-height: 930px) {
+//           height:calc(55vh + 71px);
+//         }
+//         @media (max-height: 880px) {
+//           height:calc(52vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(48vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(42vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(38vh + 71px);
+//         }
+//         @media (max-height: 630px) {
+//           height:calc(35vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(32vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(28vh + 71px);
+//         }
+//       }
+//       @media (min-width: 1050px) {
+//         height:calc(73vh + 71px);
+//         @media (min-height: 980px) {
+//           height:calc(73vh + 71px);
+//         }
+//         @media (max-height: 980px) {
+//           height:calc(71vh + 71px);
+//         }
+  
+//         @media (max-height: 880px) {
+//           height:calc(66vh + 71px);
+//         }
+//         @media (max-height: 820px) {
+//           height:calc(66vh + 71px);
+//         }
+//         @media (max-height: 740px) {
+//           height:calc(59vh + 71px);
+//         }
+//         @media (max-height: 670px) {
+//           height:calc(54vh + 71px);
+//         }
+//         @media (max-height: 600px) {
+//           height:calc(50vh + 71px);
+//         }
+//         @media (max-height: 560px) {
+//           height:calc(45vh + 71px);
+//         }
+//       }
+//     }
+//   }
