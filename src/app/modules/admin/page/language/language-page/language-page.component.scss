@@ -13,7 +13,7 @@ padding-bottom: 24px;
   border-bottom:none;
 }
   .table-page {
-    height: 100vh;
+    height:calc(100vh - 2rem);
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
