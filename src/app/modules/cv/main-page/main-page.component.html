@@ -6,7 +6,7 @@
   <main class="main">
     <cv-cv-side-bar (refreshTemplate)="refreshTemplate = !refreshTemplate"  [class.width-zero]="!toggle" [class.open-side-bar]="toggle"></cv-cv-side-bar>
       <div [class.open-menu]="toggle">
-        <cv-burger-btn  (click)="sideBarToggler()"  matTooltip="{{toggle ? 'Show menu' : 'Hide menu'}}"></cv-burger-btn>
+        <cv-burger-btn  (toggleSideBar)="sideBarToggler()"  matTooltip="{{toggle ? 'Show menu' : 'Hide menu'}}"></cv-burger-btn>
       </div>
       
     <div [class.change-mode] = "refreshTemplate" [class.open-side-bar--content]="toggle" class="body">

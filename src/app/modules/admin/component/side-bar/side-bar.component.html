@@ -1,11 +1,5 @@
-<div [style.padding]="'0px 12px 0px 12px'" class="side-bar">
+<div side-bar="side-bar" [style.padding]="'0px 12px 0px 12px'" class="side-bar">
   <ol class="links">
-    <!-- <li class="title-section"><span>Home</span></li>  -->
-   <!-- <li><a>
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </a></li>-->
-    <!-- <mat-divider></mat-divider>  -->
     <li>
       <div class="user-content">
        <a routerLink="/admin/profile">
@@ -24,7 +18,7 @@
       </button>
       <mat-divider class="first-divider"></mat-divider>
     </li>
-    <li  [routerLinkActive]="['active']">
+    <li [routerLinkActive]="['active']">
       <a routerLink="/admin/resume" matTooltip="Go to CV list page" matTooltipPosition="before">
         <mat-icon>list</mat-icon>
         <span>Resume list</span>
@@ -46,7 +40,7 @@
 <!--      <mat-icon>verified_user</mat-icon>-->
 <!--      <span> Resource planning</span>-->
 <!--    </a></li>-->
-    <li class="archive">
+    <li  menu-item="menu-item" class="archive">
       <mat-expansion-panel>
         <mat-expansion-panel-header matTooltip="Archive" matTooltipPosition="before">
           <mat-panel-title>
@@ -65,9 +59,9 @@
       </mat-expansion-panel>
     </li>
     <mat-divider></mat-divider>
-    <li class="title-section"><span>Settings</span></li>
+    <li  class="title-section"><span>Settings</span></li>
 
-    <li class="setting">
+    <li  menu-item="menu-item" class="setting">
       <mat-expansion-panel>
         <mat-expansion-panel-header matTooltip="Settings" matTooltipPosition="before">
           <mat-panel-title>
@@ -113,3 +107,4 @@
     <mat-divider></mat-divider>
   </ol>
 </div>
+<ng-content></ng-content>

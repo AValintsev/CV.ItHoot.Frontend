@@ -9,7 +9,7 @@
       <div class="col__btns">
         <button *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/cv/create']" mat-raised-button
           color="primary" class="create-resume">
-          Create new CV
+          Create new Resume
         </button>
       </div>
     </div>
@@ -49,7 +49,7 @@
               <button mat-menu-item *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{id}}">
                 <mat-icon>edit</mat-icon>
                 <span>
-                  Edit CV
+                  Edit Resume
                 </span>
               </button>
                 <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
@@ -58,7 +58,7 @@
                 </button>
                 <button mat-menu-item (click)="deleteResume(id)">
                   <mat-icon>delete_forever</mat-icon>
-                  <span>Delete CV</span>
+                  <span>Delete Resume</span>
                 </button>
                     <div class="mat-devider-wrapper-custom">
                       <mat-divider></mat-divider>
