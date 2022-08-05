@@ -1,18 +1,33 @@
 import {
+  AfterViewInit,
   Component,
-  createNgModuleRef,
+  createNgModuleRef, ElementRef, Inject,
   Injector,
   Input,
   NgModule,
   NgModuleRef,
   OnInit,
-  ViewChild,
+  ViewChild, ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {ResumeService} from '../../../services/resume.service';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DOCUMENT} from '@angular/common';
 import {isObservable, Observable} from 'rxjs';
+import {languages} from "monaco-editor";
+import html = languages.html;
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatMenuModule} from "@angular/material/menu";
 
 @Component({
   selector: 'resume-template-builder',
@@ -20,22 +35,22 @@ import {isObservable, Observable} from 'rxjs';
   styleUrls: ['./resume-template-builder.component.scss'],
 })
 export class ResumeTemplateBuilderComponent implements OnInit {
-  @ViewChild('resumeContainer', { read: ViewContainerRef })
+  @ViewChild('resumeContainer', {read: ViewContainerRef})
   containerRef: ViewContainerRef;
   @Input() resume: ResumeDto;
   @Input() imports = [];
   @Input() resumeChanged: Observable<ResumeDto> | null;
   @Input() templatedChanged: Observable<number> | null | number;
 
-  @Input() isCreate:boolean = false;
-
+  @Input() isCreate: boolean = false;
   templateHtml: string;
   loaded: boolean = false;
 
   constructor(
     private resumeService: ResumeService,
-    private injector: Injector
+    private injector: Injector,
   ) {
+
   }
 
   private addComponent() {
@@ -44,13 +59,20 @@ export class ResumeTemplateBuilderComponent implements OnInit {
     const componentType = Component({
       template: html,
       selector: 'template-resume',
-    })(class {});
+    })(class {
+    });
     const moduleType = NgModule({
-      imports: [CommonModule],
+      imports: [CommonModule, MatTableModule,
+        MatFormFieldModule,
+        CommonModule,
+        MatInputModule,
+      ],
       declarations: [componentType],
-    })(class {});
+    })(class {
+    });
 
     const properties = {
+      isPreviewMode:true,
       resume: this.resume,
       getYear: this.getYear,
       getMonth: this.getMonth,
@@ -106,22 +128,25 @@ export class ResumeTemplateBuilderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     if (this.resume?.resumeTemplateId) {
       this.resumeService
         .getTemplateById(this.resume?.resumeTemplateId)
         .subscribe((data) => {
           this.templateHtml = data.html;
           this.addComponent();
+
         });
     }
-    if(isObservable(this.templatedChanged)){
-       this.templatedChanged?.subscribe((templateId) => {
-      this.resumeService.getTemplateById(templateId).subscribe((data) => {
-        this.templateHtml = data.html;
-        this.addComponent();
+    if (isObservable(this.templatedChanged)) {
+      this.templatedChanged?.subscribe((templateId) => {
+        this.resumeService.getTemplateById(templateId).subscribe((data) => {
+          this.templateHtml = data.html;
+          this.addComponent();
+        });
       });
-    });
-    }else if(typeof this.templatedChanged=='number'){
+    } else if (typeof this.templatedChanged == 'number') {
       this.resumeService.getTemplateById(this.templatedChanged).subscribe((data) => {
         this.templateHtml = data.html;
         console.log(data.html)
@@ -129,5 +154,8 @@ export class ResumeTemplateBuilderComponent implements OnInit {
       });
     }
 
+
   }
+
+
 }

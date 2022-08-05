@@ -13,6 +13,7 @@ import {ResumeDto} from "../../../models/resume/resume-dto";
 import {Observable} from "rxjs";
 import {ResumeService} from "../../../services/resume.service";
 import {CommonModule} from "@angular/common";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'template-builder',
@@ -41,10 +42,11 @@ export class TemplateBuilderComponent implements OnInit {
       const html = this.templateHtml;
       const componentType = Component({template: html, selector: 'template-resumes'})(class {
       });
-      const moduleType = NgModule({imports: [CommonModule], declarations: [componentType]})(class {
+      const moduleType = NgModule({imports: [CommonModule,MatIconModule], declarations: [componentType]})(class {
       });
 
       const properties = {
+        isPreviewMode: true,
         resume: this.resume,
         getYear: this.getYear,
         getMonth: this.getMonth,

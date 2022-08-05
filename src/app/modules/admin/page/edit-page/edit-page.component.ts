@@ -8,6 +8,11 @@ import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {Subject} from "rxjs";
 import {ProposalService} from "../../../../services/proposal.service";
+import {ResumeTemplateDto} from "../../../../models/resume/resume-template-dto";
+import {
+  TemplatePreviewDialogAdminComponent
+} from "../resume/template-preview-dialog/template-preview-dialog-admin.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'cv-edit-page',
@@ -20,6 +25,7 @@ export class EditPageComponent implements OnInit {
   resumeEditForm: FormGroup = {} as FormGroup;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
+  resumeTemplates: ResumeTemplateDto[];
 
   constructor(
     private resumeService: ResumeService,
@@ -28,6 +34,7 @@ export class EditPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService,
+    private dialog: MatDialog,
   ) {
 
     this.route.params.subscribe((params) => {
@@ -35,6 +42,8 @@ export class EditPageComponent implements OnInit {
       const resumeId = params['resumeId'];
       const id = params['id'];
       this.validateForm();
+
+      this.resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
 
       if (proposalId && resumeId) {
 
@@ -222,7 +231,25 @@ export class EditPageComponent implements OnInit {
   }
 
 
-  templateChange(templateId: number) {
+  templateChange(templateId: any) {
     this.templateChanged.next(templateId);
+  }
+
+  comparePosition(position: any, position1: any) {
+    return position?.positionId === position1?.positionId;
+  }
+
+  compareTemplate(template: any, template1: any) {
+    return template === template1;
+  }
+
+  showPreview(e: Event, id: number) {
+    e.stopPropagation()
+    const dialogRef = this.dialog.open(TemplatePreviewDialogAdminComponent, {
+      height: '800px',
+      autoFocus: false,
+      panelClass: ['remove-style-scroll', 'change-material-style', 'remove-padding'],
+      data: id
+    });
   }
 }

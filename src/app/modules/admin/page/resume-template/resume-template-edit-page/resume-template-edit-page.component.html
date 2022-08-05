@@ -20,11 +20,10 @@
     </div>
     <a href="/assets/files/docx_template_instructions.pdf" target="_blank" download="docx_template_instructions.pdf">Download instruction to create docx
       template</a>
-
     <div>
       <mat-label>HTML template</mat-label>
       <div style="height: 50vh">
-        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" formControlName="html"
+        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" formControlName="html" [(ngModel)]="this.template.html"
           (onInit)="onInit($event)"></ngx-monaco-editor>
       </div>
       <mat-error *ngIf="templateForm.controls['html'].invalid && templateForm.controls['html'].touched">HTML template is

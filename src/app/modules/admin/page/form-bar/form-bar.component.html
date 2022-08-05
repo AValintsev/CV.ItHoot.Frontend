@@ -3,7 +3,7 @@
     <input id="fileInput" type='file' (change)="onSelectFile($event)" accept="image/*">
     <mat-form-field appearance="fill">
       <mat-label>Name resume</mat-label>
-      <input matInput placeholder="Web Developer" formControlName="resumeName">
+      <input matInput placeholder="Web Developer" formControlName="resumeName" [(ngModel)]="resume.resumeName">
       <mat-error *ngIf="resumeForm.controls['resumeName'].errors?.['required']">
         Name resume is required
       </mat-error>
@@ -11,7 +11,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="First Name" formControlName="firstName">
+      <input matInput placeholder="First Name" formControlName="firstName" [(ngModel)]="resume.firstName">
       <mat-error *ngIf="resumeForm.controls['firstName'].errors?.['required']">
         First Name is required
       </mat-error>
@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="Last Name" formControlName="lastName">
+      <input matInput placeholder="Last Name" formControlName="lastName" [(ngModel)]="resume.lastName">
       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
         Last Name is required
       </mat-error>
@@ -40,7 +40,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Template</mat-label>
-      <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId" disableOptionCentering
+      <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId" [(ngModel)]="resume.resumeTemplateId" disableOptionCentering
                   [compareWith]="compareTemplate" (selectionChange)="changeTemplate($event.value)">
         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
           <div class="select-template-item">
@@ -56,7 +56,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Date of birth</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthdate">
+      <input matInput [matDatepicker]="picker" formControlName="birthdate" [(ngModel)]="resume.birthdate">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -67,7 +67,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input email matInput placeholder="example@gmail.com" formControlName="email">
+      <input email matInput placeholder="example@gmail.com" formControlName="email" [(ngModel)]="resume.email">
       <mat-error *ngIf="resumeForm.controls['email'].errors?.['email']">
         Please enter a valid email address
       </mat-error>
@@ -78,7 +78,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Phone</mat-label>
-      <input matInput placeholder="+3809600001" formControlName="phone">
+      <input matInput placeholder="+3809600001" formControlName="phone" [(ngModel)]="resume.phone">
       <mat-error *ngIf="resumeForm.controls['phone'].errors?.['required']">
         Phone is required
       </mat-error>
@@ -89,7 +89,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Site</mat-label>
-      <input matInput placeholder="github.com" formControlName="site">
+      <input matInput placeholder="github.com" formControlName="site" [(ngModel)]="resume.site">
       <mat-error *ngIf="resumeForm.controls['site'].errors?.['required']">
         Site is required
       </mat-error>
@@ -97,7 +97,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Postal code</mat-label>
-      <input matInput placeholder="29001" formControlName="code">
+      <input matInput placeholder="29001" formControlName="code" [(ngModel)]="resume.code">
       <mat-error *ngIf="resumeForm.controls['code'].errors?.['required']">
         Postal code is required
       </mat-error>
@@ -105,7 +105,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Country</mat-label>
-      <input matInput placeholder="Country" formControlName="country">
+      <input matInput placeholder="Country" formControlName="country" [(ngModel)]="resume.country">
       <mat-error *ngIf="resumeForm.controls['country'].errors?.['required']">
         Country is required
       </mat-error>
@@ -113,7 +113,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>City</mat-label>
-      <input matInput placeholder="City" formControlName="city">
+      <input matInput placeholder="City" formControlName="city" [(ngModel)]="resume.city">
       <mat-error *ngIf="resumeForm.controls['city'].errors?.['required']">
         City is required
       </mat-error>
@@ -121,7 +121,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Street</mat-label>
-      <input matInput placeholder="Street" formControlName="street">
+      <input matInput placeholder="Street" formControlName="street" [(ngModel)]="resume.street">
       <mat-error *ngIf="resumeForm.controls['street'].errors?.['required']">
         Street is required
       </mat-error>
@@ -129,14 +129,14 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Required Position</mat-label>
-      <input matInput placeholder="Junir,Middle,Senior,Team Lead" formControlName="requiredPosition">
+      <input matInput placeholder="Junir,Middle,Senior,Team Lead" formControlName="requiredPosition" [(ngModel)]="resume.requiredPosition">
       <mat-error *ngIf="resumeForm.controls['requiredPosition'].errors?.['required']">
         Required Position is required
       </mat-error>
     </mat-form-field>
 
     <div class="text-editor">
-      <quill-editor [modules]="modules" formControlName="aboutMe" [styles]="{height: '300px'}"
+      <quill-editor [modules]="modules" formControlName="aboutMe" [styles]="{height: '300px'}" [(ngModel)]="resume.aboutMe"
                     placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards">
       </quill-editor>
       <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required'] && ( resumeForm.controls['aboutMe'].dirty || resumeForm.controls['aboutMe'].touched)">
