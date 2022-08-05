@@ -1,0 +1,8 @@
+<div id="resume">
+  <form [formGroup]="resumeForm">
+  <ng-container #resumeContainer></ng-container>
+  <h1 *ngIf="!templateHtml && isCreate" class="no-template-selected">No template selected</h1>
+  <resume-footer *ngIf="resume?.showLogo"></resume-footer>
+  <div id="resume-loaded" *ngIf="loaded"></div>
+  </form>
+</div>

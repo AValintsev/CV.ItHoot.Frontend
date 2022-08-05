@@ -1,0 +1,19 @@
+@media screen and (max-width: 1650px) {
+  #resume{
+    zoom: 0.7;
+  }
+}
+
+
+#resume {
+  width: 210mm;
+  overflow-x: hidden;
+  min-height: 297mm;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+
+}
+
+:host ::ng-deep{
+
+
+}

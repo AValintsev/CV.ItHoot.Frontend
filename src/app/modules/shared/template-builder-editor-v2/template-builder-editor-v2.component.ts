@@ -1,0 +1,150 @@
+import {
+  Component,
+  ComponentRef, createNgModuleRef,
+  Injector,
+  Input,
+  NgModule, NgModuleRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import {FormsModule, ReactiveFormsModule, UntypedFormGroup} from "@angular/forms";
+import {ResumeDto} from "../../../models/resume/resume-dto";
+import {isObservable, Observable} from "rxjs";
+import {ResumeBuilderService} from "../../../services/resume-builder.service";
+import {ResumeService} from "../../../services/resume.service";
+import {MatDialog} from "@angular/material/dialog";
+import {CommonModule} from "@angular/common";
+import {MatTableModule} from "@angular/material/table";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {QuillModule} from "ngx-quill";
+import {ResumeParserService} from "../../../services/resume-parser.service";
+import {quillModulesConstant} from "../constants/quill-editor-constants";
+
+@Component({
+  selector: 'cv-template-builder-editor-v2',
+  templateUrl: './template-builder-editor-v2.component.html',
+  styleUrls: ['./template-builder-editor-v2.component.scss']
+})
+export class TemplateBuilderEditorV2Component implements OnInit {
+
+  @Input() public resumeForm: UntypedFormGroup = {} as UntypedFormGroup;
+  @ViewChild('resumeContainer', {read: ViewContainerRef})
+  containerRef: ViewContainerRef;
+  @Input() resume: ResumeDto;
+  @Input() imports = [];
+  @Input() resumeChanged: Observable<ResumeDto> | null;
+  @Input() templatedChanged: Observable<number> | null | number;
+  protected componentRef?: ComponentRef<any>;
+  @Input() isCreate: boolean = false;
+  templateHtml: string;
+  loaded: boolean = false;
+  resumeBuilderService: ResumeBuilderService;
+
+
+  constructor(
+    private resumeService: ResumeService,
+    private injector: Injector,
+    private dialog: MatDialog,
+  ) {}
+
+
+  private renderComponent() {
+
+    this.componentRef?.destroy();
+
+    const componentType = Component({
+      template: this.templateHtml,
+      selector: 'template-resume',
+    })(class {});
+
+    const moduleType = NgModule({
+      imports: [
+        CommonModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatIconModule,
+        QuillModule.forRoot(),
+
+      ],
+      declarations: [componentType],
+    })(class {});
+
+    const properties = {
+      isPreviewMode:false,
+      resume: this.resume,
+      resumeForm: this.resumeForm,
+      getYear: this.resumeBuilderService.getYear,
+      getMonth: this.resumeBuilderService.getMonth,
+      howOld: this.resumeBuilderService.howOld,
+      openSkillDialog: this.resumeBuilderService.openSkillDialog.bind(this.resumeBuilderService),
+      openLanguageDialog: this.resumeBuilderService.openLanguageDialog.bind(this.resumeBuilderService),
+      openExperienceDialog: this.resumeBuilderService.openExperienceDialog.bind(this.resumeBuilderService),
+      openEducationDialog: this.resumeBuilderService.openEducationDialog.bind(this.resumeBuilderService),
+      modules: quillModulesConstant,
+    };
+
+
+    const moduleRef: NgModuleRef<any> = createNgModuleRef(moduleType, this.injector);
+
+    this.componentRef = this.containerRef.createComponent(componentType, {
+      injector: this.injector,
+      ngModuleRef: moduleRef
+    });
+
+
+    Object.assign(this.componentRef.instance, properties);
+
+    this.resumeForm.valueChanges.subscribe((value) => {
+      this.componentRef!.instance.resume = value;
+    })
+
+    this.loaded = true;
+  }
+
+  ngOnInit(): void {
+
+    this.resumeBuilderService = new ResumeBuilderService(this.resume, this.resumeForm, this.dialog);
+
+    if (this.resume?.resumeTemplateId) {
+      this.resumeService.getTemplateById(this.resume?.resumeTemplateId).subscribe((data) => {
+        data.html = this.buildHtml(data.html);
+        this.templateHtml = data.html;
+        this.renderComponent();
+
+      });
+    }
+    if (isObservable(this.templatedChanged)) {
+      this.templatedChanged?.subscribe((templateId) => {
+        this.resumeService.getTemplateById(templateId).subscribe((data) => {
+          data.html = this.buildHtml(data.html);
+          this.templateHtml = data.html;
+          this.renderComponent();
+        });
+      });
+    } else if (typeof this.templatedChanged == 'number') {
+      this.resumeService.getTemplateById(this.templatedChanged).subscribe((data) => {
+        this.templateHtml = data.html;
+        this.renderComponent();
+      });
+    }
+
+
+  }
+
+  buildHtml(html: string): string {
+
+    const resumeParser = new ResumeParserService(this.resumeBuilderService);
+    html = resumeParser.addElements(html);
+    return html;
+
+  }
+}
