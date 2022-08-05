@@ -172,6 +172,6 @@
   right: -2rem;
 }
 
-:host::ng-deep .mat-expansion-indicator::after {
+span {
  pointer-events: none!important;
 }

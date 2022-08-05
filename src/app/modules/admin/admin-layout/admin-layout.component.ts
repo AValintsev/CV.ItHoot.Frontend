@@ -14,48 +14,47 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit, AfterViewInit {
-  toggle = true;
+  toggle = window.innerWidth <= 768 ? false : true;
   @ViewChild('sideBar') sideBar: ElementRef<any>;
   constructor() {}
 
   ngOnInit(): void {}
-  sideBarToggler(event:Event) {
-    event.stopPropagation()
+  sideBarToggler(event: Event) {
+    event.stopPropagation();
     this.toggle = !this.toggle;
   }
+
   ngAfterViewInit() {
-      if (this.sideBar) {
-        fromEvent(document, 'click').subscribe({
-          next: (value) => {
-            if (window.innerWidth <= 768) {
-              let elem = value.target
+    this.closeSidebar('click');
+  }
 
-
-              if ((elem as HTMLElement).getAttribute('menu-item') == 'menu-item') {
-
-
-                this.toggle = true;
-                return;
-              }else{
-                 if (
-              (value.target as HTMLDivElement).getAttribute('side-bar') !==
-              this.sideBar.nativeElement.getAttribute('side-bar')
+  closeSidebar(event: string) {
+    if (this.sideBar) {
+      fromEvent(window, event).subscribe({
+        next: (value) => {
+          if (window.innerWidth <= 768) {
+            let elem = value.target;
+            if (
+              (elem as HTMLElement).closest('[not-close-menu]') &&
+              !((elem as HTMLElement).nodeName === 'A')
             ) {
-              if (this.toggle) {
-                this.toggle = !this.toggle;        
-
-              }
+              this.toggle = true;
               return;
-            } 
+            } else {
+              if (
+                (value.target as HTMLDivElement).getAttribute('side-bar') !==
+                this.sideBar.nativeElement.getAttribute('side-bar')
+              ) {
+                if (this.toggle) {
+                  this.toggle = !this.toggle;
+                }
+                return;
               }
-
-                        
+            }
           }
-        
-          },
-          error: (error) => console.log(error),
-        });
-      }
-  
+        },
+        error: (error) => console.log(error),
+      });
+    }
   }
 }

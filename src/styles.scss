@@ -192,7 +192,11 @@ td {
 .table-page{
   border-radius: 0px !important;
 }
-
+.shift-to-the-left{
+  @media(max-width:970px){
+    left: -17rem;
+  }
+}
 
 
 

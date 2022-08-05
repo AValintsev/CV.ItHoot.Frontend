@@ -40,12 +40,12 @@
 <!--      <mat-icon>verified_user</mat-icon>-->
 <!--      <span> Resource planning</span>-->
 <!--    </a></li>-->
-    <li  menu-item="menu-item" class="archive">
-      <mat-expansion-panel  menu-item="menu-item">
-        <mat-expansion-panel-header  menu-item="menu-item" matTooltip="Archive" matTooltipPosition="before">
-          <mat-panel-title  menu-item="menu-item">
-            <mat-icon  menu-item="menu-item">archive</mat-icon>
-            <span  menu-item="menu-item">Archive</span>
+    <li class="archive" not-close-menu>
+      <mat-expansion-panel  >
+        <mat-expansion-panel-header  matTooltip="Archive" matTooltipPosition="before">
+          <mat-panel-title >
+            <mat-icon>archive</mat-icon>
+            <span>Archive</span>
           </mat-panel-title>
         </mat-expansion-panel-header >
         <a [routerLinkActive]="['active']" routerLink="/admin/archive/proposals" matTooltip="Proposal archive"
@@ -61,12 +61,12 @@
     <mat-divider></mat-divider>
     <li  menu-item="menu-item" class="title-section"><span>Settings</span></li>
 
-    <li  menu-item="menu-item" class="setting">
-      <mat-expansion-panel  menu-item="menu-item">
-        <mat-expansion-panel-header  menu-item="menu-item" matTooltip="Settings" matTooltipPosition="before">
-          <mat-panel-title  menu-item="menu-item">
-            <mat-icon  menu-item="menu-item">settings</mat-icon>
-            <span  menu-item="menu-item">Settings</span>
+    <li  class="setting " not-close-menu>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header   matTooltip="Settings" matTooltipPosition="before">
+          <mat-panel-title >
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
 

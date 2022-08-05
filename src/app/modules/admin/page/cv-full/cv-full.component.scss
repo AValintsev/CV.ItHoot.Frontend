@@ -48,11 +48,8 @@
 
 }
 .resume-inner{
-    height: 100vh;
+  height: calc(100vh - 61px);
    overflow-y: auto;
-    // margin-top: -2rem;
-    // height: calc(2950px);
-    // padding-bottom: 3rem;
   display: flex;
   gap: 2rem;
   padding: 15px;
@@ -68,6 +65,160 @@
   }  
   :host::ng-deep #resume{
     box-shadow: none !important;
-  
+   min-height: auto !important;
+   min-width: 700px;
+   background-color: #fff;
       // padding-bottom: 2rem;
+    }
+
+    :host::ng-deep {
+       resume-template-builder {
+         #resume {
+           @media screen and (max-width: 1151px) {
+             max-width: 100%;
+             zoom: 0.9;
+           }
+     
+           @media screen and (max-width: 754px) {
+             max-width: 100%;
+             // zoom: .9;
+     
+             .first-name {
+               font-size: 2.8rem;
+             }
+     
+             .last-name {
+               font-size: 2.8rem;
+             }
+           }
+     
+           @media screen and (max-width: 900px) {
+             max-width: 100%;
+             zoom: 0.9;
+           }
+           @media screen and (max-width: 800px) {
+             max-width: 100%;
+             zoom: 0.8;
+           }
+           @media screen and (max-width: 700px) {
+             max-width: 100%;
+             zoom: 0.75;
+           }
+     
+           @media screen and (max-width: 650px) {
+             max-width: 100%;
+             zoom: 0.73;
+           }
+     
+           @media screen and (max-width: 600px) {
+             max-width: 100%;
+             zoom: 0.68;
+           }
+     
+           @media screen and (max-width: 575px) {
+             max-width: 100%;
+             zoom: 0.63;
+           }
+     
+           @media screen and (max-width: 550px) {
+             max-width: 100%;
+             zoom: 0.58;
+           }
+     
+           @media screen and (max-width: 520px) {
+             max-width: 100%;
+             zoom: 0.53;
+           }
+     
+           @media screen and (max-width: 500px) {
+             max-width: 100%;
+             zoom: 0.48;
+           }
+     
+           @media screen and (max-width: 450px) {
+             max-width: 100%;
+             zoom: 0.43;
+           }
+         }
+       }
+     }
+
+     :host-context(.open-side-bar--content) :host::ng-deep {
+      #resume {
+        @media screen and (max-width: 1430px) {
+          width: 100%;
+          zoom: .9;
+        }
+    
+        @media screen and (max-width: 1050px) {
+          max-width: 100%;
+          zoom: 0.9;
+        }
+        @media screen and (max-width: 1000px) {
+          max-width: 100%;
+          zoom: 0.85;
+        }
+
+    
+        @media screen and (max-width: 950px) {
+          max-width: 100%;
+          zoom: 0.78;
+        }
+    
+    
+        @media screen and (max-width: 900px) {
+          max-width: 100%;
+          zoom: 0.7;
+        }
+        @media screen and (max-width: 850px) {
+          max-width: 100%;
+          zoom: 0.6;
+        }
+        @media screen and (max-width: 800px) {
+          max-width: 100%;
+          zoom: 0.8;
+        }
+        @media screen and (max-width: 700px) {
+          max-width: 100%;
+          zoom: 0.75;
+        }
+  
+        @media screen and (max-width: 650px) {
+          max-width: 100%;
+          zoom: 0.73;
+        }
+  
+        @media screen and (max-width: 600px) {
+          max-width: 100%;
+          zoom: 0.68;
+        }
+  
+        @media screen and (max-width: 575px) {
+          max-width: 100%;
+          zoom: 0.63;
+        }
+  
+        @media screen and (max-width: 550px) {
+          max-width: 100%;
+          zoom: 0.58;
+        }
+  
+        @media screen and (max-width: 520px) {
+          max-width: 100%;
+          zoom: 0.53;
+        }
+  
+        @media screen and (max-width: 500px) {
+          max-width: 100%;
+          zoom: 0.48;
+        }
+  
+        @media screen and (max-width: 450px) {
+          max-width: 100%;
+          zoom: 0.43;
+        }
+    
+       
+      }
+    
     }
