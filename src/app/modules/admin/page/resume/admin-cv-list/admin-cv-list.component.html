@@ -352,6 +352,15 @@
           </td>
         </ng-container>
 
+        <ng-container matColumnDef="createdBy" [sticky]="isSticky(stickyColumns, 'name')">
+          <th mat-header-cell *matHeaderCellDef>
+            Created by
+          </th>
+          <td mat-cell *matCellDef="let resume">
+            {{ resume?.createdBy?.firstName }} {{ resume?.createdBy?.lastName }}
+          </td>
+        </ng-container>
+
         <ng-container
           matColumnDef="position"
           [sticky]="isSticky(stickyColumns, 'position')"

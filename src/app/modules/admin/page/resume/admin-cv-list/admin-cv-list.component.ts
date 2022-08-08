@@ -106,6 +106,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.displayedColumns = [
         'action',
         'name',
+        'createdBy',
         'position',
         'skills',
         'clients',

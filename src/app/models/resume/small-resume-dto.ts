@@ -1,10 +1,17 @@
 import {AvailabilityStatus} from "../enums";
 import {SkillDto} from "../skill/skill-dto";
+import {UserDto} from "../user-dto";
 
 export interface ResumeClientDto{
    firstName:string;
    lastName:string;
    clientId:number;
+}
+
+export interface SmallUserDto{
+  fistName:string;
+  lastName:string;
+  userId:number;
 }
 
 export interface SmallResumeDto{
@@ -24,4 +31,5 @@ export interface SmallResumeDto{
   shortUrlFullResume:string;
   shortUrlIncognito:string;
   shortUrlIncognitoWithoutLogo:string;
+  createdBy: SmallUserDto;
 }
