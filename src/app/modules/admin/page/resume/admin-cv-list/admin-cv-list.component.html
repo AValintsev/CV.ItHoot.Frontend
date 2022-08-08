@@ -147,12 +147,12 @@
               <a
                 mat-menu-item
                 *ngIf="resume.deletedAt === null"
-                routerLink="{{ url }}resume/edit/{{ resume.id }}"
+                (click)="duplicate(resume)"
                 matTooltip="Edit resume"
                 matTooltipPosition="before"
               >
-                <mat-icon>edit</mat-icon>
-                <span>Edit</span>
+                <mat-icon>file_copy</mat-icon>
+                <span>Copy and edit</span>
               </a>
               <mat-divider></mat-divider>
               <button
@@ -218,7 +218,7 @@
                 matTooltip="Resume links"
                 matTooltipPosition="before"
               >
-                <mat-icon>content_copy</mat-icon>
+                <mat-icon>html</mat-icon>
                 <span>Resume Links</span>
               </button>
               <mat-menu #resumeLink="matMenu">
@@ -228,7 +228,7 @@
                   matTooltip="Copy full resume link"
                   matTooltipPosition="after"
                 >
-                  <mat-icon>description</mat-icon>
+                  <mat-icon>html</mat-icon>
                   <span>Full Resume</span>
                 </button>
 
@@ -238,7 +238,7 @@
                   matTooltip="Copy anonym resume link"
                   matTooltipPosition="after"
                 >
-                  <mat-icon>description</mat-icon>
+                  <mat-icon>html</mat-icon>
                   <span>Anonym Resume</span>
                 </button>
 
@@ -248,7 +248,7 @@
                   matTooltip="Copy anonym without logo resume link"
                   matTooltipPosition="after"
                 >
-                  <mat-icon>description</mat-icon>
+                  <mat-icon>html</mat-icon>
                   <span>Anonym without logo</span>
                 </button>
               </mat-menu>

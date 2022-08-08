@@ -48,7 +48,8 @@
 
 }
 .resume-inner{
-  height: calc(100vh - 61px);
+  // height: calc(100vh - 61px);
+  height: 100%;
    overflow-y: auto;
   display: flex;
   gap: 2rem;

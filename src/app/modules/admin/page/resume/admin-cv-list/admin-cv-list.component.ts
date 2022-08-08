@@ -36,6 +36,7 @@ import { SmallClientsDto } from '../../../../../models/clients/small-clients-dto
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cv-admin-resume',
@@ -90,7 +91,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private skillService: SkillService,
     private clientService: ClientsService,
     private cdr: ChangeDetectorRef,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private router:Router,
   ) {}
 
   ngOnInit() {
@@ -351,6 +353,13 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     return resumeFilters;
   }
+ 
+  duplicate(resume: SmallResumeDto) {
+    this.resumeService.duplicateResume(resume.id).subscribe((e)=>{
+      this.router.navigate([`${this.url}/resume/edit/`,resume.id])
+    })
+  }
+
   ngAfterContentChecked() {
     this.loading$ = this.loadingService.isLoading$;
     this.cdr.detectChanges();
