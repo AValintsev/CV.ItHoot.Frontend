@@ -24,10 +24,13 @@
     column-gap: 2rem;
     display: flex;
     justify-content: space-between;
-
-    mat-form-field {
-      flex: 1 1 100%;
+    flex-wrap: nowrap;
+    @media (max-width: 1050px) {
+      flex-wrap: wrap;
     }
+  }
+  mat-form-field {
+    flex: 1 1 100%;
   }
 }
 
@@ -53,7 +56,9 @@
     padding: 24px;
     padding-right: 1.5rem;
     padding-top: 0;
-    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
+    display: flex;
+    flex-direction: column;
+    height:calc(100vh - 2rem);
     background: white;
 
 
@@ -146,22 +151,6 @@
 }
 
 .section-table {
-  height:70vh;
-    @media(max-height:880px){
-      height:63vh;
-    }
-    @media(max-height:730px){
-      height:58vh;
-    }
-    @media(max-height:650px){
-      height:54vh;
-    }
-    @media(max-height:580px){
-      height:50vh;
-    }
-    @media(max-height:540px){
-      height:45vh;
-    }
   // border-top: 1px solid rgba(0, 0, 0, 0.12);
   // border-right: 1px solid rgba(0, 0, 0, 0.12);
   // border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -199,4 +188,3 @@ mat-button-toggle:first-child {
 td:first-child{
   width: 6rem;
 }
-// ///////////////////////////////////////

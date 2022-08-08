@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'cv-burger-btn',
@@ -6,10 +6,14 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./burger-btn.component.scss']
 })
 export class BurgerBtnComponent implements OnInit {
-
+ @Output()toggleSideBar = new EventEmitter()
   constructor() { }
 
   ngOnInit(): void {
   }
+ 
+openSideBar(){
+this.toggleSideBar.emit(event)
+}
 
 }

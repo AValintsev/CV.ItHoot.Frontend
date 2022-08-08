@@ -5,52 +5,43 @@
   align-items: start;
   grid-template-columns: 100%;
 
+  .section-table {
+    padding-bottom: 24px;
 
-.section-table{   
-  height:70vh;
-    @media(max-height:880px){
-      height:63vh;
-    }
-    @media(max-height:730px){
-      height:58vh;
-    }
-    @media(max-height:650px){
-      height:54vh;
-    }
-    @media(max-height:580px){
-      height:50vh;
-    }
-    @media(max-height:540px){
-      height:45vh;
-    }
- overflow-y: auto;
-    // height: 65vh;
-  border: 1px solid #e5e5e5;
-  border-bottom:none;
-}
+    overflow-y: auto;
+    border: 1px solid #e5e5e5;
+    border-bottom: none;
+  }
+
   .table-page {
+    height:calc(100vh - 2rem);
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
     padding: 24px;
     padding-top: 0;
-    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     border-radius: 8px;
     background: white;
-    .td-line{
+
+    .td-line {
       width: 8.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-left: -1rem;
       height: 4.8rem;
-       border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
-    td{
-      border-bottom:1px solid rgba(0, 0, 0, 0.12) !important;
+
+    td {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
     }
+
     .title-section {
       display: flex;
       margin-bottom: 1.34375em;
       flex-direction: column;
-     
+
 
       button {
         height: 5.2rem;
@@ -107,7 +98,7 @@
 
       .action-wrapper {
         display: grid;
-        grid-template-columns: repeat(5,  minmax(6rem,15%));
+        grid-template-columns: repeat(5, minmax(6rem, 15%));
         justify-content: space-between;
 
         button {
@@ -116,7 +107,8 @@
           color: white;
           border: 0;
           border-radius: 4px;
-          &:not(:first-child){
+
+          &:not(:first-child) {
             margin-left: 0.4rem;
           }
 
@@ -139,20 +131,23 @@
   }
 }
 
-
-.section-table{
+.section-table {
   border-bottom: none !important;
   border-left: none !important;
   border-right: none !important;
 }
+
 .table-page {
-  .td-line{
-    border-left:1px solid rgba(0, 0, 0, 0.12) !important;
+  .td-line {
+    border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
-  th:last-child{
-    border-right:1px solid rgba(0, 0, 0, 0.12) !important;
+
+  th:last-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
-  td:last-child{
-    border-right:1px solid rgba(0, 0, 0, 0.12) !important;
+
+  td:last-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
 }
+

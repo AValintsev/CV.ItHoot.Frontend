@@ -12,12 +12,9 @@
 		</div>
 
 		
-		<button [disabled]="!checkArrayAll.length" *ngIf="statusProposal !== StatusProposal.Approved;else btnApproveClone" (click)="approveUsers()" mat-button class="btn-load reset-btn big-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal. Start work</button>
-		<ng-template #btnApproveClone>
-			<button [disabled]="statusProposal === StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn big-btn">You selected  CV. Approve proposal. Start work</button>
-		</ng-template>
-		<button [disabled]="!checkArrayAll.length" *ngIf="statusProposal !== StatusProposal.Approved;else btnApproveClone" (click)="approveUsers()" mat-button class="btn-load reset-btn small-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal.</button>
-		<ng-template #btnApproveClone>
-			<button [disabled]="statusProposal === StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn small-btn">You selected  CV. Approve proposal.</button>
-		</ng-template>
+		<button [disabled]="!checkArrayAll.length" *ngIf="statusProposal !== StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn big-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal. Start work</button>
+        <button *ngIf="statusProposal === StatusProposal.Approved" [disabled]="statusProposal === StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn big-btn">You selected  CV. Approve proposal. Start work</button>
+		<button [disabled]="!checkArrayAll.length" *ngIf="statusProposal !== StatusProposal.Approved;" (click)="approveUsers()" mat-button class="btn-load reset-btn small-btn">You selected ({{checkArrayAll.length}}) CV. Approve proposal.</button>
+		<button  *ngIf="statusProposal === StatusProposal.Approved" [disabled]="statusProposal === StatusProposal.Approved" (click)="approveUsers()" mat-button class="btn-load reset-btn small-btn">You selected  CV. Approve proposal.</button>
+
 </div>

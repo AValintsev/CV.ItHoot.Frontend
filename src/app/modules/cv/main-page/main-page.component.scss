@@ -1,15 +1,17 @@
 :host::ng-deep{
    cv-burger-btn{
   @media (max-width: 600px) {
-  display: none;
-  mat-icon{
-    display: none;
-  }
-  }
-}
+   
 .menu-burger__side-bar{
-  display: none;
+  display: none !important;
 }
+  mat-icon{
+    display: none !important;
+  }
+  }
+}
+
+
 }
 
 .container {

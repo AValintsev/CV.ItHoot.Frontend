@@ -79,13 +79,11 @@
 
   .filter-block {
     column-gap: 2rem;
-    display: flex;
-    flex: 1 1 100%;
-    justify-content: space-between;
-
-    mat-form-field {
-      flex: 1 1 100%;
-    }
+        display: flex;
+        justify-content: space-between;
+        mat-form-field {
+          flex: 1 1 100%;
+        }
   }
 }
 
@@ -105,6 +103,9 @@
     padding-top: 0;
     // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
+    display: flex;
+    flex-direction: column;
+    height:calc(100vh - 2rem);
 
 
 
@@ -196,22 +197,7 @@
 }
 
 .section-table {
-  height:calc(70vh + 7rem);
-  @media(max-height:880px){
-    height:calc(63vh + 7rem);
-  }
-  @media(max-height:730px){
-    height:calc(58vh + 7rem);
-  }
-  @media(max-height:650px){
-    height:calc(54vh + 7rem);
-  }
-  @media(max-height:580px){
-    height:calc(50vh + 7rem);
-  }
-  @media(max-height:540px){
-    height:calc(45vh + 7rem);
-  }
+
     border: 1px solid rgba(0, 0, 0, 0.12);
     min-width: 100%;
     overflow: auto;
@@ -264,3 +250,4 @@ width: 100%;
 td:first-child{
   width: 6rem;
 }
+

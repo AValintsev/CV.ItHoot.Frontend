@@ -79,12 +79,15 @@
 
   .filter-block {
     column-gap: 2rem;
-    display: flex;
-    justify-content: space-between;
-
-    mat-form-field {
-      flex: 1 1 100%;
-    }
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        @media (max-width: 1050px) {
+          flex-wrap: wrap;
+        }
+        mat-form-field {
+          flex: 1 1 100%;
+        }
   }
 }
 
@@ -104,6 +107,9 @@
     padding-top: 0;
     // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
+    display: flex;
+    flex-direction: column;
+    height:calc(100vh - 2rem);
 
 
 

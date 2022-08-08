@@ -43,17 +43,10 @@
 
 .status-section {
   display: flex;
-
+  column-gap: 1rem;
   mat-form-field {
     flex: 1 1 50%;
-
-    &:first-child {
-      margin-right: .5rem;
-    }
-
-    &:last-child {
-      margin-left: .5rem;
-    }
+   
   }
 }
 .select-template-item{

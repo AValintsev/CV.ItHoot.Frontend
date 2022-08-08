@@ -1,11 +1,12 @@
 <!-- <cv-header></cv-header> -->
 <div class="page">
-  <cv-side-bar [class.open]="toggle"></cv-side-bar>
-  <div [class.open-menu]="toggle" >
-    <cv-burger-btn (click)="sideBarToggler()"  matTooltip="{{toggle ? 'Hide menu' : 'Show menu'}}"></cv-burger-btn>
+  <div #sideBar side-bar="side-bar" class="side-wrapper">
+<cv-side-bar  [class.open]="toggle"></cv-side-bar>
+<cv-burger-btn [class.open-menu]="toggle" (toggleSideBar)="sideBarToggler($event)" ></cv-burger-btn>
   </div>
+  
   <div class="page-content">
-    <div class="page-content__inner" [class.open-side-bar]="toggle">
+    <div class="page-content__inner"  [class.open-side-bar--content]="toggle" [class.open-side-bar]="toggle">
       <router-outlet></router-outlet>
     </div>
   </div>

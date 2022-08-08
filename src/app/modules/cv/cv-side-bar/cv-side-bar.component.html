@@ -26,7 +26,7 @@
            *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/cv/create']">
         <div class="mat-menu-item-inner" matTooltip="Create a new resume" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
-          <span>Create new CV </span>
+          <span>Create new Resume </span>
         </div>
       </div>
       <div mat-menu-item
@@ -41,22 +41,22 @@
            *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{ id }}">
         <div class="mat-menu-item-inner" matTooltip="Edit resume" matTooltipPosition="before">
           <mat-icon>edit</mat-icon>
-          <span>Edit CV</span>
+          <span>Edit Resume</span>
         </div>
 
       </div>
       <div mat-menu-item *ngIf="btnSwitcher('menu-list') | async"
            (click)="duplicate(id)">
-        <div class="mat-menu-item-inner" matTooltip="Duplicate" matTooltipPosition="before">
+        <div class="mat-menu-item-inner" matTooltip="Copy and edit" matTooltipPosition="before">
           <mat-icon>file_copy</mat-icon>
         <span>Copy and edit</span>
       </div>
       </div>
       <div mat-menu-item
            *ngIf="btnSwitcher('menu-list') | async" (click)="deleteResume(id)">
-        <div class="mat-menu-item-inner" matTooltip="Delete CV" matTooltipPosition="before">
+        <div class="mat-menu-item-inner" matTooltip="Delete Resume" matTooltipPosition="before">
           <mat-icon>delete_forever</mat-icon>
-          <span>Delete CV</span>
+          <span>Delete Resume</span>
         </div>
       </div>
       <mat-divider class="three-divider" *ngIf="btnSwitcher('edit') | async"></mat-divider>

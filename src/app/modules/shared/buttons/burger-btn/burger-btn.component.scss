@@ -1,4 +1,4 @@
-:host-context(.open-menu){
+:host(.open-menu){
     display: block;
     transition: all .3s ease;
     .menu-burger__side-bar {
@@ -9,6 +9,9 @@
 }
   }
 .menu-burger__side-bar {
+  
+  position: relative;
+  z-index: 999;
     margin:0 0 0 1rem;
     background-color: rgb(138, 146, 166);
     position: relative;
@@ -16,13 +19,17 @@
     height: 3rem;
     border-radius: .5rem;
     display: flex;
+    // top: 2rem;
     align-items: center;
     justify-content: center;
     transition: all .3s ease;
+    @media(max-width:768px){
+      margin:0;
+    }
     &:hover{
       cursor: pointer;
     }
-  
+
     mat-icon {
       display: flex;
       align-items: center;
