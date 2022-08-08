@@ -1,9 +1,10 @@
+import { Router } from '@angular/router';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {takeUntil} from 'rxjs/operators';
 import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
 import {AccountService} from 'src/app/services/account.service';
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output,} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectorRef } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {UserAuthData} from '../../../models/userAuthData';
 import {Users} from '../../../models/users-type';
@@ -26,7 +27,9 @@ export class CvSmallComponent implements OnInit, OnDestroy {
     private resumeService: ResumeService,
     private dialog: MatDialog,
     private snackBarService: SnackBarService,
-    private deleteModalService:DeleteModalService
+    private deleteModalService:DeleteModalService,
+    private router:Router,
+    private cdr:ChangeDetectorRef
   ) {
     // this.authData$ = this.authService.UserValue2();
   }
@@ -72,8 +75,11 @@ export class CvSmallComponent implements OnInit, OnDestroy {
   }
 
   duplicate(resume: SmallResumeDto) {
-    this.resumeService.duplicateResume(resume.id).subscribe(()=>{
-      this.refresh.emit();
+    this.resumeService.duplicateResume(resume.id).subscribe((e)=>{
+      this.router.navigate(['/home/cv/edit/',resume.id])
+      // console.log(e)
+      // this.cdr.detectChanges()
+      // this.refresh.emit();
     })
   }
 }

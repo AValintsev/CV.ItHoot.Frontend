@@ -23,9 +23,19 @@
       mat-card-actions{
         display: flex;
         justify-content: flex-end;
+        button {
+          width: 10rem;
+        }
       }
 
     }
   }
 
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: 10rem;
+  }
 }
