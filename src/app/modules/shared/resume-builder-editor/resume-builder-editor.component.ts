@@ -56,8 +56,7 @@ export class ResumeBuilderEditorComponent implements OnInit {
     private resumeService: ResumeService,
     private injector: Injector,
     private dialog: MatDialog,
-  ) {
-  }
+  ) {}
 
 
   private renderComponent() {
@@ -84,8 +83,7 @@ export class ResumeBuilderEditorComponent implements OnInit {
 
       ],
       declarations: [componentType],
-    })(class {
-    });
+    })(class {});
 
     const properties = {
       isPreviewMode: false,

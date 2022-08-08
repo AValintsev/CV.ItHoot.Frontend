@@ -1,56 +1,56 @@
-<div class="container" *ngIf="resume && resumeForm">
-  <div class="container-inner" [formGroup]="resumeForm">
+<!--<div class="container" *ngIf="resume && resumeForm">-->
+<!--  <div class="container-inner">-->
 
-    <cv-resume-builder-editor [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"
-                              [templatedChanged]="templateChanged"></cv-resume-builder-editor>
-    <div class="status-section">
-      <div class="price-section">
-        <mat-form-field appearance="fill">
-          <mat-label>Salary rate</mat-label>
-          <input matInput numeric placeholder="100" formControlName="salaryRate">
-        </mat-form-field>
-      </div>
-      <mat-form-field appearance="fill">
-        <mat-label>Select Template</mat-label>
-        <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId"
-                    [(ngModel)]="resume.resumeTemplateId" disableOptionCentering
-                    [compareWith]="compareTemplate" (selectionChange)="changeTemplate($event.value)">
-          <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
-            <div class="select-template-item">
-              <span>{{template.templateName}}</span>
-              <img width="20px" height="20px" src="assets/eye.png" alt="eye logo"
-                   (click)="showPreview($event,template.templateId)">
-            </div>
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
-          Template is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Availability statuses</mat-label>
-        <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus">
-          <mat-option [value]="1">Available</mat-option>
-          <mat-option [value]="2">Busy</mat-option>
-          <mat-option [value]="3">Partial Available</mat-option>
-          <mat-option [value]="4">Very careful available</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Number of days unavailable</mat-label>
-        <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
-      </mat-form-field>
+<!--    <cv-resume-builder-editor [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"-->
+<!--                              [templatedChanged]="templateChanged"></cv-resume-builder-editor>-->
+<!--    <div class="status-section">-->
+<!--      <div class="price-section">-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Salary rate</mat-label>-->
+<!--          <input matInput numeric placeholder="100" formControlName="salaryRate">-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Select Template</mat-label>-->
+<!--        <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId"-->
+<!--                    [(ngModel)]="resume.resumeTemplateId" disableOptionCentering-->
+<!--                    [compareWith]="compareTemplate" (selectionChange)="changeTemplate($event.value)">-->
+<!--          <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">-->
+<!--            <div class="select-template-item">-->
+<!--              <span>{{template.templateName}}</span>-->
+<!--              <img width="20px" height="20px" src="assets/eye.png" alt="eye logo"-->
+<!--                   (click)="showPreview($event,template.templateId)">-->
+<!--            </div>-->
+<!--          </mat-option>-->
+<!--        </mat-select>-->
+<!--        <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">-->
+<!--          Template is required-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Availability statuses</mat-label>-->
+<!--        <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus">-->
+<!--          <mat-option [value]="1">Available</mat-option>-->
+<!--          <mat-option [value]="2">Busy</mat-option>-->
+<!--          <mat-option [value]="3">Partial Available</mat-option>-->
+<!--          <mat-option [value]="4">Very careful available</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Number of days unavailable</mat-label>-->
+<!--        <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">-->
+<!--      </mat-form-field>-->
 
-      <div class="action">
-        <button mat-stroked-button [disabled]="!resumeForm.valid"
-                (click)="submit(resumeForm.value)" matTooltip="Save" matTooltipPosition="above">Save
-        </button>
+<!--      <div class="action">-->
+<!--        <button mat-stroked-button [disabled]="!resumeForm.valid"-->
+<!--                (click)="submit(resumeForm.value)" matTooltip="Save" matTooltipPosition="above">Save-->
+<!--        </button>-->
 
-        <button    mat-stroked-button routerLink="/admin/resume"
-                matTooltip="Cancel" matTooltipPosition="above">Cancel
-        </button>
-      </div>
-    </div>
+<!--        <button    mat-stroked-button routerLink="/admin/resume"-->
+<!--                matTooltip="Cancel" matTooltipPosition="above">Cancel-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
 
 
     <!--       <resume-template-builder [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>-->
@@ -69,7 +69,24 @@
     <!--          </div>-->
     <!--        </form>-->
     <!--      </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<div class="container" *ngIf="resume">
+  <div class="template-wrapper">
+    <resume-template-builder  [resume]="resume" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
   </div>
-
+  <div class="edit-page">
+    <div class="left-bar">
+      <form-bar [resumeForm]="resumeForm" [resume]="resume" [isCreateForm]="false" (templateChange)="changeTemplate($event)">
+      </form-bar>
+      <div class="action">
+        <button   mat-stroked-button [disabled]="!resumeForm.valid" (click)="submit(resumeForm.value)"
+                  matTooltip="Save" matTooltipPosition="before">Save</button>
+        <button mat-stroked-button routerLink="/home/cv/user-list"
+                matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
-
