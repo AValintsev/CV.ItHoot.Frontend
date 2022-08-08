@@ -357,7 +357,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
  
   duplicate(resume: SmallResumeDto) {
     this.resumeService.duplicateResume(resume.id).subscribe((e)=>{
-      this.router.navigate([`${this.url}/resume/edit/`,resume.id])
+      this.router.navigate([`${this.url}/resume/edit/`,e.id])
     })
   }
 
