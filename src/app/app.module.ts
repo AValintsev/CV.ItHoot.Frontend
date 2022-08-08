@@ -14,7 +14,6 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {ResumeFullSwitcherModule} from "./modules/cv/resume-full-switcher/resume-full-switcher.module";
 import {DeleteModalService} from './services/delete-modal.service';
-import { TemplateBuilderEditorV2Component } from './modules/shared/template-builder-editor-v2/template-builder-editor-v2.component';
 
 
 export let AppInjector: Injector;

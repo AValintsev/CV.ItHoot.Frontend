@@ -21,8 +21,8 @@ import {FormsModule, ReactiveFormsModule, UntypedFormGroup} from "@angular/forms
 import {QuillModule} from "ngx-quill";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatDialog} from '@angular/material/dialog';
-import {ResumeBuilderService} from "../../../services/resume-builder.service";
-import {ResumeParserService} from "../../../services/resume-parser.service";
+import {ResumeBuilderService} from "../../../services/resume-builder/resume-builder.service";
+import {ResumeParserService} from "../../../services/resume-builder/resume-parser.service";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 
 const modules = {
@@ -56,8 +56,8 @@ export class ResumeBuilderEditorComponent implements OnInit {
     private resumeService: ResumeService,
     private injector: Injector,
     private dialog: MatDialog,
-    private render:Renderer2
-  ) {}
+  ) {
+  }
 
 
   private renderComponent() {
@@ -67,7 +67,8 @@ export class ResumeBuilderEditorComponent implements OnInit {
     const componentType = Component({
       template: this.templateHtml,
       selector: 'template-resume',
-    })(class {});
+    })(class {
+    });
 
     const moduleType = NgModule({
       imports: [
@@ -83,10 +84,11 @@ export class ResumeBuilderEditorComponent implements OnInit {
 
       ],
       declarations: [componentType],
-    })(class {});
+    })(class {
+    });
 
     const properties = {
-      isPreviewMode:false,
+      isPreviewMode: false,
       resume: this.resume,
       resumeForm: this.resumeForm,
       getYear: this.resumeBuilderService.getYear,
@@ -134,35 +136,36 @@ export class ResumeBuilderEditorComponent implements OnInit {
         data.html = this.buildHtml(data.html);
         this.templateHtml = data.html;
         this.renderComponent();
-
       });
+
     }
     if (isObservable(this.templatedChanged)) {
-      this.templatedChanged?.subscribe((templateId) => {
-        this.resumeService.getTemplateById(templateId).subscribe((data) => {
+
+      this.templatedChanged?.subscribe(templateId => {
+        this.resumeService.getTemplateById(templateId).subscribe(data => {
           data.html = this.buildHtml(data.html);
           this.templateHtml = data.html;
           this.renderComponent();
         });
       });
+
     } else if (typeof this.templatedChanged == 'number') {
+
       this.resumeService.getTemplateById(this.templatedChanged).subscribe((data) => {
         this.templateHtml = data.html;
         this.renderComponent();
       });
+
     }
 
 
   }
 
   buildHtml(html: string): string {
-
     const resumeParser = new ResumeParserService(this.resumeBuilderService);
     html = resumeParser.addElements(html);
     return html;
-
   }
-
 
 
 }

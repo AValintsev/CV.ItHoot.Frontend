@@ -1,0 +1,443 @@
+import {ResumeLanguageDto} from "../../models/resume/resume-language-dto";
+import {DialogType} from "../../models/enums";
+import {LanguageDialog} from "../../modules/admin/component/modals/language-dialog/language-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ResumeDto} from "../../models/resume/resume-dto";
+import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {ResumeSkillDto} from "../../models/resume/resume-skill-dto";
+import {SkillDialog} from "../../modules/admin/component/modals/skill-dialog/skill-dialog.component";
+import {EducationDto} from "../../models/resume/education-dto";
+import {EducationDialog} from "../../modules/admin/component/modals/education-dialog/education-dialog.component";
+import {ExperienceDto} from "../../models/resume/experience-dto";
+import {ExperienceDialog} from "../../modules/admin/component/modals/experience-dialog/experience-dialog.component";
+
+
+export class ResumeBuilderService {
+
+  constructor(private resume: ResumeDto,
+              private resumeForm: FormGroup,
+              private dialog: MatDialog,
+  ) {}
+
+
+  removeSkill(skill: ResumeSkillDto): void {
+
+    const skillDto = this.resume.skills.find(e => e.id == skill.id);
+
+    if (skillDto == null) return;
+
+    const index = this.resume.skills.indexOf(skillDto);
+
+    if (index >= 0) {
+      this.resume.skills.splice(index, 1);
+      this.listSkillsChanged();
+    }
+  }
+
+  listSkillsChanged(): void {
+    (<UntypedFormArray>this.resumeForm.controls['skills']).clear();
+    this.resume.skills?.forEach((skill) => {
+      (<UntypedFormArray>this.resumeForm.controls['skills']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(skill.id),
+          skillId: new UntypedFormControl(skill.skillId),
+          skillName: new UntypedFormControl(skill.skillName),
+          level: new UntypedFormControl(skill.level),
+        })
+      );
+    });
+  }
+
+  openSkillDialog(skill: ResumeSkillDto | null = null): void {
+    let data: ResumeSkillDto;
+    let dialogType: DialogType;
+    if (skill == null) {
+      data = {} as ResumeSkillDto;
+      dialogType = DialogType.Create;
+    } else {
+      data = skill;
+      dialogType = DialogType.Edit;
+    }
+
+    const dialogRef = this.dialog.open(SkillDialog, {
+      width: '600px',
+      autoFocus: false,
+      data: {type: dialogType, data: data},
+    });
+
+    dialogRef.afterClosed().subscribe((skillDialog: ResumeSkillDto) => {
+
+      if (skillDialog == null) return;
+
+      let skillDto = this.resume.skills.find(skl => skl.skillId == skillDialog.skillId || skl.skillName == skillDialog.skillName);
+
+      if (skillDto == null)
+
+        if (dialogType == DialogType.Create)
+          this.resume.skills.push(skillDialog);
+
+        else if (dialogType == DialogType.Edit) {
+          const resumeSkill = this.resume.skills.find(skl => skl.id == skillDialog.id)
+          resumeSkill!.skillId = skillDialog.skillId;
+          resumeSkill!.skillName = skillDialog.skillName;
+          resumeSkill!.level = skillDialog.level;
+        }
+
+      this.listSkillsChanged();
+
+
+    });
+  }
+
+  removeLanguage(language: ResumeLanguageDto) {
+
+    const languageDto = this.resume.languages.find(e => e.id == language.id);
+
+    if (languageDto == null) return;
+
+    const index = this.resume.languages.indexOf(languageDto);
+
+    if (index >= 0) {
+      this.resume.languages.splice(index, 1);
+      this.listLanguageChanged();
+    }
+  }
+
+  listLanguageChanged(): void {
+    (<UntypedFormArray>this.resumeForm.controls['languages']).clear();
+    this.resume.languages?.forEach((languages) => {
+      (<UntypedFormArray>this.resumeForm.controls['languages']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(languages.id),
+          languageId: new UntypedFormControl(languages.languageId),
+          languageName: new UntypedFormControl(languages.languageName),
+          level: new UntypedFormControl(languages.level),
+        })
+      );
+    });
+  }
+
+  openLanguageDialog(language: ResumeLanguageDto | null = null) {
+    let dialogType: DialogType;
+    if (language == null) {
+      language = {} as ResumeLanguageDto;
+      dialogType = DialogType.Create;
+    } else {;
+      dialogType = DialogType.Edit;
+    }
+
+    const dialogRef = this.dialog.open(LanguageDialog, {
+      width: '600px',
+      autoFocus: false,
+      data: {type: dialogType, data: language},
+    });
+
+    dialogRef.afterClosed().subscribe((languageDialog: ResumeLanguageDto) => {
+
+      if (languageDialog == null) return;
+
+      let languageDto = this.resume.languages.find(lng => lng.languageId == languageDialog.languageId ||
+        lng.languageName == languageDialog.languageName);
+
+      if (languageDto == null)
+
+        if (dialogType == DialogType.Create)
+          this.resume.languages.push(languageDialog);
+
+        else if (dialogType == DialogType.Edit) {
+          const resumeLanguage = this.resume.languages.find(lng => lng.id == languageDialog.id)
+          resumeLanguage!.languageId = languageDialog.languageId;
+          resumeLanguage!.languageName = languageDialog.languageName;
+          resumeLanguage!.level = languageDialog.level;
+        }
+
+      this.listLanguageChanged();
+
+    });
+  }
+
+  removeEducation(education: EducationDto) {
+
+    const educationDto = this.resume.educations.find(e => e.id == education.id);
+
+    if (educationDto == null) return;
+
+    const index = this.resume.educations.indexOf(educationDto);
+
+    if (index >= 0) {
+      this.resume.educations.splice(index, 1);
+      this.educationListChanged();
+    }
+  }
+
+  educationListChanged() {
+    (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
+    this.resume.educations
+      ?.sort(
+        (a: EducationDto, b: EducationDto) =>
+          Date.parse(b.endDate) - Date.parse(a.endDate)
+      )
+      .forEach((education) => {
+        (<UntypedFormArray>this.resumeForm.controls['educations']).push(
+          new UntypedFormGroup({
+            id: new UntypedFormControl(education?.id ?? 0),
+            institutionName: new UntypedFormControl(education.institutionName),
+            specialization: new UntypedFormControl(education.specialization),
+            description: new UntypedFormControl(education.description),
+            degree: new UntypedFormControl(education.degree),
+            startDate: new UntypedFormControl(education.startDate),
+            endDate: new UntypedFormControl(education.endDate),
+          })
+        );
+      });
+  }
+
+  openEducationDialog(education: EducationDto | null = null) {
+    let dialogType: DialogType;
+    if (education == null) {
+      education = {} as EducationDto;
+      dialogType = DialogType.Create;
+    } else {
+      dialogType = DialogType.Edit;
+    }
+    const dialogRef = this.dialog.open(EducationDialog, {
+      width: '700px',
+      autoFocus: false,
+      data: {type: dialogType, data: education},
+    });
+
+    dialogRef.afterClosed().subscribe((education: EducationDto) => {
+
+      if (education == null) return;
+      let educationDto = this.resume.educations.find((e) => e.id == education.id);
+      if (educationDto != null) {
+        this.removeEducation(educationDto);
+      } else {
+        education.id = this.resume.educations.length;
+      }
+      this.resume.educations.push(education);
+      this.educationListChanged();
+    });
+  }
+
+  removeExperience(experience: ExperienceDto) {
+    const experienceDto = this.resume.experiences.find(e => e.id == experience.id);
+
+    if (experienceDto == null) return;
+
+    const index = this.resume.experiences.indexOf(experienceDto);
+
+    if (index >= 0) {
+      this.resume.experiences.splice(index, 1);
+      this.experienceListChanged();
+    }
+  }
+
+  experienceListChanged() {
+    (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
+    this.resume.experiences?.sort(
+      (a: ExperienceDto, b: ExperienceDto) =>
+        Date.parse(b.endDate) - Date.parse(a.endDate))
+      .forEach((experience) => {
+        (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
+          new UntypedFormGroup({
+            id: new UntypedFormControl(experience?.id ?? 0),
+            position: new UntypedFormControl(experience.position),
+            description: new UntypedFormControl(experience.description),
+            company: new UntypedFormControl(experience.company),
+            startDate: new UntypedFormControl(experience.startDate),
+            endDate: new UntypedFormControl(experience.endDate),
+          })
+        );
+      });
+  }
+
+  openExperienceDialog(experience: ExperienceDto | null = null) {
+    let dialogType: DialogType;
+    if (experience == null) {
+      experience = {} as ExperienceDto;
+      dialogType = DialogType.Create;
+    } else {
+      dialogType = DialogType.Edit;
+    }
+
+    const dialogRef = this.dialog.open(ExperienceDialog, {
+      width: '700px',
+      autoFocus: false,
+      data: {type: dialogType, data: experience},
+    });
+
+    dialogRef.afterClosed().subscribe(experience => {
+      if (experience == null) return;
+
+      let experienceDto = this.resume.experiences.find((e) => e.id == experience.id);
+      if (experienceDto != null) {
+        this.removeExperience(experienceDto);
+      } else {
+        experience.id = this.resume.experiences.length;
+      }
+
+
+      this.resume.experiences.push(experience);
+      this.experienceListChanged();
+    });
+  }
+
+  howOld(birthDay: string) {
+    const today = new Date();
+    const birthDate = new Date(birthDay);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  getYear(startDate: string, endDate: string) {
+    let start = Date.parse(startDate);
+    let end = Date.parse(endDate);
+    if (end >= start) {
+      let time = end - start;
+      return Math.floor(time / (1000 * 60 * 60 * 24 * 30 * 12));
+    }
+    return 0;
+  }
+
+  getMonth(startDate: string, endDate: string) {
+    let start = Date.parse(startDate);
+    let end = Date.parse(endDate);
+    if (end >= start) {
+      let time = end - start;
+      return Math.floor((time / (1000 * 60 * 60 * 24 * 30)) % 12);
+    }
+    return 0;
+  }
+
+
+  private validateForm() {
+    this.resumeForm = new UntypedFormGroup({
+      resumeName: new UntypedFormControl(this.resume.resumeName, [
+        Validators.required,
+      ]),
+      firstName: new UntypedFormControl(this.resume.firstName, [
+        Validators.required,
+      ]),
+      lastName: new UntypedFormControl(this.resume.lastName, [
+        Validators.required,
+      ]),
+      position: new UntypedFormControl(this.resume.position, [
+        Validators.required,
+      ]),
+      email: new UntypedFormControl(this.resume.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+      site: new UntypedFormControl(this.resume.site),
+      phone: new UntypedFormControl(this.resume.phone, [
+        Validators.pattern('[- +()0-9]+'),Validators.minLength(10),
+      ]),
+      code: new UntypedFormControl(this.resume.code),
+      country: new UntypedFormControl(this.resume.country, [
+        Validators.required,
+      ]),
+      city: new UntypedFormControl(this.resume.city, [Validators.required]),
+      street: new UntypedFormControl(this.resume.street, [
+        Validators.required,
+      ]),
+      requiredPosition: new UntypedFormControl(this.resume.requiredPosition, [
+        Validators.required,
+      ]),
+      birthdate: new UntypedFormControl(this.resume.birthdate, [
+        Validators.required,
+      ]),
+      aboutMe: new UntypedFormControl(this.resume.aboutMe, [
+        Validators.required,
+      ]),
+      resumeTemplateId: new UntypedFormControl(this.resume.resumeTemplateId, [
+        Validators.required,
+      ]),
+      imageId:  new UntypedFormControl(this.resume.imageId),
+      salaryRate: new UntypedFormControl(this.resume?.salaryRate),
+      availabilityStatus: new UntypedFormControl(this.resume?.availabilityStatus),
+      countDaysUnavailable: new UntypedFormControl(this.resume?.countDaysUnavailable),
+      educations: new UntypedFormArray([]),
+      experiences: new UntypedFormArray([]),
+      skills: new UntypedFormArray([]),
+      languages: new UntypedFormArray([]),
+    });
+  }
+
+  patchForm(resume: ResumeDto) {
+    this.resumeForm.patchValue({id: resume.id});
+    this.resumeForm.patchValue({resumeName: resume.resumeName});
+    this.resumeForm.patchValue({firstName: resume.firstName});
+    this.resumeForm.patchValue({lastName: resume.lastName});
+    this.resumeForm.patchValue({email: resume.email});
+    this.resumeForm.patchValue({site: resume.site});
+    this.resumeForm.patchValue({phone: resume.phone});
+    this.resumeForm.patchValue({code: resume.code});
+    this.resumeForm.patchValue({country: resume.country});
+    this.resumeForm.patchValue({city: resume.city});
+    this.resumeForm.patchValue({street: resume.street});
+    this.resumeForm.patchValue({requiredPosition: resume.requiredPosition,});
+    this.resumeForm.patchValue({birthdate: resume.birthdate});
+    this.resumeForm.patchValue({aboutMe: resume.aboutMe});
+    this.resumeForm.patchValue({picture: resume.picture});
+    this.resumeForm.patchValue({position: resume.position});
+    this.resumeForm.patchValue({salaryRate: resume.salaryRate});
+    this.resumeForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
+    this.resumeForm.patchValue({availabilityStatus: resume.availabilityStatus});
+    this.resumeForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
+
+
+    resume.skills?.forEach((skill) => {
+      (<UntypedFormArray>this.resumeForm.controls['skills']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(skill.id),
+          skillId: new UntypedFormControl(skill.skillId),
+          skillName: new UntypedFormControl(skill.skillName),
+          level: new UntypedFormControl(skill.level),
+        })
+      );
+    });
+
+    resume.languages?.forEach((languages) => {
+      (<UntypedFormArray>this.resumeForm.controls['languages']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(languages.id),
+          languageId: new UntypedFormControl(languages.languageId),
+          languageName: new UntypedFormControl(languages.languageName),
+          level: new UntypedFormControl(languages.level),
+        })
+      );
+    });
+
+    resume.educations?.forEach((education) => {
+      (<UntypedFormArray>this.resumeForm.controls['educations']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(education.id),
+          institutionName: new UntypedFormControl(education.institutionName),
+          specialization: new UntypedFormControl(education.specialization),
+          description: new UntypedFormControl(education.description,),
+          degree: new UntypedFormControl(education.degree),
+          startDate: new UntypedFormControl(education.startDate),
+          endDate: new UntypedFormControl(education.endDate),
+        })
+      );
+    });
+
+    resume.experiences?.forEach((experience) => {
+      (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
+        new UntypedFormGroup({
+          id: new UntypedFormControl(experience.id),
+          position: new UntypedFormControl(experience.position),
+          description: new UntypedFormControl(experience.description),
+          company: new UntypedFormControl(experience.company),
+          startDate: new UntypedFormControl(experience.startDate),
+          endDate: new UntypedFormControl(experience.endDate),
+        })
+      );
+    });
+  }
+}
