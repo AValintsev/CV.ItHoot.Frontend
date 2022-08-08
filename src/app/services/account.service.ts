@@ -6,7 +6,7 @@ import {catchError, mapTo, tap} from 'rxjs/operators';
 import {userResponse} from '../models/responses/userResponse';
 import {environment} from "../../environments/environment";
 import {UserAuthData} from "../models/userAuthData";
-
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,10 @@ export class AccountService {
 
   constructor(private http: HttpClient) {
   }
+
+  DecodeToken(token: string): string {
+    return jwt_decode(token);
+    }
 
 
   checkEmailExists(email: string) {
@@ -80,6 +84,10 @@ export class AccountService {
   }
 
   getStoreRole() {
+    if(localStorage.getItem(this.JWT_TOKEN)){
+      (this.DecodeToken(localStorage.getItem(this.JWT_TOKEN))as any) 
+    }
+   
     return localStorage.getItem(this.USER_ROLE)
   }
 
@@ -88,6 +96,7 @@ export class AccountService {
   }
 
   doLoginUser(tokens: userResponse) {
+    
     this.storeRole(tokens.roles[0])
     this.setUserRole(tokens.roles[0])
     this.setUserId(tokens.userId)
