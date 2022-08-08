@@ -26,7 +26,7 @@ export class AccountService {
   constructor(private http: HttpClient) {
   }
 
-  DecodeToken(token: string): string {
+  DecodeToken(token: any): string {
     return jwt_decode(token);
     }
 
@@ -75,33 +75,32 @@ export class AccountService {
     return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`, null);
   }
 
-  storeRole(role: string) {
-    localStorage.setItem(this.USER_ROLE, role)
-  }
+  // storeRole(role: string) {
+  //   localStorage.setItem(this.USER_ROLE, role)
+  // }
 
-  storeName(name: string) {
-    localStorage.setItem(this.USER_NAME, name)
-  }
+  // storeName(name: string) {
+  //   localStorage.setItem(this.USER_NAME, name)
+  // }
 
   getStoreRole() {
-    if(localStorage.getItem(this.JWT_TOKEN)){
-      (this.DecodeToken(localStorage.getItem(this.JWT_TOKEN))as any) 
-    }
-   
-    return localStorage.getItem(this.USER_ROLE)
+
+  return (this.DecodeToken(localStorage.getItem(this.JWT_TOKEN)) as any).role
+    // return localStorage.getItem(this.USER_ROLE)
   }
 
   getStoreName() {
-    return localStorage.getItem(this.USER_NAME)
+    // return localStorage.getItem(this.USER_NAME)
+   return (this.DecodeToken(localStorage.getItem(this.JWT_TOKEN)) as any).given_name
   }
 
   doLoginUser(tokens: userResponse) {
     
-    this.storeRole(tokens.roles[0])
-    this.setUserRole(tokens.roles[0])
+    // this.storeRole(tokens.roles[0])
+    // this.setUserRole(tokens.roles[0])
     this.setUserId(tokens.userId)
     this.storeTokens(tokens)
-    this.storeName(tokens.userEmail)
+    // this.storeName(tokens.userEmail)
   }
 
   setUserRole(role: string) {
@@ -129,12 +128,13 @@ export class AccountService {
   }
 
   setUserId(id: number) {
-    localStorage.setItem(this.USER_ID, id.toString());
+    // localStorage.setItem(this.USER_ID, id.toString());
     this.userId$.next(id)
   }
 
   getUserId() {
-    return localStorage.getItem(this.USER_ID);
+    // return localStorage.getItem(this.USER_ID);
+    return (this.DecodeToken(localStorage.getItem(this.JWT_TOKEN)) as any).nameid
   }
 
   getRefreshToken() {
@@ -146,20 +146,19 @@ export class AccountService {
   }
 
   doLogoutUser() {
-    console.log('test')
-    this.removeStoreUserRole()
-    this.removeTokens()
+    // this.removeStoreUserRole()
+    // this.removeTokens()
     localStorage.clear()
   }
 
   removeStoreUserRole() {
-    localStorage.removeItem(this.USER_ROLE)
+    // localStorage.removeItem(this.USER_ROLE)
   }
 
   removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
-    localStorage.removeItem(this.USER_ID);
+    // localStorage.removeItem(this.USER_ID);
   }
 
   refreshToken() {
