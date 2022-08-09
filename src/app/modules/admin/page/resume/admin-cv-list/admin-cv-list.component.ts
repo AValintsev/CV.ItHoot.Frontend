@@ -108,7 +108,6 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.displayedColumns = [
         'action',
         'name',
-        'createdBy',
         'position',
         'skills',
         'clients',
@@ -354,7 +353,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     return resumeFilters;
   }
- 
+
   duplicate(resume: SmallResumeDto) {
     this.resumeService.duplicateResume(resume.id).subscribe((e)=>{
       this.router.navigate([`${this.url}/resume/edit/`,e.id])

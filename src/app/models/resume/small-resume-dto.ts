@@ -32,4 +32,5 @@ export interface SmallResumeDto{
   shortUrlIncognito:string;
   shortUrlIncognitoWithoutLogo:string;
   createdBy: SmallUserDto;
+  owner: SmallResumeDto;
 }
