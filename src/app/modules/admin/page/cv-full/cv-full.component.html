@@ -3,10 +3,10 @@
     <button
       mat-raised-button
       class="back-btn"
-      routerLink="../"
+      routerLink="{{proposalIdExist?'../../':'../'}}"
     >
       <mat-icon>arrow_back_ios</mat-icon>
-      Back to Resume List
+      {{proposalIdExist?'Back to Team':'Back to Resumes'}}
     </button>
   </div>
   <div class="resume-inner">

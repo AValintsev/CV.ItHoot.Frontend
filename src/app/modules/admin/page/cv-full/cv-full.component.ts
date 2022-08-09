@@ -15,7 +15,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class CvFullComponent implements OnInit {
   @ViewChild('resumeDiv') resumeId!: ElementRef;
   resume!: ResumeDto;
-
+  proposalIdExist!:boolean
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -31,6 +31,7 @@ export class CvFullComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe((params) => {
+      this.proposalIdExist = params['proposalId']?true:false
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const id = params['id'];

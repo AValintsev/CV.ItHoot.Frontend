@@ -27,6 +27,7 @@
   }
 
   .left-bar {
+    max-width: 794px;
     overflow: hidden auto;
     padding: 30px 30px 0 20px;
     display: flex;
@@ -56,17 +57,21 @@
   }
 }
 
+.left-bar {
+  max-width: 794px;
+}
+
 :host::ng-deep {
   .template-wrapper {
     #resume {
       @media screen and (max-width: 1151px) {
-        max-width: 68.5rem;
-        zoom: normal;
+        // max-width: 68.5rem;
+        // zoom: normal;
       }
 
       @media screen and (max-width: 754px) {
         width: 100%;
-        zoom: .95;
+        zoom: .9;
 
         .first-name {
           font-size: 2.8rem;
@@ -160,21 +165,22 @@
   }
 }
 
-:host-context(.open-side-bar--content) {
+:host-context(.open-side-bar--content) .container{
+
   #resume {
     @media screen and (max-width: 1430px) {
       width: 100%;
-      zoom: normal;
+      // zoom: normal;
     }
 
     @media screen and (max-width: 1000px) {
       width: 100%;
-      zoom: 0.99;
+      zoom: 0.95;
     }
 
     @media screen and (max-width: 990px) {
       width: 100%;
-      zoom: 0.98;
+      zoom: 0.92;
     }
 
     @media screen and (max-width: 980px) {
@@ -189,7 +195,7 @@
 
     @media screen and (max-width: 950px) {
       width: 100%;
-      zoom: 0.9;
+      zoom: 0.8;
     }
 
     @media screen and (max-width: 935px) {
@@ -304,5 +310,23 @@
     & > :last-child {
       grid-column: span 2;
     }
+  }
+}
+
+.back-btn__wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: .5rem;
+}
+.back-btn{
+  font-size: 1.6rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
   }
 }

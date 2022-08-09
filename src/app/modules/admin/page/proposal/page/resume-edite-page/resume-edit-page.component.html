@@ -1,4 +1,15 @@
+  <div class="back-btn__wrapper">
+    <button
+      mat-raised-button
+      class="back-btn"
+      routerLink="../../../"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+      Back to Proposals
+    </button>
+  </div>
 <div class="container" *ngIf="resumeEditDto">
+
   <resume-template-builder [resume]="resumeEditDto" [resumeChanged]="resumeChanged"
                            [templatedChanged]="templateChanged"></resume-template-builder>
   <div class="edit-page">
