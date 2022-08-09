@@ -306,3 +306,21 @@
     }
   }
 }
+
+.back-btn__wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: .5rem;
+}
+.back-btn{
+  font-size: 1.6rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}

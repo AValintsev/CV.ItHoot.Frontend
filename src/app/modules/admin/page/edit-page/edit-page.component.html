@@ -72,8 +72,18 @@
 <!--  </div>-->
 
 <!--</div>-->
-
+  <div class="back-btn__wrapper">
+    <button
+      mat-raised-button
+      class="back-btn"
+      routerLink="../../"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+      Back to Resume List
+    </button>
+  </div>
 <div class="container" *ngIf="resume">
+
   <div class="template-wrapper">
     <resume-template-builder  [resume]="resume" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>
   </div>
@@ -84,7 +94,7 @@
       <div class="action">
         <button   mat-stroked-button [disabled]="!resumeForm.valid" (click)="submit(resumeForm.value)"
                   matTooltip="Save" matTooltipPosition="before">Save</button>
-        <button mat-stroked-button routerLink="/home/cv/user-list"
+        <button mat-stroked-button routerLink="/admin/resume"
                 matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
       </div>
     </div>
