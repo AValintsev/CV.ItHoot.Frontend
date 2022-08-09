@@ -9,5 +9,5 @@ FROM nginx:latest
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /client/dist/* /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
