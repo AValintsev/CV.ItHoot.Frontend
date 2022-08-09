@@ -22,8 +22,8 @@
     </mat-button-toggle-group>
   </div>
   <div mat-dialog-actions class="actions">
-    <button mat-button [mat-dialog-close]="language" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Create" matTooltip="Create">Create</button>
-    <button mat-button [mat-dialog-close]="language" cdkFocusInitial [disabled]="!canCreate()" *ngIf="typeDialog===DialogType.Edit" matTooltip="Update">Update</button>
+    <button mat-stroked-button [mat-dialog-close]="language" cdkFocusInitial [disabled]="!canCreate()">Save</button>
+    <button mat-stroked-button [mat-dialog-close]="false" >Cancel</button>
   </div>
 
 </div>

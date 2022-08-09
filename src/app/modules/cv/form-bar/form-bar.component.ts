@@ -153,7 +153,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((skill: ResumeSkillDto) => {
-      if (skill == null) return;
+      if (!skill) return;
 
       let skillDto = this.resume.skills.find(
         (e) => e.skillName == skill.skillName
@@ -206,7 +206,7 @@ export class FormBarComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((language: ResumeLanguageDto) => {
-      if (language == null) return;
+      if (!language) return;
       let languageDto = this.resume.languages.find(
         (e) => e.languageName == language.languageName
       );
