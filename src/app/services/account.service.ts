@@ -6,6 +6,7 @@ import {catchError, mapTo, tap} from 'rxjs/operators';
 import {userResponse} from '../models/responses/userResponse';
 import {environment} from "../../environments/environment";
 import {UserAuthData} from "../models/userAuthData";
+import jwt_decode from "jwt-decode";
 
 
 @Injectable({
@@ -50,7 +51,9 @@ export class AccountService {
         catchError(error => {
           return of(error)
         }),
-        tap<any>(tokens => this.doLoginUser(tokens)),
+        tap<any>(tokens =>{
+          this.doLoginUser(tokens)
+        }),
         mapTo(true),
       )
   }
@@ -60,7 +63,8 @@ export class AccountService {
       catchError(error => {
         return of(error)
       }),
-      tap<any>(tokens => this.doLoginUser(tokens)),
+      tap<any>(tokens =>{
+        this.doLoginUser(tokens)}),
       mapTo(true),
     )
   }
@@ -71,36 +75,16 @@ export class AccountService {
     return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`, null);
   }
 
-  storeRole(role: string) {
-    localStorage.setItem(this.USER_ROLE, role)
-  }
-
-  storeName(name: string) {
-    localStorage.setItem(this.USER_NAME, name)
-  }
-
   getStoreRole() {
-    return localStorage.getItem(this.USER_ROLE)
+    return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).role
   }
 
   getStoreName() {
-    return localStorage.getItem(this.USER_NAME)
+    return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).given_name
   }
 
   doLoginUser(tokens: userResponse) {
-    this.storeRole(tokens.roles[0])
-    this.setUserRole(tokens.roles[0])
-    this.setUserId(tokens.userId)
     this.storeTokens(tokens)
-    this.storeName(tokens.userEmail)
-  }
-
-  setUserRole(role: string) {
-    this.userRole$.next(role)
-  }
-
-  getUserRole() {
-    return this.userRole$
   }
 
   storeTokens(tokens: any) {
@@ -113,19 +97,17 @@ export class AccountService {
       .pipe(tap(() => {this.doLogoutUser()}),
         mapTo(true),
         catchError(error=> {
-          console.log(error)
           return of(error)
         })
       )
   }
 
   setUserId(id: number) {
-    localStorage.setItem(this.USER_ID, id.toString());
     this.userId$.next(id)
   }
 
   getUserId() {
-    return localStorage.getItem(this.USER_ID);
+   return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).nameId
   }
 
   getRefreshToken() {
@@ -137,19 +119,13 @@ export class AccountService {
   }
 
   doLogoutUser() {
-    this.removeStoreUserRole()
-    this.removeTokens()
     localStorage.clear()
   }
 
-  removeStoreUserRole() {
-    localStorage.removeItem(this.USER_ROLE)
-  }
 
   removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN)
     localStorage.removeItem(this.REFRESH_TOKEN)
-    localStorage.removeItem(this.USER_ID);
   }
 
   refreshToken() {

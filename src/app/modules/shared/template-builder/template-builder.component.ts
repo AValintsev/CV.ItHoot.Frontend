@@ -60,7 +60,6 @@ export class TemplateBuilderComponent implements OnInit {
       });
       Object.assign(component.instance, properties);
     } catch (e) {
-      console.log(e)
       this.containerRef.clear();
       this.isException = true;
     }

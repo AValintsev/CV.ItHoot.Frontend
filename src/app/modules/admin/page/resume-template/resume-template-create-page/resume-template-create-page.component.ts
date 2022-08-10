@@ -121,7 +121,6 @@ export class ResumeTemplateCreatePageComponent implements OnInit {
   }
 
   onInit(editor: any) {
-    console.log(editor);
     setTimeout(() => {
       editor.getAction('editor.action.formatDocument').run();
     }, 150);

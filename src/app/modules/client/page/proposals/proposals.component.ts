@@ -52,7 +52,6 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
     const teamId = sessionStorage.getItem('teamId')
     if (teamId != null) {
       this.clientProposalService.getProposalById(parseInt(teamId)).subscribe((data) => {
-        console.log('data', data)
         this.isIncognito = data.isIncognito
         this.statusProposal = data.statusProposal
         this.resume = this.filterResponseArray(data)
@@ -66,7 +65,6 @@ export class ProposalsComponent implements OnInit,OnDestroy,OnDestroy {
         next: response => {
           response.subscribe({
             next: (response: ProposalDto) => {
-              console.log('response', response)
               this.isIncognito = response.isIncognito
               this.statusProposal = response.statusProposal
               this.resume = this.filterResponseArray(response)

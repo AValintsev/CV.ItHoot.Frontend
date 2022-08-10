@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Observable, Subject, Subscription} from 'rxjs';
+import {fromEvent, Observable, Subject, Subscription} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
@@ -27,10 +27,11 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
   private destroy$ = new Subject<boolean>();
   public loading$!: Observable<boolean>
   errors!: string[];
+  screenSize:number = window.innerWidth;
   type = "password"
   swithPasswordVisible = true
   loginForm!: UntypedFormGroup;
-
+  
   constructor(public accountService: AccountService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -61,7 +62,14 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
 
     this.loadGoogleAuthScript();
     this.addGoogleAuthButton();
-
+  fromEvent(window,'resize').subscribe(
+    ()=>{
+      if(this.screenSize!=window.innerWidth){
+        this.loadGoogleAuthScript();
+        this.addGoogleAuthButton();
+      }
+    }
+  )
   }
 
   loadGoogleAuthScript() {
@@ -89,7 +97,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
           size: "medium",
           text: "continue_with",
           shape: "rectangular",
-          width: 400
+          width: window.innerWidth>600?370:250
         }  // customization attributes
       );
       // @ts-ignore

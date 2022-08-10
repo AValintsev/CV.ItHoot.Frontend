@@ -149,7 +149,6 @@ export class ResumeTemplateBuilderComponent implements OnInit {
     } else if (typeof this.templatedChanged == 'number') {
       this.resumeService.getTemplateById(this.templatedChanged).subscribe((data) => {
         this.templateHtml = data.html;
-        console.log(data.html)
         this.addComponent();
       });
     }
