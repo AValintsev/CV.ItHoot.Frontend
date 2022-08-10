@@ -30,10 +30,16 @@ const routes: Routes = [
     data: { role: [Users[3]] },
     children: [
       {
-        path: 'proposals', component: ProposalsComponent
+        path: 'proposals', 
+        canActivate: [UsersGuard],
+        data: { role: [Users[3]] },
+        component: ProposalsComponent
       },
       {
-        path: 'proposal/:proposalId/resume/:resumeId', component: ResumeComponent
+        path: 'proposal/:proposalId/resume/:resumeId',
+        canActivate: [UsersGuard],
+        data: { role: [Users[3]] },
+        component: ResumeComponent
       },
       {
         path: '', redirectTo: 'proposals', pathMatch: 'full'

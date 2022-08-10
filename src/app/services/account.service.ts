@@ -137,7 +137,6 @@ export class AccountService {
   }
 
   doLogoutUser() {
-    console.log('test')
     this.removeStoreUserRole()
     this.removeTokens()
     localStorage.clear()

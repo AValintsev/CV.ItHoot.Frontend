@@ -14,6 +14,11 @@ import {UsersGuard} from 'src/app/guards/users.guard';
       children: [
         {
           path: 'cv', loadChildren: () => import('../cv.module').then(mod => mod.CvModule),
+          canLoad:[UsersGuard],
+          canActivateChild: [UsersGuard],
+          data: {
+            role: [Users[2]]
+          },
         },
       ]
     }

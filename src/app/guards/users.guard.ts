@@ -19,10 +19,8 @@ function checkerRole(accountService: AccountService, snackBarService: SnackBarSe
 	if (data&&data.includes(accountService.getStoreRole() as string)){
 		return true
 	}
-	accountService.logout().subscribe({
-		next: () => { router.navigate(['account/login']); },
-		error: error => { snackBarService.showDanger('logout error'); console.log('error', error) }
-	})
+	router.navigate(['account/login']);
+
 	return false
 }
 

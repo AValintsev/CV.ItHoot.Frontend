@@ -27,6 +27,7 @@ export class EditPageComponent implements OnInit {
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
   resumeTemplates: ResumeTemplateDto[];
+  userId!:any;
 
   constructor(
     private resumeService: ResumeService,
@@ -36,15 +37,16 @@ export class EditPageComponent implements OnInit {
     private route: ActivatedRoute,
     private accountService: AccountService,
     private dialog: MatDialog,
-    private resumeFormBuilder: ResumeFormBuilderService,
+    private resumeFormBuilderService: ResumeFormBuilderService,
   ) {
 
     this.route.params.subscribe(params => {
       const proposalId = params['proposalId'];
       const resumeId = params['resumeId'];
       const id = params['id'];
-
-      this.resumeForm = this.resumeFormBuilder.buildResumeForm()
+      this.userId = id;
+  console.log(params)
+      this.resumeForm = this.resumeFormBuilderService.buildResumeForm()
       this.resumeService.getAllTemplates().subscribe(templates => this.resumeTemplates = templates);
 
       if (proposalId && resumeId) {
@@ -54,7 +56,7 @@ export class EditPageComponent implements OnInit {
           this.resume = data.resume;
           this.resume!.showLogo = data.showLogo;
           this.resume!.resumeTemplateId = data.resumeTemplateId;
-          resumeFormBuilder.patchForm(this.resume!, this.resumeForm);
+          resumeFormBuilderService.patchForm(this.resume!, this.resumeForm);
 
         });
 
@@ -62,14 +64,14 @@ export class EditPageComponent implements OnInit {
 
         this.resumeService.getResumeById(resumeId).subscribe((resume) => {
           this.resume = resume;
-          resumeFormBuilder.patchForm(this.resume!, this.resumeForm);
+          resumeFormBuilderService.patchForm(this.resume!, this.resumeForm);
 
         });
       } else if (id) {
 
         this.resumeService.getResumeById(id).subscribe((resume) => {
           this.resume = resume;
-          resumeFormBuilder.patchForm(this.resume!, this.resumeForm);
+          resumeFormBuilderService.patchForm(this.resume!, this.resumeForm);
         });
 
       }
@@ -87,8 +89,10 @@ export class EditPageComponent implements OnInit {
 
 
   submit(resume: ResumeDto) {
+    resume.id = this.userId;
+    console.log(resume)
     this.resumeService.updateResume(resume).subscribe(() => {
-
+      
       this.snackbarService.showSuccess('Edited');
       const role = this.accountService.getStoreRole();
 

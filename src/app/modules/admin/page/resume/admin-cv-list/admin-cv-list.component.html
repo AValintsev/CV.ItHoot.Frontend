@@ -184,25 +184,25 @@
 
               <button mat-menu-item [matMenuTriggerFor]="resumeLink"
                       matTooltip="Resume links" matTooltipPosition="before">
-                <mat-icon>html</mat-icon>
+                <mat-icon>content_copy</mat-icon>
                 <span>Resume Links</span>
               </button>
               <mat-menu #resumeLink="matMenu">
                 <button mat-menu-item (click)="copyResumeLink(resume.shortUrlFullResume)"
                         matTooltip="Copy full resume link" matTooltipPosition="after">
-                  <mat-icon>html</mat-icon>
+                  <mat-icon>content_copy</mat-icon>
                   <span>Full Resume</span>
                 </button>
 
                 <button mat-menu-item (click)="copyResumeLink(resume.shortUrlIncognito)"
                         matTooltip="Copy anonym resume link" matTooltipPosition="after">
-                  <mat-icon>html</mat-icon>
+                  <mat-icon>content_copy</mat-icon>
                   <span>Anonym Resume</span>
                 </button>
 
                 <button mat-menu-item (click)="copyResumeLink(resume.shortUrlIncognitoWithoutLogo)"
                         matTooltip="Copy anonym without logo resume link" matTooltipPosition="after">
-                  <mat-icon>html</mat-icon>
+                  <mat-icon>content_copy</mat-icon>
                   <span>Anonym without logo</span>
                 </button>
               </mat-menu>

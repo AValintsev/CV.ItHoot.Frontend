@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
     canLoad: [UsersGuard],
     canActivate: [UsersGuard],
-    data:{role:[Users[0],Users[1]]}
+    data:{role:[Users[0],Users[1],Users[4]]}
   },
   {
     path: 'account', loadChildren: () => import('./modules/account/account.module').then(mod => mod.AccountModule),

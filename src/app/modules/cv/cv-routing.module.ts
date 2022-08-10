@@ -9,25 +9,45 @@ import {UsersGuard} from 'src/app/guards/users.guard';
 
 
 const routes: Routes = [
-  {path:'',children:[
+  {path:'',
+  canActivateChild: [UsersGuard],
+  data: {
+    role: [Users[2]]
+  },
+  children:[
      {
     path: 'edit/:id',
+    canActivateChild: [UsersGuard],
+    data: {
+      role: [Users[2]]
+    },
     component: CvEditPageComponent,
-
   },
 
   {
     path: 'create',
+    canActivateChild: [UsersGuard],
+    data: {
+      role: [Users[2]]
+    },
     component: CvCreatePageComponent
   },
   {
     path: 'user-list',
+    canActivateChild: [UsersGuard],
+    data: {
+      role: [Users[2]]
+    },
     component: UserCvListComponent,
     // canActivate: [CheckUserGuard]
   },
 
   {
     path: ':id',
+    canActivateChild: [UsersGuard],
+    data: {
+      role: [Users[2]]
+    },
     component: CvFullComponent,
     // canActivate: [CheckUserGuard]
   },
@@ -37,10 +57,7 @@ const routes: Routes = [
     pathMatch:'full'
   }
   ],
-    canActivateChild: [UsersGuard],
-    data: {
-      role: [Users[2]]
-    }
+   
 }
 
 ];
