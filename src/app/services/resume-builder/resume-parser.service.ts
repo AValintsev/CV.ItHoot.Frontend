@@ -1,4 +1,3 @@
-import {Renderer2} from "@angular/core";
 import {ResumeBuilderService} from "./resume-builder.service";
 
 export class ResumeParserService {

@@ -8,7 +8,6 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {ResumeService} from 'src/app/services/resume.service';
 import * as saveAs from 'file-saver';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {SmallResumeDto} from "../../../models/resume/small-resume-dto";
 
 @Component({
   selector: 'cv-cv-side-bar',

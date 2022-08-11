@@ -1,5 +1,5 @@
-import { DeleteModalService } from 'src/app/services/delete-modal.service';
-import { SmallResumeDto } from 'src/app/models/resume/small-resume-dto';
+import {DeleteModalService} from 'src/app/services/delete-modal.service';
+import {SmallResumeDto} from 'src/app/models/resume/small-resume-dto';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -11,32 +11,29 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ResumeService } from 'src/app/services/resume.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
-import { saveAs } from 'file-saver';
-import { Users } from 'src/app/models/users-type';
-import { AccountService } from 'src/app/services/account.service';
-import { FormControl } from '@angular/forms';
-import { debounceTime, map, startWith, take, takeUntil } from 'rxjs/operators';
-import { merge, Observable, ReplaySubject, Subject } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { PositionDto } from 'src/app/models/position/position-dto';
-import { PositionService } from 'src/app/services/position.service';
-import { SkillDto } from 'src/app/models/skill/skill-dto';
-import { SkillService } from 'src/app/services/skill.service';
-import { MatSelect } from '@angular/material/select';
-import { ResumeListFilter } from 'src/app/models/resume/resume-list-filter';
-import {
-  AvailabilityStatus,
-  AvailabilityStatusLabel,
-} from 'src/app/models/enums';
-import { ClientsService } from '../../../../../services/clients.service';
-import { SmallClientsDto } from '../../../../../models/clients/small-clients-dto';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { LoadingService } from 'src/app/services/loading.service';
-import { Router } from '@angular/router';
+import {ResumeService} from 'src/app/services/resume.service';
+import {SnackBarService} from 'src/app/services/snack-bar.service';
+import {saveAs} from 'file-saver';
+import {Users} from 'src/app/models/users-type';
+import {AccountService} from 'src/app/services/account.service';
+import {FormControl} from '@angular/forms';
+import {debounceTime, map, startWith, take, takeUntil} from 'rxjs/operators';
+import {merge, Observable, ReplaySubject, Subject} from 'rxjs';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {PositionDto} from 'src/app/models/position/position-dto';
+import {PositionService} from 'src/app/services/position.service';
+import {SkillDto} from 'src/app/models/skill/skill-dto';
+import {SkillService} from 'src/app/services/skill.service';
+import {MatSelect} from '@angular/material/select';
+import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
+import {AvailabilityStatus, AvailabilityStatusLabel,} from 'src/app/models/enums';
+import {ClientsService} from '../../../../../services/clients.service';
+import {SmallClientsDto} from '../../../../../models/clients/small-clients-dto';
+import {MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {LoadingService} from 'src/app/services/loading.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'cv-admin-resume',

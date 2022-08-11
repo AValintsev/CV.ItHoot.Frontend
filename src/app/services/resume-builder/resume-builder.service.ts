@@ -3,7 +3,7 @@ import {DialogType} from "../../models/enums";
 import {LanguageDialog} from "../../modules/admin/component/modals/language-dialog/language-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ResumeDto} from "../../models/resume/resume-dto";
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {ResumeSkillDto} from "../../models/resume/resume-skill-dto";
 import {SkillDialog} from "../../modules/admin/component/modals/skill-dialog/skill-dialog.component";
 import {EducationDto} from "../../models/resume/education-dto";

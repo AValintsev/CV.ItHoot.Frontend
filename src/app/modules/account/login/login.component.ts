@@ -1,16 +1,16 @@
-import {take, takeUntil} from 'rxjs/operators';
 import {
-  AfterContentChecked, AfterViewInit,
+  AfterContentChecked,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ElementRef, NgZone,
+  ElementRef,
+  NgZone,
   OnDestroy,
-  OnInit,
-  ViewChild
+  OnInit
 } from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {fromEvent, Observable, Subject, Subscription} from 'rxjs';
+import {fromEvent, Observable, Subject} from 'rxjs';
 import {AccountService} from 'src/app/services/account.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
   type = "password"
   swithPasswordVisible = true
   loginForm!: UntypedFormGroup;
-  
+
   constructor(public accountService: AccountService,
               private router: Router,
               private activatedRoute: ActivatedRoute,

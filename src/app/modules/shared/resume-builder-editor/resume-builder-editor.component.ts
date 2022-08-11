@@ -6,7 +6,7 @@ import {
   Input,
   NgModule,
   NgModuleRef,
-  OnInit, Renderer2,
+  OnInit,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -23,7 +23,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatDialog} from '@angular/material/dialog';
 import {ResumeBuilderService} from "../../../services/resume-builder/resume-builder.service";
 import {ResumeParserService} from "../../../services/resume-builder/resume-parser.service";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 
 const modules = {
   toolbar: [
