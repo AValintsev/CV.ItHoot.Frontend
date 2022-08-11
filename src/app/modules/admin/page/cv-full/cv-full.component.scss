@@ -72,13 +72,13 @@
        resume-template-builder {
          #resume {
            @media screen and (max-width: 1151px) {
-             max-width: 100%;
+             width: 100%;
              zoom: 0.9;
            }
      
            @media screen and (max-width: 754px) {
-             max-width: 100%;
-             // zoom: .9;
+             width: 100%;
+             zoom: .9;
      
              .first-name {
                font-size: 2.8rem;
@@ -95,46 +95,46 @@
            }
            @media screen and (max-width: 800px) {
             max-width: 100%;
-            zoom: 0.58;
+            zoom: 0.58 !important;
           }
           @media screen and (max-width: 700px) {
             max-width: 100%;
-            zoom: 0.75;
+            zoom: 0.75 !important;
           }
     
           @media screen and (max-width: 650px) {
             max-width: 100%;
-            zoom: 0.73;
+            zoom: 0.73 !important;
           }
     
           @media screen and (max-width: 600px) {
             max-width: 100%;
-            zoom: 0.68;
+            zoom: 0.68 !important;
           }
     
           @media screen and (max-width: 575px) {
             max-width: 100%;
-            zoom: 0.63;
+            zoom: 0.63 !important;
           }
     
           @media screen and (max-width: 550px) {
             max-width: 100%;
-            zoom: 0.58;
+            zoom: 0.58 !important;
           }
     
           @media screen and (max-width: 520px) {
             max-width: 100%;
-            zoom: 0.53;
+            zoom: 0.53 !important;
           }
     
           @media screen and (max-width: 500px) {
             max-width: 100%;
-            zoom: 0.48;
+            zoom: 0.48 !important;
           }
     
           @media screen and (max-width: 450px) {
             max-width: 100%;
-            zoom: 0.43;
+            zoom: 0.43 !important;
           }
          }
        }
@@ -147,8 +147,8 @@
           zoom: normal ;
         }
         @media screen and (max-width: 1430px) {
-          width: 100%;
-          // zoom: .9;
+         width: 100%;
+          zoom: .9;
         }
         @media screen and (max-width: 1100px) {
           max-width: 100%;
