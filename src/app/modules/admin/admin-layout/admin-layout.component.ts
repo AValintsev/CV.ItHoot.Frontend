@@ -1,12 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterContentInit,
-  AfterViewInit,
-} from '@angular/core';
-import { fromEvent } from 'rxjs';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'cv-admin-layout',

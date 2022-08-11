@@ -1,6 +1,5 @@
 import {AvailabilityStatus} from "../enums";
 import {SkillDto} from "../skill/skill-dto";
-import {UserDto} from "../user-dto";
 
 export interface ResumeClientDto{
    firstName:string;

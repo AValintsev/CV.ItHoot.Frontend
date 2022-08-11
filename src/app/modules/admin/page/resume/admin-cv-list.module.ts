@@ -40,7 +40,7 @@ import {FormBarModule} from '../form-bar/form-bar.module';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {TemplatePreviewDialogAdminComponent} from './template-preview-dialog/template-preview-dialog-admin.component';
-import { LoaderModule } from 'src/app/modules/shared/components/loader/loader.module';
+import {LoaderModule} from 'src/app/modules/shared/components/loader/loader.module';
 import {ResumeBuilderEditorModule} from "../../../shared/resume-builder-editor/resume-builder-editor.module";
 
 
