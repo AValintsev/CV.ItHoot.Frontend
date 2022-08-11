@@ -1,33 +1,22 @@
 import {
-  AfterViewInit,
   Component,
-  createNgModuleRef, ElementRef, Inject,
+  createNgModuleRef,
   Injector,
   Input,
   NgModule,
   NgModuleRef,
   OnInit,
-  ViewChild, ViewChildren,
+  ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {ResumeService} from '../../../services/resume.service';
-import {CommonModule, DOCUMENT} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {isObservable, Observable} from 'rxjs';
 import {languages} from "monaco-editor";
-import html = languages.html;
 import {MatTableModule} from "@angular/material/table";
-import {MatIconModule} from "@angular/material/icon";
-import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {MatMenuModule} from "@angular/material/menu";
 
 @Component({
   selector: 'resume-template-builder',

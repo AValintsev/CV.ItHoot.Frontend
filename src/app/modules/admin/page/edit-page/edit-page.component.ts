@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Users} from 'src/app/models/users-type';
@@ -92,7 +92,7 @@ export class EditPageComponent implements OnInit {
     resume.id = this.userId;
     console.log(resume)
     this.resumeService.updateResume(resume).subscribe(() => {
-      
+
       this.snackbarService.showSuccess('Edited');
       const role = this.accountService.getStoreRole();
 

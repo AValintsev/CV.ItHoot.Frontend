@@ -1,7 +1,6 @@
-import {map} from 'rxjs/operators';
-import {Component, Injector, OnInit} from '@angular/core';
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, UntypedFormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
