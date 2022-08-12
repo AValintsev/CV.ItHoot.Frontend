@@ -18,9 +18,6 @@ import {SkillDialog} from "../../../../../shared/resume/skill-dialog/skill-dialo
 import {LanguageDialog} from "../../../../../shared/resume/language-dialog/language-dialog.component";
 import {EducationDialog} from "../../../../../shared/resume/education-dialog/education-dialog.component";
 import {ExperienceDialog} from "../../../../../shared/resume/experience-dialog/experience-dialog.component";
-import {
-  TemplatePreviewDialogModule
-} from "../../../../../shared/template-preview-dialog/template-preview-dialog.module";
 import {TemplatePreviewDialog} from "../../../../../shared/template-preview-dialog/template-preview-dialog.component";
 
 

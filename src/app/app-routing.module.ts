@@ -3,7 +3,9 @@ import {UsersGuard} from './guards/users.guard';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RoleGuard} from './guards/role.guard';
-import {ResumeDownloadPageComponent} from "./modules/shared/proposal-resume-download-page/resume-download-page.component";
+import {
+  ResumeDownloadPageComponent
+} from "./modules/shared/proposal-resume-download-page/resume-download-page.component";
 import {ResumeFullSwitcherComponent} from "./modules/shared/resume-full-switcher/resume-full-switcher.component";
 
 

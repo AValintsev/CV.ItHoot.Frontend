@@ -1,7 +1,7 @@
 import {map} from 'rxjs/operators';
 import {AccountService} from '../../../services/account.service';
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormGroup} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
