@@ -14,7 +14,7 @@ import {ProposalDto, ProposalResumeDto,} from '../../../../../models/proposal/pr
 import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dto';
 import {ProposalBuildDto} from '../../../../../models/proposal-build/proposal-build-dto';
 import {ProposalBuildService} from '../../../../../services/proposal-build.service';
-import {ProposalSalaryDialogComponent} from "../proposal-salary-dialog/proposal-salary-dialog.component";
+import {ProposalSalaryDialog} from "../proposal-salary-dialog/proposal-salary-dialog.component";
 import {ResumeListFilter} from "../../../../../models/resume/resume-list-filter";
 import {
   ModalShowTemplateComponent
@@ -25,7 +25,7 @@ import {
   templateUrl: './proposal-create-dialog.component.html',
   styleUrls: ['./proposal-create-dialog.component.scss'],
 })
-export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
+export class ProposalCreateDialog implements OnInit, OnDestroy {
 
   templateChanged: Subject<number> = new Subject<number>();
   private destroy$ = new Subject<boolean>();
@@ -58,7 +58,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<ProposalCreateDialogComponent>,
+    public dialogRef: MatDialogRef<ProposalCreateDialog>,
     private userService: UserService,
     private resumeService: ResumeService,
     private proposalBuildService: ProposalBuildService
@@ -155,7 +155,7 @@ export class ProposalCreateDialogComponent implements OnInit, OnDestroy {
 
   openSalaryDialog(resumeDto: SmallResumeDto) {
     const resumeCopy = Object.assign({}, resumeDto);
-    const dialogRef = this.dialog.open(ProposalSalaryDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalSalaryDialog, {
       autoFocus: false,
       panelClass: ['remove-style-scroll', 'change-material-style'],
       data: resumeCopy

@@ -12,7 +12,7 @@ import {PositionService} from '../../../../../services/position.service';
   templateUrl: './proposal-add-resume-dialog.component.html',
   styleUrls: ['./proposal-add-resume-dialog.component.scss'],
 })
-export class ProposalAddResumeDialogComponent implements OnInit, OnDestroy {
+export class ProposalAddResumeDialog implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   allResumes: SmallResumeDto[] = [];
   resume: SmallResumeDto | null = null;
@@ -21,7 +21,7 @@ export class ProposalAddResumeDialogComponent implements OnInit, OnDestroy {
   position: PositionDto | null = null;
 
   constructor(
-    public dialogRef: MatDialogRef<ProposalAddResumeDialogComponent>,
+    public dialogRef: MatDialogRef<ProposalAddResumeDialog>,
     private resumeService: ResumeService,
     private positionService: PositionService
   ) {

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import {ProposalService} from "src/app/services/proposal.service";
 import {SmallProposalDto} from "src/app/models/proposal/small-proposal-dto";
-import {ProposalCreateDialogComponent} from "../proposal-create-dialog/proposal-create-dialog.component";
+import {ProposalCreateDialog} from "../proposal-create-dialog/proposal-create-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ProposalDto} from "src/app/models/proposal/proposal-dto";
 import {StatusProposal} from "src/app/models/enums";
@@ -131,7 +131,7 @@ export class ProposalListComponent implements OnInit, AfterViewInit, OnDestroy {
   openProposalDialog(): void {
     const proposal = {} as ProposalDto;
 
-    const dialogRef = this.dialog.open(ProposalCreateDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalCreateDialog, {
       autoFocus: false,
       width: '700px',
       data: proposal

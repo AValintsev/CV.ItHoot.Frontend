@@ -1,28 +1,28 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ProposalPageComponent} from "./page/proposal-page/proposal-page.component";
-import {ProposalListPageComponent} from "./page/proposal-list-page/proposal-list-page.component";
-import {ResumeEditPageComponent} from './page/resume-edite-page/resume-edit-page.component';
-import {ResumePageComponent} from './page/resume-page/resume-page.component';
+import {ProposalPage} from "./page/proposal-page/proposal-page.component";
+import {ProposalListPage} from "./page/proposal-list-page/proposal-list-page.component";
+import {ProposalResumeEditPage} from './page/proposal-resume-edit-page/proposal-resume-edit-page.component';
+import {ProposalResumePage} from './page/resume-page/proposal-resume-page.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ProposalListPageComponent
+    component: ProposalListPage
   },
   {
     path: ':id',
-    component:ProposalPageComponent
+    component:ProposalPage
   },
   {
     path:':proposalId/resume/edit/:resumeId',
-    component:ResumeEditPageComponent
+    component:ProposalResumeEditPage
   },
   {
     path:':proposalId/resume/:resumeId',
-    component:ResumePageComponent
+    component:ProposalResumePage
   }
 
 ];

@@ -1,0 +1,357 @@
+:host::ng-deep resume-template-builder {
+  display: flex;
+  justify-content: center ;
+}
+:host-context(.change-mode) .container {
+  transition: all 0.3s ease;
+
+  .template-wrapper {
+    order: 2;
+  }
+
+  .edit-page {
+    order: 1;
+  }
+}
+
+.container {
+  display: flex;
+  transition: all 0.3s ease;
+  gap: 2rem;
+  padding: 15px;
+  font-family: 'Inter', sans-serif !important;
+  justify-content: center;
+
+  .container-inner{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    .actions{
+      position: fixed;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .template-wrapper {
+    order: 1;
+  }
+
+  .edit-page {
+    order: 2;
+  }
+
+  .left-bar {
+    max-width: 794px;
+    overflow: hidden auto;
+    padding: 30px 30px 0 20px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    // border-radius: 15px;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+
+    .action {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        width: 10rem;
+
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.left-bar {
+  max-width: 794px;
+}
+
+:host::ng-deep {
+  .template-wrapper {
+    #resume {
+      @media screen and (max-width: 1151px) {
+        // max-width: 68.5rem;
+        // zoom: normal;
+      }
+
+      @media screen and (max-width: 754px) {
+        width: 100%;
+        zoom: .9;
+
+        .first-name {
+          font-size: 2.8rem;
+        }
+
+        .last-name {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        width: 100%;
+        zoom: .9;
+      }
+
+      @media screen and (max-width: 650px) {
+        width: 100%;
+        zoom: .85;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+        zoom: .8;
+      }
+
+      @media screen and (max-width: 550px) {
+        width: 100%;
+        zoom: .75;
+      }
+
+      @media screen and (max-width: 520px) {
+        width: 100%;
+        zoom: .72;
+      }
+
+      @media screen and (max-width: 500px) {
+        width: 100%;
+        zoom: .69;
+      }
+
+      @media screen and (max-width: 470px) {
+        width: 100%;
+        zoom: .67;
+      }
+
+      @media screen and (max-width: 450px) {
+        width: 100%;
+        zoom: .62;
+      }
+
+      @media screen and (max-width: 425px) {
+        width: 100%;
+        zoom: .6;
+      }
+
+      @media screen and (max-width: 400px) {
+        width: 100%;
+        zoom: .55;
+      }
+
+      @media screen and (max-width: 380px) {
+        width: 100%;
+        zoom: .5;
+      }
+
+    }
+  }
+
+
+  .input-group {
+    @media (max-width: 530px) {
+      &>* {
+        grid-column: 2 span;
+      }
+    }
+
+    &> :nth-child(2) {
+      grid-column: span 2;
+    }
+
+    &> :last-child {
+      grid-column: span 2;
+    }
+  }
+}
+
+:host-context(.open-side-bar--content) .container {
+  @media (max-width: 1430px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+:host-context(.open-side-bar--content) .container{
+
+  #resume {
+    @media screen and (max-width: 1430px) {
+      width: 100%;
+      // zoom: normal;
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      zoom: 0.95;
+    }
+
+    @media screen and (max-width: 990px) {
+      width: 100%;
+      zoom: 0.92;
+    }
+
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      zoom: 0.97;
+    }
+
+    @media screen and (max-width: 970px) {
+      width: 100%;
+      zoom: 0.95;
+    }
+
+    @media screen and (max-width: 950px) {
+      width: 100%;
+      zoom: 0.8;
+    }
+
+    @media screen and (max-width: 935px) {
+      width: 100%;
+      zoom: 0.88;
+    }
+
+    @media screen and (max-width: 915px) {
+      width: 100%;
+      zoom: 0.86;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      zoom: 0.85;
+    }
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+      zoom: 0.8;
+    }
+
+    @media screen and (max-width: 825px) {
+      width: 100%;
+      zoom: 0.75;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 100%;
+      zoom: 0.7;
+    }
+
+    @media screen and (max-width: 750px) {
+      width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 730px) {
+      width: 100%;
+      zoom: 0.62;
+    }
+
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      zoom: 0.58;
+    }
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      zoom: 0.53;
+    }
+
+    @media screen and (max-width: 660px) {
+      width: 100%;
+      zoom: 0.51;
+    }
+
+    @media screen and (max-width: 630px) {
+      width: 100%;
+      zoom: 0.48;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      zoom: 0.82;
+    }
+
+    @media screen and (max-width: 575px) {
+      width: 100%;
+      zoom: 0.78;
+    }
+
+    @media screen and (max-width: 550px) {
+      width: 100%;
+      zoom: 0.74;
+    }
+
+    @media screen and (max-width: 520px) {
+      width: 100%;
+      zoom: 0.70;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      zoom: 0.65;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      zoom: 0.55;
+    }
+  }
+
+  .template-wrapper {
+    @media (max-width: 1430px) {
+      max-width: 68.4rem;
+      width: 100%;
+    }
+  }
+
+  .input-group {
+    @media (max-width: 800px) {
+      & > * {
+        grid-column: 2 span;
+      }
+    }
+
+    & > :nth-child(2) {
+      grid-column: span 2;
+    }
+
+    & > :last-child {
+      grid-column: span 2;
+    }
+  }
+}
+
+.back-btn__wrapper{
+
+  display: flex;
+  justify-content: center;
+  flex: 1 1 100%;
+  margin-bottom: .5rem;
+}
+.back-btn{
+  font-size: 1.6rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon{
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+
+.wrapper-edit{
+  display: flex;
+  flex-direction: row;
+  gap:15px;
+}

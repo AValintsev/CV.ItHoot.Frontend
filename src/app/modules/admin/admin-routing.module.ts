@@ -18,8 +18,8 @@ const routs: Routes = [
         canActivate: [UsersGuard],
         data: { role: [Users[0], Users[1], Users[4]] },
         loadChildren: () =>
-          import('./page/resume/admin-cv-list.module').then(
-            (mod) => mod.AdminCvListModule
+          import('./page/resume/admin-resume.module').then(
+            (mod) => mod.AdminResumeModule
           ),
       },
       {

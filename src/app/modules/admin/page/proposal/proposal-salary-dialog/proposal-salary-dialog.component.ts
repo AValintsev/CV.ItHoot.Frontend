@@ -8,12 +8,12 @@ import {ResumeService} from "../../../../../services/resume.service";
   templateUrl: './proposal-salary-dialog.component.html',
   styleUrls: ['./proposal-salary-dialog.component.scss']
 })
-export class ProposalSalaryDialogComponent implements OnInit {
+export class ProposalSalaryDialog implements OnInit {
 
   resume!: SmallResumeDto;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<ProposalSalaryDialogComponent>,
+              public dialogRef: MatDialogRef<ProposalSalaryDialog>,
               public resumeService: ResumeService) {
     this.resume = data;
   }
