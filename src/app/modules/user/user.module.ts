@@ -32,6 +32,7 @@ import {SkillDialogModule} from "../shared/resume/skill-dialog/skill-dialog.modu
 import {LanguageDialogModule} from "../shared/resume/language-dialog/language-dialog.module";
 import {ExperienceDialogModule} from "../shared/resume/experience-dialog/experience-dialog.module";
 import {EducationDialogModule} from "../shared/resume/education-dialog/education.dialog.module";
+import {TemplatePreviewDialogModule} from "../shared/template-preview-dialog/template-preview-dialog.module";
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import {EducationDialogModule} from "../shared/resume/education-dialog/education
     SkillDialogModule,
     LanguageDialogModule,
     ExperienceDialogModule,
-    EducationDialogModule
+    EducationDialogModule,
+    TemplatePreviewDialogModule
   ]
 })
 export class UserModule {}

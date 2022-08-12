@@ -21,6 +21,7 @@ import {ExperienceDialog} from "../../../../../shared/resume/experience-dialog/e
 import {
   TemplatePreviewDialogModule
 } from "../../../../../shared/template-preview-dialog/template-preview-dialog.module";
+import {TemplatePreviewDialog} from "../../../../../shared/template-preview-dialog/template-preview-dialog.component";
 
 
 @Component({
@@ -329,7 +330,7 @@ export class FormBarComponent implements OnInit {
 
   showPreview(e:Event,id:number){
     e.stopPropagation()
-    const dialogRef = this.dialog.open(TemplatePreviewDialogModule, {
+    const dialogRef = this.dialog.open(TemplatePreviewDialog, {
       height: '800px',
       autoFocus: false,
       panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
