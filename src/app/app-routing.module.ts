@@ -3,8 +3,8 @@ import {UsersGuard} from './guards/users.guard';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RoleGuard} from './guards/role.guard';
-import {ResumeDownloadPageComponent} from "./modules/cv/proposal-resume-download-page/resume-download-page.component";
-import {ResumeFullSwitcherComponent} from "./modules/cv/resume-full-switcher/resume-full-switcher.component";
+import {ResumeDownloadPageComponent} from "./modules/shared/proposal-resume-download-page/resume-download-page.component";
+import {ResumeFullSwitcherComponent} from "./modules/shared/resume-full-switcher/resume-full-switcher.component";
 
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
     // canLoad: [CanLoginingGuard]
   },
   {
-    path: 'home', loadChildren: () => import('./modules/cv/main-page/main-page.module').then(mod => mod.MainPageModule),
+    path: 'home', loadChildren: () => import('./modules/user/main-page/main-page.module').then(mod => mod.MainPageModule),
     canLoad: [UsersGuard],
     canActivate: [UsersGuard],
     data: { role: [Users[2]] }

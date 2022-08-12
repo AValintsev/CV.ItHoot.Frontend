@@ -1,16 +1,14 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AdminRouterModule} from './admin-routing.module';
-import {CvModule} from "../cv/cv.module";
+import {UserModule} from "../user/user.module";
 import {CommonModule} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTableModule} from "@angular/material/table";
 import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
-import {SideBarComponent} from "./component/side-bar/side-bar.component";
-import {HeaderModule} from './component/header/header.module';
-import {FooterModule} from './component/footer/footer.module';
+import {AdminSideBarComponent} from "./component/side-bar/admin-side-bar.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
@@ -20,23 +18,21 @@ import {BurgerBtnModule} from '../shared/buttons/burger-btn/burger-btn.module';
 @NgModule({
     imports: [
         AdminRouterModule,
-        CvModule,
+        UserModule,
         RouterModule,
         CommonModule,
         MatIconModule,
         MatDividerModule,
         MatExpansionModule,
         MatTableModule,
-        FooterModule,
-        HeaderModule,
         MatToolbarModule,
         MatSidenavModule,
         MatButtonModule,
         MatTooltipModule,
         BurgerBtnModule,
     ],
-	declarations: [AdminLayoutComponent,SideBarComponent],
-	exports: [AdminRouterModule,AdminLayoutComponent,SideBarComponent],
+	declarations: [AdminLayoutComponent,AdminSideBarComponent],
+	exports: [AdminRouterModule,AdminLayoutComponent,AdminSideBarComponent],
 })
 
 export class AdminModule{

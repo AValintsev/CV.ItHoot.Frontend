@@ -10,7 +10,7 @@ import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
   templateUrl: './resume-list-page.component.html',
   styleUrls: ['./resume-list-page.component.scss'],
 })
-export class ResumeListPageComponent implements OnInit, OnDestroy {
+export class ResumeListPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   resumes: SmallResumeDto[] = [];
   resumesCount: number = 0;

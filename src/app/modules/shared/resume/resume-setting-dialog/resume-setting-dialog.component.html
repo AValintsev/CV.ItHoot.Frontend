@@ -1,0 +1,49 @@
+  <h2 mat-dialog-title>Resume Setting</h2>
+  <mat-dialog-content class="mat-typography" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
+
+   <div class="wrapper">
+     <mat-form-field appearance="fill">
+       <mat-label>Select Template</mat-label>
+       <mat-select [(value)]="resume.resumeTemplateId" formControlName="resumeTemplateId"
+                   [(ngModel)]="resume.resumeTemplateId" disableOptionCentering
+                   [compareWith]="compareTemplate" (selectionChange)="changeTemplate($event.value)">
+         <mat-option *ngFor="let template of resumeTemplates" [value]="template.templateId">
+           <div class="select-template-item">
+             <span>{{template.templateName}}</span>
+             <img width="25px" height="25px" src="../../../../../assets/eye.png" alt="eye logo"
+                  (click)="showPreview($event,template.templateId)">
+           </div>
+         </mat-option>
+       </mat-select>
+       <mat-error *ngIf="resumeForm.controls['lastName'].errors?.['required']">
+         Template is required
+       </mat-error>
+     </mat-form-field>
+
+     <mat-form-field appearance="fill" *ngIf="!isUserRole">
+       <mat-label>Availability statuses</mat-label>
+       <mat-select [(value)]="resume.availabilityStatus" formControlName="availabilityStatus">
+         <mat-option [value]="1">Available</mat-option>
+         <mat-option [value]="2">Busy</mat-option>
+         <mat-option [value]="3">Partial Available</mat-option>
+         <mat-option [value]="4">Very careful available</mat-option>
+       </mat-select>
+     </mat-form-field>
+
+     <mat-form-field appearance="fill"  *ngIf="!isUserRole">
+       <mat-label>Number of days unavailable</mat-label>
+       <input type="number" min="0" matInput placeholder="1" formControlName="countDaysUnavailable">
+     </mat-form-field>
+
+     <mat-form-field appearance="fill"  *ngIf="!isUserRole">
+       <mat-label>Salary rate</mat-label>
+       <input matInput numeric placeholder="100" formControlName="salaryRate">
+     </mat-form-field>
+   </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
+

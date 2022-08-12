@@ -14,7 +14,7 @@ import {requiredFileType} from 'src/app/modules/shared/validators/file.validator
 import {saveAs} from 'file-saver';
 
 @Component({
-  selector: 'cv-resume-template-edit-page',
+  selector: 'cv-resume-template-resume-edit-page',
   templateUrl: './resume-template-edit-page.component.html',
   styleUrls: ['./resume-template-edit-page.component.scss'],
 })

@@ -20,6 +20,8 @@
     height: auto;
     max-width: 300px;
     width: auto;
+    background: transparent;
+    border: 0;
     //border: 1px solid black;
 
     &:hover{
@@ -31,7 +33,7 @@
   .clickable{
 
     &:hover{
-      opacity: .8;
+      opacity: .5;
       cursor: pointer;
       border: 1px solid black;
     }

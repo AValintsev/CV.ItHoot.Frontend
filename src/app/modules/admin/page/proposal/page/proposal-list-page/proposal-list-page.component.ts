@@ -10,7 +10,7 @@ import {ProposalListFilter} from '../../../../../../models/proposal/proposal-lis
   templateUrl: './proposal-list-page.component.html',
   styleUrls: ['./proposal-list-page.component.scss'],
 })
-export class ProposalListPageComponent implements OnInit, OnDestroy {
+export class ProposalListPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   proposals: SmallProposalDto[] = [];
   proposalsCount: number = 0;

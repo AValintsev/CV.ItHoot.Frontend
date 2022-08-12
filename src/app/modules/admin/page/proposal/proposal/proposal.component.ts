@@ -7,8 +7,8 @@ import {ActivatedRoute} from '@angular/router';
 import {ResumeService} from '../../../../../services/resume.service';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {MatDialog} from '@angular/material/dialog';
-import {ProposalSettingDialogComponent} from '../proposal-setting-dialog/proposal-setting-dialog.component';
-import {ProposalAddResumeDialogComponent} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
+import {ProposalSettingDialog} from '../proposal-setting-dialog/proposal-setting-dialog.component';
+import {ProposalAddResumeDialog} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
 import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
 import {StatusProposal} from '../../../../../models/enums';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
@@ -51,7 +51,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   openProposalDialog(): void {
-    const dialogRef = this.dialog.open(ProposalSettingDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalSettingDialog, {
       autoFocus: false,
       width: '500px',
       data: this.proposal,
@@ -74,7 +74,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
   }
 
   openResumeDialog(): void {
-    const dialogRef = this.dialog.open(ProposalAddResumeDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalAddResumeDialog, {
       autoFocus: false,
       width: '500px',
     });
