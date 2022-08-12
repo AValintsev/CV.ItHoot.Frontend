@@ -13,7 +13,6 @@ import {ResumeDto} from '../../../models/resume/resume-dto';
 import {ResumeService} from '../../../services/resume.service';
 import {CommonModule} from '@angular/common';
 import {isObservable, Observable} from 'rxjs';
-import {languages} from "monaco-editor";
 import {MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";

@@ -30,7 +30,9 @@ import {NgxLoadingButtonsModule} from "ngx-loading-buttons";
 import {PdfTableAction} from "./pdf-table-action/pdf-table-button.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatMenuModule} from "@angular/material/menu";
-import {ResumeDownloadPageComponent} from '../../../shared/proposal-resume-download-page/resume-download-page.component';
+import {
+  ResumeDownloadPageComponent
+} from '../../../shared/proposal-resume-download-page/resume-download-page.component';
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
