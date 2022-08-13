@@ -1,9 +1,9 @@
 import {Router} from '@angular/router';
-import {map, takeUntil} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Component, EventEmitter, OnDestroy, OnInit, Output,} from '@angular/core';
 import {AccountService} from 'src/app/services/account.service';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
-import {Observable, of, Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {ResumeService} from 'src/app/services/resume.service';
 import * as saveAs from 'file-saver';

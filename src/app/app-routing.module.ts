@@ -5,7 +5,6 @@ import {
   ResumeDownloadPageComponent
 } from "./modules/shared/proposal-resume-download-page/resume-download-page.component";
 import {ResumeFullSwitcherComponent} from "./modules/shared/resume-full-switcher/resume-full-switcher.component";
-import {AuthGuard} from "./guards/auth.guard";
 import {RoleGuard} from "./guards/role.guard";
 
 

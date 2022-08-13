@@ -1,7 +1,6 @@
 import {Router} from '@angular/router';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import {takeUntil} from 'rxjs/operators';
 import {SmallResumeDto} from '../../../models/resume/small-resume-dto';
 import {AccountService} from 'src/app/services/account.service';
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';

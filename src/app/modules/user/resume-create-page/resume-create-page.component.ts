@@ -6,7 +6,6 @@ import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
-import {UserRole} from 'src/app/models/users-type';
 import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 import {ResumeSettingDialog} from "../../shared/resume/resume-setting-dialog/resume-setting-dialog.component";

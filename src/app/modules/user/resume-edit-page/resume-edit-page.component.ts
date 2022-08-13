@@ -1,11 +1,10 @@
-import {map, takeUntil} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormGroup, UntypedFormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {ResumeService} from '../../../services/resume.service';
 import {SnackBarService} from '../../../services/snack-bar.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {UserRole} from 'src/app/models/users-type';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';

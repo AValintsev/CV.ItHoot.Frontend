@@ -1,15 +1,14 @@
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateChild, Route,
+  CanActivateChild,
   Router,
-  RouterStateSnapshot, UrlSegment,
+  RouterStateSnapshot,
   UrlTree
 } from "@angular/router";
 import {Injectable} from "@angular/core";
 import {AccountService} from "../services/account.service";
 import {Observable} from "rxjs";
-import {UserRole} from "../models/users-type";
 
 @Injectable({
   providedIn: 'root'
