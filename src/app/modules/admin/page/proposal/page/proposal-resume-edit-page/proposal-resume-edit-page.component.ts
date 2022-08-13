@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {AccountService} from 'src/app/services/account.service';
-import {Users} from 'src/app/models/users-type';
+import {UserRole} from 'src/app/models/users-type';
 
 @Component({
   selector: 'resume-proposal-edit-page',
@@ -196,13 +196,13 @@ export class ProposalResumeEditPage implements OnInit {
       next: () => {
         this.snackbarService.showSuccess('Edited');
         const role = this.accountService.getStoreRole();
-        if (role === Users[2]) {
+        if (role === UserRole.User) {
           this.router.navigate([
             '/home/cv/user-list',
             this.accountService.getUserId(),
           ]);
         }
-        if (role === Users[0] || role === Users[1])
+        if (role === UserRole.Admin || role === UserRole.HR)
           this.router.navigate([`/admin/proposals/${this.proposalId}`]);
         else {
           this.router.navigate(['/home/cv']);

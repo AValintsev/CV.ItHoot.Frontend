@@ -1,11 +1,10 @@
-import {map, takeUntil} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UntypedFormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {ResumeService} from '../../../services/resume.service';
 import {SnackBarService} from '../../../services/snack-bar.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Users} from 'src/app/models/users-type';
 import {ResumeDto} from '../../../models/resume/resume-dto';
 import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
@@ -23,7 +22,7 @@ export class ResumeEditPageComponent implements OnInit, OnDestroy {
   resume: ResumeDto | null = null;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
-  resumeForm: UntypedFormGroup = {} as UntypedFormGroup;
+  resumeForm: FormGroup;
   isLiveEdit: boolean = true;
 
   constructor(
@@ -38,14 +37,14 @@ export class ResumeEditPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.resumeForm  = this.resumeFormBuilder.buildResumeForm();
+    this.resumeForm = this.resumeFormBuilder.buildResumeForm();
     this.setDataDependentToId()
     this.changeFormDate();
     this.setHeaderBtn(['back', 'create', 'menu-list', 'create', 'home', 'change-position'])
   }
 
   setDataDependentToId() {
-    this.route.params.pipe(map((params) =>params['id'])).subscribe((id) => {
+    this.route.params.pipe(map((params) => params['id'])).subscribe((id) => {
       this.resumeService.getResumeById(id).subscribe((resume) => {
         this.resume = resume;
         this.resumeFormBuilder.patchForm(this.resume, this.resumeForm);
@@ -71,30 +70,10 @@ export class ResumeEditPageComponent implements OnInit, OnDestroy {
 
 
   submit(resume: ResumeDto) {
-    if (this.resumeForm.valid) {
-      this.resumeService.updateResume(resume).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe({
-        next: () => {
-          this.snackbarService.showSuccess('Edited');
-          const role = this.accountService.getStoreRole();
-          if (role === Users[2]) {
-            this.router.navigate([
-              '/home/cv/user-list',
-              this.accountService.getUserId(),
-            ]);
-          }
-          if (role === Users[0] || role === Users[1])
-            this.router.navigate(['/admin/resume']);
-          else {
-            this.router.navigate(['/home/cv']);
-          }
-        },
-        error: () => {
-          this.snackbarService.showDanger('Something went wrong!');
-        },
-      });
-    }
+    this.resumeService.updateResume(resume).subscribe(() => {
+      this.snackbarService.showSuccess('Resume saved!')
+      this.router.navigate(['/home/resume']);
+    });
   }
 
   templateChange(templateId: number) {

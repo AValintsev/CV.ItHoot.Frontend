@@ -1,64 +1,47 @@
-import {Users} from '../../models/users-type';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ResumeViewPageComponent} from './resume-view-page/resume-view-page.component';
 import {ResumeCreatePageComponent} from "./resume-create-page/resume-create-page.component";
 import {ResumeEditPageComponent} from "./resume-edit-page/resume-edit-page.component";
 import {ResumeListPageComponent} from './resume-list-page/resume-list-page.component';
-import {UsersGuard} from 'src/app/guards/users.guard';
+import {MainPageComponent} from "./main-page/main-page.component";
 
 
 const routes: Routes = [
-  {path:'',
-  canActivateChild: [UsersGuard],
-  data: {
-    role: [Users[2]]
-  },
-  children:[
-     {
-    path: 'edit/:id',
-    canActivateChild: [UsersGuard],
-    data: {
-      role: [Users[2]]
-    },
-    component: ResumeEditPageComponent,
-  },
-
-  {
-    path: 'create',
-    canActivateChild: [UsersGuard],
-    data: {
-      role: [Users[2]]
-    },
-    component: ResumeCreatePageComponent
-  },
-  {
-    path: 'user-list',
-    canActivateChild: [UsersGuard],
-    data: {
-      role: [Users[2]]
-    },
-    component: ResumeListPageComponent,
-    // canActivate: [CheckUserGuard]
-  },
-
-  {
-    path: ':id',
-    canActivateChild: [UsersGuard],
-    data: {
-      role: [Users[2]]
-    },
-    component: ResumeViewPageComponent,
-    // canActivate: [CheckUserGuard]
-  },
   {
     path: '',
-    redirectTo:'user-list',
-    pathMatch:'full'
-  }
-  ],
+    component:MainPageComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'resume',
+        pathMatch: 'full'
+      },
+      {
+        path: 'resume',
+        component: ResumeListPageComponent,
+      },
+      {
+        path: 'resume/edit/:id',
+        component: ResumeEditPageComponent,
+      },
 
-}
+      {
+        path: 'resume/create',
+        component: ResumeCreatePageComponent
+      },
+      {
+        path: 'resume/:id',
+        component: ResumeViewPageComponent,
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./user-settings/user-settings.module').then((mod) => mod.UserSettingsModule),
+      },
+    ],
+
+  }
 
 ];
 
@@ -67,4 +50,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}

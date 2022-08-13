@@ -35,8 +35,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
               return;
             } else {
               if (
-                (value.target as HTMLDivElement).getAttribute('side-bar') !==
-                this.sideBar.nativeElement.getAttribute('side-bar')
+                (value.target as HTMLDivElement).getAttribute('user-side-bar') !==
+                this.sideBar.nativeElement.getAttribute('user-side-bar')
               ) {
                 if (this.toggle) {
                   this.toggle = !this.toggle;

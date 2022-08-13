@@ -9,6 +9,8 @@ export class ResumeFormBuilderService {
   buildResumeForm (): FormGroup {
     const resume = {} as ResumeDto;
     return new FormGroup({
+      id: new FormControl(resume.id, [
+      ]),
       resumeName: new FormControl(resume.resumeName, [
         Validators.required,
       ]),
