@@ -35,14 +35,14 @@
   <mat-divider></mat-divider>
   <mat-card-actions>
     <div class="button-group">
-      <button mat-stroked-button [routerLink]="['/home/cv/', resume.id]"
+      <a mat-stroked-button routerLink="{{ resume.id }}"
               matTooltip="Open resume" matTooltipPosition="above">
         Open
-      </button>
-      <button mat-stroked-button routerLink="/home/cv/edit/{{ resume.id }}"
+      </a>
+      <a mat-stroked-button routerLink="edit/{{ resume.id }}"
               matTooltip="Edit resume" matTooltipPosition="above">
         Edit
-      </button>
+      </a>
     </div>
   </mat-card-actions>
 </mat-card>

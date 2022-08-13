@@ -16,8 +16,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ProposalsComponent} from '../proposals/proposals.component';
 import {ResumeComponent} from '../resume/resume.component';
 import {ProposalComponent} from '../proposal/proposal.component';
-import {UsersGuard} from 'src/app/guards/users.guard';
-import {Users} from 'src/app/models/users-type';
 import {LoaderModule} from 'src/app/modules/shared/components/loader/loader.module';
 import {DeleteModalService} from "../../../../services/delete-modal.service";
 import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-builder/resume-template-builder.module";
@@ -26,19 +24,13 @@ import {ResumeTemplateBuilderModule} from "../../../shared/resume-template-build
 const routes: Routes = [
   {
     path: '', component: MainPageComponent,
-    canActivate: [UsersGuard],
-    data: { role: [Users[3]] },
     children: [
       {
-        path: 'proposals', 
-        canActivate: [UsersGuard],
-        data: { role: [Users[3]] },
+        path: 'proposals',
         component: ProposalsComponent
       },
       {
         path: 'proposal/:proposalId/resume/:resumeId',
-        canActivate: [UsersGuard],
-        data: { role: [Users[3]] },
         component: ResumeComponent
       },
       {

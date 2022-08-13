@@ -4,7 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {NavigationStart, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
-import {Users} from 'src/app/models/users-type';
+import {UserRole} from 'src/app/models/users-type';
 import {ClientProposalService} from 'src/app/services/client/client-proposal.service';
 import {ProposalResumeDto, StatusProposalResume} from 'src/app/models/proposal/proposal-dto';
 import {StatusProposal} from 'src/app/models/enums';
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy, DoCheck {
   private destroy$ = new Subject<boolean>();
   statusResume = StatusProposalResume
   statusProposal = StatusProposal
-  Users = Users
+  Users = UserRole
   showLogo$!: Observable<boolean>
   proposals$!: Observable<SmallProposalDto[]>
   showProposalName = false

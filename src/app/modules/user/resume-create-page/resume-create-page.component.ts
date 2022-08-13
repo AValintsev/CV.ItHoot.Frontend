@@ -1,12 +1,12 @@
 import {map} from 'rxjs/operators';
 import {AccountService} from '../../../services/account.service';
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormGroup} from "@angular/forms";
+import {FormGroup, UntypedFormGroup} from "@angular/forms";
 import {ResumeService} from "../../../services/resume.service";
 import {SnackBarService} from "../../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeDto} from "../../../models/resume/resume-dto";
-import {Users} from 'src/app/models/users-type';
+import {UserRole} from 'src/app/models/users-type';
 import {Subject} from 'rxjs';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 import {ResumeSettingDialog} from "../../shared/resume/resume-setting-dialog/resume-setting-dialog.component";
@@ -22,7 +22,7 @@ export class ResumeCreatePageComponent implements OnInit {
   resume: ResumeDto = {} as ResumeDto;
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
-  resumeForm: UntypedFormGroup = {} as UntypedFormGroup;
+  resumeForm: FormGroup = {} as UntypedFormGroup;
   isLiveEdit: boolean = true;
 
   constructor(private resumeService: ResumeService,
@@ -66,27 +66,16 @@ export class ResumeCreatePageComponent implements OnInit {
             this.templateChanged.next(resume.resumeTemplateId);
           })
         }
-      },
-      error: error => console.log(error)
+      }
     })
   }
 
 
   public submit(resume: ResumeDto) {
-    this.resumeService.createResume(resume).subscribe({
-      next: () => {
-        this.snackbarService.showSuccess('Created');
-        if (this.accountService.getStoreRole() === Users[2]) {
-          this.router.navigate(['/home/cv/user-list'])
-        } else {
-          this.router.navigate(['/home/cv/user-list'])
-        }
-
-      },
-      error: () => {
-        this.snackbarService.showDanger('Something went wrong!')
-      }
-    })
+    this.resumeService.createResume(resume).subscribe(() => {
+      this.snackbarService.showSuccess('Created');
+      this.router.navigate(['/home/resume'])
+    });
   }
 
   templateChange(templateId: number) {

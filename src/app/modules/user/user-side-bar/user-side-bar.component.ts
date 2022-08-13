@@ -3,7 +3,7 @@ import {map, takeUntil} from 'rxjs/operators';
 import {Component, EventEmitter, OnDestroy, OnInit, Output,} from '@angular/core';
 import {AccountService} from 'src/app/services/account.service';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
-import {Observable, Subject} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {ResumeService} from 'src/app/services/resume.service';
 import * as saveAs from 'file-saver';
@@ -33,27 +33,23 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setUserData();
   }
+
   refresh(): void {
     this.refreshTemplate.emit();
   }
+
   setUserData() {
-    this.userHeaderBtnService.userDataSub$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.id = response.id;
-            this.firstName = response.firstName;
-            this.lastName = response.lastName;
-          }
-        },
-        error: (error) => console.log(error),
-      });
+    this.userHeaderBtnService.userDataSub$.subscribe(response => {
+      if (response) {
+        this.id = response.id;
+        this.firstName = response.firstName;
+        this.lastName = response.lastName;
+      }
+    });
   }
+
   btnSwitcher(param: string): Observable<boolean> {
-    return this.userHeaderBtnService.getBtn$.pipe(
-      takeUntil(this.destroy$),
-      map((response) => {
+    return this.userHeaderBtnService.getBtn$.pipe(map(response => {
         if (typeof response === 'object') {
           return response.includes(param);
         }
@@ -63,26 +59,15 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
   }
 
   deleteResume(id: number) {
-    this.deleteModalService
-      .matModal('Do you want to delete resume?')
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.resumeService
-              .deleteResume(id)
-              .pipe(takeUntil(this.destroy$))
-              .subscribe({
-                next: () => {
-                  this.router.navigate(['/home/cv/user-list']);
-                  this.snackbarService.showSuccess('Resume success removed');
-                },
-                error: (error) => console.log(error),
-              });
-          }
-          return false;
-        },
-        error: (error) => console.log(error),
-      });
+    this.deleteModalService.matModal('Do you want to delete resume?').subscribe(response => {
+      if (response) {
+        this.resumeService.deleteResume(id).subscribe(() => {
+          this.router.navigate(['/home/resume']);
+          this.snackbarService.showSuccess('Resume success removed');
+        });
+      }
+      return false;
+    });
   }
 
   savePdf(resumeId: number, firstName: string = '', lastName: string = '') {
@@ -92,12 +77,9 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.accountService
-      .logout()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => this.router.navigate(['/account/login']),
-      });
+    this.accountService.logout().subscribe(() => {
+      this.router.navigate(['/account/login'])
+    });
   }
 
   saveDocX(resumeId: number, firstName: string = '', lastName: string = '') {
@@ -105,14 +87,15 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
       saveAs(response, `${firstName} ${lastName}.docx`);
     });
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 
   duplicate(resumeId: number) {
-    this.resumeService.duplicateResume(resumeId).subscribe(resume=>{
-      this.router.navigate([`/home/cv/edit/${resume.id}`]);
+    this.resumeService.duplicateResume(resumeId).subscribe(resume => {
+      this.router.navigate([`/home/resume/edit/${resume.id}`]);
     })
   }
 }

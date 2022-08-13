@@ -4,17 +4,15 @@
       <div class="label">
         <img src="../../../../assets/label.jpg" alt="label"/>
       </div>
-      <div class="user-content">
+      <a class="user-content" routerLink="profile">
         <div class="user-picture img">
           <img src="../../../../assets/face.jpg" alt="user picture"/>
         </div>
         <ul class="user-atrr">
-          <li class="user-name">{{ accountService.getStoreName() }}</li>
-          <li class="user-role">
-            {{accountService.getStoreRole()}}
-          </li>
+          <li class="user-name">{{ accountService.getStoreName()}}</li>
+          <li class="user-role">{{accountService.getStoreRole()}}</li>
         </ul>
-      </div>
+      </a>
       <div class="menu-btn-wrapper">
         <button mat-stroked-button class="logout"  (click)="logout()">
           <mat-icon>logout</mat-icon>
@@ -23,14 +21,14 @@
       </div>
       <mat-divider class="first-divider"></mat-divider>
       <div mat-menu-item
-           *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/cv/create']">
+           *ngIf="btnSwitcher('create') | async" routerLink="/home/resume/create">
         <div class="mat-menu-item-inner" matTooltip="Create a new resume" matTooltipPosition="before">
           <mat-icon>add</mat-icon>
           <span>Create new Resume </span>
         </div>
       </div>
       <div mat-menu-item
-           *ngIf="btnSwitcher('home') | async" routerLink="/home/cv/user-list">
+           *ngIf="btnSwitcher('home') | async" routerLink="/home/resume">
         <div class="mat-menu-item-inner" matTooltip="Go to resume list" matTooltipPosition="before">
           <mat-icon>list</mat-icon>
           <span>Resume list</span>
@@ -38,7 +36,7 @@
       </div>
       <mat-divider *ngIf="(btnSwitcher('menu-list') | async)" class="second-divider"></mat-divider>
       <div mat-menu-item
-           *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{ id }}">
+           *ngIf="btnSwitcher('edit') | async" routerLink="/home/resume/edit/{{ id }}">
         <div class="mat-menu-item-inner" matTooltip="Edit resume" matTooltipPosition="before">
           <mat-icon>edit</mat-icon>
           <span>Edit Resume</span>

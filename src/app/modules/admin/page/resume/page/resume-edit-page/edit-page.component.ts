@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
-import {Users} from 'src/app/models/users-type';
+import {UserRole} from 'src/app/models/users-type';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
@@ -96,9 +96,9 @@ export class ResumeEditPage implements OnInit {
       this.snackbarService.showSuccess('Edited');
       const role = this.accountService.getStoreRole();
 
-      if (role === Users[2])
+      if (role === UserRole.User)
         this.router.navigate(['/home/cv/user-list', this.accountService.getUserId()]);
-      if (role === Users[0] || role === Users[1])
+      if (role === UserRole.HR || role === UserRole.Admin)
         this.router.navigate(['/admin/resume']);
       else
         this.router.navigate(['/home/cv']);

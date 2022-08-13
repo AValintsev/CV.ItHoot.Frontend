@@ -33,6 +33,11 @@ import {LanguageDialogModule} from "../shared/resume/language-dialog/language-di
 import {ExperienceDialogModule} from "../shared/resume/experience-dialog/experience-dialog.module";
 import {EducationDialogModule} from "../shared/resume/education-dialog/education.dialog.module";
 import {TemplatePreviewDialogModule} from "../shared/template-preview-dialog/template-preview-dialog.module";
+import {MainPageComponent} from "./main-page/main-page.component";
+import {UserSideBarComponent} from "./user-side-bar/user-side-bar.component";
+import {LoaderModule} from "../shared/components/loader/loader.module";
+import {BurgerBtnModule} from "../shared/buttons/burger-btn/burger-btn.module";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -41,6 +46,8 @@ import {TemplatePreviewDialogModule} from "../shared/template-preview-dialog/tem
     ResumeCreatePageComponent,
     ResumeEditPageComponent,
     ResumeListPageComponent,
+    MainPageComponent,
+    UserSideBarComponent,
     FormBarComponent,
     ResumeCardComponent,
   ],
@@ -74,7 +81,10 @@ import {TemplatePreviewDialogModule} from "../shared/template-preview-dialog/tem
     LanguageDialogModule,
     ExperienceDialogModule,
     EducationDialogModule,
-    TemplatePreviewDialogModule
+    TemplatePreviewDialogModule,
+    LoaderModule,
+    BurgerBtnModule,
+    MatListModule
   ]
 })
 export class UserModule {}

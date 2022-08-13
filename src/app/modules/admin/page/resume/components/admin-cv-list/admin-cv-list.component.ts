@@ -14,7 +14,7 @@ import {
 import {ResumeService} from 'src/app/services/resume.service';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {saveAs} from 'file-saver';
-import {Users} from 'src/app/models/users-type';
+import {UserRole} from 'src/app/models/users-type';
 import {AccountService} from 'src/app/services/account.service';
 import {FormControl} from '@angular/forms';
 import {debounceTime, map, startWith, take, takeUntil} from 'rxjs/operators';
@@ -209,7 +209,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.resumeService.deleteResume(resume.id).subscribe({
               next: () => {
                 const role = this.accountService.getStoreRole();
-                if (role === Users[0]) {
+                if (role === UserRole.Admin) {
                   const delResume = this.resumes.find((i) => i.id == resume.id);
                   if (delResume != null) {
                     const currentDate = new Date();

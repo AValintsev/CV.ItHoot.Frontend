@@ -274,6 +274,10 @@ img {
   padding-bottom: 0.7rem;
 }
 
+.user-content:hover{
+  opacity: .8;
+}
+
 .user-atrr {
   padding: 0 1rem 0;
   width: 19rem;
@@ -343,7 +347,7 @@ img {
 }
 
 .menu {
-  
+
   padding-left: 2rem;
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
