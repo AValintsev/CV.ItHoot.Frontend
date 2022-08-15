@@ -21,9 +21,10 @@ export class RoleGuard implements CanActivate {
 		} else if (this.accountService.getStoreRole() === Users[3]){
 			this.router.navigate(['/client/proposals/']);
 			return true
-		}else{
-			this.router.navigate(['/account/']);
+		}else if (!this.accountService.isLoggedIn()){
+			this.router.navigate(['/account/login']);
 			return false
 		}
+    return false;
 	}
 }

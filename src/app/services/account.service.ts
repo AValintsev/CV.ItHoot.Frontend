@@ -75,7 +75,14 @@ export class AccountService {
   }
 
   getStoreRole() {
-    return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).role
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    if (token == null){
+      return null;
+    }
+
+    const decode:any = jwt_decode(token);
+    const role = decode.role;
+    return role;
   }
 
   getStoreName() {
