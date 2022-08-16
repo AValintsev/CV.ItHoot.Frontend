@@ -1,3 +1,5 @@
+import { ModalDeleteUserModule } from './../shared/modals/modal-delete-user/modal-delete-user.module';
+import { HeaderModule } from './header/header.module';
 import {FormBarComponent} from './form-bar/form-bar.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -84,7 +86,10 @@ import {MatListModule} from "@angular/material/list";
     TemplatePreviewDialogModule,
     LoaderModule,
     BurgerBtnModule,
-    MatListModule
+    MatListModule,
+    HeaderModule,
+    ModalDeleteUserModule,
+
   ]
 })
 export class UserModule {}

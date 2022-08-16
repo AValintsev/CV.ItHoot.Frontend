@@ -5,12 +5,15 @@
   </button>
 </div>
 
-<div class="container" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
+<div class="content" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
 
-  <div class="content">
-    <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
+  <div class="container">
+    <div class="template-wrapper">
+      <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
                               [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"
                               [templatedChanged]="templateChanged"></cv-resume-builder-editor>
+    </div>
+    
 
     <div *ngIf="!isLiveEdit" class="wrapper-edit">
       <resume-template-builder class="template-wrapper" [resume]="resume" [resumeChanged]="resumeChanged"
@@ -41,21 +44,3 @@
 
 
 </div>
-
-
-<!--<div class="container" *ngIf="resumeCreateDto">-->
-<!--  <div class="template-wrapper">-->
-<!--    <resume-template-builder [resume]="resumeCreateDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged" [isCreate]="true"></resume-template-builder>-->
-<!--  </div>-->
-<!--  <div class="resume-create-page">-->
-<!--    <div class="left-bar">-->
-<!--      <form-bar *ngIf="resumeCreateDto" [resumeForm]="resumeCreateForm" [resume]="resumeCreateForm.value" (templateChange)="templateChange($event)"></form-bar>-->
-<!--      <div class="action">-->
-<!--        <button mat-stroked-button [disabled]="!resumeCreateForm.valid" (click)="submit(resumeCreateForm.value)"-->
-<!--                matTooltip="Save" matTooltipPosition="above">Save</button>-->
-<!--        <button mat-stroked-button routerLink="/home/cv/user-list"-->
-<!--                matTooltip="Cancel" matTooltipPosition="above">Cancel</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

@@ -19,7 +19,7 @@ export class ResumeListPageComponent implements OnInit, OnDestroy {
     ) {}
 
   ngOnInit(): void {
-    this.setHeaderBtn(['create','menu-list-home','menu-list-small','resume-list-page'])
+    this.setHeaderBtn(['create','menu-list-home','menu-list-small','resume-list-page','user-resume-list'])
     this.resumeService
       .getAllResume().pipe(
         takeUntil(this.destroy$)
