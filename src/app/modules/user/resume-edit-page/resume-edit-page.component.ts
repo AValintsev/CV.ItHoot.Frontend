@@ -13,7 +13,7 @@ import {ResumeFormBuilderService} from "../../../services/resume-builder/resume-
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({
-  selector: 'cv-resume-resume-edit-page',
+  selector: 'resume-edit-page',
   templateUrl: './resume-edit-page.component.html',
   styleUrls: ['./resume-edit-page.component.scss'],
 })

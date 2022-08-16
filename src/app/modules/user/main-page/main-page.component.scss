@@ -1,6 +1,7 @@
+$visiblHeader:830px;
 :host::ng-deep{
    cv-burger-btn{
-  @media (max-width: 600px) {
+  @media (max-width: $visiblHeader) {
    
 .menu-burger__side-bar{
   display: none !important;
@@ -24,7 +25,7 @@
 header {
   display: none;
 
-  @media (max-width: 600px) {
+  @media (max-width:$visiblHeader) {
     display: block;
   }
 }
@@ -38,12 +39,12 @@ main {
     height: calc(100vh);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width:$visiblHeader) {
     height: calc(100vh - 5rem);
     overflow-y: auto;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: $visiblHeader) {
     display: flex;
   }
 }
@@ -53,19 +54,16 @@ main {
   flex: 0 1 100%;
 }
 
-cv-cv-cide-bar,cv-burger-btn {
-  @media (min-width: 600px) {
+user-side-bar,cv-burger-btn {
+  @media (min-width: $visiblHeader) {
     display: block;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $visiblHeader) {
     display: none;
   }
 }
 
-.footer {
-  height: 8rem;
-}
 
 .btn-toggler {
   font-size: 4rem;
