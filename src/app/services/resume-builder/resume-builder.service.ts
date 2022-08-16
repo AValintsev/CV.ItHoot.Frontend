@@ -21,8 +21,7 @@ export class ResumeBuilderService {
 
 
   removeSkill(skill: ResumeSkillDto): void {
-
-    const skillDto = this.resume.skills.find(e => e.id == skill.id);
+    const skillDto = this.resume.skills.find(e => e.skillId == skill.skillId);
 
     if (skillDto == null) return;
 
@@ -90,8 +89,7 @@ export class ResumeBuilderService {
   }
 
   removeLanguage(language: ResumeLanguageDto) {
-
-    const languageDto = this.resume.languages.find(e => e.id == language.id);
+    const languageDto = this.resume.languages.find(e => e.languageId == language.languageId);
 
     if (languageDto == null) return;
 

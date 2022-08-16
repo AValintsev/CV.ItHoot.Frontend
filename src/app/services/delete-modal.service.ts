@@ -14,12 +14,9 @@ export class DeleteModalService implements OnDestroy {
 
   constructor(
     @Optional() private dialog: MatDialog,
-  ) {
-  }
+  ) {}
 
   matModal(title: string) {
-    console.log(this.dialog)
-    console.log(title)
     let dialog = this.dialog.open(ModalDeleteComponent, {
       panelClass: 'delete-modal',
       data: {title: title}

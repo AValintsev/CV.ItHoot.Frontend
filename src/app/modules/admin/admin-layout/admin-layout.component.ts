@@ -13,10 +13,9 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
   sideBarToggler(event: Event) {
-   
+
     event.stopPropagation();
     this.toggle = !this.toggle;
-     console.log('aodeBarToggler',this.toggle)
   }
 
   ngAfterViewInit() {
@@ -27,7 +26,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     if (this.sideBar) {
       fromEvent(window, event).subscribe({
         next: (value) => {
-          console.log('111111111111111')
           if (window.innerWidth <= 768) {
             let elem = value.target;
             if (

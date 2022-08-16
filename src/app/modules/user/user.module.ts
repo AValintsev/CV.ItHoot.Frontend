@@ -1,4 +1,3 @@
-import { ModalDeleteUserModule } from './../shared/modals/modal-delete-user/modal-delete-user.module';
 import { HeaderModule } from './header/header.module';
 import {FormBarComponent} from './form-bar/form-bar.component';
 import {NgModule} from '@angular/core';

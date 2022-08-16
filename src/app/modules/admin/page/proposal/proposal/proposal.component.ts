@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProposalDto, ProposalResumeDto, StatusProposalResume,} from '../../../../../models/proposal/proposal-dto';
 import {ProposalService} from '../../../../../services/proposal.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from '../../../../../services/resume.service';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {NgxSpinnerService} from "ngx-spinner";
+import {ResumeDto} from "../../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'proposal',
@@ -42,6 +43,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     private proposalService: ProposalService,
     private deleteModalService: DeleteModalService,
     private route: ActivatedRoute,
+    private router: Router,
     private resumeService: ResumeService,
     private snackBarService: SnackBarService,
     public dialog: MatDialog,
@@ -186,4 +188,5 @@ export class ProposalComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
+
 }
