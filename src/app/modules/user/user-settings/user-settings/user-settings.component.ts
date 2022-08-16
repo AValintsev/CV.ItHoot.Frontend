@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../services/user.service";
 import {UserProfileDto} from "../../../../models/user-dto";
 import {SnackBarService} from "../../../../services/snack-bar.service";
+import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-user-settings',
@@ -16,7 +17,8 @@ export class UserSettingsComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private snackBar:SnackBarService
+    private snackBar:SnackBarService,
+    private userHeaderBtnService:UserHeaderBtnService
   ) {
     userService.getCurrentUser().subscribe(user => {
       this.userProfile = user;
@@ -26,6 +28,10 @@ export class UserSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setHeaderBtn(['back'])
+  }
+  setHeaderBtn(params: string[]) {
+    this.userHeaderBtnService.setBTNs(params)
   }
 
   canSubmit(): boolean {
