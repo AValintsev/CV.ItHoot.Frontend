@@ -5,12 +5,15 @@
   </button>
 </div>
 
-<div class="container" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
+<div class="content" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
 
-  <div class="content">
-    <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
+  <div class="container">
+    <div class="template-wrapper">
+      <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
                               [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"
                               [templatedChanged]="templateChanged"></cv-resume-builder-editor>
+    </div>
+    
 
     <div *ngIf="!isLiveEdit" class="wrapper-edit">
       <resume-template-builder class="template-wrapper" [resume]="resume" [resumeChanged]="resumeChanged"

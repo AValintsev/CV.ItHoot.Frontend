@@ -74,8 +74,16 @@ export class AccountService {
     return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`, null);
   }
 
+
   getStoreRole() {
-    return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).role
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    if (token == null|| token== undefined){
+      return false;
+    }
+
+    const decode:any = jwt_decode(token);
+    const role = decode.role;
+    return role;
   }
 
   getStoreName() {

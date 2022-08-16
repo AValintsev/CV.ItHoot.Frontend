@@ -13,8 +13,10 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
   sideBarToggler(event: Event) {
+   
     event.stopPropagation();
     this.toggle = !this.toggle;
+     console.log('aodeBarToggler',this.toggle)
   }
 
   ngAfterViewInit() {
@@ -25,6 +27,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     if (this.sideBar) {
       fromEvent(window, event).subscribe({
         next: (value) => {
+          console.log('111111111111111')
           if (window.innerWidth <= 768) {
             let elem = value.target;
             if (
@@ -35,8 +38,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
               return;
             } else {
               if (
-                (value.target as HTMLDivElement).getAttribute('user-side-bar') !==
-                this.sideBar.nativeElement.getAttribute('user-side-bar')
+                (value.target as HTMLDivElement).getAttribute('side-bar') !==
+                this.sideBar.nativeElement.getAttribute('side-bar')
               ) {
                 if (this.toggle) {
                   this.toggle = !this.toggle;
@@ -50,4 +53,5 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
 }
