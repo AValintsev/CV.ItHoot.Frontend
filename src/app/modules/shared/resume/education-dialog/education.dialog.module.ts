@@ -7,21 +7,23 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
   declarations: [
     EducationDialog
   ],
-  imports: [
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    QuillEditorComponent,
-    MatInputModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatButtonModule
-  ],
+    imports: [
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        QuillEditorComponent,
+        MatInputModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatButtonModule,
+        CommonModule
+    ],
   exports: [EducationDialog]
 })
 export class EducationDialogModule { }

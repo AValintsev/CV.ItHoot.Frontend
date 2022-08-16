@@ -42,7 +42,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Enter start of education</mat-label>
-      <input matInput [matDatepicker]="dp!" [max]="maxDate" formControlName="startDate">
+      <input matInput [matDatepicker]="dp!" [max]="maxDate" formControlName="startDate" readonly>
       <mat-hint>MM/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
       <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp, 'startDate')"
@@ -54,7 +54,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter end of education</mat-label>
-      <input matInput [matDatepicker]="dp1!" [max]="maxDate" formControlName="endDate">
+      <input matInput [matDatepicker]="dp1!" [max]="maxDate" formControlName="endDate" readonly>
       <mat-hint>MM/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
       <mat-datepicker #dp1 startView="multi-year" (monthSelected)="setMonthAndYear($event, dp1,'endDate')"
@@ -71,7 +71,7 @@
     <div mat-dialog-actions class="actions">
         <button mat-stroked-button [mat-dialog-close]="educationForm.value" cdkFocusInitial
           [disabled]="!educationForm.valid">Save</button>
-        <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+        <button mat-stroked-button [mat-dialog-close]="null">Cancel</button>
     </div>
   </div>
 </div>

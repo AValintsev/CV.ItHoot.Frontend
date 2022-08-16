@@ -2,7 +2,7 @@ import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {ResumeService} from 'src/app/services/resume.service';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import {FormArray, FormControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
 import {PositionDto} from 'src/app/models/position/position-dto';
@@ -19,6 +19,7 @@ import {LanguageDialog} from "../../../../../shared/resume/language-dialog/langu
 import {EducationDialog} from "../../../../../shared/resume/education-dialog/education-dialog.component";
 import {ExperienceDialog} from "../../../../../shared/resume/experience-dialog/experience-dialog.component";
 import {TemplatePreviewDialog} from "../../../../../shared/template-preview-dialog/template-preview-dialog.component";
+import {SnackBarService} from "../../../../../../services/snack-bar.service";
 
 
 @Component({
@@ -46,7 +47,8 @@ export class FormBarComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private resumeService: ResumeService,
-    private positionService: PositionService
+    private positionService: PositionService,
+    private snackBarService: SnackBarService
   ) {
     positionService.getAllPositions().pipe(
       takeUntil(this.destroy$)
@@ -62,13 +64,15 @@ export class FormBarComponent implements OnInit {
 
   onSelectFile(event: any) {
     const files = event.target.files;
-    if(!files && files.length !> 0)
+    if (!files && files.length ! > 0)
       return;
 
     this.file = files[0];
 
     if (!this.isCreateForm) {
-      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe();
+      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe(()=>{
+        this.snackBarService.showSuccess('Photo added');
+      });
     } else {
       this.resumeService.createPhoto(this.file!).subscribe(image => {
         this.resumeForm.patchValue({imageId: image.id});
@@ -207,22 +211,18 @@ export class FormBarComponent implements OnInit {
   }
 
   educationListChanged() {
-    (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
-    this.resume.educations
-      ?.sort(
-        (a: EducationDto, b: EducationDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
-      .forEach((education) => {
-        (<UntypedFormArray>this.resumeForm.controls['educations']).push(
+    (<FormArray>this.resumeForm.controls['educations']).clear();
+    this.resume.educations.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate))
+      .forEach(education => {
+        (<FormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(education?.id ?? 0),
-            institutionName: new UntypedFormControl(education.institutionName),
-            specialization: new UntypedFormControl(education.specialization),
-            description: new UntypedFormControl(education.description),
-            degree: new UntypedFormControl(education.degree),
-            startDate: new UntypedFormControl(education.startDate),
-            endDate: new UntypedFormControl(education.endDate),
+            id: new FormControl(education?.id ?? 0),
+            institutionName: new FormControl(education.institutionName),
+            specialization: new FormControl(education.specialization),
+            description: new FormControl(education.description),
+            degree: new FormControl(education.degree),
+            startDate: new FormControl(education.startDate),
+            endDate: new FormControl(education.endDate),
           })
         );
       });
@@ -267,21 +267,17 @@ export class FormBarComponent implements OnInit {
   }
 
   experienceListChanged() {
-    (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
-    this.resume.experiences
-      ?.sort(
-        (a: ExperienceDto, b: ExperienceDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
+    (<FormArray>this.resumeForm.controls['experiences']).clear();
+    this.resume.experiences.sort((a: ExperienceDto, b: ExperienceDto) => Date.parse(b.startDate) - Date.parse(a.startDate))
       .forEach((experience) => {
-        (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
+        (<FormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
-            id: new UntypedFormControl(experience?.id ?? 0),
-            position: new UntypedFormControl(experience.position),
-            description: new UntypedFormControl(experience.description),
-            company: new UntypedFormControl(experience.company),
-            startDate: new UntypedFormControl(experience.startDate),
-            endDate: new UntypedFormControl(experience.endDate),
+            id: new FormControl(experience?.id ?? 0),
+            position: new FormControl(experience.position),
+            description: new FormControl(experience.description),
+            company: new FormControl(experience.company),
+            startDate: new FormControl(experience.startDate),
+            endDate: new FormControl(experience.endDate),
           })
         );
       });
@@ -325,12 +321,12 @@ export class FormBarComponent implements OnInit {
     this.templateChange.emit(templateId);
   }
 
-  showPreview(e:Event,id:number){
+  showPreview(e: Event, id: number) {
     e.stopPropagation()
     const dialogRef = this.dialog.open(TemplatePreviewDialog, {
       height: '800px',
       autoFocus: false,
-      panelClass: ['remove-style-scroll', 'change-material-style','remove-padding'],
+      panelClass: ['remove-style-scroll', 'change-material-style', 'remove-padding'],
       data: id
     });
   }

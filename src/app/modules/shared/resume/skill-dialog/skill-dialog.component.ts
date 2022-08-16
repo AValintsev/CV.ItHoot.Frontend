@@ -20,13 +20,13 @@ export class SkillDialog implements OnInit, OnDestroy {
   DialogType = DialogType;
   myControl = new UntypedFormControl();
   filteredOptions: Observable<SkillDto[]>;
-  @ViewChild('input') input:any;
+  @ViewChild('input') input: any;
 
 
   ngOnInit() {
-    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+    setTimeout(() => { // this will make the execution after the above boolean has changed
       this.input.nativeElement.focus();
-    },300);
+    }, 300);
   }
 
   constructor(
@@ -46,11 +46,14 @@ export class SkillDialog implements OnInit, OnDestroy {
       })
     );
   }
+
   filter(val: string): Observable<SkillDto[]> {
     return this.skillService.searchSkill(val).pipe(
       map((data) => {
         if (data.length === 0) {
-          data = [{ id: 0, name: val }];
+          data = [{id: 0, name: val}];
+        } else if (!data.find((item) => item.name === val) && val.trim().length !== 0) {
+          return [{id: 0, name: val}, ...data];
         }
         return data;
       })
@@ -69,7 +72,8 @@ export class SkillDialog implements OnInit, OnDestroy {
       this.skill.level === undefined
     );
   }
-   ngOnDestroy(){
+
+  ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.unsubscribe()
   }

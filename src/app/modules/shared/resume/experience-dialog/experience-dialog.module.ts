@@ -7,22 +7,24 @@ import {QuillEditorComponent} from "ngx-quill";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
   declarations: [
     ExperienceDialog
   ],
-  imports: [
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    QuillEditorComponent,
-    MatInputModule,
-    MatDatepickerModule,
-    MatButtonModule
+    imports: [
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        QuillEditorComponent,
+        MatInputModule,
+        MatDatepickerModule,
+        MatButtonModule,
+        CommonModule
 
-  ],
+    ],
   exports: [ExperienceDialog]
 })
 export class ExperienceDialogModule { }

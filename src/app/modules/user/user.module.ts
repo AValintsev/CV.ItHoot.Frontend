@@ -38,6 +38,7 @@ import {UserSideBarComponent} from "./user-side-bar/user-side-bar.component";
 import {LoaderModule} from "../shared/components/loader/loader.module";
 import {BurgerBtnModule} from "../shared/buttons/burger-btn/burger-btn.module";
 import {MatListModule} from "@angular/material/list";
+import {ModalDeleteUserModule} from "../shared/modals/modal-delete-user/modal-delete-user.module";
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import {MatListModule} from "@angular/material/list";
     TemplatePreviewDialogModule,
     LoaderModule,
     BurgerBtnModule,
-    MatListModule
+    MatListModule,
+    ModalDeleteUserModule
   ]
 })
 export class UserModule {}

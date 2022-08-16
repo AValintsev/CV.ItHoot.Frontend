@@ -47,13 +47,9 @@ export class AccountService {
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
       .pipe(
-        catchError(error => {
-          return of(error)
-        }),
         tap<any>(tokens =>{
           this.doLoginUser(tokens)
-        }),
-        mapTo(true),
+        })
       )
   }
 

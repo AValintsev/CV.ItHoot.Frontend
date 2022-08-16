@@ -135,7 +135,7 @@
     </mat-form-field>
 
     <div class="text-editor">
-      <quill-editor [modules]="quillModules" formControlName="aboutMe" [styles]="{height: '300px'}"
+      <quill-editor [modules]="quillModules" formControlName="aboutMe" [styles]="{height: '300px', maxWidth:'524px'}"
                     placeholder="Tell us about yourself. Please, mention years of experience, your key skills and qualifications, notable achievements & awards">
       </quill-editor>
       <mat-error *ngIf="resumeForm.controls['aboutMe'].errors?.['required'] && ( resumeForm.controls['aboutMe'].dirty || resumeForm.controls['aboutMe'].touched)">

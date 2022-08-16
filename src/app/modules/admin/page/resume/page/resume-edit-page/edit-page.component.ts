@@ -25,7 +25,7 @@ export class ResumeEditPage implements OnInit {
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
   resumeTemplates: ResumeTemplateDto[];
-  isLiveEdit:boolean = true;
+  isLiveEdit:boolean = false;
   userId!:any;
 
   constructor(

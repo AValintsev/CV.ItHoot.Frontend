@@ -24,8 +24,7 @@
     </div>
 
     <div class="actions">
-      <button mat-fab color="primary" aria-label="Example icon button with a delete icon" [disabled]="!resumeForm.valid"
-              (click)="submit(resume)">
+      <button mat-fab color="primary" [disabled]="!resumeForm.valid" (click)="submit(resume)">
         <mat-icon>done</mat-icon>
       </button>
       <button *ngIf="isLiveEdit"  mat-fab color="primary" (click)="openResumeSettingDialog()">

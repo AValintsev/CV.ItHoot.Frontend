@@ -51,6 +51,8 @@ export class LanguageDialog implements OnInit, OnDestroy {
       map((data) => {
         if (!data.length) {
           return [{ id: 0, name: val }];
+        } else if (!data.find((item) => item.name === val) && val.trim().length !== 0) {
+          return [{id: 0, name: val}, ...data];
         }
         return data;
       })
