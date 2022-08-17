@@ -47,6 +47,12 @@ export class ResumeService {
           });
         }
 
+        if(filters.statuses) {
+          filters.statuses.forEach(item => {
+            requestUrl = `${requestUrl}&statuses=${item}`
+          });
+        }
+
         if(filters.clients) {
           filters.clients.forEach(item => {
             requestUrl = `${requestUrl}&clients=${item}`

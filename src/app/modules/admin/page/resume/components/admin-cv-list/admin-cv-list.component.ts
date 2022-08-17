@@ -50,9 +50,11 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() isShowAddButton: boolean = true;
   @Input() tableHeader: string;
   @Input() url!: string;
+  UserRole = UserRole;
+  userRole: UserRole;
 
   searchControl = new FormControl();
-   isLoading = false
+  isLoading = false
   positions!: PositionDto[];
   positionControl = new FormControl();
   positionFilterControl = new FormControl();
@@ -68,12 +70,25 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   clientFilterControl = new FormControl();
   filteredClientsMulti: ReplaySubject<SmallClientsDto[]> = new ReplaySubject(1);
 
+  @ViewChild('statusMultiSelect', {static: true}) statusMultiSelect: MatSelect;
+  statuses:any[]= [
+    {name:'Available', id: AvailabilityStatus.Available},
+    {name: 'Busy', id: AvailabilityStatus.Busy},
+    {name: 'Partial Available', id: AvailabilityStatus.PartialAAvailable},
+    {name: 'Very careful available', id: AvailabilityStatus.VeryCarefulAvailable},
+  ]
+  statusControl = new FormControl();
+  // statusFilterControl = new FormControl();
+  filteredStatusesMulti: ReplaySubject<any[]> = new ReplaySubject(1);
+
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('positionMultiSelect', { static: true })
+  @ViewChild('positionMultiSelect', {static: true})
   positionMultiSelect: MatSelect;
-  @ViewChild('skillMultiSelect', { static: true }) skillMultiSelect: MatSelect;
-  @ViewChild('clientMultiSelect', { static: true })
+  @ViewChild('skillMultiSelect', {static: true}) skillMultiSelect: MatSelect;
+  @ViewChild('clientMultiSelect', {static: true})
   clientMultiSelect: MatSelect;
   public loading$!: Observable<boolean>;
   protected _onDestroy = new Subject();
@@ -89,8 +104,10 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private clientService: ClientsService,
     private cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService,
-    private router:Router,
-  ) {}
+    private router: Router,
+  ) {
+    this.userRole = this.accountService.getStoreRole();
+  }
 
   ngOnInit() {
     if (this.isArchive) {
@@ -160,6 +177,16 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       });
     });
+
+    this.filteredStatusesMulti.next(this.statuses.slice());
+    this.statusControl.valueChanges.subscribe(() => {
+      this.filterMulti(
+        this.statuses,
+        'name',
+        new FormControl,
+        this.filteredStatusesMulti
+      );
+    })
   }
 
   isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
@@ -173,7 +200,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.searchControl.valueChanges,
       this.skillsControl.valueChanges,
       this.positionControl.valueChanges,
-      this.clientsControl.valueChanges
+      this.clientsControl.valueChanges,
+      this.statusControl.valueChanges
     ).subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(
@@ -182,7 +210,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.searchControl.valueChanges,
       this.skillsControl.valueChanges,
       this.positionControl.valueChanges,
-      this.clientsControl.valueChanges
+      this.clientsControl.valueChanges,
+      this.statusControl.valueChanges
     )
       .pipe(
         startWith(''),
@@ -196,6 +225,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setInitialValue(this.filteredPositionsMulti, this.positionMultiSelect);
     this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
     this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
+    this.setInitialValue(this.filteredStatusesMulti, this.statusMultiSelect);
 
     this.cdr.detectChanges();
   }
@@ -227,7 +257,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {},
+        error: (error) => {
+        },
       });
   }
 
@@ -271,7 +302,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           return false;
         },
-        error: (error) => {},
+        error: (error) => {
+        },
       });
   }
 
@@ -296,22 +328,14 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.snackService.showSuccess('Link copied');
   }
 
-  protected setInitialValue(
-    filteredMulti: ReplaySubject<any>,
-    multiSelect: MatSelect
-  ) {
+  protected setInitialValue(filteredMulti: ReplaySubject<any>, multiSelect: MatSelect) {
     filteredMulti.pipe(take(1), takeUntil(this._onDestroy)).subscribe(() => {
       if (multiSelect)
         multiSelect.compareWith = (a: any, b: any) => a && b && a === b;
     });
   }
 
-  protected filterMulti(
-    list: any[],
-    filterFieldName: string,
-    filterControl: FormControl,
-    filteredMulti: ReplaySubject<any>
-  ) {
+  protected filterMulti(list: any[], filterFieldName: string, filterControl: FormControl, filteredMulti: ReplaySubject<any>) {
     if (!list) {
       return;
     }
@@ -347,13 +371,14 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       positions: this.positionControl.value,
       skills: this.skillsControl.value,
       clients: this.clientsControl.value,
+      statuses: this.statusControl.value,
     };
     return resumeFilters;
   }
 
   duplicate(resume: SmallResumeDto) {
-    this.resumeService.duplicateResume(resume.id).subscribe((e)=>{
-      this.router.navigate([`${this.url}/resume/edit/`,e.id])
+    this.resumeService.duplicateResume(resume.id).subscribe((e) => {
+      this.router.navigate([`${this.url}/resume/edit/`, e.id])
     })
   }
 
@@ -361,6 +386,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loading$ = this.loadingService.isLoading$;
     this.cdr.detectChanges();
   }
+
   ngOnDestroy() {
     this._onDestroy.next('');
     this._onDestroy.complete();

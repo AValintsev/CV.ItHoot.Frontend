@@ -4,6 +4,8 @@ import {ResumeListPage} from "./page/resume-list-page/resume-list-page.component
 import {ResumeEditPage} from "./page/resume-edit-page/edit-page.component";
 import {ResumeCreatePage} from "./page/resume-create-page/resume-create-page.component";
 import {ResumeViewPage} from "./page/resume-view-page/resume-view-page.component";
+import {RoleGuard} from "../../../../guards/role.guard";
+import {UserRole} from "../../../../models/users-type";
 
 
 const routes: Routes = [
@@ -12,12 +14,18 @@ const routes: Routes = [
 		component: ResumeListPage,
 	},
 	{
-		path: 'edit/:id',
+    path: 'edit/:id',
 		component: ResumeEditPage,
+    // canLoad: [RoleGuard],
+    // canActivate: [RoleGuard],
+    // data: { role: [UserRole.Admin,UserRole.HR] }
 	},
 	{
 		path: 'create',
-		component: ResumeCreatePage
+		component: ResumeCreatePage,
+    canLoad: [RoleGuard],
+    canActivate: [RoleGuard],
+    data: { role: [UserRole.Admin,UserRole.HR] }
 	},
 	{
 		path: ':id',

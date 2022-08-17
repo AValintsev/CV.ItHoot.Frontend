@@ -4,91 +4,65 @@
     <div class="title-section">
       <div class="left-block">
         <h1>{{ tableHeader }}</h1>
+
         <div class="search-block">
-          <button
-            *ngIf="isShowAddButton"
-            mat-raised-button
-            routerLink="/admin/resume/create"
-            matTooltip="Create a new resume"
-            matTooltipPosition="before"
-          >
+          <button *ngIf="isShowAddButton && (userRole == UserRole.Admin || userRole == UserRole.HR)" mat-raised-button
+                  routerLink="/admin/resume/create" matTooltip="Create a new resume" matTooltipPosition="before">
             <mat-icon>add</mat-icon>
           </button>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Search...</mat-label>
-            <input
-              type="tel"
-              matInput
-              placeholder=""
-              [formControl]="searchControl"
-            />
+            <input type="tel" matInput placeholder="" [formControl]="searchControl"/>
             <mat-icon class="zoom-icon" matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
+
         <div class="filter-block ">
+
           <mat-form-field appearance="fill">
             <mat-label>Position filter</mat-label>
-            <mat-select
-              [formControl]="positionControl"
-              multiple="true"
-              #positionMultiSelect
-            >
+            <mat-select [formControl]="positionControl" multiple="true" #positionMultiSelect>
               <mat-option>
-                <ngx-mat-select-search
-                  [formControl]="positionFilterControl"
-                  placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="positionFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found">
+                </ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let position of filteredPositionsMulti | async"
-                [value]="position.positionId"
-              >
+              <mat-option *ngFor="let position of filteredPositionsMulti | async" [value]="position.positionId">
                 {{ position.positionName }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label>Skills filter</mat-label>
-            <mat-select
-              [formControl]="skillsControl"
-              multiple="true"
-              #skillMultiSelect
-            >
+            <mat-select [formControl]="skillsControl" multiple="true" #skillMultiSelect>
               <mat-option>
-                <ngx-mat-select-search
-                  [formControl]="skillFilterControl"
-                  placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="skillFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found">
+                </ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let skill of filteredSkillsMulti | async"
-                [value]="skill.id"
-              >
+              <mat-option *ngFor="let skill of filteredSkillsMulti | async" [value]="skill.id">
                 {{ skill.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label>Clients filter</mat-label>
-            <mat-select
-              [formControl]="clientsControl"
-              multiple="true"
-              #clientMultiSelect
-            >
+            <mat-select [formControl]="clientsControl" multiple="true" #clientMultiSelect>
               <mat-option>
-                <ngx-mat-select-search
-                  [formControl]="clientFilterControl"
-                  placeholderLabel="Search..."
-                  noEntriesFoundLabel="no matching found"
-                ></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="clientFilterControl" placeholderLabel="Search..." noEntriesFoundLabel="no matching found">
+                </ngx-mat-select-search>
               </mat-option>
-              <mat-option
-                *ngFor="let client of filteredClientsMulti | async"
-                [value]="client.id"
-              >
+              <mat-option *ngFor="let client of filteredClientsMulti | async" [value]="client.id">
                 {{ client.fullName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Status filter</mat-label>
+            <mat-select [formControl]="statusControl" multiple="true" #statusMultiSelect disableOptionCentering>
+              <mat-option *ngFor="let status of filteredStatusesMulti | async" [value]="status.id">
+                {{ status.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -97,19 +71,12 @@
     </div>
     <div class="hidden-mat-btn-group">
       <!-- Sticky Columns: -->
-      <mat-button-toggle-group
-        multiple
-        [value]="['action']"
-        #stickyColumns="matButtonToggleGroup"
-        class="example-sticky-toggle-group"
-      >
-        <mat-button-toggle
-          *ngFor="let item of displayedColumns"
-          [hidden]="true"
-          [value]="item"
-        ></mat-button-toggle>
+      <mat-button-toggle-group multiple [value]="['action']"
+                               #stickyColumns="matButtonToggleGroup" class="example-sticky-toggle-group">
+        <mat-button-toggle *ngFor="let item of displayedColumns" [hidden]="true" [value]="item"></mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+
     <section class="section-table">
       <table mat-table [dataSource]="resumes" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
         <ng-container matColumnDef="action" [sticky]="isSticky(stickyColumns, 'action')">
@@ -124,7 +91,9 @@
                 <mat-icon>visibility</mat-icon>
                 <span>View</span>
               </a>
-              <a mat-menu-item *ngIf="resume.deletedAt === null" routerLink="{{ url }}resume/edit/{{ resume.id }}"
+              <a mat-menu-item *ngIf="resume.deletedAt === null
+              && (userRole == UserRole.Admin || userRole == UserRole.HR)"
+                 routerLink="{{ url }}resume/edit/{{ resume.id }}"
                  matTooltip="Edit resume" matTooltipPosition="before">
                 <mat-icon>edit</mat-icon>
                 <span>Edit</span>
@@ -228,14 +197,16 @@
                   <span>Copy link to anonym without logo</span>
                 </button>
               </mat-menu>
-              <mat-divider></mat-divider>
-              <button mat-menu-item *ngIf="resume.deletedAt === null; else recoverButton" (click)="deleteResume(resume)"
+              <mat-divider *ngIf="userRole == UserRole.Admin || userRole == UserRole.HR"></mat-divider>
+              <button mat-menu-item *ngIf="resume.deletedAt === null
+              && (userRole == UserRole.Admin || userRole == UserRole.HR); else recoverButton"
+                      (click)="deleteResume(resume)"
                       matTooltip="Delete resume" matTooltipPosition="before">
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
               </button>
 
-              <ng-template #recoverButton>
+              <ng-template #recoverButton *ngIf="userRole == UserRole.Admin || userRole == UserRole.HR">
                 <button mat-menu-item (click)="recoverResume(resume)"
                         matTooltip="Recover resume" matTooltipPosition="before">
                   <mat-icon>refresh</mat-icon>
