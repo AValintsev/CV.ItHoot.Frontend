@@ -23,7 +23,7 @@ export class ResumeEditPageComponent implements OnInit, OnDestroy {
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
   resumeForm: FormGroup;
-  isLiveEdit: boolean = true;
+  isLiveEdit: boolean = false;
 
   constructor(
     private resumeService: ResumeService,
