@@ -23,7 +23,7 @@ export class ResumeCreatePage implements OnInit {
   resumeTemplates:ResumeTemplateDto[];
   resume: ResumeDto = {} as ResumeDto;
   resumeForm: FormGroup = {} as UntypedFormGroup;
-  isLiveEdit: boolean = true;
+  isLiveEdit: boolean = false;
 
   constructor(
     private resumeService: ResumeService,

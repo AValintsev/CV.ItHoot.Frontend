@@ -55,12 +55,9 @@ export class AccountService {
 
   loginViaGoogle(token: string): Observable<boolean> {
     return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/google`, {idToken: token}).pipe(
-      catchError(error => {
-        return of(error)
-      }),
+
       tap<any>(tokens =>{
         this.doLoginUser(tokens)}),
-      mapTo(true),
     )
   }
 
@@ -97,12 +94,10 @@ export class AccountService {
 
   logout(): Observable<boolean> {
     return this.http.post(`${this.baseUrl}identity/logout`, {refreshToken: this.getRefreshToken()})
-      .pipe(tap(() => {this.doLogoutUser()}),
-        mapTo(true),
-        catchError(error=> {
-          return of(error)
-        })
-      )
+      .pipe(tap<any>(() => this.doLogoutUser()), catchError((err)=> {
+        this.doLogoutUser();
+        return of(err)
+      }))
   }
 
   setUserId(id: number) {

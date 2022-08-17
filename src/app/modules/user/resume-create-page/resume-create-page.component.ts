@@ -22,7 +22,7 @@ export class ResumeCreatePageComponent implements OnInit {
   resumeChanged: Subject<ResumeDto> = new Subject<ResumeDto>();
   templateChanged: Subject<number> = new Subject<number>();
   resumeForm: FormGroup = {} as UntypedFormGroup;
-  isLiveEdit: boolean = true;
+  isLiveEdit: boolean = false;
 
   constructor(private resumeService: ResumeService,
               private snackbarService: SnackBarService,
