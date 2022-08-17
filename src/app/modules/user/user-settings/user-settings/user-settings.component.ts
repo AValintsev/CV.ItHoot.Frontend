@@ -28,7 +28,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setHeaderBtn(['back'])
+    this.setHeaderBtn(['back','create','home'])
   }
   setHeaderBtn(params: string[]) {
     this.userHeaderBtnService.setBTNs(params)

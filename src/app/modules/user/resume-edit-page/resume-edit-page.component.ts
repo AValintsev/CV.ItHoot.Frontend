@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import {map} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
@@ -33,14 +34,14 @@ export class ResumeEditPageComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private userHeaderBtnService: UserHeaderBtnService,
     private resumeFormBuilder: ResumeFormBuilderService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.resumeForm = this.resumeFormBuilder.buildResumeForm();
     this.setDataDependentToId()
     this.changeFormDate();
-    this.setHeaderBtn(['back', 'create', 'menu-list', 'create', 'home', 'change-position'])
+    this.setHeaderBtn(['back', 'create', 'menu-list', 'home', 'change-position'])
   }
 
   setDataDependentToId() {

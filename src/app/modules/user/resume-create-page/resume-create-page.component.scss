@@ -1,4 +1,5 @@
 $visiblHeader: 830px;
+
 :host-context(.change-mode) .wrapper-edit {
   transition: all 0.3s ease;
 
@@ -172,7 +173,7 @@ $visiblHeader: 830px;
       
       @media screen and (min-width: 1151px) {
         // width: 100%;
-        zoom: 0.72;
+        zoom: 0.85;
       }
       @media screen and (max-width: 1151px) {
         // width: 100%;

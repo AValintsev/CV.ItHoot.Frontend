@@ -1,5 +1,5 @@
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 import {Component, EventEmitter, OnDestroy, OnInit, Output,} from '@angular/core';
 import {AccountService} from 'src/app/services/account.service';
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
@@ -8,6 +8,7 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {ResumeService} from 'src/app/services/resume.service';
 import * as saveAs from 'file-saver';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'user-side-bar',
@@ -20,6 +21,8 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
   id!: number;
   firstName!: string;
   lastName!: string;
+  userName!:Observable<string>;
+  userSureName!:Observable<string>;
 
   constructor(
     public accountService: AccountService,
@@ -27,18 +30,23 @@ export class UserSideBarComponent implements OnInit, OnDestroy {
     public deleteModalService: DeleteModalService,
     private resumeService: ResumeService,
     private router: Router,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
-    this.setUserData();
+    this.setUserResumeData();
+    this.userName = this.userService.getCurrentUser().pipe(pluck('firstName'))
+    this.userSureName = this.userService.getCurrentUser().pipe(pluck('lastName'))
   }
 
   refresh(): void {
     this.refreshTemplate.emit();
   }
 
-  setUserData() {
+
+
+  setUserResumeData() {
     this.userHeaderBtnService.userDataSub$.subscribe(response => {
       if (response) {
         this.id = response.id;
