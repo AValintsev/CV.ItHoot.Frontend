@@ -1,6 +1,6 @@
 import {DeleteModalService} from './../../../services/delete-modal.service';
 import {MatDialog} from '@angular/material/dialog';
-import {map, takeUntil} from 'rxjs/operators';
+import { map, takeUntil, pluck } from 'rxjs/operators';
 import {Observable, of, Subject} from 'rxjs';
 import {ResumeService} from './../../../services/resume.service';
 import {Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {UserHeaderBtnService, UserHeaderData,} from 'src/app/services/user-heade
 import * as saveAs from 'file-saver';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
 import { UserRole } from 'src/app/models/users-type';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'cv-header',
@@ -25,6 +26,8 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
   Users = UserRole;
   userData$: Observable<UserHeaderData | null>;
   userName$: Observable<string> = of('User');
+  userName!:Observable<string>;
+  userSureName!:Observable<string>;
   constructor(
     private dialog: MatDialog,
     public userHeaderBtnService: UserHeaderBtnService,
@@ -32,12 +35,16 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
     private router: Router,
     private resumeService: ResumeService,
     private snackbarService: SnackBarService,
-    private deleteModalService: DeleteModalService
+    private deleteModalService: DeleteModalService,
+    private userService: UserService,
+    
   ) {}
 
   ngOnInit(): void {
     this.userNamed();
     this.setUserData();
+    this.userName = this.userService.getCurrentUser().pipe(pluck('firstName'))
+    this.userSureName = this.userService.getCurrentUser().pipe(pluck('lastName'))
   }
 
   setUserData() {
@@ -122,7 +129,9 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
       saveAs(response, `${firstName} ${lastName}.docx`);
     });
   }
-
+  navigateTo(){
+    this.router.navigate(['/home/profile'])
+  }
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

@@ -31,7 +31,7 @@
                     <img src="assets/face.jpg" alt="user picture" />
                   </div>
                   <ul class="user-atrr">
-                    <li class="user-name">{{accountService.getStoreName()}}</li>
+                    <li class="user-name">{{userName|async}} {{userSureName|async}}</li>
                     <li class="user-role">
                       {{
                       accountService.getStoreRole()
@@ -85,19 +85,19 @@
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <a routerLink="profile" mat-menu-item>
+              <button (click)="navigateTo()" mat-menu-item>
                 <div class="user-content small">
                   <div class="user-picture img">
                     <img src="assets/face.jpg" alt="user picture" />
                   </div>
                   <ul class="user-atrr">
-                    <li class="user-name">{{accountService.getStoreName()}}</li>
+                    <li class="user-name">{{userName|async}} {{userSureName|async}}</li>
                     <li class="user-role">
                       {{ accountService.getStoreRole()}}
                     </li>
                   </ul>
                 </div>
-              </a>
+              </button>
               <div class="menu-btn-wrapper">
                 <button mat-menu-item class="logout-small small" color="warn" (click)="logout()">
                   Logout

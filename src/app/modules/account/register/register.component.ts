@@ -8,6 +8,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
 import {environment} from "../../../../environments/environment";
 import {CredentialResponse} from "google-one-tap";
+import { UserValidators } from '../../shared/validators/user.validators';
 
 @Component({
   selector: 'cv-register',
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.loading$ = this.loadingService.isLoading$
     this.registerForm = new UntypedFormGroup({
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
-      password: new UntypedFormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new UntypedFormControl('', [Validators.required, Validators.minLength(6),UserValidators.checkingNumberInPassword(/\d/)]),
     });
     this.loadGoogleAuthScript();
     this.addGoogleAuthButton();

@@ -9,7 +9,7 @@
           <img src="../../../../assets/face.jpg" alt="user picture"/>
         </div>
         <ul class="user-atrr">
-          <li class="user-name">{{ accountService.getStoreName()}}</li>
+          <li class="user-name">{{ userName | async }} {{userSureName|async}}</li>
           <li class="user-role">{{accountService.getStoreRole()}}</li>
         </ul>
       </a>
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div mat-menu-item class="docx"
-           *ngIf="btnSwitcher('menu-list') | async" (click)="saveDocX(id, firstName, lastName)">
+           *ngIf="btnSwitcher('menu-list') | async" (click)="saveDocX(id, firstName , lastName)">
         <div class="mat-menu-item-inner" matTooltip="Download resume DOCX" matTooltipPosition="before">
           <mat-icon>description</mat-icon>
           <span>Save DocX</span>

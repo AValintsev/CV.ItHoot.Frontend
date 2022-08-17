@@ -15,12 +15,9 @@ export class AccountService {
 
   private JWT_TOKEN = 'JWT_TOKEN'
   private REFRESH_TOKEN = 'REFRESH_TOKEN'
-  private USER_ROLE = 'USER_ROLE'
-  private USER_NAME = 'USER_NAME'
-  private USER_ID = 'USER_ID'
   baseUrl = environment.apiUrl;
   private userId$ = new BehaviorSubject<number>(-1)
-  private userRole$ = new BehaviorSubject<string>('')
+  // private userRole$ = new BehaviorSubject<string>('')
 
 
   constructor(private http: HttpClient) {
