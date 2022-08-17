@@ -258,20 +258,32 @@ export class FormBarComponent implements OnInit, OnDestroy {
       data: {type: dialogType, data: data},
     });
 
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((education: EducationDto) => {
-      if (education == null) return;
-      let educationDto = this.resume.educations.find(
-        (e) => e.id == education.id
-      );
+    dialogRef.afterClosed().subscribe(educationDialog => {
+
+
+      if (!educationDialog) return;
+
+      let educationDto = this.resume.educations.find(e => e.id == educationDialog.id);
+
       if (educationDto != null) {
         this.removeEducation(educationDto);
-      } else {
-        education.id = this.resume.educations.length;
       }
-      this.resume.educations.push(education);
+
+      this.resume.educations.push(educationDialog);
+
       this.educationListChanged();
+
+    //   if (education == null) return;
+    //   let educationDto = this.resume.educations.find(
+    //     (e) => e.id == education.id
+    //   );
+    //   if (educationDto != null) {
+    //     this.removeEducation(educationDto);
+    //   } else {
+    //     education.id = this.resume.educations.length;
+    //   }
+    //   this.resume.educations.push(education);
+    //   this.educationListChanged();
     });
   }
 
@@ -320,19 +332,17 @@ export class FormBarComponent implements OnInit, OnDestroy {
       data: {type: dialogType, data: data},
     });
 
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((experience: ExperienceDto) => {
-      if (!experience) return;
-      let experienceDto = this.resume.experiences.find(
-        (e) => e.id == experience.id
-      );
+    dialogRef.afterClosed().subscribe(experienceDialog => {
+      if (!experienceDialog) return;
+
+      let experienceDto = this.resume.experiences.find(e => e.id == experienceDialog.id);
+
       if (experienceDto != null) {
         this.removeExperience(experienceDto);
-      } else {
-        experience.id = this.resume.experiences.length;
       }
-      this.resume.experiences.push(experience);
+
+      this.resume.experiences.push(experienceDialog);
+
       this.experienceListChanged();
     });
   }
