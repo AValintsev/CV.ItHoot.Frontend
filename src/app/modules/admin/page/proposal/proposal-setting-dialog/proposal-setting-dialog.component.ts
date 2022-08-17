@@ -13,7 +13,7 @@ import {ResumeTemplateDto} from '../../../../../models/resume/resume-template-dt
   templateUrl: './proposal-setting-dialog.component.html',
   styleUrls: ['./proposal-setting-dialog.component.scss'],
 })
-export class ProposalSettingDialogComponent implements OnInit, OnDestroy {
+export class ProposalSettingDialog implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
   proposal: ProposalDto;
   clients: UserDto[] = [];
@@ -24,7 +24,7 @@ export class ProposalSettingDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   constructor(
-    public dialogRef: MatDialogRef<ProposalSettingDialogComponent>,
+    public dialogRef: MatDialogRef<ProposalSettingDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     userService: UserService,
     resumeService: ResumeService

@@ -12,7 +12,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {MonacoEditorModule} from "ngx-monaco-editor";
-import {ResumeFullSwitcherModule} from "./modules/cv/resume-full-switcher/resume-full-switcher.module";
+import {ResumeFullSwitcherModule} from "./modules/shared/resume-full-switcher/resume-full-switcher.module";
 import {DeleteModalService} from './services/delete-modal.service';
 
 

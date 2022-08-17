@@ -3,18 +3,19 @@ import {Subject} from 'rxjs';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProposalDto, ProposalResumeDto, StatusProposalResume,} from '../../../../../models/proposal/proposal-dto';
 import {ProposalService} from '../../../../../services/proposal.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ResumeService} from '../../../../../services/resume.service';
 import {SnackBarService} from '../../../../../services/snack-bar.service';
 import {MatDialog} from '@angular/material/dialog';
-import {ProposalSettingDialogComponent} from '../proposal-setting-dialog/proposal-setting-dialog.component';
-import {ProposalAddResumeDialogComponent} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
+import {ProposalSettingDialog} from '../proposal-setting-dialog/proposal-setting-dialog.component';
+import {ProposalAddResumeDialog} from '../proposal-add-resume-dialog/proposal-add-resume-dialog.component';
 import {SmallResumeDto} from '../../../../../models/resume/small-resume-dto';
 import {StatusProposal} from '../../../../../models/enums';
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {NgxSpinnerService} from "ngx-spinner";
+import {ResumeDto} from "../../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'proposal',
@@ -42,6 +43,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
     private proposalService: ProposalService,
     private deleteModalService: DeleteModalService,
     private route: ActivatedRoute,
+    private router: Router,
     private resumeService: ResumeService,
     private snackBarService: SnackBarService,
     public dialog: MatDialog,
@@ -51,7 +53,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   openProposalDialog(): void {
-    const dialogRef = this.dialog.open(ProposalSettingDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalSettingDialog, {
       autoFocus: false,
       width: '500px',
       data: this.proposal,
@@ -74,7 +76,7 @@ export class ProposalComponent implements OnInit, OnDestroy {
   }
 
   openResumeDialog(): void {
-    const dialogRef = this.dialog.open(ProposalAddResumeDialogComponent, {
+    const dialogRef = this.dialog.open(ProposalAddResumeDialog, {
       autoFocus: false,
       width: '500px',
     });
@@ -186,4 +188,5 @@ export class ProposalComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
+
 }

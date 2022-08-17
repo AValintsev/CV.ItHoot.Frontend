@@ -1,0 +1,16 @@
+<cv-loader *ngIf="loading$ | async"></cv-loader>
+<div class="container">
+  <header>
+    <cv-header></cv-header>
+  </header>
+  <main class="main">
+    <user-side-bar (refreshTemplate)="refreshTemplate = !refreshTemplate"  [class.width-zero]="!toggle" [class.open-side-bar]="toggle"></user-side-bar>
+      <div [class.open-menu]="toggle">
+        <cv-burger-btn  (toggleSideBar)="sideBarToggler()"  matTooltip="{{toggle ? 'Show menu' : 'Hide menu'}}"></cv-burger-btn>
+      </div>
+
+    <div [class.change-mode] = "refreshTemplate" [class.open-side-bar--content]="toggle" class="body">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

@@ -13,6 +13,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
   sideBarToggler(event: Event) {
+
     event.stopPropagation();
     this.toggle = !this.toggle;
   }
@@ -50,4 +51,5 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
 }

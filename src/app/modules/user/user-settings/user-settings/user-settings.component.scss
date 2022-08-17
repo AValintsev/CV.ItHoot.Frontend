@@ -1,0 +1,41 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .user-profile {
+    max-width: 600px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 25%;
+
+    .user-card {
+      display: flex;
+      flex-direction: column;
+
+      mat-card-content{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      mat-card-actions{
+        display: flex;
+        justify-content: flex-end;
+        button {
+          width: 10rem;
+        }
+      }
+
+    }
+  }
+
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: 10rem;
+  }
+}

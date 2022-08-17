@@ -9,6 +9,7 @@ export class SkillService {
   constructor(private httpService: HttpInternalService){}
 
   public searchSkill(text:string):Observable<SkillDto[]>{
+    text = text.replace('#','%23')
     return this.httpService.getRequest<SkillDto[]>(this.routePrefix+`/search?content=${text}`);
   }
 

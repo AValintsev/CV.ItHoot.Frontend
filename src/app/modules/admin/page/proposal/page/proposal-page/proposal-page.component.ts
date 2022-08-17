@@ -10,7 +10,7 @@ import {Subject} from 'rxjs';
   templateUrl: './proposal-page.component.html',
   styleUrls: ['./proposal-page.component.scss'],
 })
-export class ProposalPageComponent implements OnInit, OnDestroy {
+export class ProposalPage implements OnInit, OnDestroy {
   url = '/admin/proposals/'
   private destroy$ = new Subject<boolean>();
   proposal: ProposalDto = {} as ProposalDto;

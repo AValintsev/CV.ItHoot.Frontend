@@ -11,7 +11,7 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {requiredFileType} from 'src/app/modules/shared/validators/file.validators';
 
 @Component({
-  selector: 'cv-resume-template-create-page',
+  selector: 'cv-resume-template-resume-create-page',
   templateUrl: './resume-template-create-page.component.html',
   styleUrls: ['./resume-template-create-page.component.scss']
 })

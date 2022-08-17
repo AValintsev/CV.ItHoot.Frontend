@@ -6,7 +6,7 @@ export type UserHeaderData = {
     firstName:string,
     lastName:string
 }
-@Injectable()
+@Injectable({ providedIn: 'root' })
 
 export class UserHeaderBtnService implements OnDestroy{
     private getBtnSub$ = new BehaviorSubject<string[]>([''])

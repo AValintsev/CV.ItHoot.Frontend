@@ -1,0 +1,7 @@
+<div class="wrapper">
+		<div class="btn">
+	</div>
+	<div class="inner">
+		<resume-card (refresh)="refresh()" *ngFor="let resume of smallResumeDto" [resume]="resume" class="cv-card-small"> </resume-card>
+	</div>
+</div>

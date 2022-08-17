@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {CvFullComponent} from '../cv-full/cv-full.component';
-import {EditPageComponent} from '../edit-page/edit-page.component';
+import {ResumeViewPage} from '../resume/page/resume-view-page/resume-view-page.component';
+import {ResumeEditPage} from '../resume/page/resume-edit-page/edit-page.component';
 import {ProposalArchiveListPageComponent} from './proposal-archive-list-page/proposal-archive-list-page.component';
 import {ProposalArchivePageComponent} from './proposal-page/proposal-archive-page.component';
 import {ResumeArchiveListComponent} from './resume-archive-list/resume-archive-list.component';
@@ -19,11 +19,11 @@ const routes: Routes = [
   },
     {
     path: 'proposals/:proposalId/resume/:resumeId',
-    component: CvFullComponent,
+    component: ResumeViewPage,
   },
     {
     path: 'proposals/:proposalId/resume/edit/:resumeId',
-      component: EditPageComponent
+      component: ResumeEditPage
   },
   {
     path: 'resume',
@@ -31,12 +31,12 @@ const routes: Routes = [
   },
   {
     path: 'resume/:resumeId',
-    component: CvFullComponent
+    component: ResumeViewPage
   },
 
   {
     path: 'resume/edit/:resumeId',
-    component: EditPageComponent
+    component: ResumeEditPage
   },
 ];
 

@@ -24,13 +24,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {ResumeBuilderService} from "../../../services/resume-builder/resume-builder.service";
 import {ResumeParserService} from "../../../services/resume-builder/resume-parser.service";
 import {MatIconModule} from "@angular/material/icon";
+import {quillModulesConstant} from "../constants/quill-editor-constants";
 
-const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike', 'code-block', {'header': 1}, {'header': 2}, {'list': 'ordered'}, {'list': 'bullet'}, {'align': []}],        // toggled buttons
-    [{'size': ['small', false, 'large', 'huge']}, {'header': [1, 2, 3, 4, 5, 6, false]}],
-  ]
-};
 
 @Component({
   selector: 'cv-resume-builder-editor',
@@ -47,7 +42,6 @@ export class ResumeBuilderEditorComponent implements OnInit {
   @Input() resumeChanged: Observable<ResumeDto> | null;
   @Input() templatedChanged: Observable<number> | null | number;
   protected componentRef?: ComponentRef<any>;
-  @Input() isCreate: boolean = false;
   templateHtml: string;
   loaded: boolean = false;
   resumeBuilderService: ResumeBuilderService;
@@ -104,7 +98,7 @@ export class ResumeBuilderEditorComponent implements OnInit {
 
       openLanguageDialog: this.resumeBuilderService.openLanguageDialog.bind(this.resumeBuilderService),
       removeLanguage: this.resumeBuilderService.removeLanguage.bind(this.resumeBuilderService),
-      modules: modules,
+      modules: quillModulesConstant,
     };
 
 
@@ -121,7 +115,6 @@ export class ResumeBuilderEditorComponent implements OnInit {
     this.resumeForm.valueChanges.subscribe((value) => {
       this.componentRef!.instance.resume = value;
     })
-
     this.loaded = true;
   }
 
@@ -164,7 +157,6 @@ export class ResumeBuilderEditorComponent implements OnInit {
     html = resumeParser.addElements(html);
     return html;
   }
-
 
 }
 

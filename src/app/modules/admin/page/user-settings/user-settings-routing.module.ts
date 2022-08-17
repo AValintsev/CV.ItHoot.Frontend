@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
 import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import {UserSettingsComponent} from "./user-settings/user-settings.component";
 

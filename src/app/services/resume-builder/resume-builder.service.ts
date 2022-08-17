@@ -1,15 +1,15 @@
 import {ResumeLanguageDto} from "../../models/resume/resume-language-dto";
 import {DialogType} from "../../models/enums";
-import {LanguageDialog} from "../../modules/admin/component/modals/language-dialog/language-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ResumeDto} from "../../models/resume/resume-dto";
 import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {ResumeSkillDto} from "../../models/resume/resume-skill-dto";
-import {SkillDialog} from "../../modules/admin/component/modals/skill-dialog/skill-dialog.component";
 import {EducationDto} from "../../models/resume/education-dto";
-import {EducationDialog} from "../../modules/admin/component/modals/education-dialog/education-dialog.component";
 import {ExperienceDto} from "../../models/resume/experience-dto";
-import {ExperienceDialog} from "../../modules/admin/component/modals/experience-dialog/experience-dialog.component";
+import {SkillDialog} from "../../modules/shared/resume/skill-dialog/skill-dialog.component";
+import {LanguageDialog} from "../../modules/shared/resume/language-dialog/language-dialog.component";
+import {EducationDialog} from "../../modules/shared/resume/education-dialog/education-dialog.component";
+import {ExperienceDialog} from "../../modules/shared/resume/experience-dialog/experience-dialog.component";
 
 
 export class ResumeBuilderService {
@@ -21,8 +21,7 @@ export class ResumeBuilderService {
 
 
   removeSkill(skill: ResumeSkillDto): void {
-
-    const skillDto = this.resume.skills.find(e => e.id == skill.id);
+    const skillDto = this.resume.skills.find(e => e.skillId == skill.skillId);
 
     if (skillDto == null) return;
 
@@ -90,8 +89,7 @@ export class ResumeBuilderService {
   }
 
   removeLanguage(language: ResumeLanguageDto) {
-
-    const languageDto = this.resume.languages.find(e => e.id == language.id);
+    const languageDto = this.resume.languages.find(e => e.languageId == language.languageId);
 
     if (languageDto == null) return;
 

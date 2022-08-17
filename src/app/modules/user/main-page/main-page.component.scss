@@ -1,0 +1,98 @@
+$visiblHeader:830px;
+:host::ng-deep{
+   cv-burger-btn{
+  @media (max-width: $visiblHeader) {
+   
+.menu-burger__side-bar{
+  display: none !important;
+}
+  mat-icon{
+    display: none !important;
+  }
+  }
+}
+
+
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+header {
+  display: none;
+
+  @media (max-width:$visiblHeader) {
+    display: block;
+  }
+}
+
+
+main {
+  height: calc(100vh);
+  background: #e5e5e5;
+
+  @media (max-width: 700px) {
+    height: calc(100vh);
+  }
+
+  @media (max-width:$visiblHeader) {
+    height: calc(100vh - 5rem);
+    overflow-y: auto;
+  }
+
+  @media (min-width: $visiblHeader) {
+    display: flex;
+  }
+}
+
+.body {
+  overflow: auto;
+  flex: 0 1 100%;
+}
+
+user-side-bar,cv-burger-btn {
+  @media (min-width: $visiblHeader) {
+    display: block;
+  }
+
+  @media (max-width: $visiblHeader) {
+    display: none;
+  }
+}
+
+
+.btn-toggler {
+  font-size: 4rem;
+  top: 0;
+}
+
+.btn-toggler {
+  font-size: 4rem;
+  display: flex;
+  align-items: flex-start;
+  top: 0;
+  right: -2rem;
+}
+
+.open-side-bar {
+  transform: translateX(0%);
+  width: 25rem;
+  overflow-x: visible;
+  visibility: visible;
+  transition: all 0.2s ease;
+  @media (max-width: 700px) {
+    flex: 0 0 10rem;
+  }
+}
+
+.width-zero {
+  transform: translateX(-100%);
+  width: 0;
+  overflow-x: hidden;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}

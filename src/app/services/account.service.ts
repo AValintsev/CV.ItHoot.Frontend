@@ -47,13 +47,9 @@ export class AccountService {
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}identity/login`, user)
       .pipe(
-        catchError(error => {
-          return of(error)
-        }),
         tap<any>(tokens =>{
           this.doLoginUser(tokens)
-        }),
-        mapTo(true),
+        })
       )
   }
 
@@ -74,10 +70,11 @@ export class AccountService {
     return this.http.post<UserAuthData>(`${this.baseUrl}identity/login/${shortUrl}`, null);
   }
 
+
   getStoreRole() {
     const token = localStorage.getItem(this.JWT_TOKEN);
-    if (token == null){
-      return null;
+    if (token == null|| token== undefined){
+      return false;
     }
 
     const decode:any = jwt_decode(token);

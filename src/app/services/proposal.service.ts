@@ -58,6 +58,10 @@ export class ProposalService {
     return this.httpService.getRequest<ProposalDto>(this.routePrefix+`/${id}`);
   }
 
+  public recoverProposalById(id:number):Observable<any>{
+    return this.httpService.postRequest<any>(this.routePrefix+`/recover/${id}`,null);
+  }
+
   public getArchiveProposals(filters: ProposalListFilter | null = null): Observable<PagedResponse<SmallProposalDto[]>>{
     if (filters == null) {
       return this.httpService.getRequest<PagedResponse<SmallProposalDto[]>>(this.routePrefix+'/archive');

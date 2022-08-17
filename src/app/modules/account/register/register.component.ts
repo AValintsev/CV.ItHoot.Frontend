@@ -1,5 +1,5 @@
 import {takeUntil} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
+import {fromEvent, Observable, Subject} from 'rxjs';
 import {ChangeDetectorRef, Component, ElementRef, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -18,7 +18,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public loading$!: Observable<boolean>
   private destroy$ = new Subject<boolean>();
   type = "password"
-  swithPasswordVisible = true
+  swithPasswordVisible = true;
+  screenSize:number = window.innerWidth;
   registerForm!: UntypedFormGroup;
   errors!: string[];
 
@@ -41,7 +42,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
     this.loadGoogleAuthScript();
     this.addGoogleAuthButton();
-
+    fromEvent(window,'resize').subscribe(
+      ()=>{
+        if(this.screenSize!=window.innerWidth){
+          this.loadGoogleAuthScript();
+          this.addGoogleAuthButton();
+        }
+      }
+    )
   }
 
   loadGoogleAuthScript() {
@@ -69,7 +77,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           size: "medium",
           text: "continue_with",
           shape: "rectangular",
-          width: 400
+          width: window.innerWidth>600?370:250
         }  // customization attributes
       );
       // @ts-ignore

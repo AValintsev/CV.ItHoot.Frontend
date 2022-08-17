@@ -1,6 +1,7 @@
 import {ResumeDto} from "../../models/resume/resume-dto";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Injectable} from "@angular/core";
+import {ExperienceDto} from "../../models/resume/experience-dto";
 
 @Injectable({providedIn: 'root'})
 export class ResumeFormBuilderService {
@@ -9,6 +10,8 @@ export class ResumeFormBuilderService {
   buildResumeForm (): FormGroup {
     const resume = {} as ResumeDto;
     return new FormGroup({
+      id: new FormControl(resume.id, [
+      ]),
       resumeName: new FormControl(resume.resumeName, [
         Validators.required,
       ]),
@@ -50,6 +53,7 @@ export class ResumeFormBuilderService {
         Validators.required,
       ]),
       imageId: new FormControl(resume.imageId),
+      picture: new FormControl(resume.picture),
       salaryRate: new FormControl(resume?.salaryRate),
       availabilityStatus: new FormControl(resume?.availabilityStatus),
       countDaysUnavailable: new FormControl(resume?.countDaysUnavailable),
@@ -61,6 +65,10 @@ export class ResumeFormBuilderService {
   }
 
   patchForm(resume: ResumeDto, resumeForm: FormGroup) {
+    (<FormArray>resumeForm.controls['skills']).clear();
+    (<FormArray>resumeForm.controls['languages']).clear();
+    (<FormArray>resumeForm.controls['educations']).clear();
+    (<FormArray>resumeForm.controls['experiences']).clear();
     resumeForm.patchValue({id: resume.id});
     resumeForm.patchValue({resumeName: resume.resumeName});
     resumeForm.patchValue({firstName: resume.firstName});
@@ -81,6 +89,9 @@ export class ResumeFormBuilderService {
     resumeForm.patchValue({resumeTemplateId: resume.resumeTemplateId});
     resumeForm.patchValue({availabilityStatus: resume.availabilityStatus});
     resumeForm.patchValue({countDaysUnavailable: resume.countDaysUnavailable});
+
+    resume.experiences = resume.experiences.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate))
+    resume.educations = resume.educations.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate))
 
 
     resume.skills?.forEach((skill) => {

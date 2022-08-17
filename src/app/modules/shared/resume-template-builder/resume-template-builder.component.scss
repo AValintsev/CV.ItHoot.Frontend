@@ -1,9 +1,55 @@
 @media screen and (max-width: 1650px) {
-  #resume{
-      zoom: 0.7;
+  #resume {
+    zoom: 0.7;
   }
 }
 
+:host::ng-deep #resume {
+  .ql-align-center {
+    text-align: center;
+  }
+
+  .ql-align-right {
+    text-align: right;
+  }
+
+  .ql-align-justify {
+    text-justify: auto;
+  }
+
+  .ql-size-small {
+    font-size: 0.75em;
+  }
+
+  .ql-size-large {
+    font-size: 1.5em;
+  }
+
+ .ql-size-huge {
+    font-size: 2.5em;
+  }
+
+   ol li:not(.ql-direction-rtl),
+   ul li:not(.ql-direction-rtl) {
+    padding-left: 1.5em;
+  }
+  ol li.ql-direction-rtl,
+  ul li.ql-direction-rtl {
+    padding-right: 1.5em;
+  }
+
+    //.ql-syntax{
+  //  background-color: #23241f;
+  //  color: #f8f8f2;
+  //}
+  //
+  //.ql-editor pre {
+  //  white-space: pre-wrap;
+  //  margin-bottom: 5px;
+  //  margin-top: 5px;
+  //  padding: 5px 10px;
+  //}
+}
 
 #resume {
   width: 210mm;

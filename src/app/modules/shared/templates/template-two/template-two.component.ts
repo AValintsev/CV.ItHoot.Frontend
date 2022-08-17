@@ -1,5 +1,5 @@
 import {AccountService} from './../../../../services/account.service';
-import {Users} from './../../../../models/users-type';
+import {UserRole} from './../../../../models/users-type';
 import {ResumeService} from 'src/app/services/resume.service';
 import {AfterContentInit, AfterViewInit, Component, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ResumeDto} from 'src/app/models/resume/resume-dto';
@@ -14,7 +14,7 @@ import {take} from 'rxjs/operators';
 })
 export class TemplateTwoComponent implements OnInit,AfterContentInit,AfterViewInit {
   public editor:any = null
-  User=Users
+  User=UserRole
   color = '#37474f'
   userId!: number
   textarea = document.querySelector('textarea');
