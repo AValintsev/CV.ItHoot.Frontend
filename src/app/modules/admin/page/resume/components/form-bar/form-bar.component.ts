@@ -70,7 +70,7 @@ export class FormBarComponent implements OnInit {
     this.file = files[0];
 
     if (!this.isCreateForm) {
-      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe(()=>{
+      this.resumeService.addPhoto(this.resume.id, this.file!).subscribe(() => {
         this.snackBarService.showSuccess('Photo added');
       });
     } else {
@@ -212,7 +212,10 @@ export class FormBarComponent implements OnInit {
 
   educationListChanged() {
     (<FormArray>this.resumeForm.controls['educations']).clear();
-    this.resume.educations.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate))
+
+    this.resume.educations = this.resume.educations.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
+    this.resume.educations
       .forEach(education => {
         (<FormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
@@ -239,7 +242,8 @@ export class FormBarComponent implements OnInit {
       dialogType = DialogType.Edit;
     }
     const dialogRef = this.dialog.open(EducationDialog, {
-      width: '700px',
+      // width: '700px',
+      panelClass: 'resume-dialog',
       autoFocus: false,
       data: {type: dialogType, data: data},
     });
@@ -268,7 +272,10 @@ export class FormBarComponent implements OnInit {
 
   experienceListChanged() {
     (<FormArray>this.resumeForm.controls['experiences']).clear();
-    this.resume.experiences.sort((a: ExperienceDto, b: ExperienceDto) => Date.parse(b.startDate) - Date.parse(a.startDate))
+
+    this.resume.experiences = this.resume.experiences.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
+    this.resume.experiences
       .forEach((experience) => {
         (<FormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
@@ -295,7 +302,7 @@ export class FormBarComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(ExperienceDialog, {
-      width: '700px',
+      panelClass: 'resume-dialog',
       autoFocus: false,
       data: {type: dialogType, data: data},
     });

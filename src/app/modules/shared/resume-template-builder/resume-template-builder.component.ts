@@ -16,6 +16,7 @@ import {isObservable, Observable} from 'rxjs';
 import {MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {ExperienceDto} from "../../../models/resume/experience-dto";
 
 @Component({
   selector: 'resume-template-builder',
@@ -60,7 +61,7 @@ export class ResumeTemplateBuilderComponent implements OnInit {
     });
 
     const properties = {
-      isPreviewMode:true,
+      isPreviewMode: true,
       resume: this.resume,
       getYear: this.getYear,
       getMonth: this.getMonth,
@@ -100,26 +101,33 @@ export class ResumeTemplateBuilderComponent implements OnInit {
     const end = new Date(endDate);
     const month = (end.getMonth()) - (start.getMonth());
     let year = end.getFullYear() - start.getFullYear()
-    if(month<0){
-     year = year-1;
+    if (month < 0) {
+      year = year - 1;
     }
     return year;
   }
 
   getMonth(startDate: string, endDate: string) {
 
-       const start:Date = new Date(startDate);
-      const end:Date = new Date(endDate);
-      const month = (end.getMonth()) - (start.getMonth());
-    if (month<0) {
+    const start: Date = new Date(startDate);
+    const end: Date = new Date(endDate);
+    const month = (end.getMonth()) - (start.getMonth());
+    if (month < 0) {
       return 12 + month;
-    }else{
+    } else {
       return month
     }
   }
 
   ngOnInit(): void {
 
+    this.resume.experiences = this.resume.experiences?.sort(
+      (a: any, b: any) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate));
+
+    this.resume.educations = this.resume.educations?.sort(
+      (a: any, b: any) =>
+        Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate));
 
     if (this.resume?.resumeTemplateId) {
       this.resumeService

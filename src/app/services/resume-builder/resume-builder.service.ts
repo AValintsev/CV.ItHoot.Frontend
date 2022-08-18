@@ -170,11 +170,10 @@ export class ResumeBuilderService {
 
   educationListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
+
+    this.resume.educations = this.resume.educations.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
     this.resume.educations
-      ?.sort(
-        (a: EducationDto, b: EducationDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
       .forEach((education) => {
         (<UntypedFormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
@@ -233,9 +232,10 @@ export class ResumeBuilderService {
 
   experienceListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
-    this.resume.experiences?.sort(
-      (a: ExperienceDto, b: ExperienceDto) =>
-        Date.parse(b.endDate) - Date.parse(a.endDate))
+
+    this.resume.experiences = this.resume.experiences.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
+    this.resume.experiences
       .forEach((experience) => {
         (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({

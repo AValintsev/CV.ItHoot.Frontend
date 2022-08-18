@@ -58,10 +58,10 @@
         </a>
       </mat-expansion-panel>
     </li>
-    <mat-divider></mat-divider>
-    <li  menu-item="menu-item" class="title-section"><span>Settings</span></li>
+    <mat-divider  *ngIf="role == UserRoles.Admin"></mat-divider>
+    <li  menu-item="menu-item" class="title-section" *ngIf="role == UserRoles.Admin"><span>Settings</span></li>
 
-    <li  class="setting " not-close-menu>
+    <li  class="setting " not-close-menu *ngIf="role == UserRoles.Admin">
       <mat-expansion-panel >
         <mat-expansion-panel-header   matTooltip="Settings" matTooltipPosition="before">
           <mat-panel-title >
@@ -92,7 +92,7 @@
       </mat-expansion-panel>
     </li>
 
-    <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
+    <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" *ngIf="role == UserRoles.Admin">
       <a routerLink="/admin/builds" matTooltip="Go to proposal builder page" matTooltipPosition="before">
         <mat-icon>construction</mat-icon>
         <span>Proposal builder</span>
@@ -104,7 +104,7 @@
         <span>Users</span>
       </a>
     </li>
-    <mat-divider></mat-divider>
+    <mat-divider  *ngIf="role == UserRoles.Admin"></mat-divider>
   </ol>
 </div>
 <ng-content></ng-content>

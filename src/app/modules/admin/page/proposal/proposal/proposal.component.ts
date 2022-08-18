@@ -189,4 +189,11 @@ export class ProposalComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  recoverProposal(){
+    this.proposalService.recoverProposalById(this.proposal.id).subscribe(() => {
+      this.snackBarService.showSuccess('Recovered');
+      this.router.navigate([`/admin/proposals/${this.proposal.id}`]);
+    });
+  }
+
 }

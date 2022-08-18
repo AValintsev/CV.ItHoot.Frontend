@@ -1,75 +1,81 @@
-<!-- 
+<!--
   <div class="template-list">
     <div class="table-wrapper">
       <div class="table-page">
         <div class="title-section"> -->
- <div class="user-page"> 
-<div class="user-list">
-  <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <div class="rate-limit-reached" *ngIf="isRateLimitReached">
-      Database rate limit has been reached. It will be reset in one minute.
-    </div>
-  </div>
-  <div class="table-wrapper">
-    <div class="table-page">
-    <div class="title-section">
-      <div class="left-block">
-        <h1>Users</h1>
-      </div>
-      <div class="filter-block">
-      <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client" matTooltipPosition="below">
-        <mat-icon>add</mat-icon>
-      </button>
-      <mat-form-field appearance="fill">
-        <mat-label>Search...</mat-label>
-        <input type="text" matInput placeholder="Type text" [formControl]="searchControl">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+<div class="user-page">
+  <div class="user-list">
+    <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+        Database rate limit has been reached. It will be reset in one minute.
       </div>
     </div>
-    <section class="section-table">
-    <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
+    <div class="table-wrapper">
+      <div class="table-page">
+        <div class="title-section">
+          <div class="left-block">
+            <h1>Users</h1>
+          </div>
+          <div class="filter-block">
+            <button mat-raised-button (click)="createClientDialog()" matTooltip="Create client"
+                    matTooltipPosition="below">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-form-field appearance="fill">
+              <mat-label>Search...</mat-label>
+              <input type="text" matInput placeholder="Type text" [formControl]="searchControl">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <section class="section-table">
+          <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort matSortActive="" matSortDirection="">
 
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
-        <td mat-cell *matCellDef="let client">
-          {{client.firstName}} {{client.lastName}}
-        </td>
-      </ng-container>
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+              <td mat-cell *matCellDef="let client">
+                {{client.firstName}} {{client.lastName}}
+              </td>
+            </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-        <td mat-cell *matCellDef="let client">{{client.email}}</td>
-      </ng-container>
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+              <td mat-cell *matCellDef="let client">{{client.email}}</td>
+            </ng-container>
 
-      <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
-        <td mat-cell *matCellDef="let client">
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+              <td mat-cell *matCellDef="let client">
 
-          <mat-form-field>
-            <mat-label>Roles</mat-label>
-            <mat-select [(value)]="client.role" [compareWith]="compareRoles" disableOptionCentering (selectionChange)="roleChanged(client)">
-              <mat-option *ngFor="let role of roles" [value]="role">
-                {{role.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-      </ng-container>
+                <mat-form-field *ngIf="role == UserRoles.Admin; else roleBlock">
+                  <mat-label>Roles</mat-label>
+                  <mat-select [(value)]="client.role" [compareWith]="compareRoles" disableOptionCentering
+                              (selectionChange)="roleChanged(client)">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                      {{role.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
 
-      <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Create At</th>
-        <td mat-cell *matCellDef="let client">{{client.createdAt | dateUtcPipe}}</td>
-      </ng-container>
+                <ng-template #roleBlock>
+                  {{client.role.name}}
+                </ng-template>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Create At</th>
+              <td mat-cell *matCellDef="let client">{{client.createdAt | dateUtcPipe}}</td>
+            </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    </section>
-    <mat-paginator [length]="userCount" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </section>
+        <mat-paginator [length]="userCount" [pageSize]="30" aria-label="Select page of table"></mat-paginator>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>

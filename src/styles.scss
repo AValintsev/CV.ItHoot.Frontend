@@ -16,7 +16,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -67,15 +67,15 @@ a:link {
   border-radius: 0px !important;
   border-top-style: none;
 
-  @media(max-width:970px) {
+  @media(max-width: 970px) {
     // left: -8.3rem;
   }
 
-  @media(max-width:700px) {
+  @media(max-width: 700px) {
     top: 1.5rem;
   }
 
-  @media(max-width:600px) {
+  @media(max-width: 600px) {
     top: 1rem;
   }
 }
@@ -108,7 +108,7 @@ a:link {
 }
 
 
-::-webkit-scrollbar-thumb:horizontal{
+::-webkit-scrollbar-thumb:horizontal {
   border-radius: 6px;
 }
 
@@ -145,11 +145,11 @@ a:link {
   .mat-dialog-content {
     overflow-y: visible;
     max-height: 90vh !important;
-    @media(max-height:800px){
+    @media(max-height: 800px) {
       max-height: 65vh !important;
       overflow-y: auto;
     }
-    @media(max-height:500px){
+    @media(max-height: 500px) {
       max-height: 55vh !important;
       overflow-y: auto;
     }
@@ -178,28 +178,43 @@ td {
   font-size: 14px !important;
 }
 
-.zoom-icon{
+.zoom-icon {
   color: rgba(0, 0, 0, 0.54);
 }
-.hidden-mat-btn-group{
+
+.hidden-mat-btn-group {
   display: none;
 }
 
-.mat-select-panel-height{
-  max-height:180px !important;
+.mat-select-panel-height {
+  max-height: 180px !important;
 }
 
-.table-page{
+.table-page {
   border-radius: 0px !important;
 }
 
-.shift-to-the-left{
-  @media(max-width:970px){
+.shift-to-the-left {
+  @media(max-width: 970px) {
     left: -17rem;
   }
 }
+
 //wrong pdf with this styles
 //resume-template-builder{
 //  display: flex;
 //  justify-content: center;
 //}
+
+.resume-dialog{
+  width: 100%;
+}
+
+.modal-text-editor {
+  min-height: 400px;
+  max-height: 700px;
+  width: 100%;
+  //min-width: 600px;
+  //max-width: 1400px;
+  margin-bottom: 40px;
+}

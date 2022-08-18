@@ -221,11 +221,10 @@ export class FormBarComponent implements OnInit, OnDestroy {
 
   educationListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
+
+    this.resume.educations = this.resume.educations.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
     this.resume.educations
-      ?.sort(
-        (a: EducationDto, b: EducationDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
       .forEach((education) => {
         (<UntypedFormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
@@ -253,7 +252,8 @@ export class FormBarComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(EducationDialog, {
-      width: '650px',
+      panelClass: 'resume-dialog',
+      disableClose: true,
       autoFocus: false,
       data: {type: dialogType, data: data},
     });
@@ -297,10 +297,10 @@ export class FormBarComponent implements OnInit, OnDestroy {
 
   experienceListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
+
+    this.resume.experiences = this.resume.experiences.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
     this.resume.experiences
-      ?.sort((a: ExperienceDto, b: ExperienceDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
       .forEach((experience) => {
         (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
@@ -327,9 +327,10 @@ export class FormBarComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(ExperienceDialog, {
-      width: '650px',
+      panelClass: 'resume-dialog',
       autoFocus: false,
       data: {type: dialogType, data: data},
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(experienceDialog => {
