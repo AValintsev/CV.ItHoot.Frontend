@@ -1,16 +1,26 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {EducationDto} from '../../../../models/resume/education-dto';
-import {DialogType} from '../../../../models/enums';
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
-import {MatDatepicker} from '@angular/material/datepicker';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { EducationDto } from '../../../../models/resume/education-dto';
+import { DialogType } from '../../../../models/enums';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 import * as moment from 'moment';
-import {UserValidators} from '../../validators/user.validators';
-import {Subject} from 'rxjs';
-import {quillModulesConstant} from "../../constants/quill-editor-constants";
-
+import { UserValidators } from '../../validators/user.validators';
+import { Subject } from 'rxjs';
+import { quillModulesConstant } from '../../constants/quill-editor-constants';
 
 export const MY_FORMATS = {
   parse: {
@@ -38,9 +48,7 @@ export const MY_FORMATS = {
   ],
 })
 export class EducationDialog implements OnInit, OnDestroy {
-
   quillModules = quillModulesConstant;
-
 
   private destroy$ = new Subject<boolean>();
   education: EducationDto = {} as EducationDto;
@@ -61,17 +69,38 @@ export class EducationDialog implements OnInit, OnDestroy {
       specialization: new UntypedFormControl(this.education.specialization, [
         Validators.required,
       ]),
-      degree: new UntypedFormControl(this.education.degree, [Validators.required]),
-      description: new UntypedFormControl(this.education.description, [
+      degree: new UntypedFormControl(this.education.degree, [
+        Validators.required,
       ]),
+      description: new UntypedFormControl(this.education.description, []),
       startDate: new UntypedFormControl(this.education.startDate, [
-        Validators.required,
+        Validators.required
       ]),
-      endDate: new UntypedFormControl(this.checkDataTypeFormControl(this.typeDialog), [
-        Validators.required,
-        UserValidators.checkValidEndDateDialog(this),
-      ]),
+      endDate: new UntypedFormControl(
+        this.checkDataTypeFormControl(this.typeDialog),
+        [
+          Validators.required
+        ]
+      ),
+    },{
+      validators:UserValidators.checkValidEndDateDialog1('startDate','endDate')
     });
+    // this.educationForm.addValidators(UserValidators.checkValidEndDateDialog1('startDate','endDate'))
+   
+
+    // this.educationForm.get('startDate')?.valueChanges.subscribe(
+    //   (e)=>{
+    //     this.educationForm.get('startDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('endDate')?.value, 1))
+    //     this.educationForm.get('endDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('startDate')?.value, 2))
+    //   }
+    // )
+
+    // this.educationForm.get('endDate')?.valueChanges.subscribe(
+    //   (e)=>{
+    //     this.educationForm.get('startDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('endDate')?.value, 1))
+    //     this.educationForm.get('endDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('startDate')?.value, 2))
+    //   }
+    // )
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
@@ -97,8 +126,8 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.educationForm.get(point)?.patchValue(ctrlValue.format());
     datepicker.close();
   }
-   ngOnDestroy(){
-    this.destroy$.next(true)
-    this.destroy$.unsubscribe()
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
