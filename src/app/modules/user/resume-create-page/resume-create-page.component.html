@@ -9,9 +9,9 @@
 
   <div class="container">
     <div class="template-wrapper">
-      <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
-                              [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"
-                              [templatedChanged]="templateChanged"></cv-resume-builder-editor>
+<!--      <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"-->
+<!--                              [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"-->
+<!--                              [templatedChanged]="templateChanged"></cv-resume-builder-editor>-->
     </div>
 
 
@@ -32,13 +32,13 @@
       <mat-icon>done</mat-icon>
     </button>
 
-    <button mat-fab color="primary" (click)="isLiveEdit = !isLiveEdit">
-      <mat-icon>swap_horiz</mat-icon>
-    </button>
+<!--    <button mat-fab color="primary" (click)="isLiveEdit = !isLiveEdit">-->
+<!--      <mat-icon>swap_horiz</mat-icon>-->
+<!--    </button>-->
 
-    <button *ngIf="isLiveEdit" mat-fab color="primary" (click)="openResumeSettingDialog()">
-      <mat-icon>settings</mat-icon>
-    </button>
+<!--    <button *ngIf="isLiveEdit" mat-fab color="primary" (click)="openResumeSettingDialog()">-->
+<!--      <mat-icon>settings</mat-icon>-->
+<!--    </button>-->
 
   </div>
 
