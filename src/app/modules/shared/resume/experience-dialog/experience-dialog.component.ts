@@ -67,6 +67,8 @@ export class ExperienceDialog implements OnInit, OnDestroy {
         Validators.required,
         UserValidators.checkValidEndDateExperience(this),
       ]),
+    },{
+      validators:UserValidators.checkValidEndDateDialog1('startDate','endDate')
     });
   }
 

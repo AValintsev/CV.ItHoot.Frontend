@@ -46,6 +46,9 @@
       <mat-error *ngIf="experienceForm.controls['startDate'].errors?.['required']">
         Enter date
       </mat-error>
+      <mat-error *ngIf="experienceForm?.controls['startDate'].errors">
+        Incorrect date
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter end of experience</mat-label>

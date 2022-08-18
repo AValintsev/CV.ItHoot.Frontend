@@ -85,22 +85,6 @@ export class EducationDialog implements OnInit, OnDestroy {
     },{
       validators:UserValidators.checkValidEndDateDialog1('startDate','endDate')
     });
-    // this.educationForm.addValidators(UserValidators.checkValidEndDateDialog1('startDate','endDate'))
-   
-
-    // this.educationForm.get('startDate')?.valueChanges.subscribe(
-    //   (e)=>{
-    //     this.educationForm.get('startDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('endDate')?.value, 1))
-    //     this.educationForm.get('endDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('startDate')?.value, 2))
-    //   }
-    // )
-
-    // this.educationForm.get('endDate')?.valueChanges.subscribe(
-    //   (e)=>{
-    //     this.educationForm.get('startDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('endDate')?.value, 1))
-    //     this.educationForm.get('endDate')?.addValidators(UserValidators.checkValidEndDateDialog1(this.educationForm.get('startDate')?.value, 2))
-    //   }
-    // )
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
