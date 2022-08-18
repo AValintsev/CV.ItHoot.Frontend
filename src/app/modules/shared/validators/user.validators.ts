@@ -74,9 +74,10 @@ export class UserValidators {
        }else{
         const firsFieldDate = controls.get(startTime)?.hasError('incorrectDate')
         if(firsFieldDate){
-          if(controls&&controls.get(startTime)){
-             delete controls.get(startTime)?.errors;
-          }
+          // if(controls&&controls.get(startTime)){
+          //    delete controls.get(startTime)?.errors;
+          // }
+        controls.get(startTime)?.updateValueAndValidity()
         
         }
        }
