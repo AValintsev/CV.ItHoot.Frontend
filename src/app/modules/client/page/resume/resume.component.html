@@ -1,5 +1,18 @@
-<div class="resume-wrapper">
+<!-- <div class="resume-wrapper">
   <div class="resumeDiv">
     <resume-template-builder  *ngIf="resume" [resume]="resume" [resumeChanged]="resumeChanged"></resume-template-builder>
   </div>
+</div> -->
+<div class="back-btn__wrapper">
+  <button mat-raised-button class="back-btn" routerLink="/client/proposals">
+    <mat-icon>arrow_back_ios</mat-icon>
+    Back to Teams List
+  </button>
+</div>
+<div class="content">
+  <div class="container">
+    <div class="template-wrapper">
+      <resume-template-builder  *ngIf="resume" [resume]="resume" [resumeChanged]="resumeChanged"></resume-template-builder>
+    </div>
+    </div>
 </div>

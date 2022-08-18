@@ -1,4 +1,5 @@
 $visiblHeader:830px;
+ul li { list-style-type: none; }
 :host::ng-deep{
    cv-burger-btn{
   @media (max-width: $visiblHeader) {
