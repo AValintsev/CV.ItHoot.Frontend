@@ -172,7 +172,7 @@ $visiblHeader: 830px;
       
       @media screen and (min-width: 1151px) {
         // width: 100%;
-        zoom: 0.72;
+        zoom: 0.85;
       }
       @media screen and (max-width: 1151px) {
         // width: 100%;
@@ -297,7 +297,7 @@ $visiblHeader: 830px;
 :host-context(.open-side-bar--content) {
   .container {
     @media screen and (max-width: 854px) {
-      align-items: flex-start;
+      // align-items: flex-start;
     }
   }
   #resume {

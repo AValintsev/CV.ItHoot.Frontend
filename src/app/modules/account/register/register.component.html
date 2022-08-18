@@ -26,6 +26,7 @@
           <mat-error *ngIf="registerForm?.get('password')?.errors?.minlength&&registerForm?.get('password')?.touched">Enter a
             password of at least {{registerForm?.get('password')?.errors?.minlength?.requiredLength}} characters
           </mat-error>
+          <mat-error *ngIf="registerForm?.get('password')?.errors?.absentDigit && registerForm?.get('password')?.touched&&registerForm?.get('password')?.value.length>=6">Password must have at least one digit</mat-error>
           </mat-form-field>
           <div class="button">
             <button [disabled]="registerForm.invalid" type="submit" mat-raised-button matTooltip="Register">Register</button>

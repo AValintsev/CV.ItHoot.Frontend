@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
+import {RoleGuard} from "../../guards/role.guard";
+import {UserRole} from "../../models/users-type";
 
 const routs: Routes = [
   {
@@ -13,11 +15,17 @@ const routs: Routes = [
           import('./page/resume/admin-resume.module').then((mod) => mod.AdminResumeModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'languages',
         loadChildren: () =>
           import('./page/language/language.module').then((mod) => mod.LanguageModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'skills',
         loadChildren: () =>
           import('./page/skill/skill.module').then((mod) => mod.SkillModule),
@@ -34,21 +42,33 @@ const routs: Routes = [
           import('./page/archive/archive.module').then((mod) => mod.ArchiveModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'positions',
         loadChildren: () =>
           import('./page/position/position.module').then((mod) => mod.PositionModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'builds',
         loadChildren: () =>
           import('./page/proposal-build/proposal-build.module').then((mod) => mod.ProposalBuildModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'complexities',
         loadChildren: () =>
           import('./page/complexity/complexity.module').then((mod) => mod.ComplexityModule),
       },
       {
+        canLoad: [RoleGuard],
+        canActivate: [RoleGuard],
+        data: { role: [UserRole.Admin] },
         path: 'templates',
         loadChildren: () =>
           import('./page/resume-template/resume-template.module').then((mod) => mod.ResumeTemplateModule),

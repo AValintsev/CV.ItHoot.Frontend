@@ -12,6 +12,8 @@ import {debounceTime, map, startWith} from "rxjs/operators";
 import {UserListFilter} from "../../../../../models/proposal/proposal-list-filter";
 import {ClientDto} from 'src/app/models/clients/client-dto';
 import {CreateUserDialogComponent} from '../create-user-dialog/create-user-dialog.component';
+import {UserRole} from "../../../../../models/users-type";
+import {AccountService} from "../../../../../services/account.service";
 
 @Component({
   selector: 'cv-user-list-page',
@@ -24,6 +26,9 @@ export class UserListPageComponent implements OnInit {
   users:SmallUserDto[];
   roles:RoleDto[];
 
+  role:UserRole;
+  UserRoles = UserRole;
+
   userCount: number;
   searchControl = new UntypedFormControl();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,13 +39,14 @@ export class UserListPageComponent implements OnInit {
   constructor(private userService:UserService,
               private roleService:RoleService,
               private dialog:MatDialog,
-              private snackBar:SnackBarService,
+              private accountService:AccountService,
               private snackBarService:SnackBarService) {
     userService.getAllUsers().subscribe(users => {
       this.users = users.items;
       this.userCount = users.totalRecords;
     });
     roleService.getAllRoles().subscribe(roles => this.roles = roles);
+    this.role = this.accountService.getStoreRole();
   }
 
   ngOnInit(): void {
@@ -106,7 +112,7 @@ export class UserListPageComponent implements OnInit {
 
       this.searchControl.setValue("");
       this.paginator.pageIndex = 0;
-      this.snackBar.showSuccess('Saved')
+      this.snackBarService.showSuccess('Saved')
       // this.refreshTable();
     });
   }

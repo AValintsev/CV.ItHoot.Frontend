@@ -16,6 +16,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
 import {CredentialResponse} from "google-one-tap";
 import {environment} from "../../../../environments/environment";
+import { UserValidators } from '../../shared/validators/user.validators';
 
 @Component({
   selector: 'cv-login',
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
               private loadingService: LoadingService,
               private _ngZone: NgZone,
               private el: ElementRef,
-              private cdr: ChangeDetectorRef
+              private cdr: ChangeDetectorRef,
   ) {}
 
   changeVisiblePassword(event: Event) {
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentChecked, A
     this.loading$ = this.loadingService.isLoading$
     this.loginForm = new UntypedFormGroup({
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
-      password: new UntypedFormControl('', [Validators.required, Validators.minLength(6)])
+      password: new UntypedFormControl('', [Validators.required, Validators.minLength(6),UserValidators.checkingNumberInPassword(/\d/)])
     })
 
     this.loadGoogleAuthScript();

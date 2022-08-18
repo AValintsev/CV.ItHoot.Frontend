@@ -170,11 +170,10 @@ export class ResumeBuilderService {
 
   educationListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['educations']).clear();
+
+    this.resume.educations = this.resume.educations.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
     this.resume.educations
-      ?.sort(
-        (a: EducationDto, b: EducationDto) =>
-          Date.parse(b.endDate) - Date.parse(a.endDate)
-      )
       .forEach((education) => {
         (<UntypedFormArray>this.resumeForm.controls['educations']).push(
           new UntypedFormGroup({
@@ -233,9 +232,10 @@ export class ResumeBuilderService {
 
   experienceListChanged() {
     (<UntypedFormArray>this.resumeForm.controls['experiences']).clear();
-    this.resume.experiences?.sort(
-      (a: ExperienceDto, b: ExperienceDto) =>
-        Date.parse(b.endDate) - Date.parse(a.endDate))
+
+    this.resume.experiences = this.resume.experiences.sort((a, b) =>
+      Date.parse(b.endDate) - Date.parse(a.endDate) || Date.parse(a.startDate) - Date.parse(b.startDate))
+    this.resume.experiences
       .forEach((experience) => {
         (<UntypedFormArray>this.resumeForm.controls['experiences']).push(
           new UntypedFormGroup({
@@ -292,24 +292,28 @@ export class ResumeBuilderService {
     return age;
   }
 
+
   getYear(startDate: string, endDate: string) {
-    let start = Date.parse(startDate);
-    let end = Date.parse(endDate);
-    if (end >= start) {
-      let time = end - start;
-      return Math.floor(time / (1000 * 60 * 60 * 24 * 30 * 12));
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const month = (end.getMonth()) - (start.getMonth());
+    let year = end.getFullYear() - start.getFullYear()
+    if(month<0){
+     year = year-1;
     }
-    return 0;
+    return year;
   }
 
   getMonth(startDate: string, endDate: string) {
-    let start = Date.parse(startDate);
-    let end = Date.parse(endDate);
-    if (end >= start) {
-      let time = end - start;
-      return Math.floor((time / (1000 * 60 * 60 * 24 * 30)) % 12);
+
+       const start:Date = new Date(startDate);
+      const end:Date = new Date(endDate);
+      const month = (end.getMonth()) - (start.getMonth());
+    if (month<0) {
+      return 12 + month;
+    }else{
+      return month
     }
-    return 0;
   }
 
 }

@@ -27,11 +27,11 @@
             <mat-icon *ngIf="type==='password'" matSuffix class="eye" (click)="changeVisiblePassword($event)">visibility</mat-icon>
             <mat-icon *ngIf="type==='text'" matSuffix class="eye" (click)="changeVisiblePassword($event)">visibility_off</mat-icon>
             <mat-error *ngIf="loginForm?.get('password')?.errors?.required && loginForm?.get('password')?.touched">Enter password</mat-error>
+            <mat-error *ngIf="loginForm?.get('password')?.errors?.absentDigit && loginForm?.get('password')?.touched&&loginForm?.get('password')?.value.length>=6">Password must have at least one digit</mat-error>
             <mat-error *ngIf="loginForm?.get('password')?.errors?.minlength && loginForm?.get('password')?.touched">
               Enter a password of at least {{loginForm?.get("password")?.errors?.minlength?.requiredLength }} characters
             </mat-error>
           </mat-form-field>
-
           <div class="button-wrapper">
             <div class="btn-login">
               <button class="submit-btn" [disabled]="loginForm.invalid" type="submit" mat-raised-button matTooltip="Login">
