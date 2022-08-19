@@ -207,14 +207,26 @@ td {
 //}
 
 .resume-dialog{
-  width: 100%;
+  width: 80%;
+  height: 80%;
 }
 
 .modal-text-editor {
-  min-height: 400px;
-  max-height: 700px;
+  height: 500px;
+  //max-height: 700px;
   width: 100%;
   //min-width: 600px;
   //max-width: 1400px;
   margin-bottom: 40px;
 }
+.quill-editor {
+  height: 100%;
+}
+
+
+//.ql-clipboard {
+//  position: fixed;
+//  left: 50%;
+//  top: 50%;
+//  width: 0px; // fix the width to 0, so large text cannot overflow the div
+//}

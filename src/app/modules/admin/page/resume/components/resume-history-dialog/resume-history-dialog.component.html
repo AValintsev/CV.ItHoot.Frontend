@@ -1,0 +1,50 @@
+<div class="proposal-dialog">
+  <h1 mat-dialog-title>Resume history</h1>
+  <div mat-dialog-content class="content">
+
+    <section class="section-table">
+      <table mat-table [dataSource]="resumeHistory" matSort matSortActive="" matSortDirection="">
+        <ng-container matColumnDef="updatedAt">
+          <th mat-header-cell *matHeaderCellDef>Updated At</th>
+          <td mat-cell *matCellDef="let history"> {{history.updatedAt | dateUtcPipeWithTime}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="updatedBy">
+          <th mat-header-cell *matHeaderCellDef>Updated By</th>
+          <td mat-cell *matCellDef="let history"> {{history.updatedUser.firstName}} {{history.updatedUser.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let history">{{getResumeHistoryStatus(history)}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="newResumeJson">
+          <th mat-header-cell *matHeaderCellDef>New Resume Json</th>
+          <td mat-cell *matCellDef="let history">
+            <button mat-raised-button [disabled]="history.newResumeJson == null" color="primary" (click)="copyJson(history.newResumeJson)">
+              <span>Copy Json</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="oldResumeJson">
+          <th mat-header-cell *matHeaderCellDef>Old Resume Json</th>
+          <td mat-cell *matCellDef="let history">
+            <button mat-raised-button [disabled]="history.oldResumeJson == null" color="primary" (click)="copyJson(history.oldResumeJson)">
+              <span>Copy Json</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </section>
+
+
+    <div mat-dialog-actions class="actions">
+    </div>
+  </div>
+
+</div>

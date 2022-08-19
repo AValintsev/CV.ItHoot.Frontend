@@ -1,6 +1,6 @@
 export interface SmallUserDto{
   id: number;
-  fistName: string;
+  firstName: string;
   lastName: string;
   email: string;
   role: RoleDto;

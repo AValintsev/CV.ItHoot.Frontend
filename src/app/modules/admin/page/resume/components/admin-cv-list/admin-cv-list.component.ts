@@ -34,6 +34,8 @@ import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {LoadingService} from 'src/app/services/loading.service';
 import {Router} from '@angular/router';
+import {MatDialog} from "@angular/material/dialog";
+import {ResumeHistoryDialog} from "../resume-history-dialog/resume-history-dialog.component";
 
 @Component({
   selector: 'cv-admin-resume',
@@ -71,8 +73,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   filteredClientsMulti: ReplaySubject<SmallClientsDto[]> = new ReplaySubject(1);
 
   @ViewChild('statusMultiSelect', {static: true}) statusMultiSelect: MatSelect;
-  statuses:any[]= [
-    {name:'Available', id: AvailabilityStatus.Available},
+  statuses: any[] = [
+    {name: 'Available', id: AvailabilityStatus.Available},
     {name: 'Busy', id: AvailabilityStatus.Busy},
     {name: 'Partial Available', id: AvailabilityStatus.PartialAAvailable},
     {name: 'Very careful available', id: AvailabilityStatus.VeryCarefulAvailable},
@@ -80,7 +82,6 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   statusControl = new FormControl();
   // statusFilterControl = new FormControl();
   filteredStatusesMulti: ReplaySubject<any[]> = new ReplaySubject(1);
-
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -105,6 +106,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService,
     private router: Router,
+    private dialog: MatDialog
   ) {
     this.userRole = this.accountService.getStoreRole();
   }
@@ -390,5 +392,14 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this._onDestroy.next('');
     this._onDestroy.complete();
+  }
+
+  openResumeHistoryDialog(resume: SmallResumeDto) {
+    const dialogRef = this.dialog.open(ResumeHistoryDialog, {
+      width: '100%',
+      data: {resume: resume}
+    });
+
+
   }
 }
