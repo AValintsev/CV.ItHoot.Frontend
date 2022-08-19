@@ -9,11 +9,11 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {ResumeDto} from "../../../models/resume/resume-dto";
-import {Observable} from "rxjs";
-import {ResumeService} from "../../../services/resume.service";
-import {CommonModule} from "@angular/common";
-import {MatIconModule} from "@angular/material/icon";
+import { ResumeDto } from "../../../models/resume/resume-dto";
+import { Observable } from "rxjs";
+import { ResumeService } from "../../../services/resume.service";
+import { CommonModule } from "@angular/common";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'template-builder',
@@ -22,7 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
 })
 export class TemplateBuilderComponent implements OnInit {
 
-  @ViewChild('resumeContainer', {static: true, read: ViewContainerRef}) containerRef: ViewContainerRef;
+  @ViewChild('resumeContainer', { static: true, read: ViewContainerRef }) containerRef: ViewContainerRef;
   @Input() resume: ResumeDto;
   @Input() templatedChanged: Observable<string> | null;
   @Input() templateHtml: string;
@@ -30,7 +30,7 @@ export class TemplateBuilderComponent implements OnInit {
 
 
   constructor(private resumeService: ResumeService,
-              private injector: Injector) {
+    private injector: Injector) {
 
 
   }
@@ -40,9 +40,9 @@ export class TemplateBuilderComponent implements OnInit {
     try {
       this.containerRef.clear();
       const html = this.templateHtml;
-      const componentType = Component({template: html, selector: 'template-resumes'})(class {
+      const componentType = Component({ template: html, selector: 'template-resumes' })(class {
       });
-      const moduleType = NgModule({imports: [CommonModule,MatIconModule], declarations: [componentType]})(class {
+      const moduleType = NgModule({ imports: [CommonModule, MatIconModule], declarations: [componentType] })(class {
       });
 
       const properties = {
@@ -83,20 +83,27 @@ export class TemplateBuilderComponent implements OnInit {
     const end = new Date(endDate);
     const month = (end.getMonth()) - (start.getMonth());
     let year = end.getFullYear() - start.getFullYear()
-    if(month<0){
-     year = year-1;
+    if (month < 0) {
+      year = year - 1;
     }
+    // if (month <= 0 && year <= 0) {
+    //   return ''
+    // }
     return year;
   }
 
   getMonth(startDate: string, endDate: string) {
 
-       const start:Date = new Date(startDate);
-      const end:Date = new Date(endDate);
-      const month = (end.getMonth()) - (start.getMonth());
-    if (month<0) {
+    const start: Date = new Date(startDate);
+    const end: Date = new Date(endDate);
+    const month = (end.getMonth()) - (start.getMonth());
+    const year = end.getFullYear() - start.getFullYear()
+    // if (month <= 0 && year <= 0) {
+    //   return ''
+    // }
+    if (month < 0) {
       return 12 + month;
-    }else{
+    } else {
       return month
     }
   }
