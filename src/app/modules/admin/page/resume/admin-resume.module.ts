@@ -43,6 +43,8 @@ import {LanguageDialogModule} from "../../../shared/resume/language-dialog/langu
 import {ExperienceDialogModule} from "../../../shared/resume/experience-dialog/experience-dialog.module";
 import {EducationDialogModule} from "../../../shared/resume/education-dialog/education.dialog.module";
 import {TemplatePreviewDialogModule} from "../../../shared/template-preview-dialog/template-preview-dialog.module";
+import { ResumeHistoryDialog } from './components/resume-history-dialog/resume-history-dialog.component';
+import {PipesModule} from "../../../shared/directives/pipes.module";
 
 
 @NgModule({
@@ -87,7 +89,8 @@ import {TemplatePreviewDialogModule} from "../../../shared/template-preview-dial
     LanguageDialogModule,
     ExperienceDialogModule,
     EducationDialogModule,
-    TemplatePreviewDialogModule
+    TemplatePreviewDialogModule,
+    PipesModule
   ],
 
   exports: [
@@ -99,6 +102,7 @@ import {TemplatePreviewDialogModule} from "../../../shared/template-preview-dial
     ResumeViewPage,
     AdminCvListComponent,
     ResumeListPage,
+    ResumeHistoryDialog,
   ],
   providers: [DeleteModalService]
 })

@@ -39,7 +39,7 @@ export class UserSettingsComponent implements OnInit {
       lastName: new FormControl(this.userProfile?.lastName, [Validators.required]),
       phoneNumber: new FormControl(this.userProfile?.phoneNumber, [Validators.pattern('[- +()0-9]+'), Validators.minLength(10)]),
       email: new FormControl({value: this.userProfile?.email, disabled: true}, [Validators.required]),
-      site: new FormControl(this.userProfile?.lastName, []),
+      site: new FormControl(this.userProfile?.site, []),
     });
   }
 
