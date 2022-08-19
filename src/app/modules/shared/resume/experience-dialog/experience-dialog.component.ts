@@ -8,7 +8,7 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,} from '@angular/mate
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE,} from '@angular/material/core';
 import {MatDatepicker} from '@angular/material/datepicker';
 import * as moment from 'moment';
-import {UserValidators} from '../../validators/user.validators';
+import {UserValidators} from '../../validators/check-date.validators';
 import {quillModulesConstant} from "../../constants/quill-editor-constants";
 
 export const MY_FORMATS = {
@@ -65,10 +65,9 @@ export class ExperienceDialog implements OnInit, OnDestroy {
       ]),
       endDate: new UntypedFormControl(this.checkDataTypeFormControl(this.typeDialog), [
         Validators.required,
-        UserValidators.checkValidEndDateExperience(this),
       ]),
     },{
-      validators:UserValidators.checkValidEndDateDialog1('startDate','endDate')
+      validators:UserValidators.checkValidEndDateDialog('startDate','endDate')
     });
   }
 

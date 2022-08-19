@@ -1,3 +1,4 @@
+
 import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 export class UserValidators {
@@ -78,12 +79,12 @@ export class UserValidators {
           //    delete controls.get(startTime)?.errors;
           // }
         controls.get(startTime)?.updateValueAndValidity()
-        
+
         }
        }
 
         return null
-  
+
     };
   }
 }

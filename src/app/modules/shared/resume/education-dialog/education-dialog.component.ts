@@ -18,9 +18,10 @@ import {
 } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { UserValidators } from '../../validators/user.validators';
+import { UserValidators } from '../../validators/check-date.validators';
 import { Subject } from 'rxjs';
 import { quillModulesConstant } from '../../constants/quill-editor-constants';
+import { CustomStateMatcher } from '../../validators/custom-state-matcher';
 
 export const MY_FORMATS = {
   parse: {
@@ -56,8 +57,10 @@ export class EducationDialog implements OnInit, OnDestroy {
   DialogType = DialogType;
   educationForm: UntypedFormGroup = {} as UntypedFormGroup;
   maxDate = new Date(Date.now());
+  matcher!:CustomStateMatcher;
   ngOnInit() {
     this.validateForm();
+    this.matcher = new CustomStateMatcher();
   }
 
   validateForm() {
@@ -83,7 +86,7 @@ export class EducationDialog implements OnInit, OnDestroy {
         ]
       ),
     },{
-      validators:UserValidators.checkValidEndDateDialog1('startDate','endDate')
+      validators:UserValidators.checkValidEndDateDialog('startDate','endDate')
     });
   }
 
@@ -114,4 +117,5 @@ export class EducationDialog implements OnInit, OnDestroy {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
+
 }
