@@ -1,4 +1,4 @@
-<div class="resume-wrapper" *ngIf="resume">
+
   <div class="back-btn__wrapper">
     <button
       mat-raised-button
@@ -9,11 +9,17 @@
       {{proposalIdExist?'Back to Team':'Back to Resumes'}}
     </button>
   </div>
-  <div class="resume-inner">
 
-      <div class="actions-wrapper">
+<div class="content">
+  <div class="container">
+    <div class="wrapper-edit">
+      <resume-template-builder class="template-wrapper" *ngIf="resume" [resume]="resume"></resume-template-builder>
+    </div>
+  </div>
 
-    <a class="pdf-button" mat-fab color="primary" routerLink="/admin/resume/edit/{{resume.id}}" matTooltip="Edit resume" matTooltipPosition="before">
+      <div class="actions">
+
+    <a class="pdf-button" mat-fab color="primary" routerLink="/admin/resume/edit/{{resume?.id}}" matTooltip="Edit resume" matTooltipPosition="before">
       <mat-icon>edit</mat-icon>
     </a>
 
@@ -25,14 +31,43 @@
       <mat-icon>description</mat-icon>
     </button>
   </div>
-
-
-  <div class="resumeDiv">
-    <resume-template-builder *ngIf="resume" [resume]="resume"></resume-template-builder>
-  </div>
-  </div>
-
-
 </div>
+
+
+
+
+
+
 <ngx-spinner size="medium" type="ball-circus" [fullScreen]="true"></ngx-spinner>
 
+<!--  -->
+1488
+<!-- <div class="back-btn__wrapper">
+  <button mat-raised-button class="back-btn" routerLink="/home/resume">
+    <mat-icon>arrow_back_ios</mat-icon>
+    Back to Resume List
+  </button>
+</div>
+<div class="content" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
+  <div class="container">
+    <div *ngIf="!isLiveEdit" class="wrapper-edit">
+      <resume-template-builder class="template-wrapper" [resume]="resume" [resumeChanged]="resumeChanged"
+        [templatedChanged]="templateChanged"></resume-template-builder>
+      <div class="left-bar form-bar">
+        <form-bar [resumeForm]="resumeForm" [resume]="resume" [isCreateForm]="false"
+          (templateChange)="changeTemplate($event)"></form-bar>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button mat-fab color="primary" [disabled]="!resumeForm.valid" (click)="submit(resume)">
+      <mat-icon>done</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)="isLiveEdit = !isLiveEdit">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+    <button *ngIf="isLiveEdit" mat-fab color="primary" (click)="openResumeSettingDialog()">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </div>
+</div> -->

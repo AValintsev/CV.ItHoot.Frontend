@@ -132,6 +132,13 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
   navigateTo(){
     this.router.navigate(['/home/profile'])
   }
+
+  duplicate(resumeId: number) {
+    this.resumeService.duplicateResume(resumeId).subscribe(resume => {
+      this.router.navigate([`/home/resume/edit/${resume.id}`]);
+    })
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

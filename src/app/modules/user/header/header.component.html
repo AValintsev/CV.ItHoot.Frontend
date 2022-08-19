@@ -2,12 +2,12 @@
   <div class="header-inner">
     <div class="col">
       <div class="label">
-        <img src="assets/label.jpg" alt="label" />
+        <img routerLink="/home/resume" src="assets/label.jpg" alt="label" />
       </div>
     </div>
     <div class="col">
       <div class="col__btns">
-        <button *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/cv/create']" mat-raised-button
+        <button *ngIf="btnSwitcher('create') | async" [routerLink]="['/home/resume/create']" mat-raised-button
           color="primary" class="create-resume">
           Create new Resume
         </button>
@@ -15,7 +15,7 @@
     </div>
     <div class="col">
       <div class="user">
-        <button class="button-icon" *ngIf="btnSwitcher('back') | async" routerLink="/home/cv/user-list" mat-fab
+        <button class="button-icon" *ngIf="btnSwitcher('back') | async" routerLink="/home/resume" mat-fab
           color="primary" mat-icon-button>
           <mat-icon>home</mat-icon>
         </button>
@@ -44,13 +44,13 @@
                 <mat-divider></mat-divider>
               </div>
 
-              <button mat-menu-item *ngIf="btnSwitcher('edit') | async" routerLink="/home/cv/edit/{{id}}">
+              <button mat-menu-item *ngIf="btnSwitcher('edit') | async" routerLink="/home/resume/edit/{{id}}">
                 <mat-icon>edit</mat-icon>
                 <span>
                   Edit Resume
                 </span>
               </button>
-                <button mat-menu-item [routerLink]="['/home/cv/create/']" [queryParams]="{ userId: id }">
+                <button mat-menu-item (click)="duplicate(id)">
                   <mat-icon>file_copy</mat-icon>
                   <span>Copy and edit</span>
                 </button>
@@ -85,7 +85,7 @@
               <mat-icon>format_list_bulleted</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button (click)="navigateTo()" mat-menu-item>
+              <button routerLink="/home/profile" mat-menu-item>
                 <div class="user-content small">
                   <div class="user-picture img">
                     <img src="assets/face.jpg" alt="user picture" />
