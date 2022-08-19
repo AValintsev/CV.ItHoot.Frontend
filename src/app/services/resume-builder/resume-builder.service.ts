@@ -298,22 +298,30 @@ export class ResumeBuilderService {
     const end = new Date(endDate);
     const month = (end.getMonth()) - (start.getMonth());
     let year = end.getFullYear() - start.getFullYear()
-    if(month<0){
-     year = year-1;
+    if (month < 0) {
+      year = year - 1;
     }
+    // if (month <= 0 && year <= 0) {
+    //   return ''
+    // }
     return year;
   }
 
   getMonth(startDate: string, endDate: string) {
 
-       const start:Date = new Date(startDate);
-      const end:Date = new Date(endDate);
-      const month = (end.getMonth()) - (start.getMonth());
-    if (month<0) {
+    const start: Date = new Date(startDate);
+    const end: Date = new Date(endDate);
+    const month = (end.getMonth()) - (start.getMonth());
+    const year = end.getFullYear() - start.getFullYear()
+    // if (month <= 0 && year <= 0) {
+    //   return ''
+    // }
+    if (month < 0) {
       return 12 + month;
-    }else{
+    } else {
       return month
     }
   }
+
 
 }

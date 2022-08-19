@@ -4,61 +4,33 @@
     Back to Resume List
   </button>
 </div>
-
 <div class="content" *ngIf="resume && resumeForm" [formGroup]="resumeForm">
-
   <div class="container">
     <div class="template-wrapper">
       <cv-resume-builder-editor *ngIf="isLiveEdit" class="template-wrapper"
                               [resumeForm]="resumeForm" [resume]="resume" [resumeChanged]="resumeChanged"
                               [templatedChanged]="templateChanged"></cv-resume-builder-editor>
     </div>
-
-
     <div *ngIf="!isLiveEdit" class="wrapper-edit">
       <resume-template-builder class="template-wrapper" [resume]="resume" [resumeChanged]="resumeChanged"
                                [templatedChanged]="templateChanged"></resume-template-builder>
-
       <div class="left-bar form-bar">
         <form-bar [resumeForm]="resumeForm" [resume]="resume" [isCreateForm]="false"
                   (templateChange)="changeTemplate($event)"></form-bar>
       </div>
-
     </div>
   </div>
-
   <div class="actions">
     <button mat-fab color="primary" [disabled]="!resumeForm.valid" (click)="submit(resume)">
       <mat-icon>done</mat-icon>
     </button>
-
     <button mat-fab color="primary" (click)="isLiveEdit = !isLiveEdit">
       <mat-icon>swap_horiz</mat-icon>
     </button>
-
     <button *ngIf="isLiveEdit" mat-fab color="primary" (click)="openResumeSettingDialog()">
       <mat-icon>settings</mat-icon>
     </button>
-
   </div>
-
-
 </div>
 
-<!--<div class="container" *ngIf="resumeEditDto">-->
-<!--  <div class="template-wrapper">-->
-<!--    <resume-template-builder  [resume]="resumeEditDto" [resumeChanged]="resumeChanged" [templatedChanged]="templateChanged"></resume-template-builder>-->
-<!--  </div>-->
-<!--  <div class="resume-edit-page">-->
-<!--    <div class="left-bar">-->
-<!--      <form-bar [resumeForm]="resumeEditForm" [resume]="resumeEditDto" [isCreateForm]="false" (templateChange)="templateChange($event)">-->
-<!--      </form-bar>-->
-<!--      <div class="action">-->
-<!--        <button   mat-stroked-button [disabled]="!resumeEditForm.valid" (click)="submit(resumeEditForm.value)"-->
-<!--          matTooltip="Save" matTooltipPosition="before">Save</button>-->
-<!--        <button mat-stroked-button routerLink="/home/cv/user-list"-->
-<!--          matTooltip="Cancel" matTooltipPosition="before">Cancel</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+
