@@ -42,13 +42,13 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Enter start of education</mat-label>
-      <input matInput [matDatepicker]="dp!" [max]="maxDate" formControlName="startDate" readonly>
+      <input [errorStateMatcher]="matcher" matInput [matDatepicker]="dp!" [max]="maxDate" formControlName="startDate" readonly>
       <mat-hint>MM/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
       <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp, 'startDate')"
         panelClass="example-month-picker">
       </mat-datepicker>
-      <mat-error *ngIf="educationForm?.controls['startDate'].errors">
+      <mat-error *ngIf="educationForm?.controls['startDate']?.hasError('incorrectDate')">
         Incorrect date
       </mat-error>
       
@@ -70,6 +70,7 @@
           <mat-error *ngIf="educationForm.controls['endDate'].errors?.['required']">
             Enter date
           </mat-error>
+          <pre>{{ educationForm?.controls['startDate']?.hasError('incorrectDate')|json}}</pre>
     </mat-form-field>
     <div mat-dialog-actions class="actions">
         <button mat-stroked-button [mat-dialog-close]="educationForm.value" cdkFocusInitial
