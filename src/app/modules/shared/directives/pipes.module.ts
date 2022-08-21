@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
-import {DateUtcPipe} from "../../../helpers/date.pipe";
+import {DateUtcPipe, DateUtcPipeWithTime} from "../../../helpers/date.pipe";
 
 
 @NgModule({
-  declarations: [DateUtcPipe],
-  exports: [DateUtcPipe]
+  declarations: [DateUtcPipe,DateUtcPipeWithTime],
+  exports: [DateUtcPipe,DateUtcPipeWithTime]
 })
 export class PipesModule { }

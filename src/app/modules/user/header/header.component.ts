@@ -1,6 +1,6 @@
 import {DeleteModalService} from './../../../services/delete-modal.service';
 import {MatDialog} from '@angular/material/dialog';
-import { map, takeUntil, pluck } from 'rxjs/operators';
+import {map, pluck, takeUntil} from 'rxjs/operators';
 import {Observable, of, Subject} from 'rxjs';
 import {ResumeService} from './../../../services/resume.service';
 import {Router} from '@angular/router';
@@ -10,8 +10,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserHeaderBtnService, UserHeaderData,} from 'src/app/services/user-header-btn.service';
 import * as saveAs from 'file-saver';
 import {SnackBarService} from 'src/app/services/snack-bar.service';
-import { UserRole } from 'src/app/models/users-type';
-import { UserService } from 'src/app/services/user.service';
+import {UserRole} from 'src/app/models/users-type';
+import {UserService} from 'src/app/services/user.service';
 
 @Component({
   selector: 'cv-header',
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnDestroy {
     private snackbarService: SnackBarService,
     private deleteModalService: DeleteModalService,
     private userService: UserService,
-    
+
   ) {}
 
   ngOnInit(): void {

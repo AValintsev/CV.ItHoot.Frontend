@@ -10,3 +10,14 @@ export class DateUtcPipe implements PipeTransform {
     return dateUTC.toLocaleDateString().replace(/.\d+Z$/g, "Z");
   }
 }
+
+@Pipe({
+  name: 'dateUtcPipeWithTime'
+})
+export class DateUtcPipeWithTime implements PipeTransform {
+  transform(date: Date): any {
+    const dateUTC = new Date(`${date}`)
+
+    return dateUTC.toLocaleString();
+  }
+}

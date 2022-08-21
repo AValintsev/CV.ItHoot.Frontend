@@ -36,7 +36,7 @@
 <!--    </mat-form-field>-->
 
     <div class="modal-text-editor">
-      <quill-editor [modules]="quillModules" formControlName="description" placeholder="Description">
+      <quill-editor [modules]="quillModules" formControlName="description" placeholder="Description" class="quill-editor">
       </quill-editor>
     </div>
 
@@ -68,10 +68,10 @@
           </mat-error>
     </mat-form-field>
 
-    <div mat-dialog-actions class="actions">
-        <button mat-stroked-button [mat-dialog-close]="educationForm.value" cdkFocusInitial
-          [disabled]="!educationForm.valid">Save</button>
-        <button mat-stroked-button [mat-dialog-close]="null">Cancel</button>
-    </div>
+
+  </div>
+  <div mat-dialog-actions class="actions">
+    <button mat-stroked-button [mat-dialog-close]="null">Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="educationForm.value" cdkFocusInitial [disabled]="!educationForm.valid">Save</button>
   </div>
 </div>

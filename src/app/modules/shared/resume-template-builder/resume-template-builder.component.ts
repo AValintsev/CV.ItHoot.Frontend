@@ -16,7 +16,6 @@ import {isObservable, Observable} from 'rxjs';
 import {MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {ExperienceDto} from "../../../models/resume/experience-dto";
 
 @Component({
   selector: 'resume-template-builder',

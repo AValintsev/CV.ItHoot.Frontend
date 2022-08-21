@@ -1,20 +1,21 @@
 .education-dialog {
 
-  .mat-dialog-content {
-    overflow: auto;
-  }
+  //.mat-dialog-content {
+  //  overflow: auto;
+  //}
 
   .content {
     display: grid;
+    height: 100%;
     gap: 10px;
+  }
 
-    .actions {
-      display: flex;
-      justify-content: flex-end;
+  .actions {
+    display: flex;
+    justify-content: flex-end;
 
-      button {
-        width: 10rem;
-      }
+    button {
+      width: 10rem;
     }
   }
 }

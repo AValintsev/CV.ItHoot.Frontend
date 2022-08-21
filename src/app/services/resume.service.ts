@@ -9,6 +9,7 @@ import {PositionDto} from "../models/position/position-dto";
 import {PagedResponse} from "../models/paginations/paged-response";
 import {ResumeListFilter} from 'src/app/models/resume/resume-list-filter';
 import {ImageDto} from "../models/resume/ImageDto";
+import {ResumeHistoryDto} from "../models/resume/resume-history-dto";
 
 
 @Injectable({providedIn: 'root'})
@@ -158,5 +159,9 @@ export class ResumeService {
 
   public duplicateResume(resumeId:number):Observable<ResumeDto>{
     return this.httpService.postRequest<ResumeDto>(this.routePrefix+`/duplicate/${resumeId}`,{});
+  }
+
+  public getAllResumeHistory(resumeId:number):Observable<ResumeHistoryDto[]>{
+    return this.httpService.getRequest<ResumeHistoryDto[]>(this.routePrefix+`/${resumeId}/history`);
   }
 }

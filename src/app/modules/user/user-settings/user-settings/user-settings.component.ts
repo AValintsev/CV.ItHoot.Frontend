@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../services/user.service";
 import {UserProfileDto} from "../../../../models/user-dto";
 import {SnackBarService} from "../../../../services/snack-bar.service";
-import { UserHeaderBtnService } from 'src/app/services/user-header-btn.service';
+import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
 
 @Component({
   selector: 'cv-user-settings',
