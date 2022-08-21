@@ -1,4 +1,3 @@
-import { UserService } from './../../../services/user.service';
 import {map} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';

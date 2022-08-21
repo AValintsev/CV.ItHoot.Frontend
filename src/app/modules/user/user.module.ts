@@ -1,4 +1,4 @@
-import { HeaderModule } from './header/header.module';
+import {HeaderModule} from './header/header.module';
 import {FormBarComponent} from './form-bar/form-bar.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';

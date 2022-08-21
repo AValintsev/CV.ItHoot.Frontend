@@ -1,7 +1,6 @@
 import {ResumeDto} from "../../models/resume/resume-dto";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Injectable} from "@angular/core";
-import {ExperienceDto} from "../../models/resume/experience-dto";
 
 @Injectable({providedIn: 'root'})
 export class ResumeFormBuilderService {

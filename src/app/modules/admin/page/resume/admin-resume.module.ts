@@ -5,7 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatChipsModule} from '@angular/material/chips';
@@ -44,8 +44,8 @@ import {ExperienceDialogModule} from "../../../shared/resume/experience-dialog/e
 import {EducationDialogModule} from "../../../shared/resume/education-dialog/education.dialog.module";
 import {TemplatePreviewDialogModule} from "../../../shared/template-preview-dialog/template-preview-dialog.module";
 import {PipesModule} from "../../../shared/directives/pipes.module";
-import { ResumeCompareResumeDialog } from './components/resume-compare-resume/resume-compare-resume-dialog';
-import { ResumeHistoryPage } from './page/resume-history-page/resume-history-page.component';
+import {ResumeCompareResumeDialog} from './components/resume-compare-resume/resume-compare-resume-dialog';
+import {ResumeHistoryPage} from './page/resume-history-page/resume-history-page.component';
 
 
 @NgModule({

@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ResumeHistoryDto, ResumeHistoryStartStatus} from "../../../../../../models/resume/resume-history-dto";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ResumeService} from "../../../../../../services/resume.service";
 import {ResumeCompareResumeDialog} from "../../components/resume-compare-resume/resume-compare-resume-dialog";
-import {Dialog} from "@angular/cdk/dialog";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({

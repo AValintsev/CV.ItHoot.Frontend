@@ -15,7 +15,6 @@ import {DeleteModalService} from 'src/app/services/delete-modal.service';
 import * as saveAs from 'file-saver';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {NgxSpinnerService} from "ngx-spinner";
-import {ResumeDto} from "../../../../../models/resume/resume-dto";
 
 @Component({
   selector: 'proposal',
