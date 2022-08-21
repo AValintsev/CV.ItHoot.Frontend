@@ -1,0 +1,64 @@
+<div class="content">
+  <h1 class="title">Resume history</h1>
+  <section>
+    <table class="history-table" mat-table [dataSource]="resumeHistories" matSort matSortActive="" matSortDirection="">
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="th-action"><div class="td-line"></div></th>
+        <td mat-cell *matCellDef="let history">
+          <div class="td-line">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu class="menu-list" #menu="matMenu">
+              <button mat-menu-item (click)="openCompareDialog(history)">
+                <mat-icon>edit</mat-icon>
+                <span>Open compare resume</span>
+              </button>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef>Updated At</th>
+        <td mat-cell *matCellDef="let history"> {{history.updatedAt | dateUtcPipeWithTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef>Action By</th>
+        <td mat-cell
+            *matCellDef="let history"> {{history.updatedUser.firstName}} {{history.updatedUser.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let history">{{getResumeHistoryStatus(history)}}</td>
+      </ng-container>
+
+
+      <!--        <ng-container matColumnDef="newResumeJson">-->
+      <!--          <th mat-header-cell *matHeaderCellDef>New Resume Json</th>-->
+      <!--          <td mat-cell *matCellDef="let history">-->
+      <!--            <button mat-raised-button [disabled]="history.newResumeJson == null" color="primary" (click)="copyJson(history.newResumeJson)">-->
+      <!--              <span>Copy Json</span>-->
+      <!--            </button>-->
+      <!--          </td>-->
+      <!--        </ng-container>-->
+
+      <!--        <ng-container matColumnDef="oldResumeJson">-->
+      <!--          <th mat-header-cell *matHeaderCellDef>Old Resume Json</th>-->
+      <!--          <td mat-cell *matCellDef="let history">-->
+      <!--            <button mat-raised-button [disabled]="history.oldResumeJson == null" color="primary" (click)="copyJson(history.oldResumeJson)">-->
+      <!--              <span>Copy Json</span>-->
+      <!--            </button>-->
+      <!--          </td>-->
+      <!--        </ng-container>-->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+
+
+</div>

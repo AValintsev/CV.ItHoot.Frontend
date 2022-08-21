@@ -198,27 +198,27 @@
                 </button>
               </mat-menu>
               <mat-divider *ngIf="userRole == UserRole.Admin || userRole == UserRole.HR"></mat-divider>
-              <button mat-menu-item *ngIf="resume.deletedAt == null && (userRole == UserRole.Admin || userRole == UserRole.HR); else recoverButton"
+              <button mat-menu-item *ngIf="resume.deletedAt === null && (userRole == UserRole.Admin || userRole == UserRole.HR);"
                       (click)="deleteResume(resume)"
                       matTooltip="Delete resume" matTooltipPosition="before">
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
               </button>
 
-              <ng-template #recoverButton>
-                <button mat-menu-item (click)="recoverResume(resume)"
+              <ng-template>
+                <button mat-menu-item (click)="recoverResume(resume)" *ngIf="resume.deletedAt != null && (userRole == UserRole.Admin || userRole == UserRole.HR)"
                         matTooltip="Recover resume" matTooltipPosition="before">
                   <mat-icon>refresh</mat-icon>
                   <span>Recover</span>
                 </button>
               </ng-template>
 
-              <button mat-menu-item *ngIf="userRole == UserRole.Admin"
-                      (click)="openResumeHistoryDialog(resume)"
+              <a mat-menu-item *ngIf="userRole == UserRole.Admin"
+                     routerLink="{{resume.id}}/history"
                       matTooltip="Show resume history" matTooltipPosition="before">
                 <mat-icon>history</mat-icon>
                 <span>Resume history</span>
-              </button>
+              </a>
             </mat-menu>
           </td>
         </ng-container>

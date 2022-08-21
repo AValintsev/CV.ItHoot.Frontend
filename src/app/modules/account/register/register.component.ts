@@ -8,7 +8,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
 import {environment} from "../../../../environments/environment";
 import {CredentialResponse} from "google-one-tap";
-import { UserValidators } from '../../shared/validators/check-date.validators';
+import {UserValidators} from '../../shared/validators/user.validators';
 
 @Component({
   selector: 'cv-register',

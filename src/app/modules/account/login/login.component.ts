@@ -16,7 +16,7 @@ import {SnackBarService} from 'src/app/services/snack-bar.service';
 import {LoadingService} from 'src/app/services/loading.service';
 import {CredentialResponse} from "google-one-tap";
 import {environment} from "../../../../environments/environment";
-import { UserValidators } from '../../shared/validators/check-date.validators';
+import {UserValidators} from '../../shared/validators/user.validators';
 
 @Component({
   selector: 'cv-login',
