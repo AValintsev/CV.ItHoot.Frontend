@@ -43,8 +43,8 @@
     </div>
 
     <div mat-dialog-actions class="actions">
-      <button mat-stroked-button  cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid" matTooltip="Save" matTooltipPosition="before">Save</button>
       <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false"  (click)="onCancelClick()" matTooltip="Cancel" matTooltipPosition="before">Cancel</button>
+      <button mat-stroked-button  cdkFocusInitial (click)="submit()" [disabled]="clientForm.invalid" matTooltip="Save" matTooltipPosition="before">Save</button>
     </div>
   </form>
 </div>
