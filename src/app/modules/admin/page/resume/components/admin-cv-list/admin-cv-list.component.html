@@ -213,12 +213,12 @@
                 </button>
               </ng-template>
 
-              <button mat-menu-item *ngIf="userRole == UserRole.Admin"
-                      (click)="openResumeHistoryDialog(resume)"
+              <a mat-menu-item *ngIf="userRole == UserRole.Admin"
+                     routerLink="{{resume.id}}/history"
                       matTooltip="Show resume history" matTooltipPosition="before">
                 <mat-icon>history</mat-icon>
                 <span>Resume history</span>
-              </button>
+              </a>
             </mat-menu>
           </td>
         </ng-container>

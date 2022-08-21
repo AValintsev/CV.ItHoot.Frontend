@@ -35,7 +35,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {LoadingService} from 'src/app/services/loading.service';
 import {Router} from '@angular/router';
 import {MatDialog} from "@angular/material/dialog";
-import {ResumeHistoryDialog} from "../resume-history-dialog/resume-history-dialog.component";
 
 @Component({
   selector: 'cv-admin-resume',
@@ -394,12 +393,4 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this._onDestroy.complete();
   }
 
-  openResumeHistoryDialog(resume: SmallResumeDto) {
-    const dialogRef = this.dialog.open(ResumeHistoryDialog, {
-      width: '100%',
-      data: {resume: resume}
-    });
-
-
-  }
 }

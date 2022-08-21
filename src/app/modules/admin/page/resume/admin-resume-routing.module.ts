@@ -6,6 +6,7 @@ import {ResumeCreatePage} from "./page/resume-create-page/resume-create-page.com
 import {ResumeViewPage} from "./page/resume-view-page/resume-view-page.component";
 import {RoleGuard} from "../../../../guards/role.guard";
 import {UserRole} from "../../../../models/users-type";
+import {ResumeHistoryPage} from "./page/resume-history-page/resume-history-page.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,13 @@ const routes: Routes = [
 		path: '',
 		component: ResumeListPage,
 	},
+  {
+    path: ':resumeId/history',
+    component: ResumeHistoryPage,
+    canLoad: [RoleGuard],
+    canActivate: [RoleGuard],
+    data: { role: [UserRole.Admin] }
+  },
 	{
     path: 'edit/:id',
 		component: ResumeEditPage,
