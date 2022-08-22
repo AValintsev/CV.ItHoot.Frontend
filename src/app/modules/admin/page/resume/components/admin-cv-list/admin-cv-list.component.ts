@@ -53,6 +53,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() url!: string;
   UserRole = UserRole;
   userRole: UserRole;
+  userId: number;
 
   searchControl = new FormControl();
   isLoading = false
@@ -108,6 +109,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private dialog: MatDialog
   ) {
     this.userRole = this.accountService.getStoreRole();
+    this.userId = this.accountService.getUserId();
   }
 
   ngOnInit() {
@@ -190,6 +192,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
+
+
   isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
     return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
@@ -269,6 +273,22 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`);
       this.isLoading = false
     });
+  }
+
+  getResumePdfByUrl(resume: SmallResumeDto, resumeUrl: string) {
+    this.isLoading = true
+    this.resumeService.getResumePdfByUrl(resumeUrl).subscribe(response => {
+      saveAs(response, `${resume.firstName} ${resume.lastName}.pdf`);
+      this.isLoading = false
+    })
+  }
+
+  getResumeDocxByUrl(resume: SmallResumeDto, resumeUrl: string) {
+    this.isLoading = true
+    this.resumeService.getResumeDocxByUrl(resumeUrl).subscribe(response => {
+      saveAs(response, `${resume.firstName} ${resume.lastName}.docx`);
+      this.isLoading = false
+    })
   }
 
   getResumeDocx(resume: SmallResumeDto) {

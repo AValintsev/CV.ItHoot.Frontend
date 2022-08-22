@@ -107,7 +107,14 @@ export class AccountService {
   }
 
   getUserId() {
-   return (jwt_decode((localStorage.getItem(this.JWT_TOKEN)!))as any).nameId
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    if (token == null){
+      return false;
+    }
+
+    const decode:any = jwt_decode(token);
+    const userId = decode.nameid;
+    return userId;
   }
 
   getRefreshToken() {
