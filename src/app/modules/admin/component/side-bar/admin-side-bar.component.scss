@@ -1,7 +1,9 @@
 :host {
   display: flex;
 }
-
+ul{
+  list-style-type: none;
+ }
 .side-bar {
   // padding-top: 2rem;
   background: white;

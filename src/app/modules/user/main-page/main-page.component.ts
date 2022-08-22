@@ -20,7 +20,7 @@ export class MainPageComponent
     private cdr: ChangeDetectorRef
   ) {}
   ngOnInit(): void {
-    setTimeout(() => {}, 100);
+    
   }
   sideBarToggler() {
     this.toggle = !this.toggle;

@@ -1,5 +1,9 @@
 $visiblHeader: 830px;
 
+ul{
+  list-style-type: none;
+ }
+
 :host-context(.change-mode) .wrapper-edit {
   transition: all 0.3s ease;
 

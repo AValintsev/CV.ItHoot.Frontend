@@ -1,55 +1,57 @@
+ul {
+  list-style-type: none;
+}
 
-  .loading-shade {
-   position: fixed;
-   height: 100vh;
-   width: 100vw;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.15);
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.loading-shade {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .rate-limit-reached {
-        max-width: 360px;
-        text-align: center;
-    }
+  .rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+  }
 }
 
 // //////////////////////////////////////////////
 
 .user-page {
   min-height: 100%;
-  background: #E5E5E5;
+  background: #e5e5e5;
   display: grid;
   align-items: start;
   grid-template-columns: 100%;
 
-
-  .section-table{   
-    height:calc(70vh + 7rem);
-    @media(max-height:880px){
-      height:calc(63vh + 7rem);
+  .section-table {
+    height: calc(70vh + 7rem);
+    @media (max-height: 880px) {
+      height: calc(63vh + 7rem);
     }
-    @media(max-height:730px){
-      height:calc(58vh + 7rem);
+    @media (max-height: 730px) {
+      height: calc(58vh + 7rem);
     }
-    @media(max-height:650px){
-      height:calc(54vh + 7rem);
+    @media (max-height: 650px) {
+      height: calc(54vh + 7rem);
     }
-    @media(max-height:580px){
-      height:calc(50vh + 7rem);
+    @media (max-height: 580px) {
+      height: calc(50vh + 7rem);
     }
-    @media(max-height:540px){
-      height:calc(45vh + 7rem);
+    @media (max-height: 540px) {
+      height: calc(45vh + 7rem);
     }
-   overflow-y: auto;
-      // height: 65vh;
+    overflow-y: auto;
+    // height: 65vh;
     border: 1px solid #e5e5e5;
-    border-bottom:none;
+    border-bottom: none;
   }
   .table-page {
     padding: 24px;
@@ -57,23 +59,22 @@
     // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     border-radius: 8px;
     background: white;
-    .td-line{
+    .td-line {
       width: 8.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-left: -1rem;
       height: 4.8rem;
-       border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
-    td{
-      border-bottom:1px solid rgba(0, 0, 0, 0.12) !important;
+    td {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
     }
     .title-section {
       display: flex;
       // margin-bottom: 1.34375em;
       flex-direction: column;
-     
 
       button {
         height: 5.2rem;
@@ -88,7 +89,7 @@
     h1 {
       font-weight: 700;
       line-height: 130%;
-      color: #04040B;
+      color: #04040b;
       // margin-bottom: 60px;
     }
 
@@ -108,9 +109,8 @@
         vertical-align: middle;
         font-size: 1em;
         line-height: 28px;
-        color: #04040B;
+        color: #04040b;
         font-weight: 400;
-
       }
 
       .mat-cell {
@@ -124,44 +124,41 @@
       .mat-header-cell {
         font-size: 1em;
         line-height: 28px;
-        color: #04040B;
+        color: #04040b;
       }
-
 
       .action-wrapper {
         display: grid;
-        grid-template-columns: repeat(5,  minmax(6rem,15%));
+        grid-template-columns: repeat(5, minmax(6rem, 15%));
         justify-content: space-between;
 
         button {
           height: 35px;
-          padding: .1rem .1rem;
+          padding: 0.1rem 0.1rem;
           color: white;
           border: 0;
           border-radius: 4px;
-          &:not(:first-child){
+          &:not(:first-child) {
             margin-left: 0.4rem;
           }
 
           &:hover {
             cursor: pointer;
-            opacity: .9;
+            opacity: 0.9;
           }
 
           &.edit {
-            background: #F16A1B;
+            background: #f16a1b;
           }
 
           &.delete {
-            background: #BA3020E5;
+            background: #ba3020e5;
           }
         }
-
       }
     }
   }
 }
-
 
 .search-block {
   display: flex;

@@ -1,5 +1,9 @@
 $visiblHeader: 830px;
 
+ul {
+  list-style-type: none;
+}
+
 :host-context(.change-mode) .wrapper-edit {
   transition: all 0.3s ease;
 
@@ -23,13 +27,13 @@ $visiblHeader: 830px;
     order: 2;
   }
 }
-.content{
+.content {
   padding-top: 4rem;
 }
 .back-btn__wrapper {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background: #E5E5E5;
+  background: #e5e5e5;
   left: 0;
   right: 1rem;
   top: 8rem;
@@ -46,11 +50,11 @@ $visiblHeader: 830px;
   @media (max-width: $visiblHeader) {
     margin-top: 2rem;
   }
-  @media(max-width:700px) {
+  @media (max-width: 700px) {
     top: 6rem;
   }
 
-  @media(max-width:600px) {
+  @media (max-width: 600px) {
     top: 5rem;
   }
 }
@@ -89,7 +93,7 @@ $visiblHeader: 830px;
     // .template-wrapper {
     //   order: 1;
     // }
-  
+
     // .form-bar {
     //   order: 2;
     // }
@@ -109,7 +113,6 @@ $visiblHeader: 830px;
   }
 }
 
-
 .container {
   display: flex;
   transition: all 0.3s ease;
@@ -117,7 +120,6 @@ $visiblHeader: 830px;
   padding: 15px;
   font-family: "Inter", sans-serif !important;
   justify-content: center;
-
 
   .left-bar {
     overflow: hidden auto;
@@ -180,7 +182,6 @@ $visiblHeader: 830px;
   .template-wrapper {
     transition: all 0.3s ease;
     #resume {
-      
       @media screen and (min-width: 1151px) {
         // width: 100%;
         zoom: 0.85;
@@ -207,25 +208,25 @@ $visiblHeader: 830px;
         //  width: 100%;
         zoom: 0.7;
       }
-      @media screen and (max-width:930px) {
+      @media screen and (max-width: 930px) {
         // width: 100%;
-       zoom: .68;
+        zoom: 0.68;
       }
-      @media screen and (max-width:900px) {
+      @media screen and (max-width: 900px) {
         // width: 100%;
-       zoom: .66;
+        zoom: 0.66;
       }
-      @media screen and (max-width:880px) {
+      @media screen and (max-width: 880px) {
         // width: 100%;
-       zoom: .64;
+        zoom: 0.64;
       }
-      @media screen and (max-width:830px) {
+      @media screen and (max-width: 830px) {
         // width: 100%;
-       zoom: .72;
+        zoom: 0.72;
       }
       @media screen and (max-width: 700px) {
         // width: 100%;
-        zoom: .72;
+        zoom: 0.72;
       }
 
       @media screen and (max-width: 650px) {
@@ -312,7 +313,6 @@ $visiblHeader: 830px;
     }
   }
   #resume {
-
   }
 
   .template-wrapper {
