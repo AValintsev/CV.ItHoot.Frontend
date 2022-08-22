@@ -6,4 +6,5 @@ export interface ResumeListFilter extends PaginationFilter  {
   skills: number[];
   clients:number[];
   statuses:number[];
+  users:number[];
 }

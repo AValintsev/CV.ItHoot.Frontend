@@ -64,13 +64,13 @@
       <mat-datepicker #dp1 startView="multi-year" (monthSelected)="setMonthAndYear($event, dp1,'endDate')"
         panelClass="example-month-picker">
       </mat-datepicker>
-          <!-- <mat-error *ngIf="educationForm?.errors.incorrectDate">
+        <mat-error *ngIf="educationForm.controls['endDate'].errors?.['incorrectDate']">
             Incorrect date
-          </mat-error> -->
+          </mat-error>
           <mat-error *ngIf="educationForm.controls['endDate'].errors?.['required']">
             Enter date
           </mat-error>
-          <pre>{{ educationForm?.controls['startDate']?.hasError('incorrectDate')|json}}</pre>
+<!--          <pre>{{ educationForm?.controls['endDate']?.hasError('incorrectDate')|json}}</pre>-->
     </mat-form-field>
     <div mat-dialog-actions class="actions">
         <button mat-stroked-button [mat-dialog-close]="educationForm.value" cdkFocusInitial

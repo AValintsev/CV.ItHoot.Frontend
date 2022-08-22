@@ -59,6 +59,12 @@ export class ResumeService {
             requestUrl = `${requestUrl}&clients=${item}`
           });
         }
+
+        if(filters.users) {
+          filters.users.forEach(item => {
+            requestUrl = `${requestUrl}&users=${item}`
+          });
+        }
         return this.httpService.getRequest<PagedResponse<SmallResumeDto[]>>(requestUrl);
       }
   }

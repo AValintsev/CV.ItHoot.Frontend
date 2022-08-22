@@ -57,9 +57,7 @@ export class ExperienceDialog implements OnInit, OnDestroy {
       position: new UntypedFormControl(this.experience.position, [
         Validators.required,
       ]),
-      description: new UntypedFormControl(this.experience.description, [
-        // Validators.required,
-      ]),
+      description: new UntypedFormControl(this.experience.description, ),
       startDate: new UntypedFormControl(this.experience.startDate, [
         Validators.required,
       ]),

@@ -35,6 +35,8 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {LoadingService} from 'src/app/services/loading.service';
 import {Router} from '@angular/router';
 import {MatDialog} from "@angular/material/dialog";
+import {UserService} from "../../../../../../services/user.service";
+import {SmallUserDto} from "../../../../../../models/users/small-user.dto";
 
 @Component({
   selector: 'cv-admin-resume',
@@ -72,6 +74,12 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
   clientFilterControl = new FormControl();
   filteredClientsMulti: ReplaySubject<SmallClientsDto[]> = new ReplaySubject(1);
 
+  @ViewChild('usersMultiSelect', {static: true}) usersMultiSelect: MatSelect;
+  users: SmallUserDto[];
+  usersControl =  new FormControl();
+  usersFilterControl = new FormControl();
+  filteredUsersMulti: ReplaySubject<SmallUserDto[]> = new ReplaySubject(1);
+
   @ViewChild('statusMultiSelect', {static: true}) statusMultiSelect: MatSelect;
   statuses: any[] = [
     {name: 'Available', id: AvailabilityStatus.Available},
@@ -106,6 +114,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService,
     private router: Router,
+    private userService: UserService,
     private dialog: MatDialog
   ) {
     this.userRole = this.accountService.getStoreRole();
@@ -181,6 +190,22 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     });
 
+    this.userService.getAllUsers().subscribe(users =>{
+      const items = users.items;
+      items.forEach(user=> user.fullName = `${user.firstName} ${user.lastName}`);
+      this.users = items;
+      this.filteredUsersMulti.next(this.users.slice());
+
+      this.usersFilterControl.valueChanges.subscribe(()=>{
+        this.filterMulti(
+          this.users,
+          'fullName',
+          this.usersFilterControl,
+          this.filteredUsersMulti
+        )
+      })
+    });
+
     this.filteredStatusesMulti.next(this.statuses.slice());
     this.statusControl.valueChanges.subscribe(() => {
       this.filterMulti(
@@ -206,7 +231,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.skillsControl.valueChanges,
       this.positionControl.valueChanges,
       this.clientsControl.valueChanges,
-      this.statusControl.valueChanges
+      this.statusControl.valueChanges,
+      this.usersControl.valueChanges
     ).subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(
@@ -216,7 +242,8 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.skillsControl.valueChanges,
       this.positionControl.valueChanges,
       this.clientsControl.valueChanges,
-      this.statusControl.valueChanges
+      this.statusControl.valueChanges,
+      this.usersControl.valueChanges
     )
       .pipe(
         startWith(''),
@@ -231,6 +258,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setInitialValue(this.filteredSkillsMulti, this.skillMultiSelect);
     this.setInitialValue(this.filteredClientsMulti, this.clientMultiSelect);
     this.setInitialValue(this.filteredStatusesMulti, this.statusMultiSelect);
+    this.setInitialValue(this.filteredUsersMulti, this.usersMultiSelect);
 
     this.cdr.detectChanges();
   }
@@ -298,7 +326,6 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isLoading = false
     });
   }
-
 
   recoverResume(resume: SmallResumeDto): void {
     this.deleteModalService
@@ -393,6 +420,7 @@ export class AdminCvListComponent implements OnInit, AfterViewInit, OnDestroy {
       skills: this.skillsControl.value,
       clients: this.clientsControl.value,
       statuses: this.statusControl.value,
+      users: this.usersControl.value,
     };
     return resumeFilters;
   }

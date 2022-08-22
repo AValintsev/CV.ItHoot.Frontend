@@ -32,13 +32,9 @@ export class ResumeFormBuilderService {
         Validators.pattern('[- +()0-9]+'), Validators.minLength(10),
       ]),
       code: new FormControl(resume.code),
-      country: new FormControl(resume.country, [
-        Validators.required,
-      ]),
-      city: new FormControl(resume.city, [Validators.required]),
-      street: new FormControl(resume.street, [
-        Validators.required,
-      ]),
+      country: new FormControl(),
+      city: new FormControl(resume.city, ),
+      street: new FormControl(resume.street,),
       requiredPosition: new FormControl(resume.requiredPosition, [
         Validators.required,
       ]),

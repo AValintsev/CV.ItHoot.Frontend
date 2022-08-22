@@ -50,7 +50,8 @@ export class ProposalCreateDialog implements OnInit, OnDestroy {
     clients:[],
     sort: 'name',
     order: 'asc',
-    statuses: []
+    statuses: [],
+    users: []
   };
 
   ngOnInit() {

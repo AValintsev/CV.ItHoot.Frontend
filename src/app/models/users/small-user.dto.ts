@@ -5,6 +5,7 @@ export interface SmallUserDto{
   email: string;
   role: RoleDto;
   createdAt: string;
+  fullName:string;
 }
 
 export interface RoleDto{
