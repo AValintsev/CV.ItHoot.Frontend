@@ -92,7 +92,7 @@
                 <span>View</span>
               </a>
               <a mat-menu-item *ngIf="resume.deletedAt === null
-              && (userRole == UserRole.Admin || userRole == UserRole.HR)"
+              && (userRole == UserRole.Admin || userRole == UserRole.HR || this.userRole == UserRole.Sale && resume?.createdBy?.userId == this.userId)"
                  routerLink="{{ url }}resume/edit/{{ resume.id }}"
                  matTooltip="Edit resume" matTooltipPosition="before">
                 <mat-icon>edit</mat-icon>
@@ -111,34 +111,25 @@
               </button>
 
               <mat-menu #pdfLinks="matMenu">
-                <button class="custom-menu-item" mat-menu-item *ngIf="resume.deletedAt === null"
-                        (click)="getResumePdf(resume)"
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumePdfByUrl(resume,resume.shortUrlFullResume)"
                         matTooltip="Download resume pdf" matTooltipPosition="before">
                   <mat-icon>picture_as_pdf</mat-icon>
-                  <span>PDF</span>
+                  <span>Resume Origin</span>
                 </button>
-                <mat-divider></mat-divider>
-                <button mat-menu-item (click)="copyResumePdfLink(resume.shortUrlFullResume)"
-                        matTooltip="Copy full resume link" matTooltipPosition="after">
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumePdfByUrl(resume, resume.shortUrlIncognito)"
+                        matTooltip="Download anonym resume pdf" matTooltipPosition="before">
                   <mat-icon>picture_as_pdf</mat-icon>
-                  <span>Copy link to origin</span>
+                  <span>Resume Anonym</span>
+                </button>
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumePdfByUrl(resume,resume.shortUrlIncognitoWithoutLogo)"
+                        matTooltip="Download anonym without resume pdf" matTooltipPosition="before">
+                  <mat-icon>picture_as_pdf</mat-icon>
+                  <span>Resume Anonym without logo</span>
                 </button>
 
-                <button
-                  mat-menu-item
-                  (click)="copyResumePdfLink(resume.shortUrlIncognito)"
-                  matTooltip="Copy anonym resume link"
-                  matTooltipPosition="after"
-                >
-                  <mat-icon>picture_as_pdf</mat-icon>
-                  <span>Copy link to anonym</span>
-                </button>
-
-                <button mat-menu-item (click)="copyResumePdfLink(resume.shortUrlIncognitoWithoutLogo)"
-                        matTooltip="Copy anonym without logo resume link" matTooltipPosition="after">
-                  <mat-icon>picture_as_pdf</mat-icon>
-                  <span>Copy link to anonym without logo</span>
-                </button>
               </mat-menu>
 
               <button mat-menu-item [matMenuTriggerFor]="resumeLink"
@@ -164,19 +155,27 @@
                   <mat-icon>content_copy</mat-icon>
                   <span>Anonym without logo</span>
                 </button>
-              </mat-menu>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="copyResumePdfLink(resume.shortUrlFullResume)"
+                        matTooltip="Copy full resume link" matTooltipPosition="after">
+                  <mat-icon>picture_as_pdf</mat-icon>
+                  <span>Copy link to origin</span>
+                </button>
 
-              <button mat-menu-item [matMenuTriggerFor]="docxLink"
-                      matTooltip="Download resume Docx" matTooltipPosition="before">
-                <mat-icon>description</mat-icon>
-                <span>DocX</span>
-              </button>
+                <button
+                  mat-menu-item
+                  (click)="copyResumePdfLink(resume.shortUrlIncognito)"
+                  matTooltip="Copy anonym resume link"
+                  matTooltipPosition="after"
+                >
+                  <mat-icon>picture_as_pdf</mat-icon>
+                  <span>Copy link to anonym</span>
+                </button>
 
-              <mat-menu #docxLink="matMenu">
-                <button mat-menu-item *ngIf="resume.deletedAt === null" (click)="getResumeDocx(resume)"
-                        matTooltip="Download resume Docx" matTooltipPosition="before">
-                  <mat-icon>description</mat-icon>
-                  <span>DocX</span>
+                <button mat-menu-item (click)="copyResumePdfLink(resume.shortUrlIncognitoWithoutLogo)"
+                        matTooltip="Copy anonym without logo resume link" matTooltipPosition="after">
+                  <mat-icon>picture_as_pdf</mat-icon>
+                  <span>Copy link to anonym without logo</span>
                 </button>
                 <mat-divider></mat-divider>
                 <button mat-menu-item (click)="copyResumeDocxLink(resume.shortUrlFullResume)"
@@ -197,8 +196,36 @@
                   <span>Copy link to anonym without logo</span>
                 </button>
               </mat-menu>
+
+              <button mat-menu-item [matMenuTriggerFor]="docxLink"
+                      matTooltip="Download resume Docx" matTooltipPosition="before">
+                <mat-icon>description</mat-icon>
+                <span>DocX</span>
+              </button>
+
+              <mat-menu #docxLink="matMenu">
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumeDocxByUrl(resume,resume.shortUrlFullResume)"
+                        matTooltip="Download resume pdf" matTooltipPosition="before">
+                  <mat-icon>description</mat-icon>
+                  <span>Resume Origin</span>
+                </button>
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumeDocxByUrl(resume, resume.shortUrlIncognito)"
+                        matTooltip="Download anonym resume pdf" matTooltipPosition="before">
+                  <mat-icon>description</mat-icon>
+                  <span>Resume Anonym</span>
+                </button>
+                <button class="custom-menu-item" mat-menu-item
+                        (click)="getResumeDocxByUrl(resume,resume.shortUrlIncognitoWithoutLogo)"
+                        matTooltip="Download anonym without resume pdf" matTooltipPosition="before">
+                  <mat-icon>description</mat-icon>
+                  <span>Resume Anonym without logo</span>
+                </button>
+
+              </mat-menu>
               <mat-divider *ngIf="userRole == UserRole.Admin || userRole == UserRole.HR"></mat-divider>
-              <button mat-menu-item *ngIf="resume.deletedAt === null && (userRole == UserRole.Admin || userRole == UserRole.HR);"
+              <button mat-menu-item *ngIf="resume.deletedAt === null && (userRole == UserRole.Admin || userRole == UserRole.HR || this.userRole == UserRole.Sale && resume?.createdBy?.userId == this.userId);"
                       (click)="deleteResume(resume)"
                       matTooltip="Delete resume" matTooltipPosition="before">
                 <mat-icon>delete</mat-icon>
