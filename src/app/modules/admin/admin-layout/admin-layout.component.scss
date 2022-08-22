@@ -1,3 +1,7 @@
+ul{
+  list-style: none;
+}
+
 .page {
   padding-top: 2rem;
   display: flex;
@@ -33,7 +37,6 @@ admin-side-bar {
   transform: translateX(-100%);
   width: 0;
   opacity: 0;
-  // overflow-x: hidden;
 
   transition: transform 0.2s ease, font-size 0.1s ease, width 0.2s ease,
     flex 0.2s ease, visibility 0.1s ease, opacity 0.1s ease;
@@ -42,11 +45,9 @@ admin-side-bar {
     transform: translateX(0%);
     flex: 0 0 30rem;
     width: 30rem;
-    // overflow-x: hidden;
     visibility: visible;
     transition: transform 0.2s ease, font-size 0.3s ease, width 0.2s ease,
       flex 0.2s ease, visibility 0.4s ease, opacity 0.4s ease;
-    //  transition: font-size 0.22s linear;
     font-size: 14px;
   }
 }

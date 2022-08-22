@@ -1,3 +1,7 @@
+ul{
+  list-style: none;
+}
+
 mat-menu {
   display: none;
 }
@@ -141,18 +145,6 @@ button.mat-menu-item {
   }
 }
 
-.mat-menu-item {
-  // @media (max-height: 680px) {
-  //   line-height: 3.9rem;
-  //   height: 3.9rem;
-  // }
-
-  // @media (max-height: 620px) {
-  //   line-height: 3.4rem;
-  //   height: 3.4rem;
-  // }
-}
-
 .logout {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -166,18 +158,12 @@ button.mat-menu-item {
 .label {
   height: 7rem;
   padding-bottom: 1rem;
-  // display: flex;
-  // align-items: center;
   margin-right: 1rem;
 
   img {
     width: 16rem;
     height: 4.5rem;
 
-    @media (max-width: 700px) {
-      // width: 12rem;
-      // height: 3.5rem;
-    }
 
     @media (max-width: 500px) {
       width: 10rem;
@@ -287,7 +273,6 @@ img {
 .user-name {
   font-size: 1.6rem;
   color: #232d42;
-  // color: #8A92A6;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -366,48 +351,11 @@ img {
     color: #8A92A6;
   }
 }
-//   button {
-//     font-family: "Inter", sans-serif;
-//     line-height: 4rem;
-//     height: 4rem;
-//     text-align: center;
-//     color: #fff;
-//     box-sizing: border-box;
-//     position: relative;
-//     -webkit-user-select: none;
-//     user-select: none;
-//     cursor: pointer;
-//     outline: none;
-//     border: none;
-//     -webkit-tap-highlight-color: transparent;
-//     display: inline-block;
-//     white-space: nowrap;
-//     text-decoration: none;
-//     vertical-align: baseline;
-//     text-align: center;
-//     margin: 0;
-//     min-width: 64px;
-//     line-height: 36px;
-//     padding: 0 16px;
-//     border-radius: 4px;
-//     overflow: visible;
-//     transform: translate3d(0, 0, 0);
-//     transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
-//       box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-//     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-//       0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-//     cursor: pointer;
 
-//     &:hover {
-//       background-color: rgba(0, 0, 0, 0.87);
-//     }
-//   }
-// }
 
 .first-divider {
   display: block;
   margin-top: 1rem !important;
-  // margin-bottom: 2rem !important;
 }
 
 .last-divider {
@@ -420,5 +368,3 @@ img {
   padding-bottom: 2rem;
 }
 
-//////////////////@at-root
-///

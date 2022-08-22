@@ -1,16 +1,18 @@
+ul{
+  list-style: none;
+}
+
 :host {
   display: flex;
 }
 
 .side-bar {
-  // padding-top: 2rem;
   background: white;
   font-size: 1.2em;
   color: #8A92A6;
   overflow: auto;
   overflow-x: hidden;
   height: 100vh;
-  // border-top: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 
   .links {
@@ -69,10 +71,6 @@
       color: white;
     }
 
-    // ::ng-deep .mat-expansion-indicator::after{
-    //  color: white;
-    //}
-
     li.active> ::ng-deep .mat-expansion-indicator::after {
       color: white;
     }
@@ -104,9 +102,6 @@
         color: #8A92A6;
 
       }
-
-
-
 
     }
   }

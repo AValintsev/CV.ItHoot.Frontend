@@ -1,3 +1,7 @@
+ul{
+  list-style: none;
+}
+
 .language-page {
   min-height: 100%;
   background: #E5E5E5;
@@ -53,7 +57,6 @@ padding-bottom: 24px;
       font-weight: 700;
       line-height: 130%;
       color: #04040B;
-      // margin-bottom: 60px;
     }
 
     table {
@@ -63,7 +66,6 @@ padding-bottom: 24px;
 
       th {
         vertical-align: middle;
-        // border-bottom: 1px #C4C4C4 solid;
         font-weight: 400;
         height: 5rem;
       }

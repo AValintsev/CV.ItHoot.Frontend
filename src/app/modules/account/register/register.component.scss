@@ -1,3 +1,7 @@
+ul{
+   list-style: none;
+}
+
 :host::ng-deep{
    display: block;
    height: 100vh;
@@ -6,8 +10,6 @@
    color: #eee;
    font-size: 1.6rem;
    background-color: #fff;
-   // background: #9b59b6;
-   // background: radial-gradient(circle at center, #3498db, #9b59b6);
    display: flex;
    justify-content: center;
    overflow-y: auto;
@@ -23,7 +25,6 @@
 
    width: 400px;
    padding-top: 10rem;
-   // padding-bottom: 20rem;
    margin-bottom: 10rem;
 
    @media(max-width:600px) {
@@ -64,9 +65,6 @@ mat-card-content {
    flex: 1 1 100%;
 }
 
-mat-form-field {
-   // margin-bottom: 1rem;
-}
 
 .button {
    margin-top: 2rem;
@@ -131,9 +129,6 @@ button {
    color: rgb(160, 146, 146);
    font-size: 2.5rem;
    cursor: pointer;
-   // top: -28px;
-   // right: 1px;
-   // position: absolute;
  }
 .google-btn__wrapper {
   margin-top: 2rem;

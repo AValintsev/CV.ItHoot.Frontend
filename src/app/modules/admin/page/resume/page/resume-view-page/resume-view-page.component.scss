@@ -1,3 +1,7 @@
+ul{
+  list-style: none;
+}
+
 $visiblHeader: 830px;
 
 :host-context(.change-mode) .wrapper-edit {
@@ -36,7 +40,6 @@ $visiblHeader: 830px;
   }
 
   @media (max-width: $visiblHeader) {
-    // margin-top: 2rem;
   }
 }
 
@@ -58,26 +61,13 @@ $visiblHeader: 830px;
   padding: 15px;
   justify-content: center;
   align-items: center;
-  // & > .template-wrapper {
-  //   order: 1;
-  // }
 
-  // & > .create-page {
-  //   order: 2;
-  // }
 
   .wrapper-edit {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    // .template-wrapper {
-    //   order: 1;
-    // }
-
-    // .form-bar {
-    //   order: 2;
-    // }
     .left-bar {
       overflow: hidden auto;
       padding: 30px 30px 0 20px;
@@ -110,7 +100,6 @@ $visiblHeader: 830px;
     display: flex;
     flex-direction: column;
     background: white;
-    // border-radius: 15px;
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 
     .action {
@@ -140,7 +129,6 @@ $visiblHeader: 830px;
     position: fixed;
     top: 5rem;
     right: 1rem;
-    // right: 40px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -173,18 +161,14 @@ $visiblHeader: 830px;
     #resume {
 
       @media screen and (min-width: 1151px) {
-        // width: 100%;
         zoom: 0.85;
       }
 
       @media screen and (max-width: 1151px) {
-        // width: 100%;
         zoom: 0.72;
       }
 
       @media screen and (max-width: 754px) {
-        // width: 100%;
-        // zoom: 0.95;
 
         .first-name {
           font-size: 2.8rem;
@@ -196,91 +180,73 @@ $visiblHeader: 830px;
       }
 
       @media screen and (max-width: 986px) {
-        //  width: 100%;
         zoom: 0.7;
       }
 
       @media screen and (max-width:930px) {
-        // width: 100%;
         zoom: .68;
       }
 
       @media screen and (max-width:900px) {
-        // width: 100%;
         zoom: .65;
       }
 
       @media screen and (max-width:880px) {
-        // width: 100%;
         zoom: .6;
       }
 
       @media screen and (max-width:830px) {
-        // width: 100%;
         zoom: .56;
       }
       @media screen and (max-width:800px) {
-        // width: 100%;
         zoom: .53;
       }
       @media screen and (max-width:768px) {
-        // width: 100%;
         zoom: .8;
       }
 
 
       @media screen and (max-width: 700px) {
-        // width: 100%;
         zoom: .72;
       }
 
       @media screen and (max-width: 650px) {
-        // width: 100%;
         zoom: 0.69;
       }
 
       @media screen and (max-width: 600px) {
-        // width: 100%;
         zoom: 0.65;
       }
 
       @media screen and (max-width: 550px) {
-        // width: 100%;
         zoom: 0.6;
       }
 
       @media screen and (max-width: 520px) {
-        // width: 100%;
         zoom: 0.57;
       }
 
       @media screen and (max-width: 500px) {
-        // width: 100%;
         zoom: 0.55;
       }
 
       @media screen and (max-width: 470px) {
-        // width: 100%;
         zoom: 0.52;
       }
 
       @media screen and (max-width: 450px) {
-        // width: 100%;
         zoom: 0.5;
       }
 
       @media screen and (max-width: 425px) {
-        // width: 100%;
         zoom: 0.47;
       }
 
       @media screen and (max-width: 400px) {
-        // width: 100%;
         zoom: 0.44;
       }
 
       @media screen and (max-width: 380px) {
-        // width: 100%;
         zoom: 0.4;
       }
 
@@ -313,20 +279,6 @@ $visiblHeader: 830px;
 }
 
 :host-context(.open-side-bar--content) {
-  .container {
-    @media screen and (max-width: 854px) {
-      // align-items: flex-start;
-    }
-  }
-
-  #resume {}
-
-  .template-wrapper {
-    @media (max-width: 1430px) {
-      //  max-width: 68.4rem;
-      //  width: 100%;
-    }
-  }
 
   .input-group {
     @media (max-width: 800px) {
