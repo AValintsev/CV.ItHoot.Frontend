@@ -1,3 +1,7 @@
+ul{
+  list-style: none;
+}
+
 :host::ng-deep {
   table {
     th {
@@ -43,7 +47,6 @@
     padding: 24px;
     padding-right: 1.5rem;
     padding-top: 0;
-    // box-shadow: 0 10px 13px rgba(17, 38, 146, 0.05);
     background: white;
     display: flex;
     flex-direction: column;
@@ -59,7 +62,6 @@
       font-weight: 700;
       line-height: 130%;
       color: #04040b;
-      // margin-bottom: 60px;
       margin-right: 3rem;
     }
   }
@@ -116,7 +118,6 @@
 .mat-footer-row,
 .mat-row {
   min-width: 1000px;
-  /* 24 columns, 80px each */
 }
 
 .mat-table-sticky-border-elem-top {
@@ -152,7 +153,6 @@ table {
 
   &.mat-table-sticky-border-elem-left {
     border-right: 1px solid rgba(0, 0, 0, 0.12);
-    // border-left: 1px solid rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -169,8 +169,6 @@ mat-button-toggle:first-child {
 td:first-child {
   width: 6rem;
 }
-// /////////////////////////////////////////////////////
-
 
 .resume-name{
 

@@ -1,11 +1,13 @@
+ul{
+  list-style: none;
+}
+
 .resume-wrapper {
-  //overflow: hidden;
   height: 100%;
   width: 100%;
 
   .resumeDiv {
     height: 100vh;
-    // overflow-y: auto;
     padding: 0 0 15px 0;
     display: flex;
     justify-content: center;
