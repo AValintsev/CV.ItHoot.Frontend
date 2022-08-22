@@ -18,16 +18,12 @@ export class UserValidators{
 
       if (endDate < startDate) {
         controls.get(startTime)?.setErrors(error);
-        // controls.get(endTime)?.setErrors(error)
         return { incorrectDate: true };
       } else {
         const firsFieldDate = controls
           .get(startTime)
           ?.hasError('incorrectDate');
         if (firsFieldDate) {
-          // if(controls&&controls.get(startTime)){
-          //    delete controls.get(startTime)?.errors;
-          // }
           controls.get(startTime)?.updateValueAndValidity();
         }
       }
