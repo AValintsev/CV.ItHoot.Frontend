@@ -4,6 +4,7 @@ import {UserService} from "../../../../services/user.service";
 import {UserProfileDto} from "../../../../models/user-dto";
 import {SnackBarService} from "../../../../services/snack-bar.service";
 import {UserHeaderBtnService} from 'src/app/services/user-header-btn.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cv-user-settings',
@@ -16,6 +17,7 @@ export class UserSettingsComponent implements OnInit {
   userProfile: UserProfileDto;
 
   constructor(
+    private router:Router,
     private userService: UserService,
     private snackBar:SnackBarService,
     private userHeaderBtnService:UserHeaderBtnService
@@ -52,6 +54,7 @@ export class UserSettingsComponent implements OnInit {
   submit() {
     this.userService.updateUserProfile(this.userForm.value).subscribe(()=>{
       this.snackBar.showSuccess('User profile updated');
+      this.router.navigate(['/home/resume'])
     });
   }
 }

@@ -84,7 +84,7 @@ button {
    display: flex;
    flex: 1 1 100%;
    align-items: center;
-   margin: 3rem 0 1rem;
+   margin: 2rem 0 1rem;
 
    span {
       &:first-child {
@@ -136,3 +136,14 @@ button {
   justify-content: center;
   flex: 1 1 100%;
 }
+
+.button-wrapper{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap:15px;
+   div{
+      width: 100%;
+   }
+ }

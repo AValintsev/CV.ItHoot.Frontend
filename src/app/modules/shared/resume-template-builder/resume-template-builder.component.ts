@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import {
   Component,
   createNgModuleRef,
@@ -54,6 +55,7 @@ export class ResumeTemplateBuilderComponent implements OnInit {
         MatFormFieldModule,
         CommonModule,
         MatInputModule,
+        MatIconModule
       ],
       declarations: [componentType],
     })(class {
