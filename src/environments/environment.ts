@@ -7,6 +7,7 @@ export const environment = {
   googleClientId: '181654787190-3q6n92lmq06ktlqdgb32ejiv1h5ulnrr.apps.googleusercontent.com',
   apiUrl: 'https://cvbuilder-it.azurewebsites.net/api/v1/',
   // apiUrl: 'https://localhost:5001/api/v1/',
+
 };
 
 /*
