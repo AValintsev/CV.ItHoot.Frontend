@@ -17,7 +17,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="text" formControlName="text">
+        <input matInput type="text" formControlName="password">
         <mat-error *ngIf="clientForm.controls['password'].invalid && clientForm.controls['password'].touched">{{getEmailValidationError()}}</mat-error>
       </mat-form-field>
 
